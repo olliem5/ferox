@@ -2,6 +2,8 @@ package us.ferox.client.impl.modules.combat;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityEnderCrystal;
+import net.minecraft.item.ItemSword;
+import net.minecraft.potion.Potion;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import us.ferox.client.api.module.Category;
@@ -10,6 +12,7 @@ import us.ferox.client.api.module.ModuleInfo;
 import us.ferox.client.api.setting.NumberSetting;
 import us.ferox.client.api.setting.Setting;
 import us.ferox.client.api.util.client.CooldownUtil;
+import us.ferox.client.api.util.minecraft.InventoryUtil;
 import us.ferox.client.api.util.module.CrystalUtil;
 
 import java.util.Comparator;
@@ -117,6 +120,10 @@ public class AutoCrystal extends Module {
                 if (breakMode.getValue() == BreakModes.Nearest) {
                     if (rotate.getValue()) {
                         crystalUtil.lookAtPacket(entityEnderCrystal.posX, entityEnderCrystal.posY, entityEnderCrystal.posZ, mc.player);
+                    }
+
+                    if (antiWeakness.getValue() && mc.player.isPotionActive(Potion.getPotionById(18))) {
+                        InventoryUtil.switchToSlot(ItemSword.class);
                     }
 
                     for (int i = 0; i < (double) breakAttempts.getValue(); i++) {

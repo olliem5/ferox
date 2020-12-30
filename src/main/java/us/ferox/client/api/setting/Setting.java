@@ -1,12 +1,16 @@
 package us.ferox.client.api.setting;
 
 public class Setting<T> {
-	private String name;
-	T value;
+	private final String name;
+	private T value;
 
 	public Setting(String name, T value) {
 		this.name = name;
 		this.value = value;
+	}
+
+	public String getName() {
+		return name;
 	}
 
 	public T getValue() {

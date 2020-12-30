@@ -1,8 +1,8 @@
 package us.ferox.client.api.setting;
 
-public class NumberSetting<T extends Number> extends Setting {
-	T min;
-	T max;
+public final class NumberSetting<T extends Number> extends Setting<T> {
+	private final T min;
+	private final T max;
 
 	public NumberSetting(String name, T min, T value, T max) {
 		super(name, value);

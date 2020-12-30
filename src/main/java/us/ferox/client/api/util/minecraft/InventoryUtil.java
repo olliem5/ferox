@@ -9,15 +9,24 @@ import us.ferox.client.api.traits.Minecraft;
  */
 
 public class InventoryUtil implements Minecraft {
-
-    public static void switchToSlot(Item item) {
-        mc.player.inventory.currentItem = getHotbarItemSlot(item);
+    public static void switchToSlot(Class<? extends Item> clazz) {
+        if (mc.player.getHeldItemMainhand().getItem().getClass().isAssignableFrom(clazz)) return;
+        int slot = getHotbarItemSlot(clazz);
+        if (slot == -1) return;
+        mc.player.inventory.currentItem = slot;
     }
 
-    public static int getHotbarItemSlot(Item item) {
-        int slot = 0;
+    public static void switchToSlot(Item item) {
+        if (mc.player.getHeldItemMainhand().getItem() == item) return;
+        int slot = getHotbarItemSlot(item.getClass());
+        if (slot == -1) return;
+        mc.player.inventory.currentItem = slot;
+    }
+
+    public static int getHotbarItemSlot(Class<? extends Item> item) {
+        int slot = -1;
         for (int i = 0; i < 9; i++) {
-            if (mc.player.inventory.getStackInSlot(i).getItem() == item) {
+            if (mc.player.inventory.getStackInSlot(i).getItem().getClass().isAssignableFrom(item)) {
                 slot = i;
                 break;
             }
