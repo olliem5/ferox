@@ -1,0 +1,125 @@
+buildscript {
+    repositories {
+        jcenter()
+        maven {
+            name = "forge"
+            url = "https://files.minecraftforge.net/maven"
+        }
+        maven {
+            name = 'SpongePowered'
+            url = 'http://repo.spongepowered.org/maven'
+        }
+    }
+    dependencies {
+        classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
+        classpath 'org.spongepowered:mixingradle:0.6-SNAPSHOT'
+        classpath 'com.github.jengelman.gradle.plugins:shadow:1.2.3'
+    }
+}
+
+apply plugin: "net.minecraftforge.gradle.forge"
+apply plugin: 'org.spongepowered.mixin'
+apply plugin: 'com.github.johnrengelman.shadow'
+
+version = "1.0"
+group = "us.ferox.client"
+archivesBaseName = "ferox"
+
+minecraft {
+    version = project.forgeVersion
+    runDir = "run"
+    mappings = project.mcpVersion
+    coreMod = 'us.ferox.client.api.mixin.MixinLoader'
+    makeObfSourceJar = false
+}
+
+repositories {
+    maven {
+        name = 'spongepowered-repo'
+        url = 'http://repo.spongepowered.org/maven/'
+    }
+    maven {
+        name = 'impactdevelopment-repo'
+        url = 'https://impactdevelopment.github.io/maven/'
+    }
+    maven {
+        name = 'swt-repo'
+        url = "http://maven-eclipse.github.io/maven"
+    }
+    maven {
+        name = "jitpack.io"
+        url = "https://jitpack.io"
+    }
+    mavenCentral()
+}
+
+dependencies {
+    compile("org.spongepowered:mixin:0.7.4-SNAPSHOT") {
+        exclude module: 'launchwrapper'
+        exclude module: 'guava'
+        exclude module: 'gson'
+        exclude module: 'commons-io'
+    }
+    compile group: 'net.jodah', name: 'typetools', version: '0.5.0'
+    compile group: 'club.minnced', name: 'java-discord-rpc', version: '2.0.1'
+    compile 'com.github.LittleDraily:event-system:1.1'
+    compile 'org.slick2d:slick2d-core:1.0.2'
+}
+
+processResources {
+    inputs.property "version", project.version
+    inputs.property "mcversion", project.minecraft.version
+
+    from(sourceSets.main.resources.srcDirs) {
+        include "mcmod.info"
+        expand "version": project.version, "mcversion": project.minecraft.version
+    }
+
+    from(sourceSets.main.resources.srcDirs) {
+        exclude "mcmod.info"
+    }
+
+    rename "(.+_at.cfg)", 'META-INF/$1'
+}
+
+shadowJar {
+    dependencies {
+        include(dependency('org.spongepowered:mixin'))
+        include(dependency('net.jodah:typetools'))
+        include(dependency('club.minnced:java-discord-rpc:2.0.1'))
+        include(dependency('com.github.LittleDraily:event-system:1.1'))
+        include(dependency('org.slick2d:slick2d-core'))
+    }
+
+    exclude 'dummyThing'
+    exclude 'LICENSE.txt'
+    classifier = 'release'
+}
+
+mixin {
+    defaultObfuscationEnv searge
+    add sourceSets.main, 'mixins.ferox.refmap.json'
+}
+
+reobf {
+    shadowJar {
+        mappingType = 'SEARGE'
+        classpath = sourceSets.main.compileClasspath
+    }
+}
+
+jar {
+    manifest {
+        attributes(
+                'MixinConfigs': 'mixins.past.json',
+                'TweakClass': 'org.spongepowered.asm.launch.MixinTweaker',
+                'TweakOrder': 0,
+                'FMLCorePluginContainsFMLMod': 'true',
+                'FMLCorePlugin': 'us.ferox.client.api.mixin.MixinLoader',
+                'ForceLoadAsMod': 'true',
+                'FMLAT': 'ferox_at.cfg'
+        )
+    }
+}
+
+build.dependsOn(shadowJar)
