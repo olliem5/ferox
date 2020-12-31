@@ -5,7 +5,6 @@ import us.ferox.client.impl.modules.ferox.ClickGUIModule;
 import us.ferox.client.impl.modules.ferox.DiscordRPC;
 import us.ferox.client.impl.modules.ferox.Font;
 import us.ferox.client.impl.modules.movement.ElytraFlight;
-import us.ferox.client.impl.modules.movement.Timer;
 
 import java.util.ArrayList;
 
@@ -18,7 +17,6 @@ public class ModuleManager {
         modules.add(new Font());
         modules.add(new AutoCrystal());
         modules.add(new ElytraFlight());
-        modules.add(new Timer());
     }
 
     public ArrayList<Module> getModules() {

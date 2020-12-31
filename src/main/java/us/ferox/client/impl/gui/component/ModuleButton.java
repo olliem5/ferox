@@ -3,6 +3,7 @@ package us.ferox.client.impl.gui.component;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.ScaledResolution;
 import us.ferox.client.api.module.Module;
+import us.ferox.client.api.util.colour.RainbowUtil;
 import us.ferox.client.api.util.font.FontUtil;
 import us.ferox.client.impl.gui.Component;
 
@@ -40,7 +41,8 @@ public class ModuleButton extends Component {
 
     @Override
     public void renderComponent() {
-        Gui.drawRect(parent.getX(), parent.getY() + offset, parent.getX() + parent.getWidth(), parent.getY() + 16 + offset, mod.isEnabled() ? new Color(10, 10, 10, 10).getRGB() : new Color(100, 100, 100, 100).getRGB());
+        Gui.drawRect(parent.getX(), parent.getY() + offset, parent.getX() + parent.getWidth(), parent.getY() + 16 + offset, RainbowUtil.getRainbow().getRGB());
+        Gui.drawRect(parent.getX() + 1, parent.getY() + offset -1, parent.getX() + parent.getWidth() -1, parent.getY() + 16 + offset -1, mod.isEnabled() ? new Color(10, 10, 10, 10).getRGB() : new Color(100, 100, 100, 100).getRGB());
 
         FontUtil.drawText(mod.getName(), parent.getX() + 2, parent.getY() + offset + 2, -1);
 

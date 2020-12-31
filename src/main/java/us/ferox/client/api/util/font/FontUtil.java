@@ -6,7 +6,7 @@ import us.ferox.client.impl.modules.ferox.Font;
 
 public class FontUtil implements Minecraft {
     public static void drawString(String text, float x, float y, int colour) {
-        switch ((Font.Fonts) Font.font.getValue()) {
+        switch (Font.font.getValue()) {
             case Lato:
                 Ferox.latoFont.drawString(text, x, y, colour);
                 break;
@@ -29,7 +29,7 @@ public class FontUtil implements Minecraft {
     }
 
     public static void drawStringWithShadow(String text, float x, float y, int colour) {
-        switch ((Font.Fonts) Font.font.getValue()) {
+        switch (Font.font.getValue()) {
             case Lato:
                 Ferox.latoFont.drawStringWithShadow(text, x, y, colour);
                 break;
@@ -60,7 +60,7 @@ public class FontUtil implements Minecraft {
     }
 
     public static float getStringWidth(String text) {
-        switch ((Font.Fonts) Font.font.getValue()) {
+        switch (Font.font.getValue()) {
             case Lato:
                 return Ferox.latoFont.getStringWidth(text);
             case Ubuntu:
@@ -78,7 +78,7 @@ public class FontUtil implements Minecraft {
     }
 
     public static float getStringHeight(String text) {
-        switch ((Font.Fonts) Font.font.getValue()) {
+        switch (Font.font.getValue()) {
             case Lato:
                 return Ferox.latoFont.getStringHeight(text);
             case Ubuntu:
