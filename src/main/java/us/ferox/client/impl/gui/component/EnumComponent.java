@@ -44,7 +44,7 @@ public class EnumComponent extends Component {
 
     @Override
     public void mouseClicked(final int mouseX, final int mouseY, final int button) {
-        if (this.isMouseOnButton(mouseX, mouseY) && button == 0 && this.parent.isOpen()) {
+        if (this.isMouseOnButton(mouseX, mouseY) && this.parent.isOpen()) {
             setEnumValue(GetNextEnumValue(button == 1));
         }
     }

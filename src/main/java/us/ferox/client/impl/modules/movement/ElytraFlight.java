@@ -37,6 +37,22 @@ public class ElytraFlight extends Module {
     public static Setting<Boolean> onUpward = new Setting<>("Disable on Upward Motion", false);
     public static Setting<Boolean> belowY = new Setting<>("Disable at Low Height", false);
 
+    public ElytraFlight() {
+        this.addSetting(mode);
+        this.addSetting(horizontalSpeed);
+        this.addSetting(verticalSpeed);
+        this.addSetting(yOffset);
+        this.addSetting(takeOffTimer);
+        this.addSetting(ticks);
+        this.addSetting(lockRotation);
+        this.addSetting(ncpRotations);
+        this.addSetting(infiniteFly);
+        this.addSetting(liquidDisable);
+        this.addSetting(onCollision);
+        this.addSetting(onUpward);
+        this.addSetting(belowY);
+    }
+
     private ElytraMode elytraMode;
 
     @Override

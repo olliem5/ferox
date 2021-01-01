@@ -4,6 +4,7 @@ import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.ScaledResolution;
 import us.ferox.client.Ferox;
 import us.ferox.client.api.module.Module;
+import us.ferox.client.api.setting.NumberSetting;
 import us.ferox.client.api.setting.Setting;
 import us.ferox.client.api.util.colour.RainbowUtil;
 import us.ferox.client.api.util.font.FontUtil;
@@ -36,6 +37,13 @@ public class ModuleButton extends Component {
                 }
                 if (setting.getValue() instanceof Enum) {
                     this.subcomponents.add(new EnumComponent(setting, this, opY));
+                }
+                if (setting instanceof NumberSetting) {
+                    NumberSetting numberSetting = (NumberSetting) setting;
+
+                    if (numberSetting.getValue() instanceof Integer) {
+                        this.subcomponents.add(new IntegerComponent(numberSetting, this, opY));
+                    }
                 }
             }
         }
