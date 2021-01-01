@@ -1,6 +1,7 @@
 package us.ferox.client.api.module;
 
 import us.ferox.client.impl.modules.combat.AutoCrystal;
+import us.ferox.client.impl.modules.combat.Surround;
 import us.ferox.client.impl.modules.ferox.ClickGUIModule;
 import us.ferox.client.impl.modules.ferox.DiscordRPC;
 import us.ferox.client.impl.modules.ferox.Font;
@@ -17,6 +18,7 @@ public class ModuleManager {
         modules.add(new Font());
         modules.add(new AutoCrystal());
         modules.add(new ElytraFlight());
+        modules.add(new Surround());
     }
 
     public ArrayList<Module> getModules() {

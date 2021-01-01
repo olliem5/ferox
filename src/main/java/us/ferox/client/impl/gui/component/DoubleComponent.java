@@ -11,8 +11,8 @@ import java.awt.*;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-public class IntegerComponent extends Component {
-    private NumberSetting<Integer> set;
+public class DoubleComponent extends Component {
+    private NumberSetting<Double> set;
     private ModuleButton parent;
     private int offset;
     private int x;
@@ -20,7 +20,7 @@ public class IntegerComponent extends Component {
     private boolean dragging;
     private double sliderWidth;
 
-    public IntegerComponent(NumberSetting<Integer> value, ModuleButton button, int offset) {
+    public DoubleComponent(NumberSetting<Double> value, ModuleButton button, int offset) {
         this.dragging = false;
         this.set = value;
         this.parent = button;
@@ -53,15 +53,15 @@ public class IntegerComponent extends Component {
         this.x = parent.parent.getX();
 
         double diff = Math.min(100, Math.max(0, mouseX - this.x));
-        int min = this.set.getMin();
-        int max = this.set.getMax();
+        double min = this.set.getMin();
+        double max = this.set.getMax();
         this.sliderWidth = 100 * (this.set.getValue() - min) / (max - min);
 
         if (this.dragging) {
             if (diff == 0) {
-                this.set.setValue(this.set.getMin());
+                this.set.setValue(this.set.getValue());
             } else {
-                int newValue = (int) roundToPlace(diff / 100 * (max - min) + min, 2);
+                double newValue = roundToPlace(diff / 100 * (max - min) + min, 2);
                 this.set.setValue(newValue);
             }
         }

@@ -103,6 +103,8 @@ public class AutoCrystal extends Module {
     }
 
     public void onUpdate() {
+        if (nullCheck()) return;
+
         breakCrystal();
     }
 

@@ -24,7 +24,7 @@ public class ElytraFlight extends Module {
     public static NumberSetting<Double> verticalSpeed = new NumberSetting<>("Rise Speed", 0.0, 1.0, 5.0);
     public static NumberSetting<Double> yOffset = new NumberSetting<>("Vertical Offset", 0.0, 0.009, 0.1);
 
-    public static Setting<Boolean> takeOffTimer = new Setting<>("TakeOff Timer", false);
+    public static Setting<Boolean> takeOffTimer = new Setting<>("Takeoff Timer", false);
     public static NumberSetting<Float> ticks = new NumberSetting<>("Ticks", 0.1f, 0.5f, 0.8f);
 
     public static Setting<Boolean> lockRotation = new Setting<>("Lock Rotation", false);
@@ -32,10 +32,10 @@ public class ElytraFlight extends Module {
 
     public static Setting<Boolean> infiniteFly = new Setting<>("Infinite", false);
 
-    public static Setting<Boolean> liquidDisable = new Setting<>("Disable in Water", true);
-    public static Setting<Boolean> onCollision = new Setting<>("Disable on Collision", false);
-    public static Setting<Boolean> onUpward = new Setting<>("Disable on Upward Motion", false);
-    public static Setting<Boolean> belowY = new Setting<>("Disable at Low Height", false);
+    public static Setting<Boolean> liquidDisable = new Setting<>("Liquid Disable", true);
+    public static Setting<Boolean> onCollision = new Setting<>("Collision Disable", false);
+    public static Setting<Boolean> onUpward = new Setting<>("Upward Motion Disable", false);
+    public static Setting<Boolean> belowY = new Setting<>("Low Height Disable", false);
 
     public ElytraFlight() {
         this.addSetting(mode);
@@ -64,6 +64,8 @@ public class ElytraFlight extends Module {
 
     @Override
     public void onUpdate() {
+        if (nullCheck()) return;
+
         switch (mode.getValue()) {
             case Control:
                 elytraMode = new Control();

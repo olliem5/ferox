@@ -23,6 +23,10 @@ public class Module implements Minecraft {
         throw new IllegalStateException("Annotation 'ModuleInfo' not found!");
     }
 
+    public boolean nullCheck() {
+        return mc.player == null || mc.world == null;
+    }
+
     public void enable() {
         enabled = true;
         Ferox.EVENT_BUS.subscribe(this);
