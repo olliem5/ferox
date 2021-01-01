@@ -41,17 +41,28 @@ public class ModuleButton extends Component {
 
     @Override
     public void renderComponent() {
-        Gui.drawRect(parent.getX(), parent.getY() + offset, parent.getX() + parent.getWidth(), parent.getY() + 16 + offset, RainbowUtil.getRainbow().getRGB());
-        Gui.drawRect(parent.getX() + 1, parent.getY() + offset -1, parent.getX() + parent.getWidth() -1, parent.getY() + 16 + offset -1, mod.isEnabled() ? new Color(10, 10, 10, 10).getRGB() : new Color(100, 100, 100, 100).getRGB());
+        Gui.drawRect(parent.getX(), parent.getY() + offset, parent.getX() + parent.getWidth(), parent.getY() + 16 + offset, new Color(20, 20, 20, 150).getRGB());
 
-        FontUtil.drawText(mod.getName(), parent.getX() + 2, parent.getY() + offset + 2, -1);
-
-        if (subcomponents.size() > 1) {
-            FontUtil.drawText("...", parent.getX() + parent.getWidth() - 10, (parent.getY() + offset + 2), -1);
+        if (mod.isEnabled()) {
+            Gui.drawRect(parent.getX() + 1, parent.getY() + offset + 1, parent.getX() + parent.getWidth() -1, parent.getY() + 16 + offset -1, RainbowUtil.getRainbow().getRGB());
         }
 
+        Gui.drawRect(parent.getX() + 1, parent.getY() + offset + 1, parent.getX() + parent.getWidth() -1, parent.getY() + 16 + offset -1, new Color(50, 50, 50, 150).getRGB());
+
         if (hovered == true) {
+            FontUtil.drawText(mod.getName(), parent.getX() + 4, parent.getY() + offset + 3, -1);
+
+            if (subcomponents.size() > 1) {
+                FontUtil.drawText("...", parent.getX() + parent.getWidth() - 12, (parent.getY() + offset + 3), -1);
+            }
+
             FontUtil.drawText(mod.getDescription(), 2, (new ScaledResolution(mc).getScaledHeight() - FontUtil.getStringHeight(mod.getDescription()) - 2), -1);
+        } else {
+            FontUtil.drawText(mod.getName(), parent.getX() + 3, parent.getY() + offset + 3, -1);
+
+            if (subcomponents.size() > 1) {
+                FontUtil.drawText("...", parent.getX() + parent.getWidth() - 11, (parent.getY() + offset + 3), -1);
+            }
         }
 
         if (open && !subcomponents.isEmpty()) {
