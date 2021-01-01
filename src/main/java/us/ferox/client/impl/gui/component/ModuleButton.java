@@ -25,6 +25,9 @@ public class ModuleButton extends Component {
         this.offset = offset;
         this.open = false;
         this.hovered = false;
+        int opY = offset + 16;
+
+        this.subcomponents.add(new KeybindComponent(this, opY));
     }
 
     @Override
