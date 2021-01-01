@@ -34,6 +34,9 @@ public class ModuleButton extends Component {
                 if (setting.getValue() instanceof Boolean) {
                     this.subcomponents.add(new BooleanComponent(setting, this, opY));
                 }
+                if (setting.getValue() instanceof Enum) {
+                    this.subcomponents.add(new EnumComponent(setting, this, opY));
+                }
             }
         }
 
