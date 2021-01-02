@@ -1,12 +1,18 @@
 package us.ferox.client.impl.modules.combat;
 
+import com.mojang.realmsclient.gui.ChatFormatting;
+import net.minecraft.init.Blocks;
 import net.minecraft.network.play.client.CPacketPlayer;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import us.ferox.client.api.module.Category;
 import us.ferox.client.api.module.Module;
 import us.ferox.client.api.module.ModuleInfo;
 import us.ferox.client.api.setting.NumberSetting;
 import us.ferox.client.api.setting.Setting;
+import us.ferox.client.api.util.client.MessageUtil;
+import us.ferox.client.api.util.minecraft.InventoryUtil;
+import us.ferox.client.api.util.minecraft.PlaceUtil;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -23,7 +29,16 @@ public class Surround extends Module {
     public static Setting<Boolean> timeout = new Setting<>("Timeout", true);
     public static NumberSetting<Double> timeoutTicks = new NumberSetting<>("Timeout Ticks", 1.0, 15.0, 20.0);
 
-    public static Setting<Boolean> onlyObsidian = new Setting<>("Only Obsidian", true);
+    private int obsidianSlot;
+
+    public Surround() {
+        this.addSetting(placeMode);
+        this.addSetting(disableMode);
+        this.addSetting(blocksPerTick);
+        this.addSetting(centerPlayer);
+        this.addSetting(timeout);
+        this.addSetting(timeoutTicks);
+    }
 
     private int blocksPlaced = 0;
     private boolean hasPlaced = false;
@@ -31,14 +46,21 @@ public class Surround extends Module {
 
     @Override
     public void onEnable() {
-        if (centerPlayer.getValue()) {
-            mc.player.motionX = 0;
-            mc.player.motionZ = 0;
+         obsidianSlot = InventoryUtil.getHotbarBlockSlot(Blocks.OBSIDIAN);
 
-            center = getCenter(mc.player.posX, mc.player.posY, mc.player.posZ);
+        if (obsidianSlot == -1) {
+            MessageUtil.sendClientMessage("No Obsidian, " + ChatFormatting.RED + "Disabling!");
+            this.toggle();
+        } else {
+            if (centerPlayer.getValue()) {
+                mc.player.motionX = 0;
+                mc.player.motionZ = 0;
 
-            mc.player.connection.sendPacket(new CPacketPlayer.Position(center.x, center.y, center.z, true));
-            mc.player.setPosition(center.x, center.y, center.z);
+                center = getCenter(mc.player.posX, mc.player.posY, mc.player.posZ);
+
+                mc.player.connection.sendPacket(new CPacketPlayer.Position(center.x, center.y, center.z, true));
+                mc.player.setPosition(center.x, center.y, center.z);
+            }
         }
     }
 
@@ -52,7 +74,43 @@ public class Surround extends Module {
     public void onUpdate() {
         if (nullCheck()) return;
 
+        if (timeout.getValue()) {
+            if (this.isEnabled() && disableMode.getValue() != DisableModes.Never) {
+                if (mc.player.ticksExisted % timeoutTicks.getValue() == 0) {
+                    this.toggle();
+                }
+            }
+        } else if (hasPlaced == true && disableMode.getValue() == DisableModes.Finish) {
+            this.toggle();
+        } else {
+            if (!mc.player.onGround) {
+                this.toggle();
+            }
+        }
 
+        blocksPlaced = 0;
+
+        for (Vec3d placePositions : getPlaceType()) {
+            BlockPos blockPos = new BlockPos(placePositions.add(mc.player.getPositionVector()));
+
+            if (mc.world.getBlockState(blockPos).getBlock().equals(Blocks.AIR)) {
+                int oldInventorySlot = mc.player.inventory.currentItem;
+
+                if (obsidianSlot != -1) {
+                    mc.player.inventory.currentItem = obsidianSlot;
+                }
+
+                PlaceUtil.placeBlock(blockPos);
+                mc.player.inventory.currentItem = oldInventorySlot;
+                blocksPlaced++;
+
+                if (blocksPlaced == blocksPerTick.getValue() && disableMode.getValue() != DisableModes.Never) return;
+            }
+        }
+
+        if (blocksPlaced == 0) {
+            hasPlaced = true;
+        }
     }
 
     private final List<Vec3d> standardSurround = new ArrayList<>(Arrays.asList(
