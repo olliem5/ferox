@@ -78,10 +78,10 @@ public class ModuleButton extends Component {
         Gui.drawRect(parent.getX(), parent.getY() + offset, parent.getX() + parent.getWidth(), parent.getY() + 16 + offset, new Color(20, 20, 20, 150).getRGB());
 
         if (mod.isEnabled()) {
-            Gui.drawRect(parent.getX() + 1, parent.getY() + offset + 1, parent.getX() + parent.getWidth() -1, parent.getY() + 16 + offset -1, RainbowUtil.getRainbow().getRGB());
+            Gui.drawRect(parent.getX() + 1, parent.getY() + offset, parent.getX() + parent.getWidth() -1, parent.getY() + 16 + offset -1, RainbowUtil.getRainbow().getRGB());
         }
 
-        Gui.drawRect(parent.getX() + 1, parent.getY() + offset + 1, parent.getX() + parent.getWidth() -1, parent.getY() + 16 + offset -1, new Color(50, 50, 50, 150).getRGB());
+        Gui.drawRect(parent.getX() + 1, parent.getY() + offset, parent.getX() + parent.getWidth() -1, parent.getY() + 16 + offset -1, new Color(50, 50, 50, 150).getRGB());
 
         if (hovered == true) {
             FontUtil.drawText(mod.getName(), parent.getX() + 4, parent.getY() + offset + 3, -1);

@@ -37,11 +37,11 @@ public class IntegerComponent extends Component {
     @Override
     public void renderComponent() {
         Gui.drawRect(parent.parent.getX(), parent.parent.getY() + offset, parent.parent.getX() + parent.parent.getWidth(), parent.parent.getY() + offset + 16, new Color(20, 20, 20, 150).getRGB());
-        Gui.drawRect(parent.parent.getX() + 1, parent.parent.getY() + offset + 1, parent.parent.getX() + parent.parent.getWidth() -1, parent.parent.getY() + offset + 15, new Color(50, 50, 50, 150).getRGB());
+        Gui.drawRect(parent.parent.getX() + 1, parent.parent.getY() + offset, parent.parent.getX() + parent.parent.getWidth() -1, parent.parent.getY() + offset + 15, new Color(50, 50, 50, 150).getRGB());
 
         if (set.getValue() != set.getMin()) {
-            Gui.drawRect(parent.parent.getX() + 1, parent.parent.getY() + offset + 1, parent.parent.getX() + (int) sliderWidth - 1, parent.parent.getY() + offset + 15, RainbowUtil.getRainbow().getRGB());
-            Gui.drawRect(parent.parent.getX() + 1, parent.parent.getY() + offset + 1, parent.parent.getX() + (int) sliderWidth - 1, parent.parent.getY() + offset + 15, new Color(50, 50, 50, 150).getRGB());
+            Gui.drawRect(parent.parent.getX() + 1, parent.parent.getY() + offset, parent.parent.getX() + (int) sliderWidth - 1, parent.parent.getY() + offset + 15, RainbowUtil.getRainbow().getRGB());
+            Gui.drawRect(parent.parent.getX() + 1, parent.parent.getY() + offset, parent.parent.getX() + (int) sliderWidth - 1, parent.parent.getY() + offset + 15, new Color(50, 50, 50, 150).getRGB());
         }
 
         FontUtil.drawText(set.getName() + ChatFormatting.GRAY + " " + set.getValue(), parent.parent.getX() + 4, parent.parent.getY() + offset + 3, -1);
