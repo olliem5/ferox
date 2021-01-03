@@ -6,6 +6,7 @@ import us.ferox.client.impl.modules.combat.Surround;
 import us.ferox.client.impl.modules.ferox.ClickGUIModule;
 import us.ferox.client.impl.modules.ferox.DiscordRPC;
 import us.ferox.client.impl.modules.ferox.Font;
+import us.ferox.client.impl.modules.misc.ChatSuffix;
 import us.ferox.client.impl.modules.misc.FastUse;
 import us.ferox.client.impl.modules.movement.ElytraFlight;
 
@@ -23,6 +24,7 @@ public class ModuleManager {
         modules.add(new Surround());
         modules.add(new AutoTrap());
         modules.add(new FastUse());
+        modules.add(new ChatSuffix());
     }
 
     public ArrayList<Module> getModules() {
