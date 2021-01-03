@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-@ModuleInfo(name = "Surround", description = "Surrounds you with blocks to minimize crystal damage", category = Category.COMBAT)
+@ModuleInfo(name = "Surround", description = "Surrounds you with obsidian to minimize crystal damage", category = Category.COMBAT)
 public class Surround extends Module {
     public static Setting<PlaceModes> placeMode = new Setting<>("Place", PlaceModes.Full);
     public static Setting<DisableModes> disableMode = new Setting<>("Disable", DisableModes.Finish);
@@ -29,8 +29,6 @@ public class Surround extends Module {
     public static Setting<Boolean> timeout = new Setting<>("Timeout", true);
     public static NumberSetting<Double> timeoutTicks = new NumberSetting<>("Timeout Ticks", 1.0, 15.0, 20.0);
 
-    private int obsidianSlot;
-
     public Surround() {
         this.addSetting(placeMode);
         this.addSetting(disableMode);
@@ -40,8 +38,11 @@ public class Surround extends Module {
         this.addSetting(timeoutTicks);
     }
 
+    private int obsidianSlot;
     private int blocksPlaced = 0;
+
     private boolean hasPlaced = false;
+
     private Vec3d center = Vec3d.ZERO;
 
     @Override
@@ -90,8 +91,8 @@ public class Surround extends Module {
 
         blocksPlaced = 0;
 
-        for (Vec3d placePositions : getPlaceType()) {
-            BlockPos blockPos = new BlockPos(placePositions.add(mc.player.getPositionVector()));
+        for (Vec3d vec3d : getPlaceType()) {
+            BlockPos blockPos = new BlockPos(vec3d.add(mc.player.getPositionVector()));
 
             if (mc.world.getBlockState(blockPos).getBlock().equals(Blocks.AIR)) {
                 int oldInventorySlot = mc.player.inventory.currentItem;
