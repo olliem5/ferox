@@ -4,7 +4,7 @@ import net.minecraft.init.Items;
 import net.minecraft.network.play.client.CPacketPlayerTryUseItem;
 import net.minecraft.util.EnumHand;
 import us.ferox.client.api.util.minecraft.InventoryUtil;
-import us.ferox.client.api.util.module.ElytraUtil;
+import us.ferox.client.api.util.minecraft.PlayerUtil;
 import us.ferox.client.api.util.packet.RotationUtil;
 import us.ferox.client.impl.modules.movement.ElytraFlight;
 import us.ferox.client.impl.modules.movement.elytra.ElytraMode;
@@ -28,12 +28,12 @@ public class Firework extends ElytraMode {
 
     @Override
     public void onHorizontalMovement() {
-        ElytraUtil.accelerateElytra(ElytraFlight.horizontalSpeed.getValue());
+        PlayerUtil.ElytraUtil.accelerateElytra(ElytraFlight.horizontalSpeed.getValue());
     }
 
     @Override
     public void noMovement() {
-        ElytraUtil.freezeElytra(0, ElytraFlight.yOffset.getValue());
+        PlayerUtil.ElytraUtil.freezeElytra(0, ElytraFlight.yOffset.getValue());
     }
 
     @Override

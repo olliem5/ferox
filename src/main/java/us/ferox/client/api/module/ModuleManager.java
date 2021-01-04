@@ -9,6 +9,7 @@ import us.ferox.client.impl.modules.ferox.Font;
 import us.ferox.client.impl.modules.misc.ChatSuffix;
 import us.ferox.client.impl.modules.misc.FastUse;
 import us.ferox.client.impl.modules.movement.ElytraFlight;
+import us.ferox.client.impl.modules.render.HoleESP;
 
 import java.util.ArrayList;
 
@@ -25,6 +26,7 @@ public class ModuleManager {
         modules.add(new AutoTrap());
         modules.add(new FastUse());
         modules.add(new ChatSuffix());
+        modules.add(new HoleESP());
     }
 
     public ArrayList<Module> getModules() {
@@ -32,6 +34,9 @@ public class ModuleManager {
     }
 
     public Module getModuleByName(String name) {
-        return modules.stream().filter(module -> module.getName().equalsIgnoreCase(name)).findFirst().orElse(null);
+        return modules.stream()
+                .filter(module -> module.getName().equalsIgnoreCase(name))
+                .findFirst()
+                .orElse(null);
     }
 }
