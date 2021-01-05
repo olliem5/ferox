@@ -49,7 +49,7 @@ public class CrystalUtil implements Minecraft {
 
     public List<BlockPos> findCrystalBlocks() {
         NonNullList<BlockPos> positions = NonNullList.create();
-        positions.addAll(getSphere(getPlayerPos(), (float) AutoCrystal.placeRange.getValue(), (int) AutoCrystal.placeRange.getValue(), false, true, 0).stream().filter(this::canPlaceCrystal).collect(Collectors.toList()));
+        positions.addAll(getSphere(getPlayerPos(), AutoCrystal.placeRange.getValue().floatValue(), AutoCrystal.placeRange.getValue().intValue(), false, true, 0).stream().filter(this::canPlaceCrystal).collect(Collectors.toList()));
         return positions;
     }
 

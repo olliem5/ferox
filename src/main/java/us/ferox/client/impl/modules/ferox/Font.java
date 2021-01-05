@@ -7,9 +7,9 @@ import us.ferox.client.api.setting.Setting;
 
 @ModuleInfo(name = "Font", description = "Changes the font that Ferox uses", category = Category.FEROX)
 public class Font extends Module {
-    public static Setting<Enum> font = new Setting("Font", Fonts.Lato);
-    public static Setting<Boolean> shadow = new Setting("Shadow", true);
-    public static Setting<Boolean> lowercase = new Setting("Lowercase", false);
+    public static Setting<Fonts> font = new Setting<>("Font", Fonts.Lato);
+    public static Setting<Boolean> shadow = new Setting<>("Shadow", true);
+    public static Setting<Boolean> lowercase = new Setting<>("Lowercase", false);
 
     public Font() {
         this.addSetting(font);

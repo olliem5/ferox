@@ -60,7 +60,7 @@ public class FontUtil implements Minecraft {
     }
 
     public static float getStringWidth(String text) {
-        switch ((Font.Fonts) Font.font.getValue()) {
+        switch (Font.font.getValue()) {
             case Lato:
                 return Ferox.latoFont.getStringWidth(text);
             case Ubuntu:

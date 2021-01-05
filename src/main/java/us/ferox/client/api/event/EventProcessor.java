@@ -1,8 +1,10 @@
 package us.ferox.client.api.event;
 
 import git.littledraily.eventsystem.Listener;
+import me.yagel15637.venture.manager.CommandManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.network.play.server.SPacketEntityStatus;
+import net.minecraftforge.client.event.ClientChatEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.common.MinecraftForge;
@@ -45,6 +47,18 @@ public class EventProcessor implements Minecraft {
     public void onRender(RenderGameOverlayEvent event) {
         if (event.isCanceled()) return;
         Ferox.EVENT_BUS.post(new GameOverlayRenderEvent());
+    }
+
+    @SubscribeEvent
+    public void onChatMessage(ClientChatEvent event) {
+        if (event.getMessage().startsWith(Ferox.CHAT_PREFIX)) {
+            CommandManager.parseCommand(event.getMessage().replace(Ferox.CHAT_PREFIX, ""));
+        } else {
+            ChatIncomingEvent send = new ChatIncomingEvent(event.getMessage());
+            Ferox.EVENT_BUS.post(send);
+            if (send.isCancelled()) event.setCanceled(true);
+            else event.setMessage(send.getMessage());
+        }
     }
 
     @SubscribeEvent(priority = EventPriority.NORMAL, receiveCanceled = true)
