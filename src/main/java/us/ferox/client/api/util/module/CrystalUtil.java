@@ -11,22 +11,21 @@ import net.minecraft.network.play.client.CPacketUseEntity;
 import net.minecraft.potion.Potion;
 import net.minecraft.util.CombatRules;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.Explosion;
 import us.ferox.client.api.traits.Minecraft;
+import us.ferox.client.api.util.minecraft.BlockUtil;
+import us.ferox.client.api.util.minecraft.PlayerUtil;
+import us.ferox.client.impl.modules.combat.AutoCrystal;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class CrystalUtil implements Minecraft {
-    public void lookAtPacket(double px, double py, double pz, EntityPlayer me) {
-        double[] v = calculateLookAt(px, py, pz, me);
-        setYawAndPitch((float) v[0], (float) v[1]);
-    }
-
     private boolean canPlaceCrystal(BlockPos blockPos) {
         BlockPos boost = blockPos.add(0, 1, 0);
         BlockPos boost2 = blockPos.add(0, 2, 0);
@@ -38,35 +37,10 @@ public class CrystalUtil implements Minecraft {
                 && mc.world.getEntitiesWithinAABB(Entity.class, new AxisAlignedBB(boost2)).isEmpty();
     }
 
-    public static BlockPos getPlayerPos() {
-        return new BlockPos(Math.floor(mc.player.posX), Math.floor(mc.player.posY), Math.floor(mc.player.posZ));
-    }
-
-    //TODO: Not make specific to AutoCrystal
-
     public List<BlockPos> findCrystalBlocks() {
         NonNullList<BlockPos> positions = NonNullList.create();
-        positions.addAll(getSphere(getPlayerPos(), AutoCrystal.placeRange.getValue().floatValue(), AutoCrystal.placeRange.getValue().intValue(), false, true, 0).stream().filter(this::canPlaceCrystal).collect(Collectors.toList()));
+        positions.addAll(BlockUtil.getSphere(PlayerUtil.getPlayerPos(), AutoCrystal.placeRange.getValue().floatValue(), AutoCrystal.placeRange.getValue().intValue(), false, true, 0).stream().filter(this::canPlaceCrystal).collect(Collectors.toList()));
         return positions;
-    }
-
-    private List<BlockPos> getSphere(BlockPos loc, float r, int h, boolean hollow, boolean sphere, int plus_y) {
-        List<BlockPos> circleblocks = new ArrayList<>();
-        int cx = loc.getX();
-        int cy = loc.getY();
-        int cz = loc.getZ();
-        for (int x = cx - (int) r; x <= cx + r; x++) {
-            for (int z = cz - (int) r; z <= cz + r; z++) {
-                for (int y = (sphere ? cy - (int) r : cy); y < (sphere ? cy + r : cy + h); y++) {
-                    double dist = (cx - x) * (cx - x) + (cz - z) * (cz - z) + (sphere ? (cy - y) * (cy - y) : 0);
-                    if (dist < r * r && !(hollow && dist < (r - 1) * (r - 1))) {
-                        BlockPos l = new BlockPos(x, y + plus_y, z);
-                        circleblocks.add(l);
-                    }
-                }
-            }
-        }
-        return circleblocks;
     }
 
     public static float calculateDamage(double posX, double posY, double posZ, Entity entity) {
@@ -113,46 +87,6 @@ public class CrystalUtil implements Minecraft {
 
     private static float calculateDamage(EntityEnderCrystal crystal, Entity entity) {
         return calculateDamage(crystal.posX, crystal.posY, crystal.posZ, entity);
-    }
-
-    public static double yaw;
-    public static double pitch;
-    public static boolean isSpoofingAngles;
-
-    private static void setYawAndPitch(float yaw1, float pitch1) {
-        yaw = yaw1;
-        pitch = pitch1;
-        isSpoofingAngles = true;
-    }
-
-    public static void resetRotation() {
-        if (isSpoofingAngles) {
-            yaw = mc.player.rotationYaw;
-            pitch = mc.player.rotationPitch;
-            isSpoofingAngles = false;
-        }
-    }
-
-    private static double[] calculateLookAt(double px, double py, double pz, EntityPlayer me) {
-        double dirx = me.posX - px;
-        double diry = me.posY - py;
-        double dirz = me.posZ - pz;
-
-        double len = Math.sqrt(dirx*dirx + diry*diry + dirz*dirz);
-
-        dirx /= len;
-        diry /= len;
-        dirz /= len;
-
-        double pitch = Math.asin(diry);
-        double yaw = Math.atan2(dirz, dirx);
-
-        pitch = pitch * 180.0d / Math.PI;
-        yaw = yaw * 180.0d / Math.PI;
-
-        yaw += 90f;
-
-        return new double[]{yaw,pitch};
     }
 
     public static void attackCrystal(EntityEnderCrystal entityEnderCrystal, boolean packet) {
