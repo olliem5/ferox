@@ -5,7 +5,6 @@ import net.minecraft.entity.item.EntityEnderCrystal;
 import net.minecraft.item.ItemSword;
 import net.minecraft.potion.Potion;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import us.ferox.client.api.module.Category;
 import us.ferox.client.api.module.Module;
@@ -17,8 +16,6 @@ import us.ferox.client.api.util.minecraft.InventoryUtil;
 import us.ferox.client.api.util.module.CrystalUtil;
 
 import java.util.Comparator;
-import java.util.List;
-import java.util.stream.Collectors;
 
 @ModuleInfo(name = "AutoCrystal", description = "Places and destroys end crystals to kill enemies", category = Category.COMBAT)
 public class AutoCrystal extends Module {

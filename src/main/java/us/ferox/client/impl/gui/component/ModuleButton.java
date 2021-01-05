@@ -2,7 +2,6 @@ package us.ferox.client.impl.gui.component;
 
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.ScaledResolution;
-import us.ferox.client.Ferox;
 import us.ferox.client.api.module.Module;
 import us.ferox.client.api.setting.NumberSetting;
 import us.ferox.client.api.setting.Setting;

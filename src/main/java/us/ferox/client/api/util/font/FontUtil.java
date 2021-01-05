@@ -7,11 +7,11 @@ import us.ferox.client.impl.modules.ferox.Font;
 public class FontUtil implements Minecraft {
     public static void drawString(String text, float x, float y, int colour) {
         switch (Font.font.getValue()) {
-            case Lato:
-                Ferox.latoFont.drawString(text, x, y, colour);
-                break;
             case Ubuntu:
                 Ferox.ubuntuFont.drawString(text, x, y, colour);
+                break;
+            case Lato:
+                Ferox.latoFont.drawString(text, x, y, colour);
                 break;
             case Verdana:
                 Ferox.verdanaFont.drawString(text, x, y, colour);
@@ -30,11 +30,11 @@ public class FontUtil implements Minecraft {
 
     public static void drawStringWithShadow(String text, float x, float y, int colour) {
         switch (Font.font.getValue()) {
-            case Lato:
-                Ferox.latoFont.drawStringWithShadow(text, x, y, colour);
-                break;
             case Ubuntu:
                 Ferox.ubuntuFont.drawStringWithShadow(text, x, y, colour);
+                break;
+            case Lato:
+                Ferox.latoFont.drawStringWithShadow(text, x, y, colour);
                 break;
             case Verdana:
                 Ferox.verdanaFont.drawStringWithShadow(text, x, y, colour);
@@ -61,10 +61,10 @@ public class FontUtil implements Minecraft {
 
     public static float getStringWidth(String text) {
         switch (Font.font.getValue()) {
-            case Lato:
-                return Ferox.latoFont.getStringWidth(text);
             case Ubuntu:
                 return Ferox.ubuntuFont.getStringWidth(text);
+            case Lato:
+                return Ferox.latoFont.getStringWidth(text);
             case Verdana:
                 return Ferox.verdanaFont.getStringWidth(text);
             case Comfortaa:
@@ -79,10 +79,10 @@ public class FontUtil implements Minecraft {
 
     public static float getStringHeight(String text) {
         switch (Font.font.getValue()) {
-            case Lato:
-                return Ferox.latoFont.getStringHeight(text);
             case Ubuntu:
                 return Ferox.ubuntuFont.getStringHeight(text);
+            case Lato:
+                return Ferox.latoFont.getStringHeight(text);
             case Verdana:
                 return Ferox.verdanaFont.getStringHeight(text);
             case Comfortaa:

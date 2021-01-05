@@ -43,7 +43,7 @@ public class FeroxFontRenderer implements Minecraft {
             prevScaleFactor = resolution.getScaleFactor();
 
             try {
-                unicodeFont = new UnicodeFont(getFontByName("Lato").deriveFont(fontSize * prevScaleFactor / 2));
+                unicodeFont = new UnicodeFont(getFontByName("Ubuntu").deriveFont(fontSize * prevScaleFactor / 2));
                 unicodeFont.addAsciiGlyphs();
                 unicodeFont.getEffects().add(new ColorEffect(java.awt.Color.WHITE));
                 unicodeFont.loadGlyphs();
@@ -56,19 +56,19 @@ public class FeroxFontRenderer implements Minecraft {
     }
 
     public static Font getFontByName(String name) throws IOException, FontFormatException {
-        if (name == "Lato") {
-            return getFontFromInput("/assets/ferox/fonts/Lato.ttf");
-        } else if (name == "Ubuntu") {
+         if (name == "Ubuntu") {
             return getFontFromInput("/assets/ferox/fonts/Ubuntu.ttf");
-        } else if (name == "Verdana") {
-            return getFontFromInput("/assets/ferox/fonts/Verdana.ttf");
-        } else if (name == "Comfortaa") {
-            return getFontFromInput("/assets/ferox/fonts/Comfortaa.ttf");
-        } else if (name == "Subtitle") {
-            return getFontFromInput("/assets/ferox/fonts/Subtitle.ttf");
-        } else {
-            return Font.createFont(Font.TRUETYPE_FONT, new File("/assets/ferox/fonts/" + name + ".ttf"));
-        }
+         } else if (name == "Lato") {
+             return getFontFromInput("/assets/ferox/fonts/Lato.ttf");
+         } else if (name == "Verdana") {
+             return getFontFromInput("/assets/ferox/fonts/Verdana.ttf");
+         } else if (name == "Comfortaa") {
+             return getFontFromInput("/assets/ferox/fonts/Comfortaa.ttf");
+         } else if (name == "Subtitle") {
+             return getFontFromInput("/assets/ferox/fonts/Subtitle.ttf");
+         } else {
+             return Font.createFont(Font.TRUETYPE_FONT, new File("/assets/ferox/fonts/" + name + ".ttf"));
+         }
     }
 
     private static Font font = null;
