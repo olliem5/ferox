@@ -1,7 +1,6 @@
 package us.ferox.client.api.util.render;
 
 import net.minecraft.client.renderer.BufferBuilder;
-import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -11,7 +10,13 @@ import us.ferox.client.api.traits.Minecraft;
 
 import java.awt.*;
 
+/**
+ * @author olliem5
+ * @since 3/01/20
+ */
+
 public class RenderUtil implements Minecraft {
+    
     public static void prepareGL() {
         GlStateManager.pushMatrix();
         GlStateManager.enableBlend();
@@ -21,6 +26,7 @@ public class RenderUtil implements Minecraft {
         GlStateManager.depthMask(false);
         GL11.glEnable(GL11.GL_LINE_SMOOTH);
         GL11.glHint(GL11.GL_LINE_SMOOTH_HINT, GL11.GL_NICEST);
+        GL11.glLineWidth(1.5f);
     }
 
     public static void releaseGL() {
