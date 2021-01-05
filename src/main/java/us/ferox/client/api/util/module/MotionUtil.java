@@ -24,27 +24,31 @@ public class MotionUtil implements Minecraft {
         float moveString = roundedStrafing;
 
         float strafe = 90 * moveString;
-        if (moveForward != 0f)
+
+        if (moveForward != 0f) {
             strafe *= moveForward * 0.5f;
-        else
+        } else {
             strafe *= 1f;
+        }
 
         float yaw = yawIn - strafe;
-        if (moveForward < 0f)
+        if (moveForward < 0f) {
             yaw -= 180;
-        else
+        } else {
             yaw -= 0;
+        }
 
         return Math.toRadians(yaw);
     }
 
     private static float getRoundedMovementInput(Float input) {
-        if (input > 0)
+        if (input > 0) {
             input = 1f;
-        else if (input < 0)
+        } else if (input < 0) {
             input = -1f;
-        else
+        } else {
             input = 0f;
+        }
 
         return input;
     }

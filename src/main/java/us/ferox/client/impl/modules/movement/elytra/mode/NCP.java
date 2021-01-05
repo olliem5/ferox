@@ -14,11 +14,11 @@ public class NCP extends ElytraMode {
 
     @Override
     public void onVerticalMovement() {
-        if (mc.gameSettings.keyBindJump.isKeyDown())
-            mc.player.rotationPitch = ElytraFlight.ncpRotations.getValue().floatValue() * -1;
-
-        else if (mc.gameSettings.keyBindSneak.isKeyDown())
-            mc.player.rotationPitch = ElytraFlight.ncpRotations.getValue().floatValue();
+        if (mc.gameSettings.keyBindJump.isKeyDown()) {
+            mc.player.rotationPitch = ElytraFlight.ncpRotations.getValue() * -1;
+        } else if (mc.gameSettings.keyBindSneak.isKeyDown()) {
+            mc.player.rotationPitch = ElytraFlight.ncpRotations.getValue();
+        }
     }
 
     @Override
@@ -35,7 +35,8 @@ public class NCP extends ElytraMode {
     public void onRotation() {
         RotationUtil.lockPitch(ElytraFlight.ncpRotations.getValue());
 
-        if (ElytraFlight.lockRotation.getValue())
+        if (ElytraFlight.lockRotation.getValue()) {
             RotationUtil.lockYaw(ElytraFlight.ncpRotations.getValue());
+        }
     }
 }

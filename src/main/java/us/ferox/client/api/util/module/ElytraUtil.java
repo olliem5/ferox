@@ -19,9 +19,7 @@ public class ElytraUtil implements Minecraft {
         if (mc.gameSettings.keyBindBack.isKeyDown() && !mc.gameSettings.keyBindForward.isKeyDown()) {
             motX = (-Math.sin(yaw) * horizontal) * -1;
             motZ = (Math.cos(yaw) * horizontal) * -1;
-        }
-
-        else if (mc.gameSettings.keyBindForward.isKeyDown()) {
+        } else if (mc.gameSettings.keyBindForward.isKeyDown()) {
             motX = -Math.sin(yaw) * horizontal;
             motZ = Math.cos(yaw) * horizontal;
         }
@@ -39,6 +37,7 @@ public class ElytraUtil implements Minecraft {
         mc.player.motionX = 0.0;
         mc.player.motionY = 0.0;
         mc.player.motionZ = 0.0;
+
         mc.player.setVelocity(0f, 0f, 0f);
         mc.player.setPosition(mc.player.posX, mc.player.posY - fallSpeed + yOffset, mc.player.posZ);
     }

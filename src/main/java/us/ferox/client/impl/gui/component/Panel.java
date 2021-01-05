@@ -7,10 +7,12 @@ import us.ferox.client.Ferox;
 import us.ferox.client.api.module.Category;
 import us.ferox.client.api.module.Module;
 import us.ferox.client.api.traits.Minecraft;
+import us.ferox.client.api.util.colour.RainbowUtil;
 import us.ferox.client.api.util.font.FontUtil;
 import us.ferox.client.impl.gui.ClickGUI;
 import us.ferox.client.impl.gui.Component;
 
+import java.awt.*;
 import java.util.ArrayList;
 
 public class Panel implements Minecraft {
@@ -57,7 +59,8 @@ public class Panel implements Minecraft {
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
         collide();
 
-        Gui.drawRect(x, y, x + width, y + height, 0x75101010);
+        Gui.drawRect(x + 1, y + 1, x + width -1, y + height -1, RainbowUtil.getRainbow().getRGB());
+        Gui.drawRect(x, y, x + width, y + height, new Color(20, 20, 20, 150).getRGB());
 
         FontUtil.drawText(title, x + 2 + width / 2 - FontUtil.getStringWidth(title) / 2, y + height / 2 - FontUtil.getStringHeight(title) / 2, -1);
 

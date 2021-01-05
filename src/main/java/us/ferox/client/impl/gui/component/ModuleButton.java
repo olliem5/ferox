@@ -3,6 +3,9 @@ package us.ferox.client.impl.gui.component;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.ScaledResolution;
 import us.ferox.client.api.module.Module;
+import us.ferox.client.api.setting.NumberSetting;
+import us.ferox.client.api.setting.Setting;
+import us.ferox.client.api.util.colour.RainbowUtil;
 import us.ferox.client.api.util.font.FontUtil;
 import us.ferox.client.impl.gui.Component;
 
@@ -24,6 +27,37 @@ public class ModuleButton extends Component {
         this.offset = offset;
         this.open = false;
         this.hovered = false;
+        int opY = offset + 16;
+
+        if (mod.getSettings() != null) {
+            for (Setting setting : mod.getSettings()) {
+                if (setting.getValue() instanceof Boolean) {
+                    this.subcomponents.add(new BooleanComponent(setting, this, opY));
+                }
+
+                if (setting.getValue() instanceof Enum) {
+                    this.subcomponents.add(new EnumComponent(setting, this, opY));
+                }
+
+                if (setting instanceof NumberSetting) {
+                    NumberSetting numberSetting = (NumberSetting) setting;
+
+                    if (numberSetting.getValue() instanceof Integer) {
+                        this.subcomponents.add(new IntegerComponent(numberSetting, this, opY));
+                    }
+
+                    if (numberSetting.getValue() instanceof Double) {
+                        this.subcomponents.add(new DoubleComponent(numberSetting, this, opY));
+                    }
+
+                    if (numberSetting.getValue() instanceof Float) {
+                        this.subcomponents.add(new FloatComponent(numberSetting, this, opY));
+                    }
+                }
+            }
+        }
+
+        this.subcomponents.add(new KeybindComponent(this, opY));
     }
 
     @Override
@@ -40,16 +74,28 @@ public class ModuleButton extends Component {
 
     @Override
     public void renderComponent() {
-        Gui.drawRect(parent.getX(), parent.getY() + offset, parent.getX() + parent.getWidth(), parent.getY() + 16 + offset, mod.isEnabled() ? new Color(10, 10, 10, 10).getRGB() : new Color(100, 100, 100, 100).getRGB());
+        Gui.drawRect(parent.getX(), parent.getY() + offset, parent.getX() + parent.getWidth(), parent.getY() + 16 + offset, new Color(20, 20, 20, 150).getRGB());
 
-        FontUtil.drawText(mod.getName(), parent.getX() + 2, parent.getY() + offset + 2, -1);
-
-        if (subcomponents.size() > 1) {
-            FontUtil.drawText("...", parent.getX() + parent.getWidth() - 10, (parent.getY() + offset + 2), -1);
+        if (mod.isEnabled()) {
+            Gui.drawRect(parent.getX() + 1, parent.getY() + offset, parent.getX() + parent.getWidth() -1, parent.getY() + 16 + offset -1, RainbowUtil.getRainbow().getRGB());
         }
 
+        Gui.drawRect(parent.getX() + 1, parent.getY() + offset, parent.getX() + parent.getWidth() -1, parent.getY() + 16 + offset -1, new Color(50, 50, 50, 150).getRGB());
+
         if (hovered == true) {
+            FontUtil.drawText(mod.getName(), parent.getX() + 4, parent.getY() + offset + 3, -1);
+
+            if (subcomponents.size() > 1) {
+                FontUtil.drawText("...", parent.getX() + parent.getWidth() - 12, (parent.getY() + offset + 3), -1);
+            }
+
             FontUtil.drawText(mod.getDescription(), 2, (new ScaledResolution(mc).getScaledHeight() - FontUtil.getStringHeight(mod.getDescription()) - 2), -1);
+        } else {
+            FontUtil.drawText(mod.getName(), parent.getX() + 3, parent.getY() + offset + 3, -1);
+
+            if (subcomponents.size() > 1) {
+                FontUtil.drawText("...", parent.getX() + parent.getWidth() - 11, (parent.getY() + offset + 3), -1);
+            }
         }
 
         if (open && !subcomponents.isEmpty()) {

@@ -21,27 +21,27 @@ public class Firework extends ElytraMode {
         if (mc.gameSettings.keyBindJump.isKeyDown()) {
             InventoryUtil.switchToSlot(Items.FIREWORKS);
             mc.player.connection.sendPacket(new CPacketPlayerTryUseItem(EnumHand.MAIN_HAND));
+        } else if (mc.gameSettings.keyBindSneak.isKeyDown()) {
+            mc.player.motionY = (ElytraFlight.verticalSpeed.getValue() * -1);
         }
-
-        else if (mc.gameSettings.keyBindSneak.isKeyDown())
-            mc.player.motionY = ((double) ElytraFlight.verticalSpeed.getValue() * -1);
     }
 
     @Override
     public void onHorizontalMovement() {
-        ElytraUtil.accelerateElytra((double) ElytraFlight.horizontalSpeed.getValue());
+        ElytraUtil.accelerateElytra(ElytraFlight.horizontalSpeed.getValue());
     }
 
     @Override
     public void noMovement() {
-        ElytraUtil.freezeElytra(0, (double) ElytraFlight.yOffset.getValue());
+        ElytraUtil.freezeElytra(0, ElytraFlight.yOffset.getValue());
     }
 
     @Override
     public void onRotation() {
-        RotationUtil.lockPitch((double) ElytraFlight.ncpRotations.getValue());
+        RotationUtil.lockPitch(ElytraFlight.ncpRotations.getValue());
 
-        if (ElytraFlight.lockRotation.getValue())
-            RotationUtil.lockYaw((double) ElytraFlight.ncpRotations.getValue());
+        if (ElytraFlight.lockRotation.getValue()) {
+            RotationUtil.lockYaw(ElytraFlight.ncpRotations.getValue());
+        }
     }
 }

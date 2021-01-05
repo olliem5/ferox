@@ -13,6 +13,7 @@ import org.lwjgl.opengl.Display;
 import us.ferox.client.api.event.EventProcessor;
 import us.ferox.client.api.hud.HudManager;
 import us.ferox.client.api.mixin.MixinLoader;
+import us.ferox.client.api.util.FriendManager;
 import us.ferox.client.api.module.ModuleManager;
 import us.ferox.client.api.util.font.FeroxFontRenderer;
 import us.ferox.client.impl.command.EchoCommand;
@@ -38,6 +39,7 @@ public class Ferox {
     public static EventProcessor eventProcessor;
     public static ModuleManager moduleManager;
     public static MixinLoader mixinLoader;
+    public static FriendManager friendManager;
 
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
@@ -58,6 +60,9 @@ public class Ferox {
 
         initCommandManager();
         log("Commands initialized!");
+
+        friendManager = new FriendManager();
+        log("Friends Initialized!");
     }
 
     @Mod.EventHandler

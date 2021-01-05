@@ -11,18 +11,15 @@ import net.minecraft.network.play.client.CPacketUseEntity;
 import net.minecraft.potion.Potion;
 import net.minecraft.util.CombatRules;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.Explosion;
 import us.ferox.client.api.traits.Minecraft;
-import us.ferox.client.impl.modules.combat.AutoCrystal;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class CrystalUtil implements Minecraft {
     public void lookAtPacket(double px, double py, double pz, EntityPlayer me) {
@@ -41,7 +38,7 @@ public class CrystalUtil implements Minecraft {
                 && mc.world.getEntitiesWithinAABB(Entity.class, new AxisAlignedBB(boost2)).isEmpty();
     }
 
-    private static BlockPos getPlayerPos() {
+    public static BlockPos getPlayerPos() {
         return new BlockPos(Math.floor(mc.player.posX), Math.floor(mc.player.posY), Math.floor(mc.player.posZ));
     }
 

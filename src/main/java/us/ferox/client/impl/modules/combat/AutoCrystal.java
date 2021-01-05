@@ -100,6 +100,8 @@ public class AutoCrystal extends Module {
     }
 
     public void onUpdate() {
+        if (nullCheck()) return;
+
         breakCrystal();
     }
 
@@ -108,14 +110,14 @@ public class AutoCrystal extends Module {
             EntityEnderCrystal entityEnderCrystal = (EntityEnderCrystal) mc.world.loadedEntityList.stream()
                     .filter(entity -> entity != null)
                     .filter(entity -> entity instanceof EntityEnderCrystal)
-                    .filter(entity -> mc.player.getDistance(entity) <= (double) breakRange.getValue())
+                    .filter(entity -> mc.player.getDistance(entity) <= breakRange.getValue())
                     .min(Comparator.comparing(entity -> mc.player.getDistance(entity)))
                     .orElse(null);
 
-            if (entityEnderCrystal != null && breakTimer.passed((double) breakDelay.getValue())) {
-                if (antiSuicide.getValue() && (mc.player.getHealth() + mc.player.getAbsorptionAmount()) <= (double) antiSuicideHealth.getValue()) return;
+            if (entityEnderCrystal != null && breakTimer.passed(breakDelay.getValue())) {
+                if (antiSuicide.getValue() && (mc.player.getHealth() + mc.player.getAbsorptionAmount()) <= antiSuicideHealth.getValue()) return;
 
-                if (!mc.player.canEntityBeSeen(entityEnderCrystal) && mc.player.getDistance(entityEnderCrystal) > (double) wallsRange.getValue()) return;
+                if (!mc.player.canEntityBeSeen(entityEnderCrystal) && mc.player.getDistance(entityEnderCrystal) > wallsRange.getValue()) return;
 
                 if (breakMode.getValue() == BreakModes.Nearest) {
                     if (rotate.getValue()) {
@@ -126,7 +128,7 @@ public class AutoCrystal extends Module {
                         InventoryUtil.switchToSlot(ItemSword.class);
                     }
 
-                    for (int i = 0; i < (double) breakAttempts.getValue(); i++) {
+                    for (int i = 0; i < breakAttempts.getValue(); i++) {
                         if (breakType.getValue() == BreakTypes.Packet) {
                             CrystalUtil.attackCrystal(entityEnderCrystal, true);
                         } else {
@@ -135,14 +137,14 @@ public class AutoCrystal extends Module {
                     }
 
                     if (swingMode.getValue() != SwingModes.None) {
-                        switch ((SwingModes) swingMode.getValue()) {
+                        switch (swingMode.getValue()) {
                             case Mainhand:
                                 mc.player.swingArm(EnumHand.MAIN_HAND);
                                 break;
                             case Offhand:
                                 mc.player.swingArm(EnumHand.OFF_HAND);
                                 break;
-                            case Retarted:
+                            case Spam:
                                 mc.player.swingArm(EnumHand.MAIN_HAND);
                                 mc.player.swingArm(EnumHand.MAIN_HAND);
                                 mc.player.swingArm(EnumHand.MAIN_HAND);
@@ -188,7 +190,6 @@ public class AutoCrystal extends Module {
         None
     }
 
-
     public enum BreakModes {
         Nearest,
         OnlyOwn,
@@ -203,7 +204,7 @@ public class AutoCrystal extends Module {
     public enum SwingModes {
         Mainhand,
         Offhand,
-        Retarted,
+        Spam,
         Both,
         None
     }
