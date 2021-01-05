@@ -2,6 +2,7 @@ package us.ferox.client.api.module;
 
 import us.ferox.client.impl.modules.combat.AutoCrystal;
 import us.ferox.client.impl.modules.combat.AutoTrap;
+import us.ferox.client.impl.modules.combat.Offhand;
 import us.ferox.client.impl.modules.combat.Surround;
 import us.ferox.client.impl.modules.ferox.ClickGUIModule;
 import us.ferox.client.impl.modules.ferox.DiscordRPC;
@@ -27,6 +28,7 @@ public class ModuleManager {
         modules.add(new FastUse());
         modules.add(new ChatSuffix());
         modules.add(new HoleESP());
+        modules.add(new Offhand());
     }
 
     public ArrayList<Module> getModules() {

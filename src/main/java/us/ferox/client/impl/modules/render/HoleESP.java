@@ -1,12 +1,8 @@
 package us.ferox.client.impl.modules.render;
 
 import git.littledraily.eventsystem.Listener;
-import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
-import net.minecraftforge.client.event.RenderWorldLastEvent;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import org.lwjgl.opengl.GL11;
 import us.ferox.client.api.module.Category;
 import us.ferox.client.api.module.Module;

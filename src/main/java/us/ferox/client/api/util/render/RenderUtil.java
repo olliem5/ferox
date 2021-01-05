@@ -1,6 +1,7 @@
 package us.ferox.client.api.util.render;
 
 import net.minecraft.client.renderer.BufferBuilder;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -10,27 +11,25 @@ import us.ferox.client.api.traits.Minecraft;
 
 import java.awt.*;
 
-/**
- * @author olliem5
- * @since 3/01/20
- */
-
 public class RenderUtil implements Minecraft {
     public static void prepareGL() {
-        GL11.glPushMatrix();
-        GL11.glBlendFunc(770, 771);
-        GL11.glEnable(3042);
-        GL11.glDisable(3553);
-        GL11.glDisable(2929);
-        GL11.glDepthMask(false);
+        GlStateManager.pushMatrix();
+        GlStateManager.enableBlend();
+        GlStateManager.disableDepth();
+        GlStateManager.tryBlendFuncSeparate(770, 771, 0, 1);
+        GlStateManager.disableTexture2D();
+        GlStateManager.depthMask(false);
+        GL11.glEnable(GL11.GL_LINE_SMOOTH);
+        GL11.glHint(GL11.GL_LINE_SMOOTH_HINT, GL11.GL_NICEST);
     }
 
     public static void releaseGL() {
-        GL11.glEnable(3553);
-        GL11.glEnable(2929);
-        GL11.glDepthMask(true);
-        GL11.glDisable(3042);
-        GL11.glPopMatrix();
+        GL11.glDisable(GL11.GL_LINE_SMOOTH);
+        GlStateManager.depthMask(true);
+        GlStateManager.enableDepth();
+        GlStateManager.enableTexture2D();
+        GlStateManager.disableBlend();
+        GlStateManager.popMatrix();
     }
 
     public static AxisAlignedBB generateBB(long x, long y, long z) {
