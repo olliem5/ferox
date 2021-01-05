@@ -11,6 +11,7 @@ import us.ferox.client.impl.modules.ferox.Friends;
 import us.ferox.client.impl.modules.misc.ChatSuffix;
 import us.ferox.client.impl.modules.misc.FastUse;
 import us.ferox.client.impl.modules.movement.ElytraFlight;
+import us.ferox.client.impl.modules.movement.Velocity;
 import us.ferox.client.impl.modules.render.HoleESP;
 
 import java.util.ArrayList;
@@ -31,6 +32,7 @@ public class ModuleManager {
         modules.add(new HoleESP());
         modules.add(new Offhand());
         modules.add(new Friends());
+        modules.add(new Velocity());
     }
 
     public ArrayList<Module> getModules() {
