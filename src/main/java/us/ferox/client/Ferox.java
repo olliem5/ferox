@@ -10,6 +10,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.lwjgl.opengl.Display;
 import us.ferox.client.api.event.EventProcessor;
+import us.ferox.client.api.friend.FriendManager;
 import us.ferox.client.api.module.ModuleManager;
 import us.ferox.client.api.util.font.FeroxFontRenderer;
 
@@ -33,6 +34,7 @@ public class Ferox {
     public EventProcessor eventProcessor;
 
     public static ModuleManager moduleManager;
+    public static FriendManager friendManager;
 
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
@@ -46,6 +48,9 @@ public class Ferox {
 
         moduleManager = new ModuleManager();
         log("Modules Initialized!");
+
+        friendManager = new FriendManager();
+        log("Friends Initialized!");
     }
 
     @Mod.EventHandler
