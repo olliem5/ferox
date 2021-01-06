@@ -1,10 +1,7 @@
-package us.ferox.client.impl.gui.component;
+package us.ferox.client.impl.gui.editor.component;
 
 import net.minecraft.client.gui.Gui;
-import net.minecraft.client.gui.ScaledResolution;
-import us.ferox.client.api.module.Module;
-import us.ferox.client.api.setting.NumberSetting;
-import us.ferox.client.api.setting.Setting;
+import us.ferox.client.api.hud.HudComponent;
 import us.ferox.client.api.util.colour.RainbowUtil;
 import us.ferox.client.api.util.font.FontUtil;
 import us.ferox.client.impl.gui.Component;
@@ -12,52 +9,21 @@ import us.ferox.client.impl.gui.Component;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class ModuleButton extends Component {
+public class HudComponentButton extends Component {
     private ArrayList<Component> subcomponents;
-    public Module mod;
-    public Panel parent;
+    public HudComponent mod;
+    public HudPanel parent;
     public int offset;
     private boolean open;
     private boolean hovered;
 
-    public ModuleButton(Module mod, Panel parent, int offset) {
+    public HudComponentButton(HudComponent mod, HudPanel parent, int offset) {
         this.subcomponents = new ArrayList<>();
         this.mod = mod;
         this.parent = parent;
         this.offset = offset;
         this.open = false;
         this.hovered = false;
-        int opY = offset + 16;
-
-        if (mod.getSettings() != null) {
-            for (Setting setting : mod.getSettings()) {
-                if (setting.getValue() instanceof Boolean) {
-                    this.subcomponents.add(new BooleanComponent(setting, this, opY));
-                }
-
-                if (setting.getValue() instanceof Enum) {
-                    this.subcomponents.add(new EnumComponent(setting, this, opY));
-                }
-
-                if (setting instanceof NumberSetting) {
-                    NumberSetting numberSetting = (NumberSetting) setting;
-
-                    if (numberSetting.getValue() instanceof Integer) {
-                        this.subcomponents.add(new IntegerComponent(numberSetting, this, opY));
-                    }
-
-                    if (numberSetting.getValue() instanceof Double) {
-                        this.subcomponents.add(new DoubleComponent(numberSetting, this, opY));
-                    }
-
-                    if (numberSetting.getValue() instanceof Float) {
-                        this.subcomponents.add(new FloatComponent(numberSetting, this, opY));
-                    }
-                }
-            }
-        }
-
-        this.subcomponents.add(new KeybindComponent(this, opY));
     }
 
     @Override
@@ -76,7 +42,7 @@ public class ModuleButton extends Component {
     public void renderComponent() {
         Gui.drawRect(parent.getX(), parent.getY() + offset, parent.getX() + parent.getWidth(), parent.getY() + 16 + offset, new Color(20, 20, 20, 150).getRGB());
 
-        if (mod.isEnabled()) {
+        if (mod.isVisible()) {
             Gui.drawRect(parent.getX() + 1, parent.getY() + offset, parent.getX() + parent.getWidth() -1, parent.getY() + 16 + offset -1, RainbowUtil.getRainbow().getRGB());
         }
 
@@ -89,7 +55,6 @@ public class ModuleButton extends Component {
                 FontUtil.drawText("...", parent.getX() + parent.getWidth() - 12, (parent.getY() + offset + 3), -1);
             }
 
-            FontUtil.drawText(mod.getDescription(), 2, (new ScaledResolution(mc).getScaledHeight() - FontUtil.getStringHeight(mod.getDescription()) - 2), -1);
         } else {
             FontUtil.drawText(mod.getName(), parent.getX() + 3, parent.getY() + offset + 3, -1);
 
@@ -133,7 +98,7 @@ public class ModuleButton extends Component {
     @Override
     public void mouseClicked(int mouseX, int mouseY, int button) {
         if (isMouseOnButton(mouseX, mouseY) && button == 0) {
-            mod.toggle();
+            mod.setVisible(!mod.isVisible());
         }
 
         if (isMouseOnButton(mouseX, mouseY) && button == 1) {

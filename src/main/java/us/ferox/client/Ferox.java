@@ -11,9 +11,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.lwjgl.opengl.Display;
 import us.ferox.client.api.event.EventProcessor;
+import us.ferox.client.api.friend.FriendManager;
 import us.ferox.client.api.hud.HudManager;
 import us.ferox.client.api.mixin.MixinLoader;
-import us.ferox.client.api.util.FriendManager;
 import us.ferox.client.api.module.ModuleManager;
 import us.ferox.client.api.util.font.FeroxFontRenderer;
 import us.ferox.client.impl.command.EchoCommand;
@@ -44,7 +44,7 @@ public class Ferox {
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
         mixinLoader = new MixinLoader();
-        LOGGER.info("Pre Initialized!");
+        LOGGER.info("Mixins Initialized!");
     }
 
     @Mod.EventHandler
@@ -68,6 +68,7 @@ public class Ferox {
     @Mod.EventHandler
     public void postInit(FMLPostInitializationEvent event) {
         Display.setTitle(NAME_VERSION);
+        log("Ferox Initialized!");
     }
 
     public static void log(String message) {

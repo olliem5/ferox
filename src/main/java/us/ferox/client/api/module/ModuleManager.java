@@ -4,10 +4,7 @@ import us.ferox.client.impl.modules.combat.AutoCrystal;
 import us.ferox.client.impl.modules.combat.AutoTrap;
 import us.ferox.client.impl.modules.combat.Offhand;
 import us.ferox.client.impl.modules.combat.Surround;
-import us.ferox.client.impl.modules.ferox.ClickGUIModule;
-import us.ferox.client.impl.modules.ferox.DiscordRPC;
-import us.ferox.client.impl.modules.ferox.Font;
-import us.ferox.client.impl.modules.ferox.Friends;
+import us.ferox.client.impl.modules.ferox.*;
 import us.ferox.client.impl.modules.misc.ChatSuffix;
 import us.ferox.client.impl.modules.misc.FastUse;
 import us.ferox.client.impl.modules.movement.ElytraFlight;
@@ -35,6 +32,7 @@ public class ModuleManager {
         modules.add(new Friends());
         modules.add(new Velocity());
         modules.add(new Brightness());
+        modules.add(new HudEditorModule());
     }
 
     public ArrayList<Module> getModules() {

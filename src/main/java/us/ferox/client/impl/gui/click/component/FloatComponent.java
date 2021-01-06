@@ -1,4 +1,4 @@
-package us.ferox.client.impl.gui.component;
+package us.ferox.client.impl.gui.click.component;
 
 import com.mojang.realmsclient.gui.ChatFormatting;
 import net.minecraft.client.gui.Gui;

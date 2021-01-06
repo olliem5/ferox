@@ -1,7 +1,7 @@
 package us.ferox.client.impl.command;
 
 import me.yagel15637.venture.command.AbstractCommand;
-import us.ferox.client.api.util.minecraft.ChatUtil;
+import us.ferox.client.api.util.client.MessageUtil;
 
 public class EchoCommand extends AbstractCommand {
     public EchoCommand() {
@@ -14,6 +14,6 @@ public class EchoCommand extends AbstractCommand {
 
         StringBuilder msg = new StringBuilder();
         for (String s : args) msg.append(s).append(" ");
-        ChatUtil.sendPrefixMessage(msg.toString());
+        MessageUtil.sendClientMessage(msg.toString());
     }
 }

@@ -52,6 +52,7 @@ public class EventProcessor implements Minecraft {
     @SubscribeEvent
     public void onChatMessage(ClientChatEvent event) {
         if (event.getMessage().startsWith(Ferox.CHAT_PREFIX)) {
+            event.setCanceled(true);
             CommandManager.parseCommand(event.getMessage().replace(Ferox.CHAT_PREFIX, ""));
         } else {
             ChatIncomingEvent send = new ChatIncomingEvent(event.getMessage());

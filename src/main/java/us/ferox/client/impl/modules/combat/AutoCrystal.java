@@ -14,40 +14,35 @@ import us.ferox.client.api.setting.Setting;
 import us.ferox.client.api.util.client.CooldownUtil;
 import us.ferox.client.api.util.minecraft.InventoryUtil;
 import us.ferox.client.api.util.module.CrystalUtil;
+import us.ferox.client.api.util.packet.RotationUtil;
 
 import java.util.Comparator;
 
 @ModuleInfo(name = "AutoCrystal", description = "Places and destroys end crystals to kill enemies", category = Category.COMBAT)
 public class AutoCrystal extends Module {
-    //Modes
     public static Setting<LogicModes> logicMode = new Setting<>("Logic", LogicModes.Breakplace);
     public static Setting<PlaceModes> placeMode = new Setting<>("Place", PlaceModes.Single);
     public static Setting<BreakModes> breakMode = new Setting<>("Break", BreakModes.Nearest);
     public static Setting<BreakTypes> breakType = new Setting<>("Break Type", BreakTypes.Swing);
     public static Setting<SwingModes> swingMode = new Setting<>("Swing", SwingModes.Mainhand);
 
-    //Delays
     public static NumberSetting<Integer> placeDelay = new NumberSetting<>("Place Delay", 0, 2, 20);
     public static NumberSetting<Integer> breakDelay = new NumberSetting<>("Break Delay", 0, 2, 20);
 
-    //Ranges
     public static NumberSetting<Double> placeRange = new NumberSetting<>("Place Range", 0.0, 5.5, 10.0);
     public static NumberSetting<Double> breakRange = new NumberSetting<>("Break Range", 0.0, 5.5, 10.0);
     public static NumberSetting<Double> enemyRange = new NumberSetting<>("Enemy Range", 1.0, 15.0, 50.0);
     public static NumberSetting<Double> wallsRange = new NumberSetting<>("Walls Range", 0.0, 3.5, 10.0);
 
-    //Booleans
     public static Setting<Boolean> rotate = new Setting<>("Rotate", true);
     public static Setting<Boolean> raytrace = new Setting<>("Raytrace", true);
     public static Setting<Boolean> antiWeakness = new Setting<>("Anti Weakness", true);
 
-    //Fixes
     public static Setting<Boolean> syncBreak = new Setting<>("Sync Break", true);
     public static Setting<Boolean> reloadCrystal = new Setting<>("Reload Crystal", true);
     public static Setting<Boolean> antiDesync = new Setting<>("Anti Desync", true);
     public static NumberSetting<Integer> breakAttempts = new NumberSetting<>("Break Attempts", 1, 1, 5);
 
-    //Health
     public static Setting<Boolean> antiSuicide = new Setting<>("Anti Suicide", true);
     public static NumberSetting<Double> antiSuicideHealth = new NumberSetting<>("Anti Suicide HP", 1.0, 15.0, 36.0);
     public static NumberSetting<Double> minDamage = new NumberSetting<>("Min Damage", 0.0, 7.0, 36.0);
@@ -60,31 +55,24 @@ public class AutoCrystal extends Module {
         this.addSetting(breakMode);
         this.addSetting(breakType);
         this.addSetting(swingMode);
-
         this.addSetting(placeDelay);
         this.addSetting(breakDelay);
-
         this.addSetting(placeRange);
         this.addSetting(breakRange);
         this.addSetting(enemyRange);
         this.addSetting(wallsRange);
-
         this.addSetting(rotate);
         this.addSetting(raytrace);
-
         this.addSetting(syncBreak);
         this.addSetting(reloadCrystal);
         this.addSetting(antiDesync);
         this.addSetting(breakAttempts);
-
         this.addSetting(antiSuicide);
         this.addSetting(antiSuicideHealth);
         this.addSetting(minDamage);
         this.addSetting(maxSelfDamage);
         this.addSetting(faceplaceHP);
     }
-
-    private static CrystalUtil crystalUtil = new CrystalUtil();
 
     private CooldownUtil breakTimer = new CooldownUtil();
     private CooldownUtil placeTimer = new CooldownUtil();
@@ -96,7 +84,7 @@ public class AutoCrystal extends Module {
     public void onDisable() {
         entityTarget = null;
         blockTarget = null;
-        crystalUtil.resetRotation();
+        RotationUtil.resetRotation();
     }
 
     public void onUpdate() {
@@ -121,7 +109,7 @@ public class AutoCrystal extends Module {
 
                 if (breakMode.getValue() == BreakModes.Nearest) {
                     if (rotate.getValue()) {
-                        crystalUtil.lookAtPacket(entityEnderCrystal.posX, entityEnderCrystal.posY, entityEnderCrystal.posZ, mc.player);
+                        RotationUtil.lookAtPacket(entityEnderCrystal.posX, entityEnderCrystal.posY, entityEnderCrystal.posZ, mc.player);
                     }
 
                     if (antiWeakness.getValue() && mc.player.isPotionActive(Potion.getPotionById(18))) {

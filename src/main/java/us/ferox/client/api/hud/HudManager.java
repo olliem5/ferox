@@ -24,8 +24,13 @@ public class HudManager implements Minecraft {
         Ferox.EVENT_BUS.subscribe(INSTANCE);
 
         INSTANCE.components.addAll(Arrays.asList(
-                new WelcomerComponent()
+                new WelcomerComponent(),
+                new InventoryComponent()
         ));
+    }
+
+    public static List<HudComponent> getComponents() {
+        return INSTANCE.components;
     }
 
     public static boolean isRainbow() {
