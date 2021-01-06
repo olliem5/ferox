@@ -4,9 +4,9 @@ import us.ferox.client.api.traits.Minecraft;
 import us.ferox.client.api.util.font.FontUtil;
 
 public abstract class HudComponent implements Minecraft {
-    private final String name;
-    private int posX;
-    private int posY;
+    private final String name = getAnnotation().name();;
+    private int posX = 2;
+    private int posY = 2;
     private int dragX;
     private int dragY;
     private int width;
@@ -14,10 +14,11 @@ public abstract class HudComponent implements Minecraft {
     protected boolean visible = false;
     private boolean dragging;
 
-    protected HudComponent(String name, int posX, int posY) {
-        this.name = name;
-        this.posX = posX;
-        this.posY = posY;
+    private ComponentInfo getAnnotation() {
+        if (getClass().isAnnotationPresent(ComponentInfo.class)) {
+            return getClass().getAnnotation(ComponentInfo.class);
+        }
+        throw new IllegalStateException("Annotation 'ComponentInfo' not found!");
     }
 
     public abstract void render();

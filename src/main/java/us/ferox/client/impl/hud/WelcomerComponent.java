@@ -1,11 +1,12 @@
 package us.ferox.client.impl.hud;
 
 import us.ferox.client.Ferox;
+import us.ferox.client.api.hud.ComponentInfo;
 import us.ferox.client.api.hud.HudComponent;
 
+@ComponentInfo(name = "Welcomer")
 public class WelcomerComponent extends HudComponent {
     public WelcomerComponent() {
-        super("Welcomer", 2, 2);
         setWidth(10);
         setHeight(10);
         visible = true;

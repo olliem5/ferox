@@ -24,7 +24,8 @@ public class HudManager implements Minecraft {
         Ferox.EVENT_BUS.subscribe(INSTANCE);
 
         INSTANCE.components.addAll(Arrays.asList(
-                new WelcomerComponent()
+                new WelcomerComponent(),
+                new InventoryComponent()
         ));
     }
 
