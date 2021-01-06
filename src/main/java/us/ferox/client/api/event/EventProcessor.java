@@ -44,7 +44,7 @@ public class EventProcessor implements Minecraft {
     }
 
     @SubscribeEvent
-    public void onRender(RenderGameOverlayEvent event) {
+    public void onRender(RenderGameOverlayEvent.Text event) {
         if (event.isCanceled()) return;
         Ferox.EVENT_BUS.post(new GameOverlayRenderEvent());
     }
