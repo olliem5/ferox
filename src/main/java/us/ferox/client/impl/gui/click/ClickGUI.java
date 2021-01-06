@@ -1,9 +1,10 @@
-package us.ferox.client.impl.gui;
+package us.ferox.client.impl.gui.click;
 
 import net.minecraft.client.gui.GuiScreen;
 import org.lwjgl.input.Keyboard;
 import us.ferox.client.api.module.Category;
-import us.ferox.client.impl.gui.component.Panel;
+import us.ferox.client.impl.gui.Component;
+import us.ferox.client.impl.gui.click.component.Panel;
 
 import java.util.ArrayList;
 

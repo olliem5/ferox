@@ -1,4 +1,4 @@
-package us.ferox.client.impl.gui.component;
+package us.ferox.client.impl.gui.click.component;
 
 import net.minecraft.client.gui.Gui;
 import us.ferox.client.api.setting.Setting;

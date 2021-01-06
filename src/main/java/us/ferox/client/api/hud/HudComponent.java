@@ -5,8 +5,14 @@ import us.ferox.client.api.util.font.FontUtil;
 
 public abstract class HudComponent implements Minecraft {
     private final String name;
-    private int posX, posY;
+    private int posX;
+    private int posY;
+    private int dragX;
+    private int dragY;
+    private int width;
+    private int height;
     protected boolean visible = false;
+    private boolean dragging;
 
     protected HudComponent(String name, int posX, int posY) {
         this.name = name;
@@ -17,7 +23,7 @@ public abstract class HudComponent implements Minecraft {
     public abstract void render();
 
     protected final void drawString(String text) {
-        FontUtil.drawString(text, posX, posY, HudManager.getColor());
+        FontUtil.drawText(text, posX, posY, HudManager.getColor());
     }
 
     public final String getName() {
@@ -46,5 +52,60 @@ public abstract class HudComponent implements Minecraft {
 
     public final void setVisible(boolean visible) {
         this.visible = visible;
+    }
+
+    public boolean isDragging() {
+        return dragging;
+    }
+
+    public void setDragging(boolean dragging) {
+        this.dragging = dragging;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public void setWidth(int width) {
+        this.width = width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
+
+    public int getDragX() {
+        return dragX;
+    }
+
+    public void setDragX(int dragX) {
+        this.dragX = dragX;
+    }
+
+    public int getDragY() {
+        return dragY;
+    }
+
+    public void setDragY(int dragY) {
+        this.dragY = dragY;
+    }
+
+    public boolean isMouseOnComponent(int x, int y) {
+        if (x >= this.posX && x <= this.posX + this.width && y >= this.posY && y <= this.posY + this.height) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public void updatePosition(int mouseX, int mouseY) {
+        if (this.dragging) {
+            this.setPosX(mouseX - getDragX());
+            this.setPosY(mouseY - getDragY());
+        }
     }
 }

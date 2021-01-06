@@ -1,24 +1,23 @@
-package us.ferox.client.impl.gui.component;
+package us.ferox.client.impl.gui.editor.component;
 
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.ScaledResolution;
 import org.lwjgl.input.Mouse;
 import us.ferox.client.Ferox;
-import us.ferox.client.api.module.Category;
-import us.ferox.client.api.module.Module;
+import us.ferox.client.api.hud.HudComponent;
+import us.ferox.client.api.hud.HudManager;
 import us.ferox.client.api.traits.Minecraft;
 import us.ferox.client.api.util.colour.RainbowUtil;
 import us.ferox.client.api.util.font.FontUtil;
-import us.ferox.client.impl.gui.ClickGUI;
 import us.ferox.client.impl.gui.Component;
+import us.ferox.client.impl.gui.editor.HudEditor;
 
 import java.awt.*;
 import java.util.ArrayList;
 
-public class Panel implements Minecraft {
+public class HudPanel implements Minecraft {
     public ArrayList<Component> components;
     public String title;
-    public Category category;
     public int x;
     public int y;
     public int dragX;
@@ -30,10 +29,9 @@ public class Panel implements Minecraft {
     private boolean isDragging;
     private boolean open;
 
-    public Panel(String title, int x, int y, int width, int height, Category category) {
+    public HudPanel(String title, int x, int y, int width, int height) {
         this.components = new ArrayList<>();
         this.title = title;
-        this.category = category;
         this.x = x;
         this.y = y;
         this.dragX = 0;
@@ -45,12 +43,10 @@ public class Panel implements Minecraft {
         this.isDragging = false;
         this.open = true;
 
-        for (Module module : Ferox.moduleManager.getModules()) {
-            if (module.getCategory() == category) {
-                ModuleButton moduleButton = new ModuleButton(module, this, tY);
-                components.add(moduleButton);
-                tY += 16;
-            }
+        for (HudComponent hudComponent : HudManager.getComponents()) {
+            HudComponentButton hudComponentButton = new HudComponentButton(hudComponent, this, tY);
+            components.add(hudComponentButton);
+            tY += 16;
         }
 
         refresh();
@@ -116,7 +112,7 @@ public class Panel implements Minecraft {
     public void scroll() {
         int scrollWheel = Mouse.getDWheel();
 
-        for (Panel panels : ClickGUI.panels) {
+        for (HudPanel panels : HudEditor.panels) {
             if (scrollWheel < 0) {
                 panels.setY(panels.getY() - 10);
                 continue;
@@ -172,9 +168,5 @@ public class Panel implements Minecraft {
 
     public void setY(int newY) {
         this.y = newY;
-    }
-
-    public Category getCategory() {
-        return category;
     }
 }

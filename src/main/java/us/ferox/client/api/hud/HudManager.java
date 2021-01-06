@@ -28,6 +28,10 @@ public class HudManager implements Minecraft {
         ));
     }
 
+    public static List<HudComponent> getComponents() {
+        return INSTANCE.components;
+    }
+
     public static boolean isRainbow() {
         return INSTANCE.rainbow;
     }
