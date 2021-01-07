@@ -97,6 +97,11 @@ public class Offhand extends Module {
                         InventoryUtil.offhandItem(Items.EXPERIENCE_BOTTLE);
                     }
                     break;
+                case SpawnEgg:
+                    if (mc.player.getHeldItemOffhand().getItem() != Items.SPAWN_EGG) {
+                        InventoryUtil.offhandItem(Items.SPAWN_EGG);
+                    }
+                    break;
             }
         }
     }
@@ -110,6 +115,7 @@ public class Offhand extends Module {
         Pearl,
         Potion,
         Bow,
-        XP
+        XP,
+        SpawnEgg
     }
 }

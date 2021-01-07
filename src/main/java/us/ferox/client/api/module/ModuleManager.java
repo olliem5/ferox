@@ -1,9 +1,6 @@
 package us.ferox.client.api.module;
 
-import us.ferox.client.impl.modules.combat.AutoCrystal;
-import us.ferox.client.impl.modules.combat.AutoTrap;
-import us.ferox.client.impl.modules.combat.Offhand;
-import us.ferox.client.impl.modules.combat.Surround;
+import us.ferox.client.impl.modules.combat.*;
 import us.ferox.client.impl.modules.ferox.*;
 import us.ferox.client.impl.modules.misc.ChatSuffix;
 import us.ferox.client.impl.modules.misc.FastUse;
@@ -33,6 +30,7 @@ public class ModuleManager {
         modules.add(new Velocity());
         modules.add(new Brightness());
         modules.add(new HudEditorModule());
+        modules.add(new AntiCrystal());
     }
 
     public ArrayList<Module> getModules() {
