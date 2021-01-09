@@ -6,6 +6,7 @@ import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.item.ItemStack;
 import us.ferox.client.api.hud.ComponentInfo;
 import us.ferox.client.api.hud.HudComponent;
+import us.ferox.client.api.setting.Setting;
 
 import java.awt.*;
 
@@ -16,9 +17,11 @@ public class InventoryComponent extends HudComponent {
         setHeight(48);
     }
 
+    Setting<Boolean> background = addSetting(new Setting("Background", true));
+
     @Override
     public void render() {
-        Gui.drawRect(getPosX(), getPosY(), getPosX() + getWidth(), getPosY() + getHeight(), new Color(20, 20, 20, 20).getRGB());
+        if(background.getValue()) Gui.drawRect(getPosX(), getPosY(), getPosX() + getWidth(), getPosY() + getHeight(), new Color(20, 20, 20, 100).getRGB());
 
         GlStateManager.pushMatrix();
         RenderHelper.enableGUIStandardItemLighting();

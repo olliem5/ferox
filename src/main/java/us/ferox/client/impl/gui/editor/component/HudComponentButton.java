@@ -2,9 +2,12 @@ package us.ferox.client.impl.gui.editor.component;
 
 import net.minecraft.client.gui.Gui;
 import us.ferox.client.api.hud.HudComponent;
+import us.ferox.client.api.setting.NumberSetting;
+import us.ferox.client.api.setting.Setting;
 import us.ferox.client.api.util.colour.RainbowUtil;
 import us.ferox.client.api.util.font.FontUtil;
 import us.ferox.client.impl.gui.Component;
+import us.ferox.client.impl.gui.click.component.*;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -24,6 +27,35 @@ public class HudComponentButton extends Component {
         this.offset = offset;
         this.open = false;
         this.hovered = false;
+        int opY = offset + 16;
+
+        if (mod.getSettings() != null) {
+            for (Setting setting : mod.getSettings()) {
+                if (setting.getValue() instanceof Boolean) {
+                    this.subcomponents.add(new BooleanComponentHud(setting, this, opY));
+                }
+
+                if (setting.getValue() instanceof Enum) {
+                    this.subcomponents.add(new EnumComponentHud(setting, this, opY));
+                }
+
+                if (setting instanceof NumberSetting) {
+                    NumberSetting numberSetting = (NumberSetting) setting;
+
+                    if (numberSetting.getValue() instanceof Integer) {
+                        this.subcomponents.add(new IntegerComponentHud(numberSetting, this, opY));
+                    }
+
+                    if (numberSetting.getValue() instanceof Double) {
+                        this.subcomponents.add(new DoubleComponentHud(numberSetting, this, opY));
+                    }
+
+                    if (numberSetting.getValue() instanceof Float) {
+                        this.subcomponents.add(new FloatComponentHud(numberSetting, this, opY));
+                    }
+                }
+            }
+        }
     }
 
     @Override

@@ -1,7 +1,11 @@
 package us.ferox.client.api.hud;
 
+import net.minecraft.client.gui.ScaledResolution;
+import us.ferox.client.api.setting.Setting;
 import us.ferox.client.api.traits.Minecraft;
 import us.ferox.client.api.util.font.FontUtil;
+
+import java.util.ArrayList;
 
 public abstract class HudComponent implements Minecraft {
     private final String name = getAnnotation().name();;
@@ -13,6 +17,7 @@ public abstract class HudComponent implements Minecraft {
     private int height;
     protected boolean visible = false;
     private boolean dragging;
+    private ArrayList<Setting> settings = new ArrayList<>();
 
     private ComponentInfo getAnnotation() {
         if (getClass().isAnnotationPresent(ComponentInfo.class)) {
@@ -103,10 +108,39 @@ public abstract class HudComponent implements Minecraft {
         }
     }
 
+    public void collide() {
+        ScaledResolution sr = new ScaledResolution(mc);
+
+        if (posX <= 0) {
+            setPosX(0);
+        }
+
+        if (posX >= sr.getScaledWidth() - width) {
+            setPosX(sr.getScaledWidth() - width);
+        }
+
+        if (posY <= 0){
+            setPosY(0);
+        }
+
+        if (getPosY() >= sr.getScaledHeight() - height) {
+            setPosY(sr.getScaledHeight() - height);
+        }
+    }
+
     public void updatePosition(int mouseX, int mouseY) {
         if (this.dragging) {
             this.setPosX(mouseX - getDragX());
             this.setPosY(mouseY - getDragY());
         }
+        collide();
+    }
+    public ArrayList<Setting> getSettings() {
+        return settings;
+    }
+
+    public Setting addSetting(Setting setting) {
+        settings.add(setting);
+        return setting;
     }
 }
