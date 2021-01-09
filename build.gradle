@@ -110,18 +110,17 @@ reobf {
     }
 }
 
-//jar {
-//    manifest {
-//        attributes(
-//                'MixinConfigs': 'mixins.ferox.json',
-//                'TweakClass': 'org.spongepowered.asm.launch.MixinTweaker',
-//                'TweakOrder': 0,
-//                'FMLCorePluginContainsFMLMod': 'true',
-//                'FMLCorePlugin': 'us.ferox.client.Ferox',
-//                'ForceLoadAsMod': 'true',
-//                'FMLAT': 'ferox_at.cfg'
-//        )
-//    }
-//}
+jar {
+    manifest {
+        attributes(
+                'MixinConfigs': 'mixins.ferox.json',
+                'TweakClass': 'org.spongepowered.asm.launch.MixinTweaker',
+                'TweakOrder': 0,
+                'FMLCorePluginContainsFMLMod': 'true',
+                'FMLCorePlugin': 'us.ferox.client.Ferox',
+                'ForceLoadAsMod': 'true',
+                'FMLAT': 'ferox_at.cfg'        )
+             }
+}
 
 build.dependsOn(shadowJar)
