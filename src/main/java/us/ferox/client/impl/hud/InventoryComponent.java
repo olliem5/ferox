@@ -12,16 +12,20 @@ import java.awt.*;
 
 @ComponentInfo(name = "Inventory")
 public class InventoryComponent extends HudComponent {
+    public static Setting<Boolean> background = new Setting("Background", true);
+
     public InventoryComponent() {
         setWidth(144);
         setHeight(48);
-    }
 
-    Setting<Boolean> background = addSetting(new Setting("Background", true));
+        this.addSetting(background);
+    }
 
     @Override
     public void render() {
-        if(background.getValue()) Gui.drawRect(getPosX(), getPosY(), getPosX() + getWidth(), getPosY() + getHeight(), new Color(20, 20, 20, 100).getRGB());
+        if (background.getValue()) {
+            Gui.drawRect(getPosX(), getPosY(), getPosX() + getWidth(), getPosY() + getHeight(), new Color(20, 20, 20, 100).getRGB());
+        }
 
         GlStateManager.pushMatrix();
         RenderHelper.enableGUIStandardItemLighting();

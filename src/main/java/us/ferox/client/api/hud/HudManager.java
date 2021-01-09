@@ -25,7 +25,8 @@ public class HudManager implements Minecraft {
 
         INSTANCE.components.addAll(Arrays.asList(
                 new WelcomerComponent(),
-                new InventoryComponent()
+                new InventoryComponent(),
+                new WatermarkComponent()
         ));
     }
 
