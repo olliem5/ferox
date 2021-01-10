@@ -1,8 +1,11 @@
 package us.ferox.client.api.module;
 
+import com.mojang.realmsclient.gui.ChatFormatting;
 import us.ferox.client.Ferox;
 import us.ferox.client.api.setting.Setting;
 import us.ferox.client.api.traits.Minecraft;
+import us.ferox.client.api.util.client.MessageUtil;
+import us.ferox.client.impl.modules.ferox.Notifier;
 
 import java.util.ArrayList;
 
@@ -31,12 +34,28 @@ public class Module implements Minecraft {
         enabled = true;
         Ferox.EVENT_BUS.subscribe(this);
         onEnable();
+
+        if (mc.world != null) {
+            if (Ferox.moduleManager.getModuleByName("Notifier").isEnabled() && Notifier.moduleToggle.getValue()) {
+                if (name != "ClickGUI" && name != "HudEditor") {
+                    MessageUtil.sendClientMessage("Module " + ChatFormatting.AQUA + name + ChatFormatting.WHITE + " has been " + ChatFormatting.GREEN + "ENABLED");
+                }
+            }
+        }
     }
 
     public void disable() {
         enabled = false;
         Ferox.EVENT_BUS.unsubscribe(this);
         onDisable();
+
+        if (mc.world != null) {
+            if (Ferox.moduleManager.getModuleByName("Notifier").isEnabled() && Notifier.moduleToggle.getValue()) {
+                if (name != "ClickGUI" && name != "HudEditor") {
+                    MessageUtil.sendClientMessage("Module " + ChatFormatting.AQUA + name + ChatFormatting.WHITE + " has been " + ChatFormatting.RED + "DISABLED");
+                }
+            }
+        }
     }
 
     public void toggle() {
