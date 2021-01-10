@@ -5,7 +5,8 @@ public enum Category {
     MOVEMENT("Movement"),
     MISC("Miscellaneous"),
     RENDER("Render"),
-    FEROX("Ferox");
+    FEROX("Ferox"),
+    UI("Interface");
 
     private String name;
 

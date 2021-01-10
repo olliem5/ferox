@@ -60,6 +60,7 @@ dependencies {
         exclude module: 'gson'
         exclude module: 'commons-io'
     }
+
     compile group: 'net.jodah', name: 'typetools', version: '0.5.0'
     compile group: 'club.minnced', name: 'java-discord-rpc', version: '2.0.1'
     compile 'com.github.LittleDraily:event-system:1.1'
@@ -110,17 +111,20 @@ reobf {
     }
 }
 
+//Lazy fix because I suck at gradle : Comment this out to run with runClient.
+
 jar {
     manifest {
-        attributes(
+        attributes (
                 'MixinConfigs': 'mixins.ferox.json',
                 'TweakClass': 'org.spongepowered.asm.launch.MixinTweaker',
                 'TweakOrder': 0,
                 'FMLCorePluginContainsFMLMod': 'true',
                 'FMLCorePlugin': 'us.ferox.client.Ferox',
                 'ForceLoadAsMod': 'true',
-                'FMLAT': 'ferox_at.cfg'        )
-             }
+                'FMLAT': 'ferox_at.cfg'
+        )
+    }
 }
 
 build.dependsOn(shadowJar)

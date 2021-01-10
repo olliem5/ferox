@@ -8,6 +8,8 @@ import us.ferox.client.impl.modules.movement.ElytraFlight;
 import us.ferox.client.impl.modules.movement.Velocity;
 import us.ferox.client.impl.modules.render.Brightness;
 import us.ferox.client.impl.modules.render.HoleESP;
+import us.ferox.client.impl.modules.ui.ClickGUIModule;
+import us.ferox.client.impl.modules.ui.HudEditorModule;
 
 import java.util.ArrayList;
 
@@ -31,6 +33,7 @@ public class ModuleManager {
         modules.add(new Brightness());
         modules.add(new HudEditorModule());
         modules.add(new AntiCrystal());
+        modules.add(new Notifier());
     }
 
     public ArrayList<Module> getModules() {

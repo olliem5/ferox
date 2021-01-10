@@ -1,11 +1,11 @@
-package us.ferox.client.impl.modules.ferox;
+package us.ferox.client.impl.modules.ui;
 
 import us.ferox.client.api.module.Category;
 import us.ferox.client.api.module.Module;
 import us.ferox.client.api.module.ModuleInfo;
 import us.ferox.client.impl.gui.editor.HudEditor;
 
-@ModuleInfo(name = "HudEditor", description = "Opens Ferox's HudEditor", category = Category.FEROX)
+@ModuleInfo(name = "HudEditor", description = "Opens Ferox's HudEditor", category = Category.UI)
 public class HudEditorModule extends Module {
     private HudEditor hudEditor;
 

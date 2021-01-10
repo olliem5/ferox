@@ -62,16 +62,18 @@ public class EventProcessor implements Minecraft {
         }
     }
 
-    @SubscribeEvent(priority = EventPriority.NORMAL, receiveCanceled = true)
+    @SubscribeEvent
     public void onKey(InputEvent.KeyInputEvent event) {
         if (Keyboard.getEventKeyState()) {
-            Ferox.EVENT_BUS.post(new KeyPressedEvent(Keyboard.getEventKey()));
-            for (Module module : Ferox.moduleManager.getModules()) {
-                if (module.getKey() == Keyboard.KEY_NONE) return;
-                if (module.getKey() == Keyboard.getEventKey()) {
-                    module.toggle();
+            if (Keyboard.getEventKey() != Keyboard.KEY_NONE) {
+                for (Module module : Ferox.moduleManager.getModules()) {
+                    if (module.getKey() == Keyboard.getEventKey()) {
+                        module.toggle();
+                    }
                 }
             }
+
+            Ferox.EVENT_BUS.post(new KeyPressedEvent(Keyboard.getEventKey()));
         }
     }
 

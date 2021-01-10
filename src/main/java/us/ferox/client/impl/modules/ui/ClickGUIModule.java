@@ -1,4 +1,4 @@
-package us.ferox.client.impl.modules.ferox;
+package us.ferox.client.impl.modules.ui;
 
 import org.lwjgl.input.Keyboard;
 import us.ferox.client.api.module.Category;
@@ -6,7 +6,7 @@ import us.ferox.client.api.module.Module;
 import us.ferox.client.api.module.ModuleInfo;
 import us.ferox.client.impl.gui.click.ClickGUI;
 
-@ModuleInfo(name = "ClickGUI", description = "Opens Ferox's ClickGUI", category = Category.FEROX, key = Keyboard.KEY_P)
+@ModuleInfo(name = "ClickGUI", description = "Opens Ferox's ClickGUI", category = Category.UI, key = Keyboard.KEY_P)
 public class ClickGUIModule extends Module {
     private ClickGUI clickGUI;
 
