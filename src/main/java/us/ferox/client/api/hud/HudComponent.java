@@ -3,12 +3,11 @@ package us.ferox.client.api.hud;
 import net.minecraft.client.gui.ScaledResolution;
 import us.ferox.client.api.setting.Setting;
 import us.ferox.client.api.traits.Minecraft;
-import us.ferox.client.api.traits.Render;
 import us.ferox.client.api.util.font.FontUtil;
 
 import java.util.ArrayList;
 
-public abstract class HudComponent implements Minecraft, Render {
+public abstract class HudComponent implements Minecraft {
     private final String name = getAnnotation().name();;
     private int posX = 2;
     private int posY = 2;

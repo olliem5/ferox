@@ -1,5 +1,7 @@
 package us.ferox.client.impl.hud;
 
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.OpenGlHelper;
 import us.ferox.client.api.hud.ComponentInfo;
 import us.ferox.client.api.hud.HudComponent;
 import us.ferox.client.api.setting.NumberSetting;
@@ -18,17 +20,17 @@ public class PlayerComponent extends HudComponent {
 
     @Override
     public void render() {
-        glStateManager.disableRescaleNormal();
-        glStateManager.setActiveTexture(openGlHelper.lightmapTexUnit);
-        glStateManager.disableTexture2D();
-        glStateManager.setActiveTexture(openGlHelper.defaultTexUnit);
+        GlStateManager.disableRescaleNormal();
+        GlStateManager.setActiveTexture(OpenGlHelper.lightmapTexUnit);
+        GlStateManager.disableTexture2D();
+        GlStateManager.setActiveTexture(OpenGlHelper.defaultTexUnit);
 
         EntityRenderUtil.drawEntityOnScreen(this.getPosX() + 28, this.getPosY() + 67, scale.getValue(), this.getPosX() + 40, this.getPosY() + 13, mc.player);
 
-        glStateManager.enableRescaleNormal();
-        glStateManager.enableTexture2D();
-        glStateManager.enableBlend();
+        GlStateManager.enableRescaleNormal();
+        GlStateManager.enableTexture2D();
+        GlStateManager.enableBlend();
 
-        glStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
+        GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
     }
 }
