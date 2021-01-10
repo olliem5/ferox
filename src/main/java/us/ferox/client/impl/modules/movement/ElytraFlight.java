@@ -17,7 +17,6 @@ import us.ferox.client.impl.modules.movement.elytra.mode.*;
 
 @ModuleInfo(name = "ElytraFlight", description = "Allows you to fly faster on an elytra", category = Category.MOVEMENT)
 public class ElytraFlight extends Module {
-
     public static Setting<FlyMode> mode = new Setting<>("Mode", FlyMode.Control);
 
     public static NumberSetting<Double> horizontalSpeed = new NumberSetting<>("Glide Speed", 0.0, 2.0, 5.0);
@@ -32,10 +31,11 @@ public class ElytraFlight extends Module {
 
     public static Setting<Boolean> infiniteFly = new Setting<>("Infinite", false);
 
-    public static Setting<Boolean> liquidDisable = new Setting<>("Liquid Disable", true);
-    public static Setting<Boolean> onCollision = new Setting<>("Collision Disable", false);
-    public static Setting<Boolean> onUpward = new Setting<>("Upward Motion Disable", false);
-    public static Setting<Boolean> belowY = new Setting<>("Low Height Disable", false);
+    public static Setting<Boolean> checks = new Setting<>("Checks", true);
+    public static Setting<Boolean> liquidDisable = new Setting<>(checks, "In Liquid", true);
+    public static Setting<Boolean> onCollision = new Setting<>(checks, "On Collision", false);
+    public static Setting<Boolean> onUpward = new Setting<>(checks, "Upward Motion", false);
+    public static Setting<Boolean> belowY = new Setting<>(checks, "Low Height", false);
 
     public ElytraFlight() {
         this.addSetting(mode);
@@ -47,6 +47,7 @@ public class ElytraFlight extends Module {
         this.addSetting(lockRotation);
         this.addSetting(ncpRotations);
         this.addSetting(infiniteFly);
+        this.addSetting(checks);
         this.addSetting(liquidDisable);
         this.addSetting(onCollision);
         this.addSetting(onUpward);

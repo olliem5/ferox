@@ -16,16 +16,19 @@ import us.ferox.client.api.hud.HudManager;
 import us.ferox.client.api.mixin.MixinLoader;
 import us.ferox.client.api.module.ModuleManager;
 import us.ferox.client.api.util.font.FeroxFontRenderer;
+import us.ferox.client.impl.command.BindCommand;
 import us.ferox.client.impl.command.EchoCommand;
+import us.ferox.client.impl.command.FriendCommand;
+import us.ferox.client.impl.command.ToggleCommand;
 
 @Mod(modid = Ferox.MOD_ID, name = Ferox.MOD_NAME, version = Ferox.MOD_VERSION)
 public class Ferox {
     public static final String MOD_ID = "ferox";
     public static final String MOD_NAME = "Ferox";
     public static final String MOD_VERSION = "1.0";
+    public static final String CHAT_PREFIX = "%";
     public static final String APP_ID = "792247134677762088";
     public static final String NAME_VERSION = MOD_NAME + " " + MOD_VERSION;
-    public static final String CHAT_PREFIX = "%";
 
     public static final Logger LOGGER = LogManager.getLogger(NAME_VERSION);
     public static final EventBus EVENT_BUS = new EventManager();
@@ -77,7 +80,10 @@ public class Ferox {
 
     private void initCommandManager() {
         CommandManager.addCommands(
-                new EchoCommand()
+                new EchoCommand(),
+                new FriendCommand(),
+                new ToggleCommand(),
+                new BindCommand()
         );
     }
 }

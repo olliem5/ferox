@@ -3,9 +3,9 @@ package us.ferox.client.impl.command;
 import me.yagel15637.venture.command.AbstractCommand;
 import us.ferox.client.api.util.client.MessageUtil;
 
-public class EchoCommand extends AbstractCommand {
-    public EchoCommand() {
-        super("Echos something to the console.", "say/echo/tell - message", "say", "echo", "tell");
+public class BindCommand extends AbstractCommand {
+    public BindCommand() {
+        super("Binds a specified module to a key", "<b/bind> <module name> <key>", "b", "bind");
     }
 
     @Override
