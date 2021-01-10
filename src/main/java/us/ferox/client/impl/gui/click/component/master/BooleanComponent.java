@@ -1,10 +1,11 @@
-package us.ferox.client.impl.gui.click.component;
+package us.ferox.client.impl.gui.click.component.master;
 
 import net.minecraft.client.gui.Gui;
 import us.ferox.client.api.setting.Setting;
 import us.ferox.client.api.util.colour.RainbowUtil;
 import us.ferox.client.api.util.font.FontUtil;
 import us.ferox.client.impl.gui.Component;
+import us.ferox.client.impl.gui.click.component.ModuleButton;
 
 import java.awt.*;
 
@@ -38,7 +39,12 @@ public class BooleanComponent extends Component {
 
         Gui.drawRect(parent.parent.getX() + 1, parent.parent.getY() + offset, parent.parent.getX() + parent.parent.getWidth() -1, parent.parent.getY() + offset + 15, new Color(50, 50, 50, 150).getRGB());
 
-        FontUtil.drawText(op.getName(), parent.parent.getX() + 4, parent.parent.getY() + offset + 3, -1);
+        if (op.hasSubSettings()) {
+            FontUtil.drawText(op.getName(), parent.parent.getX() + 4, parent.parent.getY() + offset + 3, -1);
+            FontUtil.drawText("...", parent.parent.getX() + parent.parent.getWidth() - 12, (parent.parent.getY() + offset + 3), -1);
+        } else {
+            FontUtil.drawText(op.getName(), parent.parent.getX() + 4, parent.parent.getY() + offset + 3, -1);
+        }
     }
 
     @Override

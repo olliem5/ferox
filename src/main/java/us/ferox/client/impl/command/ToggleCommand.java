@@ -16,9 +16,10 @@ public class ToggleCommand extends AbstractCommand {
         if (args.length != 1)  {
             MessageUtil.sendClientMessage("Syntax : " + ChatFormatting.RED + "<t/toggle> <module name>");
         }
+
+        try {
             for (Module module : Ferox.moduleManager.getModules()) {
                 if (module.getName().equalsIgnoreCase(args[1])) {
-                    System.out.println("jil;sjdfkl;sjf;akl");
                     module.toggle();
 
                     if (module.isEnabled()) {
@@ -28,6 +29,6 @@ public class ToggleCommand extends AbstractCommand {
                     }
                 }
             }
-        }
-
+        } catch (Exception e) {}
+    }
 }

@@ -8,6 +8,7 @@ import us.ferox.client.api.setting.Setting;
 import us.ferox.client.api.util.colour.RainbowUtil;
 import us.ferox.client.api.util.font.FontUtil;
 import us.ferox.client.impl.gui.Component;
+import us.ferox.client.impl.gui.click.component.master.*;
 
 import java.awt.*;
 import java.util.ArrayList;

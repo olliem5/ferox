@@ -23,8 +23,6 @@ public class FastUse extends Module {
     public static Setting<Boolean> blocks = new Setting<>("Blocks", false);
     public static Setting<Boolean> other = new Setting<>("Other", false);
 
-    public static NumberSetting<Integer> delay = new NumberSetting<>("Delay", 0, 0, 1);
-
     public FastUse() {
         this.addSetting(bows);
         this.addSetting(fishingRods);
@@ -33,7 +31,6 @@ public class FastUse extends Module {
         this.addSetting(throwables);
         this.addSetting(blocks);
         this.addSetting(other);
-        this.addSetting(delay);
     }
 
     public void onUpdate() {
@@ -61,37 +58,37 @@ public class FastUse extends Module {
 
         if (fishingRods.getValue()) {
             if (mc.player.getHeldItemMainhand().getItem() instanceof ItemFishingRod) {
-                mc.rightClickDelayTimer = delay.getValue();
+                mc.rightClickDelayTimer = 0;
             }
         }
 
         if (experience.getValue()) {
             if (mc.player.getHeldItemMainhand().getItem() instanceof ItemExpBottle) {
-                mc.rightClickDelayTimer = delay.getValue();
+                mc.rightClickDelayTimer = 0;
             }
         }
 
         if (crystals.getValue()) {
             if (mc.player.getHeldItemMainhand().getItem() instanceof ItemEndCrystal) {
-                mc.rightClickDelayTimer = delay.getValue();
+                mc.rightClickDelayTimer = 0;
             }
         }
 
         if (throwables.getValue()) {
             if (mc.player.getHeldItemMainhand().getItem() instanceof ItemEgg || mc.player.getHeldItemMainhand().getItem() instanceof ItemEnderPearl || mc.player.getHeldItemMainhand().getItem() instanceof ItemEnderEye || mc.player.getHeldItemMainhand().getItem() instanceof ItemFireworkCharge || mc.player.getHeldItemMainhand().getItem() instanceof ItemSnowball || mc.player.getHeldItemMainhand().getItem() instanceof ItemSplashPotion) {
-                mc.rightClickDelayTimer = delay.getValue();
+                mc.rightClickDelayTimer = 0;
             }
         }
 
         if (blocks.getValue()) {
             if (Block.getBlockFromItem(mc.player.getHeldItemMainhand().getItem()).getDefaultState().isFullBlock()) {
-                mc.rightClickDelayTimer = delay.getValue();
+                mc.rightClickDelayTimer = 0;
             }
         }
 
         if (other.getValue()) {
             if (!(mc.player.getHeldItemMainhand().getItem() instanceof ItemBlock || mc.player.getHeldItemMainhand().getItem() instanceof ItemFishingRod)) {
-                mc.rightClickDelayTimer = delay.getValue();
+                mc.rightClickDelayTimer = 0;
             }
         }
     }

@@ -1,4 +1,4 @@
-package us.ferox.client.impl.gui.click.component;
+package us.ferox.client.impl.gui.click.component.master;
 
 import com.mojang.realmsclient.gui.ChatFormatting;
 import net.minecraft.client.gui.Gui;
@@ -6,13 +6,14 @@ import us.ferox.client.api.setting.NumberSetting;
 import us.ferox.client.api.util.colour.RainbowUtil;
 import us.ferox.client.api.util.font.FontUtil;
 import us.ferox.client.impl.gui.Component;
+import us.ferox.client.impl.gui.click.component.ModuleButton;
 
 import java.awt.*;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-public class FloatComponent extends Component {
-    private NumberSetting<Float> set;
+public class IntegerComponent extends Component {
+    private NumberSetting<Integer> set;
     private ModuleButton parent;
     private int offset;
     private int x;
@@ -20,7 +21,7 @@ public class FloatComponent extends Component {
     private boolean dragging;
     private double sliderWidth;
 
-    public FloatComponent(NumberSetting<Float> value, ModuleButton button, int offset) {
+    public IntegerComponent(NumberSetting<Integer> value, ModuleButton button, int offset) {
         this.dragging = false;
         this.set = value;
         this.parent = button;
@@ -44,7 +45,12 @@ public class FloatComponent extends Component {
             Gui.drawRect(parent.parent.getX() + 1, parent.parent.getY() + offset, parent.parent.getX() + (int) sliderWidth - 1, parent.parent.getY() + offset + 15, new Color(50, 50, 50, 150).getRGB());
         }
 
-        FontUtil.drawText(set.getName() + ChatFormatting.GRAY + " " + set.getValue(), parent.parent.getX() + 4, parent.parent.getY() + offset + 3, -1);
+        if (set.hasSubSettings()) {
+            FontUtil.drawText(set.getName() + ChatFormatting.GRAY + " " + set.getValue(), parent.parent.getX() + 4, parent.parent.getY() + offset + 3, -1);
+            FontUtil.drawText("...", parent.parent.getX() + parent.parent.getWidth() - 12, (parent.parent.getY() + offset + 3), -1);
+        } else {
+            FontUtil.drawText(set.getName() + ChatFormatting.GRAY + " " + set.getValue(), parent.parent.getX() + 4, parent.parent.getY() + offset + 3, -1);
+        }
     }
 
     @Override
@@ -53,15 +59,15 @@ public class FloatComponent extends Component {
         this.x = parent.parent.getX();
 
         double diff = Math.min(100, Math.max(0, mouseX - this.x));
-        float min = this.set.getMin();
-        float max = this.set.getMax();
+        int min = this.set.getMin();
+        int max = this.set.getMax();
         this.sliderWidth = 100 * (this.set.getValue() - min) / (max - min);
 
         if (this.dragging) {
             if (diff == 0) {
-                this.set.setValue(this.set.getValue());
+                this.set.setValue(this.set.getMin());
             } else {
-                float newValue = (float) roundToPlace(diff / 100 * (max - min) + min, 2);
+                int newValue = (int) roundToPlace(diff / 100 * (max - min) + min, 2);
                 this.set.setValue(newValue);
             }
         }

@@ -5,7 +5,7 @@ import us.ferox.client.api.util.client.MessageUtil;
 
 public class EchoCommand extends AbstractCommand {
     public EchoCommand() {
-        super("Echos something to the console.", "say/echo/tell - message", "say", "echo", "tell");
+        super("Echos something to the console.", "say/echo/tell <message>", "say", "echo", "tell");
     }
 
     @Override
