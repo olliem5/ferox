@@ -1,6 +1,6 @@
 package us.ferox.client.impl.gui.click.component;
 
-import net.minecraft.client.gui.Gui;
+import  net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.ScaledResolution;
 import us.ferox.client.api.module.Module;
 import us.ferox.client.api.setting.NumberSetting;
@@ -32,27 +32,29 @@ public class ModuleButton extends Component {
 
         if (mod.getSettings() != null) {
             for (Setting setting : mod.getSettings()) {
-                if (setting.getValue() instanceof Boolean) {
-                    this.subcomponents.add(new BooleanComponent(setting, this, opY));
-                }
-
-                if (setting.getValue() instanceof Enum) {
-                    this.subcomponents.add(new EnumComponent(setting, this, opY));
-                }
-
-                if (setting instanceof NumberSetting) {
-                    NumberSetting numberSetting = (NumberSetting) setting;
-
-                    if (numberSetting.getValue() instanceof Integer) {
-                        this.subcomponents.add(new IntegerComponent(numberSetting, this, opY));
+                if (!setting.isSubSetting()) {
+                    if (setting.getValue() instanceof Boolean) {
+                        this.subcomponents.add(new BooleanComponent(setting, this, opY));
                     }
 
-                    if (numberSetting.getValue() instanceof Double) {
-                        this.subcomponents.add(new DoubleComponent(numberSetting, this, opY));
+                    if (setting.getValue() instanceof Enum) {
+                        this.subcomponents.add(new EnumComponent(setting, this, opY));
                     }
 
-                    if (numberSetting.getValue() instanceof Float) {
-                        this.subcomponents.add(new FloatComponent(numberSetting, this, opY));
+                    if (setting instanceof NumberSetting) {
+                        NumberSetting numberSetting = (NumberSetting) setting;
+
+                        if (numberSetting.getValue() instanceof Integer) {
+                            this.subcomponents.add(new IntegerComponent(numberSetting, this, opY));
+                        }
+
+                        if (numberSetting.getValue() instanceof Double) {
+                            this.subcomponents.add(new DoubleComponent(numberSetting, this, opY));
+                        }
+
+                        if (numberSetting.getValue() instanceof Float) {
+                            this.subcomponents.add(new FloatComponent(numberSetting, this, opY));
+                        }
                     }
                 }
             }

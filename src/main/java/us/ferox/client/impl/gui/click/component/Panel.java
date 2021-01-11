@@ -104,7 +104,7 @@ public class Panel implements Minecraft {
             setX(sr.getScaledWidth() - width);
         }
 
-        if (getY() <= 0){
+        if (getY() <= 0) {
             setY(0);
         }
 
