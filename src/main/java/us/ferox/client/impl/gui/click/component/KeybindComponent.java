@@ -5,7 +5,6 @@ import net.minecraft.client.gui.Gui;
 import org.lwjgl.input.Keyboard;
 import us.ferox.client.api.util.font.FontUtil;
 import us.ferox.client.impl.gui.Component;
-import us.ferox.client.impl.gui.click.component.ModuleButton;
 
 import java.awt.*;
 

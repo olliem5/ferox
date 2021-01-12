@@ -4,8 +4,8 @@
   "package": "us.ferox.client.impl.mixins",
   "refmap": "mixins.ferox.refmap.json",
   "mixins": [
-    "MixinNetworkManager",
     "MixinEntityPlayerSP",
-    "MixinGuiMainMenu"
+    "MixinGuiMainMenu",
+    "MixinNetworkManager"
   ]
 }

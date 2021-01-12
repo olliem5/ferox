@@ -1,7 +1,5 @@
 package us.ferox.client.api.setting;
 
-import us.ferox.client.impl.gui.click.component.master.BooleanComponent;
-
 import java.util.ArrayList;
 import java.util.List;
 

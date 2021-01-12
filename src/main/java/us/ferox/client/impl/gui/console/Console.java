@@ -6,7 +6,6 @@ import org.lwjgl.input.Keyboard;
 import us.ferox.client.api.util.colour.RainbowUtil;
 import us.ferox.client.api.util.font.FontUtil;
 import us.ferox.client.impl.gui.Component;
-import us.ferox.client.impl.gui.click.component.Panel;
 import us.ferox.client.impl.gui.console.component.InputComponent;
 
 import java.awt.*;

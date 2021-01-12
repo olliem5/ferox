@@ -9,8 +9,8 @@ import us.ferox.client.api.module.Module;
 import us.ferox.client.api.traits.Minecraft;
 import us.ferox.client.api.util.colour.RainbowUtil;
 import us.ferox.client.api.util.font.FontUtil;
-import us.ferox.client.impl.gui.click.ClickGUI;
 import us.ferox.client.impl.gui.Component;
+import us.ferox.client.impl.gui.click.ClickGUI;
 
 import java.awt.*;
 import java.util.ArrayList;

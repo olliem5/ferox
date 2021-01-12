@@ -2,7 +2,6 @@ package us.ferox.client.impl.gui.editor.component;
 
 import com.mojang.realmsclient.gui.ChatFormatting;
 import net.minecraft.client.gui.Gui;
-import us.ferox.client.api.hud.HudComponent;
 import us.ferox.client.api.setting.NumberSetting;
 import us.ferox.client.api.util.colour.RainbowUtil;
 import us.ferox.client.api.util.font.FontUtil;

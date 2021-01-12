@@ -1,6 +1,6 @@
 package us.ferox.client.impl.gui.click.component;
 
-import  net.minecraft.client.gui.Gui;
+import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.ScaledResolution;
 import us.ferox.client.api.module.Module;
 import us.ferox.client.api.setting.NumberSetting;

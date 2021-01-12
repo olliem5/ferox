@@ -3,7 +3,6 @@ package us.ferox.client.impl.gui.editor.component;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.ScaledResolution;
 import org.lwjgl.input.Mouse;
-import us.ferox.client.Ferox;
 import us.ferox.client.api.hud.HudComponent;
 import us.ferox.client.api.hud.HudManager;
 import us.ferox.client.api.traits.Minecraft;

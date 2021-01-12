@@ -9,7 +9,6 @@ import net.minecraft.util.math.BlockPos;
 import us.ferox.client.api.module.Category;
 import us.ferox.client.api.module.Module;
 import us.ferox.client.api.module.ModuleInfo;
-import us.ferox.client.api.setting.NumberSetting;
 import us.ferox.client.api.setting.Setting;
 
 @ModuleInfo(name = "FastUse", description = "Allows you to use certain things faster", category = Category.MISC)

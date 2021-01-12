@@ -6,7 +6,10 @@ import us.ferox.client.Ferox;
 import us.ferox.client.api.traits.Minecraft;
 import us.ferox.client.api.util.colour.RainbowUtil;
 import us.ferox.client.impl.events.GameOverlayRenderEvent;
-import us.ferox.client.impl.hud.*;
+import us.ferox.client.impl.hud.InventoryComponent;
+import us.ferox.client.impl.hud.PlayerComponent;
+import us.ferox.client.impl.hud.WatermarkComponent;
+import us.ferox.client.impl.hud.WelcomerComponent;
 
 import java.awt.*;
 import java.util.ArrayList;
