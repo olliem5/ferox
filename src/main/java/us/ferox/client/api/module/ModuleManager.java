@@ -9,6 +9,7 @@ import us.ferox.client.impl.modules.movement.Velocity;
 import us.ferox.client.impl.modules.render.Brightness;
 import us.ferox.client.impl.modules.render.HoleESP;
 import us.ferox.client.impl.modules.ui.ClickGUIModule;
+import us.ferox.client.impl.modules.ui.ConsoleModule;
 import us.ferox.client.impl.modules.ui.HudEditorModule;
 
 import java.util.ArrayList;
@@ -34,6 +35,7 @@ public class ModuleManager {
         modules.add(new HudEditorModule());
         modules.add(new AntiCrystal());
         modules.add(new Notifier());
+        modules.add(new ConsoleModule());
     }
 
     public ArrayList<Module> getModules() {
