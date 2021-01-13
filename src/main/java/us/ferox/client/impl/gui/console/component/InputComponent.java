@@ -1,17 +1,18 @@
 package us.ferox.client.impl.gui.console.component;
 
+import com.mojang.realmsclient.gui.ChatFormatting;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.util.ChatAllowedCharacters;
 import org.lwjgl.input.Keyboard;
+import us.ferox.client.Ferox;
 import us.ferox.client.api.util.colour.RainbowUtil;
 import us.ferox.client.api.util.font.FontUtil;
 import us.ferox.client.impl.gui.Component;
-import us.ferox.client.impl.gui.console.Console;
+import us.ferox.client.impl.modules.ui.ConsoleModule;
 
 import java.awt.*;
 
 public class InputComponent extends Component {
-    private Console parent;
     private int x;
     private int y;
     private int width;
@@ -31,9 +32,17 @@ public class InputComponent extends Component {
     @Override
     public void renderComponent() {
         Gui.drawRect(x, y, x + width, y + height, RainbowUtil.getRainbow().getRGB());
-        Gui.drawRect(x, y, x + width, y + height, new Color(50, 50, 50, 150).getRGB());
+        Gui.drawRect(x, y, x + width, y + height, new Color(0, 0, 0, 200).getRGB());
 
-        FontUtil.drawText(typedCharacters, x, y, -1);
+        if (!isTyping) {
+            FontUtil.drawText(ChatFormatting.GRAY + "Please type a command...", x, y, -1);
+        } else {
+            if (FontUtil.getStringWidth(ChatFormatting.GRAY + Ferox.CHAT_PREFIX + " " + ChatFormatting.WHITE + typedCharacters) < width) {
+                FontUtil.drawText(ChatFormatting.GRAY + Ferox.CHAT_PREFIX + " " + ChatFormatting.WHITE + typedCharacters, x + 1, y + 1, -1);
+            } else {
+                resetText();
+            }
+        }
     }
 
     @Override
@@ -46,6 +55,12 @@ public class InputComponent extends Component {
 
                 if (ChatAllowedCharacters.isAllowedCharacter(typedChar)) {
                     tempText = typedChar + "";
+                } else {
+                    if (key == Keyboard.KEY_BACK) {
+                        if (typedCharacters.length() >= 1) {
+                            typedCharacters = typedCharacters.substring(0, typedCharacters.length() -1);
+                        }
+                    }
                 }
 
                 typedCharacters += tempText;
@@ -70,6 +85,7 @@ public class InputComponent extends Component {
     }
 
     private void executeCommand(String command) {
+        ConsoleModule.console.outputComponent.addOutput(command);
         mc.player.sendChatMessage(command);
     }
 

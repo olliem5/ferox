@@ -7,7 +7,7 @@ import us.ferox.client.impl.gui.console.Console;
 
 @ModuleInfo(name = "Console", description = "Opens Ferox's Console", category = Category.UI)
 public class ConsoleModule extends Module {
-    private Console console;
+    public static Console console;
 
     @Override
     public void onEnable() {

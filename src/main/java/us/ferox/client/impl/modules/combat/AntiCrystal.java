@@ -77,4 +77,8 @@ public class AntiCrystal extends Module {
     private boolean hasPressurePlate(EntityEnderCrystal entityEnderCrystal) {
         return mc.world.getBlockState(entityEnderCrystal.getPosition()).getBlock() == Blocks.WOODEN_PRESSURE_PLATE;
     }
+
+    public enum ItemModes {
+        PressurePlate
+    }
 }

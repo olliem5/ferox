@@ -7,6 +7,7 @@ import us.ferox.client.api.util.colour.RainbowUtil;
 import us.ferox.client.api.util.font.FontUtil;
 import us.ferox.client.impl.gui.Component;
 import us.ferox.client.impl.gui.console.component.InputComponent;
+import us.ferox.client.impl.gui.console.component.OutputComponent;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -23,6 +24,7 @@ public class Console extends GuiScreen {
     private boolean dragging;
 
     private InputComponent inputComponent;
+    public OutputComponent outputComponent;
 
     public Console() {
         this.components = new ArrayList<>();
@@ -35,8 +37,11 @@ public class Console extends GuiScreen {
         this.open = true;
         this.dragging = false;
 
-        this.inputComponent = new InputComponent(x, y + height, width, height);
+        this.inputComponent = new InputComponent(x, y + height, width, height -5);
+        this.outputComponent = new OutputComponent(x, y + height, width, height -5);
+
         this.components.add(inputComponent);
+        this.components.add(outputComponent);
     }
 
     @Override
@@ -47,7 +52,10 @@ public class Console extends GuiScreen {
         }
 
         inputComponent.setX(x);
-        inputComponent.setY(y + height);
+        inputComponent.setY(y + height + 100);
+
+        outputComponent.setX(x);
+        outputComponent.setY(y + height + 10);
 
         Gui.drawRect(x, y, x + width, y + height, RainbowUtil.getRainbow().getRGB());
         Gui.drawRect(x, y, x + width, y + height, new Color(50, 50, 50, 150).getRGB());
