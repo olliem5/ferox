@@ -13,7 +13,6 @@ public class OutputComponent extends Component {
     private int y;
     private int width;
     private int height;
-    private int offset;
     private ArrayList<String> outputs;
 
     public OutputComponent(int x, int y, int width, int height) {
@@ -26,14 +25,16 @@ public class OutputComponent extends Component {
 
     @Override
     public void renderComponent() {
-        offset = 0;
+        int offset = 0;
+
+        Collections.reverse(outputs);
 
         for (String string : outputs) {
             FontUtil.drawText(string, x + 1, y + height - FontUtil.getStringHeight(string) - 1 + offset, -1);
             offset -= FontUtil.getStringHeight(string) + 2;
         }
 
-        //Collections.reverse(outputs);
+        Collections.reverse(outputs);
     }
 
     public void addOutput(String output) {
@@ -46,9 +47,5 @@ public class OutputComponent extends Component {
 
     public void setY(int y) {
         this.y = y;
-    }
-
-    public int getOffset() {
-        return offset;
     }
 }

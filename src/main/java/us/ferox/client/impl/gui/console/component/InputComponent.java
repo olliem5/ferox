@@ -19,6 +19,8 @@ public class InputComponent extends Component {
     private int height;
     private boolean isTyping;
     private String typedCharacters;
+    private String points;
+    private float tick;
 
     public InputComponent(int x, int y, int width, int height) {
         this.x = x;
@@ -32,10 +34,10 @@ public class InputComponent extends Component {
     @Override
     public void renderComponent() {
         Gui.drawRect(x, y, x + width, y + height, RainbowUtil.getRainbow().getRGB());
-        Gui.drawRect(x, y, x + width, y + height, new Color(0, 0, 0, 200).getRGB());
+        Gui.drawRect(x, y, x + width, y + height, new Color(50, 50, 50, 150).getRGB());
 
         if (!isTyping) {
-            FontUtil.drawText(ChatFormatting.GRAY + "Please type a command...", x, y, -1);
+            FontUtil.drawText(ChatFormatting.GRAY + "Please type a command...", x + 1, y + 1, -1);
         } else {
             if (FontUtil.getStringWidth(ChatFormatting.GRAY + Ferox.CHAT_PREFIX + " " + ChatFormatting.WHITE + typedCharacters) < width) {
                 FontUtil.drawText(ChatFormatting.GRAY + Ferox.CHAT_PREFIX + " " + ChatFormatting.WHITE + typedCharacters, x + 1, y + 1, -1);

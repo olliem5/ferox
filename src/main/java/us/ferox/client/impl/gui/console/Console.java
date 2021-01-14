@@ -55,12 +55,18 @@ public class Console extends GuiScreen {
         inputComponent.setY(y + height + 100);
 
         outputComponent.setX(x);
-        outputComponent.setY(y + height + 10);
+        outputComponent.setY(y + 100);
 
+        //Header
         Gui.drawRect(x, y, x + width, y + height, RainbowUtil.getRainbow().getRGB());
         Gui.drawRect(x, y, x + width, y + height, new Color(50, 50, 50, 150).getRGB());
 
         FontUtil.drawText("Ferox Console", x + 2 + width / 2 - FontUtil.getStringWidth("Ferox Console") / 2, y + height / 2 - FontUtil.getStringHeight("Ferox Console") / 2, -1);
+
+        //Background
+        if (open) {
+            Gui.drawRect(x, y + height, x + width, y + height + 100, new Color(20, 20, 20, 150).getRGB());
+        }
 
         for (Component component : components) {
             if (open) {
