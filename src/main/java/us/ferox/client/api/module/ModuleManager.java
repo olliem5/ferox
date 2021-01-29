@@ -1,10 +1,7 @@
 package us.ferox.client.api.module;
 
 import us.ferox.client.impl.modules.combat.*;
-import us.ferox.client.impl.modules.ferox.DiscordRPC;
-import us.ferox.client.impl.modules.ferox.Font;
-import us.ferox.client.impl.modules.ferox.Friends;
-import us.ferox.client.impl.modules.ferox.Notifier;
+import us.ferox.client.impl.modules.ferox.*;
 import us.ferox.client.impl.modules.misc.ChatSuffix;
 import us.ferox.client.impl.modules.misc.FastUse;
 import us.ferox.client.impl.modules.movement.ElytraFlight;
