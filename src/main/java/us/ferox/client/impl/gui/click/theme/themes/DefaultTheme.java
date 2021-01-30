@@ -14,7 +14,7 @@ import us.ferox.client.api.util.colour.ColourHelper;
 import us.ferox.client.api.util.colour.RainbowUtil;
 import us.ferox.client.api.util.font.FontUtil;
 import us.ferox.client.api.util.math.MathUtil;
-import us.ferox.client.api.util.render.GL11Helper;
+import us.ferox.client.api.util.render.GLRenderUtil;
 import us.ferox.client.api.util.render.GuiUtil;
 import us.ferox.client.impl.gui.click.theme.Theme;
 
@@ -547,15 +547,16 @@ public class DefaultTheme extends Theme {
 		float selectedGreen = (selectedColor >> 8 & 0xFF) / 255.0f;
 		float selectedBlue = (selectedColor & 0xFF) / 255.0f;
 
-		GL11Helper.drawPickerBase(pickerX, pickerY, pickerWidth, pickerHeight, selectedRed, selectedGreen, selectedBlue, finalAlpha);
+		GLRenderUtil.drawPickerBase(pickerX, pickerY, pickerWidth, pickerHeight, selectedRed, selectedGreen, selectedBlue, finalAlpha);
 
 		drawHueSlider(hueSliderX, hueSliderY, hueSliderWidth, hueSliderHeight, color[0]);
-		drawAlphaSlider(alphaSliderX, alphaSliderY, alphaSliderWidth, alphaSliderHeight, selectedRed, selectedGreen, selectedBlue, finalAlpha);
 
 		int cursorX = (int) (pickerX + color[1] * pickerWidth);
 		int cursorY = (int) ((pickerY + pickerHeight) - color[2] * pickerHeight);
 
 		Gui.drawRect(cursorX - 2, cursorY - 2, cursorX + 2, cursorY + 2, -1);
+
+		drawAlphaSlider(alphaSliderX, alphaSliderY, alphaSliderWidth, alphaSliderHeight, selectedRed, selectedGreen, selectedBlue, finalAlpha);
 
 		finalColor = ColourHelper.integrateAlpha(new Color(Color.HSBtoRGB(color[0], color[1], color[2])), finalAlpha);
 	}
@@ -572,7 +573,7 @@ public class DefaultTheme extends Theme {
 				int previousStep = Color.HSBtoRGB((float) step / 6, 1.0f, 1.0f);
 				int nextStep = Color.HSBtoRGB((float) (step + 1) / 6, 1.0f, 1.0f);
 
-				GL11Helper.drawGradientRect(x, y + step * (height / 6), x + width, y + (step + 1) * (height / 6), previousStep, nextStep);
+				GLRenderUtil.drawGradientRect(x, y + step * (height / 6), x + width, y + (step + 1) * (height / 6), previousStep, nextStep);
 
 				step++;
 			}
@@ -585,7 +586,7 @@ public class DefaultTheme extends Theme {
 				int previousStep = Color.HSBtoRGB((float) step / 6, 1.0f, 1.0f);
 				int nextStep = Color.HSBtoRGB((float) (step + 1) / 6, 1.0f, 1.0f);
 
-				GL11Helper.gradient(x + step * (width / 6), y, x + (step + 1) * (width / 6), y + height, previousStep, nextStep, true);
+				GLRenderUtil.gradient(x + step * (width / 6), y, x + (step + 1) * (width / 6), y + height, previousStep, nextStep, true);
 
 				step++;
 			}
@@ -618,7 +619,7 @@ public class DefaultTheme extends Theme {
 			left = !left;
 		}
 
-		GL11Helper.gradient(x, y, x + width, y + height, new Color(red, green, blue, 1).getRGB(), 0, true);
+		GLRenderUtil.drawLeftGradientRect(x, y, x + width, y + height, new Color(red, green, blue, 1).getRGB(), 0);
 
 		int sliderMinX = (int) (x + width - (width * alpha));
 
