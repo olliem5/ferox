@@ -37,9 +37,9 @@ public class HoleESP extends Module {
 
     public static Setting<Boolean> renderSettings = new Setting<>("Render Settings", true);
     public static Setting<RenderModes> renderMode = new Setting<>(renderSettings, "Render Mode", RenderModes.Full);
-    public static NumberSetting<Double> boxHeight = new NumberSetting<>(renderSettings, "Box Height", -1.0, 0.0, 2.0, 0);
-    public static NumberSetting<Double> outlineHeight = new NumberSetting<>(renderSettings, "Outline Height", -1.0, 0.0, 2.0, 0);
-    public static NumberSetting<Double> outlineWidth = new NumberSetting<>(renderSettings, "Outline Width", 1.0, 2.0, 5.0, 0);
+    public static NumberSetting<Double> boxHeight = new NumberSetting<>(renderSettings, "Box Height", -1.0, 0.0, 2.0, 1);
+    public static NumberSetting<Double> outlineHeight = new NumberSetting<>(renderSettings, "Outline Height", -1.0, 0.0, 2.0, 1);
+    public static NumberSetting<Double> outlineWidth = new NumberSetting<>(renderSettings, "Outline Width", 1.0, 2.0, 5.0, 1);
 
     public HoleESP() {
         this.addSetting(holeRange);

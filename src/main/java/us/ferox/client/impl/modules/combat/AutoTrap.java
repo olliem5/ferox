@@ -24,10 +24,10 @@ public class AutoTrap extends Module {
     public static Setting<DisableModes> disableMode = new Setting<>("Disable", DisableModes.Finish);
 
     public static NumberSetting<Integer> blocksPerTick = new NumberSetting<>("BPT", 1, 1, 10, 0);
-    public static NumberSetting<Double> targetRange = new NumberSetting<>("Target Range", 1.0, 4.4, 10.0, 0);
+    public static NumberSetting<Double> targetRange = new NumberSetting<>("Target Range", 1.0, 4.4, 10.0, 1);
 
     public static Setting<Boolean> timeout = new Setting<>("Timeout", true);
-    public static NumberSetting<Double> timeoutTicks = new NumberSetting<>("Timeout Ticks", 1.0, 15.0, 20.0, 0);
+    public static NumberSetting<Double> timeoutTicks = new NumberSetting<>("Timeout Ticks", 1.0, 15.0, 20.0, 1);
 
     public static Setting<Boolean> renderBlock = new Setting<>("Render", true);
     public static NumberSetting<Integer> red = new NumberSetting<>(renderBlock, "Red", 0, 100, 255, 0);

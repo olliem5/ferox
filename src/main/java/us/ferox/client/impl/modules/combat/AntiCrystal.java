@@ -26,7 +26,7 @@ import java.util.Comparator;
 
 @ModuleInfo(name = "AntiCrystal", description = "Makes crystals do very little damage, by using pressure plates", category = Category.COMBAT)
 public class AntiCrystal extends Module {
-    public static NumberSetting<Double> placeRange = new NumberSetting<>("Place Range", 0.0, 5.5, 10.0, 0);
+    public static NumberSetting<Double> placeRange = new NumberSetting<>("Place Range", 0.0, 5.5, 10.0, 1);
     public static NumberSetting<Integer> placeDelay = new NumberSetting<>("Place Delay", 0, 2, 20, 0);
 
     public AntiCrystal() {

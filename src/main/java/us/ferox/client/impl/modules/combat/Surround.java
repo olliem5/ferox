@@ -27,7 +27,7 @@ public class Surround extends Module {
     public static Setting<Boolean> centerPlayer = new Setting<>("Center Player", true);
 
     public static Setting<Boolean> timeout = new Setting<>("Timeout", true);
-    public static NumberSetting<Double> timeoutTicks = new NumberSetting<>("Timeout Ticks", 1.0, 15.0, 20.0, 0);
+    public static NumberSetting<Double> timeoutTicks = new NumberSetting<>("Timeout Ticks", 1.0, 15.0, 20.0, 1);
 
     public static Setting<Boolean> renderBlock = new Setting<>("Render", true);
     public static NumberSetting<Integer> red = new NumberSetting<>(renderBlock, "Red", 0, 100, 255, 0);
