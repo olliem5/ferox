@@ -8,7 +8,8 @@ public class RainbowUtil {
     }
 
     public static int getRollingRainbow(long offset) {
-        float hue = (float) (((System.currentTimeMillis() + (offset * 500)) % (90000L)) / (30000.0f));
+        float hue = ((System.currentTimeMillis() + (offset * 500)) % (90000L)) / (30000.0f);
+
         return Color.HSBtoRGB(hue, 0.85f, 0.85f);
     }
 }

@@ -11,10 +11,12 @@ import us.ferox.client.api.module.Category;
 import us.ferox.client.api.module.Module;
 import us.ferox.client.api.module.ModuleInfo;
 import us.ferox.client.api.setting.NumberSetting;
+import us.ferox.client.api.setting.Setting;
 import us.ferox.client.api.util.client.CooldownUtil;
 import us.ferox.client.api.util.client.MessageUtil;
 import us.ferox.client.api.util.minecraft.InventoryUtil;
 
+import java.awt.*;
 import java.util.Comparator;
 
 /**

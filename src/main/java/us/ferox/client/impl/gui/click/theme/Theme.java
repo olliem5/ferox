@@ -26,7 +26,7 @@ public abstract class Theme implements Minecraft {
 
 	public abstract void drawTitles(String name, int left, int top);
 
-	public abstract void drawModules(List<Module> modules, int left, int top);
+	public abstract void drawModules(List<Module> modules, int left, int top, int mouseX, int mouseY);
 
 	public static void initThemes() {
 		themes.add(new DefaultTheme());

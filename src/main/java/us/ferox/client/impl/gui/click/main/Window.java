@@ -58,7 +58,7 @@ public class Window implements Minecraft {
 		currentTheme.drawTitles(name, x, y);
 
 		if (open) {
-			currentTheme.drawModules(modules, x, y);
+			currentTheme.drawModules(modules, x, y, mouseX, mouseY);
 		}
 	}
 	
