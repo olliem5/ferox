@@ -19,15 +19,15 @@ import us.ferox.client.impl.modules.movement.elytra.mode.*;
 public class ElytraFlight extends Module {
     public static Setting<FlyMode> mode = new Setting<>("Mode", FlyMode.Control);
 
-    public static NumberSetting<Double> horizontalSpeed = new NumberSetting<>("Glide Speed", 0.0, 2.0, 5.0);
-    public static NumberSetting<Double> verticalSpeed = new NumberSetting<>("Rise Speed", 0.0, 1.0, 5.0);
-    public static NumberSetting<Double> yOffset = new NumberSetting<>("Vertical Offset", 0.0, 0.009, 0.1);
+    public static NumberSetting<Double> horizontalSpeed = new NumberSetting<>("Glide Speed", 0.0, 2.0, 5.0, 0);
+    public static NumberSetting<Double> verticalSpeed = new NumberSetting<>("Rise Speed", 0.0, 1.0, 5.0, 0);
+    public static NumberSetting<Double> yOffset = new NumberSetting<>("Vertical Offset", 0.0, 0.009, 0.1, 0);
 
     public static Setting<Boolean> takeOffTimer = new Setting<>("Takeoff Timer", false);
-    public static NumberSetting<Float> ticks = new NumberSetting<>("Ticks", 0.1f, 0.5f, 0.8f);
+    public static NumberSetting<Float> ticks = new NumberSetting<>("Ticks", 0.1f, 0.5f, 0.8f, 0);
 
     public static Setting<Boolean> lockRotation = new Setting<>("Lock Rotation", false);
-    public static NumberSetting<Float> ncpRotations = new NumberSetting<>("NCP Rotation", 0.0f, 35.0f, 90.0f);
+    public static NumberSetting<Float> ncpRotations = new NumberSetting<>("NCP Rotation", 0.0f, 35.0f, 90.0f, 0);
 
     public static Setting<Boolean> infiniteFly = new Setting<>("Infinite", false);
 

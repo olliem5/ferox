@@ -8,6 +8,7 @@ public class Setting<T> {
 	private final String name;
 	private T value;
 	private boolean isSubSetting;
+	private boolean isOpened;
 
 	private final List<Setting> subs = new ArrayList<>();
 
@@ -75,11 +76,19 @@ public class Setting<T> {
 		return value;
 	}
 
+	public boolean isOpened() {
+		return isOpened;
+	}
+
 	public void setValue(T value) {
 		this.value = value;
 	}
 
 	public boolean isSubSetting() {
 		return isSubSetting;
+	}
+
+	public void setOpened(boolean opened) {
+		isOpened = opened;
 	}
 }

@@ -26,13 +26,13 @@ public class AutoCrystal extends Module {
     public static Setting<BreakTypes> breakType = new Setting<>("Break Type", BreakTypes.Swing);
     public static Setting<SwingModes> swingMode = new Setting<>("Swing", SwingModes.Mainhand);
 
-    public static NumberSetting<Integer> placeDelay = new NumberSetting<>("Place Delay", 0, 2, 20);
-    public static NumberSetting<Integer> breakDelay = new NumberSetting<>("Break Delay", 0, 2, 20);
+    public static NumberSetting<Integer> placeDelay = new NumberSetting<>("Place Delay", 0, 2, 20, 0);
+    public static NumberSetting<Integer> breakDelay = new NumberSetting<>("Break Delay", 0, 2, 20, 0);
 
-    public static NumberSetting<Double> placeRange = new NumberSetting<>("Place Range", 0.0, 5.5, 10.0);
-    public static NumberSetting<Double> breakRange = new NumberSetting<>("Break Range", 0.0, 5.5, 10.0);
-    public static NumberSetting<Double> enemyRange = new NumberSetting<>("Enemy Range", 1.0, 15.0, 50.0);
-    public static NumberSetting<Double> wallsRange = new NumberSetting<>("Walls Range", 0.0, 3.5, 10.0);
+    public static NumberSetting<Double> placeRange = new NumberSetting<>("Place Range", 0.0, 5.5, 10.0, 0);
+    public static NumberSetting<Double> breakRange = new NumberSetting<>("Break Range", 0.0, 5.5, 10.0, 0);
+    public static NumberSetting<Double> enemyRange = new NumberSetting<>("Enemy Range", 1.0, 15.0, 50.0, 0);
+    public static NumberSetting<Double> wallsRange = new NumberSetting<>("Walls Range", 0.0, 3.5, 10.0, 0);
 
     public static Setting<Boolean> rotate = new Setting<>("Rotate", true);
     public static Setting<Boolean> raytrace = new Setting<>("Raytrace", true);
@@ -41,13 +41,13 @@ public class AutoCrystal extends Module {
     public static Setting<Boolean> syncBreak = new Setting<>("Sync Break", true);
     public static Setting<Boolean> reloadCrystal = new Setting<>("Reload Crystal", true);
     public static Setting<Boolean> antiDesync = new Setting<>("Anti Desync", true);
-    public static NumberSetting<Integer> breakAttempts = new NumberSetting<>("Break Attempts", 1, 1, 5);
+    public static NumberSetting<Integer> breakAttempts = new NumberSetting<>("Break Attempts", 1, 1, 5, 0);
 
     public static Setting<Boolean> antiSuicide = new Setting<>("Anti Suicide", true);
-    public static NumberSetting<Double> antiSuicideHealth = new NumberSetting<>("Anti Suicide HP", 1.0, 15.0, 36.0);
-    public static NumberSetting<Double> minDamage = new NumberSetting<>("Min Damage", 0.0, 7.0, 36.0);
-    public static NumberSetting<Double> maxSelfDamage = new NumberSetting<>("Max Self Damage", 0.0, 8.0, 36.0);
-    public static NumberSetting<Double> faceplaceHP = new NumberSetting<>("Faceplace HP", 0.0, 8.0, 36.0);
+    public static NumberSetting<Double> antiSuicideHealth = new NumberSetting<>("Anti Suicide HP", 1.0, 15.0, 36.0, 0);
+    public static NumberSetting<Double> minDamage = new NumberSetting<>("Min Damage", 0.0, 7.0, 36.0, 0);
+    public static NumberSetting<Double> maxSelfDamage = new NumberSetting<>("Max Self Damage", 0.0, 8.0, 36.0, 0);
+    public static NumberSetting<Double> faceplaceHP = new NumberSetting<>("Faceplace HP", 0.0, 8.0, 36.0, 0);
 
     public AutoCrystal() {
         this.addSetting(logicMode);

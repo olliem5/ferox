@@ -16,6 +16,8 @@ public class Module implements Minecraft {
     private int key = getAnnotation().key();
 
     private boolean enabled = false;
+    private boolean opened = false;
+    private boolean binding = false;
 
     private ArrayList<Setting> settings = new ArrayList<>();
 
@@ -59,11 +61,13 @@ public class Module implements Minecraft {
     }
 
     public void toggle() {
-        if (enabled) {
-            disable();
-        } else {
-            enable();
-        }
+        try {
+            if (enabled) {
+                disable();
+            } else {
+                enable();
+            }
+        } catch (Exception e) {}
     }
 
     public void setEnabled(boolean enabled) {
@@ -72,6 +76,14 @@ public class Module implements Minecraft {
         } else {
             disable();
         }
+    }
+
+    public void setOpened(boolean opened) {
+        this.opened = opened;
+    }
+
+    public void setBinding(boolean binding) {
+        this.binding = binding;
     }
 
     public String getName() {
@@ -90,6 +102,14 @@ public class Module implements Minecraft {
         return key;
     }
 
+    public boolean isOpened() {
+        return opened;
+    }
+
+    public boolean isBinding() {
+        return binding;
+    }
+
     public void setKey(int key) {
         this.key = key;
     }
@@ -101,6 +121,10 @@ public class Module implements Minecraft {
     public Setting addSetting(Setting setting) {
         settings.add(setting);
         return setting;
+    }
+
+    public boolean hasSettings() {
+        return this.settings.size() > 0;
     }
 
     public boolean isEnabled() {

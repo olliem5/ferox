@@ -20,6 +20,8 @@ import us.ferox.client.impl.command.BindCommand;
 import us.ferox.client.impl.command.EchoCommand;
 import us.ferox.client.impl.command.FriendCommand;
 import us.ferox.client.impl.command.ToggleCommand;
+import us.ferox.client.impl.gui.click.main.Window;
+import us.ferox.client.impl.gui.click.theme.Theme;
 
 @Mod(modid = Ferox.MOD_ID, name = Ferox.MOD_NAME, version = Ferox.MOD_VERSION)
 public class Ferox {
@@ -57,6 +59,10 @@ public class Ferox {
 
         moduleManager = new ModuleManager();
         log("Modules Initialized!");
+
+        Window.initGui();
+        Theme.initThemes();
+        log("GUI Initialized!");
 
         HudManager.init();
         log("Hud initialized!");

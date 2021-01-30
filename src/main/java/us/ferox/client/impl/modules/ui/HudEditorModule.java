@@ -14,6 +14,7 @@ public class HudEditorModule extends Module {
         if (hudEditor == null) {
             hudEditor = new HudEditor();
         }
+
         mc.displayGuiScreen(hudEditor);
 
         toggle();

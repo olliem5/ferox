@@ -23,17 +23,17 @@ public class Surround extends Module {
     public static Setting<PlaceModes> placeMode = new Setting<>("Place", PlaceModes.Full);
     public static Setting<DisableModes> disableMode = new Setting<>("Disable", DisableModes.Finish);
 
-    public static NumberSetting<Integer> blocksPerTick = new NumberSetting<>("BPT", 1, 1, 10);
+    public static NumberSetting<Integer> blocksPerTick = new NumberSetting<>("BPT", 1, 1, 10, 0);
     public static Setting<Boolean> centerPlayer = new Setting<>("Center Player", true);
 
     public static Setting<Boolean> timeout = new Setting<>("Timeout", true);
-    public static NumberSetting<Double> timeoutTicks = new NumberSetting<>("Timeout Ticks", 1.0, 15.0, 20.0);
+    public static NumberSetting<Double> timeoutTicks = new NumberSetting<>("Timeout Ticks", 1.0, 15.0, 20.0, 0);
 
     public static Setting<Boolean> renderBlock = new Setting<>("Render", true);
-    public static NumberSetting<Integer> red = new NumberSetting<>(renderBlock, "Red", 0, 100, 255);
-    public static NumberSetting<Integer> green = new NumberSetting<>(renderBlock, "Green", 0, 100, 255);
-    public static NumberSetting<Integer> blue = new NumberSetting<>(renderBlock, "Blue", 0, 100, 255);
-    public static NumberSetting<Integer> alpha = new NumberSetting<>(renderBlock, "Alpha", 0, 100, 255);
+    public static NumberSetting<Integer> red = new NumberSetting<>(renderBlock, "Red", 0, 100, 255, 0);
+    public static NumberSetting<Integer> green = new NumberSetting<>(renderBlock, "Green", 0, 100, 255, 0);
+    public static NumberSetting<Integer> blue = new NumberSetting<>(renderBlock, "Blue", 0, 100, 255, 0);
+    public static NumberSetting<Integer> alpha = new NumberSetting<>(renderBlock, "Alpha", 0, 100, 255, 0);
 
     public Surround() {
         this.addSetting(placeMode);

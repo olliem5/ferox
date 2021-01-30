@@ -14,6 +14,7 @@ public class ConsoleModule extends Module {
         if (console == null) {
             console = new Console();
         }
+
         mc.displayGuiScreen(console);
 
         toggle();

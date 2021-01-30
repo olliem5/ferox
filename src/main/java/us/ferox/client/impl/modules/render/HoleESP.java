@@ -21,25 +21,25 @@ import java.util.stream.Collectors;
 
 @ModuleInfo(name = "HoleESP", description = "Highlights safe holes for crystal pvp", category = Category.RENDER)
 public class HoleESP extends Module {
-    public static NumberSetting<Integer> holeRange = new NumberSetting<>("Hole Range", 1, 5, 10);
+    public static NumberSetting<Integer> holeRange = new NumberSetting<>("Hole Range", 1, 5, 10, 0);
 
     public static Setting<Boolean> obsidian = new Setting<>("Obsidian Holes", true);
-    public static NumberSetting<Integer> obsidianRed = new NumberSetting<>(obsidian, "Obsidian Red", 0, 100, 255);
-    public static NumberSetting<Integer> obsidianGreen = new NumberSetting<>(obsidian, "Obsidian Green", 0, 100, 255);
-    public static NumberSetting<Integer> obsidianBlue = new NumberSetting<>(obsidian, "Obsidian Blue", 0, 100, 255);
-    public static NumberSetting<Integer> obsidianAlpha = new NumberSetting<>(obsidian, "Obsidian Alpha", 0, 100, 255);
+    public static NumberSetting<Integer> obsidianRed = new NumberSetting<>(obsidian, "Obsidian Red", 0, 100, 255, 0);
+    public static NumberSetting<Integer> obsidianGreen = new NumberSetting<>(obsidian, "Obsidian Green", 0, 100, 255, 0);
+    public static NumberSetting<Integer> obsidianBlue = new NumberSetting<>(obsidian, "Obsidian Blue", 0, 100, 255, 0);
+    public static NumberSetting<Integer> obsidianAlpha = new NumberSetting<>(obsidian, "Obsidian Alpha", 0, 100, 255, 0);
 
     public static Setting<Boolean> bedrock = new Setting<>("Bedrock Holes", true);
-    public static NumberSetting<Integer> bedrockRed = new NumberSetting<>(bedrock, "Bedrock Red", 0, 100, 255);
-    public static NumberSetting<Integer> bedrockGreen = new NumberSetting<>(bedrock, "Bedrock Green", 0, 100, 255);
-    public static NumberSetting<Integer> bedrockBlue = new NumberSetting<>(bedrock, "Bedrock Blue", 0, 100, 255);
-    public static NumberSetting<Integer> bedrockAlpha = new NumberSetting<>(bedrock, "Bedrock Alpha", 0, 100, 255);
+    public static NumberSetting<Integer> bedrockRed = new NumberSetting<>(bedrock, "Bedrock Red", 0, 100, 255, 0);
+    public static NumberSetting<Integer> bedrockGreen = new NumberSetting<>(bedrock, "Bedrock Green", 0, 100, 255, 0);
+    public static NumberSetting<Integer> bedrockBlue = new NumberSetting<>(bedrock, "Bedrock Blue", 0, 100, 255, 0);
+    public static NumberSetting<Integer> bedrockAlpha = new NumberSetting<>(bedrock, "Bedrock Alpha", 0, 100, 255, 0);
 
     public static Setting<Boolean> renderSettings = new Setting<>("Render Settings", true);
     public static Setting<RenderModes> renderMode = new Setting<>(renderSettings, "Render Mode", RenderModes.Full);
-    public static NumberSetting<Double> boxHeight = new NumberSetting<>(renderSettings, "Box Height", -1.0, 0.0, 2.0);
-    public static NumberSetting<Double> outlineHeight = new NumberSetting<>(renderSettings, "Outline Height", -1.0, 0.0, 2.0);
-    public static NumberSetting<Double> outlineWidth = new NumberSetting<>(renderSettings, "Outline Width", 1.0, 2.0, 5.0);
+    public static NumberSetting<Double> boxHeight = new NumberSetting<>(renderSettings, "Box Height", -1.0, 0.0, 2.0, 0);
+    public static NumberSetting<Double> outlineHeight = new NumberSetting<>(renderSettings, "Outline Height", -1.0, 0.0, 2.0, 0);
+    public static NumberSetting<Double> outlineWidth = new NumberSetting<>(renderSettings, "Outline Width", 1.0, 2.0, 5.0, 0);
 
     public HoleESP() {
         this.addSetting(holeRange);

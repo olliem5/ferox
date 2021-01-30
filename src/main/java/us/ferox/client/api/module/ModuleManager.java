@@ -1,7 +1,10 @@
 package us.ferox.client.api.module;
 
 import us.ferox.client.impl.modules.combat.*;
-import us.ferox.client.impl.modules.ferox.*;
+import us.ferox.client.impl.modules.ferox.DiscordRPC;
+import us.ferox.client.impl.modules.ferox.Font;
+import us.ferox.client.impl.modules.ferox.Friends;
+import us.ferox.client.impl.modules.ferox.Notifier;
 import us.ferox.client.impl.modules.misc.ChatSuffix;
 import us.ferox.client.impl.modules.misc.FastUse;
 import us.ferox.client.impl.modules.movement.ElytraFlight;
@@ -13,6 +16,7 @@ import us.ferox.client.impl.modules.ui.ConsoleModule;
 import us.ferox.client.impl.modules.ui.HudEditorModule;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ModuleManager {
     private ArrayList<Module> modules = new ArrayList<>();
@@ -40,6 +44,18 @@ public class ModuleManager {
 
     public ArrayList<Module> getModules() {
         return modules;
+    }
+
+    public List<Module> getModulesInCategory(Category category) {
+        List<Module> modulesInCategory = new ArrayList<>();
+
+        for (Module module : modules) {
+            if (module.getCategory().equals(category)) {
+                modulesInCategory.add(module);
+            }
+        }
+
+        return modulesInCategory;
     }
 
     public Module getModuleByName(String name) {

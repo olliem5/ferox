@@ -16,13 +16,13 @@ import us.ferox.client.api.util.minecraft.InventoryUtil;
 @ModuleInfo(name = "Offhand", description = "Manages the item in your offhand", category = Category.COMBAT)
 public class Offhand extends Module {
     public static Setting<OffhandModes> offhandMode = new Setting<>("Mode", OffhandModes.Crystal);
-    public static NumberSetting<Double> switchHealth = new NumberSetting<>("Totem Health", 1.0, 16.0, 36.0);
+    public static NumberSetting<Double> switchHealth = new NumberSetting<>("Totem Health", 1.0, 16.0, 36.0, 0);
 
     public static Setting<Boolean> swordGapple = new Setting<>("Sword Gapple", true);
     public static Setting<Boolean> elytraTotem = new Setting<>("Elytra Totem", true);
 
     public static Setting<Boolean> fallTotem = new Setting<>("Fall Totem", true);
-    public static NumberSetting<Double> fallDistance = new NumberSetting<>("Fall Distance", 1.0, 15.0, 100.0);
+    public static NumberSetting<Double> fallDistance = new NumberSetting<>("Fall Distance", 1.0, 15.0, 100.0, 0);
 
     public Offhand() {
         this.addSetting(offhandMode);

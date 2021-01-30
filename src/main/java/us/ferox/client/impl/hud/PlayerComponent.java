@@ -9,7 +9,7 @@ import us.ferox.client.api.util.render.EntityRenderUtil;
 
 @ComponentInfo(name = "Player")
 public class PlayerComponent extends HudComponent {
-    public static NumberSetting<Integer> scale = new NumberSetting<>("Scale", 1, 30, 100);
+    public static NumberSetting<Integer> scale = new NumberSetting<>("Scale", 1, 30, 100, 0);
 
     public PlayerComponent() {
         setWidth(50);
