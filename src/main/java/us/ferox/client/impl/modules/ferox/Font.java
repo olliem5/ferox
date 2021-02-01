@@ -7,7 +7,7 @@ import us.ferox.client.api.setting.Setting;
 
 @ModuleInfo(name = "Font", description = "Changes the font that Ferox uses", category = Category.FEROX)
 public class Font extends Module {
-    public static Setting<Fonts> font = new Setting<>("Font", Fonts.Ubuntu);
+    public static Setting<FontModes> font = new Setting<>("Font", FontModes.Ubuntu);
     public static Setting<Boolean> shadow = new Setting<>("Shadow", true);
     public static Setting<Boolean> lowercase = new Setting<>("Lowercase", false);
 
@@ -24,7 +24,7 @@ public class Font extends Module {
         this.setEnabled(true);
     }
 
-    public enum Fonts {
+    public enum FontModes {
         Ubuntu,
         Lato,
         Verdana,

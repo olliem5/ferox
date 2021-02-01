@@ -1,11 +1,10 @@
 package us.ferox.client.impl.gui.click.main;
 
-import java.io.IOException;
-
 import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.client.renderer.GlStateManager;
 import us.ferox.client.api.util.render.GuiUtil;
 import us.ferox.client.impl.modules.ui.ClickGUIModule;
+
+import java.io.IOException;
 
 /**
  * @author bon
@@ -79,7 +78,7 @@ public class BaseGui extends GuiScreen {
 	
 	@Override
 	public boolean doesGuiPauseGame() {
-		if (ClickGUIModule.pauseGame.getValue() == ClickGUIModule.PauseGame.Pause) {
+		if (ClickGUIModule.pauseGame.getValue() == ClickGUIModule.PauseModes.Pause) {
 			return true;
 		}
 

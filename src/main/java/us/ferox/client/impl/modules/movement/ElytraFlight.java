@@ -17,7 +17,7 @@ import us.ferox.client.impl.modules.movement.elytra.mode.*;
 
 @ModuleInfo(name = "ElytraFlight", description = "Allows you to fly faster on an elytra", category = Category.MOVEMENT)
 public class ElytraFlight extends Module {
-    public static Setting<FlyMode> mode = new Setting<>("Mode", FlyMode.Control);
+    public static Setting<FlyModes> mode = new Setting<>("Mode", FlyModes.Control);
 
     public static NumberSetting<Double> horizontalSpeed = new NumberSetting<>("Glide Speed", 0.0, 2.0, 5.0, 1);
     public static NumberSetting<Double> verticalSpeed = new NumberSetting<>("Rise Speed", 0.0, 1.0, 5.0, 1);
@@ -125,7 +125,7 @@ public class ElytraFlight extends Module {
         if (mc.player.collidedHorizontally && onCollision.getValue()) return;
     }
 
-    public enum FlyMode {
+    public enum FlyModes {
         Control,
         Boost,
         NCP,

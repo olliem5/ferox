@@ -1,10 +1,8 @@
 package us.ferox.client.impl.gui.console.component;
 
-import net.minecraft.client.gui.Gui;
 import us.ferox.client.api.util.font.FontUtil;
 import us.ferox.client.impl.gui.Component;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.Collections;
 

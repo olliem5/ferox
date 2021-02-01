@@ -7,11 +7,6 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import us.ferox.client.api.traits.Minecraft;
 
-/**
- * @author linustouchtips
- * @since 12/29/2020
- */
-
 public class InventoryUtil implements Minecraft {
     public static void switchToSlot(Class<? extends Item> clazz) {
         if (mc.player.getHeldItemMainhand().getItem().getClass().isAssignableFrom(clazz)) return;

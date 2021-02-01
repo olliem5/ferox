@@ -11,12 +11,10 @@ import us.ferox.client.api.module.Category;
 import us.ferox.client.api.module.Module;
 import us.ferox.client.api.module.ModuleInfo;
 import us.ferox.client.api.setting.NumberSetting;
-import us.ferox.client.api.setting.Setting;
 import us.ferox.client.api.util.client.CooldownUtil;
 import us.ferox.client.api.util.client.MessageUtil;
 import us.ferox.client.api.util.minecraft.InventoryUtil;
 
-import java.awt.*;
 import java.util.Comparator;
 
 /**
@@ -66,7 +64,7 @@ public class AntiCrystal extends Module {
                 mc.player.inventory.currentItem = pressurePlateSlot;
             }
 
-            if (placeTimer.passed(placeDelay.getValue() * 100)) {
+            if (placeTimer.passed(placeDelay.getValue() * 60)) {
                 if (mc.player.getHeldItemMainhand().getItem() == Item.getItemFromBlock(Blocks.WOODEN_PRESSURE_PLATE)) {
                     mc.player.connection.sendPacket(new CPacketPlayerTryUseItemOnBlock(entityEnderCrystal.getPosition(), EnumFacing.UP, EnumHand.MAIN_HAND, 0, 0, 0));
                 }

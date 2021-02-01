@@ -102,7 +102,7 @@ public class AutoCrystal extends Module {
                     .min(Comparator.comparing(entity -> mc.player.getDistance(entity)))
                     .orElse(null);
 
-            if (entityEnderCrystal != null && breakTimer.passed(breakDelay.getValue())) {
+            if (entityEnderCrystal != null && breakTimer.passed(breakDelay.getValue() * 60)) {
                 if (antiSuicide.getValue() && (mc.player.getHealth() + mc.player.getAbsorptionAmount()) <= antiSuicideHealth.getValue()) return;
 
                 if (!mc.player.canEntityBeSeen(entityEnderCrystal) && mc.player.getDistance(entityEnderCrystal) > wallsRange.getValue()) return;
@@ -161,6 +161,7 @@ public class AutoCrystal extends Module {
                     }
                 }
             }
+
             breakTimer.reset();
 
             if (!(placeMode.getValue() == PlaceModes.Multi)) return;

@@ -6,8 +6,10 @@ import us.ferox.client.impl.modules.ferox.Font;
 import us.ferox.client.impl.modules.ferox.Friends;
 import us.ferox.client.impl.modules.ferox.Notifier;
 import us.ferox.client.impl.modules.misc.ChatSuffix;
+import us.ferox.client.impl.modules.misc.FakePlayer;
 import us.ferox.client.impl.modules.misc.FastUse;
 import us.ferox.client.impl.modules.movement.ElytraFlight;
+import us.ferox.client.impl.modules.movement.Sprint;
 import us.ferox.client.impl.modules.movement.Velocity;
 import us.ferox.client.impl.modules.render.Brightness;
 import us.ferox.client.impl.modules.render.HoleESP;
@@ -40,6 +42,8 @@ public class ModuleManager {
         modules.add(new AntiCrystal());
         modules.add(new Notifier());
         modules.add(new ConsoleModule());
+        modules.add(new Sprint());
+        modules.add(new FakePlayer());
     }
 
     public ArrayList<Module> getModules() {

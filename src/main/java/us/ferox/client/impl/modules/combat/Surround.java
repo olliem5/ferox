@@ -14,6 +14,7 @@ import us.ferox.client.api.util.client.MessageUtil;
 import us.ferox.client.api.util.minecraft.InventoryUtil;
 import us.ferox.client.api.util.minecraft.PlaceUtil;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -30,10 +31,7 @@ public class Surround extends Module {
     public static NumberSetting<Double> timeoutTicks = new NumberSetting<>("Timeout Ticks", 1.0, 15.0, 20.0, 1);
 
     public static Setting<Boolean> renderBlock = new Setting<>("Render", true);
-    public static NumberSetting<Integer> red = new NumberSetting<>(renderBlock, "Red", 0, 100, 255, 0);
-    public static NumberSetting<Integer> green = new NumberSetting<>(renderBlock, "Green", 0, 100, 255, 0);
-    public static NumberSetting<Integer> blue = new NumberSetting<>(renderBlock, "Blue", 0, 100, 255, 0);
-    public static NumberSetting<Integer> alpha = new NumberSetting<>(renderBlock, "Alpha", 0, 100, 255, 0);
+    public static Setting<Color> renderColour = new Setting<>(renderBlock, "Render Colour", new Color(182, 40, 226, 186));
 
     public Surround() {
         this.addSetting(placeMode);
@@ -43,10 +41,7 @@ public class Surround extends Module {
         this.addSetting(timeout);
         this.addSetting(timeoutTicks);
         this.addSetting(renderBlock);
-        this.addSetting(red);
-        this.addSetting(green);
-        this.addSetting(blue);
-        this.addSetting(alpha);
+        this.addSetting(renderColour);
     }
 
     private int obsidianSlot;

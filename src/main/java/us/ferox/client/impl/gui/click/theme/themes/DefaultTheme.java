@@ -1,8 +1,5 @@
 package us.ferox.client.impl.gui.click.theme.themes;
 
-import java.awt.*;
-import java.util.List;
-
 import com.mojang.realmsclient.gui.ChatFormatting;
 import net.minecraft.client.gui.Gui;
 import org.lwjgl.input.Keyboard;
@@ -17,6 +14,9 @@ import us.ferox.client.api.util.math.MathUtil;
 import us.ferox.client.api.util.render.GLRenderUtil;
 import us.ferox.client.api.util.render.GuiUtil;
 import us.ferox.client.impl.gui.click.theme.Theme;
+
+import java.awt.*;
+import java.util.List;
 
 /**
  * @author bon
@@ -118,7 +118,7 @@ public class DefaultTheme extends Theme {
 					Setting<Color> colorSetting = (Setting<Color>) setting;
 					drawColorPicker(colorSetting, x, y, mouseX, mouseY);
 
-					boost += 9;
+					boost += 8;
 				}
 
 				if (setting.getValue() instanceof Integer) {
@@ -155,7 +155,7 @@ public class DefaultTheme extends Theme {
 						Setting<Color> colorSubSetting = (Setting<Color>) subSetting;
 						drawColorPicker(colorSubSetting, x, y, mouseX, mouseY);
 
-						boost += 9;
+						boost += 8;
 					}
 
 					if (subSetting.getValue() instanceof Integer) {
@@ -488,10 +488,10 @@ public class DefaultTheme extends Theme {
 		int pickerWidth = 100;
 		int pickerHeight = 100;
 
-		int hueSliderWidth = pickerWidth + 3;
+		int hueSliderWidth = 100;
 		int hueSliderHeight = 10;
 
-		int alphaSliderWidth = pickerWidth;
+		int alphaSliderWidth = 100;
 		int alphaSliderHeight = 10;
 
 		if (GuiUtil.lheld && GuiUtil.mouseOver(pickerX, pickerY, pickerX + pickerWidth, pickerY + pickerHeight)) {
@@ -538,8 +538,8 @@ public class DefaultTheme extends Theme {
 			color[2] = 1 - (restrictedY - (float) pickerY) / pickerHeight;
 		}
 
-		Gui.drawRect(pickerX - 3, pickerY - 2, pickerX + pickerWidth + 2, pickerY + pickerHeight + 50, RainbowUtil.getRollingRainbow(boost));
-		Gui.drawRect(pickerX - 2, pickerY - 2, pickerX + pickerWidth + 2, pickerY + pickerHeight + 50, 0xFF212121);
+		Gui.drawRect(pickerX - 3, pickerY - 2, pickerX + pickerWidth + 2, pickerY + pickerHeight + 30, RainbowUtil.getRollingRainbow(boost));
+		Gui.drawRect(pickerX - 2, pickerY - 2, pickerX + pickerWidth + 2, pickerY + pickerHeight + 30, 0xFF212121);
 
 		int selectedColor = Color.HSBtoRGB(color[0], 1.0f, 1.0f);
 
@@ -627,7 +627,7 @@ public class DefaultTheme extends Theme {
 	}
 
 	public static void drawColorPicker(Setting<Color> setting, int x, int y, int mouseX, int mouseY) {
-		drawPicker(setting, mouseX, mouseY, x + 3, y + height + (boost * height) + 2, x + 3, y + height + (boost * height) + 105, x + 3, y + height + (boost * height) + 124);
+		drawPicker(setting, mouseX, mouseY, x + 3, y + height + (boost * height) + 2, x + 3, y + height + (boost * height) + 103, x + 3, y + height + (boost * height) + 115);
 		setting.setValue(finalColor);
 	}
 }

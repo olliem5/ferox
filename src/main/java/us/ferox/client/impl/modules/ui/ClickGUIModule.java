@@ -10,10 +10,10 @@ import us.ferox.client.impl.gui.click.main.BaseGui;
 
 @ModuleInfo(name = "ClickGUI", description = "Opens Ferox's ClickGUI", category = Category.UI, key = Keyboard.KEY_P)
 public class ClickGUIModule extends Module {
-    public static Setting<Themes> theme = new Setting<>("Theme", Themes.Default);
+    public static Setting<ThemeModes> theme = new Setting<>("Theme", ThemeModes.Default);
     public static Setting<Boolean> windowOverflow = new Setting<>("Window Overflow", false);
     public static NumberSetting<Integer> scrollSpeed = new NumberSetting<>("Scroll Speed", 0, 10, 20, 0);
-    public static Setting<PauseGame> pauseGame = new Setting<>("Pause Game", PauseGame.Continue);
+    public static Setting<PauseModes> pauseGame = new Setting<>("Pause Game", PauseModes.Continue);
 
     private BaseGui clickGUI;
 
@@ -35,11 +35,11 @@ public class ClickGUIModule extends Module {
         toggle();
     }
 
-    public enum Themes {
+    public enum ThemeModes {
         Default
     }
 
-    public enum PauseGame {
+    public enum PauseModes {
         Pause,
         Continue
     }
