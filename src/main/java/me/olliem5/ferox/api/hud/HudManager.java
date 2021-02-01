@@ -4,25 +4,27 @@ import git.littledraily.eventsystem.Listener;
 import git.littledraily.eventsystem.event.Priority;
 import me.olliem5.ferox.api.traits.Minecraft;
 import me.olliem5.ferox.impl.events.GameOverlayRenderEvent;
-import me.olliem5.ferox.impl.hud.InventoryComponent;
-import me.olliem5.ferox.impl.hud.PlayerComponent;
-import me.olliem5.ferox.impl.hud.WatermarkComponent;
-import me.olliem5.ferox.impl.hud.WelcomerComponent;
+import org.reflections.Reflections;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class HudManager implements Minecraft {
     private static List<HudComponent> components = new ArrayList<>();
 
     public static void init() {
-        components.addAll(Arrays.asList(
-                new WelcomerComponent(),
-                new InventoryComponent(),
-                new WatermarkComponent(),
-                new PlayerComponent()
-        ));
+        Reflections reflections = new Reflections("me.olliem5.ferox.impl.hud");
+
+        reflections.getSubTypesOf(HudComponent.class).forEach(clazz -> {
+
+            try {
+                HudComponent hudComponent = clazz.getConstructor().newInstance();
+                components.add(hudComponent);
+            } catch (InstantiationException | InvocationTargetException | NoSuchMethodException | IllegalAccessException exception) {
+                exception.printStackTrace();
+            }
+        });
     }
 
     public static List<HudComponent> getComponents() {
