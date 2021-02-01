@@ -1,9 +1,6 @@
 package me.olliem5.ferox.impl.modules.render;
 
 import git.littledraily.eventsystem.Listener;
-import net.minecraft.util.NonNullList;
-import net.minecraft.util.math.BlockPos;
-import org.lwjgl.opengl.GL11;
 import me.olliem5.ferox.api.module.Category;
 import me.olliem5.ferox.api.module.Module;
 import me.olliem5.ferox.api.module.ModuleInfo;
@@ -14,6 +11,9 @@ import me.olliem5.ferox.api.util.minecraft.PlayerUtil;
 import me.olliem5.ferox.api.util.module.HoleUtil;
 import me.olliem5.ferox.api.util.render.RenderUtil;
 import me.olliem5.ferox.impl.events.WorldRenderEvent;
+import net.minecraft.util.NonNullList;
+import net.minecraft.util.math.BlockPos;
+import org.lwjgl.opengl.GL11;
 
 import java.awt.*;
 import java.util.List;

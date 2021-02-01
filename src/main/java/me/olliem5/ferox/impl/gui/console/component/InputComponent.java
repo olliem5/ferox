@@ -1,14 +1,14 @@
 package me.olliem5.ferox.impl.gui.console.component;
 
 import com.mojang.realmsclient.gui.ChatFormatting;
-import me.olliem5.ferox.impl.modules.ui.ConsoleModule;
-import net.minecraft.client.gui.Gui;
-import net.minecraft.util.ChatAllowedCharacters;
-import org.lwjgl.input.Keyboard;
 import me.olliem5.ferox.Ferox;
 import me.olliem5.ferox.api.util.colour.RainbowUtil;
 import me.olliem5.ferox.api.util.font.FontUtil;
 import me.olliem5.ferox.impl.gui.Component;
+import me.olliem5.ferox.impl.modules.ui.ConsoleModule;
+import net.minecraft.client.gui.Gui;
+import net.minecraft.util.ChatAllowedCharacters;
+import org.lwjgl.input.Keyboard;
 
 import java.awt.*;
 

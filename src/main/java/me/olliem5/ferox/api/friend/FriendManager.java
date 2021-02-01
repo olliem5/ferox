@@ -1,6 +1,5 @@
 package me.olliem5.ferox.api.friend;
 
-import me.olliem5.ferox.Ferox;
 import me.olliem5.ferox.api.module.ModuleManager;
 
 import java.util.ArrayList;

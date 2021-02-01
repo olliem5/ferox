@@ -18,32 +18,46 @@ import me.olliem5.ferox.impl.modules.ui.ConsoleModule;
 import me.olliem5.ferox.impl.modules.ui.HudEditorModule;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class ModuleManager {
     private static ArrayList<Module> modules = new ArrayList<>();
 
     public static void init() {
-        modules.add(new ClickGUIModule());
-        modules.add(new DiscordRPC());
-        modules.add(new Font());
-        modules.add(new AutoCrystal());
-        modules.add(new ElytraFlight());
-        modules.add(new Surround());
-        modules.add(new AutoTrap());
-        modules.add(new FastUse());
-        modules.add(new ChatSuffix());
-        modules.add(new HoleESP());
-        modules.add(new Offhand());
-        modules.add(new Friends());
-        modules.add(new Velocity());
-        modules.add(new Brightness());
-        modules.add(new HudEditorModule());
-        modules.add(new AntiCrystal());
-        modules.add(new Notifier());
-        modules.add(new ConsoleModule());
-        modules.add(new Sprint());
-        modules.add(new FakePlayer());
+        modules.addAll(Arrays.asList(
+                //Combat
+                new AntiCrystal(),
+                new AutoCrystal(),
+                new AutoTrap(),
+                new Offhand(),
+                new Surround(),
+
+                //Movement
+                new ElytraFlight(),
+                new Sprint(),
+                new Velocity(),
+
+                //Miscellaneous
+                new ChatSuffix(),
+                new FakePlayer(),
+                new FastUse(),
+
+                //Render
+                new Brightness(),
+                new HoleESP(),
+
+                //Ferox
+                new DiscordRPC(),
+                new Font(),
+                new Friends(),
+                new Notifier(),
+
+                //Interface
+                new ClickGUIModule(),
+                new ConsoleModule(),
+                new HudEditorModule()
+        ));
     }
 
     public static ArrayList<Module> getModules() {

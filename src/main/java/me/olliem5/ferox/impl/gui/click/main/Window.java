@@ -9,7 +9,6 @@ import me.olliem5.ferox.impl.gui.click.theme.Theme;
 import me.olliem5.ferox.impl.modules.ui.ClickGUIModule;
 import net.minecraft.client.gui.ScaledResolution;
 import org.lwjgl.input.Mouse;
-import me.olliem5.ferox.Ferox;
 
 import java.util.ArrayList;
 import java.util.List;

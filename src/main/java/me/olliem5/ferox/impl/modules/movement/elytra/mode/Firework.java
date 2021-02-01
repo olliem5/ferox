@@ -1,13 +1,13 @@
 package me.olliem5.ferox.impl.modules.movement.elytra.mode;
 
-import net.minecraft.init.Items;
-import net.minecraft.network.play.client.CPacketPlayerTryUseItem;
-import net.minecraft.util.EnumHand;
 import me.olliem5.ferox.api.util.minecraft.InventoryUtil;
 import me.olliem5.ferox.api.util.module.ElytraUtil;
 import me.olliem5.ferox.api.util.packet.RotationUtil;
 import me.olliem5.ferox.impl.modules.movement.ElytraFlight;
 import me.olliem5.ferox.impl.modules.movement.elytra.ElytraMode;
+import net.minecraft.init.Items;
+import net.minecraft.network.play.client.CPacketPlayerTryUseItem;
+import net.minecraft.util.EnumHand;
 
 /**
  * @author linustouchtips

@@ -1,11 +1,5 @@
 package me.olliem5.ferox.impl.modules.combat;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.item.EntityEnderCrystal;
-import net.minecraft.item.ItemSword;
-import net.minecraft.potion.Potion;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.math.BlockPos;
 import me.olliem5.ferox.api.module.Category;
 import me.olliem5.ferox.api.module.Module;
 import me.olliem5.ferox.api.module.ModuleInfo;
@@ -15,6 +9,12 @@ import me.olliem5.ferox.api.util.client.CooldownUtil;
 import me.olliem5.ferox.api.util.minecraft.InventoryUtil;
 import me.olliem5.ferox.api.util.module.CrystalUtil;
 import me.olliem5.ferox.api.util.packet.RotationUtil;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.item.EntityEnderCrystal;
+import net.minecraft.item.ItemSword;
+import net.minecraft.potion.Potion;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.BlockPos;
 
 import java.util.Comparator;
 

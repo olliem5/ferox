@@ -1,14 +1,14 @@
 package me.olliem5.ferox.impl.modules.movement;
 
-import me.olliem5.ferox.impl.modules.movement.elytra.ElytraMode;
-import me.olliem5.ferox.impl.modules.movement.elytra.mode.*;
-import net.minecraft.network.play.client.CPacketEntityAction;
 import me.olliem5.ferox.api.module.Category;
 import me.olliem5.ferox.api.module.Module;
 import me.olliem5.ferox.api.module.ModuleInfo;
 import me.olliem5.ferox.api.setting.NumberSetting;
 import me.olliem5.ferox.api.setting.Setting;
 import me.olliem5.ferox.api.util.module.MotionUtil;
+import me.olliem5.ferox.impl.modules.movement.elytra.ElytraMode;
+import me.olliem5.ferox.impl.modules.movement.elytra.mode.*;
+import net.minecraft.network.play.client.CPacketEntityAction;
 
 /**
  * @author linustouchtips

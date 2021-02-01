@@ -1,12 +1,12 @@
 package me.olliem5.ferox.impl.modules.misc;
 
 import com.mojang.authlib.GameProfile;
-import net.minecraft.client.entity.EntityOtherPlayerMP;
 import me.olliem5.ferox.api.module.Category;
 import me.olliem5.ferox.api.module.Module;
 import me.olliem5.ferox.api.module.ModuleInfo;
 import me.olliem5.ferox.api.setting.NumberSetting;
 import me.olliem5.ferox.api.setting.Setting;
+import net.minecraft.client.entity.EntityOtherPlayerMP;
 
 import java.util.UUID;
 

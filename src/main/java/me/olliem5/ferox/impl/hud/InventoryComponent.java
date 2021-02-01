@@ -1,12 +1,12 @@
 package me.olliem5.ferox.impl.hud;
 
+import me.olliem5.ferox.api.hud.ComponentInfo;
+import me.olliem5.ferox.api.hud.HudComponent;
+import me.olliem5.ferox.api.setting.Setting;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.item.ItemStack;
-import me.olliem5.ferox.api.hud.ComponentInfo;
-import me.olliem5.ferox.api.hud.HudComponent;
-import me.olliem5.ferox.api.setting.Setting;
 
 import java.awt.*;
 

@@ -3,10 +3,10 @@ package me.olliem5.ferox.api.util.client;
 import club.minnced.discord.rpc.DiscordEventHandlers;
 import club.minnced.discord.rpc.DiscordRPC;
 import club.minnced.discord.rpc.DiscordRichPresence;
+import me.olliem5.ferox.Ferox;
 import me.olliem5.ferox.api.traits.Minecraft;
 import net.minecraft.client.gui.GuiMultiplayer;
 import net.minecraft.client.gui.GuiWorldSelection;
-import me.olliem5.ferox.Ferox;
 
 public class DiscordUtil implements Minecraft {
     private static final DiscordRPC rpc = DiscordRPC.INSTANCE;

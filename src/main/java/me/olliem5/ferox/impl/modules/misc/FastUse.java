@@ -1,15 +1,15 @@
 package me.olliem5.ferox.impl.modules.misc;
 
+import me.olliem5.ferox.api.module.Category;
+import me.olliem5.ferox.api.module.Module;
+import me.olliem5.ferox.api.module.ModuleInfo;
+import me.olliem5.ferox.api.setting.Setting;
 import net.minecraft.block.Block;
 import net.minecraft.item.*;
 import net.minecraft.network.play.client.CPacketPlayerDigging;
 import net.minecraft.network.play.client.CPacketPlayerTryUseItem;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
-import me.olliem5.ferox.api.module.Category;
-import me.olliem5.ferox.api.module.Module;
-import me.olliem5.ferox.api.module.ModuleInfo;
-import me.olliem5.ferox.api.setting.Setting;
 
 @ModuleInfo(name = "FastUse", description = "Allows you to use certain things faster", category = Category.MISC)
 public class FastUse extends Module {

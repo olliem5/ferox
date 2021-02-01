@@ -2,10 +2,10 @@ package me.olliem5.ferox.api.util.client;
 
 import com.google.gson.*;
 import com.google.gson.stream.JsonReader;
+import me.olliem5.ferox.Ferox;
 import me.olliem5.ferox.api.module.Module;
 import me.olliem5.ferox.api.module.ModuleManager;
 import org.lwjgl.input.Keyboard;
-import me.olliem5.ferox.Ferox;
 
 import java.io.*;
 

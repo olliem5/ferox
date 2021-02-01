@@ -1,7 +1,7 @@
 package me.olliem5.ferox.impl.events;
 
-import net.minecraft.entity.MoverType;
 import me.olliem5.ferox.api.event.Event;
+import net.minecraft.entity.MoverType;
 
 public class PlayerMoveEvent extends Event {
     MoverType type;

@@ -1,12 +1,12 @@
 package me.olliem5.ferox.impl.modules.combat;
 
-import net.minecraft.init.Items;
 import me.olliem5.ferox.api.module.Category;
 import me.olliem5.ferox.api.module.Module;
 import me.olliem5.ferox.api.module.ModuleInfo;
 import me.olliem5.ferox.api.setting.NumberSetting;
 import me.olliem5.ferox.api.setting.Setting;
 import me.olliem5.ferox.api.util.minecraft.InventoryUtil;
+import net.minecraft.init.Items;
 
 /**
  * TODO: PacketSwitch / GhostSwitch

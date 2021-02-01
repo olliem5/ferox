@@ -1,12 +1,6 @@
 package me.olliem5.ferox.impl.modules.combat;
 
 import com.mojang.realmsclient.gui.ChatFormatting;
-import net.minecraft.entity.item.EntityEnderCrystal;
-import net.minecraft.init.Blocks;
-import net.minecraft.item.Item;
-import net.minecraft.network.play.client.CPacketPlayerTryUseItemOnBlock;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
 import me.olliem5.ferox.api.module.Category;
 import me.olliem5.ferox.api.module.Module;
 import me.olliem5.ferox.api.module.ModuleInfo;
@@ -14,6 +8,12 @@ import me.olliem5.ferox.api.setting.NumberSetting;
 import me.olliem5.ferox.api.util.client.CooldownUtil;
 import me.olliem5.ferox.api.util.client.MessageUtil;
 import me.olliem5.ferox.api.util.minecraft.InventoryUtil;
+import net.minecraft.entity.item.EntityEnderCrystal;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
+import net.minecraft.network.play.client.CPacketPlayerTryUseItemOnBlock;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 
 import java.util.Comparator;
 

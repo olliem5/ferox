@@ -1,6 +1,7 @@
 package me.olliem5.ferox.api.event;
 
 import git.littledraily.eventsystem.Listener;
+import me.olliem5.ferox.Ferox;
 import me.olliem5.ferox.api.module.Module;
 import me.olliem5.ferox.api.module.ModuleManager;
 import me.olliem5.ferox.api.traits.Minecraft;
@@ -11,12 +12,10 @@ import net.minecraft.network.play.server.SPacketEntityStatus;
 import net.minecraftforge.client.event.ClientChatEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import org.lwjgl.input.Keyboard;
-import me.olliem5.ferox.Ferox;
 
 public class EventProcessor implements Minecraft {
 

@@ -1,14 +1,14 @@
 package me.olliem5.ferox.impl.modules.movement;
 
 import git.littledraily.eventsystem.Listener;
-import net.minecraft.network.play.server.SPacketEntityVelocity;
-import net.minecraft.network.play.server.SPacketExplosion;
 import me.olliem5.ferox.api.module.Category;
 import me.olliem5.ferox.api.module.Module;
 import me.olliem5.ferox.api.module.ModuleInfo;
 import me.olliem5.ferox.api.setting.NumberSetting;
 import me.olliem5.ferox.api.setting.Setting;
 import me.olliem5.ferox.impl.events.PacketEvent;
+import net.minecraft.network.play.server.SPacketEntityVelocity;
+import net.minecraft.network.play.server.SPacketExplosion;
 
 /**
  * TODO: NoPush

@@ -2,7 +2,6 @@ package me.olliem5.ferox;
 
 import me.olliem5.ferox.api.event.EventProcessor;
 import me.olliem5.ferox.api.hud.HudManager;
-import me.olliem5.ferox.api.mixin.MixinLoader;
 import me.olliem5.ferox.api.module.ModuleManager;
 import me.olliem5.ferox.impl.command.EchoCommand;
 import me.olliem5.ferox.impl.gui.click.main.Window;
@@ -24,6 +23,7 @@ public class StartupHelper {
         Ferox.log("GUI Initialized!");
 
         HudManager.init();
+        Ferox.EVENT_BUS.subscribe(new HudManager());
         Ferox.log("Hud initialized!");
 
         initCommandManager();

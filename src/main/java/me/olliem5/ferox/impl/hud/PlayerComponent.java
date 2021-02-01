@@ -1,11 +1,11 @@
 package me.olliem5.ferox.impl.hud;
 
-import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.OpenGlHelper;
 import me.olliem5.ferox.api.hud.ComponentInfo;
 import me.olliem5.ferox.api.hud.HudComponent;
 import me.olliem5.ferox.api.setting.NumberSetting;
 import me.olliem5.ferox.api.util.render.EntityRenderUtil;
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.OpenGlHelper;
 
 @ComponentInfo(name = "Player")
 public class PlayerComponent extends HudComponent {

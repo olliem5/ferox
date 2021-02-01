@@ -1,10 +1,10 @@
 package me.olliem5.ferox.impl.gui.editor.component;
 
 import com.mojang.realmsclient.gui.ChatFormatting;
-import net.minecraft.client.gui.Gui;
 import me.olliem5.ferox.api.setting.Setting;
 import me.olliem5.ferox.api.util.font.FontUtil;
 import me.olliem5.ferox.impl.gui.Component;
+import net.minecraft.client.gui.Gui;
 
 import java.awt.*;
 

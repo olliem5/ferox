@@ -1,5 +1,8 @@
 package me.olliem5.ferox.impl.mixins;
 
+import me.olliem5.ferox.Ferox;
+import me.olliem5.ferox.impl.events.EventPlayerUpdate;
+import me.olliem5.ferox.impl.events.PlayerMoveEvent;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.entity.MoverType;
 import org.spongepowered.asm.mixin.Mixin;
@@ -7,9 +10,6 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import me.olliem5.ferox.Ferox;
-import me.olliem5.ferox.impl.events.EventPlayerUpdate;
-import me.olliem5.ferox.impl.events.PlayerMoveEvent;
 
 @Mixin(EntityPlayerSP.class)
 public abstract class MixinEntityPlayerSP {

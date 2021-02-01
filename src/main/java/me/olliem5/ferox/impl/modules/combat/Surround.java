@@ -1,10 +1,6 @@
 package me.olliem5.ferox.impl.modules.combat;
 
 import com.mojang.realmsclient.gui.ChatFormatting;
-import net.minecraft.init.Blocks;
-import net.minecraft.network.play.client.CPacketPlayer;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
 import me.olliem5.ferox.api.module.Category;
 import me.olliem5.ferox.api.module.Module;
 import me.olliem5.ferox.api.module.ModuleInfo;
@@ -13,6 +9,10 @@ import me.olliem5.ferox.api.setting.Setting;
 import me.olliem5.ferox.api.util.client.MessageUtil;
 import me.olliem5.ferox.api.util.minecraft.InventoryUtil;
 import me.olliem5.ferox.api.util.minecraft.PlaceUtil;
+import net.minecraft.init.Blocks;
+import net.minecraft.network.play.client.CPacketPlayer;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 
 import java.awt.*;
 import java.util.ArrayList;

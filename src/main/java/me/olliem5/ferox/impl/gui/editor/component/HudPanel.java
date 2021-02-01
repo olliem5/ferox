@@ -1,8 +1,5 @@
 package me.olliem5.ferox.impl.gui.editor.component;
 
-import net.minecraft.client.gui.Gui;
-import net.minecraft.client.gui.ScaledResolution;
-import org.lwjgl.input.Mouse;
 import me.olliem5.ferox.api.hud.HudComponent;
 import me.olliem5.ferox.api.hud.HudManager;
 import me.olliem5.ferox.api.traits.Minecraft;
@@ -10,6 +7,9 @@ import me.olliem5.ferox.api.util.colour.RainbowUtil;
 import me.olliem5.ferox.api.util.font.FontUtil;
 import me.olliem5.ferox.impl.gui.Component;
 import me.olliem5.ferox.impl.gui.editor.HudEditor;
+import net.minecraft.client.gui.Gui;
+import net.minecraft.client.gui.ScaledResolution;
+import org.lwjgl.input.Mouse;
 
 import java.awt.*;
 import java.util.ArrayList;

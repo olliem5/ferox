@@ -1,7 +1,7 @@
 package me.olliem5.ferox.impl.events;
 
-import net.minecraft.network.Packet;
 import me.olliem5.ferox.api.event.Event;
+import net.minecraft.network.Packet;
 
 public class PacketEvent extends Event {
     private final Packet packet;
