@@ -22,14 +22,14 @@ apply plugin: 'org.spongepowered.mixin'
 apply plugin: 'com.github.johnrengelman.shadow'
 
 version = "1.0"
-group = "us.ferox.client"
+group = "me.olliem5"
 archivesBaseName = "ferox"
 
 minecraft {
     version = project.forgeVersion
     runDir = "run"
     mappings = project.mcpVersion
-    coreMod = 'us.ferox.client.api.mixin.MixinLoader'
+    coreMod = 'me.olliem5.ferox.api.mixin.MixinLoader'
     makeObfSourceJar = false
 }
 
@@ -120,7 +120,7 @@ reobf {
 //                'TweakClass': 'org.spongepowered.asm.launch.MixinTweaker',
 //                'TweakOrder': 0,
 //                'FMLCorePluginContainsFMLMod': 'true',
-//                'FMLCorePlugin': 'us.ferox.client.Ferox',
+//                'FMLCorePlugin': 'me.olliem5.ferox.Ferox',
 //                'ForceLoadAsMod': 'true',
 //                'FMLAT': 'ferox_at.cfg'
 //        )
