@@ -2,7 +2,7 @@ package me.olliem5.ferox.impl.mixins;
 
 import me.olliem5.ferox.Ferox;
 import me.olliem5.ferox.api.util.colour.RainbowUtil;
-import me.olliem5.ferox.api.util.font.FontUtil;
+import me.olliem5.ferox.api.util.render.font.FontUtil;
 import net.minecraft.client.gui.GuiMainMenu;
 import net.minecraft.client.gui.GuiScreen;
 import org.spongepowered.asm.mixin.Mixin;

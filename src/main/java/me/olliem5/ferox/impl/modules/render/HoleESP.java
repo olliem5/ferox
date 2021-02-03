@@ -9,7 +9,7 @@ import me.olliem5.ferox.api.setting.Setting;
 import me.olliem5.ferox.api.util.minecraft.BlockUtil;
 import me.olliem5.ferox.api.util.minecraft.PlayerUtil;
 import me.olliem5.ferox.api.util.module.HoleUtil;
-import me.olliem5.ferox.api.util.render.RenderUtil;
+import me.olliem5.ferox.api.util.render.world.RenderUtil;
 import me.olliem5.ferox.impl.events.WorldRenderEvent;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
@@ -36,16 +36,18 @@ public class HoleESP extends Module {
     public static NumberSetting<Double> outlineWidth = new NumberSetting<>(renderSettings, "Outline Width", 1.0, 2.0, 5.0, 1);
 
     public HoleESP() {
-        this.addSetting(holeRange);
-        this.addSetting(obsidian);
-        this.addSetting(obsidianHoleColour);
-        this.addSetting(bedrock);
-        this.addSetting(bedrockHoleColour);
-        this.addSetting(renderSettings);
-        this.addSetting(renderMode);
-        this.addSetting(boxHeight);
-        this.addSetting(outlineHeight);
-        this.addSetting(outlineWidth);
+        this.addSettings(
+                holeRange,
+                obsidian,
+                obsidianHoleColour,
+                bedrock,
+                bedrockHoleColour,
+                renderSettings,
+                renderMode,
+                boxHeight,
+                outlineHeight,
+                outlineWidth
+        );
     }
 
     @Listener

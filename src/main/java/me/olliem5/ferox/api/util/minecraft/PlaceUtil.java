@@ -39,6 +39,7 @@ public class PlaceUtil implements Minecraft {
                 return true;
             }
         }
+
         return false;
     }
 }

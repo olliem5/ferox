@@ -7,20 +7,20 @@ import me.olliem5.ferox.api.setting.Setting;
 
 @ComponentInfo(name = "Watermark")
 public class WatermarkComponent extends HudComponent {
-    public static Setting<WatermarkModes> mode = new Setting<>("Mode", WatermarkModes.NameVersion);
+    public static Setting<WatermarkModes> watermarkMode = new Setting<>("Mode", WatermarkModes.NameVersion);
 
     public WatermarkComponent() {
         setHeight(10);
         setWidth(10);
 
-        this.addSetting(mode);
-
-        visible = true;
+        this.addSettings(
+                watermarkMode
+        );
     }
 
     @Override
     public void render() {
-        switch (mode.getValue()) {
+        switch (watermarkMode.getValue()) {
             case Name:
                 drawString(Ferox.MOD_NAME);
                 break;

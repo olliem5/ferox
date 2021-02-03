@@ -34,14 +34,16 @@ public class Surround extends Module {
     public static Setting<Color> renderColour = new Setting<>(renderBlock, "Render Colour", new Color(182, 40, 226, 186));
 
     public Surround() {
-        this.addSetting(placeMode);
-        this.addSetting(disableMode);
-        this.addSetting(blocksPerTick);
-        this.addSetting(centerPlayer);
-        this.addSetting(timeout);
-        this.addSetting(timeoutTicks);
-        this.addSetting(renderBlock);
-        this.addSetting(renderColour);
+        this.addSettings(
+                placeMode,
+                disableMode,
+                blocksPerTick,
+                centerPlayer,
+                timeout,
+                timeoutTicks,
+                renderBlock,
+                renderColour
+        );
     }
 
     private int obsidianSlot;

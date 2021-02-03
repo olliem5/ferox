@@ -1,7 +1,7 @@
 package me.olliem5.ferox.impl.gui.console;
 
 import me.olliem5.ferox.api.util.colour.RainbowUtil;
-import me.olliem5.ferox.api.util.font.FontUtil;
+import me.olliem5.ferox.api.util.render.font.FontUtil;
 import me.olliem5.ferox.impl.gui.Component;
 import me.olliem5.ferox.impl.gui.console.component.InputComponent;
 import me.olliem5.ferox.impl.gui.console.component.OutputComponent;

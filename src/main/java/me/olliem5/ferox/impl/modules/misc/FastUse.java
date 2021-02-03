@@ -23,13 +23,15 @@ public class FastUse extends Module {
     public static Setting<Boolean> other = new Setting<>("Other", false);
 
     public FastUse() {
-        this.addSetting(bows);
-        this.addSetting(fishingRods);
-        this.addSetting(experience);
-        this.addSetting(crystals);
-        this.addSetting(throwables);
-        this.addSetting(blocks);
-        this.addSetting(other);
+        this.addSettings(
+                bows,
+                fishingRods,
+                experience,
+                crystals,
+                throwables,
+                blocks,
+                other
+        );
     }
 
     public void onUpdate() {

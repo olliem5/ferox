@@ -1,4 +1,4 @@
-package me.olliem5.ferox.api.util.client;
+package me.olliem5.ferox.api.util.math;
 
 import me.olliem5.ferox.api.setting.Setting;
 

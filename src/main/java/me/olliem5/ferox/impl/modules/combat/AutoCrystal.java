@@ -5,7 +5,7 @@ import me.olliem5.ferox.api.module.Module;
 import me.olliem5.ferox.api.module.ModuleInfo;
 import me.olliem5.ferox.api.setting.NumberSetting;
 import me.olliem5.ferox.api.setting.Setting;
-import me.olliem5.ferox.api.util.client.CooldownUtil;
+import me.olliem5.ferox.api.util.math.CooldownUtil;
 import me.olliem5.ferox.api.util.minecraft.InventoryUtil;
 import me.olliem5.ferox.api.util.module.CrystalUtil;
 import me.olliem5.ferox.api.util.packet.RotationUtil;
@@ -50,28 +50,33 @@ public class AutoCrystal extends Module {
     public static NumberSetting<Double> faceplaceHP = new NumberSetting<>("Faceplace HP", 0.0, 8.0, 36.0, 1);
 
     public AutoCrystal() {
-        this.addSetting(logicMode);
-        this.addSetting(placeMode);
-        this.addSetting(breakMode);
-        this.addSetting(breakType);
-        this.addSetting(swingMode);
-        this.addSetting(placeDelay);
-        this.addSetting(breakDelay);
-        this.addSetting(placeRange);
-        this.addSetting(breakRange);
-        this.addSetting(enemyRange);
-        this.addSetting(wallsRange);
-        this.addSetting(rotate);
-        this.addSetting(raytrace);
-        this.addSetting(syncBreak);
-        this.addSetting(reloadCrystal);
-        this.addSetting(antiDesync);
-        this.addSetting(breakAttempts);
-        this.addSetting(antiSuicide);
-        this.addSetting(antiSuicideHealth);
-        this.addSetting(minDamage);
-        this.addSetting(maxSelfDamage);
-        this.addSetting(faceplaceHP);
+        this.addSettings(
+                logicMode,
+                placeMode,
+                breakMode,
+                breakType,
+                swingMode,
+                placeDelay,
+                breakDelay,
+                placeRange,
+                breakRange,
+                enemyRange,
+                wallsRange,
+                rotate,
+                raytrace,
+                syncBreak,
+                rotate,
+                raytrace,
+                syncBreak,
+                reloadCrystal,
+                antiDesync,
+                breakAttempts,
+                antiSuicide,
+                antiSuicideHealth,
+                minDamage,
+                maxSelfDamage,
+                faceplaceHP
+        );
     }
 
     private CooldownUtil breakTimer = new CooldownUtil();

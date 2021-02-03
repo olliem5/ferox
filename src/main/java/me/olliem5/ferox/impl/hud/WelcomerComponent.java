@@ -7,18 +7,20 @@ import me.olliem5.ferox.api.setting.Setting;
 
 @ComponentInfo(name = "Welcomer")
 public class WelcomerComponent extends HudComponent {
-    public static Setting<WelcomerModes> mode = new Setting<>("Mode", WelcomerModes.Welcome);
+    public static Setting<WelcomerModes> welcomerMode = new Setting<>("Mode", WelcomerModes.Welcome);
 
     public WelcomerComponent() {
         setHeight(10);
         setWidth(10);
 
-        this.addSetting(mode);
+        this.addSettings(
+                welcomerMode
+        );
     }
 
     @Override
     public void render() {
-        switch (mode.getValue()) {
+        switch (welcomerMode.getValue()) {
             case Welcome:
                 drawString("Welcome, " + mc.player.getName());
                 break;

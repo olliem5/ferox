@@ -1,4 +1,4 @@
-package me.olliem5.ferox.api.util.render;
+package me.olliem5.ferox.api.util.render.world;
 
 import me.olliem5.ferox.api.traits.Minecraft;
 import net.minecraft.client.renderer.BufferBuilder;

@@ -1,4 +1,4 @@
-package me.olliem5.ferox.api.util.render;
+package me.olliem5.ferox.api.util.render.gui;
 
 /**
  * @author bon
@@ -9,6 +9,7 @@ public class GuiUtil {
     public static int mX;
     public static int mY;
     public static int keydown;
+
     public static boolean ldown;
     public static boolean lheld;
     public static boolean rdown;

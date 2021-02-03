@@ -25,12 +25,14 @@ public class Offhand extends Module {
     public static NumberSetting<Double> fallDistance = new NumberSetting<>("Fall Distance", 1.0, 15.0, 100.0, 1);
 
     public Offhand() {
-        this.addSetting(offhandMode);
-        this.addSetting(switchHealth);
-        this.addSetting(swordGapple);
-        this.addSetting(elytraTotem);
-        this.addSetting(fallTotem);
-        this.addSetting(fallDistance);
+        this.addSettings(
+                offhandMode,
+                switchHealth,
+                swordGapple,
+                elytraTotem,
+                fallTotem,
+                fallDistance
+        );
     }
 
     public void onUpdate() {

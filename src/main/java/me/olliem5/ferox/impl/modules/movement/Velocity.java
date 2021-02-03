@@ -23,10 +23,12 @@ public class Velocity extends Module {
     public static NumberSetting<Float> vertical = new NumberSetting<>("Vertical", 0.0f, 0.0f, 100.0f, 1);
 
     public Velocity() {
-        this.addSetting(velocity);
-        this.addSetting(explosions);
-        this.addSetting(horizontal);
-        this.addSetting(vertical);
+        this.addSettings(
+                velocity,
+                explosions,
+                horizontal,
+                vertical
+        );
     }
 
     @Listener

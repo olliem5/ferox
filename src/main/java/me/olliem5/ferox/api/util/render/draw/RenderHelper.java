@@ -1,17 +1,16 @@
-package me.olliem5.ferox.api.util.render;
+package me.olliem5.ferox.api.util.render.draw;
 
+import me.olliem5.ferox.api.traits.Minecraft;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
+import net.minecraft.entity.EntityLivingBase;
 import org.lwjgl.opengl.GL11;
 
-public class GLRenderUtil {
-
-    /**
-     * For Colour Picker GUI Component
-     */
-
+public class RenderHelper implements Minecraft {
     public static void gradient(int minX, int minY, int maxX, int maxY, int startColor, int endColor, boolean left) {
         if (left) {
             float startA = (startColor >> 24 & 0xFF) / 255.0f;
@@ -167,5 +166,36 @@ public class GLRenderUtil {
         GL11.glShadeModel(GL11.GL_FLAT);
         GL11.glEnable(GL11.GL_TEXTURE_2D);
         GL11.glDisable(GL11.GL_BLEND);
+    }
+
+    public static void drawEntityOnScreen(int posX, int posY, int scale, float mouseX, float mouseY, EntityLivingBase entityLivingBase) {
+        RenderManager renderManager = mc.getRenderManager();
+
+        GlStateManager.enableColorMaterial();
+        GlStateManager.pushMatrix();
+        GlStateManager.translate((float) posX, (float) posY, 50.0F);
+        GlStateManager.scale((float) (-scale), (float) scale, (float) scale);
+        GlStateManager.rotate(180.0F, 0.0F, 0.0F, 1.0F);
+        GlStateManager.rotate(135.0F, 0.0F, 1.0F, 0.0F);
+
+        net.minecraft.client.renderer.RenderHelper.enableStandardItemLighting();
+
+        GlStateManager.rotate(-135.0F, 0.0F, 1.0F, 0.0F);
+        GlStateManager.rotate(-((float) Math.atan(mouseY / 40.0F)) * 20.0F, 1.0F, 0.0F, 0.0F);
+        GlStateManager.translate(0.0F, 0.0F, 0.0F);
+
+        renderManager.setPlayerViewY(180.0F);
+        renderManager.setRenderShadow(false);
+        renderManager.renderEntity(entityLivingBase, 0.0D, 0.0D, 0.0D, 0.0F, 1.0F, false);
+        renderManager.setRenderShadow(true);
+
+        GlStateManager.popMatrix();
+
+        net.minecraft.client.renderer.RenderHelper.disableStandardItemLighting();
+
+        GlStateManager.disableRescaleNormal();
+        GlStateManager.setActiveTexture(OpenGlHelper.lightmapTexUnit);
+        GlStateManager.disableTexture2D();
+        GlStateManager.setActiveTexture(OpenGlHelper.defaultTexUnit);
     }
 }

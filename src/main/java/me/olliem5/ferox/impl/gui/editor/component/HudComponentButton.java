@@ -4,7 +4,7 @@ import me.olliem5.ferox.api.hud.HudComponent;
 import me.olliem5.ferox.api.setting.NumberSetting;
 import me.olliem5.ferox.api.setting.Setting;
 import me.olliem5.ferox.api.util.colour.RainbowUtil;
-import me.olliem5.ferox.api.util.font.FontUtil;
+import me.olliem5.ferox.api.util.render.font.FontUtil;
 import me.olliem5.ferox.impl.gui.Component;
 import net.minecraft.client.gui.Gui;
 

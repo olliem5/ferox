@@ -2,11 +2,12 @@ package me.olliem5.ferox.api.hud;
 
 import me.olliem5.ferox.api.setting.Setting;
 import me.olliem5.ferox.api.traits.Minecraft;
-import me.olliem5.ferox.api.util.font.FontUtil;
+import me.olliem5.ferox.api.util.render.font.FontUtil;
 import me.olliem5.ferox.impl.modules.ui.HudEditorModule;
 import net.minecraft.client.gui.ScaledResolution;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public abstract class HudComponent implements Minecraft {
     private final String name = getAnnotation().name();
@@ -24,6 +25,7 @@ public abstract class HudComponent implements Minecraft {
         if (getClass().isAnnotationPresent(ComponentInfo.class)) {
             return getClass().getAnnotation(ComponentInfo.class);
         }
+
         throw new IllegalStateException("Annotation 'ComponentInfo' not found!");
     }
 
@@ -144,5 +146,9 @@ public abstract class HudComponent implements Minecraft {
         settings.add(setting);
 
         return setting;
+    }
+
+    public void addSettings(Setting... settings) {
+        this.settings.addAll(Arrays.asList(settings));
     }
 }

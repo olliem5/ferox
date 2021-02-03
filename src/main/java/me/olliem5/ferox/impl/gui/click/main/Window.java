@@ -4,7 +4,7 @@ import me.olliem5.ferox.api.module.Category;
 import me.olliem5.ferox.api.module.Module;
 import me.olliem5.ferox.api.module.ModuleManager;
 import me.olliem5.ferox.api.traits.Minecraft;
-import me.olliem5.ferox.api.util.render.GuiUtil;
+import me.olliem5.ferox.api.util.render.gui.GuiUtil;
 import me.olliem5.ferox.impl.gui.click.theme.Theme;
 import me.olliem5.ferox.impl.modules.ui.ClickGUIModule;
 import net.minecraft.client.gui.ScaledResolution;

@@ -3,7 +3,7 @@ package me.olliem5.ferox.impl.hud;
 import me.olliem5.ferox.api.hud.ComponentInfo;
 import me.olliem5.ferox.api.hud.HudComponent;
 import me.olliem5.ferox.api.setting.NumberSetting;
-import me.olliem5.ferox.api.util.render.EntityRenderUtil;
+import me.olliem5.ferox.api.util.render.draw.RenderHelper;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
 
@@ -15,7 +15,9 @@ public class PlayerComponent extends HudComponent {
         setWidth(50);
         setHeight(80);
 
-        this.addSetting(scale);
+        this.addSettings(
+                scale
+        );
     }
 
     @Override
@@ -25,7 +27,7 @@ public class PlayerComponent extends HudComponent {
         GlStateManager.disableTexture2D();
         GlStateManager.setActiveTexture(OpenGlHelper.defaultTexUnit);
 
-        EntityRenderUtil.drawEntityOnScreen(this.getPosX() + 28, this.getPosY() + 67, scale.getValue(), this.getPosX() + 40, this.getPosY() + 13, mc.player);
+        RenderHelper.drawEntityOnScreen(this.getPosX() + 28, this.getPosY() + 67, scale.getValue(), this.getPosX() + 40, this.getPosY() + 13, mc.player);
 
         GlStateManager.enableRescaleNormal();
         GlStateManager.enableTexture2D();

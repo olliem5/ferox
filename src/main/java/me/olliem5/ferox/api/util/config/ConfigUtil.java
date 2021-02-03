@@ -1,4 +1,4 @@
-package me.olliem5.ferox.api.util.client;
+package me.olliem5.ferox.api.util.config;
 
 import com.google.gson.*;
 import com.google.gson.stream.JsonReader;

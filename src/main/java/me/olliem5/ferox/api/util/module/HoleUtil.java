@@ -18,18 +18,7 @@ public class HoleUtil implements Minecraft {
         BlockPos boost8 = blockPos.add(0.5, 0.5, 0.5);
         BlockPos boost9 = blockPos.add(0, -1, 0);
 
-        return !(
-                mc.world.getBlockState(boost).getBlock() != Blocks.AIR
-                        || isBedrockHole(blockPos)
-                        || mc.world.getBlockState(boost2).getBlock() != Blocks.AIR
-                        || mc.world.getBlockState(boost7).getBlock() != Blocks.AIR
-                        || mc.world.getBlockState(boost3).getBlock() != Blocks.OBSIDIAN && mc.world.getBlockState(boost3).getBlock() != Blocks.BEDROCK
-                        || mc.world.getBlockState(boost4).getBlock() != Blocks.OBSIDIAN && mc.world.getBlockState(boost4).getBlock() != Blocks.BEDROCK
-                        || mc.world.getBlockState(boost5).getBlock() != Blocks.OBSIDIAN && mc.world.getBlockState(boost5).getBlock() != Blocks.BEDROCK
-                        || mc.world.getBlockState(boost6).getBlock() != Blocks.OBSIDIAN && mc.world.getBlockState(boost6).getBlock() != Blocks.BEDROCK
-                        || mc.world.getBlockState(boost8).getBlock() != Blocks.AIR
-                        || mc.world.getBlockState(boost9).getBlock() != Blocks.OBSIDIAN && mc.world.getBlockState(boost9).getBlock() != Blocks.BEDROCK
-        );
+        return !(mc.world.getBlockState(boost).getBlock() != Blocks.AIR || isBedrockHole(blockPos) || mc.world.getBlockState(boost2).getBlock() != Blocks.AIR || mc.world.getBlockState(boost7).getBlock() != Blocks.AIR || mc.world.getBlockState(boost3).getBlock() != Blocks.OBSIDIAN && mc.world.getBlockState(boost3).getBlock() != Blocks.BEDROCK || mc.world.getBlockState(boost4).getBlock() != Blocks.OBSIDIAN && mc.world.getBlockState(boost4).getBlock() != Blocks.BEDROCK || mc.world.getBlockState(boost5).getBlock() != Blocks.OBSIDIAN && mc.world.getBlockState(boost5).getBlock() != Blocks.BEDROCK || mc.world.getBlockState(boost6).getBlock() != Blocks.OBSIDIAN && mc.world.getBlockState(boost6).getBlock() != Blocks.BEDROCK || mc.world.getBlockState(boost8).getBlock() != Blocks.AIR || mc.world.getBlockState(boost9).getBlock() != Blocks.OBSIDIAN && mc.world.getBlockState(boost9).getBlock() != Blocks.BEDROCK);
     }
 
     public static boolean isBedrockHole(BlockPos blockPos) {
@@ -43,15 +32,7 @@ public class HoleUtil implements Minecraft {
         BlockPos boost8 = blockPos.add(0.5, 0.5, 0.5);
         BlockPos boost9 = blockPos.add(0, -1, 0);
 
-        return mc.world.getBlockState(boost).getBlock() == Blocks.AIR
-                && mc.world.getBlockState(boost2).getBlock() == Blocks.AIR
-                && mc.world.getBlockState(boost7).getBlock() == Blocks.AIR
-                && mc.world.getBlockState(boost3).getBlock() == Blocks.BEDROCK
-                && mc.world.getBlockState(boost4).getBlock() == Blocks.BEDROCK
-                && mc.world.getBlockState(boost5).getBlock() == Blocks.BEDROCK
-                && mc.world.getBlockState(boost6).getBlock() == Blocks.BEDROCK
-                && mc.world.getBlockState(boost8).getBlock() == Blocks.AIR
-                && mc.world.getBlockState(boost9).getBlock() == Blocks.BEDROCK;
+        return mc.world.getBlockState(boost).getBlock() == Blocks.AIR && mc.world.getBlockState(boost2).getBlock() == Blocks.AIR && mc.world.getBlockState(boost7).getBlock() == Blocks.AIR && mc.world.getBlockState(boost3).getBlock() == Blocks.BEDROCK && mc.world.getBlockState(boost4).getBlock() == Blocks.BEDROCK && mc.world.getBlockState(boost5).getBlock() == Blocks.BEDROCK && mc.world.getBlockState(boost6).getBlock() == Blocks.BEDROCK && mc.world.getBlockState(boost8).getBlock() == Blocks.AIR && mc.world.getBlockState(boost9).getBlock() == Blocks.BEDROCK;
     }
 
     public static boolean isPlayerInHole(EntityPlayer entityPlayer) {
@@ -76,6 +57,7 @@ public class HoleUtil implements Minecraft {
                 return true;
             }
         }
+
         return false;
     }
 }

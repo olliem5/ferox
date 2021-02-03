@@ -12,7 +12,9 @@ public class Brightness extends Module {
     public static Setting<BrightnessModes> brightnessMode = new Setting<>("Mode", BrightnessModes.Gamma);
 
     public Brightness() {
-        this.addSetting(brightnessMode);
+        this.addSettings(
+                brightnessMode
+        );
     }
 
     private PotionEffect nightVision = new PotionEffect(Potion.getPotionById(16));

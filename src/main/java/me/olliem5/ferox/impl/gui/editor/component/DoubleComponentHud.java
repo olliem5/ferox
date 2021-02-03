@@ -3,7 +3,7 @@ package me.olliem5.ferox.impl.gui.editor.component;
 import com.mojang.realmsclient.gui.ChatFormatting;
 import me.olliem5.ferox.api.setting.NumberSetting;
 import me.olliem5.ferox.api.util.colour.RainbowUtil;
-import me.olliem5.ferox.api.util.font.FontUtil;
+import me.olliem5.ferox.api.util.render.font.FontUtil;
 import me.olliem5.ferox.impl.gui.Component;
 import net.minecraft.client.gui.Gui;
 

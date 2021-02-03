@@ -11,7 +11,9 @@ public class HudEditorModule extends Module {
     public static Setting<Boolean> componentOverflow = new Setting<>("Component Overflow", false);
 
     public HudEditorModule() {
-        this.addSetting(componentOverflow);
+        this.addSettings(
+                componentOverflow
+        );
     }
 
     private HudEditor hudEditor;

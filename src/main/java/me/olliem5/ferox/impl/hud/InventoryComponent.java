@@ -18,7 +18,9 @@ public class InventoryComponent extends HudComponent {
         setWidth(144);
         setHeight(48);
 
-        this.addSetting(background);
+        this.addSettings(
+                background
+        );
     }
 
     @Override

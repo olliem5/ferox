@@ -10,7 +10,9 @@ public class Sprint extends Module {
     public static Setting<SprintModes> sprintMode = new Setting<>("Mode", SprintModes.Rage);
 
     public Sprint() {
-        this.addSetting(sprintMode);
+        this.addSettings(
+                sprintMode
+        );
     }
 
     public void onUpdate() {

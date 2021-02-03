@@ -1,6 +1,6 @@
 package me.olliem5.ferox.impl.gui.click.main;
 
-import me.olliem5.ferox.api.util.render.GuiUtil;
+import me.olliem5.ferox.api.util.render.gui.GuiUtil;
 import me.olliem5.ferox.impl.modules.ui.ClickGUIModule;
 import net.minecraft.client.gui.GuiScreen;
 

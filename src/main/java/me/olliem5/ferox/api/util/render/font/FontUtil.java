@@ -1,4 +1,4 @@
-package me.olliem5.ferox.api.util.font;
+package me.olliem5.ferox.api.util.render.font;
 
 import me.olliem5.ferox.api.traits.Minecraft;
 import me.olliem5.ferox.impl.modules.ferox.Font;

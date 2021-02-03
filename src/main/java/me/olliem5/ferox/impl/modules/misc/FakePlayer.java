@@ -16,8 +16,10 @@ public class FakePlayer extends Module {
     public NumberSetting<Float> health = new NumberSetting<>("Health", 0.0f, 20.0f, 36.0f, 1);
 
     public FakePlayer() {
-        this.addSetting(nameMode);
-        this.addSetting(health);
+        this.addSettings(
+                nameMode,
+                health
+        );
     }
 
     private EntityOtherPlayerMP fakePlayer = null;

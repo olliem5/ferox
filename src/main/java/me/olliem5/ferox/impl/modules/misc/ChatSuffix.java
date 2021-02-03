@@ -14,8 +14,10 @@ public class ChatSuffix extends Module {
     public static Setting<Boolean> blue = new Setting<>("Blue", false);
 
     public ChatSuffix() {
-        this.addSetting(green);
-        this.addSetting(blue);
+        this.addSettings(
+                green,
+                blue
+        );
     }
 
     private String suffix = " \u00bb \uff26\uff45\uff52\uff4f\uff58";

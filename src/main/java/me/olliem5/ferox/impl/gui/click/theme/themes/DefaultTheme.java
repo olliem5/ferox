@@ -4,13 +4,13 @@ import com.mojang.realmsclient.gui.ChatFormatting;
 import me.olliem5.ferox.api.module.Module;
 import me.olliem5.ferox.api.setting.NumberSetting;
 import me.olliem5.ferox.api.setting.Setting;
-import me.olliem5.ferox.api.util.client.EnumUtil;
+import me.olliem5.ferox.api.util.math.EnumUtil;
 import me.olliem5.ferox.api.util.colour.ColourUtil;
 import me.olliem5.ferox.api.util.colour.RainbowUtil;
-import me.olliem5.ferox.api.util.font.FontUtil;
+import me.olliem5.ferox.api.util.render.font.FontUtil;
 import me.olliem5.ferox.api.util.math.MathUtil;
-import me.olliem5.ferox.api.util.render.GLRenderUtil;
-import me.olliem5.ferox.api.util.render.GuiUtil;
+import me.olliem5.ferox.api.util.render.draw.RenderHelper;
+import me.olliem5.ferox.api.util.render.gui.GuiUtil;
 import me.olliem5.ferox.impl.gui.click.theme.Theme;
 import net.minecraft.client.gui.Gui;
 import org.lwjgl.input.Keyboard;
@@ -339,7 +339,7 @@ public class DefaultTheme extends Theme {
 		if (GuiUtil.mouseOver(x, y + height + (boost * height), (x + width), (y + height) + height - 1 + (boost * height))) {
 			if (GuiUtil.lheld) {
 				int percentError = (GuiUtil.mX - (x)) * 100 / ((x + width) - x);
-				setting.setValue(MathUtil.roundDouble(percentError * ((setting.getMax() - setting.getMin()) / 100.0D) + setting.getMin(), setting.getScale()));
+				setting.setValue(MathUtil.roundNumber(percentError * ((setting.getMax() - setting.getMin()) / 100.0D) + setting.getMin(), setting.getScale()));
 			}
 		}
 
@@ -372,7 +372,7 @@ public class DefaultTheme extends Theme {
 		if (GuiUtil.mouseOver(x, y + height + (boost * height), (x + width), (y + height) + height - 1 + (boost * height))) {
 			if (GuiUtil.lheld) {
 				int percentError = (GuiUtil.mX - (x)) * 100 / ((x + width) - x);
-				subSetting.setValue(MathUtil.roundDouble(percentError * ((subSetting.getMax() - subSetting.getMin()) / 100.0D) + subSetting.getMin(), subSetting.getScale()));
+				subSetting.setValue(MathUtil.roundNumber(percentError * ((subSetting.getMax() - subSetting.getMin()) / 100.0D) + subSetting.getMin(), subSetting.getScale()));
 			}
 		}
 
@@ -396,7 +396,7 @@ public class DefaultTheme extends Theme {
 		if (GuiUtil.mouseOver(x, y + height + (boost * height), (x + width), (y + height) + height - 1 + (boost * height))) {
 			if (GuiUtil.lheld) {
 				int percentError = (GuiUtil.mX - (x)) * 100 / ((x + width) - x);
-				setting.setValue((float) MathUtil.roundDouble(percentError * ((setting.getMax() - setting.getMin()) / 100.0D) + setting.getMin(), setting.getScale()));
+				setting.setValue((float) MathUtil.roundNumber(percentError * ((setting.getMax() - setting.getMin()) / 100.0D) + setting.getMin(), setting.getScale()));
 			}
 		}
 
@@ -429,7 +429,7 @@ public class DefaultTheme extends Theme {
 		if (GuiUtil.mouseOver(x, y + height + (boost * height), (x + width), (y + height) + height - 1 + (boost * height))) {
 			if (GuiUtil.lheld) {
 				int percentError = (GuiUtil.mX - (x)) * 100 / ((x + width) - x);
-				subSetting.setValue((float) MathUtil.roundDouble(percentError * ((subSetting.getMax() - subSetting.getMin()) / 100.0D) + subSetting.getMin(), subSetting.getScale()));
+				subSetting.setValue((float) MathUtil.roundNumber(percentError * ((subSetting.getMax() - subSetting.getMin()) / 100.0D) + subSetting.getMin(), subSetting.getScale()));
 			}
 		}
 
@@ -547,7 +547,7 @@ public class DefaultTheme extends Theme {
 		float selectedGreen = (selectedColor >> 8 & 0xFF) / 255.0f;
 		float selectedBlue = (selectedColor & 0xFF) / 255.0f;
 
-		GLRenderUtil.drawPickerBase(pickerX, pickerY, pickerWidth, pickerHeight, selectedRed, selectedGreen, selectedBlue, finalAlpha);
+		RenderHelper.drawPickerBase(pickerX, pickerY, pickerWidth, pickerHeight, selectedRed, selectedGreen, selectedBlue, finalAlpha);
 
 		drawHueSlider(hueSliderX, hueSliderY, hueSliderWidth, hueSliderHeight, color[0]);
 
@@ -573,7 +573,7 @@ public class DefaultTheme extends Theme {
 				int previousStep = Color.HSBtoRGB((float) step / 6, 1.0f, 1.0f);
 				int nextStep = Color.HSBtoRGB((float) (step + 1) / 6, 1.0f, 1.0f);
 
-				GLRenderUtil.drawGradientRect(x, y + step * (height / 6), x + width, y + (step + 1) * (height / 6), previousStep, nextStep);
+				RenderHelper.drawGradientRect(x, y + step * (height / 6), x + width, y + (step + 1) * (height / 6), previousStep, nextStep);
 
 				step++;
 			}
@@ -586,7 +586,7 @@ public class DefaultTheme extends Theme {
 				int previousStep = Color.HSBtoRGB((float) step / 6, 1.0f, 1.0f);
 				int nextStep = Color.HSBtoRGB((float) (step + 1) / 6, 1.0f, 1.0f);
 
-				GLRenderUtil.gradient(x + step * (width / 6), y, x + (step + 1) * (width / 6), y + height, previousStep, nextStep, true);
+				RenderHelper.gradient(x + step * (width / 6), y, x + (step + 1) * (width / 6), y + height, previousStep, nextStep, true);
 
 				step++;
 			}
@@ -619,7 +619,7 @@ public class DefaultTheme extends Theme {
 			left = !left;
 		}
 
-		GLRenderUtil.drawLeftGradientRect(x, y, x + width, y + height, new Color(red, green, blue, 1).getRGB(), 0);
+		RenderHelper.drawLeftGradientRect(x, y, x + width, y + height, new Color(red, green, blue, 1).getRGB(), 0);
 
 		int sliderMinX = (int) (x + width - (width * alpha));
 

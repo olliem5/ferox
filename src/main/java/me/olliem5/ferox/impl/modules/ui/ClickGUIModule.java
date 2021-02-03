@@ -16,10 +16,12 @@ public class ClickGUIModule extends Module {
     public static Setting<PauseModes> pauseGame = new Setting<>("Pause Game", PauseModes.Continue);
 
     public ClickGUIModule() {
-        this.addSetting(theme);
-        this.addSetting(windowOverflow);
-        this.addSetting(scrollSpeed);
-        this.addSetting(pauseGame);
+        this.addSettings(
+                theme,
+                windowOverflow,
+                scrollSpeed,
+                pauseGame
+        );
     }
 
     private BaseGui clickGUI;

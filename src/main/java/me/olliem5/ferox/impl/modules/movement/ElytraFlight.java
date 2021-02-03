@@ -38,20 +38,22 @@ public class ElytraFlight extends Module {
     public static Setting<Boolean> belowY = new Setting<>(checks, "Low Height", false);
 
     public ElytraFlight() {
-        this.addSetting(mode);
-        this.addSetting(horizontalSpeed);
-        this.addSetting(verticalSpeed);
-        this.addSetting(yOffset);
-        this.addSetting(takeOffTimer);
-        this.addSetting(ticks);
-        this.addSetting(lockRotation);
-        this.addSetting(ncpRotations);
-        this.addSetting(infiniteFly);
-        this.addSetting(checks);
-        this.addSetting(liquidDisable);
-        this.addSetting(onCollision);
-        this.addSetting(onUpward);
-        this.addSetting(belowY);
+        this.addSettings(
+                mode,
+                horizontalSpeed,
+                verticalSpeed,
+                yOffset,
+                takeOffTimer,
+                ticks,
+                lockRotation,
+                ncpRotations,
+                infiniteFly,
+                checks,
+                liquidDisable,
+                onCollision,
+                onUpward,
+                belowY
+        );
     }
 
     private ElytraMode elytraMode;

@@ -8,6 +8,7 @@ import me.olliem5.ferox.api.util.client.MessageUtil;
 import me.olliem5.ferox.impl.modules.ferox.Notifier;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Module implements Minecraft {
     private String name = getAnnotation().name();
@@ -25,6 +26,7 @@ public class Module implements Minecraft {
         if (getClass().isAnnotationPresent(ModuleInfo.class)) {
             return getClass().getAnnotation(ModuleInfo.class);
         }
+
         throw new IllegalStateException("Annotation 'ModuleInfo' not found!");
     }
 
@@ -39,11 +41,9 @@ public class Module implements Minecraft {
 
         onEnable();
 
-        if (mc.world != null) {
+        if (!nullCheck()) {
             if (ModuleManager.getModuleByName("Notifier").isEnabled() && Notifier.moduleToggle.getValue()) {
-                if (name != "ClickGUI" && name != "HudEditor" && name != "Console") {
-                    MessageUtil.sendClientMessage("Module " + ChatFormatting.AQUA + name + ChatFormatting.WHITE + " has been " + ChatFormatting.GREEN + "ENABLED");
-                }
+                MessageUtil.sendClientMessage("Module " + ChatFormatting.AQUA + name + ChatFormatting.WHITE + " has been " + ChatFormatting.GREEN + "ENABLED");
             }
         }
     }
@@ -55,11 +55,9 @@ public class Module implements Minecraft {
 
         onDisable();
 
-        if (mc.world != null) {
+        if (!nullCheck()) {
             if (ModuleManager.getModuleByName("Notifier").isEnabled() && Notifier.moduleToggle.getValue()) {
-                if (name != "ClickGUI" && name != "HudEditor" && name != "Console") {
-                    MessageUtil.sendClientMessage("Module " + ChatFormatting.AQUA + name + ChatFormatting.WHITE + " has been " + ChatFormatting.RED + "DISABLED");
-                }
+                MessageUtil.sendClientMessage("Module " + ChatFormatting.AQUA + name + ChatFormatting.WHITE + " has been " + ChatFormatting.RED + "DISABLED");
             }
         }
     }
@@ -126,6 +124,10 @@ public class Module implements Minecraft {
         settings.add(setting);
 
         return setting;
+    }
+
+    public void addSettings(Setting... settings) {
+        this.settings.addAll(Arrays.asList(settings));
     }
 
     public boolean hasSettings() {

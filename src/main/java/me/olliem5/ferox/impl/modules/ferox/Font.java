@@ -12,9 +12,11 @@ public class Font extends Module {
     public static Setting<Boolean> lowercase = new Setting<>("Lowercase", false);
 
     public Font() {
-        this.addSetting(font);
-        this.addSetting(shadow);
-        this.addSetting(lowercase);
+        this.addSettings(
+                font,
+                shadow,
+                lowercase
+        );
 
         this.setEnabled(true);
     }

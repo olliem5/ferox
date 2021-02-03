@@ -34,14 +34,16 @@ public class AutoTrap extends Module {
     public static Setting<Color> renderColour = new Setting<>(renderBlock, "Render Colour", new Color(15, 60, 231, 201));
 
     public AutoTrap() {
-        this.addSetting(placeMode);
-        this.addSetting(disableMode);
-        this.addSetting(blocksPerTick);
-        this.addSetting(targetRange);
-        this.addSetting(timeout);
-        this.addSetting(timeoutTicks);
-        this.addSetting(renderBlock);
-        this.addSetting(renderColour);
+        this.addSettings(
+                placeMode,
+                disableMode,
+                blocksPerTick,
+                targetRange,
+                timeout,
+                timeoutTicks,
+                renderBlock,
+                renderColour
+        );
     }
 
     private int obsidianSlot;

@@ -5,7 +5,7 @@ import me.olliem5.ferox.api.module.Category;
 import me.olliem5.ferox.api.module.Module;
 import me.olliem5.ferox.api.module.ModuleInfo;
 import me.olliem5.ferox.api.setting.NumberSetting;
-import me.olliem5.ferox.api.util.client.CooldownUtil;
+import me.olliem5.ferox.api.util.math.CooldownUtil;
 import me.olliem5.ferox.api.util.client.MessageUtil;
 import me.olliem5.ferox.api.util.minecraft.InventoryUtil;
 import net.minecraft.entity.item.EntityEnderCrystal;
@@ -18,8 +18,6 @@ import net.minecraft.util.EnumHand;
 import java.util.Comparator;
 
 /**
- * Credit - Max for the idea
- *
  * TODO: Checks for all types of pressure plates
  * TODO: Stop pressure plates from being placed right after crystal explodes
  */
@@ -30,8 +28,10 @@ public class AntiCrystal extends Module {
     public static NumberSetting<Integer> placeDelay = new NumberSetting<>("Place Delay", 0, 2, 20, 0);
 
     public AntiCrystal() {
-        this.addSetting(placeRange);
-        this.addSetting(placeDelay);
+        this.addSettings(
+                placeRange,
+                placeDelay
+        );
     }
 
     private int pressurePlateSlot;
