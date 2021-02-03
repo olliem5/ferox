@@ -6,22 +6,27 @@ import java.util.List;
 public class Setting<T> {
 	private Setting<?> parent;
 	private final String name;
+	private final String description;
+
 	private T value;
+
 	private boolean isSubSetting;
 	private boolean isOpened;
 
 	private final List<Setting> subs = new ArrayList<>();
 
-	public Setting(String name, T value) {
+	public Setting(String name, String description, T value) {
 		this.name = name;
+		this.description = description;
 		this.value = value;
 
 		isSubSetting = false;
 	}
 
-	public Setting(Setting<?> parent, String name, T value) {
+	public Setting(Setting<?> parent, String name, String description, T value) {
 		this.parent = parent;
 		this.name = name;
+		this.description = description;
 		this.value = value;
 
 		isSubSetting = true;
@@ -70,6 +75,10 @@ public class Setting<T> {
 
 	public String getName() {
 		return name;
+	}
+
+	public String getDescription() {
+		return description;
 	}
 
 	public T getValue() {

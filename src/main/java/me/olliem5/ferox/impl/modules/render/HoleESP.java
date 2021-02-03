@@ -21,19 +21,19 @@ import java.util.stream.Collectors;
 
 @ModuleInfo(name = "HoleESP", description = "Highlights safe holes for crystal pvp", category = Category.RENDER)
 public class HoleESP extends Module {
-    public static NumberSetting<Integer> holeRange = new NumberSetting<>("Hole Range", 1, 5, 10, 0);
+    public static NumberSetting<Integer> holeRange = new NumberSetting<>("Hole Range", "The range to search for holes in", 1, 5, 10, 0);
 
-    public static Setting<Boolean> obsidian = new Setting<>("Obsidian Holes", true);
-    public static Setting<Color> obsidianHoleColour = new Setting<>(obsidian, "Obsidian Hole Colour", new Color(222, 38, 38, 178));
+    public static Setting<Boolean> obsidian = new Setting<>("Obsidian Holes", "Allows obsidian holes to be rendered", true);
+    public static Setting<Color> obsidianHoleColour = new Setting<>(obsidian, "Obsidian Hole Colour", "The colour for obsidian holes", new Color(222, 38, 38, 178));
 
-    public static Setting<Boolean> bedrock = new Setting<>("Bedrock Holes", true);
-    public static Setting<Color> bedrockHoleColour = new Setting<>(bedrock, "Bedrock Hole Colour", new Color(61, 194, 46, 169));
+    public static Setting<Boolean> bedrock = new Setting<>("Bedrock Holes", "Allows bedrock holes to be rendered", true);
+    public static Setting<Color> bedrockHoleColour = new Setting<>(bedrock, "Bedrock Hole Colour", "The colour for bedrock holes", new Color(61, 194, 46, 169));
 
-    public static Setting<Boolean> renderSettings = new Setting<>("Render Settings", true);
-    public static Setting<RenderModes> renderMode = new Setting<>(renderSettings, "Render Mode", RenderModes.Full);
-    public static NumberSetting<Double> boxHeight = new NumberSetting<>(renderSettings, "Box Height", -1.0, 0.0, 2.0, 1);
-    public static NumberSetting<Double> outlineHeight = new NumberSetting<>(renderSettings, "Outline Height", -1.0, 0.0, 2.0, 1);
-    public static NumberSetting<Double> outlineWidth = new NumberSetting<>(renderSettings, "Outline Width", 1.0, 2.0, 5.0, 1);
+    public static Setting<Boolean> renderSettings = new Setting<>("Render Settings", "The other settings for rendering", true);
+    public static Setting<RenderModes> renderMode = new Setting<>(renderSettings, "Render Mode", "The type of box to render", RenderModes.Full);
+    public static NumberSetting<Double> boxHeight = new NumberSetting<>(renderSettings, "Box Height", "The height of the box", -1.0, 0.0, 2.0, 1);
+    public static NumberSetting<Double> outlineHeight = new NumberSetting<>(renderSettings, "Outline Height", "The height of the outline", -1.0, 0.0, 2.0, 1);
+    public static NumberSetting<Double> outlineWidth = new NumberSetting<>(renderSettings, "Outline Width", "The width of the outline", 1.0, 2.0, 5.0, 1);
 
     public HoleESP() {
         this.addSettings(

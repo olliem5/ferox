@@ -12,7 +12,7 @@ import java.awt.*;
 
 @ComponentInfo(name = "Inventory")
 public class InventoryComponent extends HudComponent {
-    public static Setting<Boolean> background = new Setting("Background", true);
+    public static Setting<Boolean> background = new Setting("Background", "Shows a background behind the items", true);
 
     public InventoryComponent() {
         setWidth(144);

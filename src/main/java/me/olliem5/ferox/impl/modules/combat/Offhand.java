@@ -15,14 +15,14 @@ import net.minecraft.init.Items;
 
 @ModuleInfo(name = "Offhand", description = "Manages the item in your offhand", category = Category.COMBAT)
 public class Offhand extends Module {
-    public static Setting<OffhandModes> offhandMode = new Setting<>("Mode", OffhandModes.Crystal);
-    public static NumberSetting<Double> switchHealth = new NumberSetting<>("Totem Health", 1.0, 16.0, 36.0, 1);
+    public static Setting<OffhandModes> offhandMode = new Setting<>("Mode", "The item to put in your offhand", OffhandModes.Crystal);
+    public static NumberSetting<Double> switchHealth = new NumberSetting<>("Totem Health", "Health to be at to switch to a totem", 1.0, 16.0, 36.0, 1);
 
-    public static Setting<Boolean> swordGapple = new Setting<>("Sword Gapple", true);
-    public static Setting<Boolean> elytraTotem = new Setting<>("Elytra Totem", true);
+    public static Setting<Boolean> swordGapple = new Setting<>("Sword Gapple", "Puts a gapple in your offhand when holding a sword", true);
+    public static Setting<Boolean> elytraTotem = new Setting<>("Elytra Totem", "Puts a totem in your offhand if you are wearing an elytra", true);
 
-    public static Setting<Boolean> fallTotem = new Setting<>("Fall Totem", true);
-    public static NumberSetting<Double> fallDistance = new NumberSetting<>("Fall Distance", 1.0, 15.0, 100.0, 1);
+    public static Setting<Boolean> fallTotem = new Setting<>("Fall Totem", "Puts a totem in your offhand if you are falling", true);
+    public static NumberSetting<Double> fallDistance = new NumberSetting<>("Fall Distance", "Distance for the totem when falling", 1.0, 15.0, 100.0, 1);
 
     public Offhand() {
         this.addSettings(

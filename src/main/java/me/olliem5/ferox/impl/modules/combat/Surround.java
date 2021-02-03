@@ -21,17 +21,17 @@ import java.util.List;
 
 @ModuleInfo(name = "Surround", description = "Surrounds you with obsidian to minimize crystal damage", category = Category.COMBAT)
 public class Surround extends Module {
-    public static Setting<PlaceModes> placeMode = new Setting<>("Place", PlaceModes.Full);
-    public static Setting<DisableModes> disableMode = new Setting<>("Disable", DisableModes.Finish);
+    public static Setting<PlaceModes> placeMode = new Setting<>("Place", "The style of surround to place", PlaceModes.Full);
+    public static Setting<DisableModes> disableMode = new Setting<>("Disable", "When to disable the module", DisableModes.Finish);
 
-    public static NumberSetting<Integer> blocksPerTick = new NumberSetting<>("BPT", 1, 1, 10, 0);
-    public static Setting<Boolean> centerPlayer = new Setting<>("Center Player", true);
+    public static NumberSetting<Integer> blocksPerTick = new NumberSetting<>("BPT", "Blocks per tick to place", 1, 1, 10, 0);
+    public static Setting<Boolean> centerPlayer = new Setting<>("Center Player", "Center the player on the block for better placements", true);
 
-    public static Setting<Boolean> timeout = new Setting<>("Timeout", true);
-    public static NumberSetting<Double> timeoutTicks = new NumberSetting<>("Timeout Ticks", 1.0, 15.0, 20.0, 1);
+    public static Setting<Boolean> timeout = new Setting<>("Timeout", "Allows the module to timeout and disable", true);
+    public static NumberSetting<Double> timeoutTicks = new NumberSetting<>("Timeout Ticks", "Ticks that have to pass to timeout", 1.0, 15.0, 20.0, 1);
 
-    public static Setting<Boolean> renderBlock = new Setting<>("Render", true);
-    public static Setting<Color> renderColour = new Setting<>(renderBlock, "Render Colour", new Color(182, 40, 226, 186));
+    public static Setting<Boolean> renderBlock = new Setting<>("Render", "Allows the block placements to be rendered", true);
+    public static Setting<Color> renderColour = new Setting<>(renderBlock, "Render Colour", "The colour for the block placements", new Color(182, 40, 226, 186));
 
     public Surround() {
         this.addSettings(

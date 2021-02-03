@@ -9,7 +9,7 @@ import net.minecraft.client.renderer.OpenGlHelper;
 
 @ComponentInfo(name = "Player")
 public class PlayerComponent extends HudComponent {
-    public static NumberSetting<Integer> scale = new NumberSetting<>("Scale", 1, 30, 100, 0);
+    public static NumberSetting<Integer> scale = new NumberSetting<>("Scale", "Scale to render the player at", 1, 30, 100, 0);
 
     public PlayerComponent() {
         setWidth(50);

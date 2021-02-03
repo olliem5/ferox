@@ -13,6 +13,8 @@ import me.olliem5.ferox.api.util.render.draw.RenderHelper;
 import me.olliem5.ferox.api.util.render.gui.GuiUtil;
 import me.olliem5.ferox.impl.gui.click.theme.Theme;
 import net.minecraft.client.gui.Gui;
+import net.minecraft.client.gui.ScaledResolution;
+import net.minecraft.util.text.TextFormatting;
 import org.lwjgl.input.Keyboard;
 
 import java.awt.*;
@@ -93,6 +95,10 @@ public class DefaultTheme extends Theme {
 				boost++;
 
 				renderKeybind(module, GuiUtil.keydown, x, y + 1);
+			}
+
+			if (GuiUtil.mouseOver(x, y + height + 1 + (boost * height), (x + width), y + height * 2 + (boost * height))) {
+				drawModuleBottomLeftText(module);
 			}
 
 			boost++;
@@ -208,8 +214,12 @@ public class DefaultTheme extends Theme {
 		} else {
 			FontUtil.drawText(setting.getName(), x + 4, (y + height) + 3 + (boost * height), -1);
 		}
+
+		if (GuiUtil.mouseOver(x, y + height + (boost * height), (x + width), (y + height) + height - 1 + (boost * height))) {
+			drawSettingBottomLeftText(setting);
+		}
 	}
-	
+
 	private static void renderSubBoolean(Setting<Boolean> subSetting, int x, int y) {
 		int color = 0xFF212121;
 
@@ -227,6 +237,10 @@ public class DefaultTheme extends Theme {
 		Gui.drawRect(x + 2, y + height + (boost * height), (x + width), (y + height) + height + (boost * height), color);
 
 		FontUtil.drawText(subSetting.getName(), x + 6, (y + height) + 3 + (boost * height), -1);
+
+		if (GuiUtil.mouseOver(x, y + height + (boost * height), (x + width), (y + height) + height - 1 + (boost * height))) {
+			drawSettingBottomLeftText(subSetting);
+		}
 	}
 	
 	private static void renderEnum(Setting<Enum> setting, int x, int y) {
@@ -256,6 +270,10 @@ public class DefaultTheme extends Theme {
 		} else {
 			FontUtil.drawText(setting.getName() + ChatFormatting.GRAY + " " + setting.getValue().toString().toUpperCase(), x + 4, (y + height) + 3 + (boost * height), -1);
 		}
+
+		if (GuiUtil.mouseOver(x, y + height + (boost * height), (x + width), (y + height) + height - 1 + (boost * height))) {
+			drawSettingBottomLeftText(setting);
+		}
 	}
 
 	private static void renderSubEnum(Setting<Enum> subSetting, int x, int y) {
@@ -272,6 +290,10 @@ public class DefaultTheme extends Theme {
 
 		FontUtil.drawText(subSetting.getName(), x + 6, (y + height) + 3 + (boost * height), -1);
 		FontUtil.drawText(subSetting.getValue().toString().toUpperCase(), x + 12 + FontUtil.getStringWidth(subSetting.getName()), (y + height) + 3 + (boost * height), 0xFF767676);
+
+		if (GuiUtil.mouseOver(x, y + height + (boost * height), (x + width), (y + height) + height - 1 + (boost * height))) {
+			drawSettingBottomLeftText(subSetting);
+		}
 	}
 
 	private static void renderInteger(NumberSetting<Integer> setting, int x, int y) {
@@ -305,6 +327,10 @@ public class DefaultTheme extends Theme {
 		} else {
 			FontUtil.drawText(setting.getName() + ChatFormatting.GRAY + " " + setting.getValue(), x + 4, (y + height) + 3 + (boost * height), -1);
 		}
+
+		if (GuiUtil.mouseOver(x, y + height + (boost * height), (x + width), (y + height) + height - 1 + (boost * height))) {
+			drawSettingBottomLeftText(setting);
+		}
 	}
 
 	private static void renderSubInteger(NumberSetting<Integer> subSetting, int x, int y) {
@@ -329,6 +355,10 @@ public class DefaultTheme extends Theme {
 
 		FontUtil.drawText(subSetting.getName(), x + 6, (y + height) + 3 + (boost * height), -1);
 		FontUtil.drawText(String.valueOf(subSetting.getValue()), x + FontUtil.getStringWidth(subSetting.getName()) + 12, (y + height) + 3 + (boost * height), 0xFF767676);
+
+		if (GuiUtil.mouseOver(x, y + height + (boost * height), (x + width), (y + height) + height - 1 + (boost * height))) {
+			drawSettingBottomLeftText(subSetting);
+		}
 	}
 
 	private static void renderDouble(NumberSetting<Double> setting, int x, int y) {
@@ -362,6 +392,10 @@ public class DefaultTheme extends Theme {
 		} else {
 			FontUtil.drawText(setting.getName() + ChatFormatting.GRAY + " " + setting.getValue(), x + 4, (y + height) + 3 + (boost * height), -1);
 		}
+
+		if (GuiUtil.mouseOver(x, y + height + (boost * height), (x + width), (y + height) + height - 1 + (boost * height))) {
+			drawSettingBottomLeftText(setting);
+		}
 	}
 
 	private static void renderSubDouble(NumberSetting<Double> subSetting, int x, int y) {
@@ -386,6 +420,10 @@ public class DefaultTheme extends Theme {
 
 		FontUtil.drawText(subSetting.getName(), x + 6, (y + height) + 3 + (boost * height), -1);
 		FontUtil.drawText(String.valueOf(subSetting.getValue()), x + FontUtil.getStringWidth(subSetting.getName()) + 12, (y + height) + 3 + (boost * height), 0xFF767676);
+
+		if (GuiUtil.mouseOver(x, y + height + (boost * height), (x + width), (y + height) + height - 1 + (boost * height))) {
+			drawSettingBottomLeftText(subSetting);
+		}
 	}
 
 	private static void renderFloat(NumberSetting<Float> setting, int x, int y) {
@@ -419,6 +457,10 @@ public class DefaultTheme extends Theme {
 		} else {
 			FontUtil.drawText(setting.getName() + ChatFormatting.GRAY + " " + setting.getValue(), x + 4, (y + height) + 3 + (boost * height), -1);
 		}
+
+		if (GuiUtil.mouseOver(x, y + height + (boost * height), (x + width), (y + height) + height - 1 + (boost * height))) {
+			drawSettingBottomLeftText(setting);
+		}
 	}
 
 	private static void renderSubFloat(NumberSetting<Float> subSetting, int x, int y) {
@@ -443,35 +485,51 @@ public class DefaultTheme extends Theme {
 
 		FontUtil.drawText(subSetting.getName(), x + 6, (y + height) + 3 + (boost * height), -1);
 		FontUtil.drawText(String.valueOf(subSetting.getValue()), x + FontUtil.getStringWidth(subSetting.getName()) + 12, (y + height) + 3 + (boost * height), 0xFF767676);
+
+		if (GuiUtil.mouseOver(x, y + height + (boost * height), (x + width), (y + height) + height - 1 + (boost * height))) {
+			drawSettingBottomLeftText(subSetting);
+		}
 	}
 
-	public static void renderKeybind(Module m, int key, int x, int y) {
+	public static void renderKeybind(Module module, int key, int x, int y) {
 		int color = 0xFF212121;
 
 		if (GuiUtil.mouseOver(x, y + height + (boost * height), (x + width), (y + height) + height - 1 + (boost * height))) {
 			if (GuiUtil.ldown) {
-				m.setBinding(!m.isBinding());
+				module.setBinding(!module.isBinding());
 			}
 		}
 
-		if (m.isBinding() && key != -1 && key != Keyboard.KEY_ESCAPE && key != Keyboard.KEY_DELETE) {
-			m.setKey((key == Keyboard.KEY_DELETE || key == Keyboard.KEY_BACK) ? Keyboard.KEY_NONE : key);
-			m.setBinding(false);
+		if (module.isBinding() && key != -1 && key != Keyboard.KEY_ESCAPE && key != Keyboard.KEY_DELETE) {
+			module.setKey((key == Keyboard.KEY_DELETE || key == Keyboard.KEY_BACK) ? Keyboard.KEY_NONE : key);
+			module.setBinding(false);
 		}
 
-		if (m.isBinding() && key == Keyboard.KEY_ESCAPE) {
-			m.setBinding(false);
+		if (module.isBinding() && key == Keyboard.KEY_ESCAPE) {
+			module.setBinding(false);
 		}
 
 		Gui.drawRect(x, y + height + (boost * height), x + 1, (y + height) + height + (boost * height), RainbowUtil.getRollingRainbow(boost));
 		Gui.drawRect(x + 1, y + height + (boost * height), (x + width), (y + height) + height + (boost * height), color);
 
-		if (!m.isBinding()) {
+		if (!module.isBinding()) {
 			FontUtil.drawText("Keybind", x + 4, (y + height) + 3 + (boost * height), -1);
-			FontUtil.drawText(Keyboard.getKeyName(m.getKey()), x + 4 + FontUtil.getStringWidth("Keybind") + 3, (y + height) + 3 + (boost * height), 0xFF767676);
+			FontUtil.drawText(Keyboard.getKeyName(module.getKey()), x + 4 + FontUtil.getStringWidth("Keybind") + 3, (y + height) + 3 + (boost * height), 0xFF767676);
 		} else {
 			FontUtil.drawText("Listening" + ChatFormatting.GRAY + "...", x + 4, (y + height) + 3 + (boost * height), -1);
 		}
+	}
+
+	public static void drawModuleBottomLeftText(Module module) {
+		FontUtil.drawText(module.getDescription(), 2, (new ScaledResolution(mc).getScaledHeight() - FontUtil.getStringHeight(module.getDescription()) - 2), -1);
+	}
+
+	public static void drawSettingBottomLeftText(Setting<?> setting) {
+		FontUtil.drawText(setting.getDescription(), 2, (new ScaledResolution(mc).getScaledHeight() - FontUtil.getStringHeight(setting.getDescription()) - 2), -1);
+	}
+
+	public static void drawKeybindBottomLeftText(Module module, String key) {
+		FontUtil.drawText(module.getName() + "'s keybind is " + ChatFormatting.GRAY + key, 2, (new ScaledResolution(mc).getScaledHeight() - FontUtil.getStringHeight(module.getName() + "'s keybind is " + ChatFormatting.GRAY + key) - 2), -1);
 	}
 
 	public static void drawPicker(Setting<Color> subColor, int mouseX, int mouseY, int pickerX, int pickerY, int hueSliderX, int hueSliderY, int alphaSliderX, int alphaSliderY) {

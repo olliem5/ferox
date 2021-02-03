@@ -21,17 +21,17 @@ import java.util.List;
 
 @ModuleInfo(name = "AutoTrap", description = "Automatically traps enemies with obsidian", category = Category.COMBAT)
 public class AutoTrap extends Module {
-    public static Setting<PlaceModes> placeMode = new Setting<>("Place", PlaceModes.Full);
-    public static Setting<DisableModes> disableMode = new Setting<>("Disable", DisableModes.Finish);
+    public static Setting<PlaceModes> placeMode = new Setting<>("Place", "The style of trap to place", PlaceModes.Full);
+    public static Setting<DisableModes> disableMode = new Setting<>("Disable", "When to disable the module", DisableModes.Finish);
 
-    public static NumberSetting<Integer> blocksPerTick = new NumberSetting<>("BPT", 1, 1, 10, 0);
-    public static NumberSetting<Double> targetRange = new NumberSetting<>("Target Range", 1.0, 4.4, 10.0, 1);
+    public static NumberSetting<Integer> blocksPerTick = new NumberSetting<>("BPT", "Blocks per tick to place", 1, 1, 10, 0);
+    public static NumberSetting<Double> targetRange = new NumberSetting<>("Target Range", "The range for a target to be found", 1.0, 4.4, 10.0, 1);
 
-    public static Setting<Boolean> timeout = new Setting<>("Timeout", true);
-    public static NumberSetting<Double> timeoutTicks = new NumberSetting<>("Timeout Ticks", 1.0, 15.0, 20.0, 1);
+    public static Setting<Boolean> timeout = new Setting<>("Timeout", "Allows the module to timeout and disable", true);
+    public static NumberSetting<Double> timeoutTicks = new NumberSetting<>("Timeout Ticks", "Ticks that have to pass to timeout", 1.0, 15.0, 20.0, 1);
 
-    public static Setting<Boolean> renderBlock = new Setting<>("Render", true);
-    public static Setting<Color> renderColour = new Setting<>(renderBlock, "Render Colour", new Color(15, 60, 231, 201));
+    public static Setting<Boolean> renderBlock = new Setting<>("Render", "Allows the block placements to be rendered", true);
+    public static Setting<Color> renderColour = new Setting<>(renderBlock, "Render Colour", "The colour for the block placements", new Color(15, 60, 231, 201));
 
     public AutoTrap() {
         this.addSettings(

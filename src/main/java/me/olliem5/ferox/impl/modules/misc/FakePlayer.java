@@ -12,8 +12,8 @@ import java.util.UUID;
 
 @ModuleInfo(name = "FakePlayer", description = "Spawns a client side player entity, usually for module testing", category = Category.MISC)
 public class FakePlayer extends Module {
-    public Setting<NameModes> nameMode = new Setting<>("Name", NameModes.Ollie);
-    public NumberSetting<Float> health = new NumberSetting<>("Health", 0.0f, 20.0f, 36.0f, 1);
+    public Setting<NameModes> nameMode = new Setting<>("Name", "The name of the fake player", NameModes.Ollie);
+    public NumberSetting<Float> health = new NumberSetting<>("Health", "The health of the fake player", 0.0f, 20.0f, 36.0f, 1);
 
     public FakePlayer() {
         this.addSettings(

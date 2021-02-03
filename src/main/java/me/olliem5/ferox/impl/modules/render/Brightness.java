@@ -9,7 +9,7 @@ import net.minecraft.potion.PotionEffect;
 
 @ModuleInfo(name = "Brightness", description = "Makes your game brighter", category = Category.RENDER)
 public class Brightness extends Module {
-    public static Setting<BrightnessModes> brightnessMode = new Setting<>("Mode", BrightnessModes.Gamma);
+    public static Setting<BrightnessModes> brightnessMode = new Setting<>("Mode", "The way of achieving brightness", BrightnessModes.Gamma);
 
     public Brightness() {
         this.addSettings(

@@ -16,11 +16,11 @@ import net.minecraft.network.play.server.SPacketExplosion;
 
 @ModuleInfo(name = "Velocity", description = "Modifies the knockback that you take", category = Category.MOVEMENT)
 public class Velocity extends Module {
-    public static Setting<Boolean> velocity = new Setting<>("Velocity", true);
-    public static Setting<Boolean> explosions = new Setting<>("Explosions", true);
+    public static Setting<Boolean> velocity = new Setting<>("Velocity", "Modifies player velocity", true);
+    public static Setting<Boolean> explosions = new Setting<>("Explosions", "Modifies explosion velocity", true);
 
-    public static NumberSetting<Float> horizontal = new NumberSetting<>("Horizontal", 0.0f, 0.0f, 100.0f, 1);
-    public static NumberSetting<Float> vertical = new NumberSetting<>("Vertical", 0.0f, 0.0f, 100.0f, 1);
+    public static NumberSetting<Float> horizontal = new NumberSetting<>("Horizontal", "Horizontal knockback to take", 0.0f, 0.0f, 100.0f, 1);
+    public static NumberSetting<Float> vertical = new NumberSetting<>("Vertical", "Vertical knockback to take", 0.0f, 0.0f, 100.0f, 1);
 
     public Velocity() {
         this.addSettings(
