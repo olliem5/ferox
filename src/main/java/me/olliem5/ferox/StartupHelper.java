@@ -2,11 +2,10 @@ package me.olliem5.ferox;
 
 import me.olliem5.ferox.api.event.EventProcessor;
 import me.olliem5.ferox.api.hud.HudManager;
-import me.olliem5.ferox.api.module.Module;
 import me.olliem5.ferox.api.module.ModuleManager;
-import me.olliem5.ferox.impl.command.EchoCommand;
-import me.olliem5.ferox.impl.gui.click.main.Window;
-import me.olliem5.ferox.impl.gui.click.theme.Theme;
+import me.olliem5.ferox.api.theme.ThemeManager;
+import me.olliem5.ferox.impl.gui.screens.click.Window;
+import me.olliem5.ferox.api.theme.Theme;
 import me.yagel15637.venture.command.ICommand;
 import me.yagel15637.venture.manager.CommandManager;
 import net.minecraftforge.common.MinecraftForge;
@@ -24,7 +23,7 @@ public class StartupHelper {
         Ferox.log("Modules Initialized!");
 
         Window.initGui();
-        Theme.initThemes();
+        ThemeManager.init();
         Ferox.log("GUI Initialized!");
 
         HudManager.init();

@@ -1,4 +1,4 @@
-package me.olliem5.ferox.impl.gui.console.component;
+package me.olliem5.ferox.impl.gui.screens.console.component;
 
 import me.olliem5.ferox.api.util.render.font.FontUtil;
 import me.olliem5.ferox.impl.gui.Component;

@@ -1,4 +1,4 @@
-package me.olliem5.ferox.impl.gui.console.component;
+package me.olliem5.ferox.impl.gui.screens.console.component;
 
 import com.mojang.realmsclient.gui.ChatFormatting;
 import me.olliem5.ferox.Ferox;

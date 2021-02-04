@@ -4,7 +4,7 @@ import me.olliem5.ferox.api.module.Category;
 import me.olliem5.ferox.api.module.Module;
 import me.olliem5.ferox.api.module.ModuleInfo;
 import me.olliem5.ferox.api.setting.Setting;
-import me.olliem5.ferox.impl.gui.editor.HudEditor;
+import me.olliem5.ferox.impl.gui.screens.editor.HudEditor;
 
 @ModuleInfo(name = "HudEditor", description = "Opens Ferox's HudEditor", category = Category.UI)
 public class HudEditorModule extends Module {

@@ -27,8 +27,8 @@ public class ModuleManager {
         return modules;
     }
 
-    public static List<Module> getModulesInCategory(Category category) {
-        List<Module> modulesInCategory = new ArrayList<>();
+    public static ArrayList<Module> getModulesInCategory(Category category) {
+        ArrayList<Module> modulesInCategory = new ArrayList<>();
 
         for (Module module : modules) {
             if (module.getCategory().equals(category)) {

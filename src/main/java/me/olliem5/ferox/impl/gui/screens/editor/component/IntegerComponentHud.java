@@ -1,4 +1,4 @@
-package me.olliem5.ferox.impl.gui.editor.component;
+package me.olliem5.ferox.impl.gui.screens.editor.component;
 
 import com.mojang.realmsclient.gui.ChatFormatting;
 import me.olliem5.ferox.api.setting.NumberSetting;
@@ -11,8 +11,8 @@ import java.awt.*;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-public class FloatComponentHud extends Component {
-    private NumberSetting<Float> set;
+public class IntegerComponentHud extends Component {
+    private NumberSetting<Integer> set;
     private HudComponentButton parent;
     private int offset;
     private int x;
@@ -20,7 +20,7 @@ public class FloatComponentHud extends Component {
     private boolean dragging;
     private double sliderWidth;
 
-    public FloatComponentHud(NumberSetting<Float> value, HudComponentButton button, int offset) {
+    public IntegerComponentHud(NumberSetting<Integer> value, HudComponentButton button, int offset) {
         this.dragging = false;
         this.set = value;
         this.parent = button;
@@ -53,15 +53,15 @@ public class FloatComponentHud extends Component {
         this.x = parent.parent.getX();
 
         double diff = Math.min(100, Math.max(0, mouseX - this.x));
-        float min = this.set.getMin();
-        float max = this.set.getMax();
+        int min = this.set.getMin();
+        int max = this.set.getMax();
         this.sliderWidth = 100 * (this.set.getValue() - min) / (max - min);
 
         if (this.dragging) {
             if (diff == 0) {
-                this.set.setValue(this.set.getValue());
+                this.set.setValue(this.set.getMin());
             } else {
-                float newValue = (float) roundToPlace(diff / 100 * (max - min) + min, 2);
+                int newValue = (int) roundToPlace(diff / 100 * (max - min) + min, 2);
                 this.set.setValue(newValue);
             }
         }

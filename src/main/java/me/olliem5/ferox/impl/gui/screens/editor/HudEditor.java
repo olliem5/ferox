@@ -1,9 +1,9 @@
-package me.olliem5.ferox.impl.gui.editor;
+package me.olliem5.ferox.impl.gui.screens.editor;
 
 import me.olliem5.ferox.api.hud.HudComponent;
 import me.olliem5.ferox.api.hud.HudManager;
 import me.olliem5.ferox.impl.gui.Component;
-import me.olliem5.ferox.impl.gui.editor.component.HudPanel;
+import me.olliem5.ferox.impl.gui.screens.editor.component.HudPanel;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiScreen;
 import org.lwjgl.input.Keyboard;

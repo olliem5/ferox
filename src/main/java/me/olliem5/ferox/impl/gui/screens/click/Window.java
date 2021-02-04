@@ -1,11 +1,12 @@
-package me.olliem5.ferox.impl.gui.click.main;
+package me.olliem5.ferox.impl.gui.screens.click;
 
 import me.olliem5.ferox.api.module.Category;
 import me.olliem5.ferox.api.module.Module;
 import me.olliem5.ferox.api.module.ModuleManager;
+import me.olliem5.ferox.api.theme.ThemeManager;
 import me.olliem5.ferox.api.traits.Minecraft;
 import me.olliem5.ferox.api.util.render.gui.GuiUtil;
-import me.olliem5.ferox.impl.gui.click.theme.Theme;
+import me.olliem5.ferox.api.theme.Theme;
 import me.olliem5.ferox.impl.modules.ui.ClickGUIModule;
 import net.minecraft.client.gui.ScaledResolution;
 import org.lwjgl.input.Mouse;
@@ -28,8 +29,8 @@ public class Window implements Minecraft {
 	private String name;
 	private boolean dragging;
 	private boolean open = true;
-	private List<Module> modules;
-	public static final List<Window> windows = new ArrayList<>();
+	private ArrayList<Module> modules;
+	public static ArrayList<Window> windows = new ArrayList<>();
 	public Theme currentTheme;
 
 	public Window(String name, int x, int y, Category category) {
@@ -49,7 +50,7 @@ public class Window implements Minecraft {
 	}
 	
 	public void drawGui(int mouseX, int mouseY) {
-		currentTheme = Theme.getThemeByName(getTheme());
+		currentTheme = ThemeManager.getThemeByName(getTheme());
 
 		updateMousePos();
 		scroll();

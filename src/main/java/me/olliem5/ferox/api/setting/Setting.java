@@ -13,7 +13,7 @@ public class Setting<T> {
 	private boolean isSubSetting;
 	private boolean isOpened;
 
-	private final List<Setting> subs = new ArrayList<>();
+	private final ArrayList<Setting> subs = new ArrayList<>();
 
 	public Setting(String name, String description, T value) {
 		this.name = name;
@@ -57,7 +57,7 @@ public class Setting<T> {
 		}
 	}
 
-	public List<Setting> getSubSettings() {
+	public ArrayList<Setting> getSubSettings() {
 		return this.subs;
 	}
 

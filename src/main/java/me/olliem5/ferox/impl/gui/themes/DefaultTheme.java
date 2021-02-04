@@ -1,4 +1,4 @@
-package me.olliem5.ferox.impl.gui.click.theme.themes;
+package me.olliem5.ferox.impl.gui.themes;
 
 import com.mojang.realmsclient.gui.ChatFormatting;
 import me.olliem5.ferox.api.module.Module;
@@ -11,13 +11,14 @@ import me.olliem5.ferox.api.util.render.font.FontUtil;
 import me.olliem5.ferox.api.util.math.MathUtil;
 import me.olliem5.ferox.api.util.render.draw.RenderHelper;
 import me.olliem5.ferox.api.util.render.gui.GuiUtil;
-import me.olliem5.ferox.impl.gui.click.theme.Theme;
+import me.olliem5.ferox.api.theme.GUITheme;
+import me.olliem5.ferox.api.theme.Theme;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.ScaledResolution;
-import net.minecraft.util.text.TextFormatting;
 import org.lwjgl.input.Keyboard;
 
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -27,9 +28,8 @@ import java.util.List;
  * @since 11/18/20
  */
 
+@GUITheme(name = "Default")
 public class DefaultTheme extends Theme {
-	public static final String name = "Default";
-
 	private static int boost = 0;
 
 	public static final int width = 105;
@@ -37,10 +37,6 @@ public class DefaultTheme extends Theme {
 
 	public static Color finalColor;
 	public static float finalAlpha = 0.2f;
-
-	public DefaultTheme() {
-		super(name, width, height);
-	}
 	
 	@Override
 	public void drawTitles(String name, int x, int y) {
@@ -51,7 +47,7 @@ public class DefaultTheme extends Theme {
 	}
 
 	@Override
-	public void drawModules(List<Module> modules, int x, int y, int mouseX, int mouseY) {
+	public void drawModules(ArrayList<Module> modules, int x, int y, int mouseX, int mouseY) {
 		boost = 0;
 
 		for (Module module : modules) {
@@ -61,6 +57,8 @@ public class DefaultTheme extends Theme {
 				color = 0xFF2F2F2F;
 			}
 
+			Gui.drawRect(x, y + height + 1 + (boost * height), (x + width), y + height * 2 + 1 + (boost * height), color);
+
 			if (GuiUtil.mouseOver(x, y + height + 1 + (boost * height), (x + width), y + height * 2 + (boost * height))) {
 				if (GuiUtil.ldown) {
 					module.toggle();
@@ -69,16 +67,14 @@ public class DefaultTheme extends Theme {
 				if (GuiUtil.rdown) {
 					module.setOpened(!module.isOpened());
 				}
-			}
 
-			Gui.drawRect(x, y + height + 1 + (boost * height), (x + width), y + height * 2 + 1 + (boost * height), color);
-
-			if (GuiUtil.mouseOver(x, y + height + 1 + (boost * height), (x + width), y + height * 2 + (boost * height))) {
 				FontUtil.drawText(module.getName(), x + 3, y + height + 4 + (boost * height), -1);
 
 				if (module.hasSettings()) {
 					FontUtil.drawText("...", (x + width) - 11, y + height + 3 + (boost * height), -1);
 				}
+
+				drawModuleBottomLeftText(module);
 			} else {
 				FontUtil.drawText(module.getName(), x + 2, y + height + 4 + (boost * height), -1);
 
@@ -95,10 +91,6 @@ public class DefaultTheme extends Theme {
 				boost++;
 
 				renderKeybind(module, GuiUtil.keydown, x, y + 1);
-			}
-
-			if (GuiUtil.mouseOver(x, y + height + 1 + (boost * height), (x + width), y + height * 2 + (boost * height))) {
-				drawModuleBottomLeftText(module);
 			}
 
 			boost++;
@@ -198,6 +190,8 @@ public class DefaultTheme extends Theme {
 			if (GuiUtil.rdown) {
 				setting.setOpened(!setting.isOpened());
 			}
+
+			drawSettingBottomLeftText(setting);
 		}
 
 		Gui.drawRect(x, y + height + (boost * height), x + 1, (y + height) + height + (boost * height), RainbowUtil.getRollingRainbow(boost));
@@ -214,10 +208,6 @@ public class DefaultTheme extends Theme {
 		} else {
 			FontUtil.drawText(setting.getName(), x + 4, (y + height) + 3 + (boost * height), -1);
 		}
-
-		if (GuiUtil.mouseOver(x, y + height + (boost * height), (x + width), (y + height) + height - 1 + (boost * height))) {
-			drawSettingBottomLeftText(setting);
-		}
 	}
 
 	private static void renderSubBoolean(Setting<Boolean> subSetting, int x, int y) {
@@ -231,16 +221,14 @@ public class DefaultTheme extends Theme {
 			if (GuiUtil.ldown) {
 				subSetting.setValue(!subSetting.getValue());
 			}
+
+			drawSettingBottomLeftText(subSetting);
 		}
 
 		Gui.drawRect(x, y + height + (boost * height), x + 2, (y + height) + height + (boost * height), RainbowUtil.getRollingRainbow(boost));
 		Gui.drawRect(x + 2, y + height + (boost * height), (x + width), (y + height) + height + (boost * height), color);
 
 		FontUtil.drawText(subSetting.getName(), x + 6, (y + height) + 3 + (boost * height), -1);
-
-		if (GuiUtil.mouseOver(x, y + height + (boost * height), (x + width), (y + height) + height - 1 + (boost * height))) {
-			drawSettingBottomLeftText(subSetting);
-		}
 	}
 	
 	private static void renderEnum(Setting<Enum> setting, int x, int y) {
@@ -254,6 +242,8 @@ public class DefaultTheme extends Theme {
 			if (GuiUtil.rdown) {
 				setting.setOpened(setting.isOpened());
 			}
+
+			drawSettingBottomLeftText(setting);
 		}
 
 		Gui.drawRect(x, y + height + (boost * height), x + 1, (y + height) + height + (boost * height), RainbowUtil.getRollingRainbow(boost));
@@ -270,10 +260,6 @@ public class DefaultTheme extends Theme {
 		} else {
 			FontUtil.drawText(setting.getName() + ChatFormatting.GRAY + " " + setting.getValue().toString().toUpperCase(), x + 4, (y + height) + 3 + (boost * height), -1);
 		}
-
-		if (GuiUtil.mouseOver(x, y + height + (boost * height), (x + width), (y + height) + height - 1 + (boost * height))) {
-			drawSettingBottomLeftText(setting);
-		}
 	}
 
 	private static void renderSubEnum(Setting<Enum> subSetting, int x, int y) {
@@ -283,17 +269,14 @@ public class DefaultTheme extends Theme {
 			if (GuiUtil.ldown) {
 				EnumUtil.setEnumValue(subSetting, EnumUtil.getNextEnumValue(subSetting, false));
 			}
+
+			drawSettingBottomLeftText(subSetting);
 		}
 
 		Gui.drawRect(x, y + height + (boost * height), x + 2, (y + height) + height + (boost * height), RainbowUtil.getRollingRainbow(boost));
 		Gui.drawRect(x + 2, y + height + (boost * height), (x + width), (y + height) + height + (boost * height), color);
 
-		FontUtil.drawText(subSetting.getName(), x + 6, (y + height) + 3 + (boost * height), -1);
-		FontUtil.drawText(subSetting.getValue().toString().toUpperCase(), x + 12 + FontUtil.getStringWidth(subSetting.getName()), (y + height) + 3 + (boost * height), 0xFF767676);
-
-		if (GuiUtil.mouseOver(x, y + height + (boost * height), (x + width), (y + height) + height - 1 + (boost * height))) {
-			drawSettingBottomLeftText(subSetting);
-		}
+		FontUtil.drawText(subSetting.getName() + ChatFormatting.GRAY + " " + subSetting.getValue().toString().toUpperCase(), x + 6, (y + height) + 3 + (boost * height), -1);
 	}
 
 	private static void renderInteger(NumberSetting<Integer> setting, int x, int y) {
@@ -306,6 +289,8 @@ public class DefaultTheme extends Theme {
 				int percentError = (GuiUtil.mX - (x)) * 100 / ((x + width) - x);
 				setting.setValue((int) (percentError * ((setting.getMax() - setting.getMin()) / 100.0D) + setting.getMin()));
 			}
+
+			drawSettingBottomLeftText(setting);
 		}
 
 		if (pixAdd < 1) {
@@ -326,10 +311,6 @@ public class DefaultTheme extends Theme {
 			}
 		} else {
 			FontUtil.drawText(setting.getName() + ChatFormatting.GRAY + " " + setting.getValue(), x + 4, (y + height) + 3 + (boost * height), -1);
-		}
-
-		if (GuiUtil.mouseOver(x, y + height + (boost * height), (x + width), (y + height) + height - 1 + (boost * height))) {
-			drawSettingBottomLeftText(setting);
 		}
 	}
 
@@ -343,6 +324,8 @@ public class DefaultTheme extends Theme {
 				int percentError = (GuiUtil.mX - (x)) * 100 / ((x + width) - x);
 				subSetting.setValue((int) (percentError * ((subSetting.getMax() - subSetting.getMin()) / 100.0D) + subSetting.getMin()));
 			}
+
+			drawSettingBottomLeftText(subSetting);
 		}
 
 		if (pixAdd < 2) {
@@ -353,12 +336,7 @@ public class DefaultTheme extends Theme {
 		Gui.drawRect(x + 2, y + height + (boost * height), (x + width), (y + height) + height + (boost * height), color);
 		Gui.drawRect(x + 2, y + height + (boost * height), (x) + pixAdd, (y + height) + height + (boost * height), 0xFF2F2F2F);
 
-		FontUtil.drawText(subSetting.getName(), x + 6, (y + height) + 3 + (boost * height), -1);
-		FontUtil.drawText(String.valueOf(subSetting.getValue()), x + FontUtil.getStringWidth(subSetting.getName()) + 12, (y + height) + 3 + (boost * height), 0xFF767676);
-
-		if (GuiUtil.mouseOver(x, y + height + (boost * height), (x + width), (y + height) + height - 1 + (boost * height))) {
-			drawSettingBottomLeftText(subSetting);
-		}
+		FontUtil.drawText(subSetting.getName() + ChatFormatting.GRAY + " " + subSetting.getValue(), x + 6, (y + height) + 3 + (boost * height), -1);
 	}
 
 	private static void renderDouble(NumberSetting<Double> setting, int x, int y) {
@@ -371,6 +349,8 @@ public class DefaultTheme extends Theme {
 				int percentError = (GuiUtil.mX - (x)) * 100 / ((x + width) - x);
 				setting.setValue(MathUtil.roundNumber(percentError * ((setting.getMax() - setting.getMin()) / 100.0D) + setting.getMin(), setting.getScale()));
 			}
+
+			drawSettingBottomLeftText(setting);
 		}
 
 		if (pixAdd < 1) {
@@ -391,10 +371,6 @@ public class DefaultTheme extends Theme {
 			}
 		} else {
 			FontUtil.drawText(setting.getName() + ChatFormatting.GRAY + " " + setting.getValue(), x + 4, (y + height) + 3 + (boost * height), -1);
-		}
-
-		if (GuiUtil.mouseOver(x, y + height + (boost * height), (x + width), (y + height) + height - 1 + (boost * height))) {
-			drawSettingBottomLeftText(setting);
 		}
 	}
 
@@ -408,6 +384,8 @@ public class DefaultTheme extends Theme {
 				int percentError = (GuiUtil.mX - (x)) * 100 / ((x + width) - x);
 				subSetting.setValue(MathUtil.roundNumber(percentError * ((subSetting.getMax() - subSetting.getMin()) / 100.0D) + subSetting.getMin(), subSetting.getScale()));
 			}
+
+			drawSettingBottomLeftText(subSetting);
 		}
 
 		if (pixAdd < 2) {
@@ -418,12 +396,7 @@ public class DefaultTheme extends Theme {
 		Gui.drawRect(x + 2, y + height + (boost * height), (x + width), (y + height) + height + (boost * height), color);
 		Gui.drawRect(x + 2, y + height + (boost * height), (x) + pixAdd, (y + height) + height + (boost * height), 0xFF2F2F2F);
 
-		FontUtil.drawText(subSetting.getName(), x + 6, (y + height) + 3 + (boost * height), -1);
-		FontUtil.drawText(String.valueOf(subSetting.getValue()), x + FontUtil.getStringWidth(subSetting.getName()) + 12, (y + height) + 3 + (boost * height), 0xFF767676);
-
-		if (GuiUtil.mouseOver(x, y + height + (boost * height), (x + width), (y + height) + height - 1 + (boost * height))) {
-			drawSettingBottomLeftText(subSetting);
-		}
+		FontUtil.drawText(subSetting.getName() + ChatFormatting.GRAY + " " + subSetting.getValue(), x + 6, (y + height) + 3 + (boost * height), -1);
 	}
 
 	private static void renderFloat(NumberSetting<Float> setting, int x, int y) {
@@ -436,6 +409,8 @@ public class DefaultTheme extends Theme {
 				int percentError = (GuiUtil.mX - (x)) * 100 / ((x + width) - x);
 				setting.setValue((float) MathUtil.roundNumber(percentError * ((setting.getMax() - setting.getMin()) / 100.0D) + setting.getMin(), setting.getScale()));
 			}
+
+			drawSettingBottomLeftText(setting);
 		}
 
 		if (pixAdd < 1) {
@@ -457,10 +432,6 @@ public class DefaultTheme extends Theme {
 		} else {
 			FontUtil.drawText(setting.getName() + ChatFormatting.GRAY + " " + setting.getValue(), x + 4, (y + height) + 3 + (boost * height), -1);
 		}
-
-		if (GuiUtil.mouseOver(x, y + height + (boost * height), (x + width), (y + height) + height - 1 + (boost * height))) {
-			drawSettingBottomLeftText(setting);
-		}
 	}
 
 	private static void renderSubFloat(NumberSetting<Float> subSetting, int x, int y) {
@@ -473,6 +444,8 @@ public class DefaultTheme extends Theme {
 				int percentError = (GuiUtil.mX - (x)) * 100 / ((x + width) - x);
 				subSetting.setValue((float) MathUtil.roundNumber(percentError * ((subSetting.getMax() - subSetting.getMin()) / 100.0D) + subSetting.getMin(), subSetting.getScale()));
 			}
+
+			drawSettingBottomLeftText(subSetting);
 		}
 
 		if (pixAdd < 2) {
@@ -483,12 +456,7 @@ public class DefaultTheme extends Theme {
 		Gui.drawRect(x + 2, y + height + (boost * height), (x + width), (y + height) + height + (boost * height), color);
 		Gui.drawRect(x + 2, y + height + (boost * height), (x) + pixAdd, (y + height) + height + (boost * height), 0xFF2F2F2F);
 
-		FontUtil.drawText(subSetting.getName(), x + 6, (y + height) + 3 + (boost * height), -1);
-		FontUtil.drawText(String.valueOf(subSetting.getValue()), x + FontUtil.getStringWidth(subSetting.getName()) + 12, (y + height) + 3 + (boost * height), 0xFF767676);
-
-		if (GuiUtil.mouseOver(x, y + height + (boost * height), (x + width), (y + height) + height - 1 + (boost * height))) {
-			drawSettingBottomLeftText(subSetting);
-		}
+		FontUtil.drawText(subSetting.getName() + ChatFormatting.GRAY + " " + subSetting.getValue(), x + 6, (y + height) + 3 + (boost * height), -1);
 	}
 
 	public static void renderKeybind(Module module, int key, int x, int y) {
@@ -498,6 +466,8 @@ public class DefaultTheme extends Theme {
 			if (GuiUtil.ldown) {
 				module.setBinding(!module.isBinding());
 			}
+
+			drawKeybindBottomLeftText(module, Keyboard.getKeyName(module.getKey()));
 		}
 
 		if (module.isBinding() && key != -1 && key != Keyboard.KEY_ESCAPE && key != Keyboard.KEY_DELETE) {
@@ -512,11 +482,10 @@ public class DefaultTheme extends Theme {
 		Gui.drawRect(x, y + height + (boost * height), x + 1, (y + height) + height + (boost * height), RainbowUtil.getRollingRainbow(boost));
 		Gui.drawRect(x + 1, y + height + (boost * height), (x + width), (y + height) + height + (boost * height), color);
 
-		if (!module.isBinding()) {
-			FontUtil.drawText("Keybind", x + 4, (y + height) + 3 + (boost * height), -1);
-			FontUtil.drawText(Keyboard.getKeyName(module.getKey()), x + 4 + FontUtil.getStringWidth("Keybind") + 3, (y + height) + 3 + (boost * height), 0xFF767676);
-		} else {
+		if (module.isBinding()) {
 			FontUtil.drawText("Listening" + ChatFormatting.GRAY + "...", x + 4, (y + height) + 3 + (boost * height), -1);
+		} else {
+			FontUtil.drawText("Keybind" + ChatFormatting.GRAY + " " + Keyboard.getKeyName(module.getKey()), x + 4, (y + height) + 3 + (boost * height), -1);
 		}
 	}
 

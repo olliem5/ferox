@@ -5,7 +5,7 @@ import me.olliem5.ferox.api.module.Module;
 import me.olliem5.ferox.api.module.ModuleInfo;
 import me.olliem5.ferox.api.setting.NumberSetting;
 import me.olliem5.ferox.api.setting.Setting;
-import me.olliem5.ferox.impl.gui.click.main.BaseGui;
+import me.olliem5.ferox.impl.gui.screens.click.BaseGui;
 import org.lwjgl.input.Keyboard;
 
 @ModuleInfo(name = "ClickGUI", description = "Opens Ferox's ClickGUI", category = Category.UI, key = Keyboard.KEY_P)

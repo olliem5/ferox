@@ -1,4 +1,4 @@
-package me.olliem5.ferox.impl.gui.click.main;
+package me.olliem5.ferox.impl.gui.screens.click;
 
 import me.olliem5.ferox.api.util.render.gui.GuiUtil;
 import me.olliem5.ferox.impl.modules.ui.ClickGUIModule;
