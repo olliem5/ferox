@@ -4,22 +4,21 @@ import com.mojang.realmsclient.gui.ChatFormatting;
 import me.olliem5.ferox.api.module.Module;
 import me.olliem5.ferox.api.setting.NumberSetting;
 import me.olliem5.ferox.api.setting.Setting;
-import me.olliem5.ferox.api.util.math.EnumUtil;
-import me.olliem5.ferox.api.util.colour.ColourUtil;
-import me.olliem5.ferox.api.util.colour.RainbowUtil;
-import me.olliem5.ferox.api.util.render.font.FontUtil;
-import me.olliem5.ferox.api.util.math.MathUtil;
-import me.olliem5.ferox.api.util.render.draw.RenderHelper;
-import me.olliem5.ferox.api.util.render.gui.GuiUtil;
 import me.olliem5.ferox.api.theme.GUITheme;
 import me.olliem5.ferox.api.theme.Theme;
+import me.olliem5.ferox.api.util.colour.ColourUtil;
+import me.olliem5.ferox.api.util.colour.RainbowUtil;
+import me.olliem5.ferox.api.util.math.EnumUtil;
+import me.olliem5.ferox.api.util.math.MathUtil;
+import me.olliem5.ferox.api.util.render.draw.RenderHelper;
+import me.olliem5.ferox.api.util.render.font.FontUtil;
+import me.olliem5.ferox.api.util.render.gui.GuiUtil;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.ScaledResolution;
 import org.lwjgl.input.Keyboard;
 
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @author bon
@@ -37,7 +36,7 @@ public class DefaultTheme extends Theme {
 
 	public static Color finalColor;
 	public static float finalAlpha = 0.2f;
-	
+
 	@Override
 	public void drawTitles(String name, int x, int y) {
 		Gui.drawRect(x, y, (x + width), y + height, 0xFF2F2F2F);
@@ -515,10 +514,10 @@ public class DefaultTheme extends Theme {
 		int pickerWidth = 100;
 		int pickerHeight = 100;
 
-		int hueSliderWidth = 100;
+		int hueSliderWidth = 75;
 		int hueSliderHeight = 10;
 
-		int alphaSliderWidth = 100;
+		int alphaSliderWidth = 75;
 		int alphaSliderHeight = 10;
 
 		if (GuiUtil.lheld && GuiUtil.mouseOver(pickerX, pickerY, pickerX + pickerWidth, pickerY + pickerHeight)) {
@@ -538,23 +537,13 @@ public class DefaultTheme extends Theme {
 		}
 
 		if (pickingHue) {
-			if (hueSliderWidth > hueSliderHeight) {
-				float restrictedX = (float) Math.min(Math.max(hueSliderX, mouseX), hueSliderX + hueSliderWidth);
-				color[0] = (restrictedX - (float) hueSliderX) / hueSliderWidth;
-			} else {
-				float restrictedY = (float) Math.min(Math.max(hueSliderY, mouseY), hueSliderY + hueSliderHeight);
-				color[0] = (restrictedY - (float) hueSliderY) / hueSliderHeight;
-			}
+			float restrictedY = (float) Math.min(Math.max(hueSliderY, mouseY), hueSliderY + hueSliderHeight);
+			color[0] = (restrictedY - (float) hueSliderY) / hueSliderHeight;
 		}
 
 		if (pickingAlpha) {
-			if (alphaSliderWidth > alphaSliderHeight) {
-				float restrictedX = (float) Math.min(Math.max(alphaSliderX, mouseX), alphaSliderX + alphaSliderWidth);
-				finalAlpha = 1 - (restrictedX - (float) alphaSliderX) / alphaSliderWidth;
-			} else {
-				float restrictedY = (float) Math.min(Math.max(alphaSliderY, mouseY), alphaSliderY + alphaSliderHeight);
-				finalAlpha = 1 - (restrictedY - (float) alphaSliderY) / alphaSliderHeight;
-			}
+			float restrictedY = (float) Math.min(Math.max(alphaSliderY, mouseY), alphaSliderY + alphaSliderHeight);
+			finalAlpha = 1 - (restrictedY - (float) alphaSliderY) / alphaSliderHeight;
 		}
 
 		if (pickingColor) {
@@ -591,37 +580,18 @@ public class DefaultTheme extends Theme {
 	public static void drawHueSlider(int x, int y, int width, int height, float hue) {
 		int step = 0;
 
-		if (height > width) {
-			Gui.drawRect(x, y, x + width, y + 4, 0xFFFF0000);
+		for (int colorIndex = 0; colorIndex < 5; colorIndex++) {
+			int previousStep = Color.HSBtoRGB((float) step / 5, 1.0f, 1.0f);
+			int nextStep = Color.HSBtoRGB((float) (step + 1) / 5, 1.0f, 1.0f);
 
-			y += 4;
+			RenderHelper.gradient(x + step * (width / 5), y, x + (step + 1) * (width / 5), y + height, previousStep, nextStep, true);
 
-			for (int colorIndex = 0; colorIndex < 6; colorIndex++) {
-				int previousStep = Color.HSBtoRGB((float) step / 6, 1.0f, 1.0f);
-				int nextStep = Color.HSBtoRGB((float) (step + 1) / 6, 1.0f, 1.0f);
-
-				RenderHelper.drawGradientRect(x, y + step * (height / 6), x + width, y + (step + 1) * (height / 6), previousStep, nextStep);
-
-				step++;
-			}
-
-			int sliderMinY = (int) (y + (height * hue)) - 4;
-
-			Gui.drawRect(x, sliderMinY - 1, x + width, sliderMinY + 1, -1);
-		} else {
-			for (int colorIndex = 0; colorIndex < 6; colorIndex++) {
-				int previousStep = Color.HSBtoRGB((float) step / 6, 1.0f, 1.0f);
-				int nextStep = Color.HSBtoRGB((float) (step + 1) / 6, 1.0f, 1.0f);
-
-				RenderHelper.gradient(x + step * (width / 6), y, x + (step + 1) * (width / 6), y + height, previousStep, nextStep, true);
-
-				step++;
-			}
-
-			int sliderMinX = (int) (x + (width * hue));
-
-			Gui.drawRect(sliderMinX - 1, y, sliderMinX + 1, y + height, -1);
+			step++;
 		}
+
+		int sliderMinX = (int) (x + (width * hue));
+
+		Gui.drawRect(sliderMinX - 1, y, sliderMinX + 1, y + height, -1);
 	}
 
 	public static void drawAlphaSlider(int x, int y, int width, int height, float red, float green, float blue, float alpha) {

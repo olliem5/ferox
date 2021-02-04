@@ -7,11 +7,7 @@ import java.util.ArrayList;
 public class FriendManager {
     private static ArrayList<Friend> friends = new ArrayList<>();
 
-    public static ArrayList<Friend> getFriends() {
-        return friends;
-    }
-
-    public boolean isFriend(String name) {
+    public static boolean isFriend(String name) {
         boolean isFriend = false;
 
         for (Friend friend : getFriends()) {
@@ -23,7 +19,7 @@ public class FriendManager {
         return isFriend;
     }
 
-    public Friend getFriendByName(String name) {
+    public static Friend getFriendByName(String name) {
         Friend namedFriend = null;
 
         for (Friend friend : getFriends()) {
@@ -35,15 +31,19 @@ public class FriendManager {
         return namedFriend;
     }
 
-    public void addFriend(String name) {
+    public static ArrayList<Friend> getFriends() {
+        return friends;
+    }
+
+    public static void addFriend(String name) {
         friends.add(new Friend(name));
     }
 
-    public void delFriend(String name) {
+    public static void delFriend(String name) {
         friends.remove(getFriendByName(name));
     }
 
-    public boolean isFriendsActive() {
+    public static boolean isFriendsActive() {
         return ModuleManager.getModuleByName("Friends").isEnabled();
     }
 }

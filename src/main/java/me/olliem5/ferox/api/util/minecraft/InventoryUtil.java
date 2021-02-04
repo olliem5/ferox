@@ -5,7 +5,6 @@ import net.minecraft.block.Block;
 import net.minecraft.inventory.ClickType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
-import net.minecraft.item.ItemStack;
 
 public class InventoryUtil implements Minecraft {
     public static void switchToSlot(Class<? extends Item> clazz) {

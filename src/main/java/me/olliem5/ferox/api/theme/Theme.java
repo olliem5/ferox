@@ -2,11 +2,8 @@ package me.olliem5.ferox.api.theme;
 
 import me.olliem5.ferox.api.module.Module;
 import me.olliem5.ferox.api.traits.Minecraft;
-import org.reflections.Reflections;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @author bon

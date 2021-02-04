@@ -11,14 +11,17 @@ import java.util.Arrays;
 
 public abstract class HudComponent implements Minecraft {
     private final String name = getAnnotation().name();
+
     private int posX = 2;
     private int posY = 2;
     private int dragX;
     private int dragY;
     private int width;
     private int height;
+
     protected boolean visible = false;
     private boolean dragging;
+
     private ArrayList<Setting> settings = new ArrayList<>();
 
     private ComponentInfo getAnnotation() {

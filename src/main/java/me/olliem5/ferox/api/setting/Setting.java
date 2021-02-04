@@ -1,7 +1,6 @@
 package me.olliem5.ferox.api.setting;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Setting<T> {
 	private Setting<?> parent;

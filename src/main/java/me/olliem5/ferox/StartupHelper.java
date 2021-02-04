@@ -5,7 +5,6 @@ import me.olliem5.ferox.api.hud.HudManager;
 import me.olliem5.ferox.api.module.ModuleManager;
 import me.olliem5.ferox.api.theme.ThemeManager;
 import me.olliem5.ferox.impl.gui.screens.click.Window;
-import me.olliem5.ferox.api.theme.Theme;
 import me.yagel15637.venture.command.ICommand;
 import me.yagel15637.venture.manager.CommandManager;
 import net.minecraftforge.common.MinecraftForge;

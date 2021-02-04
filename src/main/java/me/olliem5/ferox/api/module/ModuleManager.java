@@ -4,7 +4,6 @@ import org.reflections.Reflections;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
-import java.util.List;
 
 public class ModuleManager {
     private static ArrayList<Module> modules = new ArrayList<>();

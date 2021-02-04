@@ -8,10 +8,9 @@ import org.reflections.Reflections;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
-import java.util.List;
 
 public class HudManager implements Minecraft {
-    private static List<HudComponent> components = new ArrayList<>();
+    private static ArrayList<HudComponent> components = new ArrayList<>();
 
     public static void init() {
         Reflections reflections = new Reflections("me.olliem5.ferox.impl.hud");
@@ -27,7 +26,7 @@ public class HudManager implements Minecraft {
         });
     }
 
-    public static List<HudComponent> getComponents() {
+    public static ArrayList<HudComponent> getComponents() {
         return components;
     }
 
