@@ -13,17 +13,15 @@ import java.util.ArrayList;
  */
 
 public abstract class Theme implements Minecraft {
-	private String name = getAnnotation().name();
+	private String name;
 
 	private int width;
 	private int height;
 
-	private GUITheme getAnnotation() {
-		if (getClass().isAnnotationPresent(GUITheme.class)) {
-			return getClass().getAnnotation(GUITheme.class);
-		}
-
-		throw new IllegalStateException("Annotation 'GUITheme' not found!");
+	public Theme(String name, int width, int height) {
+		this.name = name;
+		this.width = width;
+		this.height = height;
 	}
 
 	public abstract void drawTitles(String name, int left, int top);

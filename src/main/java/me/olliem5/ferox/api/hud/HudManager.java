@@ -18,9 +18,9 @@ public class HudManager implements Minecraft {
         reflections.getSubTypesOf(HudComponent.class).forEach(clazz -> {
 
             try {
-                HudComponent hudComponent = clazz.getConstructor().newInstance();
+                HudComponent hudComponent = clazz.newInstance();
                 components.add(hudComponent);
-            } catch (InstantiationException | InvocationTargetException | NoSuchMethodException | IllegalAccessException exception) {
+            } catch (InstantiationException | IllegalAccessException exception) {
                 exception.printStackTrace();
             }
         });

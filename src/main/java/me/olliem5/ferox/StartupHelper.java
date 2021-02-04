@@ -39,9 +39,9 @@ public class StartupHelper {
         reflections.getSubTypesOf(ICommand.class).forEach(clazz -> {
 
             try {
-                ICommand iCommand = clazz.getConstructor().newInstance();
+                ICommand iCommand = clazz.newInstance();
                 CommandManager.addCommands(iCommand);
-            } catch (InstantiationException | InvocationTargetException | NoSuchMethodException | IllegalAccessException exception) {
+            } catch (InstantiationException | IllegalAccessException exception) {
                 exception.printStackTrace();
             }
         });

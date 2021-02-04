@@ -14,9 +14,9 @@ public class ThemeManager {
         reflections.getSubTypesOf(Theme.class).forEach(clazz -> {
 
             try {
-                Theme theme = clazz.getConstructor().newInstance();
+                Theme theme = clazz.newInstance();
                 themes.add(theme);
-            } catch (InstantiationException | InvocationTargetException | NoSuchMethodException | IllegalAccessException exception) {
+            } catch (InstantiationException | IllegalAccessException exception) {
                 exception.printStackTrace();
             }
         });

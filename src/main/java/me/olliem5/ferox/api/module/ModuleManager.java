@@ -14,9 +14,9 @@ public class ModuleManager {
         reflections.getSubTypesOf(Module.class).forEach(clazz -> {
 
             try {
-                Module module = clazz.getConstructor().newInstance();
+                Module module = clazz.newInstance();
                 modules.add(module);
-            } catch (InstantiationException | InvocationTargetException | NoSuchMethodException | IllegalAccessException exception) {
+            } catch (InstantiationException | IllegalAccessException exception) {
                 exception.printStackTrace();
             }
         });

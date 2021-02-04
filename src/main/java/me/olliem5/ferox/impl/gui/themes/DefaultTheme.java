@@ -4,7 +4,6 @@ import com.mojang.realmsclient.gui.ChatFormatting;
 import me.olliem5.ferox.api.module.Module;
 import me.olliem5.ferox.api.setting.NumberSetting;
 import me.olliem5.ferox.api.setting.Setting;
-import me.olliem5.ferox.api.theme.GUITheme;
 import me.olliem5.ferox.api.theme.Theme;
 import me.olliem5.ferox.api.util.colour.ColourUtil;
 import me.olliem5.ferox.api.util.colour.RainbowUtil;
@@ -27,8 +26,9 @@ import java.util.ArrayList;
  * @since 11/18/20
  */
 
-@GUITheme(name = "Default")
 public class DefaultTheme extends Theme {
+	public static final String name = "Default";
+
 	private static int boost = 0;
 
 	public static final int width = 105;
@@ -36,6 +36,10 @@ public class DefaultTheme extends Theme {
 
 	public static Color finalColor;
 	public static float finalAlpha = 0.2f;
+
+	public DefaultTheme() {
+		super(name, width, height);
+	}
 
 	@Override
 	public void drawTitles(String name, int x, int y) {
