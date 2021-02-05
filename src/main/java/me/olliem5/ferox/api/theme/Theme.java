@@ -13,7 +13,7 @@ import java.util.ArrayList;
  */
 
 public abstract class Theme implements Minecraft {
-	private String name;
+	private final String name;
 
 	private int width;
 	private int height;
@@ -28,15 +28,15 @@ public abstract class Theme implements Minecraft {
 
 	public abstract void drawModules(ArrayList<Module> modules, int left, int top, int mouseX, int mouseY);
 
-	public String getThemeName() { 
+	public String getName() {
 		return this.name; 
 	}
 	
-	public int getThemeWidth() { 
+	public int getWidth() {
 		return this.width; 
 	}
 	
-	public int getThemeHeight() { 
+	public int getHeight() {
 		return this.height; 
 	}
 }

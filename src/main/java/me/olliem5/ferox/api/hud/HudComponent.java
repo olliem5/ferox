@@ -19,10 +19,10 @@ public abstract class HudComponent implements Minecraft {
     private int width;
     private int height;
 
-    protected boolean visible = false;
+    private boolean visible = false;
     private boolean dragging;
 
-    private ArrayList<Setting> settings = new ArrayList<>();
+    private final ArrayList<Setting> settings = new ArrayList<>();
 
     private FeroxComponent getAnnotation() {
         if (getClass().isAnnotationPresent(FeroxComponent.class)) {
@@ -34,7 +34,7 @@ public abstract class HudComponent implements Minecraft {
 
     public abstract void render();
 
-    protected final void drawString(String text) {
+    public void drawString(String text) {
         FontUtil.drawText(text, posX, posY, -1);
     }
 

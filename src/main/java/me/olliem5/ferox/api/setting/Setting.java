@@ -12,14 +12,14 @@ public class Setting<T> {
 	private boolean isSubSetting;
 	private boolean isOpened;
 
-	private final ArrayList<Setting> subs = new ArrayList<>();
+	private final ArrayList<Setting> subSettings = new ArrayList<>();
 
 	public Setting(String name, String description, T value) {
 		this.name = name;
 		this.description = description;
 		this.value = value;
 
-		isSubSetting = false;
+		this.isSubSetting = false;
 	}
 
 	public Setting(Setting<?> parent, String name, String description, T value) {
@@ -28,44 +28,44 @@ public class Setting<T> {
 		this.description = description;
 		this.value = value;
 
-		isSubSetting = true;
+		this.isSubSetting = true;
 
 		if (parent.getValue() instanceof Boolean) {
 			Setting<Boolean> booleanSetting = (Setting<Boolean>) parent;
-			booleanSetting.addSub(this);
+			booleanSetting.addSubSetting(this);
 		}
 
 		if (parent.getValue() instanceof Enum) {
 			Setting<Enum> enumSetting = (Setting<Enum>) parent;
-			enumSetting.addSub(this);
+			enumSetting.addSubSetting(this);
 		}
 
 		if (parent.getValue() instanceof Integer) {
 			NumberSetting<Integer> integerNumberSetting = (NumberSetting<Integer>) parent;
-			integerNumberSetting.addSub(this);
+			integerNumberSetting.addSubSetting(this);
 		}
 
 		if (parent.getValue() instanceof Double) {
 			NumberSetting<Double> doubleNumberSetting = (NumberSetting<Double>) parent;
-			doubleNumberSetting.addSub(this);
+			doubleNumberSetting.addSubSetting(this);
 		}
 
 		if (parent.getValue() instanceof Float) {
 			NumberSetting<Float> floatNumberSetting = (NumberSetting<Float>) parent;
-			floatNumberSetting.addSub(this);
+			floatNumberSetting.addSubSetting(this);
 		}
 	}
 
 	public ArrayList<Setting> getSubSettings() {
-		return this.subs;
+		return this.subSettings;
 	}
 
 	public boolean hasSubSettings() {
-		return this.subs.size() > 0;
+		return this.subSettings.size() > 0;
 	}
 
-	public void addSub(Setting<?> s) {
-		this.subs.add(s);
+	public void addSubSetting(Setting<?> subSetting) {
+		this.subSettings.add(subSetting);
 	}
 
 	public Setting<?> getParent() {

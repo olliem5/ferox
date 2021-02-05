@@ -10,17 +10,17 @@ import me.olliem5.ferox.impl.modules.ferox.Notifier;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class Module implements Minecraft {
-    private String name = getAnnotation().name();
-    private String description = getAnnotation().description();
-    private Category category = getAnnotation().category();
+public abstract class Module implements Minecraft {
+    private final String name = getAnnotation().name();
+    private final String description = getAnnotation().description();
+    private final Category category = getAnnotation().category();
     private int key = getAnnotation().key();
 
     private boolean enabled = false;
     private boolean opened = false;
     private boolean binding = false;
 
-    private ArrayList<Setting> settings = new ArrayList<>();
+    private final ArrayList<Setting> settings = new ArrayList<>();
 
     private FeroxModule getAnnotation() {
         if (getClass().isAnnotationPresent(FeroxModule.class)) {

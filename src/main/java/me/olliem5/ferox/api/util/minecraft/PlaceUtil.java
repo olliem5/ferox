@@ -24,7 +24,9 @@ public final class PlaceUtil implements Minecraft {
                 mc.player.connection.sendPacket(new CPacketPlayer.Rotation((float) Math.toDegrees(Math.atan2((vec3d.z - mc.player.posZ), (vec3d.x - mc.player.posX))) - 90.0F, (float) (-Math.toDegrees(Math.atan2((vec3d.y - (mc.player.posY + (double) mc.player.getEyeHeight())), (Math.sqrt((vec3d.x - mc.player.posX) * (vec3d.x - mc.player.posX) + (vec3d.z - mc.player.posZ) * (vec3d.z - mc.player.posZ)))))), mc.player.onGround));
                 mc.player.connection.sendPacket(new CPacketEntityAction(mc.player, CPacketEntityAction.Action.START_SNEAKING));
                 mc.playerController.processRightClickBlock(mc.player, mc.world, blockPos.offset(enumFacing), enumFacing.getOpposite(), new Vec3d(blockPos), EnumHand.MAIN_HAND);
+
                 mc.player.swingArm(EnumHand.MAIN_HAND);
+
                 mc.player.connection.sendPacket(new CPacketEntityAction(mc.player, CPacketEntityAction.Action.STOP_SNEAKING));
                 mc.player.connection.sendPacket(new CPacketPlayer.Rotation(old[0], old[1], mc.player.onGround));
 

@@ -36,7 +36,7 @@ public final class AntiCrystal extends Module {
 
     private int pressurePlateSlot;
 
-    private CooldownUtil placeTimer = new CooldownUtil();
+    private final CooldownUtil placeTimer = new CooldownUtil();
 
     @Override
     public void onEnable() {

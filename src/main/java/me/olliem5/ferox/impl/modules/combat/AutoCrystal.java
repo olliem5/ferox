@@ -79,8 +79,8 @@ public final class AutoCrystal extends Module {
         );
     }
 
-    private CooldownUtil breakTimer = new CooldownUtil();
-    private CooldownUtil placeTimer = new CooldownUtil();
+    private final CooldownUtil breakTimer = new CooldownUtil();
+    private final CooldownUtil placeTimer = new CooldownUtil();
 
     private Entity entityTarget = null;
     private BlockPos blockTarget = null;
@@ -89,6 +89,7 @@ public final class AutoCrystal extends Module {
     public void onDisable() {
         entityTarget = null;
         blockTarget = null;
+
         RotationUtil.resetRotation();
     }
 

@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public final class ModuleManager {
-    private static ArrayList<Module> modules = new ArrayList<>();
+    private static final ArrayList<Module> modules = new ArrayList<>();
 
     public static void init() {
         modules.addAll(Arrays.asList(

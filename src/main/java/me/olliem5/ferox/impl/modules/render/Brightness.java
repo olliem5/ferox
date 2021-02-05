@@ -17,7 +17,7 @@ public final class Brightness extends Module {
         );
     }
 
-    private PotionEffect nightVision = new PotionEffect(Potion.getPotionById(16));
+    private final PotionEffect nightVision = new PotionEffect(Potion.getPotionById(16));
 
     private float originalGamma;
 

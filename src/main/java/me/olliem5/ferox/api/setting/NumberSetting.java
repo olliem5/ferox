@@ -4,7 +4,7 @@ public final class NumberSetting<T extends Number> extends Setting<T> {
 	private final T min;
 	private final T max;
 
-	private int scale;
+	private final int scale;
 
 	public NumberSetting(String name, String description, T min, T value, T max, int scale) {
 		super(name, description, value);
@@ -12,7 +12,6 @@ public final class NumberSetting<T extends Number> extends Setting<T> {
 		this.max = max;
 		this.scale = scale;
 	}
-
 
 	public NumberSetting(Setting<?> parent, String name, String description, T min, T value, T max, int scale) {
 		super(parent, name, description, value);

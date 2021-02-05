@@ -21,18 +21,18 @@ import java.util.ArrayList;
  */
 
 public final class Window implements Minecraft {
+	private final String name;
+
 	public int x;
 	public int y;
-	private int lastMouseX;
-	private int lastMouseY;
+	private int dragX;
+	private int dragY;
 
-	private String name;
-
-	private boolean dragging;
+	private boolean dragging = false;
 	private boolean open = true;
 
 	private ArrayList<Module> modules;
-	public static ArrayList<Window> windows = new ArrayList<>();
+	public static final ArrayList<Window> windows = new ArrayList<>();
 
 	public Theme currentTheme;
 
@@ -68,12 +68,12 @@ public final class Window implements Minecraft {
 	
 	private void updateMousePos() {
 		if (dragging) {
-			x = GuiUtil.mX - (lastMouseX - x);
-			y = GuiUtil.mY - (lastMouseY - y);
+			x = GuiUtil.mX - (dragX - x);
+			y = GuiUtil.mY - (dragY - y);
 		}
 
-		lastMouseX = GuiUtil.mX;
-		lastMouseY = GuiUtil.mY;
+		dragX = GuiUtil.mX;
+		dragY = GuiUtil.mY;
 	}
 
 	public void scroll() {
@@ -82,6 +82,7 @@ public final class Window implements Minecraft {
 		for (Window window : windows) {
 			if (scrollWheel < 0) {
 				window.setY(window.getY() - ClickGUIModule.scrollSpeed.getValue());
+
 				continue;
 			}
 
@@ -99,28 +100,28 @@ public final class Window implements Minecraft {
 				setX(0);
 			}
 
-			if (getX() >= sr.getScaledWidth() - currentTheme.getThemeWidth()) {
-				setX(sr.getScaledWidth() - currentTheme.getThemeWidth());
+			if (getX() >= sr.getScaledWidth() - currentTheme.getWidth()) {
+				setX(sr.getScaledWidth() - currentTheme.getWidth());
 			}
 
 			if (getY() <= 0) {
 				setY(0);
 			}
 
-			if (getY() >= sr.getScaledHeight() - currentTheme.getThemeHeight()) {
-				setY(sr.getScaledHeight() - currentTheme.getThemeHeight());
+			if (getY() >= sr.getScaledHeight() - currentTheme.getHeight()) {
+				setY(sr.getScaledHeight() - currentTheme.getHeight());
 			}
 		}
 	}
 
 	public void updateLeftClick() {
-		if (GuiUtil.mouseOver(x, y, x + currentTheme.getThemeWidth(), y + currentTheme.getThemeHeight())) {
+		if (GuiUtil.mouseOver(x, y, x + currentTheme.getWidth(), y + currentTheme.getHeight())) {
 			dragging = true;
 		}
 	}
 
 	public void updateRightClick() {
-		if (GuiUtil.mouseOver(x, y, x + currentTheme.getThemeWidth(), y + currentTheme.getThemeHeight())) {
+		if (GuiUtil.mouseOver(x, y, x + currentTheme.getWidth(), y + currentTheme.getHeight())) {
 			open = !open;
 		}
 	}

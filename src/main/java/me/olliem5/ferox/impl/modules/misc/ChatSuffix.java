@@ -20,7 +20,7 @@ public final class ChatSuffix extends Module {
         );
     }
 
-    private String suffix = " \u00bb \uff26\uff45\uff52\uff4f\uff58";
+    private final String suffix = " \u00bb \uff26\uff45\uff52\uff4f\uff58";
 
     @Listener
     public void onPacket(PacketEvent.Send event) {

@@ -35,15 +35,9 @@ public final class RenderUtil implements Minecraft {
 
     public static AxisAlignedBB generateBB(long x, long y, long z) {
         BlockPos blockPos = new BlockPos(x, y, z);
-        final AxisAlignedBB bb = new AxisAlignedBB
-                (
-                        blockPos.getX() - mc.getRenderManager().viewerPosX,
-                        blockPos.getY() - mc.getRenderManager().viewerPosY,
-                        blockPos.getZ() - mc.getRenderManager().viewerPosZ,
-                        blockPos.getX() + 1 - mc.getRenderManager().viewerPosX,
-                        blockPos.getY() + (1) - mc.getRenderManager().viewerPosY,
-                        blockPos.getZ() + 1 - mc.getRenderManager().viewerPosZ
-                );
+
+        final AxisAlignedBB bb = new AxisAlignedBB(blockPos.getX() - mc.getRenderManager().viewerPosX, blockPos.getY() - mc.getRenderManager().viewerPosY, blockPos.getZ() - mc.getRenderManager().viewerPosZ, blockPos.getX() + 1 - mc.getRenderManager().viewerPosX, blockPos.getY() + (1) - mc.getRenderManager().viewerPosY, blockPos.getZ() + 1 - mc.getRenderManager().viewerPosZ);
+
         return bb;
     }
 
@@ -126,9 +120,12 @@ public final class RenderUtil implements Minecraft {
 
     public static void renderFilledBox(double minX, double minY, double minZ, double maxX, double maxY, double maxZ, double height, float red, float green, float blue, float alpha) {
         Tessellator tessellator = Tessellator.getInstance();
+
         BufferBuilder bufferbuilder = tessellator.getBuffer();
         bufferbuilder.begin(5, DefaultVertexFormats.POSITION_COLOR);
+
         addChainedFilledBoxVertices(bufferbuilder, minX, minY, minZ, maxX, maxY + height, maxZ, red, green, blue, alpha);
+
         tessellator.draw();
     }
 
@@ -138,9 +135,12 @@ public final class RenderUtil implements Minecraft {
 
     public static void renderBoundingBox(double minX, double minY, double minZ, double maxX, double maxY, double maxZ, double height, float red, float green, float blue, float alpha) {
         Tessellator tessellator = Tessellator.getInstance();
+
         BufferBuilder bufferbuilder = tessellator.getBuffer();
         bufferbuilder.begin(3, DefaultVertexFormats.POSITION_COLOR);
+
         drawBoundingBox(bufferbuilder, minX, minY, minZ, maxX, maxY + height, maxZ, red, green, blue, alpha);
+
         tessellator.draw();
     }
 }

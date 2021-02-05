@@ -1,39 +1,37 @@
 package me.olliem5.ferox.api.user;
 
-import me.olliem5.ferox.api.user.FeroxUser;
-
 import java.util.ArrayList;
 
 public final class UserManager {
-    private ArrayList<FeroxUser> feroxUsers = new ArrayList<>();
+    private static final ArrayList<FeroxUser> feroxUsers = new ArrayList<>();
 
     /**
      * Developers
      */
 
-    private ArrayList<String> ollieAccounts = new ArrayList<>();
-    private ArrayList<String> drailyAccounts = new ArrayList<>();
-    private ArrayList<String> reapAccounts = new ArrayList<>();
-    private ArrayList<String> linusAccounts = new ArrayList<>();
+    private static final ArrayList<String> ollieAccounts = new ArrayList<>();
+    private static final ArrayList<String> drailyAccounts = new ArrayList<>();
+    private static final ArrayList<String> reapAccounts = new ArrayList<>();
+    private static final ArrayList<String> linusAccounts = new ArrayList<>();
 
     /**
      * Users
      */
 
-    private ArrayList<String> nekoAccounts = new ArrayList<>();
-    private ArrayList<String> occultAccounts = new ArrayList<>();
-    private ArrayList<String> fourteenAccounts = new ArrayList<>();
-    private ArrayList<String> masonAccounts = new ArrayList<>();
-    private ArrayList<String> kaeyAccounts = new ArrayList<>();
-    private ArrayList<String> tbmAccounts = new ArrayList<>();
-    private ArrayList<String> tripiAccounts = new ArrayList<>();
-    private ArrayList<String> glAccounts = new ArrayList<>();
-    private ArrayList<String> miloAccounts = new ArrayList<>();
-    private ArrayList<String> firerugAccounts = new ArrayList<>();
-    private ArrayList<String> quillAccounts = new ArrayList<>();
-    private ArrayList<String> perryAccounts = new ArrayList<>();
-    private ArrayList<String> runeAccounts = new ArrayList<>();
-    private ArrayList<String> maneskoAccounts = new ArrayList<>();
+    private static final ArrayList<String> nekoAccounts = new ArrayList<>();
+    private static final ArrayList<String> occultAccounts = new ArrayList<>();
+    private static final ArrayList<String> fourteenAccounts = new ArrayList<>();
+    private static final ArrayList<String> masonAccounts = new ArrayList<>();
+    private static final ArrayList<String> kaeyAccounts = new ArrayList<>();
+    private static final ArrayList<String> tbmAccounts = new ArrayList<>();
+    private static final ArrayList<String> tripiAccounts = new ArrayList<>();
+    private static final ArrayList<String> glAccounts = new ArrayList<>();
+    private static final ArrayList<String> miloAccounts = new ArrayList<>();
+    private static final ArrayList<String> firerugAccounts = new ArrayList<>();
+    private static final ArrayList<String> quillAccounts = new ArrayList<>();
+    private static final ArrayList<String> perryAccounts = new ArrayList<>();
+    private static final ArrayList<String> runeAccounts = new ArrayList<>();
+    private static final ArrayList<String> maneskoAccounts = new ArrayList<>();
 
     public UserManager() {
         feroxUsers.add(new FeroxUser("ollie#0057", ollieAccounts, 1));

@@ -12,12 +12,12 @@ public final class EchoCommand extends AbstractCommand {
     public void execute(String[] args) {
         if (args.length == 0) return;
 
-        StringBuilder msg = new StringBuilder();
+        StringBuilder stringBuilder = new StringBuilder();
 
         for (String string : args) {
-            msg.append(string).append(" ");
+            stringBuilder.append(string).append(" ");
         }
 
-        MessageUtil.sendClientMessage(msg.toString());
+        MessageUtil.sendClientMessage(stringBuilder.toString());
     }
 }

@@ -21,8 +21,10 @@ public final class GuiUtil {
     public static void updateMousePos(int mouseX, int mouseY) {
         mX = mouseX;
         mY = mouseY;
+
         ldown = false;
         rdown = false;
+
         keydown = -1;
     }
 

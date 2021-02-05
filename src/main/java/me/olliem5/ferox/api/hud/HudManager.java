@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public final class HudManager implements Minecraft {
-    private static ArrayList<HudComponent> components = new ArrayList<>();
+    private static final ArrayList<HudComponent> components = new ArrayList<>();
 
     public static void init() {
         components.addAll(Arrays.asList(

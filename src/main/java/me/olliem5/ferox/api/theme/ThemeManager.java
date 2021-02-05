@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public final class ThemeManager {
-    private static ArrayList<Theme> themes = new ArrayList<>();
+    private static final ArrayList<Theme> themes = new ArrayList<>();
 
     public static void init() {
         themes.addAll(Arrays.asList(
@@ -20,7 +20,7 @@ public final class ThemeManager {
 
     public static Theme getThemeByName(String name) {
         return themes.stream()
-                .filter(theme -> theme.getThemeName().equalsIgnoreCase(name))
+                .filter(theme -> theme.getName().equalsIgnoreCase(name))
                 .findFirst()
                 .orElse(null);
     }

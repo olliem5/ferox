@@ -10,17 +10,22 @@ import net.minecraft.client.gui.GuiWorldSelection;
 
 public final class DiscordUtil implements Minecraft {
     private static final DiscordRPC rpc = DiscordRPC.INSTANCE;
-    public static DiscordRichPresence rp = new DiscordRichPresence();
+    private static final DiscordRichPresence rp = new DiscordRichPresence();
+
     private static String details;
     private static String state;
 
     public static void startup() {
         Ferox.log("Discord RPC is starting up!");
+
         final DiscordEventHandlers handlers = new DiscordEventHandlers();
+
         rpc.Discord_Initialize(Ferox.APP_ID, handlers, true, "");
+
         rp.startTimestamp = System.currentTimeMillis() / 1000L;
         rp.largeImageKey = "ferox";
         rp.largeImageText = "Ferox strong client";
+
         rpc.Discord_UpdatePresence(rp);
 
         new Thread(() -> {
@@ -41,14 +46,15 @@ public final class DiscordUtil implements Minecraft {
 
                     rp.details = details;
                     rp.state = state;
+
                     rpc.Discord_UpdatePresence(rp);
-                } catch (Exception e1) {
-                    e1.printStackTrace();
+                } catch (Exception exception) {
+                    exception.printStackTrace();
                 }
                 try {
                     Thread.sleep(5000L);
-                } catch (InterruptedException e2) {
-                    e2.printStackTrace();
+                } catch (InterruptedException exception) {
+                    exception.printStackTrace();
                 }
             }
         }, "RPC-Callback-Handler").start();
@@ -56,6 +62,7 @@ public final class DiscordUtil implements Minecraft {
 
     public static void shutdown() {
         Ferox.log("Discord RPC is shutting down!");
+
         rpc.Discord_Shutdown();
     }
 }

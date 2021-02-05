@@ -4,11 +4,11 @@ import me.olliem5.ferox.api.traits.Minecraft;
 import me.olliem5.ferox.impl.modules.ferox.Font;
 
 public final class FontUtil implements Minecraft {
-    public static FeroxFontRenderer latoFont = new FeroxFontRenderer("Lato", 18.0f);
-    public static FeroxFontRenderer ubuntuFont = new FeroxFontRenderer("Ubuntu", 18.0f);
-    public static FeroxFontRenderer verdanaFont = new FeroxFontRenderer("Verdana", 18.0f);
-    public static FeroxFontRenderer comfortaaFont = new FeroxFontRenderer("Comfortaa", 18.0f);
-    public static FeroxFontRenderer subtitleFont = new FeroxFontRenderer("Subtitle", 18.0f);
+    public static final FeroxFontRenderer latoFont = new FeroxFontRenderer("Lato", 18.0f);
+    public static final FeroxFontRenderer ubuntuFont = new FeroxFontRenderer("Ubuntu", 18.0f);
+    public static final FeroxFontRenderer verdanaFont = new FeroxFontRenderer("Verdana", 18.0f);
+    public static final FeroxFontRenderer comfortaaFont = new FeroxFontRenderer("Comfortaa", 18.0f);
+    public static final FeroxFontRenderer subtitleFont = new FeroxFontRenderer("Subtitle", 18.0f);
 
     public static void drawString(String text, float x, float y, int colour) {
         switch (Font.font.getValue()) {
