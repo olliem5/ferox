@@ -12,7 +12,7 @@ import org.lwjgl.input.Keyboard;
 
 import java.awt.*;
 
-public class InputComponent extends Component {
+public final class InputComponent extends Component {
     private int x;
     private int y;
     private int width;

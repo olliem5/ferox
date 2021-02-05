@@ -11,7 +11,7 @@ import java.awt.*;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-public class IntegerComponentHud extends Component {
+public final class IntegerComponentHud extends Component {
     private NumberSetting<Integer> set;
     private HudComponentButton parent;
     private int offset;

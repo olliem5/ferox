@@ -1,4 +1,4 @@
-package me.olliem5.ferox.api.util.render.world;
+package me.olliem5.ferox.api.util.render.draw;
 
 import me.olliem5.ferox.api.traits.Minecraft;
 import net.minecraft.client.renderer.BufferBuilder;
@@ -11,7 +11,7 @@ import org.lwjgl.opengl.GL11;
 
 import java.awt.*;
 
-public class RenderUtil implements Minecraft {
+public final class RenderUtil implements Minecraft {
     
     public static void prepareGL() {
         GlStateManager.pushMatrix();

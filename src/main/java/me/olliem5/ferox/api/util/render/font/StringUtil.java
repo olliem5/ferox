@@ -2,7 +2,7 @@ package me.olliem5.ferox.api.util.render.font;
 
 import java.util.regex.Pattern;
 
-public class StringUtil {
+public final class StringUtil {
     public static final char COLOR_CHAR = '\u00A7';
 
     public static String stripColor(final String input) {

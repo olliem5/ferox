@@ -23,7 +23,7 @@ import java.util.Comparator;
  */
 
 @FeroxModule(name = "AntiCrystal", description = "Makes crystals do very little damage, by using pressure plates", category = Category.COMBAT)
-public class AntiCrystal extends Module {
+public final class AntiCrystal extends Module {
     public static final NumberSetting<Double> placeRange = new NumberSetting<>("Place Range", "The range to place pressure plates at", 0.0, 5.5, 10.0, 1);
     public static final NumberSetting<Integer> placeDelay = new NumberSetting<>("Place Delay", "The delay between places", 0, 2, 20, 0);
 

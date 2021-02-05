@@ -3,7 +3,7 @@ package me.olliem5.ferox.impl.command;
 import me.olliem5.ferox.api.util.client.MessageUtil;
 import me.yagel15637.venture.command.AbstractCommand;
 
-public class EchoCommand extends AbstractCommand {
+public final class EchoCommand extends AbstractCommand {
     public EchoCommand() {
         super("Echos something to the console.", "say/echo/tell <message>", "say", "echo", "tell");
     }

@@ -7,7 +7,7 @@ import me.olliem5.ferox.api.traits.Minecraft;
  * @since 12/29/2020
  */
 
-public class MotionUtil implements Minecraft {
+public final class MotionUtil implements Minecraft {
     static float roundedForward = getRoundedMovementInput(mc.player.movementInput.moveForward);
     static float roundedStrafing = getRoundedMovementInput(mc.player.movementInput.moveStrafe);
 

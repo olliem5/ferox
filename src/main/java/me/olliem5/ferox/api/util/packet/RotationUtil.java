@@ -8,7 +8,7 @@ import net.minecraft.entity.player.EntityPlayer;
  * @since 12/29/2020
  */
 
-public class RotationUtil implements Minecraft {
+public final class RotationUtil implements Minecraft {
 
     public static void lockYaw(double rotation) {
         if (mc.player.rotationYaw >= rotation) {

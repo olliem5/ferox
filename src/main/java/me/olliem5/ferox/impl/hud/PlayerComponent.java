@@ -3,12 +3,12 @@ package me.olliem5.ferox.impl.hud;
 import me.olliem5.ferox.api.hud.FeroxComponent;
 import me.olliem5.ferox.api.hud.HudComponent;
 import me.olliem5.ferox.api.setting.NumberSetting;
-import me.olliem5.ferox.api.util.render.draw.RenderHelper;
+import me.olliem5.ferox.api.util.render.draw.DrawUtil;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
 
 @FeroxComponent(name = "Player")
-public class PlayerComponent extends HudComponent {
+public final class PlayerComponent extends HudComponent {
     public static final NumberSetting<Integer> scale = new NumberSetting<>("Scale", "Scale to render the player at", 1, 30, 100, 0);
 
     public PlayerComponent() {
@@ -27,7 +27,7 @@ public class PlayerComponent extends HudComponent {
         GlStateManager.disableTexture2D();
         GlStateManager.setActiveTexture(OpenGlHelper.defaultTexUnit);
 
-        RenderHelper.drawEntityOnScreen(this.getPosX() + 28, this.getPosY() + 67, scale.getValue(), this.getPosX() + 40, this.getPosY() + 13, mc.player);
+        DrawUtil.drawEntityOnScreen(this.getPosX() + 28, this.getPosY() + 67, scale.getValue(), this.getPosX() + 40, this.getPosY() + 13, mc.player);
 
         GlStateManager.enableRescaleNormal();
         GlStateManager.enableTexture2D();

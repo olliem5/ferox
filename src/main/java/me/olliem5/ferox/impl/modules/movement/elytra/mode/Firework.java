@@ -14,7 +14,7 @@ import net.minecraft.util.EnumHand;
  * @since 12/29/2020
  */
 
-public class Firework extends ElytraMode {
+public final class Firework extends ElytraMode {
 
     @Override
     public void onVerticalMovement() {

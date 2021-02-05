@@ -20,7 +20,7 @@ import me.olliem5.ferox.impl.modules.ui.HudEditorModule;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class ModuleManager {
+public final class ModuleManager {
     private static ArrayList<Module> modules = new ArrayList<>();
 
     public static void init() {

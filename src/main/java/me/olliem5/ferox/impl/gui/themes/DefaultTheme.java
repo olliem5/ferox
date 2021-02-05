@@ -9,7 +9,7 @@ import me.olliem5.ferox.api.util.colour.ColourUtil;
 import me.olliem5.ferox.api.util.colour.RainbowUtil;
 import me.olliem5.ferox.api.util.math.EnumUtil;
 import me.olliem5.ferox.api.util.math.MathUtil;
-import me.olliem5.ferox.api.util.render.draw.RenderHelper;
+import me.olliem5.ferox.api.util.render.draw.DrawUtil;
 import me.olliem5.ferox.api.util.render.font.FontUtil;
 import me.olliem5.ferox.api.util.render.gui.GuiUtil;
 import net.minecraft.client.gui.Gui;
@@ -26,7 +26,7 @@ import java.util.ArrayList;
  * @since 11/18/20
  */
 
-public class DefaultTheme extends Theme {
+public final class DefaultTheme extends Theme {
 	public static final String name = "Default";
 
 	private static int boost = 0;
@@ -567,7 +567,7 @@ public class DefaultTheme extends Theme {
 		float selectedGreen = (selectedColor >> 8 & 0xFF) / 255.0f;
 		float selectedBlue = (selectedColor & 0xFF) / 255.0f;
 
-		RenderHelper.drawPickerBase(pickerX, pickerY, pickerWidth, pickerHeight, selectedRed, selectedGreen, selectedBlue, finalAlpha);
+		DrawUtil.drawPickerBase(pickerX, pickerY, pickerWidth, pickerHeight, selectedRed, selectedGreen, selectedBlue, finalAlpha);
 
 		drawHueSlider(hueSliderX, hueSliderY, hueSliderWidth, hueSliderHeight, color[0]);
 
@@ -588,7 +588,7 @@ public class DefaultTheme extends Theme {
 			int previousStep = Color.HSBtoRGB((float) step / 5, 1.0f, 1.0f);
 			int nextStep = Color.HSBtoRGB((float) (step + 1) / 5, 1.0f, 1.0f);
 
-			RenderHelper.gradient(x + step * (width / 5), y, x + (step + 1) * (width / 5), y + height, previousStep, nextStep, true);
+			DrawUtil.gradient(x + step * (width / 5), y, x + (step + 1) * (width / 5), y + height, previousStep, nextStep, true);
 
 			step++;
 		}
@@ -620,7 +620,7 @@ public class DefaultTheme extends Theme {
 			left = !left;
 		}
 
-		RenderHelper.drawLeftGradientRect(x, y, x + width, y + height, new Color(red, green, blue, 1).getRGB(), 0);
+		DrawUtil.drawLeftGradientRect(x, y, x + width, y + height, new Color(red, green, blue, 1).getRGB(), 0);
 
 		int sliderMinX = (int) (x + width - (width * alpha));
 

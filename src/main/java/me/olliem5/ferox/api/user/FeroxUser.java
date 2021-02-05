@@ -2,7 +2,7 @@ package me.olliem5.ferox.api.user;
 
 import java.util.ArrayList;
 
-public class FeroxUser {
+public final class FeroxUser {
     private String discord;
     private ArrayList<String> uuids;
     private int uid;

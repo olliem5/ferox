@@ -5,7 +5,7 @@ import me.olliem5.ferox.api.util.packet.RotationUtil;
 import me.olliem5.ferox.impl.modules.movement.ElytraFlight;
 import me.olliem5.ferox.impl.modules.movement.elytra.ElytraMode;
 
-public class Frog extends ElytraMode {
+public final class Frog extends ElytraMode {
 
     @Override
     public void onVerticalMovement() {

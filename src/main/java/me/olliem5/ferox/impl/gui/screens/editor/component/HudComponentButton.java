@@ -11,7 +11,7 @@ import net.minecraft.client.gui.Gui;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class HudComponentButton extends Component {
+public final class HudComponentButton extends Component {
     private ArrayList<Component> subcomponents;
     public HudComponent mod;
     public HudPanel parent;

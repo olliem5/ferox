@@ -10,7 +10,7 @@ import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.EntityLivingBase;
 import org.lwjgl.opengl.GL11;
 
-public class RenderHelper implements Minecraft {
+public final class DrawUtil implements Minecraft {
     public static void gradient(int minX, int minY, int maxX, int maxY, int startColor, int endColor, boolean left) {
         if (left) {
             float startA = (startColor >> 24 & 0xFF) / 255.0f;

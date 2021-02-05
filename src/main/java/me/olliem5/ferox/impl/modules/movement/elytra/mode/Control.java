@@ -10,7 +10,7 @@ import me.olliem5.ferox.impl.modules.movement.elytra.ElytraMode;
  * @since 12/29/2020
  */
 
-public class Control extends ElytraMode {
+public final class Control extends ElytraMode {
 
     @Override
     public void onVerticalMovement() {

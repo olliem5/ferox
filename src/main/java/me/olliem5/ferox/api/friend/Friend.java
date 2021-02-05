@@ -1,6 +1,6 @@
 package me.olliem5.ferox.api.friend;
 
-public class Friend {
+public final class Friend {
     private String name;
 
     public Friend(String name) {

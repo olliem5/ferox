@@ -5,7 +5,7 @@ import me.olliem5.ferox.impl.gui.themes.DefaultTheme;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class ThemeManager {
+public final class ThemeManager {
     private static ArrayList<Theme> themes = new ArrayList<>();
 
     public static void init() {

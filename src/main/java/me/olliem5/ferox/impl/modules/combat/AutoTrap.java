@@ -20,7 +20,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @FeroxModule(name = "AutoTrap", description = "Automatically traps enemies with obsidian", category = Category.COMBAT)
-public class AutoTrap extends Module {
+public final class AutoTrap extends Module {
     public static final Setting<PlaceModes> placeMode = new Setting<>("Place", "The style of trap to place", PlaceModes.Full);
     public static final Setting<DisableModes> disableMode = new Setting<>("Disable", "When to disable the module", DisableModes.Finish);
 

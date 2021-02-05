@@ -8,7 +8,7 @@ import net.minecraft.client.gui.Gui;
 
 import java.awt.*;
 
-public class BooleanComponentHud extends Component {
+public final class BooleanComponentHud extends Component {
     private Setting<Boolean> op;
     private HudComponentButton parent;
     private int offset;

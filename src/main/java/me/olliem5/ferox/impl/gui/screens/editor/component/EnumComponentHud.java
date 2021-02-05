@@ -8,7 +8,7 @@ import net.minecraft.client.gui.Gui;
 
 import java.awt.*;
 
-public class EnumComponentHud extends Component {
+public final class EnumComponentHud extends Component {
     private Setting<Enum> op;
     private HudComponentButton parent;
     private int offset;

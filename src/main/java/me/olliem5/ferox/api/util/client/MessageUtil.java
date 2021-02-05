@@ -5,7 +5,7 @@ import me.olliem5.ferox.Ferox;
 import me.olliem5.ferox.api.traits.Minecraft;
 import net.minecraft.util.text.TextComponentString;
 
-public class MessageUtil implements Minecraft {
+public final class MessageUtil implements Minecraft {
     public static String prefix = ChatFormatting.GRAY + "[" + ChatFormatting.GOLD + Ferox.NAME_VERSION + ChatFormatting.GRAY + "]";
 
     public static void sendClientMessage(String message) {

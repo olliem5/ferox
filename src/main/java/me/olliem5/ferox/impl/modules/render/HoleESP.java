@@ -9,7 +9,7 @@ import me.olliem5.ferox.api.setting.Setting;
 import me.olliem5.ferox.api.util.minecraft.BlockUtil;
 import me.olliem5.ferox.api.util.minecraft.PlayerUtil;
 import me.olliem5.ferox.api.util.module.HoleUtil;
-import me.olliem5.ferox.api.util.render.world.RenderUtil;
+import me.olliem5.ferox.api.util.render.draw.RenderUtil;
 import me.olliem5.ferox.impl.events.WorldRenderEvent;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
@@ -20,7 +20,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @FeroxModule(name = "HoleESP", description = "Highlights safe holes for crystal pvp", category = Category.RENDER)
-public class HoleESP extends Module {
+public final class HoleESP extends Module {
     public static final NumberSetting<Integer> holeRange = new NumberSetting<>("Hole Range", "The range to search for holes in", 1, 5, 10, 0);
 
     public static final Setting<Boolean> obsidian = new Setting<>("Obsidian Holes", "Allows obsidian holes to be rendered", true);

@@ -12,7 +12,7 @@ import org.apache.logging.log4j.Logger;
 import org.lwjgl.opengl.Display;
 
 @Mod(modid = Ferox.MOD_ID, name = Ferox.MOD_NAME, version = Ferox.MOD_VERSION)
-public class Ferox {
+public final class Ferox {
     public static final String MOD_ID = "ferox";
     public static final String MOD_NAME = "Ferox";
     public static final String MOD_VERSION = "1.0";

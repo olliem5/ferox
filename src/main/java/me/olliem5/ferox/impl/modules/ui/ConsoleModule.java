@@ -6,7 +6,7 @@ import me.olliem5.ferox.api.module.Module;
 import me.olliem5.ferox.impl.gui.screens.console.Console;
 
 @FeroxModule(name = "Console", description = "Opens Ferox's Console", category = Category.UI)
-public class ConsoleModule extends Module {
+public final class ConsoleModule extends Module {
     public static Console console;
 
     @Override

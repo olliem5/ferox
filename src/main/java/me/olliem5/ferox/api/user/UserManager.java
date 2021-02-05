@@ -1,10 +1,10 @@
-package me.olliem5.ferox.api.util.client;
+package me.olliem5.ferox.api.user;
 
 import me.olliem5.ferox.api.user.FeroxUser;
 
 import java.util.ArrayList;
 
-public class UserUtil {
+public final class UserManager {
     private ArrayList<FeroxUser> feroxUsers = new ArrayList<>();
 
     /**
@@ -35,7 +35,7 @@ public class UserUtil {
     private ArrayList<String> runeAccounts = new ArrayList<>();
     private ArrayList<String> maneskoAccounts = new ArrayList<>();
 
-    public UserUtil() {
+    public UserManager() {
         feroxUsers.add(new FeroxUser("ollie#0057", ollieAccounts, 1));
         ollieAccounts.add("8deac414-6c37-44fb-82bd-6873efc1b0cf"); //_o_b_a_m_a_
         ollieAccounts.add("b92ec9a1-29e1-4916-b2a5-14d15a167220"); //FeroxClient

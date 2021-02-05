@@ -19,7 +19,7 @@ import net.minecraft.util.math.BlockPos;
 import java.util.Comparator;
 
 @FeroxModule(name = "AutoCrystal", description = "Places and destroys end crystals to kill enemies", category = Category.COMBAT)
-public class AutoCrystal extends Module {
+public final class AutoCrystal extends Module {
     public static final Setting<LogicModes> logicMode = new Setting<>("Logic", "The order to perform AutoCrystal functions", LogicModes.Breakplace);
     public static final Setting<PlaceModes> placeMode = new Setting<>("Place", "The mode for crystal placing", PlaceModes.Single);
     public static final Setting<BreakModes> breakMode = new Setting<>("Break", "The mode for crystal breaking", BreakModes.Nearest);

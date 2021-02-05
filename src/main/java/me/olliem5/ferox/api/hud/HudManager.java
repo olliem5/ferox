@@ -12,7 +12,7 @@ import me.olliem5.ferox.impl.hud.WelcomerComponent;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class HudManager implements Minecraft {
+public final class HudManager implements Minecraft {
     private static ArrayList<HudComponent> components = new ArrayList<>();
 
     public static void init() {

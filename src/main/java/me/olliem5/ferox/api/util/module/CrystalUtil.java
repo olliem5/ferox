@@ -25,7 +25,7 @@ import net.minecraft.world.Explosion;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class CrystalUtil implements Minecraft {
+public final class CrystalUtil implements Minecraft {
     private boolean canPlaceCrystal(BlockPos blockPos) {
         BlockPos boost = blockPos.add(0, 1, 0);
         BlockPos boost2 = blockPos.add(0, 2, 0);

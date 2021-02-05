@@ -2,9 +2,9 @@ package me.olliem5.ferox.api.util.colour;
 
 import java.awt.*;
 
-public class RainbowUtil {
+public final class RainbowUtil {
     public static Color getRainbow() {
-        return Color.getHSBColor((float) (System.currentTimeMillis() % 7500L) / 7500f, 0.8f, 0.8f);
+        return Color.getHSBColor((float) (System.currentTimeMillis() % 7500L) / 7500f, 0.85f, 0.85f);
     }
 
     public static int getRollingRainbow(long offset) {

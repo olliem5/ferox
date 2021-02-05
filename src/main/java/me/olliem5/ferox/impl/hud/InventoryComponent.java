@@ -11,7 +11,7 @@ import net.minecraft.item.ItemStack;
 import java.awt.*;
 
 @FeroxComponent(name = "Inventory")
-public class InventoryComponent extends HudComponent {
+public final class InventoryComponent extends HudComponent {
     public static final Setting<Boolean> background = new Setting("Background", "Shows a background behind the items", true);
 
     public InventoryComponent() {

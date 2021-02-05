@@ -9,7 +9,7 @@ import me.olliem5.ferox.impl.gui.screens.click.Window;
 import me.yagel15637.venture.manager.CommandManager;
 import net.minecraftforge.common.MinecraftForge;
 
-public class StartupHelper {
+public final class StartupHelper {
     public static void startupFerox() {
         MinecraftForge.EVENT_BUS.register(new EventProcessor());
         Ferox.EVENT_BUS.subscribe(new EventProcessor());

@@ -10,7 +10,7 @@ import org.lwjgl.input.Keyboard;
 
 import java.util.ArrayList;
 
-public class HudEditor extends GuiScreen {
+public final class HudEditor extends GuiScreen {
     public static ArrayList<HudPanel> panels;
 
     public HudEditor() {

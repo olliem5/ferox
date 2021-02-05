@@ -5,7 +5,7 @@ package me.olliem5.ferox.api.util.render.gui;
  * @since 11/18/20
  */
 
-public class GuiUtil {
+public final class GuiUtil {
     public static int mX;
     public static int mY;
     public static int keydown;

@@ -2,7 +2,7 @@ package me.olliem5.ferox.api.util.math;
 
 import me.olliem5.ferox.api.setting.Setting;
 
-public class EnumUtil {
+public final class EnumUtil {
     public static String getNextEnumValue(Setting<Enum> op, boolean reverse) {
         final Enum currentValue = op.getValue();
 

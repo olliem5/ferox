@@ -16,7 +16,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Pattern;
 
-public class FeroxFontRenderer implements Minecraft {
+public final class FeroxFontRenderer implements Minecraft {
     private static final Pattern COLOR_CODE_PATTERN = Pattern.compile(StringUtil.COLOR_CHAR + "[0123456789abcdefklmnor]");
     private final int[] colorCodes = {0x000000, 0x0000AA, 0x00AA00, 0x00AAAA, 0xAA0000, 0xAA00AA, 0xFFAA00, 0xAAAAAA, 0x555555, 0x5555FF, 0x55FF55, 0x55FFFF, 0xFF5555, 0xFF55FF, 0xFFFF55, 0xFFFFFF};
     private final Map<String, Float> cachedStringWidth = new HashMap<>();

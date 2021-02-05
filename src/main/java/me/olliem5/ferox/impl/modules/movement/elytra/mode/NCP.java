@@ -10,7 +10,7 @@ import me.olliem5.ferox.impl.modules.movement.elytra.ElytraMode;
  * @since 12/29/2020
  */
 
-public class NCP extends ElytraMode {
+public final class NCP extends ElytraMode {
 
     @Override
     public void onVerticalMovement() {

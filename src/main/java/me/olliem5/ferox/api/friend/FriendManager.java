@@ -4,7 +4,7 @@ import me.olliem5.ferox.api.module.ModuleManager;
 
 import java.util.ArrayList;
 
-public class FriendManager {
+public final class FriendManager {
     private static ArrayList<Friend> friends = new ArrayList<>();
 
     public static boolean isFriend(String name) {

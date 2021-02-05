@@ -5,7 +5,7 @@ import me.olliem5.ferox.api.module.FeroxModule;
 import me.olliem5.ferox.api.module.Module;
 
 @FeroxModule(name = "Friends", description = "Allows for usage of Ferox's friend system", category = Category.FEROX)
-public class Friends extends Module {
+public final class Friends extends Module {
     public Friends() {
         this.setEnabled(true);
     }

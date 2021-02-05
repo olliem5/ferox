@@ -14,7 +14,7 @@ import org.lwjgl.input.Mouse;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class HudPanel implements Minecraft {
+public final class HudPanel implements Minecraft {
     public ArrayList<Component> components;
     public String title;
     public int x;

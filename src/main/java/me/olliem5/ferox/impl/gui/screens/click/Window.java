@@ -20,16 +20,20 @@ import java.util.ArrayList;
  * @since 11/16/20
  */
 
-public class Window implements Minecraft {
+public final class Window implements Minecraft {
 	public int x;
 	public int y;
 	private int lastMouseX;
 	private int lastMouseY;
+
 	private String name;
+
 	private boolean dragging;
 	private boolean open = true;
+
 	private ArrayList<Module> modules;
 	public static ArrayList<Window> windows = new ArrayList<>();
+
 	public Theme currentTheme;
 
 	public Window(String name, int x, int y, Category category) {
