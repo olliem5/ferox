@@ -2,8 +2,8 @@ package me.olliem5.ferox.impl.modules.combat;
 
 import com.mojang.realmsclient.gui.ChatFormatting;
 import me.olliem5.ferox.api.module.Category;
+import me.olliem5.ferox.api.module.FeroxModule;
 import me.olliem5.ferox.api.module.Module;
-import me.olliem5.ferox.api.module.ModuleInfo;
 import me.olliem5.ferox.api.setting.NumberSetting;
 import me.olliem5.ferox.api.util.client.MessageUtil;
 import me.olliem5.ferox.api.util.math.CooldownUtil;
@@ -22,7 +22,7 @@ import java.util.Comparator;
  * TODO: Stop pressure plates from being placed right after crystal explodes
  */
 
-@ModuleInfo(name = "AntiCrystal", description = "Makes crystals do very little damage, by using pressure plates", category = Category.COMBAT)
+@FeroxModule(name = "AntiCrystal", description = "Makes crystals do very little damage, by using pressure plates", category = Category.COMBAT)
 public class AntiCrystal extends Module {
     public static NumberSetting<Double> placeRange = new NumberSetting<>("Place Range", "The range to place pressure plates at", 0.0, 5.5, 10.0, 1);
     public static NumberSetting<Integer> placeDelay = new NumberSetting<>("Place Delay", "The delay between places", 0, 2, 20, 0);

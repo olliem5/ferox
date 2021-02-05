@@ -2,8 +2,8 @@ package me.olliem5.ferox.impl.modules.render;
 
 import git.littledraily.eventsystem.Listener;
 import me.olliem5.ferox.api.module.Category;
+import me.olliem5.ferox.api.module.FeroxModule;
 import me.olliem5.ferox.api.module.Module;
-import me.olliem5.ferox.api.module.ModuleInfo;
 import me.olliem5.ferox.api.setting.NumberSetting;
 import me.olliem5.ferox.api.setting.Setting;
 import me.olliem5.ferox.api.util.minecraft.BlockUtil;
@@ -19,7 +19,7 @@ import java.awt.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@ModuleInfo(name = "HoleESP", description = "Highlights safe holes for crystal pvp", category = Category.RENDER)
+@FeroxModule(name = "HoleESP", description = "Highlights safe holes for crystal pvp", category = Category.RENDER)
 public class HoleESP extends Module {
     public static NumberSetting<Integer> holeRange = new NumberSetting<>("Hole Range", "The range to search for holes in", 1, 5, 10, 0);
 

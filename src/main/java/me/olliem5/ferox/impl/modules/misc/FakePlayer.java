@@ -2,15 +2,15 @@ package me.olliem5.ferox.impl.modules.misc;
 
 import com.mojang.authlib.GameProfile;
 import me.olliem5.ferox.api.module.Category;
+import me.olliem5.ferox.api.module.FeroxModule;
 import me.olliem5.ferox.api.module.Module;
-import me.olliem5.ferox.api.module.ModuleInfo;
 import me.olliem5.ferox.api.setting.NumberSetting;
 import me.olliem5.ferox.api.setting.Setting;
 import net.minecraft.client.entity.EntityOtherPlayerMP;
 
 import java.util.UUID;
 
-@ModuleInfo(name = "FakePlayer", description = "Spawns a client side player entity, usually for module testing", category = Category.MISC)
+@FeroxModule(name = "FakePlayer", description = "Spawns a client side player entity, usually for module testing", category = Category.MISC)
 public class FakePlayer extends Module {
     public Setting<NameModes> nameMode = new Setting<>("Name", "The name of the fake player", NameModes.Ollie);
     public NumberSetting<Float> health = new NumberSetting<>("Health", "The health of the fake player", 0.0f, 20.0f, 36.0f, 1);

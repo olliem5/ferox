@@ -1,12 +1,12 @@
 package me.olliem5.ferox.impl.modules.ui;
 
 import me.olliem5.ferox.api.module.Category;
+import me.olliem5.ferox.api.module.FeroxModule;
 import me.olliem5.ferox.api.module.Module;
-import me.olliem5.ferox.api.module.ModuleInfo;
 import me.olliem5.ferox.api.setting.Setting;
 import me.olliem5.ferox.impl.gui.screens.editor.HudEditor;
 
-@ModuleInfo(name = "HudEditor", description = "Opens Ferox's HudEditor", category = Category.UI)
+@FeroxModule(name = "HudEditor", description = "Opens Ferox's HudEditor", category = Category.UI)
 public class HudEditorModule extends Module {
     public static Setting<Boolean> componentOverflow = new Setting<>("Component Overflow", "Allows components to go over the screen", false);
 

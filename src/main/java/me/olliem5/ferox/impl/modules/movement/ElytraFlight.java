@@ -1,8 +1,8 @@
 package me.olliem5.ferox.impl.modules.movement;
 
 import me.olliem5.ferox.api.module.Category;
+import me.olliem5.ferox.api.module.FeroxModule;
 import me.olliem5.ferox.api.module.Module;
-import me.olliem5.ferox.api.module.ModuleInfo;
 import me.olliem5.ferox.api.setting.NumberSetting;
 import me.olliem5.ferox.api.setting.Setting;
 import me.olliem5.ferox.api.util.module.MotionUtil;
@@ -15,7 +15,7 @@ import net.minecraft.network.play.client.CPacketEntityAction;
  * @since 12/29/2020
  */
 
-@ModuleInfo(name = "ElytraFlight", description = "Allows you to fly faster on an elytra", category = Category.MOVEMENT)
+@FeroxModule(name = "ElytraFlight", description = "Allows you to fly faster on an elytra", category = Category.MOVEMENT)
 public class ElytraFlight extends Module {
     public static Setting<FlyModes> mode = new Setting<>("Mode", "The mode of flight to use", FlyModes.Control);
 

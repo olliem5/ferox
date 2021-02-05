@@ -2,8 +2,8 @@ package me.olliem5.ferox.impl.modules.movement;
 
 import git.littledraily.eventsystem.Listener;
 import me.olliem5.ferox.api.module.Category;
+import me.olliem5.ferox.api.module.FeroxModule;
 import me.olliem5.ferox.api.module.Module;
-import me.olliem5.ferox.api.module.ModuleInfo;
 import me.olliem5.ferox.api.setting.NumberSetting;
 import me.olliem5.ferox.api.setting.Setting;
 import me.olliem5.ferox.impl.events.PacketEvent;
@@ -14,7 +14,7 @@ import net.minecraft.network.play.server.SPacketExplosion;
  * TODO: NoPush
  */
 
-@ModuleInfo(name = "Velocity", description = "Modifies the knockback that you take", category = Category.MOVEMENT)
+@FeroxModule(name = "Velocity", description = "Modifies the knockback that you take", category = Category.MOVEMENT)
 public class Velocity extends Module {
     public static Setting<Boolean> velocity = new Setting<>("Velocity", "Modifies player velocity", true);
     public static Setting<Boolean> explosions = new Setting<>("Explosions", "Modifies explosion velocity", true);

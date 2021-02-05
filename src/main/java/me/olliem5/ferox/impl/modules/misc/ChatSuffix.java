@@ -2,13 +2,13 @@ package me.olliem5.ferox.impl.modules.misc;
 
 import git.littledraily.eventsystem.Listener;
 import me.olliem5.ferox.api.module.Category;
+import me.olliem5.ferox.api.module.FeroxModule;
 import me.olliem5.ferox.api.module.Module;
-import me.olliem5.ferox.api.module.ModuleInfo;
 import me.olliem5.ferox.api.setting.Setting;
 import me.olliem5.ferox.impl.events.PacketEvent;
 import net.minecraft.network.play.client.CPacketChatMessage;
 
-@ModuleInfo(name = "ChatSuffix", description = "Adds a custom ending to your chat messages", category = Category.MISC)
+@FeroxModule(name = "ChatSuffix", description = "Adds a custom ending to your chat messages", category = Category.MISC)
 public class ChatSuffix extends Module {
     public static Setting<Boolean> green = new Setting<>("Green", "Makes your suffix green", false);
     public static Setting<Boolean> blue = new Setting<>("Blue", "Makes your suffix blue", false);

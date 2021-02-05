@@ -5,16 +5,18 @@ buildscript {
             name = "forge"
             url = "https://files.minecraftforge.net/maven"
         }
+
         maven {
             name = 'SpongePowered'
             url = 'https://repo.spongepowered.org/repository/maven-public/'
         }
     }
+
     dependencies {
         classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
         classpath 'org.spongepowered:mixingradle:0.6-SNAPSHOT'
         classpath 'com.github.jengelman.gradle.plugins:shadow:1.2.3'
-        classpath 'javassist:javassist:3.12.1.GA'
+//        classpath 'javassist:javassist:3.12.1.GA'
     }
 }
 
@@ -69,8 +71,8 @@ dependencies {
     compile 'com.github.LittleDraily:event-system:1.1'
     compile 'com.github.CafeDevelopment:Venture:1.0-SNAPSHOT'
     compile 'org.slick2d:slick2d-core:1.0.2'
-    compile 'org.reflections:reflections:0.9.12'
-    compile 'javassist:javassist:3.12.1.GA'
+//    compile 'org.reflections:reflections:0.9.12'
+//    compile 'javassist:javassist:3.12.1.GA'
 }
 
 processResources {
@@ -97,8 +99,8 @@ shadowJar {
         include(dependency('com.github.LittleDraily:event-system:1.1'))
         include(dependency('com.github.CafeDevelopment:Venture'))
         include(dependency('org.slick2d:slick2d-core'))
-        include(dependency('org.reflections:reflections'))
-        include(dependency('javassist:javassist'))
+//        include(dependency('org.reflections:reflections'))
+//        include(dependency('javassist:javassist'))
     }
 
     exclude 'dummyThing'

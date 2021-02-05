@@ -24,12 +24,12 @@ public abstract class HudComponent implements Minecraft {
 
     private ArrayList<Setting> settings = new ArrayList<>();
 
-    private ComponentInfo getAnnotation() {
-        if (getClass().isAnnotationPresent(ComponentInfo.class)) {
-            return getClass().getAnnotation(ComponentInfo.class);
+    private FeroxComponent getAnnotation() {
+        if (getClass().isAnnotationPresent(FeroxComponent.class)) {
+            return getClass().getAnnotation(FeroxComponent.class);
         }
 
-        throw new IllegalStateException("Annotation 'ComponentInfo' not found!");
+        throw new IllegalStateException("Annotation 'FeroxComponent' not found!");
     }
 
     public abstract void render();

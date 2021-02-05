@@ -1,14 +1,14 @@
 package me.olliem5.ferox.impl.modules.ui;
 
 import me.olliem5.ferox.api.module.Category;
+import me.olliem5.ferox.api.module.FeroxModule;
 import me.olliem5.ferox.api.module.Module;
-import me.olliem5.ferox.api.module.ModuleInfo;
 import me.olliem5.ferox.api.setting.NumberSetting;
 import me.olliem5.ferox.api.setting.Setting;
 import me.olliem5.ferox.impl.gui.screens.click.BaseGui;
 import org.lwjgl.input.Keyboard;
 
-@ModuleInfo(name = "ClickGUI", description = "Opens Ferox's ClickGUI", category = Category.UI, key = Keyboard.KEY_P)
+@FeroxModule(name = "ClickGUI", description = "Opens Ferox's ClickGUI", category = Category.UI, key = Keyboard.KEY_P)
 public class ClickGUIModule extends Module {
     public static Setting<ThemeModes> theme = new Setting<>("Theme", "The theme to use for the ClickGUI", ThemeModes.Default);
     public static Setting<Boolean> windowOverflow = new Setting<>("Window Overflow", "Allows GUI windows to go over the screen", false);

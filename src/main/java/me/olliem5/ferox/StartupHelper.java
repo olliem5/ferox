@@ -4,13 +4,10 @@ import me.olliem5.ferox.api.event.EventProcessor;
 import me.olliem5.ferox.api.hud.HudManager;
 import me.olliem5.ferox.api.module.ModuleManager;
 import me.olliem5.ferox.api.theme.ThemeManager;
+import me.olliem5.ferox.impl.command.EchoCommand;
 import me.olliem5.ferox.impl.gui.screens.click.Window;
-import me.yagel15637.venture.command.ICommand;
 import me.yagel15637.venture.manager.CommandManager;
 import net.minecraftforge.common.MinecraftForge;
-import org.reflections.Reflections;
-
-import java.lang.reflect.InvocationTargetException;
 
 public class StartupHelper {
     public static void startupFerox() {
@@ -34,16 +31,8 @@ public class StartupHelper {
     }
 
     private static void initCommandManager() {
-        Reflections reflections = new Reflections("me.olliem5.ferox.impl.command");
-
-        reflections.getSubTypesOf(ICommand.class).forEach(clazz -> {
-
-            try {
-                ICommand iCommand = clazz.newInstance();
-                CommandManager.addCommands(iCommand);
-            } catch (InstantiationException | IllegalAccessException exception) {
-                exception.printStackTrace();
-            }
-        });
+        CommandManager.addCommands(
+                new EchoCommand()
+        );
     }
 }

@@ -1,11 +1,11 @@
 package me.olliem5.ferox.impl.hud;
 
 import me.olliem5.ferox.Ferox;
-import me.olliem5.ferox.api.hud.ComponentInfo;
+import me.olliem5.ferox.api.hud.FeroxComponent;
 import me.olliem5.ferox.api.hud.HudComponent;
 import me.olliem5.ferox.api.setting.Setting;
 
-@ComponentInfo(name = "Watermark")
+@FeroxComponent(name = "Watermark")
 public class WatermarkComponent extends HudComponent {
     public static Setting<WatermarkModes> watermarkMode = new Setting<>("Mode", "The watermark mode", WatermarkModes.NameVersion);
 

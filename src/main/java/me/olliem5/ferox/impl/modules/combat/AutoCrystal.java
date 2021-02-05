@@ -1,8 +1,8 @@
 package me.olliem5.ferox.impl.modules.combat;
 
 import me.olliem5.ferox.api.module.Category;
+import me.olliem5.ferox.api.module.FeroxModule;
 import me.olliem5.ferox.api.module.Module;
-import me.olliem5.ferox.api.module.ModuleInfo;
 import me.olliem5.ferox.api.setting.NumberSetting;
 import me.olliem5.ferox.api.setting.Setting;
 import me.olliem5.ferox.api.util.math.CooldownUtil;
@@ -18,7 +18,7 @@ import net.minecraft.util.math.BlockPos;
 
 import java.util.Comparator;
 
-@ModuleInfo(name = "AutoCrystal", description = "Places and destroys end crystals to kill enemies", category = Category.COMBAT)
+@FeroxModule(name = "AutoCrystal", description = "Places and destroys end crystals to kill enemies", category = Category.COMBAT)
 public class AutoCrystal extends Module {
     public static Setting<LogicModes> logicMode = new Setting<>("Logic", "The order to perform AutoCrystal functions", LogicModes.Breakplace);
     public static Setting<PlaceModes> placeMode = new Setting<>("Place", "The mode for crystal placing", PlaceModes.Single);

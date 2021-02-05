@@ -1,8 +1,8 @@
 package me.olliem5.ferox.impl.modules.misc;
 
 import me.olliem5.ferox.api.module.Category;
+import me.olliem5.ferox.api.module.FeroxModule;
 import me.olliem5.ferox.api.module.Module;
-import me.olliem5.ferox.api.module.ModuleInfo;
 import me.olliem5.ferox.api.setting.Setting;
 import net.minecraft.block.Block;
 import net.minecraft.item.*;
@@ -11,7 +11,7 @@ import net.minecraft.network.play.client.CPacketPlayerTryUseItem;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 
-@ModuleInfo(name = "FastUse", description = "Allows you to use certain things faster", category = Category.MISC)
+@FeroxModule(name = "FastUse", description = "Allows you to use certain things faster", category = Category.MISC)
 public class FastUse extends Module {
     public static Setting<Boolean> bows = new Setting<>("Bows", "Allows bows to be used quickly", true);
     public static Setting<Boolean> offhandBows = new Setting<>("Offhand Bows", "Allows bows to be used quickly in the offhand", true);

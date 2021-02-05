@@ -1,8 +1,8 @@
 package me.olliem5.ferox.impl.modules.combat;
 
 import me.olliem5.ferox.api.module.Category;
+import me.olliem5.ferox.api.module.FeroxModule;
 import me.olliem5.ferox.api.module.Module;
-import me.olliem5.ferox.api.module.ModuleInfo;
 import me.olliem5.ferox.api.setting.NumberSetting;
 import me.olliem5.ferox.api.setting.Setting;
 import me.olliem5.ferox.api.util.minecraft.InventoryUtil;
@@ -13,7 +13,7 @@ import net.minecraft.init.Items;
  * TODO: Crystal Range & Damage Checks
  */
 
-@ModuleInfo(name = "Offhand", description = "Manages the item in your offhand", category = Category.COMBAT)
+@FeroxModule(name = "Offhand", description = "Manages the item in your offhand", category = Category.COMBAT)
 public class Offhand extends Module {
     public static Setting<OffhandModes> offhandMode = new Setting<>("Mode", "The item to put in your offhand", OffhandModes.Crystal);
     public static NumberSetting<Double> switchHealth = new NumberSetting<>("Totem Health", "Health to be at to switch to a totem", 1.0, 16.0, 36.0, 1);

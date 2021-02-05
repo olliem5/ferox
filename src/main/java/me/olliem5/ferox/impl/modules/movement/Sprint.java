@@ -1,11 +1,11 @@
 package me.olliem5.ferox.impl.modules.movement;
 
 import me.olliem5.ferox.api.module.Category;
+import me.olliem5.ferox.api.module.FeroxModule;
 import me.olliem5.ferox.api.module.Module;
-import me.olliem5.ferox.api.module.ModuleInfo;
 import me.olliem5.ferox.api.setting.Setting;
 
-@ModuleInfo(name = "Sprint", description = "Automatically makes you sprint", category = Category.MOVEMENT)
+@FeroxModule(name = "Sprint", description = "Automatically makes you sprint", category = Category.MOVEMENT)
 public class Sprint extends Module {
     public static Setting<SprintModes> sprintMode = new Setting<>("Mode", "The type of sprint to perform", SprintModes.Rage);
 

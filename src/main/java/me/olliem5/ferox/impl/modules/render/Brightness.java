@@ -1,13 +1,13 @@
 package me.olliem5.ferox.impl.modules.render;
 
 import me.olliem5.ferox.api.module.Category;
+import me.olliem5.ferox.api.module.FeroxModule;
 import me.olliem5.ferox.api.module.Module;
-import me.olliem5.ferox.api.module.ModuleInfo;
 import me.olliem5.ferox.api.setting.Setting;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 
-@ModuleInfo(name = "Brightness", description = "Makes your game brighter", category = Category.RENDER)
+@FeroxModule(name = "Brightness", description = "Makes your game brighter", category = Category.RENDER)
 public class Brightness extends Module {
     public static Setting<BrightnessModes> brightnessMode = new Setting<>("Mode", "The way of achieving brightness", BrightnessModes.Gamma);
 

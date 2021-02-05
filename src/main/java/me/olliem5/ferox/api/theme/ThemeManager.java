@@ -1,25 +1,17 @@
 package me.olliem5.ferox.api.theme;
 
-import org.reflections.Reflections;
+import me.olliem5.ferox.impl.gui.themes.DefaultTheme;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class ThemeManager {
     private static ArrayList<Theme> themes = new ArrayList<>();
 
     public static void init() {
-        Reflections reflections = new Reflections("me.olliem5.ferox.impl.gui.themes");
-
-        reflections.getSubTypesOf(Theme.class).forEach(clazz -> {
-
-            try {
-                Theme theme = clazz.newInstance();
-                themes.add(theme);
-            } catch (InstantiationException | IllegalAccessException exception) {
-                exception.printStackTrace();
-            }
-        });
+        themes.addAll(Arrays.asList(
+                new DefaultTheme()
+        ));
     }
 
     public static ArrayList<Theme> getThemes() {

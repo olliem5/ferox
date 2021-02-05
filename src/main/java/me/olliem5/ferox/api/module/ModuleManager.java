@@ -1,25 +1,62 @@
 package me.olliem5.ferox.api.module;
 
-import org.reflections.Reflections;
+import me.olliem5.ferox.impl.modules.combat.*;
+import me.olliem5.ferox.impl.modules.ferox.DiscordRPC;
+import me.olliem5.ferox.impl.modules.ferox.Font;
+import me.olliem5.ferox.impl.modules.ferox.Friends;
+import me.olliem5.ferox.impl.modules.ferox.Notifier;
+import me.olliem5.ferox.impl.modules.misc.ChatSuffix;
+import me.olliem5.ferox.impl.modules.misc.FakePlayer;
+import me.olliem5.ferox.impl.modules.misc.FastUse;
+import me.olliem5.ferox.impl.modules.movement.ElytraFlight;
+import me.olliem5.ferox.impl.modules.movement.Sprint;
+import me.olliem5.ferox.impl.modules.movement.Velocity;
+import me.olliem5.ferox.impl.modules.render.Brightness;
+import me.olliem5.ferox.impl.modules.render.HoleESP;
+import me.olliem5.ferox.impl.modules.ui.ClickGUIModule;
+import me.olliem5.ferox.impl.modules.ui.ConsoleModule;
+import me.olliem5.ferox.impl.modules.ui.HudEditorModule;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class ModuleManager {
     private static ArrayList<Module> modules = new ArrayList<>();
 
     public static void init() {
-        Reflections reflections = new Reflections("me.olliem5.ferox.impl.modules");
+        modules.addAll(Arrays.asList(
+                //Combat
+                new AntiCrystal(),
+                new AutoCrystal(),
+                new AutoTrap(),
+                new Offhand(),
+                new Surround(),
 
-        reflections.getSubTypesOf(Module.class).forEach(clazz -> {
+                //Movement
+                new ElytraFlight(),
+                new Sprint(),
+                new Velocity(),
 
-            try {
-                Module module = clazz.newInstance();
-                modules.add(module);
-            } catch (InstantiationException | IllegalAccessException exception) {
-                exception.printStackTrace();
-            }
-        });
+                //Misc
+                new ChatSuffix(),
+                new FakePlayer(),
+                new FastUse(),
+
+                //Render
+                new Brightness(),
+                new HoleESP(),
+
+                //Ferox
+                new DiscordRPC(),
+                new Font(),
+                new Friends(),
+                new Notifier(),
+
+                //Interface
+                new ClickGUIModule(),
+                new ConsoleModule(),
+                new HudEditorModule()
+        ));
     }
 
     public static ArrayList<Module> getModules() {

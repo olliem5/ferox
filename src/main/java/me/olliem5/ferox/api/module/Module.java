@@ -22,12 +22,12 @@ public class Module implements Minecraft {
 
     private ArrayList<Setting> settings = new ArrayList<>();
 
-    private ModuleInfo getAnnotation() {
-        if (getClass().isAnnotationPresent(ModuleInfo.class)) {
-            return getClass().getAnnotation(ModuleInfo.class);
+    private FeroxModule getAnnotation() {
+        if (getClass().isAnnotationPresent(FeroxModule.class)) {
+            return getClass().getAnnotation(FeroxModule.class);
         }
 
-        throw new IllegalStateException("Annotation 'ModuleInfo' not found!");
+        throw new IllegalStateException("Annotation 'FeroxModule' not found!");
     }
 
     public boolean nullCheck() {
