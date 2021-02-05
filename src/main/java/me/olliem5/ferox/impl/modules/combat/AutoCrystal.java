@@ -20,34 +20,34 @@ import java.util.Comparator;
 
 @FeroxModule(name = "AutoCrystal", description = "Places and destroys end crystals to kill enemies", category = Category.COMBAT)
 public class AutoCrystal extends Module {
-    public static Setting<LogicModes> logicMode = new Setting<>("Logic", "The order to perform AutoCrystal functions", LogicModes.Breakplace);
-    public static Setting<PlaceModes> placeMode = new Setting<>("Place", "The mode for crystal placing", PlaceModes.Single);
-    public static Setting<BreakModes> breakMode = new Setting<>("Break", "The mode for crystal breaking", BreakModes.Nearest);
-    public static Setting<BreakTypes> breakType = new Setting<>("Break Type", "The mode for how the crystal is broken", BreakTypes.Swing);
-    public static Setting<SwingModes> swingMode = new Setting<>("Swing", "The mode for how the player swings at the crystal", SwingModes.Mainhand);
+    public static final Setting<LogicModes> logicMode = new Setting<>("Logic", "The order to perform AutoCrystal functions", LogicModes.Breakplace);
+    public static final Setting<PlaceModes> placeMode = new Setting<>("Place", "The mode for crystal placing", PlaceModes.Single);
+    public static final Setting<BreakModes> breakMode = new Setting<>("Break", "The mode for crystal breaking", BreakModes.Nearest);
+    public static final Setting<BreakTypes> breakType = new Setting<>("Break Type", "The mode for how the crystal is broken", BreakTypes.Swing);
+    public static final Setting<SwingModes> swingMode = new Setting<>("Swing", "The mode for how the player swings at the crystal", SwingModes.Mainhand);
 
-    public static NumberSetting<Integer> placeDelay = new NumberSetting<>("Place Delay", "The delay between crystal places", 0, 2, 20, 0);
-    public static NumberSetting<Integer> breakDelay = new NumberSetting<>("Break Delay", "The delay between crystal breaks", 0, 2, 20, 0);
+    public static final NumberSetting<Integer> placeDelay = new NumberSetting<>("Place Delay", "The delay between crystal places", 0, 2, 20, 0);
+    public static final NumberSetting<Integer> breakDelay = new NumberSetting<>("Break Delay", "The delay between crystal breaks", 0, 2, 20, 0);
 
-    public static NumberSetting<Double> placeRange = new NumberSetting<>("Place Range", "The range to place crystals in", 0.0, 5.5, 10.0, 1);
-    public static NumberSetting<Double> breakRange = new NumberSetting<>("Break Range", "The range to break crystals in", 0.0, 5.5, 10.0, 1);
-    public static NumberSetting<Double> enemyRange = new NumberSetting<>("Enemy Range", "The range the target can be in", 1.0, 15.0, 50.0, 1);
-    public static NumberSetting<Double> wallsRange = new NumberSetting<>("Walls Range", "The range for places through walls", 0.0, 3.5, 10.0, 1);
+    public static final NumberSetting<Double> placeRange = new NumberSetting<>("Place Range", "The range to place crystals in", 0.0, 5.5, 10.0, 1);
+    public static final NumberSetting<Double> breakRange = new NumberSetting<>("Break Range", "The range to break crystals in", 0.0, 5.5, 10.0, 1);
+    public static final NumberSetting<Double> enemyRange = new NumberSetting<>("Enemy Range", "The range the target can be in", 1.0, 15.0, 50.0, 1);
+    public static final NumberSetting<Double> wallsRange = new NumberSetting<>("Walls Range", "The range for places through walls", 0.0, 3.5, 10.0, 1);
 
-    public static Setting<Boolean> rotate = new Setting<>("Rotate", "Allow rotations to crystals and blocks", true);
-    public static Setting<Boolean> raytrace = new Setting<>("Raytrace", "Allow raytracing for placements", true);
-    public static Setting<Boolean> antiWeakness = new Setting<>("Anti Weakness", "Allow switching to a sword or tool when you have weakness", true);
+    public static final Setting<Boolean> rotate = new Setting<>("Rotate", "Allow rotations to crystals and blocks", true);
+    public static final Setting<Boolean> raytrace = new Setting<>("Raytrace", "Allow raytracing for placements", true);
+    public static final Setting<Boolean> antiWeakness = new Setting<>("Anti Weakness", "Allow switching to a sword or tool when you have weakness", true);
 
-    public static Setting<Boolean> syncBreak = new Setting<>("Sync Break", "Sets crystals to dead after breaking them", true);
-    public static Setting<Boolean> reloadCrystal = new Setting<>("Reload Crystal", "Reloads world entities after a crystal break", true);
-    public static Setting<Boolean> antiDesync = new Setting<>("Anti Desync", "Removes desynced crystals", true);
-    public static NumberSetting<Integer> breakAttempts = new NumberSetting<>("Break Attempts", "How many times to swing at the crystal", 1, 1, 5, 0);
+    public static final Setting<Boolean> syncBreak = new Setting<>("Sync Break", "Sets crystals to dead after breaking them", true);
+    public static final Setting<Boolean> reloadCrystal = new Setting<>("Reload Crystal", "Reloads world entities after a crystal break", true);
+    public static final Setting<Boolean> antiDesync = new Setting<>("Anti Desync", "Removes desynced crystals", true);
+    public static final NumberSetting<Integer> breakAttempts = new NumberSetting<>("Break Attempts", "How many times to swing at the crystal", 1, 1, 5, 0);
 
-    public static Setting<Boolean> antiSuicide = new Setting<>("Anti Suicide", "Stops crystals from doing too much damage to you", true);
-    public static NumberSetting<Double> antiSuicideHealth = new NumberSetting<>("Anti Suicide HP", "Health to be at to stop you killing yourself", 1.0, 15.0, 36.0, 1);
-    public static NumberSetting<Double> minDamage = new NumberSetting<>("Min Damage", "Minimum enemy damage for a place", 0.0, 7.0, 36.0, 1);
-    public static NumberSetting<Double> maxSelfDamage = new NumberSetting<>("Max Self Damage", "Maximum self damage for a place", 0.0, 8.0, 36.0, 1);
-    public static NumberSetting<Double> faceplaceHP = new NumberSetting<>("Faceplace HP", "Enemy health to faceplace at", 0.0, 8.0, 36.0, 1);
+    public static final Setting<Boolean> antiSuicide = new Setting<>("Anti Suicide", "Stops crystals from doing too much damage to you", true);
+    public static final NumberSetting<Double> antiSuicideHealth = new NumberSetting<>("Anti Suicide HP", "Health to be at to stop you killing yourself", 1.0, 15.0, 36.0, 1);
+    public static final NumberSetting<Double> minDamage = new NumberSetting<>("Min Damage", "Minimum enemy damage for a place", 0.0, 7.0, 36.0, 1);
+    public static final NumberSetting<Double> maxSelfDamage = new NumberSetting<>("Max Self Damage", "Maximum self damage for a place", 0.0, 8.0, 36.0, 1);
+    public static final NumberSetting<Double> faceplaceHP = new NumberSetting<>("Faceplace HP", "Enemy health to faceplace at", 0.0, 8.0, 36.0, 1);
 
     public AutoCrystal() {
         this.addSettings(

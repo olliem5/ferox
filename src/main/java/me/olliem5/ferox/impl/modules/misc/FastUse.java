@@ -13,14 +13,14 @@ import net.minecraft.util.math.BlockPos;
 
 @FeroxModule(name = "FastUse", description = "Allows you to use certain things faster", category = Category.MISC)
 public class FastUse extends Module {
-    public static Setting<Boolean> bows = new Setting<>("Bows", "Allows bows to be used quickly", true);
-    public static Setting<Boolean> offhandBows = new Setting<>("Offhand Bows", "Allows bows to be used quickly in the offhand", true);
-    public static Setting<Boolean> fishingRods = new Setting<>("Fishing Rods", "Allows fishing rods to be used quickly", false);
-    public static Setting<Boolean> experience = new Setting<>("Experience", "Allows experience bottles to be used quickly", true);
-    public static Setting<Boolean> crystals = new Setting<>("Crystals", "Allows crystals to be used quickly", true);
-    public static Setting<Boolean> throwables = new Setting<>("Throwables", "Allows throwable items to be used quickly", false);
-    public static Setting<Boolean> blocks = new Setting<>("Blocks", "Allows blocks to be used quickly", false);
-    public static Setting<Boolean> other = new Setting<>("Other", "Allows other things to be used quickly", false);
+    public static final Setting<Boolean> bows = new Setting<>("Bows", "Allows bows to be used quickly", true);
+    public static final Setting<Boolean> offhandBows = new Setting<>("Offhand Bows", "Allows bows to be used quickly in the offhand", true);
+    public static final Setting<Boolean> fishingRods = new Setting<>("Fishing Rods", "Allows fishing rods to be used quickly", false);
+    public static final Setting<Boolean> experience = new Setting<>("Experience", "Allows experience bottles to be used quickly", true);
+    public static final Setting<Boolean> crystals = new Setting<>("Crystals", "Allows crystals to be used quickly", true);
+    public static final Setting<Boolean> throwables = new Setting<>("Throwables", "Allows throwable items to be used quickly", false);
+    public static final Setting<Boolean> blocks = new Setting<>("Blocks", "Allows blocks to be used quickly", false);
+    public static final Setting<Boolean> other = new Setting<>("Other", "Allows other things to be used quickly", false);
 
     public FastUse() {
         this.addSettings(

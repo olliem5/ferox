@@ -7,7 +7,7 @@ import me.olliem5.ferox.api.setting.Setting;
 
 @FeroxComponent(name = "Welcomer")
 public class WelcomerComponent extends HudComponent {
-    public static Setting<WelcomerModes> welcomerMode = new Setting<>("Mode", "The welcomer mode", WelcomerModes.Welcome);
+    public static final Setting<WelcomerModes> welcomerMode = new Setting<>("Mode", "The welcomer mode", WelcomerModes.Welcome);
 
     public WelcomerComponent() {
         setHeight(10);

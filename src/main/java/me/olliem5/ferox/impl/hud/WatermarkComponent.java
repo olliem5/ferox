@@ -7,7 +7,7 @@ import me.olliem5.ferox.api.setting.Setting;
 
 @FeroxComponent(name = "Watermark")
 public class WatermarkComponent extends HudComponent {
-    public static Setting<WatermarkModes> watermarkMode = new Setting<>("Mode", "The watermark mode", WatermarkModes.NameVersion);
+    public static final Setting<WatermarkModes> watermarkMode = new Setting<>("Mode", "The watermark mode", WatermarkModes.NameVersion);
 
     public WatermarkComponent() {
         setHeight(10);

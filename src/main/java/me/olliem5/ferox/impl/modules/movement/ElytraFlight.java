@@ -17,25 +17,25 @@ import net.minecraft.network.play.client.CPacketEntityAction;
 
 @FeroxModule(name = "ElytraFlight", description = "Allows you to fly faster on an elytra", category = Category.MOVEMENT)
 public class ElytraFlight extends Module {
-    public static Setting<FlyModes> mode = new Setting<>("Mode", "The mode of flight to use", FlyModes.Control);
+    public static final Setting<FlyModes> mode = new Setting<>("Mode", "The mode of flight to use", FlyModes.Control);
 
-    public static NumberSetting<Double> horizontalSpeed = new NumberSetting<>("Glide Speed", "The speed of gliding", 0.0, 2.0, 5.0, 1);
-    public static NumberSetting<Double> verticalSpeed = new NumberSetting<>("Rise Speed", "The speed of rising", 0.0, 1.0, 5.0, 1);
-    public static NumberSetting<Double> yOffset = new NumberSetting<>("Vertical Offset", "Vertical movement for freezing", 0.0, 0.009, 0.1, 3);
+    public static final NumberSetting<Double> horizontalSpeed = new NumberSetting<>("Glide Speed", "The speed of gliding", 0.0, 2.0, 5.0, 1);
+    public static final NumberSetting<Double> verticalSpeed = new NumberSetting<>("Rise Speed", "The speed of rising", 0.0, 1.0, 5.0, 1);
+    public static final NumberSetting<Double> yOffset = new NumberSetting<>("Vertical Offset", "Vertical movement for freezing", 0.0, 0.009, 0.1, 3);
 
-    public static Setting<Boolean> takeOffTimer = new Setting<>("Takeoff Timer", "Allows timer to be used on takeoff", false);
-    public static NumberSetting<Float> ticks = new NumberSetting<>("Ticks", "The ticks to use for timer", 0.1f, 0.5f, 0.8f, 2);
+    public static final Setting<Boolean> takeOffTimer = new Setting<>("Takeoff Timer", "Allows timer to be used on takeoff", false);
+    public static final NumberSetting<Float> ticks = new NumberSetting<>("Ticks", "The ticks to use for timer", 0.1f, 0.5f, 0.8f, 2);
 
-    public static Setting<Boolean> lockRotation = new Setting<>("Lock Rotation", "Locks your rotation", false);
-    public static NumberSetting<Float> ncpRotations = new NumberSetting<>("NCP Rotation", "Rotations for NCP", 0.0f, 35.0f, 90.0f, 1);
+    public static final Setting<Boolean> lockRotation = new Setting<>("Lock Rotation", "Locks your rotation", false);
+    public static final NumberSetting<Float> ncpRotations = new NumberSetting<>("NCP Rotation", "Rotations for NCP", 0.0f, 35.0f, 90.0f, 1);
 
-    public static Setting<Boolean> infiniteFly = new Setting<>("Infinite", "Allows for infinite flight", false);
+    public static final Setting<Boolean> infiniteFly = new Setting<>("Infinite", "Allows for infinite flight", false);
 
-    public static Setting<Boolean> checks = new Setting<>("Checks", "Various checks for stopping flight", true);
-    public static Setting<Boolean> liquidDisable = new Setting<>(checks, "In Liquid", "Stops when you are in liquid", true);
-    public static Setting<Boolean> onCollision = new Setting<>(checks, "On Collision", "Stops when you collide with something", false);
-    public static Setting<Boolean> onUpward = new Setting<>(checks, "Upward Motion", "Stops on upwards motion", false);
-    public static Setting<Boolean> belowY = new Setting<>(checks, "Low Height", "Stops at low height", false);
+    public static final Setting<Boolean> checks = new Setting<>("Checks", "Various checks for stopping flight", true);
+    public static final Setting<Boolean> liquidDisable = new Setting<>(checks, "In Liquid", "Stops when you are in liquid", true);
+    public static final Setting<Boolean> onCollision = new Setting<>(checks, "On Collision", "Stops when you collide with something", false);
+    public static final Setting<Boolean> onUpward = new Setting<>(checks, "Upward Motion", "Stops on upwards motion", false);
+    public static final Setting<Boolean> belowY = new Setting<>(checks, "Low Height", "Stops at low height", false);
 
     public ElytraFlight() {
         this.addSettings(

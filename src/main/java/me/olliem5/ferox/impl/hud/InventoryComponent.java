@@ -12,7 +12,7 @@ import java.awt.*;
 
 @FeroxComponent(name = "Inventory")
 public class InventoryComponent extends HudComponent {
-    public static Setting<Boolean> background = new Setting("Background", "Shows a background behind the items", true);
+    public static final Setting<Boolean> background = new Setting("Background", "Shows a background behind the items", true);
 
     public InventoryComponent() {
         setWidth(144);
