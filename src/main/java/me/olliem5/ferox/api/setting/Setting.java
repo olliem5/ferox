@@ -1,5 +1,6 @@
 package me.olliem5.ferox.api.setting;
 
+import java.awt.*;
 import java.util.ArrayList;
 
 public class Setting<T> {
@@ -38,6 +39,11 @@ public class Setting<T> {
 		if (parent.getValue() instanceof Enum) {
 			Setting<Enum> enumSetting = (Setting<Enum>) parent;
 			enumSetting.addSubSetting(this);
+		}
+
+		if (parent.getValue() instanceof Color) {
+			Setting<Color> colorSetting = (Setting<Color>) parent;
+			colorSetting.addSubSetting(this);
 		}
 
 		if (parent.getValue() instanceof Integer) {

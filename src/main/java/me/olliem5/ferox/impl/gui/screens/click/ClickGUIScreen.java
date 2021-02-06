@@ -13,7 +13,7 @@ import java.io.IOException;
  * @since 11/16/20
  */
 
-public final class ClickGUIBase extends GuiScreen {
+public final class ClickGUIScreen extends GuiScreen {
 	
 	@Override
 	public void drawScreen(int mouseX, int mouseY, float partialTicks) {

@@ -9,7 +9,6 @@ import net.minecraft.entity.player.EntityPlayer;
  */
 
 public final class RotationUtil implements Minecraft {
-
     public static void lockYaw(double rotation) {
         if (mc.player.rotationYaw >= rotation) {
             mc.player.rotationYaw = 0;
@@ -32,6 +31,7 @@ public final class RotationUtil implements Minecraft {
 
     public static void lookAtPacket(double px, double py, double pz, EntityPlayer me) {
         double[] v = calculateLookAt(px, py, pz, me);
+
         setYawAndPitch((float) v[0], (float) v[1]);
     }
 

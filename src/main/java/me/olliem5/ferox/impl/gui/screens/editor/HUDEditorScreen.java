@@ -16,7 +16,7 @@ import java.io.IOException;
  * @since 11/16/20
  */
 
-public final class HUDEditorBase extends GuiScreen {
+public final class HUDEditorScreen extends GuiScreen {
 	
 	@Override
 	public void drawScreen(int mouseX, int mouseY, float partialTicks) {

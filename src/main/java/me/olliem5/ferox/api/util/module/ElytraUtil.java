@@ -8,7 +8,6 @@ import me.olliem5.ferox.api.traits.Minecraft;
  */
 
 public final class ElytraUtil implements Minecraft {
-
     public static void accelerateElytra(double horizontal) {
         double yaw = MotionUtil.calcMoveYaw(mc.player.rotationYaw);
         double motX = 0;

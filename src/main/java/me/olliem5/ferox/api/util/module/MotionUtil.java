@@ -8,8 +8,8 @@ import me.olliem5.ferox.api.traits.Minecraft;
  */
 
 public final class MotionUtil implements Minecraft {
-    static float roundedForward = getRoundedMovementInput(mc.player.movementInput.moveForward);
-    static float roundedStrafing = getRoundedMovementInput(mc.player.movementInput.moveStrafe);
+    private static float roundedForward = getRoundedMovementInput(mc.player.movementInput.moveForward);
+    private static float roundedStrafing = getRoundedMovementInput(mc.player.movementInput.moveStrafe);
 
     public static boolean isMoving() {
         return (mc.player.moveForward != 0.0D || mc.player.moveStrafing != 0.0D);

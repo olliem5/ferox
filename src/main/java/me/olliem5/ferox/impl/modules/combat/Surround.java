@@ -1,6 +1,7 @@
 package me.olliem5.ferox.impl.modules.combat;
 
 import com.mojang.realmsclient.gui.ChatFormatting;
+import git.littledraily.eventsystem.Listener;
 import me.olliem5.ferox.api.module.Category;
 import me.olliem5.ferox.api.module.FeroxModule;
 import me.olliem5.ferox.api.module.Module;
@@ -9,10 +10,13 @@ import me.olliem5.ferox.api.setting.Setting;
 import me.olliem5.ferox.api.util.client.MessageUtil;
 import me.olliem5.ferox.api.util.minecraft.InventoryUtil;
 import me.olliem5.ferox.api.util.minecraft.PlaceUtil;
+import me.olliem5.ferox.api.util.render.draw.RenderUtil;
+import me.olliem5.ferox.impl.events.WorldRenderEvent;
 import net.minecraft.init.Blocks;
 import net.minecraft.network.play.client.CPacketPlayer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
+import org.lwjgl.opengl.GL11;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -30,8 +34,10 @@ public final class Surround extends Module {
     public static final Setting<Boolean> timeout = new Setting<>("Timeout", "Allows the module to timeout and disable", true);
     public static final NumberSetting<Double> timeoutTicks = new NumberSetting<>("Timeout Ticks", "Ticks that have to pass to timeout", 1.0, 15.0, 20.0, 1);
 
-    public static final Setting<Boolean> renderBlock = new Setting<>("Render", "Allows the block placements to be rendered", true);
-    public static final Setting<Color> renderColour = new Setting<>(renderBlock, "Render Colour", "The colour for the block placements", new Color(182, 40, 226, 186));
+    public static final Setting<Boolean> renderPlace = new Setting<>("Render", "Allows the block placements to be rendered", true);
+    public static final Setting<RenderModes> renderMode = new Setting<>(renderPlace, "Render Mode", "The type of box to render", RenderModes.Full);
+    public static final NumberSetting<Double> outlineWidth = new NumberSetting<>(renderPlace, "Outline Width", "The width of the outline", 1.0, 2.0, 5.0, 1);
+    public static final Setting<Color> renderColour = new Setting<>(renderPlace, "Render Colour", "The colour for the block placements", new Color(182, 40, 226, 186));
 
     public Surround() {
         this.addSettings(
@@ -41,7 +47,9 @@ public final class Surround extends Module {
                 centerPlayer,
                 timeout,
                 timeoutTicks,
-                renderBlock,
+                renderPlace,
+                renderMode,
+                outlineWidth,
                 renderColour
         );
     }
@@ -52,6 +60,8 @@ public final class Surround extends Module {
     private boolean hasPlaced = false;
 
     private Vec3d center = Vec3d.ZERO;
+
+    private BlockPos renderBlock = null;
 
     @Override
     public void onEnable() {
@@ -78,6 +88,7 @@ public final class Surround extends Module {
         blocksPlaced = 0;
         hasPlaced = false;
         center = Vec3d.ZERO;
+        renderBlock = null;
     }
 
     public void onUpdate() {
@@ -110,7 +121,10 @@ public final class Surround extends Module {
                 }
 
                 PlaceUtil.placeBlock(blockPos);
+                renderBlock = new BlockPos(vec3d.add(mc.player.getPositionVector()));
+
                 mc.player.inventory.currentItem = oldInventorySlot;
+
                 blocksPlaced++;
 
                 if (blocksPlaced == blocksPerTick.getValue() && disableMode.getValue() != DisableModes.Never) return;
@@ -119,6 +133,27 @@ public final class Surround extends Module {
 
         if (blocksPlaced == 0) {
             hasPlaced = true;
+        }
+    }
+
+    @Listener
+    public void onWorldRender(WorldRenderEvent event) {
+        GL11.glLineWidth(outlineWidth.getValue().floatValue());
+
+        if (renderPlace.getValue()) {
+            if (renderBlock != null) {
+                switch (renderMode.getValue()) {
+                    case Box:
+                        RenderUtil.draw(RenderUtil.generateBB(renderBlock.getX(), renderBlock.getY(), renderBlock.getZ()), true, false, 0, 0, renderColour.getValue());
+                        break;
+                    case Outline:
+                        RenderUtil.draw(RenderUtil.generateBB(renderBlock.getX(), renderBlock.getY(), renderBlock.getZ()), false, true, 0, 0, renderColour.getValue());
+                        break;
+                    case Full:
+                        RenderUtil.draw(RenderUtil.generateBB(renderBlock.getX(), renderBlock.getY(), renderBlock.getZ()), true, true, 0, 0, renderColour.getValue());
+                        break;
+                }
+            }
         }
     }
 
@@ -185,5 +220,11 @@ public final class Surround extends Module {
         Finish,
         Jump,
         Never
+    }
+
+    public enum RenderModes {
+        Box,
+        Outline,
+        Full
     }
 }

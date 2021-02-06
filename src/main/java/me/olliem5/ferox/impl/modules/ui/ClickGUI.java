@@ -5,7 +5,7 @@ import me.olliem5.ferox.api.module.FeroxModule;
 import me.olliem5.ferox.api.module.Module;
 import me.olliem5.ferox.api.setting.NumberSetting;
 import me.olliem5.ferox.api.setting.Setting;
-import me.olliem5.ferox.impl.gui.screens.click.ClickGUIBase;
+import me.olliem5.ferox.impl.gui.screens.click.ClickGUIScreen;
 import org.lwjgl.input.Keyboard;
 
 @FeroxModule(name = "ClickGUI", description = "Opens Ferox's ClickGUI", category = Category.UI, key = Keyboard.KEY_P)
@@ -24,12 +24,12 @@ public final class ClickGUI extends Module {
         );
     }
 
-    private ClickGUIBase clickGUI;
+    private ClickGUIScreen clickGUI;
 
     @Override
     public void onEnable() {
         if (clickGUI == null) {
-            clickGUI = new ClickGUIBase();
+            clickGUI = new ClickGUIScreen();
         }
 
         mc.displayGuiScreen(clickGUI);

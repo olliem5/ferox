@@ -5,7 +5,7 @@ import me.olliem5.ferox.api.module.FeroxModule;
 import me.olliem5.ferox.api.module.Module;
 import me.olliem5.ferox.api.setting.NumberSetting;
 import me.olliem5.ferox.api.setting.Setting;
-import me.olliem5.ferox.impl.gui.screens.editor.HUDEditorBase;
+import me.olliem5.ferox.impl.gui.screens.editor.HUDEditorScreen;
 
 @FeroxModule(name = "HUDEditor", description = "Opens Ferox's HUDEditor", category = Category.UI)
 public final class HUDEditor extends Module {
@@ -25,12 +25,12 @@ public final class HUDEditor extends Module {
         );
     }
 
-    private HUDEditorBase hudEditor;
+    private HUDEditorScreen hudEditor;
 
     @Override
     public void onEnable() {
         if (hudEditor == null) {
-            hudEditor = new HUDEditorBase();
+            hudEditor = new HUDEditorScreen();
         }
 
         mc.displayGuiScreen(hudEditor);
