@@ -51,10 +51,12 @@ repositories {
         name = 'swt-repo'
         url = "http://maven-eclipse.github.io/maven"
     }
+
     maven {
         name = "jitpack.io"
         url = "https://jitpack.io"
     }
+
     mavenCentral()
 }
 
@@ -66,7 +68,7 @@ dependencies {
         exclude module: 'commons-io'
     }
 
-    compile group: 'net.jodah', name: 'typetools', version: '0.5.0'
+//    compile group: 'net.jodah', name: 'typetools', version: '0.5.0'
     compile group: 'club.minnced', name: 'java-discord-rpc', version: '2.0.1'
     compile 'com.github.LittleDraily:event-system:1.1'
     compile 'com.github.CafeDevelopment:Venture:1.0-SNAPSHOT'
@@ -94,7 +96,7 @@ processResources {
 shadowJar {
     dependencies {
         include(dependency('org.spongepowered:mixin'))
-        include(dependency('net.jodah:typetools'))
+//        include(dependency('net.jodah:typetools'))
         include(dependency('club.minnced:java-discord-rpc:2.0.1'))
         include(dependency('com.github.LittleDraily:event-system:1.1'))
         include(dependency('com.github.CafeDevelopment:Venture'))
