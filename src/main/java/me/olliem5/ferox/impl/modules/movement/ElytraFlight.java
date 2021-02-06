@@ -48,11 +48,7 @@ public final class ElytraFlight extends Module {
                 lockRotation,
                 ncpRotations,
                 infiniteFly,
-                checks,
-                liquidDisable,
-                onCollision,
-                onUpward,
-                belowY
+                checks
         );
     }
 

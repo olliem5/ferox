@@ -24,29 +24,24 @@ public final class HoleESP extends Module {
     public static final NumberSetting<Integer> holeRange = new NumberSetting<>("Hole Range", "The range to search for holes in", 1, 5, 10, 0);
 
     public static final Setting<Boolean> obsidian = new Setting<>("Obsidian Holes", "Allows obsidian holes to be rendered", true);
+    public static final Setting<RenderModes> obsidianRenderMode = new Setting<>(obsidian, "Render Mode", "The type of box to render", RenderModes.Full);
+    public static final NumberSetting<Double> obsidianBoxHeight = new NumberSetting<>(obsidian, "Box Height", "The height of the box", -1.0, -0.7, 2.0, 1);
+    public static final NumberSetting<Double> obsidianOutlineHeight = new NumberSetting<>(obsidian, "Outline Height", "The height of the outline", -1.0, -0.7, 2.0, 1);
+    public static final NumberSetting<Double> obsidianOutlineWidth = new NumberSetting<>(obsidian, "Outline Width", "The width of the outline", 1.0, 2.0, 5.0, 1);
     public static final Setting<Color> obsidianHoleColour = new Setting<>(obsidian, "Obsidian Hole Colour", "The colour for obsidian holes", new Color(222, 38, 38, 178));
 
     public static final Setting<Boolean> bedrock = new Setting<>("Bedrock Holes", "Allows bedrock holes to be rendered", true);
+    public static final Setting<RenderModes> bedrockRenderMode = new Setting<>(bedrock, "Render Mode", "The type of box to render", RenderModes.Full);
+    public static final NumberSetting<Double> bedrockBoxHeight = new NumberSetting<>(bedrock, "Box Height", "The height of the box", -1.0, -0.7, 2.0, 1);
+    public static final NumberSetting<Double> bedrockOutlineHeight = new NumberSetting<>(bedrock, "Outline Height", "The height of the outline", -1.0, -0.7, 2.0, 1);
+    public static final NumberSetting<Double> bedrockOutlineWidth = new NumberSetting<>(bedrock, "Outline Width", "The width of the outline", 1.0, 2.0, 5.0, 1);
     public static final Setting<Color> bedrockHoleColour = new Setting<>(bedrock, "Bedrock Hole Colour", "The colour for bedrock holes", new Color(61, 194, 46, 169));
-
-    public static final Setting<Boolean> renderSettings = new Setting<>("Render Settings", "The other settings for rendering", true);
-    public static final Setting<RenderModes> renderMode = new Setting<>(renderSettings, "Render Mode", "The type of box to render", RenderModes.Full);
-    public static final NumberSetting<Double> boxHeight = new NumberSetting<>(renderSettings, "Box Height", "The height of the box", -1.0, 0.0, 2.0, 1);
-    public static final NumberSetting<Double> outlineHeight = new NumberSetting<>(renderSettings, "Outline Height", "The height of the outline", -1.0, 0.0, 2.0, 1);
-    public static final NumberSetting<Double> outlineWidth = new NumberSetting<>(renderSettings, "Outline Width", "The width of the outline", 1.0, 2.0, 5.0, 1);
 
     public HoleESP() {
         this.addSettings(
                 holeRange,
                 obsidian,
-                obsidianHoleColour,
-                bedrock,
-                bedrockHoleColour,
-                renderSettings,
-                renderMode,
-                boxHeight,
-                outlineHeight,
-                outlineWidth
+                bedrock
         );
     }
 
@@ -57,20 +52,20 @@ public final class HoleESP extends Module {
         List<BlockPos> obsidianHoles = findObsidianHoles();
         List<BlockPos> bedrockHoles = findBedrockHoles();
 
-        GL11.glLineWidth(outlineWidth.getValue().floatValue());
-
         if (obsidian.getValue()) {
+            GL11.glLineWidth(obsidianOutlineWidth.getValue().floatValue());
+
             if (obsidianHoles != null) {
                 for (BlockPos obsidianHole : findObsidianHoles()) {
-                    switch (renderMode.getValue()) {
+                    switch (obsidianRenderMode.getValue()) {
                         case Box:
-                            RenderUtil.draw(RenderUtil.generateBB(obsidianHole.getX(), obsidianHole.getY(), obsidianHole.getZ()), true, false, boxHeight.getValue(), outlineHeight.getValue(), obsidianHoleColour.getValue());
+                            RenderUtil.draw(RenderUtil.generateBB(obsidianHole.getX(), obsidianHole.getY(), obsidianHole.getZ()), true, false, obsidianBoxHeight.getValue(), obsidianOutlineHeight.getValue(), obsidianHoleColour.getValue());
                             break;
                         case Outline:
-                            RenderUtil.draw(RenderUtil.generateBB(obsidianHole.getX(), obsidianHole.getY(), obsidianHole.getZ()), false, true, boxHeight.getValue(), outlineHeight.getValue(), obsidianHoleColour.getValue());
+                            RenderUtil.draw(RenderUtil.generateBB(obsidianHole.getX(), obsidianHole.getY(), obsidianHole.getZ()), false, true, obsidianBoxHeight.getValue(), obsidianOutlineHeight.getValue(), obsidianHoleColour.getValue());
                             break;
                         case Full:
-                            RenderUtil.draw(RenderUtil.generateBB(obsidianHole.getX(), obsidianHole.getY(), obsidianHole.getZ()), true, true, boxHeight.getValue(), outlineHeight.getValue(), obsidianHoleColour.getValue());
+                            RenderUtil.draw(RenderUtil.generateBB(obsidianHole.getX(), obsidianHole.getY(), obsidianHole.getZ()), true, true, obsidianBoxHeight.getValue(), obsidianOutlineHeight.getValue(), obsidianHoleColour.getValue());
                             break;
                     }
                 }
@@ -78,17 +73,19 @@ public final class HoleESP extends Module {
         }
 
         if (bedrock.getValue()) {
+            GL11.glLineWidth(bedrockOutlineWidth.getValue().floatValue());
+
             if (bedrockHoles != null) {
                 for (BlockPos bedrockHole : findBedrockHoles()) {
-                    switch (renderMode.getValue()) {
+                    switch (bedrockRenderMode.getValue()) {
                         case Box:
-                            RenderUtil.draw(RenderUtil.generateBB(bedrockHole.getX(), bedrockHole.getY(), bedrockHole.getZ()), true, false, boxHeight.getValue(), outlineHeight.getValue(), bedrockHoleColour.getValue());
+                            RenderUtil.draw(RenderUtil.generateBB(bedrockHole.getX(), bedrockHole.getY(), bedrockHole.getZ()), true, false, bedrockBoxHeight.getValue(), bedrockOutlineHeight.getValue(), bedrockHoleColour.getValue());
                             break;
                         case Outline:
-                            RenderUtil.draw(RenderUtil.generateBB(bedrockHole.getX(), bedrockHole.getY(), bedrockHole.getZ()), false, true, boxHeight.getValue(), outlineHeight.getValue(), bedrockHoleColour.getValue());
+                            RenderUtil.draw(RenderUtil.generateBB(bedrockHole.getX(), bedrockHole.getY(), bedrockHole.getZ()), false, true, bedrockBoxHeight.getValue(), bedrockOutlineHeight.getValue(), bedrockHoleColour.getValue());
                             break;
                         case Full:
-                            RenderUtil.draw(RenderUtil.generateBB(bedrockHole.getX(), bedrockHole.getY(), bedrockHole.getZ()), true, true, boxHeight.getValue(), outlineHeight.getValue(), bedrockHoleColour.getValue());
+                            RenderUtil.draw(RenderUtil.generateBB(bedrockHole.getX(), bedrockHole.getY(), bedrockHole.getZ()), true, true, bedrockBoxHeight.getValue(), bedrockOutlineHeight.getValue(), bedrockHoleColour.getValue());
                             break;
                     }
                 }

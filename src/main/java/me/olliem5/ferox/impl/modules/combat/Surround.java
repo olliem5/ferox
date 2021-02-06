@@ -47,10 +47,7 @@ public final class Surround extends Module {
                 centerPlayer,
                 timeout,
                 timeoutTicks,
-                renderPlace,
-                renderMode,
-                outlineWidth,
-                renderColour
+                renderPlace
         );
     }
 

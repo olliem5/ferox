@@ -48,10 +48,7 @@ public final class AutoTrap extends Module {
                 targetRange,
                 timeout,
                 timeoutTicks,
-                renderPlace,
-                renderMode,
-                outlineWidth,
-                renderColour
+                renderPlace
         );
     }
 
