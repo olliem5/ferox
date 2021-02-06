@@ -39,18 +39,20 @@ public final class Velocity extends Module {
             if (sPacketEntityVelocity.getEntityID() == mc.player.entityId) {
                 if (horizontal.getValue() == 0.0f && vertical.getValue() == 0.0f) {
                     event.cancel();
-
+                } else {
                     sPacketEntityVelocity.motionX *= horizontal.getValue();
                     sPacketEntityVelocity.motionY *= vertical.getValue();
                     sPacketEntityVelocity.motionZ *= horizontal.getValue();
                 }
             }
-        } else if (event.getPacket() instanceof SPacketExplosion) {
+        }
+
+        if (event.getPacket() instanceof SPacketExplosion) {
             SPacketExplosion sPacketExplosion = (SPacketExplosion) event.getPacket();
 
             if (horizontal.getValue() == 0.0f && vertical.getValue() == 0.0f) {
                 event.cancel();
-
+            } else {
                 sPacketExplosion.motionX *= horizontal.getValue();
                 sPacketExplosion.motionY *= vertical.getValue();
                 sPacketExplosion.motionZ *= horizontal.getValue();

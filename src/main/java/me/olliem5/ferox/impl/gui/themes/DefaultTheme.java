@@ -13,6 +13,7 @@ import me.olliem5.ferox.api.util.math.MathUtil;
 import me.olliem5.ferox.api.util.render.draw.DrawUtil;
 import me.olliem5.ferox.api.util.render.font.FontUtil;
 import me.olliem5.ferox.api.util.render.gui.GuiUtil;
+import me.olliem5.ferox.impl.modules.render.HoleESP;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.ScaledResolution;
 import org.lwjgl.input.Keyboard;
@@ -25,6 +26,8 @@ import java.util.ArrayList;
  * @author olliem5
  *
  * @since 11/18/20
+ *
+ * TODO: Make alpha & rgb not global!
  */
 
 public final class DefaultTheme extends Theme {
@@ -36,6 +39,7 @@ public final class DefaultTheme extends Theme {
 	public static final int height = 14;
 
 	public static Color finalColor;
+	public static boolean rgb = false;
 	public static float finalAlpha = 0.2f;
 
 	public DefaultTheme() {
@@ -165,7 +169,7 @@ public final class DefaultTheme extends Theme {
 
 				if (setting.getValue() instanceof Color) {
 					Setting<Color> colorSetting = (Setting<Color>) setting;
-					drawColorPicker(colorSetting, x, y, mouseX, mouseY);
+					drawColourPicker(colorSetting, x, y, mouseX, mouseY);
 
 					boost += 8;
 				}
@@ -202,7 +206,7 @@ public final class DefaultTheme extends Theme {
 
 					if (subSetting.getValue() instanceof Color) {
 						Setting<Color> colorSubSetting = (Setting<Color>) subSetting;
-						drawColorPicker(colorSubSetting, x, y, mouseX, mouseY);
+						drawColourPicker(colorSubSetting, x, y, mouseX, mouseY);
 
 						boost += 8;
 					}
@@ -243,7 +247,7 @@ public final class DefaultTheme extends Theme {
 
 				if (setting.getValue() instanceof Color) {
 					Setting<Color> colorSetting = (Setting<Color>) setting;
-					drawColorPicker(colorSetting, x, y, mouseX, mouseY);
+					drawColourPicker(colorSetting, x, y, mouseX, mouseY);
 
 					boost += 8;
 				}
@@ -280,7 +284,7 @@ public final class DefaultTheme extends Theme {
 
 					if (subSetting.getValue() instanceof Color) {
 						Setting<Color> colorSubSetting = (Setting<Color>) subSetting;
-						drawColorPicker(colorSubSetting, x, y, mouseX, mouseY);
+						drawColourPicker(colorSubSetting, x, y, mouseX, mouseY);
 
 						boost += 8;
 					}
@@ -634,7 +638,7 @@ public final class DefaultTheme extends Theme {
 		FontUtil.drawText(module.getName() + "'s keybind is " + ChatFormatting.GRAY + key, 2, (new ScaledResolution(mc).getScaledHeight() - FontUtil.getStringHeight(module.getName() + "'s keybind is " + ChatFormatting.GRAY + key) - 2), -1);
 	}
 
-	public static void drawPicker(Setting<Color> subColor, int mouseX, int mouseY, int pickerX, int pickerY, int hueSliderX, int hueSliderY, int alphaSliderX, int alphaSliderY) {
+	public static void drawPicker(Setting<Color> subColor, int mouseX, int mouseY, int pickerX, int pickerY, int hueSliderX, int hueSliderY, int alphaSliderX, int alphaSliderY, int rgbButtonX, int rgbButtonY) {
 		float[] color = new float[] {
 				subColor.getValue().RGBtoHSB(subColor.getValue().getRed(), subColor.getValue().getGreen(), subColor.getValue().getBlue(), null)[0],
 				subColor.getValue().RGBtoHSB(subColor.getValue().getRed(), subColor.getValue().getGreen(), subColor.getValue().getBlue(), null)[1],
@@ -654,6 +658,9 @@ public final class DefaultTheme extends Theme {
 		int alphaSliderWidth = 75;
 		int alphaSliderHeight = 10;
 
+		int rgbButtonWidth = 23;
+		int rgbButtonHeight = 22;
+
 		if (GuiUtil.lheld && GuiUtil.mouseOver(pickerX, pickerY, pickerX + pickerWidth, pickerY + pickerHeight)) {
 			pickingColor = true;
 		}
@@ -664,6 +671,10 @@ public final class DefaultTheme extends Theme {
 
 		if (GuiUtil.lheld && GuiUtil.mouseOver(alphaSliderX, alphaSliderY, alphaSliderX + alphaSliderWidth, alphaSliderY + alphaSliderHeight)) {
 			pickingAlpha = true;
+		}
+
+		if (GuiUtil.ldown && GuiUtil.mouseOver(rgbButtonX, rgbButtonY, rgbButtonX + rgbButtonWidth, rgbButtonY + rgbButtonHeight)) {
+			rgb = !rgb;
 		}
 
 		if (!GuiUtil.lheld) {
@@ -698,8 +709,8 @@ public final class DefaultTheme extends Theme {
 			color[2] = 1 - (restrictedY - (float) pickerY) / pickerHeight;
 		}
 
-		Gui.drawRect(pickerX - 3, pickerY - 2, pickerX + pickerWidth + 2, pickerY + pickerHeight + 50, RainbowUtil.getRollingRainbow(boost));
-		Gui.drawRect(pickerX - 2, pickerY - 2, pickerX + pickerWidth + 2, pickerY + pickerHeight + 50, 0xFF212121);
+		Gui.drawRect(pickerX - 3, pickerY - 2, pickerX + pickerWidth + 2, pickerY + pickerHeight + 30, RainbowUtil.getRollingRainbow(boost));
+		Gui.drawRect(pickerX - 2, pickerY - 2, pickerX + pickerWidth + 2, pickerY + pickerHeight + 30, 0xFF212121);
 
 		int selectedColor = Color.HSBtoRGB(color[0], 1.0f, 1.0f);
 
@@ -718,7 +729,17 @@ public final class DefaultTheme extends Theme {
 
 		drawAlphaSlider(alphaSliderX, alphaSliderY, alphaSliderWidth, alphaSliderHeight, selectedRed, selectedGreen, selectedBlue, finalAlpha);
 
-		finalColor = ColourUtil.integrateAlpha(new Color(Color.HSBtoRGB(color[0], color[1], color[2])), finalAlpha);
+		if (!rgb) {
+			drawRGBButton(rgbButtonX, rgbButtonY, rgbButtonWidth, rgbButtonHeight, false);
+		} else {
+			drawRGBButton(rgbButtonX, rgbButtonY, rgbButtonWidth, rgbButtonHeight, true);
+		}
+
+		if (!rgb) {
+			finalColor = ColourUtil.integrateAlpha(new Color(Color.HSBtoRGB(color[0], color[1], color[2])), finalAlpha);
+		} else {
+			finalColor = ColourUtil.integrateAlpha(RainbowUtil.getRainbow(), finalAlpha);
+		}
 	}
 
 	public static void drawHueSlider(int x, int y, int width, int height, float hue) {
@@ -786,8 +807,19 @@ public final class DefaultTheme extends Theme {
 		Gui.drawRect(sliderMinX - 1, y,  sliderMinX + 1, y + height, -1);
 	}
 
-	public static void drawColorPicker(Setting<Color> setting, int x, int y, int mouseX, int mouseY) {
-		drawPicker(setting, mouseX, mouseY, x + 3, y + height + (boost * height) + 2, x + 3, y + height + (boost * height) + 103, x + 3, y + height + (boost * height) + 115);
+	public static void drawRGBButton(int x, int y, int width, int height, boolean active) {
+		Gui.drawRect(x, y, x + width, y + height, RainbowUtil.getRainbow().getRGB());
+
+		if (!active) {
+			Gui.drawRect(x + 1, y + 1, x + width - 1, y + height - 1, 0xFF212121);
+		} else {
+			Gui.drawRect(x + 1, y + 1, x + width - 1, y + height - 1, 0xFF212121);
+			Gui.drawRect(x + 2, y + 2, x + width - 2, y + height - 2, RainbowUtil.getRainbow().getRGB());
+		}
+	}
+
+	public static void drawColourPicker(Setting<Color> setting, int x, int y, int mouseX, int mouseY) {
+		drawPicker(setting, mouseX, mouseY, x + 3, y + height + (boost * height) + 2, x + 3, y + height + (boost * height) + 103, x + 3, y + height + (boost * height) + 115, x + 80, y + height + (boost * height) + 103);
 		setting.setValue(finalColor);
 	}
 }
