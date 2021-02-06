@@ -38,9 +38,9 @@ public final class DefaultTheme extends Theme {
 	public static final int width = 105;
 	public static final int height = 14;
 
+	public static boolean rgb;
+
 	public static Color finalColor;
-	public static boolean rgb = false;
-	public static float finalAlpha = 0.2f;
 
 	public DefaultTheme() {
 		super(name, width, height);
@@ -694,10 +694,10 @@ public final class DefaultTheme extends Theme {
 		if (pickingAlpha) {
 			if (alphaSliderWidth > alphaSliderHeight) {
 				float restrictedX = (float) Math.min(Math.max(alphaSliderX, mouseX), alphaSliderX + alphaSliderWidth);
-				finalAlpha = 1 - (restrictedX - (float) alphaSliderX) / alphaSliderWidth;
+				subColor.setAlpha(1 - (restrictedX - (float) alphaSliderX) / alphaSliderWidth);
 			} else {
 				float restrictedY = (float) Math.min(Math.max(alphaSliderY, mouseY), alphaSliderY + alphaSliderHeight);
-				finalAlpha = 1 - (restrictedY - (float) alphaSliderY) / alphaSliderHeight;
+				subColor.setAlpha(1 - (restrictedY - (float) alphaSliderY) / alphaSliderHeight);
 			}
 		}
 
@@ -718,7 +718,7 @@ public final class DefaultTheme extends Theme {
 		float selectedGreen = (selectedColor >> 8 & 0xFF) / 255.0f;
 		float selectedBlue = (selectedColor & 0xFF) / 255.0f;
 
-		DrawUtil.drawPickerBase(pickerX, pickerY, pickerWidth, pickerHeight, selectedRed, selectedGreen, selectedBlue, finalAlpha);
+		DrawUtil.drawPickerBase(pickerX, pickerY, pickerWidth, pickerHeight, selectedRed, selectedGreen, selectedBlue, subColor.getAlpha());
 
 		drawHueSlider(hueSliderX, hueSliderY, hueSliderWidth, hueSliderHeight, color[0]);
 
@@ -727,18 +727,18 @@ public final class DefaultTheme extends Theme {
 
 		Gui.drawRect(cursorX - 2, cursorY - 2, cursorX + 2, cursorY + 2, -1);
 
-		drawAlphaSlider(alphaSliderX, alphaSliderY, alphaSliderWidth, alphaSliderHeight, selectedRed, selectedGreen, selectedBlue, finalAlpha);
+		drawAlphaSlider(alphaSliderX, alphaSliderY, alphaSliderWidth, alphaSliderHeight, selectedRed, selectedGreen, selectedBlue, subColor.getAlpha());
 
-		if (!rgb) {
-			drawRGBButton(rgbButtonX, rgbButtonY, rgbButtonWidth, rgbButtonHeight, false);
-		} else {
+		if (rgb) {
 			drawRGBButton(rgbButtonX, rgbButtonY, rgbButtonWidth, rgbButtonHeight, true);
+		} else {
+			drawRGBButton(rgbButtonX, rgbButtonY, rgbButtonWidth, rgbButtonHeight, false);
 		}
 
-		if (!rgb) {
-			finalColor = ColourUtil.integrateAlpha(new Color(Color.HSBtoRGB(color[0], color[1], color[2])), finalAlpha);
+		if (rgb) {
+			finalColor = ColourUtil.integrateAlpha(RainbowUtil.getRainbow(), subColor.getAlpha());
 		} else {
-			finalColor = ColourUtil.integrateAlpha(RainbowUtil.getRainbow(), finalAlpha);
+			finalColor = ColourUtil.integrateAlpha(new Color(Color.HSBtoRGB(color[0], color[1], color[2])), subColor.getAlpha());
 		}
 	}
 
