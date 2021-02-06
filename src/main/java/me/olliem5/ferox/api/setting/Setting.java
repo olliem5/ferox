@@ -13,7 +13,7 @@ public class Setting<T> {
 	private boolean isSubSetting;
 	private boolean isOpened;
 
-	//private boolean rgb;
+	private boolean rgb;
 	private float alpha = 0.2f;
 
 	private final ArrayList<Setting> subSettings = new ArrayList<>();
@@ -109,9 +109,9 @@ public class Setting<T> {
 		isOpened = opened;
 	}
 
-//	public boolean isRgb() {
-//		return rgb;
-//	}
+	public boolean isRgb() {
+		return rgb;
+	}
 
 	public float getAlpha() {
 		return alpha;
@@ -121,7 +121,7 @@ public class Setting<T> {
 		this.alpha = alpha;
 	}
 
-//	public void setRgb(boolean rgb) {
-//		this.rgb = rgb;
-//	}
+	public void setRgb(boolean rgb) {
+		this.rgb = rgb;
+	}
 }

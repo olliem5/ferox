@@ -26,8 +26,6 @@ import java.util.ArrayList;
  * @author olliem5
  *
  * @since 11/18/20
- *
- * TODO: Make alpha & rgb not global!
  */
 
 public final class DefaultTheme extends Theme {
@@ -37,8 +35,6 @@ public final class DefaultTheme extends Theme {
 
 	public static final int width = 105;
 	public static final int height = 14;
-
-	public static boolean rgb;
 
 	public static Color finalColor;
 
@@ -674,7 +670,7 @@ public final class DefaultTheme extends Theme {
 		}
 
 		if (GuiUtil.ldown && GuiUtil.mouseOver(rgbButtonX, rgbButtonY, rgbButtonX + rgbButtonWidth, rgbButtonY + rgbButtonHeight)) {
-			rgb = !rgb;
+			subColor.setRgb(!subColor.isRgb());
 		}
 
 		if (!GuiUtil.lheld) {
@@ -729,13 +725,13 @@ public final class DefaultTheme extends Theme {
 
 		drawAlphaSlider(alphaSliderX, alphaSliderY, alphaSliderWidth, alphaSliderHeight, selectedRed, selectedGreen, selectedBlue, subColor.getAlpha());
 
-		if (rgb) {
+		if (subColor.isRgb()) {
 			drawRGBButton(rgbButtonX, rgbButtonY, rgbButtonWidth, rgbButtonHeight, true);
 		} else {
 			drawRGBButton(rgbButtonX, rgbButtonY, rgbButtonWidth, rgbButtonHeight, false);
 		}
 
-		if (rgb) {
+		if (subColor.isRgb()) {
 			finalColor = ColourUtil.integrateAlpha(RainbowUtil.getRainbow(), subColor.getAlpha());
 		} else {
 			finalColor = ColourUtil.integrateAlpha(new Color(Color.HSBtoRGB(color[0], color[1], color[2])), subColor.getAlpha());
