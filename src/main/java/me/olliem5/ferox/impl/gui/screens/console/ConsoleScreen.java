@@ -12,7 +12,7 @@ import org.lwjgl.input.Keyboard;
 import java.awt.*;
 import java.util.ArrayList;
 
-public final class Console extends GuiScreen {
+public final class ConsoleScreen extends GuiScreen {
     public ArrayList<Component> components;
     private int x;
     private int y;
@@ -26,7 +26,7 @@ public final class Console extends GuiScreen {
     private InputComponent inputComponent;
     public OutputComponent outputComponent;
 
-    public Console() {
+    public ConsoleScreen() {
         this.components = new ArrayList<>();
         this.x = 2;
         this.y = 2;

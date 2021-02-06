@@ -1,12 +1,12 @@
 package me.olliem5.ferox.impl.hud;
 
 import me.olliem5.ferox.Ferox;
+import me.olliem5.ferox.api.hud.Component;
 import me.olliem5.ferox.api.hud.FeroxComponent;
-import me.olliem5.ferox.api.hud.HudComponent;
 import me.olliem5.ferox.api.setting.Setting;
 
-@FeroxComponent(name = "Welcomer")
-public final class WelcomerComponent extends HudComponent {
+@FeroxComponent(name = "Welcomer", description = "Shows a nice welcome message")
+public final class WelcomerComponent extends Component {
     public static final Setting<WelcomerModes> welcomerMode = new Setting<>("Mode", "The welcomer mode", WelcomerModes.Welcome);
 
     public WelcomerComponent() {

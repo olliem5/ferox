@@ -1,5 +1,6 @@
 package me.olliem5.ferox.api.theme;
 
+import me.olliem5.ferox.api.hud.Component;
 import me.olliem5.ferox.api.module.Module;
 import me.olliem5.ferox.api.traits.Minecraft;
 
@@ -27,6 +28,8 @@ public abstract class Theme implements Minecraft {
 	public abstract void drawTitles(String name, int left, int top);
 
 	public abstract void drawModules(ArrayList<Module> modules, int left, int top, int mouseX, int mouseY);
+
+	public abstract void drawComponents(ArrayList<Component> components, int left, int top, int mouseX, int mouseY);
 
 	public String getName() {
 		return this.name; 

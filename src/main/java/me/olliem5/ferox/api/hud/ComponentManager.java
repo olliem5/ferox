@@ -12,8 +12,8 @@ import me.olliem5.ferox.impl.hud.WelcomerComponent;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public final class HudManager implements Minecraft {
-    private static final ArrayList<HudComponent> components = new ArrayList<>();
+public final class ComponentManager implements Minecraft {
+    private static final ArrayList<Component> components = new ArrayList<>();
 
     public static void init() {
         components.addAll(Arrays.asList(
@@ -24,7 +24,7 @@ public final class HudManager implements Minecraft {
         ));
     }
 
-    public static ArrayList<HudComponent> getComponents() {
+    public static ArrayList<Component> getComponents() {
         return components;
     }
 
@@ -32,7 +32,7 @@ public final class HudManager implements Minecraft {
     public void onGameOverlayRender(GameOverlayRenderEvent event) {
         if (mc.world == null || mc.player == null) return;
 
-        for (HudComponent hudComponent : components) {
+        for (Component hudComponent : components) {
             if (hudComponent.isVisible()) {
                 hudComponent.render();
             }

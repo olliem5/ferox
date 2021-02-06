@@ -13,9 +13,9 @@ import me.olliem5.ferox.impl.modules.movement.Sprint;
 import me.olliem5.ferox.impl.modules.movement.Velocity;
 import me.olliem5.ferox.impl.modules.render.Brightness;
 import me.olliem5.ferox.impl.modules.render.HoleESP;
-import me.olliem5.ferox.impl.modules.ui.ClickGUIModule;
-import me.olliem5.ferox.impl.modules.ui.ConsoleModule;
-import me.olliem5.ferox.impl.modules.ui.HudEditorModule;
+import me.olliem5.ferox.impl.modules.ui.ClickGUI;
+import me.olliem5.ferox.impl.modules.ui.Console;
+import me.olliem5.ferox.impl.modules.ui.HUDEditor;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -53,9 +53,9 @@ public final class ModuleManager {
                 new Notifier(),
 
                 //Interface
-                new ClickGUIModule(),
-                new ConsoleModule(),
-                new HudEditorModule()
+                new ClickGUI(),
+                new Console(),
+                new HUDEditor()
         ));
     }
 

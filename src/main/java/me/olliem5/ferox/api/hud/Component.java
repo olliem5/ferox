@@ -3,14 +3,15 @@ package me.olliem5.ferox.api.hud;
 import me.olliem5.ferox.api.setting.Setting;
 import me.olliem5.ferox.api.traits.Minecraft;
 import me.olliem5.ferox.api.util.render.font.FontUtil;
-import me.olliem5.ferox.impl.modules.ui.HudEditorModule;
+import me.olliem5.ferox.impl.modules.ui.HUDEditor;
 import net.minecraft.client.gui.ScaledResolution;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public abstract class HudComponent implements Minecraft {
+public abstract class Component implements Minecraft {
     private final String name = getAnnotation().name();
+    private final String description = getAnnotation().description();
 
     private int posX = 2;
     private int posY = 2;
@@ -20,7 +21,8 @@ public abstract class HudComponent implements Minecraft {
     private int height;
 
     private boolean visible = false;
-    private boolean dragging;
+    private boolean dragging = false;
+    private boolean opened = false;
 
     private final ArrayList<Setting> settings = new ArrayList<>();
 
@@ -78,6 +80,10 @@ public abstract class HudComponent implements Minecraft {
         return width;
     }
 
+    public boolean isOpened() {
+        return opened;
+    }
+
     public void setWidth(int width) {
         this.width = width;
     }
@@ -102,8 +108,16 @@ public abstract class HudComponent implements Minecraft {
         return dragY;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
     public void setDragY(int dragY) {
         this.dragY = dragY;
+    }
+
+    public void setOpened(boolean opened) {
+        this.opened = opened;
     }
 
     public boolean isMouseOnComponent(int x, int y) {
@@ -136,7 +150,7 @@ public abstract class HudComponent implements Minecraft {
             this.setPosY(mouseY - getDragY());
         }
 
-        if (!HudEditorModule.componentOverflow.getValue()) {
+        if (!HUDEditor.componentOverflow.getValue()) {
             collide();
         }
     }
@@ -153,5 +167,9 @@ public abstract class HudComponent implements Minecraft {
 
     public void addSettings(Setting... settings) {
         this.settings.addAll(Arrays.asList(settings));
+    }
+
+    public boolean hasSettings() {
+        return this.settings.size() > 0;
     }
 }

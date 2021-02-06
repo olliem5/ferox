@@ -1,14 +1,14 @@
 package me.olliem5.ferox.impl.hud;
 
+import me.olliem5.ferox.api.hud.Component;
 import me.olliem5.ferox.api.hud.FeroxComponent;
-import me.olliem5.ferox.api.hud.HudComponent;
 import me.olliem5.ferox.api.setting.NumberSetting;
 import me.olliem5.ferox.api.util.render.draw.DrawUtil;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
 
-@FeroxComponent(name = "Player")
-public final class PlayerComponent extends HudComponent {
+@FeroxComponent(name = "Player", description = "Shows a model of your player")
+public final class PlayerComponent extends Component {
     public static final NumberSetting<Integer> scale = new NumberSetting<>("Scale", "Scale to render the player at", 1, 30, 100, 0);
 
     public PlayerComponent() {

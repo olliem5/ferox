@@ -1,13 +1,12 @@
-package me.olliem5.ferox.impl.gui.screens.click;
+package me.olliem5.ferox.impl.gui.screens.editor;
 
-import me.olliem5.ferox.api.module.Category;
-import me.olliem5.ferox.api.module.Module;
-import me.olliem5.ferox.api.module.ModuleManager;
+import me.olliem5.ferox.api.hud.Component;
+import me.olliem5.ferox.api.hud.ComponentManager;
 import me.olliem5.ferox.api.theme.Theme;
 import me.olliem5.ferox.api.theme.ThemeManager;
 import me.olliem5.ferox.api.traits.Minecraft;
 import me.olliem5.ferox.api.util.render.gui.GuiUtil;
-import me.olliem5.ferox.impl.modules.ui.ClickGUIModule;
+import me.olliem5.ferox.impl.modules.ui.HUDEditor;
 import net.minecraft.client.gui.ScaledResolution;
 import org.lwjgl.input.Mouse;
 
@@ -20,7 +19,7 @@ import java.util.ArrayList;
  * @since 11/16/20
  */
 
-public final class Window implements Minecraft {
+public final class HUDEditorWindow implements Minecraft {
 	private final String name;
 
 	public int x;
@@ -31,25 +30,20 @@ public final class Window implements Minecraft {
 	private boolean dragging = false;
 	private boolean open = true;
 
-	private ArrayList<Module> modules;
-	public static final ArrayList<Window> windows = new ArrayList<>();
+	private ArrayList<Component> components;
+	public static final ArrayList<HUDEditorWindow> windows = new ArrayList<>();
 
 	public Theme currentTheme;
 
-	public Window(String name, int x, int y, Category category) {
+	public HUDEditorWindow(String name, int x, int y) {
 		this.name = name;
 		this.x = x;
 		this.y = y;
-		this.modules = ModuleManager.getModulesInCategory(category);
+		this.components = ComponentManager.getComponents();
 	}
 	
 	public static void initGui() {
-		int xOffset = 12;
-
-		for (Category category : Category.values()) {
-			windows.add(new Window(category.getName(), xOffset, 20, category));
-			xOffset += 110;
-		}
+		windows.add(new HUDEditorWindow("Ferox HUD", 12, 20));
 	}
 	
 	public void drawGui(int mouseX, int mouseY) {
@@ -62,7 +56,7 @@ public final class Window implements Minecraft {
 		currentTheme.drawTitles(name, x, y);
 
 		if (open) {
-			currentTheme.drawModules(modules, x, y, mouseX, mouseY);
+			currentTheme.drawComponents(components, x, y, mouseX, mouseY);
 		}
 	}
 	
@@ -79,21 +73,21 @@ public final class Window implements Minecraft {
 	public void scroll() {
 		int scrollWheel = Mouse.getDWheel();
 
-		for (Window window : windows) {
+		for (HUDEditorWindow window : windows) {
 			if (scrollWheel < 0) {
-				window.setY(window.getY() - ClickGUIModule.scrollSpeed.getValue());
+				window.setY(window.getY() - HUDEditor.scrollSpeed.getValue());
 
 				continue;
 			}
 
 			if (scrollWheel <= 0) continue;
 
-			window.setY(window.getY() + ClickGUIModule.scrollSpeed.getValue());
+			window.setY(window.getY() + HUDEditor.scrollSpeed.getValue());
 		}
 	}
 
 	public void collide() {
-		if (!ClickGUIModule.windowOverflow.getValue()) {
+		if (!HUDEditor.windowOverflow.getValue()) {
 			ScaledResolution sr = new ScaledResolution(mc);
 
 			if (getX() <= 0) {
@@ -127,7 +121,7 @@ public final class Window implements Minecraft {
 	}
 
 	private String getTheme() {
-		switch (ClickGUIModule.theme.getValue()) {
+		switch (HUDEditor.theme.getValue()) {
 			case Default:
 				return "Default";
 		}

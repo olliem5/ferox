@@ -1,7 +1,7 @@
 package me.olliem5.ferox.impl.gui.screens.click;
 
 import me.olliem5.ferox.api.util.render.gui.GuiUtil;
-import me.olliem5.ferox.impl.modules.ui.ClickGUIModule;
+import me.olliem5.ferox.impl.modules.ui.ClickGUI;
 import net.minecraft.client.gui.GuiScreen;
 
 import java.io.IOException;
@@ -13,13 +13,13 @@ import java.io.IOException;
  * @since 11/16/20
  */
 
-public final class BaseGui extends GuiScreen {
+public final class ClickGUIBase extends GuiScreen {
 	
 	@Override
 	public void drawScreen(int mouseX, int mouseY, float partialTicks) {
 		super.drawScreen(mouseX, mouseY, partialTicks);
 
-		for (Window window : Window.windows) {
+		for (ClickGUIWindow window : ClickGUIWindow.windows) {
 			window.drawGui(mouseX, mouseY);
 		}
 
@@ -31,7 +31,7 @@ public final class BaseGui extends GuiScreen {
 		super.mouseClicked(mouseX, mouseY, mouseButton);
 
 		if (mouseButton == 0) {
-			for (Window window : Window.windows) {
+			for (ClickGUIWindow window : ClickGUIWindow.windows) {
 				window.updateLeftClick();
 			}
 
@@ -39,7 +39,7 @@ public final class BaseGui extends GuiScreen {
 		}
 
 		if (mouseButton == 1) {
-			for (Window window : Window.windows) {
+			for (ClickGUIWindow window : ClickGUIWindow.windows) {
 				window.updateRightClick();
 			}
 
@@ -52,7 +52,7 @@ public final class BaseGui extends GuiScreen {
 		super.mouseReleased(mouseX, mouseY, state);
 
 		if (state == 0) {
-			for (Window window : Window.windows) {
+			for (ClickGUIWindow window : ClickGUIWindow.windows) {
 				window.updateMouseState();
 			}
 
@@ -78,7 +78,7 @@ public final class BaseGui extends GuiScreen {
 	
 	@Override
 	public boolean doesGuiPauseGame() {
-		if (ClickGUIModule.pauseGame.getValue() == ClickGUIModule.PauseModes.Pause) {
+		if (ClickGUI.pauseGame.getValue() == ClickGUI.PauseModes.Pause) {
 			return true;
 		}
 

@@ -1,7 +1,7 @@
 package me.olliem5.ferox.impl.hud;
 
+import me.olliem5.ferox.api.hud.Component;
 import me.olliem5.ferox.api.hud.FeroxComponent;
-import me.olliem5.ferox.api.hud.HudComponent;
 import me.olliem5.ferox.api.setting.Setting;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.renderer.GlStateManager;
@@ -10,8 +10,8 @@ import net.minecraft.item.ItemStack;
 
 import java.awt.*;
 
-@FeroxComponent(name = "Inventory")
-public final class InventoryComponent extends HudComponent {
+@FeroxComponent(name = "Inventory", description = "Shows a preview of your inventory")
+public final class InventoryComponent extends Component {
     public static final Setting<Boolean> background = new Setting("Background", "Shows a background behind the items", true);
 
     public InventoryComponent() {

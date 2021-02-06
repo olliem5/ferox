@@ -1,6 +1,7 @@
 package me.olliem5.ferox.impl.gui.themes;
 
 import com.mojang.realmsclient.gui.ChatFormatting;
+import me.olliem5.ferox.api.hud.Component;
 import me.olliem5.ferox.api.module.Module;
 import me.olliem5.ferox.api.setting.NumberSetting;
 import me.olliem5.ferox.api.setting.Setting;
@@ -88,7 +89,7 @@ public final class DefaultTheme extends Theme {
 
 			if (module.isOpened()) {
 				if (module.hasSettings()) {
-					drawDropdown(module, x, y + 1, mouseX, mouseY);
+					drawModuleDropdown(module, x, y + 1, mouseX, mouseY);
 				}
 
 				boost++;
@@ -99,9 +100,134 @@ public final class DefaultTheme extends Theme {
 			boost++;
 		}
 	}
-	
-	public static void drawDropdown(Module module, int x, int y, int mouseX, int mouseY) {
+
+	@Override
+	public void drawComponents(ArrayList<Component> components, int x, int y, int mouseX, int mouseY) {
+		boost = 0;
+
+		for (Component component : components) {
+			int color = 0xFF212121;
+
+			if (component.isVisible()) {
+				color = 0xFF2F2F2F;
+			}
+
+			Gui.drawRect(x, y + height + 1 + (boost * height), (x + width), y + height * 2 + 1 + (boost * height), color);
+
+			if (GuiUtil.mouseOver(x, y + height + 1 + (boost * height), (x + width), y + height * 2 + (boost * height))) {
+				if (GuiUtil.ldown) {
+					component.setVisible(!component.isVisible());
+				}
+
+				if (GuiUtil.rdown) {
+					component.setOpened(!component.isOpened());
+				}
+
+				FontUtil.drawText(component.getName(), x + 3, y + height + 4 + (boost * height), -1);
+
+				if (component.hasSettings()) {
+					FontUtil.drawText("...", (x + width) - 11, y + height + 3 + (boost * height), -1);
+				}
+
+				drawComponentBottomLeftText(component);
+			} else {
+				FontUtil.drawText(component.getName(), x + 2, y + height + 4 + (boost * height), -1);
+
+				if (component.hasSettings()) {
+					FontUtil.drawText("...", (x + width) - 10, y + height + 3 + (boost * height), -1);
+				}
+			}
+
+			if (component.isOpened()) {
+				if (component.hasSettings()) {
+					drawComponentDropdown(component, x, y + 1, mouseX, mouseY);
+				}
+			}
+
+			boost++;
+		}
+	}
+
+	public static void drawModuleDropdown(Module module, int x, int y, int mouseX, int mouseY) {
 		for (Setting<?> setting : module.getSettings()) {
+			if (!setting.isSubSetting()) {
+				boost++;
+
+				if (setting.getValue() instanceof Boolean) {
+					Setting<Boolean> booleanSetting = (Setting<Boolean>) setting;
+					renderBoolean(booleanSetting, x, y);
+				}
+
+				if (setting.getValue() instanceof Enum) {
+					Setting<Enum> enumSetting = (Setting<Enum>) setting;
+					renderEnum(enumSetting, x, y);
+				}
+
+				if (setting.getValue() instanceof Color) {
+					Setting<Color> colorSetting = (Setting<Color>) setting;
+					drawColorPicker(colorSetting, x, y, mouseX, mouseY);
+
+					boost += 8;
+				}
+
+				if (setting.getValue() instanceof Integer) {
+					NumberSetting<Integer> integerNumberSetting = (NumberSetting<Integer>) setting;
+					renderInteger(integerNumberSetting, x, y);
+				}
+
+				if (setting.getValue() instanceof Double) {
+					NumberSetting<Double> doubleNumberSetting = (NumberSetting<Double>) setting;
+					renderDouble(doubleNumberSetting, x, y);
+				}
+
+				if (setting.getValue() instanceof Float) {
+					NumberSetting<Float> floatNumberSetting = (NumberSetting<Float>) setting;
+					renderFloat(floatNumberSetting, x, y);
+				}
+			}
+
+			if (setting.isOpened()) {
+				for (Setting<?> subSetting : setting.getSubSettings()) {
+					boost++;
+
+					if (subSetting.getValue() instanceof Boolean) {
+						Setting<Boolean> booleanSubSetting = (Setting<Boolean>) subSetting;
+						renderSubBoolean(booleanSubSetting, x, y);
+					}
+
+					if (subSetting.getValue() instanceof Enum) {
+						Setting<Enum> enumSubSetting = (Setting<Enum>) subSetting;
+						renderSubEnum(enumSubSetting, x, y);
+					}
+
+					if (subSetting.getValue() instanceof Color) {
+						Setting<Color> colorSubSetting = (Setting<Color>) subSetting;
+						drawColorPicker(colorSubSetting, x, y, mouseX, mouseY);
+
+						boost += 8;
+					}
+
+					if (subSetting.getValue() instanceof Integer) {
+						NumberSetting<Integer> integerSubSetting = (NumberSetting<Integer>) subSetting;
+						renderSubInteger(integerSubSetting, x, y);
+					}
+
+					if (subSetting.getValue() instanceof Double) {
+						NumberSetting<Double> doubleSubSetting = (NumberSetting<Double>) subSetting;
+						renderSubDouble(doubleSubSetting, x, y);
+					}
+
+					if (subSetting.getValue() instanceof Float) {
+						NumberSetting<Float> floatSubSetting = (NumberSetting<Float>) subSetting;
+						renderSubFloat(floatSubSetting, x, y);
+					}
+				}
+			}
+		}
+	}
+
+	public static void drawComponentDropdown(Component component, int x, int y, int mouseX, int mouseY) {
+		for (Setting<?> setting : component.getSettings()) {
 			if (!setting.isSubSetting()) {
 				boost++;
 
@@ -496,6 +622,10 @@ public final class DefaultTheme extends Theme {
 		FontUtil.drawText(module.getDescription(), 2, (new ScaledResolution(mc).getScaledHeight() - FontUtil.getStringHeight(module.getDescription()) - 2), -1);
 	}
 
+	public static void drawComponentBottomLeftText(Component component) {
+		FontUtil.drawText(component.getDescription(), 2, (new ScaledResolution(mc).getScaledHeight() - FontUtil.getStringHeight(component.getDescription()) - 2), -1);
+	}
+
 	public static void drawSettingBottomLeftText(Setting<?> setting) {
 		FontUtil.drawText(setting.getDescription(), 2, (new ScaledResolution(mc).getScaledHeight() - FontUtil.getStringHeight(setting.getDescription()) - 2), -1);
 	}
@@ -541,13 +671,23 @@ public final class DefaultTheme extends Theme {
 		}
 
 		if (pickingHue) {
-			float restrictedY = (float) Math.min(Math.max(hueSliderY, mouseY), hueSliderY + hueSliderHeight);
-			color[0] = (restrictedY - (float) hueSliderY) / hueSliderHeight;
+			if (hueSliderWidth > hueSliderHeight) {
+				float restrictedX = (float) Math.min(Math.max(hueSliderX, mouseX), hueSliderX + hueSliderWidth);
+				color[0] = (restrictedX - (float) hueSliderX) / hueSliderWidth;
+			} else {
+				float restrictedY = (float) Math.min(Math.max(hueSliderY, mouseY), hueSliderY + hueSliderHeight);
+				color[0] = (restrictedY - (float) hueSliderY) / hueSliderHeight;
+			}
 		}
 
 		if (pickingAlpha) {
-			float restrictedY = (float) Math.min(Math.max(alphaSliderY, mouseY), alphaSliderY + alphaSliderHeight);
-			finalAlpha = 1 - (restrictedY - (float) alphaSliderY) / alphaSliderHeight;
+			if (alphaSliderWidth > alphaSliderHeight) {
+				float restrictedX = (float) Math.min(Math.max(alphaSliderX, mouseX), alphaSliderX + alphaSliderWidth);
+				finalAlpha = 1 - (restrictedX - (float) alphaSliderX) / alphaSliderWidth;
+			} else {
+				float restrictedY = (float) Math.min(Math.max(alphaSliderY, mouseY), alphaSliderY + alphaSliderHeight);
+				finalAlpha = 1 - (restrictedY - (float) alphaSliderY) / alphaSliderHeight;
+			}
 		}
 
 		if (pickingColor) {
@@ -558,8 +698,8 @@ public final class DefaultTheme extends Theme {
 			color[2] = 1 - (restrictedY - (float) pickerY) / pickerHeight;
 		}
 
-		Gui.drawRect(pickerX - 3, pickerY - 2, pickerX + pickerWidth + 2, pickerY + pickerHeight + 30, RainbowUtil.getRollingRainbow(boost));
-		Gui.drawRect(pickerX - 2, pickerY - 2, pickerX + pickerWidth + 2, pickerY + pickerHeight + 30, 0xFF212121);
+		Gui.drawRect(pickerX - 3, pickerY - 2, pickerX + pickerWidth + 2, pickerY + pickerHeight + 50, RainbowUtil.getRollingRainbow(boost));
+		Gui.drawRect(pickerX - 2, pickerY - 2, pickerX + pickerWidth + 2, pickerY + pickerHeight + 50, 0xFF212121);
 
 		int selectedColor = Color.HSBtoRGB(color[0], 1.0f, 1.0f);
 
@@ -584,18 +724,37 @@ public final class DefaultTheme extends Theme {
 	public static void drawHueSlider(int x, int y, int width, int height, float hue) {
 		int step = 0;
 
-		for (int colorIndex = 0; colorIndex < 5; colorIndex++) {
-			int previousStep = Color.HSBtoRGB((float) step / 5, 1.0f, 1.0f);
-			int nextStep = Color.HSBtoRGB((float) (step + 1) / 5, 1.0f, 1.0f);
+		if (height > width) {
+			Gui.drawRect(x, y, x + width, y + 4, 0xFFFF0000);
 
-			DrawUtil.gradient(x + step * (width / 5), y, x + (step + 1) * (width / 5), y + height, previousStep, nextStep, true);
+			y += 4;
 
-			step++;
+			for (int colorIndex = 0; colorIndex < 5; colorIndex++) {
+				int previousStep = Color.HSBtoRGB((float) step / 5, 1.0f, 1.0f);
+				int nextStep = Color.HSBtoRGB((float) (step + 1) / 5, 1.0f, 1.0f);
+
+				DrawUtil.drawGradientRect(x, y + step * (height / 5), x + width, y + (step + 1) * (height / 5), previousStep, nextStep);
+
+				step++;
+			}
+
+			int sliderMinY = (int) (y + (height * hue)) - 4;
+
+			Gui.drawRect(x, sliderMinY - 1, x + width, sliderMinY + 1, -1);
+		} else {
+			for (int colorIndex = 0; colorIndex < 5; colorIndex++) {
+				int previousStep = Color.HSBtoRGB((float) step / 5, 1.0f, 1.0f);
+				int nextStep = Color.HSBtoRGB((float) (step + 1) / 5, 1.0f, 1.0f);
+
+				DrawUtil.gradient(x + step * (width / 5), y, x + (step + 1) * (width / 5), y + height, previousStep, nextStep, true);
+
+				step++;
+			}
+
+			int sliderMinX = (int) (x + (width * hue));
+
+			Gui.drawRect(sliderMinX - 1, y, sliderMinX + 1, y + height, -1);
 		}
-
-		int sliderMinX = (int) (x + (width * hue));
-
-		Gui.drawRect(sliderMinX - 1, y, sliderMinX + 1, y + height, -1);
 	}
 
 	public static void drawAlphaSlider(int x, int y, int width, int height, float red, float green, float blue, float alpha) {
