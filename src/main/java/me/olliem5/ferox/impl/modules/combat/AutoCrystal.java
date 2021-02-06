@@ -166,9 +166,11 @@ public final class AutoCrystal extends Module {
                         mc.world.getLoadedEntityList();
                     }
                 }
+
+                breakTimer.reset();
             }
 
-            breakTimer.reset();
+
 
             if (!(placeMode.getValue() == PlaceModes.Multi)) return;
         }

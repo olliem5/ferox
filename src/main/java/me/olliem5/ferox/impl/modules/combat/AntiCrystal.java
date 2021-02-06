@@ -1,24 +1,31 @@
 package me.olliem5.ferox.impl.modules.combat;
 
 import com.mojang.realmsclient.gui.ChatFormatting;
+import git.littledraily.eventsystem.Listener;
 import me.olliem5.ferox.api.module.Category;
 import me.olliem5.ferox.api.module.FeroxModule;
 import me.olliem5.ferox.api.module.Module;
 import me.olliem5.ferox.api.setting.NumberSetting;
+import me.olliem5.ferox.api.setting.Setting;
 import me.olliem5.ferox.api.util.client.MessageUtil;
 import me.olliem5.ferox.api.util.math.CooldownUtil;
 import me.olliem5.ferox.api.util.minecraft.InventoryUtil;
+import me.olliem5.ferox.api.util.render.draw.RenderUtil;
+import me.olliem5.ferox.impl.events.WorldRenderEvent;
 import net.minecraft.entity.item.EntityEnderCrystal;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.network.play.client.CPacketPlayerTryUseItemOnBlock;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.BlockPos;
+import org.lwjgl.opengl.GL11;
 
+import java.awt.*;
 import java.util.Comparator;
 
 /**
- * TODO: Checks for all types of pressure plates
+ * TODO: AutoSwitch
  * TODO: Stop pressure plates from being placed right after crystal explodes
  */
 
@@ -27,25 +34,36 @@ public final class AntiCrystal extends Module {
     public static final NumberSetting<Double> placeRange = new NumberSetting<>("Place Range", "The range to place pressure plates at", 0.0, 5.5, 10.0, 1);
     public static final NumberSetting<Integer> placeDelay = new NumberSetting<>("Place Delay", "The delay between places", 0, 2, 20, 0);
 
+    public static final Setting<Boolean> renderPlace = new Setting<>("Render", "Allows the block placements to be rendered", true);
+    public static final Setting<RenderModes> renderMode = new Setting<>(renderPlace, "Render Mode", "The type of box to render", RenderModes.Full);
+    public static final NumberSetting<Double> outlineWidth = new NumberSetting<>(renderPlace, "Outline Width", "The width of the outline", 1.0, 2.0, 5.0, 1);
+    public static final Setting<Color> renderColour = new Setting<>(renderPlace, "Render Colour", "The colour for the block placements", new Color(66, 199, 16, 201));
+
     public AntiCrystal() {
         this.addSettings(
                 placeRange,
-                placeDelay
+                placeDelay,
+                renderPlace
         );
     }
 
-    private int pressurePlateSlot;
+    private int woodenPressurePlateSlot;
+    private int heavyWeightedPressurePlateSlot;
+    private int lightWeightedPressurePlateSlot;
+    private int stonePressurePlateSlot;
 
     private final CooldownUtil placeTimer = new CooldownUtil();
 
+    private BlockPos renderBlock = null;
+
     @Override
     public void onEnable() {
-        pressurePlateSlot = InventoryUtil.getHotbarBlockSlot(Blocks.WOODEN_PRESSURE_PLATE);
+        handlePressurePlates(true);
+    }
 
-        if (pressurePlateSlot == -1) {
-            MessageUtil.sendClientMessage("No Pressure Plate, " + ChatFormatting.RED + "Disabling!");
-            this.toggle();
-        }
+    @Override
+    public void onDisable() {
+        renderBlock = null;
     }
 
     public void onUpdate() {
@@ -59,13 +77,12 @@ public final class AntiCrystal extends Module {
                 .min(Comparator.comparing(entity -> mc.player.getDistance(entity)))
                 .orElse(null);
 
-        if (entityEnderCrystal != null) {
-            if (pressurePlateSlot != -1) {
-                mc.player.inventory.currentItem = pressurePlateSlot;
-            }
+        handlePressurePlates(false);
 
+        if (entityEnderCrystal != null) { //This shouldn't be needed....?
             if (placeTimer.passed(placeDelay.getValue() * 60)) {
-                if (mc.player.getHeldItemMainhand().getItem() == Item.getItemFromBlock(Blocks.WOODEN_PRESSURE_PLATE)) {
+                if (mc.player.getHeldItemMainhand().getItem() == Item.getItemFromBlock(Blocks.WOODEN_PRESSURE_PLATE) || mc.player.getHeldItemMainhand().getItem() == Item.getItemFromBlock(Blocks.HEAVY_WEIGHTED_PRESSURE_PLATE) || mc.player.getHeldItemMainhand().getItem() == Item.getItemFromBlock(Blocks.LIGHT_WEIGHTED_PRESSURE_PLATE) || mc.player.getHeldItemMainhand().getItem() == Item.getItemFromBlock(Blocks.STONE_PRESSURE_PLATE)) {
+                    renderBlock = new BlockPos(entityEnderCrystal.posX, entityEnderCrystal.posY -1, entityEnderCrystal.posZ);
                     mc.player.connection.sendPacket(new CPacketPlayerTryUseItemOnBlock(entityEnderCrystal.getPosition(), EnumFacing.UP, EnumHand.MAIN_HAND, 0, 0, 0));
                 }
 
@@ -74,7 +91,58 @@ public final class AntiCrystal extends Module {
         }
     }
 
+    @Listener
+    public void onWorldRender(WorldRenderEvent event) {
+        GL11.glLineWidth(outlineWidth.getValue().floatValue());
+
+        if (renderPlace.getValue()) {
+            if (renderBlock != null) {
+                switch (renderMode.getValue()) {
+                    case Box:
+                        RenderUtil.draw(RenderUtil.generateBB(renderBlock.getX(), renderBlock.getY(), renderBlock.getZ()), true, false, 0, 0, renderColour.getValue());
+                        break;
+                    case Outline:
+                        RenderUtil.draw(RenderUtil.generateBB(renderBlock.getX(), renderBlock.getY(), renderBlock.getZ()), false, true, 0, 0, renderColour.getValue());
+                        break;
+                    case Full:
+                        RenderUtil.draw(RenderUtil.generateBB(renderBlock.getX(), renderBlock.getY(), renderBlock.getZ()), true, true, 0, 0, renderColour.getValue());
+                        break;
+                }
+            }
+        }
+    }
+
+    private void handlePressurePlates(boolean search) {
+        if (search) {
+            woodenPressurePlateSlot = InventoryUtil.getHotbarBlockSlot(Blocks.WOODEN_PRESSURE_PLATE);
+            heavyWeightedPressurePlateSlot = InventoryUtil.getHotbarBlockSlot(Blocks.HEAVY_WEIGHTED_PRESSURE_PLATE);
+            lightWeightedPressurePlateSlot = InventoryUtil.getHotbarBlockSlot(Blocks.LIGHT_WEIGHTED_PRESSURE_PLATE);
+            stonePressurePlateSlot = InventoryUtil.getHotbarBlockSlot(Blocks.STONE_PRESSURE_PLATE);
+
+            if (woodenPressurePlateSlot == -1 && heavyWeightedPressurePlateSlot == -1 && lightWeightedPressurePlateSlot == -1 && stonePressurePlateSlot == -1) {
+                MessageUtil.sendClientMessage("No Pressure Plate, " + ChatFormatting.RED + "Disabling!");
+                this.toggle();
+            }
+        } else {
+            if (woodenPressurePlateSlot != -1) {
+                mc.player.inventory.currentItem = woodenPressurePlateSlot;
+            } else if (heavyWeightedPressurePlateSlot != -1) {
+                mc.player.inventory.currentItem = heavyWeightedPressurePlateSlot;
+            } else if (lightWeightedPressurePlateSlot != -1) {
+                mc.player.inventory.currentItem = lightWeightedPressurePlateSlot;
+            } else if (stonePressurePlateSlot != -1) {
+                mc.player.inventory.currentItem = stonePressurePlateSlot;
+            }
+        }
+    }
+
     private boolean hasPressurePlate(EntityEnderCrystal entityEnderCrystal) {
         return mc.world.getBlockState(entityEnderCrystal.getPosition()).getBlock() == Blocks.WOODEN_PRESSURE_PLATE;
+    }
+
+    public enum RenderModes {
+        Box,
+        Outline,
+        Full
     }
 }
