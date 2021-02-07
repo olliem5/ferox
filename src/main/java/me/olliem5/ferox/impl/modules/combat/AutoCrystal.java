@@ -48,7 +48,6 @@ public final class AutoCrystal extends Module {
      *
      * Break
      * - Sequential
-     * - UnsafeSync
      *
      * Place
      * - Walls Range
@@ -70,8 +69,8 @@ public final class AutoCrystal extends Module {
      */
 
     public static final Setting<Boolean> crystalBreak = new Setting<>("Break", "Allows for crystals to be broken", true);
-    public static final Setting<BreakModes> breakMode = new Setting<>(crystalBreak, "Mode", "The mode for crystal breaking", BreakModes.Nearest);
-    public static final Setting<BreakTypes> breakType = new Setting<>(crystalBreak, "Type", "The mode for how the crystal is broken", BreakTypes.Swing);
+
+    public static final Setting<BreakModes> breakType = new Setting<>(crystalBreak, "Type", "The mode for how the crystal is broken", BreakModes.Swing);
     public static final Setting<SwingModes> swingMode = new Setting<>(crystalBreak, "Swing", "The mode for how the player swings at the crystal", SwingModes.Mainhand);
 
     public static final Setting<Boolean> antiWeakness = new Setting<>(crystalBreak, "Anti Weakness", "Allow switching to a sword or tool when you have weakness", true);
@@ -80,23 +79,25 @@ public final class AutoCrystal extends Module {
 
     public static final NumberSetting<Double> antiSuicideHealth = new NumberSetting<>(crystalBreak, "Anti Suicide HP", "Health to be at to stop you killing yourself", 1.0, 15.0, 36.0, 1);
     public static final NumberSetting<Double> breakRange = new NumberSetting<>(crystalBreak, "Range", "The range to break crystals in", 0.0, 5.5, 10.0, 1);
-    public static final NumberSetting<Integer> breakDelay = new NumberSetting<>(crystalBreak, "Delay", "The delay between crystal breaks", 0, 2, 20, 0);
 
     public static final NumberSetting<Integer> breakAttempts = new NumberSetting<>(crystalBreak, "Break Attempts", "How many times to swing at the crystal", 1, 1, 5, 0);
+    public static final NumberSetting<Integer> breakDelay = new NumberSetting<>(crystalBreak, "Delay", "The delay between crystal breaks", 0, 2, 20, 0);
 
     /**
      * Place Settings
      */
 
     public static final Setting<Boolean> crystalPlace = new Setting<>("Place", "Allows for crystals to be placed", true);
-    public static final Setting<Boolean> packetPlace = new Setting<>(crystalPlace, "Packet Place", "Places the crystal with packets", true);
-    public static final Setting<Boolean> multiPlace = new Setting<>(crystalPlace, "Multi Place", "Allows for multiple crystal placements before break", false);
+
+    public static final Setting<PlaceModes> placeType = new Setting<>(crystalPlace, "Type", "The mode for how the crystal is placed", PlaceModes.Packet);
+
     public static final Setting<Boolean> raytrace = new Setting<>(crystalPlace, "Raytrace", "Allow raytracing for placements", true);
+    private static final Setting<Boolean> faceplace = new Setting<>(crystalPlace, "Faceplace", "Allows crystals to be faceplaced", true);
 
     public static final NumberSetting<Double> placeRange = new NumberSetting<>(crystalPlace, "Range", "The range to place crystals in", 0.0, 5.5, 10.0, 1);
-    public static final NumberSetting<Double> minDamage = new NumberSetting<>(crystalPlace, "Min Damage", "Minimum enemy damage for a place", 0.0, 7.0, 36.0, 1);
+    public static final NumberSetting<Double> minDamage = new NumberSetting<>(crystalPlace, "Min Enemy Damage", "Minimum enemy damage for a place", 0.0, 7.0, 36.0, 1);
     public static final NumberSetting<Double> maxSelfDamage = new NumberSetting<>(crystalPlace, "Max Self Damage", "Maximum self damage for a place", 0.0, 8.0, 36.0, 1);
-    public static final NumberSetting<Double> faceplaceHP = new NumberSetting<>(crystalPlace, "Faceplace HP", "Enemy health to faceplace at", 0.0, 8.0, 36.0, 1);
+    public static final NumberSetting<Double> faceplaceHP = new NumberSetting<>(crystalPlace, "Faceplace HP", "Enemy health to faceplace at", 0.0, 16.0, 36.0, 1);
 
     public static final NumberSetting<Integer> placeDelay = new NumberSetting<>(crystalPlace, "Delay", "The delay between crystal places", 0, 2, 20, 0);
 
@@ -111,10 +112,8 @@ public final class AutoCrystal extends Module {
 
     public static final Setting<Boolean> rotate = new Setting<>(crystalCalculations, "Rotate", "Allow rotations to crystals and blocks", true);
     public static final Setting<Boolean> syncBreak = new Setting<>(crystalCalculations, "Sync Break", "Sets crystals to dead after breaking them", true);
-    public static final Setting<Boolean> reloadCrystal = new Setting<>(crystalCalculations, "Reload Crystal", "Reloads world entities after a crystal break", true);
-    public static final Setting<Boolean> antiDesync = new Setting<>(crystalCalculations, "Anti Desync", "Removes desynced crystals", true);
 
-    public static final NumberSetting<Double> enemyRange = new NumberSetting<>("crystalCalculations, Enemy Range", "The range the target can be in", 1.0, 15.0, 50.0, 1);
+    public static final NumberSetting<Double> enemyRange = new NumberSetting<>(crystalCalculations, "Enemy Range", "The range the target can be in", 1.0, 15.0, 50.0, 1);
 
     /**
      * Pause Settings
@@ -140,7 +139,7 @@ public final class AutoCrystal extends Module {
 
     public static final NumberSetting<Double> outlineWidth = new NumberSetting<>(crystalRender, "Outline Width", "The width of the outline", 1.0, 2.0, 5.0, 1);
 
-    public static final Setting<Color> renderColour = new Setting<>(crystalRender, "Render Colour", "The colour for the block placements", new Color(15, 60, 231, 201));
+    public static final Setting<Color> renderColour = new Setting<>(crystalRender, "Render Colour", "The colour for the block placements", new Color(231, 15, 101, 180));
 
     public AutoCrystal() {
         this.addSettings(
@@ -161,6 +160,8 @@ public final class AutoCrystal extends Module {
 
     @Override
     public void onDisable() {
+        if (nullCheck()) return;
+
         playerTarget = null;
         crystalTarget = null;
         renderBlock = null;
@@ -215,7 +216,7 @@ public final class AutoCrystal extends Module {
                 }
 
                 for (int i = 0; i < breakAttempts.getValue(); i++) {
-                    if (breakType.getValue() == BreakTypes.Packet) {
+                    if (breakType.getValue() == BreakModes.Packet) {
                         CrystalUtil.attackCrystal(entityEnderCrystal, true);
                     } else {
                         CrystalUtil.attackCrystal(entityEnderCrystal, false);
@@ -250,20 +251,13 @@ public final class AutoCrystal extends Module {
                 }
 
                 if (syncBreak.getValue()) {
-                    if (breakType.getValue() == BreakTypes.Swing) {
+                    if (breakType.getValue() == BreakModes.Swing) {
                         entityEnderCrystal.setDead();
                     }
                 }
 
-                if (reloadCrystal.getValue()) {
-                    mc.world.removeAllEntities();
-                    mc.world.getLoadedEntityList();
-                }
-
                 breakTimer.reset();
             }
-
-            if (!multiPlace.getValue()) return;
         }
     }
 
@@ -281,7 +275,7 @@ public final class AutoCrystal extends Module {
                 double calculatedTargetDamage = CrystalUtil.calculateDamage(blockPos.getX() + 0.5, blockPos.getY() + 1, blockPos.getZ() + 0.5, playerTarget);
                 double calculatedSelfDamage = mc.player.capabilities.isCreativeMode ? 0 : CrystalUtil.calculateDamage(blockPos.getX() + 0.5, blockPos.getY() + 1, blockPos.getZ() + 0.5, mc.player);
 
-                if (calculatedTargetDamage < minDamage.getValue()) continue;
+                if (calculatedTargetDamage < minDamage.getValue() && handleMinDamage()) continue;
 
                 if (calculatedSelfDamage > maxSelfDamage.getValue()) continue;
 
@@ -289,7 +283,7 @@ public final class AutoCrystal extends Module {
             }
 
             tempPlacePosition = crystalPositions.stream()
-                    .max(Comparator.comparing(finalPlacePosition -> finalPlacePosition.getTargetDamage()))
+                    .max(Comparator.comparing(finalPlacePosition -> finalPlacePosition.getTargetDamage())) //TODO: Different Calculation Types
                     .orElse(null);
 
             if (tempPlacePosition == null) {
@@ -308,7 +302,7 @@ public final class AutoCrystal extends Module {
 
                 }
 
-                CrystalUtil.placeCrystal(crystalTarget.getPosition(), raytrace.getValue() ? CrystalUtil.getEnumFacing(raytrace.getValue(), crystalTarget.getPosition()) : EnumFacing.UP, packetPlace.getValue());
+                CrystalUtil.placeCrystal(crystalTarget.getPosition(), raytrace.getValue() ? CrystalUtil.getEnumFacing(raytrace.getValue(), crystalTarget.getPosition()) : EnumFacing.UP, placeType.getValue() == PlaceModes.Packet);
 
                 placeTimer.reset();
             }
@@ -318,13 +312,23 @@ public final class AutoCrystal extends Module {
     private boolean handlePause() {
         if ((mc.player.getHealth() + mc.player.getAbsorptionAmount()) <= pauseHealth.getValue()) {
             return true;
-        } else if (mc.player.getHeldItemMainhand().getItem() == Items.GOLDEN_APPLE || mc.player.getHeldItemOffhand().getItem() == Items.GOLDEN_APPLE && mc.player.isHandActive()) {
+        } else if (mc.player.getHeldItemMainhand().getItem() == Items.GOLDEN_APPLE || mc.player.getHeldItemOffhand().getItem() == Items.GOLDEN_APPLE && mc.player.isHandActive() && pauseWhileEating.getValue()) {
             return true;
-        } else if (mc.player.getHeldItemMainhand().getItem() == Items.DIAMOND_PICKAXE || mc.player.getHeldItemOffhand().getItem() == Items.DIAMOND_PICKAXE && mc.player.isHandActive()) {
+        } else if (mc.player.getHeldItemMainhand().getItem() == Items.DIAMOND_PICKAXE || mc.player.getHeldItemOffhand().getItem() == Items.DIAMOND_PICKAXE && mc.player.isHandActive() && pauseWhileMining.getValue()) {
             return true;
         }
 
         return false;
+    }
+
+    private boolean handleMinDamage() {
+        if (playerTarget != null) {
+            if ((playerTarget.getHealth() + playerTarget.getAbsorptionAmount()) < faceplaceHP.getValue() && faceplace.getValue()) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     @Listener
@@ -373,7 +377,7 @@ public final class AutoCrystal extends Module {
         if (event.getPacket() instanceof CPacketUseEntity) {
             CPacketUseEntity cPacketUseEntity = (CPacketUseEntity) event.getPacket();
 
-            if (cPacketUseEntity.getAction() == CPacketUseEntity.Action.ATTACK && cPacketUseEntity.getEntityFromWorld(mc.world) instanceof EntityEnderCrystal && breakType.getValue() == BreakTypes.Packet) {
+            if (cPacketUseEntity.getAction() == CPacketUseEntity.Action.ATTACK && cPacketUseEntity.getEntityFromWorld(mc.world) instanceof EntityEnderCrystal && breakType.getValue() == BreakModes.Packet) {
                 cPacketUseEntity.getEntityFromWorld(mc.world).setDead();
             }
         }
@@ -393,11 +397,6 @@ public final class AutoCrystal extends Module {
     }
 
     public enum BreakModes {
-        Nearest
-        //OnlyOwn
-    }
-
-    public enum BreakTypes {
         Swing,
         Packet
     }
@@ -408,6 +407,11 @@ public final class AutoCrystal extends Module {
         Spam,
         Both,
         None
+    }
+
+    public enum PlaceModes {
+        Standard,
+        Packet
     }
 
     public enum LogicModes {
