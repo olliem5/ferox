@@ -60,6 +60,8 @@ public final class AutoCrystal extends Module {
      *
      * Calculations
      * - VerifyPlace
+     *
+     * TODO: If the target block in within a certain radius of the enemy
      */
 
     /**
@@ -85,6 +87,8 @@ public final class AutoCrystal extends Module {
 
     /**
      * Place Settings
+     *
+     * Done
      */
 
     public static final Setting<Boolean> crystalPlace = new Setting<>("Place", "Allows for crystals to be placed", true);

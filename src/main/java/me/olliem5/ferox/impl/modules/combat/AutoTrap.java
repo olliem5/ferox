@@ -10,6 +10,7 @@ import me.olliem5.ferox.api.setting.Setting;
 import me.olliem5.ferox.api.util.client.MessageUtil;
 import me.olliem5.ferox.api.util.minecraft.InventoryUtil;
 import me.olliem5.ferox.api.util.minecraft.PlaceUtil;
+import me.olliem5.ferox.api.util.minecraft.TargetUtil;
 import me.olliem5.ferox.api.util.render.draw.RenderUtil;
 import me.olliem5.ferox.impl.events.WorldRenderEvent;
 import me.olliem5.ferox.impl.modules.render.HoleESP;
@@ -58,6 +59,7 @@ public final class AutoTrap extends Module {
     private boolean hasPlaced = false;
 
     private BlockPos renderBlock = null;
+    private EntityPlayer trapTarget = null;
 
     @Override
     public void onEnable() {
@@ -74,10 +76,13 @@ public final class AutoTrap extends Module {
         blocksPlaced = 0;
         hasPlaced = false;
         renderBlock = null;
+        trapTarget = null;
     }
 
     public void onUpdate() {
         if (nullCheck()) return;
+
+        trapTarget = TargetUtil.getClosestPlayer(targetRange.getValue());
 
         if (timeout.getValue()) {
             if (this.isEnabled() && disableMode.getValue() != DisableModes.Never) {
@@ -94,10 +99,8 @@ public final class AutoTrap extends Module {
         blocksPlaced = 0;
 
         for (Vec3d vec3d : getPlaceType()) {
-            final EntityPlayer target = getClosestPlayer();
-
-            if (target != null) {
-                BlockPos blockPos = new BlockPos(vec3d.add(getClosestPlayer().getPositionVector()));
+            if (trapTarget != null) {
+                BlockPos blockPos = new BlockPos(vec3d.add(trapTarget.getPositionVector()));
 
                 if (mc.world.getBlockState(blockPos).getBlock().equals(Blocks.AIR)) {
                     int oldInventorySlot = mc.player.inventory.currentItem;
@@ -107,7 +110,7 @@ public final class AutoTrap extends Module {
                     }
 
                     PlaceUtil.placeBlock(blockPos);
-                    renderBlock = new BlockPos(vec3d.add(target.getPositionVector()));
+                    renderBlock = new BlockPos(vec3d.add(trapTarget.getPositionVector()));
 
                     mc.player.inventory.currentItem = oldInventorySlot;
 
@@ -142,22 +145,6 @@ public final class AutoTrap extends Module {
                 }
             }
         }
-    }
-
-    private EntityPlayer getClosestPlayer() {
-        EntityPlayer closestPlayer = null;
-
-        for (final EntityPlayer entityPlayer : mc.world.playerEntities) {
-            if (entityPlayer != mc.player) {
-                final double distance = mc.player.getDistance(entityPlayer);
-
-                if (distance < targetRange.getValue()) {
-                    closestPlayer = entityPlayer;
-                }
-            }
-        }
-
-        return closestPlayer;
     }
 
     private final List<Vec3d> fullTrap = new ArrayList<>(Arrays.asList(
