@@ -653,7 +653,7 @@ public final class DefaultTheme extends Theme {
 		int alphaSliderWidth = 75;
 		int alphaSliderHeight = 10;
 
-		int rgbButtonWidth = 23;
+		int rgbButtonWidth = 12;
 		int rgbButtonHeight = 22;
 
 		if (GuiUtil.lheld && GuiUtil.mouseOver(pickerX, pickerY, pickerX + pickerWidth, pickerY + pickerHeight)) {
@@ -811,6 +811,10 @@ public final class DefaultTheme extends Theme {
 			Gui.drawRect(x + 1, y + 1, x + width - 1, y + height - 1, 0xFF212121);
 			Gui.drawRect(x + 2, y + 2, x + width - 2, y + height - 2, RainbowUtil.getRainbow().getRGB());
 		}
+
+		FontUtil.drawText("R", x + width + 2, y -2, -1);
+		FontUtil.drawText("G", x + width + 2, y -2 + FontUtil.getStringHeight("R"), -1);
+		FontUtil.drawText("B", x + width + 2, y -2 + FontUtil.getStringHeight("R") + FontUtil.getStringHeight("G"), -1);
 	}
 
 	public static void drawColourPicker(Setting<Color> setting, int x, int y, int mouseX, int mouseY) {
