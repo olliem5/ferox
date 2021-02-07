@@ -54,7 +54,7 @@ public final class AutoCrystal extends Module {
      * @since 7/02/2021
      *
      * - I plan to update this module frequently and make as efficient as possible
-     * - Credit to Momentum for the utils and ideas (ily linus)
+     * - Credit to Momentum for the utils and ideas (ily linus) (ily too ollie :3)
      *
      * TODO: Settings to add
      *
