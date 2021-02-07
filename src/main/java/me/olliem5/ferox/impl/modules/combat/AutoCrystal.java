@@ -304,7 +304,7 @@ public final class AutoCrystal extends Module {
             CrystalPosition tempPosition;
 
             for (BlockPos blockPos : crystalBlocks(mc.player, placeRange.getValue(), predictPlace.getValue(), !multiPlace.getValue(), getBlockLogic())) {
-                if (verifyPlace.getValue() && mc.player.getDistanceSq(blockPos) > breakRange.getValue()) continue;
+                if (verifyPlace.getValue() && mc.player.getDistanceSq(blockPos) > (breakRange.getValue() * breakRange.getValue())) continue;
 
                 double calculatedTargetDamage = CrystalUtil.calculateDamage(blockPos.getX() + 0.5, blockPos.getY() + 1, blockPos.getZ() + 0.5, playerTarget);
                 double calculatedSelfDamage = mc.player.capabilities.isCreativeMode ? 0 : CrystalUtil.calculateDamage(blockPos.getX() + 0.5, blockPos.getY() + 1, blockPos.getZ() + 0.5, mc.player);
