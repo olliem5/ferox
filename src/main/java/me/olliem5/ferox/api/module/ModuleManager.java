@@ -9,6 +9,7 @@ import me.olliem5.ferox.impl.modules.misc.ChatSuffix;
 import me.olliem5.ferox.impl.modules.misc.FakePlayer;
 import me.olliem5.ferox.impl.modules.misc.FastUse;
 import me.olliem5.ferox.impl.modules.movement.ElytraFlight;
+import me.olliem5.ferox.impl.modules.movement.Speed;
 import me.olliem5.ferox.impl.modules.movement.Sprint;
 import me.olliem5.ferox.impl.modules.movement.Velocity;
 import me.olliem5.ferox.impl.modules.render.Brightness;
@@ -36,6 +37,7 @@ public final class ModuleManager {
                 new ElytraFlight(),
                 new Sprint(),
                 new Velocity(),
+                new Speed(),
 
                 //Misc
                 new ChatSuffix(),

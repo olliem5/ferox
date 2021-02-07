@@ -1,9 +1,9 @@
-package me.olliem5.ferox.impl.modules.movement.elytra.mode;
+package me.olliem5.ferox.impl.modules.movement.elytraflight.modes;
 
 import me.olliem5.ferox.api.util.module.ElytraUtil;
 import me.olliem5.ferox.api.util.packet.RotationUtil;
 import me.olliem5.ferox.impl.modules.movement.ElytraFlight;
-import me.olliem5.ferox.impl.modules.movement.elytra.ElytraMode;
+import me.olliem5.ferox.impl.modules.movement.elytraflight.ElytraMode;
 
 /**
  * @author linustouchtips

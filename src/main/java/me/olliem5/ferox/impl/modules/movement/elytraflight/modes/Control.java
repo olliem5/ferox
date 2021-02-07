@@ -1,16 +1,20 @@
-package me.olliem5.ferox.impl.modules.movement.elytra.mode;
+package me.olliem5.ferox.impl.modules.movement.elytraflight.modes;
 
 import me.olliem5.ferox.api.util.module.ElytraUtil;
 import me.olliem5.ferox.api.util.packet.RotationUtil;
 import me.olliem5.ferox.impl.modules.movement.ElytraFlight;
-import me.olliem5.ferox.impl.modules.movement.elytra.ElytraMode;
+import me.olliem5.ferox.impl.modules.movement.elytraflight.ElytraMode;
 
-public final class Frog extends ElytraMode {
+/**
+ * @author linustouchtips
+ * @since 12/29/2020
+ */
+
+public final class Control extends ElytraMode {
 
     @Override
     public void onVerticalMovement() {
         if (mc.gameSettings.keyBindJump.isKeyDown()) {
-            ElytraUtil.accelerateElytra(ElytraFlight.horizontalSpeed.getValue());
             mc.player.motionY = ElytraFlight.verticalSpeed.getValue();
         } else if (mc.gameSettings.keyBindSneak.isKeyDown()) {
             mc.player.motionY = (ElytraFlight.verticalSpeed.getValue() * -1);

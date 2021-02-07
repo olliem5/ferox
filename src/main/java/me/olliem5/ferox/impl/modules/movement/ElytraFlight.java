@@ -6,8 +6,8 @@ import me.olliem5.ferox.api.module.Module;
 import me.olliem5.ferox.api.setting.NumberSetting;
 import me.olliem5.ferox.api.setting.Setting;
 import me.olliem5.ferox.api.util.module.MotionUtil;
-import me.olliem5.ferox.impl.modules.movement.elytra.ElytraMode;
-import me.olliem5.ferox.impl.modules.movement.elytra.mode.*;
+import me.olliem5.ferox.impl.modules.movement.elytraflight.ElytraMode;
+import me.olliem5.ferox.impl.modules.movement.elytraflight.modes.*;
 import net.minecraft.network.play.client.CPacketEntityAction;
 
 /**
@@ -103,16 +103,6 @@ public final class ElytraFlight extends Module {
         mc.timer.tickLength = 50f;
     }
 
-    public void updateTicks() {
-        if (!mc.player.isElytraFlying() && takeOffTimer.getValue()) {
-            mc.timer.tickLength = 50.0f / ticks.getValue();
-        }
-
-        if (mc.player.isElytraFlying()) {
-            mc.timer.tickLength = 50;
-        }
-    }
-
     public void disableCheck() {
         if ((mc.player.isInWater() || mc.player.isInLava()) && liquidDisable.getValue()) return;
 
@@ -123,12 +113,21 @@ public final class ElytraFlight extends Module {
         if (mc.player.collidedHorizontally && onCollision.getValue()) return;
     }
 
+    public void updateTicks() {
+        if (!mc.player.isElytraFlying() && takeOffTimer.getValue()) {
+            mc.timer.tickLength = 50.0f / ticks.getValue();
+        }
+
+        if (mc.player.isElytraFlying()) {
+            mc.timer.tickLength = 50;
+        }
+    }
+
     public enum FlyModes {
         Control,
         Boost,
         NCP,
         Firework,
-        Frog,
-        Packet
+        Frog
     }
 }

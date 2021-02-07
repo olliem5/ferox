@@ -1,23 +1,23 @@
-package me.olliem5.ferox.impl.modules.movement.elytra.mode;
+package me.olliem5.ferox.impl.modules.movement.elytraflight.modes;
 
 import me.olliem5.ferox.api.util.module.ElytraUtil;
 import me.olliem5.ferox.api.util.packet.RotationUtil;
 import me.olliem5.ferox.impl.modules.movement.ElytraFlight;
-import me.olliem5.ferox.impl.modules.movement.elytra.ElytraMode;
+import me.olliem5.ferox.impl.modules.movement.elytraflight.ElytraMode;
 
 /**
  * @author linustouchtips
  * @since 12/29/2020
  */
 
-public final class Control extends ElytraMode {
+public final class NCP extends ElytraMode {
 
     @Override
     public void onVerticalMovement() {
         if (mc.gameSettings.keyBindJump.isKeyDown()) {
-            mc.player.motionY = ElytraFlight.verticalSpeed.getValue();
+            mc.player.rotationPitch = ElytraFlight.ncpRotations.getValue() * -1;
         } else if (mc.gameSettings.keyBindSneak.isKeyDown()) {
-            mc.player.motionY = (ElytraFlight.verticalSpeed.getValue() * -1);
+            mc.player.rotationPitch = ElytraFlight.ncpRotations.getValue();
         }
     }
 
@@ -33,8 +33,9 @@ public final class Control extends ElytraMode {
 
     @Override
     public void onRotation() {
+        RotationUtil.lockPitch(ElytraFlight.ncpRotations.getValue());
+
         if (ElytraFlight.lockRotation.getValue()) {
-            RotationUtil.lockPitch(ElytraFlight.ncpRotations.getValue());
             RotationUtil.lockYaw(ElytraFlight.ncpRotations.getValue());
         }
     }

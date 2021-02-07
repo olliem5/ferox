@@ -1,26 +1,17 @@
-package me.olliem5.ferox.impl.modules.movement.elytra.mode;
+package me.olliem5.ferox.impl.modules.movement.elytraflight.modes;
 
-import me.olliem5.ferox.api.util.minecraft.InventoryUtil;
 import me.olliem5.ferox.api.util.module.ElytraUtil;
 import me.olliem5.ferox.api.util.packet.RotationUtil;
 import me.olliem5.ferox.impl.modules.movement.ElytraFlight;
-import me.olliem5.ferox.impl.modules.movement.elytra.ElytraMode;
-import net.minecraft.init.Items;
-import net.minecraft.network.play.client.CPacketPlayerTryUseItem;
-import net.minecraft.util.EnumHand;
+import me.olliem5.ferox.impl.modules.movement.elytraflight.ElytraMode;
 
-/**
- * @author linustouchtips
- * @since 12/29/2020
- */
-
-public final class Firework extends ElytraMode {
+public final class Frog extends ElytraMode {
 
     @Override
     public void onVerticalMovement() {
         if (mc.gameSettings.keyBindJump.isKeyDown()) {
-            InventoryUtil.switchToSlot(Items.FIREWORKS);
-            mc.player.connection.sendPacket(new CPacketPlayerTryUseItem(EnumHand.MAIN_HAND));
+            ElytraUtil.accelerateElytra(ElytraFlight.horizontalSpeed.getValue());
+            mc.player.motionY = ElytraFlight.verticalSpeed.getValue();
         } else if (mc.gameSettings.keyBindSneak.isKeyDown()) {
             mc.player.motionY = (ElytraFlight.verticalSpeed.getValue() * -1);
         }
@@ -38,9 +29,8 @@ public final class Firework extends ElytraMode {
 
     @Override
     public void onRotation() {
-        RotationUtil.lockPitch(ElytraFlight.ncpRotations.getValue());
-
         if (ElytraFlight.lockRotation.getValue()) {
+            RotationUtil.lockPitch(ElytraFlight.ncpRotations.getValue());
             RotationUtil.lockYaw(ElytraFlight.ncpRotations.getValue());
         }
     }

@@ -1,4 +1,4 @@
-package me.olliem5.ferox.impl.modules.movement.elytra;
+package me.olliem5.ferox.impl.modules.movement.elytraflight;
 
 import me.olliem5.ferox.api.traits.Minecraft;
 
@@ -7,8 +7,7 @@ import me.olliem5.ferox.api.traits.Minecraft;
  * @since 12/29/2020
  */
 
-public class ElytraMode implements Minecraft {
-
+public abstract class ElytraMode implements Minecraft {
     public void onHorizontalMovement() {}
 
     public void onVerticalMovement() {}
