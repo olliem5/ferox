@@ -59,13 +59,13 @@ public final class HoleESP extends Module {
                 for (BlockPos obsidianHole : findObsidianHoles()) {
                     switch (obsidianRenderMode.getValue()) {
                         case Box:
-                            RenderUtil.draw(RenderUtil.generateBB(obsidianHole.getX(), obsidianHole.getY(), obsidianHole.getZ()), true, false, obsidianBoxHeight.getValue(), obsidianOutlineHeight.getValue(), obsidianHoleColour.getValue());
+                            RenderUtil.draw(obsidianHole, true, false, obsidianBoxHeight.getValue(), obsidianOutlineHeight.getValue(), obsidianHoleColour.getValue());
                             break;
                         case Outline:
-                            RenderUtil.draw(RenderUtil.generateBB(obsidianHole.getX(), obsidianHole.getY(), obsidianHole.getZ()), false, true, obsidianBoxHeight.getValue(), obsidianOutlineHeight.getValue(), obsidianHoleColour.getValue());
+                            RenderUtil.draw(obsidianHole, false, true, obsidianBoxHeight.getValue(), obsidianOutlineHeight.getValue(), obsidianHoleColour.getValue());
                             break;
                         case Full:
-                            RenderUtil.draw(RenderUtil.generateBB(obsidianHole.getX(), obsidianHole.getY(), obsidianHole.getZ()), true, true, obsidianBoxHeight.getValue(), obsidianOutlineHeight.getValue(), obsidianHoleColour.getValue());
+                            RenderUtil.draw(obsidianHole, true, true, obsidianBoxHeight.getValue(), obsidianOutlineHeight.getValue(), obsidianHoleColour.getValue());
                             break;
                     }
                 }
@@ -79,13 +79,13 @@ public final class HoleESP extends Module {
                 for (BlockPos bedrockHole : findBedrockHoles()) {
                     switch (bedrockRenderMode.getValue()) {
                         case Box:
-                            RenderUtil.draw(RenderUtil.generateBB(bedrockHole.getX(), bedrockHole.getY(), bedrockHole.getZ()), true, false, bedrockBoxHeight.getValue(), bedrockOutlineHeight.getValue(), bedrockHoleColour.getValue());
+                            RenderUtil.draw(bedrockHole, true, false, bedrockBoxHeight.getValue(), bedrockOutlineHeight.getValue(), bedrockHoleColour.getValue());
                             break;
                         case Outline:
-                            RenderUtil.draw(RenderUtil.generateBB(bedrockHole.getX(), bedrockHole.getY(), bedrockHole.getZ()), false, true, bedrockBoxHeight.getValue(), bedrockOutlineHeight.getValue(), bedrockHoleColour.getValue());
+                            RenderUtil.draw(bedrockHole, false, true, bedrockBoxHeight.getValue(), bedrockOutlineHeight.getValue(), bedrockHoleColour.getValue());
                             break;
                         case Full:
-                            RenderUtil.draw(RenderUtil.generateBB(bedrockHole.getX(), bedrockHole.getY(), bedrockHole.getZ()), true, true, bedrockBoxHeight.getValue(), bedrockOutlineHeight.getValue(), bedrockHoleColour.getValue());
+                            RenderUtil.draw(bedrockHole, true, true, bedrockBoxHeight.getValue(), bedrockOutlineHeight.getValue(), bedrockHoleColour.getValue());
                             break;
                     }
                 }

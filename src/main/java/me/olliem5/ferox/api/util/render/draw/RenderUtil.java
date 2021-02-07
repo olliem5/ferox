@@ -43,7 +43,9 @@ public final class RenderUtil implements Minecraft {
         return bb;
     }
 
-    public static void draw(AxisAlignedBB axisAlignedBB, boolean box, boolean outline, double boxHeight, double outlineHeight, Color colour) {
+    public static void draw(BlockPos blockPos, boolean box, boolean outline, double boxHeight, double outlineHeight, Color colour) {
+        AxisAlignedBB axisAlignedBB = generateBB(blockPos.getX(), blockPos.getY(), blockPos.getZ());
+
         prepareGL();
 
         if (box) {

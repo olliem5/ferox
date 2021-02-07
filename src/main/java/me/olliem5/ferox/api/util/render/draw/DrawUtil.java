@@ -1,6 +1,7 @@
 package me.olliem5.ferox.api.util.render.draw;
 
 import me.olliem5.ferox.api.traits.Minecraft;
+import me.olliem5.ferox.api.util.render.font.FontUtil;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
@@ -8,6 +9,8 @@ import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.math.BlockPos;
 import org.lwjgl.opengl.GL11;
 
 public final class DrawUtil implements Minecraft {
@@ -165,5 +168,43 @@ public final class DrawUtil implements Minecraft {
         GlStateManager.setActiveTexture(OpenGlHelper.lightmapTexUnit);
         GlStateManager.disableTexture2D();
         GlStateManager.setActiveTexture(OpenGlHelper.defaultTexUnit);
+    }
+
+    public static void glBillboard(final float x, final float y, final float z) {
+        final float scale = 0.02666667f;
+
+        GlStateManager.translate(x - mc.getRenderManager().renderPosX, y - mc.getRenderManager().renderPosY, z - mc.getRenderManager().renderPosZ);
+        GlStateManager.glNormal3f(0.0f, 1.0f, 0.0f);
+        GlStateManager.rotate(-mc.player.rotationYaw, 0.0f, 1.0f, 0.0f);
+        GlStateManager.rotate(mc.player.rotationPitch, (mc.gameSettings.thirdPersonView == 2) ? -1.0f : 1.0f, 0.0f, 0.0f);
+        GlStateManager.scale(-scale, -scale, scale);
+    }
+
+    public static void glBillboardDistanceScaled(final float x, final float y, final float z, final EntityPlayer player, final float scale) {
+        glBillboard(x, y, z);
+
+        final int distance = (int) player.getDistance(x, y, z);
+
+        float scaleDistance = distance / 2.0f / (2.0f + (2.0f - scale));
+
+        if (scaleDistance < 1.0f) {
+            scaleDistance = 1.0f;
+        }
+
+        GlStateManager.scale(scaleDistance, scaleDistance, scaleDistance);
+    }
+
+    public static void drawText(final BlockPos pos, final String text) {
+        GlStateManager.pushMatrix();
+
+        glBillboardDistanceScaled(pos.getX() + 0.5f, pos.getY() + 0.5f, pos.getZ() + 0.5f, mc.player, 1.0f);
+
+        GlStateManager.disableDepth();
+
+        GlStateManager.translate(-(FontUtil.getStringWidth(text) / 2.0), 0.0, 0.0);
+
+        FontUtil.drawText(text, 0.0f, 0.0f, -1);
+
+        GlStateManager.popMatrix();
     }
 }

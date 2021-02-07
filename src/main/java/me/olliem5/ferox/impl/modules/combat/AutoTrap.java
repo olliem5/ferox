@@ -131,13 +131,13 @@ public final class AutoTrap extends Module {
             if (renderBlock != null) {
                 switch (renderMode.getValue()) {
                     case Box:
-                        RenderUtil.draw(RenderUtil.generateBB(renderBlock.getX(), renderBlock.getY(), renderBlock.getZ()), true, false, 0, 0, renderColour.getValue());
+                        RenderUtil.draw(renderBlock, true, false, 0, 0, renderColour.getValue());
                         break;
                     case Outline:
-                        RenderUtil.draw(RenderUtil.generateBB(renderBlock.getX(), renderBlock.getY(), renderBlock.getZ()), false, true, 0, 0, renderColour.getValue());
+                        RenderUtil.draw(renderBlock, false, true, 0, 0, renderColour.getValue());
                         break;
                     case Full:
-                        RenderUtil.draw(RenderUtil.generateBB(renderBlock.getX(), renderBlock.getY(), renderBlock.getZ()), true, true, 0, 0, renderColour.getValue());
+                        RenderUtil.draw(renderBlock, true, true, 0, 0, renderColour.getValue());
                         break;
                 }
             }
