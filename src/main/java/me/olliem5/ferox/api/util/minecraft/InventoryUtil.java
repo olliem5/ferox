@@ -40,9 +40,11 @@ public final class InventoryUtil implements Minecraft {
 
     public static int getHotbarItemSlot(Class<? extends Item> item) {
         int slot = -1;
+
         for (int i = 0; i < 9; i++) {
             if (mc.player.inventory.getStackInSlot(i).getItem().getClass().isAssignableFrom(item)) {
                 slot = i;
+
                 break;
             }
         }
@@ -55,8 +57,26 @@ public final class InventoryUtil implements Minecraft {
 
         for (int i = 0; i < 9; i++) {
             Item item = mc.player.inventory.getStackInSlot(i).getItem();
+
             if (item instanceof ItemBlock && ((ItemBlock) item).getBlock().equals(block)) {
                 slot = i;
+
+                break;
+            }
+        }
+
+        return slot;
+    }
+
+    public static int getHotbarItemSlot(Item item) {
+        int slot = -1;
+
+        for (int i = 0; i < 9; i++) {
+            Item selection = mc.player.inventory.getStackInSlot(i).getItem();
+
+            if (selection.equals(item)) {
+                slot = i;
+
                 break;
             }
         }

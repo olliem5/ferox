@@ -13,7 +13,6 @@ import me.olliem5.ferox.api.util.math.MathUtil;
 import me.olliem5.ferox.api.util.render.draw.DrawUtil;
 import me.olliem5.ferox.api.util.render.font.FontUtil;
 import me.olliem5.ferox.api.util.render.gui.GuiUtil;
-import me.olliem5.ferox.impl.modules.render.HoleESP;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.ScaledResolution;
 import org.lwjgl.input.Keyboard;

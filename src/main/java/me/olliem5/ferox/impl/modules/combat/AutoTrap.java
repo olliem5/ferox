@@ -13,7 +13,6 @@ import me.olliem5.ferox.api.util.minecraft.PlaceUtil;
 import me.olliem5.ferox.api.util.minecraft.TargetUtil;
 import me.olliem5.ferox.api.util.render.draw.RenderUtil;
 import me.olliem5.ferox.impl.events.WorldRenderEvent;
-import me.olliem5.ferox.impl.modules.render.HoleESP;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
