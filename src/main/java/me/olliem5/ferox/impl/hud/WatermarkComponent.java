@@ -10,8 +10,8 @@ public final class WatermarkComponent extends Component {
     public static final Setting<WatermarkModes> watermarkMode = new Setting<>("Mode", "The watermark mode", WatermarkModes.NameVersion);
 
     public WatermarkComponent() {
-        setHeight(10);
         setWidth(10);
+        setHeight(10);
 
         this.addSettings(
                 watermarkMode

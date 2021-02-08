@@ -5,7 +5,7 @@ import me.olliem5.ferox.api.module.FeroxModule;
 import me.olliem5.ferox.api.module.Module;
 import me.olliem5.ferox.api.setting.NumberSetting;
 import me.olliem5.ferox.api.setting.Setting;
-import me.olliem5.ferox.api.util.module.MotionUtil;
+import me.olliem5.ferox.api.util.player.MotionUtil;
 import me.olliem5.ferox.impl.modules.movement.elytraflight.ElytraMode;
 import me.olliem5.ferox.impl.modules.movement.elytraflight.modes.*;
 import net.minecraft.network.play.client.CPacketEntityAction;

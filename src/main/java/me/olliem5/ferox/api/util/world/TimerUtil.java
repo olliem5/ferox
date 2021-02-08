@@ -1,4 +1,4 @@
-package me.olliem5.ferox.api.util.minecraft;
+package me.olliem5.ferox.api.util.world;
 
 import me.olliem5.ferox.api.traits.Minecraft;
 

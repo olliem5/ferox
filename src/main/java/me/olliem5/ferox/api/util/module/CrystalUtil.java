@@ -1,7 +1,7 @@
 package me.olliem5.ferox.api.util.module;
 
 import me.olliem5.ferox.api.traits.Minecraft;
-import me.olliem5.ferox.api.util.minecraft.BlockUtil;
+import me.olliem5.ferox.api.util.world.BlockUtil;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;

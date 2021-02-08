@@ -1,6 +1,7 @@
 package me.olliem5.ferox.api.util.module;
 
 import me.olliem5.ferox.api.traits.Minecraft;
+import me.olliem5.ferox.api.util.player.MotionUtil;
 
 /**
  * @author linustouchtips

@@ -2,6 +2,7 @@ package me.olliem5.ferox.impl.gui.screens.editor;
 
 import me.olliem5.ferox.api.hud.Component;
 import me.olliem5.ferox.api.hud.ComponentManager;
+import me.olliem5.ferox.api.module.ModuleManager;
 import me.olliem5.ferox.api.util.render.gui.GuiUtil;
 import me.olliem5.ferox.impl.modules.ui.HUDEditor;
 import net.minecraft.client.gui.Gui;
@@ -95,13 +96,9 @@ public final class HUDEditorScreen extends GuiScreen {
 		GuiUtil.updateKeyState(keyCode);
 	}
 
-	/**
-	 * TODO: Save config here
-	 */
-
 	@Override
 	public void onGuiClosed() {
-
+		ModuleManager.getModuleByName("HUDEditor").setEnabled(false);
 	}
 	
 	@Override

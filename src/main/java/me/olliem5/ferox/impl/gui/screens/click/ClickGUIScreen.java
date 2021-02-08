@@ -1,5 +1,6 @@
 package me.olliem5.ferox.impl.gui.screens.click;
 
+import me.olliem5.ferox.api.module.ModuleManager;
 import me.olliem5.ferox.api.util.render.gui.GuiUtil;
 import me.olliem5.ferox.impl.modules.ui.ClickGUI;
 import net.minecraft.client.gui.GuiScreen;
@@ -67,13 +68,9 @@ public final class ClickGUIScreen extends GuiScreen {
 		GuiUtil.updateKeyState(keyCode);
 	}
 
-	/**
-	 * TODO: Save config here
-	 */
-
 	@Override
 	public void onGuiClosed() {
-
+		ModuleManager.getModuleByName("ClickGUI").setEnabled(false);
 	}
 	
 	@Override

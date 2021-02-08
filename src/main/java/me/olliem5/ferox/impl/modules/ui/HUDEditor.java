@@ -34,8 +34,6 @@ public final class HUDEditor extends Module {
         }
 
         mc.displayGuiScreen(hudEditor);
-
-        this.toggle();
     }
 
     public enum ThemeModes {

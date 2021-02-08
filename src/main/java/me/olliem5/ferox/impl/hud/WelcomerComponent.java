@@ -10,8 +10,8 @@ public final class WelcomerComponent extends Component {
     public static final Setting<WelcomerModes> welcomerMode = new Setting<>("Mode", "The welcomer mode", WelcomerModes.Welcome);
 
     public WelcomerComponent() {
-        setHeight(10);
         setWidth(10);
+        setHeight(10);
 
         this.addSettings(
                 welcomerMode

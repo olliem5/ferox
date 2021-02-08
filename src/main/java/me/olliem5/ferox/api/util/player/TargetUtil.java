@@ -1,4 +1,4 @@
-package me.olliem5.ferox.api.util.minecraft;
+package me.olliem5.ferox.api.util.player;
 
 import me.olliem5.ferox.api.friend.FriendManager;
 import me.olliem5.ferox.api.traits.Minecraft;

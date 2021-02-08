@@ -5,7 +5,7 @@ import me.olliem5.ferox.api.module.FeroxModule;
 import me.olliem5.ferox.api.module.Module;
 import me.olliem5.ferox.api.setting.NumberSetting;
 import me.olliem5.ferox.api.setting.Setting;
-import me.olliem5.ferox.api.util.minecraft.InventoryUtil;
+import me.olliem5.ferox.api.util.player.InventoryUtil;
 import net.minecraft.init.Items;
 
 /**

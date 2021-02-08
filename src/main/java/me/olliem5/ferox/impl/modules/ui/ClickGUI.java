@@ -33,8 +33,6 @@ public final class ClickGUI extends Module {
         }
 
         mc.displayGuiScreen(clickGUI);
-
-        this.toggle();
     }
 
     public enum ThemeModes {
