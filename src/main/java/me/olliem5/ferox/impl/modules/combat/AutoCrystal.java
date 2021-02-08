@@ -1,7 +1,6 @@
 package me.olliem5.ferox.impl.modules.combat;
 
 import git.littledraily.eventsystem.Listener;
-import jdk.nashorn.internal.ir.Block;
 import me.olliem5.ferox.api.module.Category;
 import me.olliem5.ferox.api.module.FeroxModule;
 import me.olliem5.ferox.api.module.Module;
@@ -10,7 +9,6 @@ import me.olliem5.ferox.api.setting.Setting;
 import me.olliem5.ferox.api.util.math.CooldownUtil;
 import me.olliem5.ferox.api.util.minecraft.BlockUtil;
 import me.olliem5.ferox.api.util.minecraft.InventoryUtil;
-import me.olliem5.ferox.api.util.minecraft.PlayerUtil;
 import me.olliem5.ferox.api.util.minecraft.TargetUtil;
 import me.olliem5.ferox.api.util.module.CrystalPosition;
 import me.olliem5.ferox.api.util.module.CrystalUtil;
@@ -18,26 +16,22 @@ import me.olliem5.ferox.api.util.packet.RotationUtil;
 import me.olliem5.ferox.api.util.render.draw.DrawUtil;
 import me.olliem5.ferox.api.util.render.draw.RenderUtil;
 import me.olliem5.ferox.impl.events.PacketEvent;
-import me.olliem5.ferox.impl.events.WorldRenderEvent;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityEnderCrystal;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemEndCrystal;
 import net.minecraft.item.ItemSword;
-import net.minecraft.network.Packet;
 import net.minecraft.network.play.client.CPacketPlayer;
 import net.minecraft.network.play.client.CPacketUseEntity;
 import net.minecraft.network.play.server.SPacketSoundEffect;
 import net.minecraft.potion.Potion;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.NonNullList;
 import net.minecraft.util.SoundCategory;
-import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraftforge.client.event.RenderWorldLastEvent;
 import org.lwjgl.opengl.GL11;
 
 import java.awt.*;
@@ -94,8 +88,7 @@ public final class AutoCrystal extends Module {
     public static final Setting<Boolean> antiSuicide = new Setting<>(crystalBreak, "Anti Suicide", "Stops crystals from doing too much damage to you", true);
     public static final Setting<Boolean> throughWalls = new Setting<>(crystalBreak, "Through Walls", "Allows the AutoCrystal to break through walls", true);
     public static final Setting<Boolean> rotate = new Setting<>(crystalBreak, "Rotate", "Allow rotations to crystals and blocks", true);
-    public static final Setting<Boolean> syncBreak = new Setting<>(crystalBreak, "Sync", "Sets crystals to dead after breaking them", true);
-    public static final Setting<Boolean> reloadEntities = new Setting<>(crystalBreak, "Reload", "Reloads entities after a break", true);
+    public static final Setting<Boolean> syncBreak = new Setting<>(crystalBreak, "Sync", "Sets crystals to dead after breaking them", false);
 
     public static final NumberSetting<Double> antiSuicideHealth = new NumberSetting<>(crystalBreak, "Anti Suicide HP", "Health to be at to stop you killing yourself", 1.0, 8.0, 36.0, 1);
     public static final NumberSetting<Double> breakRange = new NumberSetting<>(crystalBreak, "Range", "The range to break crystals in", 0.0, 5.0, 7.0, 1);
@@ -285,11 +278,6 @@ public final class AutoCrystal extends Module {
                     }
                 }
 
-                if (reloadEntities.getValue()) {
-                    mc.world.removeAllEntities();
-                    mc.world.getLoadedEntityList();
-                }
-
                 breakTimer.reset();
             }
         }
@@ -339,7 +327,6 @@ public final class AutoCrystal extends Module {
             if (crystalTarget.getPosition() != BlockPos.ORIGIN && placeTimer.passed(placeDelay.getValue() * 60)) {
                 if (rotate.getValue()) {
                     RotationUtil.lookAtPacket(crystalTarget.getPosition().getX(), crystalTarget.getPosition().getY(), crystalTarget.getPosition().getZ(), mc.player);
-
                 }
 
                 CrystalUtil.placeCrystal(crystalTarget.getPosition(), raytrace.getValue() ? CrystalUtil.getEnumFacing(raytrace.getValue(), crystalTarget.getPosition()) : EnumFacing.UP, placeType.getValue() == PlaceModes.Packet);
@@ -380,7 +367,7 @@ public final class AutoCrystal extends Module {
     }
 
     @Listener
-    public void onWorldRender(WorldRenderEvent event) {
+    public void onRenderWorldLast(RenderWorldLastEvent event) {
         if (nullCheck()) return;
 
         GL11.glLineWidth(outlineWidth.getValue().floatValue());

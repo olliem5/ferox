@@ -1,4 +1,4 @@
-package me.olliem5.ferox.impl.command;
+package me.olliem5.ferox.impl.commands;
 
 import me.olliem5.ferox.api.util.client.MessageUtil;
 import me.yagel15637.venture.command.AbstractCommand;

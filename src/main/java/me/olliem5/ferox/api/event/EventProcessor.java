@@ -18,55 +18,8 @@ import net.minecraftforge.fml.common.gameevent.TickEvent;
 import org.lwjgl.input.Keyboard;
 
 public final class EventProcessor implements Minecraft {
-
     @SubscribeEvent
-    public void onTick(TickEvent.ClientTickEvent event) {
-        if (mc.player != null && mc.world != null) {
-            for (Module module : ModuleManager.getModules()) {
-                if (module.isEnabled()) {
-                    module.onUpdate();
-                }
-            }
-
-            Ferox.EVENT_BUS.post(new UpdateEvent());
-        }
-    }
-
-    @SubscribeEvent
-    public void onWorldRender(RenderWorldLastEvent event) {
-        if (mc.world != null) {
-            Ferox.EVENT_BUS.post(new WorldRenderEvent(event.getContext(), event.getPartialTicks()));
-        }
-    }
-
-    @SubscribeEvent
-    public void onRender(RenderGameOverlayEvent.Text event) {
-        if (event.isCanceled()) return;
-
-        Ferox.EVENT_BUS.post(new GameOverlayRenderEvent());
-    }
-
-    @SubscribeEvent
-    public void onChatMessage(ClientChatEvent event) {
-        if (event.getMessage().startsWith(Ferox.CHAT_PREFIX)) {
-            event.setCanceled(true);
-
-            CommandManager.parseCommand(event.getMessage().replace(Ferox.CHAT_PREFIX, ""));
-        } else {
-            ChatIncomingEvent chatIncomingEvent = new ChatIncomingEvent(event.getMessage());
-
-            Ferox.EVENT_BUS.post(chatIncomingEvent);
-
-            if (chatIncomingEvent.isCancelled()) {
-                event.setCanceled(true);
-            } else {
-                event.setMessage(chatIncomingEvent.getMessage());
-            }
-        }
-    }
-
-    @SubscribeEvent
-    public void onKey(InputEvent.KeyInputEvent event) {
+    public void onKeyInput(InputEvent.KeyInputEvent event) {
         if (Keyboard.getEventKeyState()) {
             if (Keyboard.getEventKey() != Keyboard.KEY_NONE) {
                 for (Module module : ModuleManager.getModules()) {
@@ -75,22 +28,50 @@ public final class EventProcessor implements Minecraft {
                     }
                 }
             }
-
-            Ferox.EVENT_BUS.post(new KeyPressedEvent(Keyboard.getEventKey()));
         }
     }
 
+    @SubscribeEvent
+    public void onClientTick(TickEvent.ClientTickEvent event) {
+        for (Module module : ModuleManager.getModules()) {
+            if (module.isEnabled()) {
+                module.onUpdate();
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public void onClientChat(ClientChatEvent event) {
+        if (event.getMessage().startsWith(Ferox.CHAT_PREFIX)) {
+            event.setCanceled(true);
+
+            CommandManager.parseCommand(event.getMessage().replace(Ferox.CHAT_PREFIX, ""));
+        } else {
+            event.setMessage(event.getMessage());
+        }
+    }
+
+    @SubscribeEvent
+    public void onRenderWorldLast(RenderWorldLastEvent event) {
+        Ferox.EVENT_BUS.post(event);
+    }
+
+    @SubscribeEvent
+    public void onRenderGameOverlayText(RenderGameOverlayEvent.Text event) {
+        Ferox.EVENT_BUS.post(event);
+    }
+
     @Listener
-    public void onPacket(PacketEvent.Receive event) {
+    public void onPacketReceive(PacketEvent.Receive event) {
         if (event.getPacket() instanceof SPacketEntityStatus) {
             SPacketEntityStatus packet = (SPacketEntityStatus) event.getPacket();
 
             if (packet.getOpCode() == 35) {
                 Entity entity = packet.getEntity(mc.world);
 
-                if (entity == null) return;
-
-                Ferox.EVENT_BUS.post(new TotemPopEvent(entity));
+                if (entity != null) {
+                    Ferox.EVENT_BUS.post(new TotemPopEvent(entity));
+                }
             }
         }
     }

@@ -10,9 +10,9 @@ import me.olliem5.ferox.api.util.minecraft.BlockUtil;
 import me.olliem5.ferox.api.util.minecraft.PlayerUtil;
 import me.olliem5.ferox.api.util.module.HoleUtil;
 import me.olliem5.ferox.api.util.render.draw.RenderUtil;
-import me.olliem5.ferox.impl.events.WorldRenderEvent;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
+import net.minecraftforge.client.event.RenderWorldLastEvent;
 import org.lwjgl.opengl.GL11;
 
 import java.awt.*;
@@ -46,7 +46,7 @@ public final class HoleESP extends Module {
     }
 
     @Listener
-    public void onWorldRender(WorldRenderEvent event) {
+    public void onRenderWorldLast(RenderWorldLastEvent event) {
         if (nullCheck()) return;
 
         List<BlockPos> obsidianHoles = findObsidianHoles();

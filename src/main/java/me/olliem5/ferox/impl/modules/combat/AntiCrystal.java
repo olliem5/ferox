@@ -11,7 +11,6 @@ import me.olliem5.ferox.api.util.client.MessageUtil;
 import me.olliem5.ferox.api.util.math.CooldownUtil;
 import me.olliem5.ferox.api.util.minecraft.InventoryUtil;
 import me.olliem5.ferox.api.util.render.draw.RenderUtil;
-import me.olliem5.ferox.impl.events.WorldRenderEvent;
 import net.minecraft.entity.item.EntityEnderCrystal;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
@@ -19,6 +18,7 @@ import net.minecraft.network.play.client.CPacketPlayerTryUseItemOnBlock;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
+import net.minecraftforge.client.event.RenderWorldLastEvent;
 import org.lwjgl.opengl.GL11;
 
 import java.awt.*;
@@ -92,7 +92,7 @@ public final class AntiCrystal extends Module {
     }
 
     @Listener
-    public void onWorldRender(WorldRenderEvent event) {
+    public void onRenderWorldLast(RenderWorldLastEvent event) {
         GL11.glLineWidth(outlineWidth.getValue().floatValue());
 
         if (renderPlace.getValue()) {

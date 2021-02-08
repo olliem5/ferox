@@ -9,4 +9,8 @@ public final class TotemPopEvent extends Event {
     public TotemPopEvent(Entity entity) {
         this.entity = entity;
     }
+
+    public Entity getEntity() {
+        return entity;
+    }
 }

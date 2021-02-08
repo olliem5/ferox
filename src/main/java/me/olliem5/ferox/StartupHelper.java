@@ -4,7 +4,7 @@ import me.olliem5.ferox.api.event.EventProcessor;
 import me.olliem5.ferox.api.hud.ComponentManager;
 import me.olliem5.ferox.api.module.ModuleManager;
 import me.olliem5.ferox.api.theme.ThemeManager;
-import me.olliem5.ferox.impl.command.EchoCommand;
+import me.olliem5.ferox.impl.commands.EchoCommand;
 import me.olliem5.ferox.impl.gui.screens.click.ClickGUIWindow;
 import me.olliem5.ferox.impl.gui.screens.editor.HUDEditorWindow;
 import me.yagel15637.venture.manager.CommandManager;
