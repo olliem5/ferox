@@ -1,6 +1,7 @@
 package me.olliem5.ferox.api.module;
 
 import me.olliem5.ferox.impl.modules.combat.*;
+import me.olliem5.ferox.impl.modules.exploit.Blink;
 import me.olliem5.ferox.impl.modules.ferox.DiscordRPC;
 import me.olliem5.ferox.impl.modules.ferox.Font;
 import me.olliem5.ferox.impl.modules.ferox.Friends;
@@ -39,10 +40,13 @@ public final class ModuleManager {
                 new Velocity(),
                 new Speed(),
 
-                //Misc
+                //Miscellaneous
                 new ChatSuffix(),
                 new FakePlayer(),
                 new FastUse(),
+
+                //Exploit
+                new Blink(),
 
                 //Render
                 new Brightness(),

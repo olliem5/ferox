@@ -63,6 +63,8 @@ public final class AutoTrap extends Module {
 
     @Override
     public void onEnable() {
+        if (nullCheck()) return;
+
         obsidianSlot = InventoryUtil.getHotbarBlockSlot(Blocks.OBSIDIAN);
 
         if (obsidianSlot == -1) {
@@ -73,6 +75,8 @@ public final class AutoTrap extends Module {
 
     @Override
     public void onDisable() {
+        if (nullCheck()) return;
+
         blocksPlaced = 0;
         hasPlaced = false;
         renderBlock = null;
@@ -131,6 +135,8 @@ public final class AutoTrap extends Module {
 
     @Listener
     public void onRenderWorldLast(RenderWorldLastEvent event) {
+        if (nullCheck()) return;
+
         GL11.glLineWidth(outlineWidth.getValue().floatValue());
 
         if (renderPlace.getValue()) {

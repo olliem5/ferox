@@ -56,9 +56,18 @@ public final class ElytraFlight extends Module {
 
     @Override
     public void onEnable() {
+        if (nullCheck()) return;
+
         if (infiniteFly.getValue()) {
             mc.player.connection.sendPacket(new CPacketEntityAction(mc.player, CPacketEntityAction.Action.START_FALL_FLYING));
         }
+    }
+
+    @Override
+    public void onDisable() {
+        if (nullCheck()) return;
+
+        mc.timer.tickLength = 50f;
     }
 
     @Override
@@ -96,11 +105,6 @@ public final class ElytraFlight extends Module {
             elytraMode.onHorizontalMovement();
             elytraMode.onRotation();
         }
-    }
-
-    @Override
-    public void onDisable() {
-        mc.timer.tickLength = 50f;
     }
 
     public void disableCheck() {

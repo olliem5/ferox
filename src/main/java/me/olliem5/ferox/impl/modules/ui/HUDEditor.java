@@ -29,6 +29,8 @@ public final class HUDEditor extends Module {
 
     @Override
     public void onEnable() {
+        if (nullCheck()) return;
+
         if (hudEditor == null) {
             hudEditor = new HUDEditorScreen();
         }

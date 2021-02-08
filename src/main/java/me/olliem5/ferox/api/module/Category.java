@@ -4,6 +4,7 @@ public enum Category {
     COMBAT("Combat"),
     MOVEMENT("Movement"),
     MISC("Miscellaneous"),
+    EXPLOIT("Exploit"),
     RENDER("Render"),
     FEROX("Ferox"),
     UI("Interface");

@@ -13,11 +13,15 @@ public final class DiscordRPC extends Module {
 
     @Override
     public void onEnable() {
+        if (nullCheck()) return;
+
         DiscordUtil.startup();
     }
 
     @Override
     public void onDisable() {
+        if (nullCheck()) return;
+
         DiscordUtil.shutdown();
     }
 }

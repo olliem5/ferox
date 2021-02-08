@@ -33,6 +33,8 @@ public final class Velocity extends Module {
 
     @Listener
     public void onPacketRecieve(PacketEvent.Receive event) {
+        if (nullCheck()) return;
+
         if (event.getPacket() instanceof SPacketEntityVelocity) {
             SPacketEntityVelocity sPacketEntityVelocity = (SPacketEntityVelocity) event.getPacket();
 

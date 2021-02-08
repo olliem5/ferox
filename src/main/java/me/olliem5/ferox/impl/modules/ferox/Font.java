@@ -23,6 +23,8 @@ public final class Font extends Module {
 
     @Override
     public void onDisable() {
+        if (nullCheck()) return;
+
         this.setEnabled(true);
     }
 

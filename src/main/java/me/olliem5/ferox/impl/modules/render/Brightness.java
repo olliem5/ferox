@@ -23,6 +23,8 @@ public final class Brightness extends Module {
 
     @Override
     public void onEnable() {
+        if (nullCheck()) return;
+
         if (brightnessMode.getValue() == BrightnessModes.Gamma) {
             originalGamma = mc.gameSettings.gammaSetting;
             mc.gameSettings.gammaSetting = 10;
@@ -33,6 +35,8 @@ public final class Brightness extends Module {
 
     @Override
     public void onDisable() {
+        if (nullCheck()) return;
+
         if (brightnessMode.getValue() == BrightnessModes.Gamma) {
             mc.gameSettings.gammaSetting = originalGamma;
         } else {

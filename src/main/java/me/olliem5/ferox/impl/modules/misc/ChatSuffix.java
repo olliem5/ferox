@@ -24,6 +24,8 @@ public final class ChatSuffix extends Module {
 
     @Listener
     public void onPacket(PacketEvent.Send event) {
+        if (nullCheck()) return;
+
         if (event.getPacket() instanceof CPacketChatMessage) {
 
             String s = ((CPacketChatMessage) event.getPacket()).getMessage();

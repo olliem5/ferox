@@ -431,6 +431,8 @@ public final class AutoCrystal extends Module {
 
     @Listener
     public void onPacketReceive(PacketEvent.Receive event) {
+        if (nullCheck()) return;
+
         if (event.getPacket() instanceof SPacketSoundEffect && antiSoundDesync.getValue()) {
             final SPacketSoundEffect packet = (SPacketSoundEffect) event.getPacket();
 

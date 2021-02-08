@@ -11,6 +11,8 @@ public final class Console extends Module {
 
     @Override
     public void onEnable() {
+        if (nullCheck()) return;
+
         if (console == null) {
             console = new ConsoleScreen();
         }

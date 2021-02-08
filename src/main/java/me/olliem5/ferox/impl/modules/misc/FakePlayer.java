@@ -41,6 +41,8 @@ public final class FakePlayer extends Module {
 
     @Override
     public void onDisable() {
+        if (nullCheck()) return;
+
         mc.world.removeEntityFromWorld(fakePlayer.entityId);
 
         fakePlayer = null;

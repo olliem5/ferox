@@ -63,6 +63,8 @@ public final class Surround extends Module {
 
     @Override
     public void onEnable() {
+        if (nullCheck()) return;
+
          obsidianSlot = InventoryUtil.getHotbarBlockSlot(Blocks.OBSIDIAN);
 
         if (obsidianSlot == -1) {
@@ -83,6 +85,8 @@ public final class Surround extends Module {
 
     @Override
     public void onDisable() {
+        if (nullCheck()) return;
+
         blocksPlaced = 0;
         hasPlaced = false;
         center = Vec3d.ZERO;
@@ -139,6 +143,8 @@ public final class Surround extends Module {
 
     @Listener
     public void onRenderWorldLast(RenderWorldLastEvent event) {
+        if (nullCheck()) return;
+
         GL11.glLineWidth(outlineWidth.getValue().floatValue());
 
         if (renderPlace.getValue()) {

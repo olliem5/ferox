@@ -28,6 +28,8 @@ public final class ClickGUI extends Module {
 
     @Override
     public void onEnable() {
+        if (nullCheck()) return;
+
         if (clickGUI == null) {
             clickGUI = new ClickGUIScreen();
         }

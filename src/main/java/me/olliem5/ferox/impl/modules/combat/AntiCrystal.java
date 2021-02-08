@@ -58,11 +58,15 @@ public final class AntiCrystal extends Module {
 
     @Override
     public void onEnable() {
+        if (nullCheck()) return;
+
         handlePressurePlates(true);
     }
 
     @Override
     public void onDisable() {
+        if (nullCheck()) return;
+
         renderBlock = null;
     }
 
@@ -93,6 +97,8 @@ public final class AntiCrystal extends Module {
 
     @Listener
     public void onRenderWorldLast(RenderWorldLastEvent event) {
+        if (nullCheck()) return;
+
         GL11.glLineWidth(outlineWidth.getValue().floatValue());
 
         if (renderPlace.getValue()) {
