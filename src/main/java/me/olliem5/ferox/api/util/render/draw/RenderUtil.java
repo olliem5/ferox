@@ -52,11 +52,11 @@ public final class RenderUtil implements Minecraft {
         prepareGL();
 
         if (box) {
-            drawFilledBox(axisAlignedBB, boxHeight, colour.getRed() / 255f, colour.getGreen() / 255f, colour.getBlue() / 255f, colour.getAlpha() / 255f);
+            drawFilledBox(axisAlignedBB, boxHeight, colour.getRed() / 255.0f, colour.getGreen() / 255.0f, colour.getBlue() / 255.0f, colour.getAlpha() / 255.0f);
         }
 
         if (outline) {
-            drawBoundingBox(axisAlignedBB, outlineHeight, colour.getRed() / 255f, colour.getGreen() / 255f, colour.getBlue() / 255f, colour.getAlpha() / 255f);
+            drawBoundingBox(axisAlignedBB, outlineHeight, colour.getRed() / 255.0f, colour.getGreen() / 255.0f, colour.getBlue() / 255.0f, colour.getAlpha() / 255.0f);
         }
 
         releaseGL();
@@ -79,13 +79,13 @@ public final class RenderUtil implements Minecraft {
         buffer.pos(maxX, maxY, maxZ).color(red, green, blue, alpha).endVertex();
         buffer.pos(minX, maxY, maxZ).color(red, green, blue, alpha).endVertex();
         buffer.pos(minX, maxY, minZ).color(red, green, blue, alpha).endVertex();
-        buffer.pos(minX, maxY, maxZ).color(red, green, blue, 0.0F).endVertex();
+        buffer.pos(minX, maxY, maxZ).color(red, green, blue, 0.0f).endVertex();
         buffer.pos(minX, minY, maxZ).color(red, green, blue, alpha).endVertex();
-        buffer.pos(maxX, maxY, maxZ).color(red, green, blue, 0.0F).endVertex();
+        buffer.pos(maxX, maxY, maxZ).color(red, green, blue, 0.0f).endVertex();
         buffer.pos(maxX, minY, maxZ).color(red, green, blue, alpha).endVertex();
-        buffer.pos(maxX, maxY, minZ).color(red, green, blue, 0.0F).endVertex();
+        buffer.pos(maxX, maxY, minZ).color(red, green, blue, 0.0f).endVertex();
         buffer.pos(maxX, minY, minZ).color(red, green, blue, alpha).endVertex();
-        buffer.pos(maxX, minY, minZ).color(red, green, blue, 0.0F).endVertex();
+        buffer.pos(maxX, minY, minZ).color(red, green, blue, 0.0f).endVertex();
     }
 
     public static void addChainedFilledBoxVertices(BufferBuilder builder, double x1, double y1, double z1, double x2, double y2, double z2, float red, float green, float blue, float alpha) {
@@ -121,10 +121,6 @@ public final class RenderUtil implements Minecraft {
         builder.pos(x2, y2, z2).color(red, green, blue, alpha).endVertex();
     }
 
-    public static void drawFilledBox(AxisAlignedBB aabb, double height, float red, float green, float blue, float alpha) {
-        renderFilledBox(aabb.minX, aabb.minY, aabb.minZ, aabb.maxX, aabb.maxY, aabb.maxZ, height, red, green, blue, alpha);
-    }
-
     public static void renderFilledBox(double minX, double minY, double minZ, double maxX, double maxY, double maxZ, double height, float red, float green, float blue, float alpha) {
         Tessellator tessellator = Tessellator.getInstance();
 
@@ -136,10 +132,6 @@ public final class RenderUtil implements Minecraft {
         tessellator.draw();
     }
 
-    public static void drawBoundingBox(AxisAlignedBB box, double height, float red, float green, float blue, float alpha) {
-        renderBoundingBox(box.minX, box.minY, box.minZ, box.maxX, box.maxY, box.maxZ, height, red, green, blue, alpha);
-    }
-
     public static void renderBoundingBox(double minX, double minY, double minZ, double maxX, double maxY, double maxZ, double height, float red, float green, float blue, float alpha) {
         Tessellator tessellator = Tessellator.getInstance();
 
@@ -149,5 +141,13 @@ public final class RenderUtil implements Minecraft {
         drawBoundingBox(bufferbuilder, minX, minY, minZ, maxX, maxY + height, maxZ, red, green, blue, alpha);
 
         tessellator.draw();
+    }
+
+    public static void drawFilledBox(AxisAlignedBB aabb, double height, float red, float green, float blue, float alpha) {
+        renderFilledBox(aabb.minX, aabb.minY, aabb.minZ, aabb.maxX, aabb.maxY, aabb.maxZ, height, red, green, blue, alpha);
+    }
+
+    public static void drawBoundingBox(AxisAlignedBB box, double height, float red, float green, float blue, float alpha) {
+        renderBoundingBox(box.minX, box.minY, box.minZ, box.maxX, box.maxY, box.maxZ, height, red, green, blue, alpha);
     }
 }

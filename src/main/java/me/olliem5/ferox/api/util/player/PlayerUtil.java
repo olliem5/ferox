@@ -14,7 +14,7 @@ public final class PlayerUtil implements Minecraft {
     }
 
     public static boolean isMoving(EntityPlayer entityPlayer) {
-        return entityPlayer.moveForward != 0 || entityPlayer.moveStrafing != 0;
+        return entityPlayer.moveForward != 0.0f || entityPlayer.moveStrafing != 0.0f;
     }
 
     public static void setSpeed(EntityPlayer entityPlayer, double speed) {

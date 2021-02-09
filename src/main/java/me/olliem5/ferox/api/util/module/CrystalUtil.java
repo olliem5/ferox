@@ -27,9 +27,9 @@ import net.minecraft.world.Explosion;
 public final class CrystalUtil implements Minecraft {
     public static float calculateDamage(double posX, double posY, double posZ, Entity entity) {
         try {
-            double factor = (1.0 - entity.getDistance(posX, posY, posZ) / 12.0f) * entity.world.getBlockDensity(new Vec3d(posX, posY, posZ), entity.getEntityBoundingBox());
+            double factor = (1.0 - entity.getDistance(posX, posY, posZ) / 12.0) * entity.world.getBlockDensity(new Vec3d(posX, posY, posZ), entity.getEntityBoundingBox());
 
-            float calculatedDamage = (float) (int) ((factor * factor + factor) / 2.0 * 7.0 * 12.0f + 1.0);
+            float calculatedDamage = (float) (int) ((factor * factor + factor) / 2.0f * 7.0f * 12.0f + 1.0f);
 
             double damage = 1.0;
 
@@ -40,7 +40,7 @@ public final class CrystalUtil implements Minecraft {
             return (float) damage;
         } catch (Exception e) {}
 
-        return 0;
+        return 0.0f;
     }
 
     public static float getBlastReduction(EntityLivingBase entityLivingBase, float damage, Explosion explosion) {

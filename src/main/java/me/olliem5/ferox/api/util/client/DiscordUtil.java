@@ -13,8 +13,8 @@ import net.minecraft.client.gui.GuiWorldSelection;
  */
 
 public final class DiscordUtil implements Minecraft {
-    private static final DiscordRPC rpc = DiscordRPC.INSTANCE;
-    private static final DiscordRichPresence rp = new DiscordRichPresence();
+    private static final DiscordRPC discordRPC = DiscordRPC.INSTANCE;
+    private static final DiscordRichPresence discordRichPresence = new DiscordRichPresence();
 
     private static String details;
     private static String state;
@@ -24,13 +24,13 @@ public final class DiscordUtil implements Minecraft {
 
         final DiscordEventHandlers handlers = new DiscordEventHandlers();
 
-        rpc.Discord_Initialize(Ferox.APP_ID, handlers, true, "");
+        discordRPC.Discord_Initialize(Ferox.APP_ID, handlers, true, "");
 
-        rp.startTimestamp = System.currentTimeMillis() / 1000L;
-        rp.largeImageKey = "ferox";
-        rp.largeImageText = "Ferox strong client";
+        discordRichPresence.startTimestamp = System.currentTimeMillis() / 1000L;
+        discordRichPresence.largeImageKey = "ferox";
+        discordRichPresence.largeImageText = "Ferox strong client";
 
-        rpc.Discord_UpdatePresence(rp);
+        discordRPC.Discord_UpdatePresence(discordRichPresence);
 
         new Thread(() -> {
             while (!Thread.currentThread().isInterrupted()) {
@@ -48,14 +48,13 @@ public final class DiscordUtil implements Minecraft {
                         state = "Server | " + mc.getCurrentServerData().serverIP.toLowerCase();
                     }
 
-                    rp.details = details;
-                    rp.state = state;
+                    discordRichPresence.details = details;
+                    discordRichPresence.state = state;
 
-                    rpc.Discord_UpdatePresence(rp);
+                    discordRPC.Discord_UpdatePresence(discordRichPresence);
                 } catch (Exception exception) {
                     exception.printStackTrace();
-                }
-                try {
+                } try {
                     Thread.sleep(5000L);
                 } catch (InterruptedException exception) {
                     exception.printStackTrace();
@@ -67,6 +66,6 @@ public final class DiscordUtil implements Minecraft {
     public static void shutdown() {
         Ferox.log("Discord RPC is shutting down!");
 
-        rpc.Discord_Shutdown();
+        discordRPC.Discord_Shutdown();
     }
 }

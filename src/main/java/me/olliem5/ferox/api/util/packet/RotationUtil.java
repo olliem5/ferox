@@ -10,26 +10,26 @@ import net.minecraft.entity.player.EntityPlayer;
 public final class RotationUtil implements Minecraft {
     public static void lockYaw(double rotation) {
         if (mc.player.rotationYaw >= rotation) {
-            mc.player.rotationYaw = 0;
+            mc.player.rotationYaw = 0.0f;
         }
 
         if (mc.player.rotationYaw <= rotation) {
-            mc.player.rotationYaw = 0;
+            mc.player.rotationYaw = 0.0f;
         }
     }
 
     public static void lockPitch(double rotation) {
         if (mc.player.rotationPitch >= rotation) {
-            mc.player.rotationPitch = 0;
+            mc.player.rotationPitch = 0.0f;
         }
 
         if (mc.player.rotationPitch <= rotation) {
-            mc.player.rotationPitch = 0;
+            mc.player.rotationPitch = 0.0f;
         }
     }
 
-    public static void lookAtPacket(double px, double py, double pz, EntityPlayer me) {
-        double[] v = calculateLookAt(px, py, pz, me);
+    public static void lookAtPacket(double px, double py, double pz, EntityPlayer entityPlayer) {
+        double[] v = calculateLookAt(px, py, pz, entityPlayer);
 
         setYawAndPitch((float) v[0], (float) v[1]);
     }
@@ -52,10 +52,10 @@ public final class RotationUtil implements Minecraft {
         }
     }
 
-    private static double[] calculateLookAt(double px, double py, double pz, EntityPlayer me) {
-        double dirx = me.posX - px;
-        double diry = me.posY - py;
-        double dirz = me.posZ - pz;
+    private static double[] calculateLookAt(double px, double py, double pz, EntityPlayer entityPlayer) {
+        double dirx = entityPlayer.posX - px;
+        double diry = entityPlayer.posY - py;
+        double dirz = entityPlayer.posZ - pz;
 
         double len = Math.sqrt(dirx * dirx + diry * diry + dirz * dirz);
 
@@ -66,10 +66,10 @@ public final class RotationUtil implements Minecraft {
         double pitch = Math.asin(diry);
         double yaw = Math.atan2(dirz, dirx);
 
-        pitch = pitch * 180.0d / Math.PI;
-        yaw = yaw * 180.0d / Math.PI;
+        pitch = pitch * 180.0 / Math.PI;
+        yaw = yaw * 180.0 / Math.PI;
 
-        yaw += 90f;
+        yaw += 90.0;
 
         return new double[]{yaw, pitch};
     }

@@ -28,9 +28,9 @@ public final class MathUtil {
         if (entityForwardMovement != 0.0 && entityStrafeMovement != 0.0) {
             if (entityForwardMovement != 0.0) {
                 if (entityStrafeMovement > 0.0) {
-                    entityRotationYaw += ((entityForwardMovement > 0.0) ? -45 : 45);
-                } else if (entityStrafeMovement < 0) {
-                    entityRotationYaw += ((entityForwardMovement > 0.0) ? 45 : -45);
+                    entityRotationYaw += ((entityForwardMovement > 0.0) ? -45.0 : 45.0);
+                } else if (entityStrafeMovement < 0.0) {
+                    entityRotationYaw += ((entityForwardMovement > 0.0) ? 45.0 : -45.0);
                 }
 
                 entityStrafeMovement = 0.0;

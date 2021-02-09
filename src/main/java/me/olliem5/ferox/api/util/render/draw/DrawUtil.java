@@ -53,14 +53,14 @@ public final class DrawUtil implements Minecraft {
         Tessellator tessellator = Tessellator.getInstance();
         BufferBuilder bufferbuilder = tessellator.getBuffer();
 
-        float f = (float) (startColor >> 24 & 255) / 255.0F;
-        float f1 = (float) (startColor >> 16 & 255) / 255.0F;
-        float f2 = (float) (startColor >> 8 & 255) / 255.0F;
-        float f3 = (float) (startColor & 255) / 255.0F;
-        float f4 = (float) (endColor >> 24 & 255) / 255.0F;
-        float f5 = (float) (endColor >> 16 & 255) / 255.0F;
-        float f6 = (float) (endColor >> 8 & 255) / 255.0F;
-        float f7 = (float) (endColor & 255) / 255.0F;
+        float f = (float) (startColor >> 24 & 255) / 255.0f;
+        float f1 = (float) (startColor >> 16 & 255) / 255.0f;
+        float f2 = (float) (startColor >> 8 & 255) / 255.0f;
+        float f3 = (float) (startColor & 255) / 255.0f;
+        float f4 = (float) (endColor >> 24 & 255) / 255.0f;
+        float f5 = (float) (endColor >> 16 & 255) / 255.0f;
+        float f6 = (float) (endColor >> 8 & 255) / 255.0f;
+        float f7 = (float) (endColor & 255) / 255.0f;
 
         GlStateManager.disableTexture2D();
         GlStateManager.enableBlend();
@@ -86,13 +86,13 @@ public final class DrawUtil implements Minecraft {
         Tessellator tessellator = Tessellator.getInstance();
         BufferBuilder bufferbuilder = tessellator.getBuffer();
 
-        float f = (float) (startColor >> 24 & 255) / 255.0F;
-        float f1 = (float) (startColor >> 16 & 255) / 255.0F;
-        float f2 = (float) (startColor >> 8 & 255) / 255.0F;
-        float f3 = (float) (startColor & 255) / 255.0F;
-        float f4 = (float) (endColor >> 24 & 255) / 255.0F;
-        float f5 = (float) (endColor >> 16 & 255) / 255.0F;
-        float f6 = (float) (endColor >> 8 & 255) / 255.0F;
+        float f = (float) (startColor >> 24 & 255) / 255.0f;
+        float f1 = (float) (startColor >> 16 & 255) / 255.0f;
+        float f2 = (float) (startColor >> 8 & 255) / 255.0f;
+        float f3 = (float) (startColor & 255) / 255.0f;
+        float f4 = (float) (endColor >> 24 & 255) / 255.0f;
+        float f5 = (float) (endColor >> 16 & 255) / 255.0f;
+        float f6 = (float) (endColor >> 8 & 255) / 255.0f;
 
         GlStateManager.disableTexture2D();
         GlStateManager.enableBlend();
@@ -148,20 +148,20 @@ public final class DrawUtil implements Minecraft {
 
         GlStateManager.enableColorMaterial();
         GlStateManager.pushMatrix();
-        GlStateManager.translate((float) posX, (float) posY, 50.0F);
+        GlStateManager.translate((float) posX, (float) posY, 50.0f);
         GlStateManager.scale((float) (-scale), (float) scale, (float) scale);
-        GlStateManager.rotate(180.0F, 0.0F, 0.0F, 1.0F);
-        GlStateManager.rotate(135.0F, 0.0F, 1.0F, 0.0F);
+        GlStateManager.rotate(180.0f, 0.0f, 0.0f, 1.0f);
+        GlStateManager.rotate(135.0f, 0.0f, 1.0f, 0.0f);
 
         net.minecraft.client.renderer.RenderHelper.enableStandardItemLighting();
 
-        GlStateManager.rotate(-135.0F, 0.0F, 1.0F, 0.0F);
-        GlStateManager.rotate(-((float) Math.atan(mouseY / 40.0F)) * 20.0F, 1.0F, 0.0F, 0.0F);
-        GlStateManager.translate(0.0F, 0.0F, 0.0F);
+        GlStateManager.rotate(-135.0f, 0.0f, 1.0f, 0.0f);
+        GlStateManager.rotate(-((float) Math.atan(mouseY / 40.0f)) * 20.0f, 1.0f, 0.0f, 0.0f);
+        GlStateManager.translate(0.0f, 0.0f, 0.0f);
 
-        renderManager.setPlayerViewY(180.0F);
+        renderManager.setPlayerViewY(180.0f);
         renderManager.setRenderShadow(false);
-        renderManager.renderEntity(entityLivingBase, 0.0D, 0.0D, 0.0D, 0.0F, 1.0F, false);
+        renderManager.renderEntity(entityLivingBase, 0.0, 0.0, 0.0, 0.0f, 1.0f, false);
         renderManager.setRenderShadow(true);
 
         GlStateManager.popMatrix();
