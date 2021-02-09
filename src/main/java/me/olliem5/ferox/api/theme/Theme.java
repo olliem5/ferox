@@ -12,15 +12,17 @@ import java.util.ArrayList;
  */
 
 public abstract class Theme implements Minecraft {
-	private final String name;
+	private final String name = getAnnotation().name();
 
-	private int width;
-	private int height;
+	private int width = getAnnotation().width();
+	private int height = getAnnotation().height();
 
-	public Theme(String name, int width, int height) {
-		this.name = name;
-		this.width = width;
-		this.height = height;
+	private FeroxTheme getAnnotation() {
+		if (getClass().isAnnotationPresent(FeroxTheme.class)) {
+			return getClass().getAnnotation(FeroxTheme.class);
+		}
+
+		throw new IllegalStateException("Annotation 'FeroxTheme' not found!");
 	}
 
 	public abstract void drawTitles(String name, int left, int top);

@@ -5,6 +5,7 @@ import me.olliem5.ferox.api.component.Component;
 import me.olliem5.ferox.api.module.Module;
 import me.olliem5.ferox.api.setting.NumberSetting;
 import me.olliem5.ferox.api.setting.Setting;
+import me.olliem5.ferox.api.theme.FeroxTheme;
 import me.olliem5.ferox.api.theme.Theme;
 import me.olliem5.ferox.api.util.colour.ColourUtil;
 import me.olliem5.ferox.api.util.colour.RainbowUtil;
@@ -25,19 +26,15 @@ import java.util.ArrayList;
  * @author bon
  */
 
+@FeroxTheme(name = "Default", width = 105, height = 14)
 public final class DefaultTheme extends Theme {
-	public static final String name = "Default";
-
-	private static int boost = 0;
-
+	//TODO: Remove these (maybe)!
 	public static final int width = 105;
 	public static final int height = 14;
 
-	public static Color finalColor;
+	private static int boost = 0;
 
-	public DefaultTheme() {
-		super(name, width, height);
-	}
+	public static Color finalColor;
 
 	@Override
 	public void drawTitles(String name, int x, int y) {
