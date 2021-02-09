@@ -42,6 +42,6 @@ public final class GuiUtil {
     }
 
     public static void updateKeyState(int key) {
-        mouseY = key;
+        keyDown = key;
     }
 }

@@ -70,7 +70,7 @@ dependencies {
     }
 
     compile group: 'club.minnced', name: 'java-discord-rpc', version: '2.0.1'
-    compile 'com.github.olliem5:pace:1.0'
+    compile 'com.github.olliem5:pace:1.1'
     compile 'com.github.CafeDevelopment:Venture:1.0-SNAPSHOT'
     compile 'org.slick2d:slick2d-core:1.0.2'
 
@@ -99,7 +99,7 @@ shadowJar {
     dependencies {
         include(dependency('org.spongepowered:mixin'))
         include(dependency('club.minnced:java-discord-rpc:2.0.1'))
-        include(dependency('com.github.olliem5:pace:1.0'))
+        include(dependency('com.github.olliem5:pace:1.1'))
         include(dependency('com.github.CafeDevelopment:Venture'))
         include(dependency('org.slick2d:slick2d-core'))
 
