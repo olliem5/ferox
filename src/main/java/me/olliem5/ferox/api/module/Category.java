@@ -1,5 +1,9 @@
 package me.olliem5.ferox.api.module;
 
+/**
+ * @author olliem5
+ */
+
 public enum Category {
     COMBAT("Combat"),
     MOVEMENT("Movement"),

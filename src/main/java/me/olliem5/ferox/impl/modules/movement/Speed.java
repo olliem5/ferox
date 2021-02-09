@@ -12,6 +12,10 @@ import me.olliem5.ferox.impl.modules.movement.speed.modes.OnGround;
 import me.olliem5.ferox.impl.modules.movement.speed.modes.Strafe;
 import me.olliem5.ferox.impl.modules.movement.speed.modes.YPort;
 
+/**
+ * @author olliem5
+ */
+
 @FeroxModule(name = "Speed", description = "Allows you to move faster", category = Category.MOVEMENT)
 public final class Speed extends Module {
     public static final Setting<SpeedModes> selectedSpeedMode = new Setting<>("Mode", "The way of acquiring speed", SpeedModes.Strafe);

@@ -3,6 +3,10 @@ package me.olliem5.ferox.api.util.render.font;
 import me.olliem5.ferox.api.traits.Minecraft;
 import me.olliem5.ferox.impl.modules.ferox.Font;
 
+/**
+ * @author olliem5
+ */
+
 public final class FontUtil implements Minecraft {
     public static final FeroxFontRenderer latoFont = new FeroxFontRenderer("Lato", 17.0f);
     public static final FeroxFontRenderer ubuntuFont = new FeroxFontRenderer("Ubuntu", 17.0f);

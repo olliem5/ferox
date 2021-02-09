@@ -3,6 +3,10 @@ package me.olliem5.ferox.api.setting;
 import java.awt.*;
 import java.util.ArrayList;
 
+/**
+ * @author olliem5
+ */
+
 public class Setting<T> {
 	private Setting<?> parent;
 	private final String name;

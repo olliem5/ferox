@@ -1,7 +1,7 @@
 package me.olliem5.ferox.impl.gui.themes;
 
 import com.mojang.realmsclient.gui.ChatFormatting;
-import me.olliem5.ferox.api.hud.Component;
+import me.olliem5.ferox.api.component.Component;
 import me.olliem5.ferox.api.module.Module;
 import me.olliem5.ferox.api.setting.NumberSetting;
 import me.olliem5.ferox.api.setting.Setting;
@@ -21,10 +21,8 @@ import java.awt.*;
 import java.util.ArrayList;
 
 /**
- * @author bon
  * @author olliem5
- *
- * @since 11/18/20
+ * @author bon
  */
 
 public final class DefaultTheme extends Theme {
@@ -63,11 +61,11 @@ public final class DefaultTheme extends Theme {
 			Gui.drawRect(x, y + height + 1 + (boost * height), (x + width), y + height * 2 + 1 + (boost * height), color);
 
 			if (GuiUtil.mouseOver(x, y + height + 1 + (boost * height), (x + width), y + height * 2 + (boost * height))) {
-				if (GuiUtil.ldown) {
+				if (GuiUtil.leftDown) {
 					module.toggle();
 				}
 
-				if (GuiUtil.rdown) {
+				if (GuiUtil.rightDown) {
 					module.setOpened(!module.isOpened());
 				}
 
@@ -93,7 +91,7 @@ public final class DefaultTheme extends Theme {
 
 				boost++;
 
-				renderKeybind(module, GuiUtil.keydown, x, y + 1);
+				renderKeybind(module, GuiUtil.keyDown, x, y + 1);
 			}
 
 			boost++;
@@ -114,11 +112,11 @@ public final class DefaultTheme extends Theme {
 			Gui.drawRect(x, y + height + 1 + (boost * height), (x + width), y + height * 2 + 1 + (boost * height), color);
 
 			if (GuiUtil.mouseOver(x, y + height + 1 + (boost * height), (x + width), y + height * 2 + (boost * height))) {
-				if (GuiUtil.ldown) {
+				if (GuiUtil.leftDown) {
 					component.setVisible(!component.isVisible());
 				}
 
-				if (GuiUtil.rdown) {
+				if (GuiUtil.rightDown) {
 					component.setOpened(!component.isOpened());
 				}
 
@@ -311,11 +309,11 @@ public final class DefaultTheme extends Theme {
 		}
 
 		if (GuiUtil.mouseOver(x, y + height + (boost * height), (x + width), (y + height) + height - 1 + (boost * height))) {
-			if (GuiUtil.ldown) {
+			if (GuiUtil.leftDown) {
 				setting.setValue(!setting.getValue());
 			}
 
-			if (GuiUtil.rdown) {
+			if (GuiUtil.rightDown) {
 				setting.setOpened(!setting.isOpened());
 			}
 
@@ -346,7 +344,7 @@ public final class DefaultTheme extends Theme {
 		}
 
 		if (GuiUtil.mouseOver(x, y + height + (boost * height), (x + width), (y + height) + height - 1 + (boost * height))) {
-			if (GuiUtil.ldown) {
+			if (GuiUtil.leftDown) {
 				subSetting.setValue(!subSetting.getValue());
 			}
 
@@ -363,11 +361,11 @@ public final class DefaultTheme extends Theme {
 		int color = 0xFF212121;
 
 		if (GuiUtil.mouseOver(x, y + height + (boost * height), (x + width), (y + height) + height - 1 + (boost * height))) {
-			if (GuiUtil.ldown) {
+			if (GuiUtil.leftDown) {
 				EnumUtil.setEnumValue(setting, EnumUtil.getNextEnumValue(setting, false));
 			}
 
-			if (GuiUtil.rdown) {
+			if (GuiUtil.rightDown) {
 				setting.setOpened(setting.isOpened());
 			}
 
@@ -394,7 +392,7 @@ public final class DefaultTheme extends Theme {
 		int color = 0xFF212121;
 
 		if (GuiUtil.mouseOver(x, y + height + (boost * height), (x + width), (y + height) + height - 1 + (boost * height))) {
-			if (GuiUtil.ldown) {
+			if (GuiUtil.leftDown) {
 				EnumUtil.setEnumValue(subSetting, EnumUtil.getNextEnumValue(subSetting, false));
 			}
 
@@ -413,8 +411,8 @@ public final class DefaultTheme extends Theme {
 		int pixAdd = ((x + width) - x) * (setting.getValue() - setting.getMin()) / (setting.getMax() - setting.getMin());
 
 		if (GuiUtil.mouseOver(x, y + height + (boost * height), (x + width), (y + height) + height - 1 + (boost * height))) {
-			if (GuiUtil.lheld) {
-				int percentError = (GuiUtil.mX - (x)) * 100 / ((x + width) - x);
+			if (GuiUtil.leftHeld) {
+				int percentError = (GuiUtil.mouseX - (x)) * 100 / ((x + width) - x);
 				setting.setValue((int) (percentError * ((setting.getMax() - setting.getMin()) / 100.0D) + setting.getMin()));
 			}
 
@@ -448,8 +446,8 @@ public final class DefaultTheme extends Theme {
 		int pixAdd = ((x + width) - x) * (subSetting.getValue() - subSetting.getMin()) / (subSetting.getMax() - subSetting.getMin());
 
 		if (GuiUtil.mouseOver(x, y + height + (boost * height), (x + width), (y + height) + height - 1 + (boost * height))) {
-			if (GuiUtil.lheld) {
-				int percentError = (GuiUtil.mX - (x)) * 100 / ((x + width) - x);
+			if (GuiUtil.leftHeld) {
+				int percentError = (GuiUtil.mouseX - (x)) * 100 / ((x + width) - x);
 				subSetting.setValue((int) (percentError * ((subSetting.getMax() - subSetting.getMin()) / 100.0D) + subSetting.getMin()));
 			}
 
@@ -473,8 +471,8 @@ public final class DefaultTheme extends Theme {
 		int pixAdd = (int) (((x + width) - x) * (setting.getValue() - setting.getMin()) / (setting.getMax() - setting.getMin()));
 
 		if (GuiUtil.mouseOver(x, y + height + (boost * height), (x + width), (y + height) + height - 1 + (boost * height))) {
-			if (GuiUtil.lheld) {
-				int percentError = (GuiUtil.mX - (x)) * 100 / ((x + width) - x);
+			if (GuiUtil.leftHeld) {
+				int percentError = (GuiUtil.mouseX - (x)) * 100 / ((x + width) - x);
 				setting.setValue(MathUtil.roundNumber(percentError * ((setting.getMax() - setting.getMin()) / 100.0D) + setting.getMin(), setting.getScale()));
 			}
 
@@ -508,8 +506,8 @@ public final class DefaultTheme extends Theme {
 		int pixAdd = (int) (((x + width) - x) * (subSetting.getValue() - subSetting.getMin()) / (subSetting.getMax() - subSetting.getMin()));
 
 		if (GuiUtil.mouseOver(x, y + height + (boost * height), (x + width), (y + height) + height - 1 + (boost * height))) {
-			if (GuiUtil.lheld) {
-				int percentError = (GuiUtil.mX - (x)) * 100 / ((x + width) - x);
+			if (GuiUtil.leftHeld) {
+				int percentError = (GuiUtil.mouseX - (x)) * 100 / ((x + width) - x);
 				subSetting.setValue(MathUtil.roundNumber(percentError * ((subSetting.getMax() - subSetting.getMin()) / 100.0D) + subSetting.getMin(), subSetting.getScale()));
 			}
 
@@ -533,8 +531,8 @@ public final class DefaultTheme extends Theme {
 		int pixAdd = (int) (((x + width) - x) * (setting.getValue() - setting.getMin()) / (setting.getMax() - setting.getMin()));
 
 		if (GuiUtil.mouseOver(x, y + height + (boost * height), (x + width), (y + height) + height - 1 + (boost * height))) {
-			if (GuiUtil.lheld) {
-				int percentError = (GuiUtil.mX - (x)) * 100 / ((x + width) - x);
+			if (GuiUtil.leftHeld) {
+				int percentError = (GuiUtil.mouseX - (x)) * 100 / ((x + width) - x);
 				setting.setValue((float) MathUtil.roundNumber(percentError * ((setting.getMax() - setting.getMin()) / 100.0D) + setting.getMin(), setting.getScale()));
 			}
 
@@ -568,8 +566,8 @@ public final class DefaultTheme extends Theme {
 		int pixAdd = (int) (((x + width) - x) * (subSetting.getValue() - subSetting.getMin()) / (subSetting.getMax() - subSetting.getMin()));
 
 		if (GuiUtil.mouseOver(x, y + height + (boost * height), (x + width), (y + height) + height - 1 + (boost * height))) {
-			if (GuiUtil.lheld) {
-				int percentError = (GuiUtil.mX - (x)) * 100 / ((x + width) - x);
+			if (GuiUtil.leftHeld) {
+				int percentError = (GuiUtil.mouseX - (x)) * 100 / ((x + width) - x);
 				subSetting.setValue((float) MathUtil.roundNumber(percentError * ((subSetting.getMax() - subSetting.getMin()) / 100.0D) + subSetting.getMin(), subSetting.getScale()));
 			}
 
@@ -591,7 +589,7 @@ public final class DefaultTheme extends Theme {
 		int color = 0xFF212121;
 
 		if (GuiUtil.mouseOver(x, y + height + (boost * height), (x + width), (y + height) + height - 1 + (boost * height))) {
-			if (GuiUtil.ldown) {
+			if (GuiUtil.leftDown) {
 				module.setBinding(!module.isBinding());
 			}
 
@@ -656,23 +654,23 @@ public final class DefaultTheme extends Theme {
 		int rgbButtonWidth = 12;
 		int rgbButtonHeight = 22;
 
-		if (GuiUtil.lheld && GuiUtil.mouseOver(pickerX, pickerY, pickerX + pickerWidth, pickerY + pickerHeight)) {
+		if (GuiUtil.leftHeld && GuiUtil.mouseOver(pickerX, pickerY, pickerX + pickerWidth, pickerY + pickerHeight)) {
 			pickingColor = true;
 		}
 
-		if (GuiUtil.lheld && GuiUtil.mouseOver(hueSliderX, hueSliderY, hueSliderX + hueSliderWidth, hueSliderY + hueSliderHeight)) {
+		if (GuiUtil.leftHeld && GuiUtil.mouseOver(hueSliderX, hueSliderY, hueSliderX + hueSliderWidth, hueSliderY + hueSliderHeight)) {
 			pickingHue = true;
 		}
 
-		if (GuiUtil.lheld && GuiUtil.mouseOver(alphaSliderX, alphaSliderY, alphaSliderX + alphaSliderWidth, alphaSliderY + alphaSliderHeight)) {
+		if (GuiUtil.leftHeld && GuiUtil.mouseOver(alphaSliderX, alphaSliderY, alphaSliderX + alphaSliderWidth, alphaSliderY + alphaSliderHeight)) {
 			pickingAlpha = true;
 		}
 
-		if (GuiUtil.ldown && GuiUtil.mouseOver(rgbButtonX, rgbButtonY, rgbButtonX + rgbButtonWidth, rgbButtonY + rgbButtonHeight)) {
+		if (GuiUtil.leftDown && GuiUtil.mouseOver(rgbButtonX, rgbButtonY, rgbButtonX + rgbButtonWidth, rgbButtonY + rgbButtonHeight)) {
 			subColor.setRgb(!subColor.isRgb());
 		}
 
-		if (!GuiUtil.lheld) {
+		if (!GuiUtil.leftHeld) {
 			pickingColor = pickingHue = pickingAlpha = false;
 		}
 

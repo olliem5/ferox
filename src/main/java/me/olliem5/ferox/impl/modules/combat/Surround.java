@@ -24,6 +24,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * @author olliem5
+ */
+
 @FeroxModule(name = "Surround", description = "Surrounds you with obsidian to minimize crystal damage", category = Category.COMBAT)
 public final class Surround extends Module {
     public static final Setting<PlaceModes> placeMode = new Setting<>("Place", "The style of surround to place", PlaceModes.Full);

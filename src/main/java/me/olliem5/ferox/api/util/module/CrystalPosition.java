@@ -2,6 +2,10 @@ package me.olliem5.ferox.api.util.module;
 
 import net.minecraft.util.math.BlockPos;
 
+/**
+ * @author olliem5
+ */
+
 public final class CrystalPosition {
     private BlockPos position;
     private double targetDamage;

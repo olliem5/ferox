@@ -1,7 +1,7 @@
 package me.olliem5.ferox.impl.gui.screens.editor;
 
-import me.olliem5.ferox.api.hud.Component;
-import me.olliem5.ferox.api.hud.ComponentManager;
+import me.olliem5.ferox.api.component.Component;
+import me.olliem5.ferox.api.component.ComponentManager;
 import me.olliem5.ferox.api.theme.Theme;
 import me.olliem5.ferox.api.theme.ThemeManager;
 import me.olliem5.ferox.api.traits.Minecraft;
@@ -13,10 +13,8 @@ import org.lwjgl.input.Mouse;
 import java.util.ArrayList;
 
 /**
- * @author bon
  * @author olliem5
- *
- * @since 11/16/20
+ * @author bon
  */
 
 public final class HUDEditorWindow implements Minecraft {
@@ -62,12 +60,12 @@ public final class HUDEditorWindow implements Minecraft {
 	
 	private void updateMousePos() {
 		if (dragging) {
-			x = GuiUtil.mX - (dragX - x);
-			y = GuiUtil.mY - (dragY - y);
+			x = GuiUtil.mouseX - (dragX - x);
+			y = GuiUtil.mouseY - (dragY - y);
 		}
 
-		dragX = GuiUtil.mX;
-		dragY = GuiUtil.mY;
+		dragX = GuiUtil.mouseX;
+		dragY = GuiUtil.mouseY;
 	}
 
 	public void scroll() {

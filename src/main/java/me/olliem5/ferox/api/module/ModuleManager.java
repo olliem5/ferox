@@ -22,6 +22,10 @@ import me.olliem5.ferox.impl.modules.ui.HUDEditor;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * @author olliem5
+ */
+
 public final class ModuleManager {
     private static final ArrayList<Module> modules = new ArrayList<>();
 

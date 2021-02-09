@@ -11,6 +11,10 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.lwjgl.opengl.Display;
 
+/**
+ * @author olliem5
+ */
+
 @Mod(modid = Ferox.MOD_ID, name = Ferox.MOD_NAME, version = Ferox.MOD_VERSION)
 public final class Ferox {
     public static final String MOD_ID = "ferox";

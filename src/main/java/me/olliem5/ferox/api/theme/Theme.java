@@ -1,16 +1,14 @@
 package me.olliem5.ferox.api.theme;
 
-import me.olliem5.ferox.api.hud.Component;
+import me.olliem5.ferox.api.component.Component;
 import me.olliem5.ferox.api.module.Module;
 import me.olliem5.ferox.api.traits.Minecraft;
 
 import java.util.ArrayList;
 
 /**
- * @author bon
  * @author olliem5
- *
- * @since 11/18/20
+ * @author bon
  */
 
 public abstract class Theme implements Minecraft {

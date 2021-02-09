@@ -5,6 +5,10 @@ import me.olliem5.ferox.api.util.player.PlayerUtil;
 import me.olliem5.ferox.impl.modules.movement.Speed;
 import me.olliem5.ferox.impl.modules.movement.speed.SpeedMode;
 
+/**
+ * @author olliem5
+ */
+
 public final class OnGround extends SpeedMode {
     @Override
     public void onUpdate() {

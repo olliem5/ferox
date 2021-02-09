@@ -5,7 +5,6 @@ import me.olliem5.ferox.api.util.player.MotionUtil;
 
 /**
  * @author linustouchtips
- * @since 12/29/2020
  */
 
 public final class ElytraUtil implements Minecraft {

@@ -1,11 +1,15 @@
-package me.olliem5.ferox.impl.hud;
+package me.olliem5.ferox.impl.components;
 
-import me.olliem5.ferox.api.hud.Component;
-import me.olliem5.ferox.api.hud.FeroxComponent;
+import me.olliem5.ferox.api.component.Component;
+import me.olliem5.ferox.api.component.FeroxComponent;
 import me.olliem5.ferox.api.setting.NumberSetting;
 import me.olliem5.ferox.api.util.render.draw.DrawUtil;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
+
+/**
+ * @author olliem5
+ */
 
 @FeroxComponent(name = "Player", description = "Shows a model of your player")
 public final class PlayerComponent extends Component {

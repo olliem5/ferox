@@ -3,6 +3,10 @@ package me.olliem5.ferox.api.event;
 import git.littledraily.eventsystem.cancellable.Cancellable;
 import git.littledraily.eventsystem.event.EventState;
 
+/**
+ * @author olliem5
+ */
+
 public abstract class Event extends Cancellable {
     private EventState eventState = EventState.PRE;
 

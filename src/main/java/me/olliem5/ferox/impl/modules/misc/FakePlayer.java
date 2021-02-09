@@ -10,6 +10,10 @@ import net.minecraft.client.entity.EntityOtherPlayerMP;
 
 import java.util.UUID;
 
+/**
+ * @author olliem5
+ */
+
 @FeroxModule(name = "FakePlayer", description = "Spawns a client side player entity, usually for module testing", category = Category.MISC)
 public final class FakePlayer extends Module {
     public static final Setting<NameModes> nameMode = new Setting<>("Name", "The name of the fake player", NameModes.Ollie);

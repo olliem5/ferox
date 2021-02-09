@@ -2,6 +2,10 @@ package me.olliem5.ferox.impl.gui;
 
 import me.olliem5.ferox.api.traits.Minecraft;
 
+/**
+ * @author olliem5
+ */
+
 public class Component implements Minecraft {
     public void renderComponent() {}
 

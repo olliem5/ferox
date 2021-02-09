@@ -3,6 +3,10 @@ package me.olliem5.ferox.impl.events;
 import me.olliem5.ferox.api.event.Event;
 import net.minecraft.entity.MoverType;
 
+/**
+ * @author olliem5
+ */
+
 public final class PlayerMoveEvent extends Event {
     private MoverType type;
     private double x;

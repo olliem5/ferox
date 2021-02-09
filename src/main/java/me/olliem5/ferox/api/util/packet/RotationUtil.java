@@ -5,7 +5,6 @@ import net.minecraft.entity.player.EntityPlayer;
 
 /**
  * @author linustouchtips
- * @since 12/29/2020
  */
 
 public final class RotationUtil implements Minecraft {

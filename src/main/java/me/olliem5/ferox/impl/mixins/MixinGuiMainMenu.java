@@ -10,6 +10,10 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+/**
+ * @author olliem5
+ */
+
 @Mixin(GuiMainMenu.class)
 public final class MixinGuiMainMenu extends GuiScreen {
     @Inject(method = "drawScreen", at = @At("TAIL"), cancellable = true)

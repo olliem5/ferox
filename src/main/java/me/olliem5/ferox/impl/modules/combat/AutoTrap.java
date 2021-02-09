@@ -25,6 +25,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * @author olliem5
+ */
+
 @FeroxModule(name = "AutoTrap", description = "Automatically traps enemies with obsidian", category = Category.COMBAT)
 public final class AutoTrap extends Module {
     public static final Setting<PlaceModes> placeMode = new Setting<>("Place", "The style of trap to place", PlaceModes.Full);

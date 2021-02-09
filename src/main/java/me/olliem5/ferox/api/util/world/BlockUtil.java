@@ -11,8 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author linustouchtips
  * @author olliem5
+ * @author linustouchtips
  */
 
 public final class BlockUtil implements Minecraft {

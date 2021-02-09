@@ -29,6 +29,10 @@ import java.util.Comparator;
  * TODO: Stop pressure plates from being placed right after crystal explodes
  */
 
+/**
+ * @author olliem5
+ */
+
 @FeroxModule(name = "AntiCrystal", description = "Makes crystals do very little damage, by using pressure plates", category = Category.COMBAT)
 public final class AntiCrystal extends Module {
     public static final NumberSetting<Double> placeRange = new NumberSetting<>("Place Range", "The range to place pressure plates at", 0.0, 5.5, 10.0, 1);

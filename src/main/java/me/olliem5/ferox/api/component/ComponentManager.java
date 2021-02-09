@@ -1,16 +1,20 @@
-package me.olliem5.ferox.api.hud;
+package me.olliem5.ferox.api.component;
 
 import git.littledraily.eventsystem.Listener;
 import git.littledraily.eventsystem.event.Priority;
 import me.olliem5.ferox.api.traits.Minecraft;
-import me.olliem5.ferox.impl.hud.InventoryComponent;
-import me.olliem5.ferox.impl.hud.PlayerComponent;
-import me.olliem5.ferox.impl.hud.WatermarkComponent;
-import me.olliem5.ferox.impl.hud.WelcomerComponent;
+import me.olliem5.ferox.impl.components.InventoryComponent;
+import me.olliem5.ferox.impl.components.PlayerComponent;
+import me.olliem5.ferox.impl.components.WatermarkComponent;
+import me.olliem5.ferox.impl.components.WelcomerComponent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+
+/**
+ * @author olliem5
+ */
 
 public final class ComponentManager implements Minecraft {
     private static final ArrayList<Component> components = new ArrayList<>();

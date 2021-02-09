@@ -7,11 +7,9 @@ import me.olliem5.ferox.impl.modules.movement.elytraflight.ElytraMode;
 
 /**
  * @author linustouchtips
- * @since 12/29/2020
  */
 
 public final class NCP extends ElytraMode {
-
     @Override
     public void onVerticalMovement() {
         if (mc.gameSettings.keyBindJump.isKeyDown()) {

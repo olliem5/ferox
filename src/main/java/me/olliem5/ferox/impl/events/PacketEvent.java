@@ -3,6 +3,10 @@ package me.olliem5.ferox.impl.events;
 import me.olliem5.ferox.api.event.Event;
 import net.minecraft.network.Packet;
 
+/**
+ * @author olliem5
+ */
+
 public abstract class PacketEvent extends Event {
     private final Packet packet;
 

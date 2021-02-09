@@ -1,5 +1,9 @@
 package me.olliem5.ferox.api.util.math;
 
+/**
+ * @author olliem5
+ */
+
 public final class CooldownUtil {
     private long time;
 

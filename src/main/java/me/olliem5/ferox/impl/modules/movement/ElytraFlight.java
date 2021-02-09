@@ -12,7 +12,6 @@ import net.minecraft.network.play.client.CPacketEntityAction;
 
 /**
  * @author linustouchtips
- * @since 12/29/2020
  */
 
 @FeroxModule(name = "ElytraFlight", description = "Allows you to fly faster on an elytra", category = Category.MOVEMENT)

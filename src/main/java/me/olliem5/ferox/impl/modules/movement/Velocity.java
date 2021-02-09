@@ -11,7 +11,7 @@ import net.minecraft.network.play.server.SPacketEntityVelocity;
 import net.minecraft.network.play.server.SPacketExplosion;
 
 /**
- * TODO: NoPush
+ * @author olliem5
  */
 
 @FeroxModule(name = "Velocity", description = "Modifies the knockback that you take", category = Category.MOVEMENT)

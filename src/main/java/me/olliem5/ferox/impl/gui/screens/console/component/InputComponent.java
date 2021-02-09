@@ -12,6 +12,10 @@ import org.lwjgl.input.Keyboard;
 
 import java.awt.*;
 
+/**
+ * @author olliem5
+ */
+
 public final class InputComponent extends Component {
     private int x;
     private int y;

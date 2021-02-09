@@ -13,6 +13,10 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.BlockPos;
 import org.lwjgl.opengl.GL11;
 
+/**
+ * @author olliem5
+ */
+
 public final class DrawUtil implements Minecraft {
     public static void gradient(int minX, int minY, int maxX, int maxY, int startColor, int endColor, boolean left) {
         if (left) {

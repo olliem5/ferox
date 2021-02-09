@@ -2,6 +2,10 @@ package me.olliem5.ferox.api.util.colour;
 
 import java.awt.*;
 
+/**
+ * @author olliem5
+ */
+
 public final class ColourUtil {
     public static Color integrateAlpha(Color color, float alpha) {
         float red = (float) color.getRed() / 255;

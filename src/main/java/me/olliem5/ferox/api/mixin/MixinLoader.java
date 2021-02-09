@@ -8,6 +8,10 @@ import org.spongepowered.asm.mixin.Mixins;
 
 import java.util.Map;
 
+/**
+ * @author olliem5
+ */
+
 @IFMLLoadingPlugin.MCVersion(ForgeVersion.mcVersion)
 public final class MixinLoader implements IFMLLoadingPlugin {
     public MixinLoader() {

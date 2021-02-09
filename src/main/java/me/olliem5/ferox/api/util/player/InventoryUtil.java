@@ -6,6 +6,11 @@ import net.minecraft.inventory.ClickType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 
+/**
+ * @author olliem5
+ * @author Reap
+ */
+
 public final class InventoryUtil implements Minecraft {
     public static void switchToSlot(Class<? extends Item> clazz) {
         if (mc.player.getHeldItemMainhand().getItem().getClass().isAssignableFrom(clazz)) return;

@@ -8,8 +8,6 @@ import java.math.RoundingMode;
 /**
  * @author olliem5
  * @author SrRina
- *
- * @since 7/02/21
  */
 
 public final class MathUtil {

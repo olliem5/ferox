@@ -1,4 +1,4 @@
-package me.olliem5.ferox.api.hud;
+package me.olliem5.ferox.api.component;
 
 import me.olliem5.ferox.api.setting.Setting;
 import me.olliem5.ferox.api.traits.Minecraft;
@@ -8,6 +8,11 @@ import net.minecraft.client.gui.ScaledResolution;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+
+/**
+ * @author olliem5
+ * @author Reap
+ */
 
 public abstract class Component implements Minecraft {
     private final String name = getAnnotation().name();

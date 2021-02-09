@@ -8,6 +8,10 @@ import me.olliem5.ferox.api.setting.Setting;
 import me.olliem5.ferox.impl.gui.screens.click.ClickGUIScreen;
 import org.lwjgl.input.Keyboard;
 
+/**
+ * @author olliem5
+ */
+
 @FeroxModule(name = "ClickGUI", description = "Opens Ferox's ClickGUI", category = Category.UI, key = Keyboard.KEY_P)
 public final class ClickGUI extends Module {
     public static final Setting<ThemeModes> theme = new Setting<>("Theme", "The theme to use for the ClickGUI", ThemeModes.Default);

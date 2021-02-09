@@ -1,7 +1,7 @@
-package me.olliem5.ferox.impl.hud;
+package me.olliem5.ferox.impl.components;
 
-import me.olliem5.ferox.api.hud.Component;
-import me.olliem5.ferox.api.hud.FeroxComponent;
+import me.olliem5.ferox.api.component.Component;
+import me.olliem5.ferox.api.component.FeroxComponent;
 import me.olliem5.ferox.api.setting.Setting;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.renderer.GlStateManager;
@@ -9,6 +9,10 @@ import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.item.ItemStack;
 
 import java.awt.*;
+
+/**
+ * @author olliem5
+ */
 
 @FeroxComponent(name = "Inventory", description = "Shows a preview of your inventory")
 public final class InventoryComponent extends Component {

@@ -11,8 +11,11 @@ import org.lwjgl.opengl.GL11;
 
 import java.awt.*;
 
+/**
+ * @author olliem5
+ */
+
 public final class RenderUtil implements Minecraft {
-    
     public static void prepareGL() {
         GlStateManager.pushMatrix();
         GlStateManager.enableBlend();

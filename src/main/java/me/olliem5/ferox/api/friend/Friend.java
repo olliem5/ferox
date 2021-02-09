@@ -1,5 +1,9 @@
 package me.olliem5.ferox.api.friend;
 
+/**
+ * @author olliem5
+ */
+
 public final class Friend {
     private final String name;
 

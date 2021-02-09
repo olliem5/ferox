@@ -12,6 +12,10 @@ import org.lwjgl.input.Keyboard;
 import java.awt.*;
 import java.util.ArrayList;
 
+/**
+ * @author olliem5
+ */
+
 public final class ConsoleScreen extends GuiScreen {
     public ArrayList<Component> components;
     private int x;

@@ -8,6 +8,10 @@ import me.olliem5.ferox.api.setting.Setting;
 import me.olliem5.ferox.impl.events.PacketEvent;
 import net.minecraft.network.play.client.CPacketChatMessage;
 
+/**
+ * @author olliem5
+ */
+
 @FeroxModule(name = "ChatSuffix", description = "Adds a custom ending to your chat messages", category = Category.MISC)
 public final class ChatSuffix extends Module {
     public static final Setting<Boolean> green = new Setting<>("Green", "Makes your suffix green", false);

@@ -4,7 +4,6 @@ import me.olliem5.ferox.api.traits.Minecraft;
 
 /**
  * @author linustouchtips
- * @since 12/29/2020
  */
 
 public abstract class ElytraMode implements Minecraft {

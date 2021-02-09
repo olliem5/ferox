@@ -11,11 +11,6 @@ import org.lwjgl.input.Keyboard;
 /**
  * @author olliem5
  * @author SrRina
- *
- * Currently this does NOT bypass.
- * TODO: Make it bypass!
- *
- * @since 7/02/21
  */
 
 public final class Strafe extends SpeedMode {

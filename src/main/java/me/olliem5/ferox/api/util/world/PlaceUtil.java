@@ -11,6 +11,10 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 
+/**
+ * @author olliem5
+ */
+
 public final class PlaceUtil implements Minecraft {
     public static void placeBlock(BlockPos blockPos) {
         for (EnumFacing enumFacing : EnumFacing.values()) {

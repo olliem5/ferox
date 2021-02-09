@@ -6,6 +6,10 @@ import me.olliem5.ferox.api.util.world.TimerUtil;
 import me.olliem5.ferox.impl.modules.movement.Speed;
 import me.olliem5.ferox.impl.modules.movement.speed.SpeedMode;
 
+/**
+ * @author olliem5
+ */
+
 public final class YPort extends SpeedMode {
     @Override
     public void onUpdate() {

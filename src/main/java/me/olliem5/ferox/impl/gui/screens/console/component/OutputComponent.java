@@ -6,6 +6,10 @@ import me.olliem5.ferox.impl.gui.Component;
 import java.util.ArrayList;
 import java.util.Collections;
 
+/**
+ * @author olliem5
+ */
+
 public final class OutputComponent extends Component {
     private int x;
     private int y;

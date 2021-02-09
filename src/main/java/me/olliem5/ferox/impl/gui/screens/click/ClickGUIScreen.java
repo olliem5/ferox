@@ -8,10 +8,8 @@ import net.minecraft.client.gui.GuiScreen;
 import java.io.IOException;
 
 /**
- * @author bon
  * @author olliem5
- *
- * @since 11/16/20
+ * @author bon
  */
 
 public final class ClickGUIScreen extends GuiScreen {

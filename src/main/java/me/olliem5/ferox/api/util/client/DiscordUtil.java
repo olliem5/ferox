@@ -8,6 +8,10 @@ import me.olliem5.ferox.api.traits.Minecraft;
 import net.minecraft.client.gui.GuiMultiplayer;
 import net.minecraft.client.gui.GuiWorldSelection;
 
+/**
+ * @author olliem5
+ */
+
 public final class DiscordUtil implements Minecraft {
     private static final DiscordRPC rpc = DiscordRPC.INSTANCE;
     private static final DiscordRichPresence rp = new DiscordRichPresence();

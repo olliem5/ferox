@@ -7,8 +7,6 @@ import net.minecraft.potion.Potion;
  * @author olliem5
  * @author linustouchtips
  * @author Hoosiers
- *
- * @since 12/29/2020
  */
 
 public final class MotionUtil implements Minecraft {

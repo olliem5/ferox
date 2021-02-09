@@ -18,6 +18,10 @@ import net.minecraftforge.fml.common.gameevent.InputEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import org.lwjgl.input.Keyboard;
 
+/**
+ * @author olliem5
+ */
+
 public final class EventProcessor implements Minecraft {
     @SubscribeEvent
     public void onKeyInput(InputEvent.KeyInputEvent event) {

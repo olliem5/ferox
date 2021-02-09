@@ -22,7 +22,6 @@ import net.minecraft.world.Explosion;
 
 /**
  * @author linustouchtips
- * @since 11/24/2020
  */
 
 public final class CrystalUtil implements Minecraft {

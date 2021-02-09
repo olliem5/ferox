@@ -10,10 +10,15 @@ import me.olliem5.ferox.impl.modules.ferox.Notifier;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * @author olliem5
+ */
+
 public abstract class Module implements Minecraft {
     private final String name = getAnnotation().name();
     private final String description = getAnnotation().description();
     private final Category category = getAnnotation().category();
+
     private int key = getAnnotation().key();
 
     private boolean enabled = false;

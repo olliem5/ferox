@@ -5,6 +5,10 @@ import me.olliem5.ferox.api.module.FeroxModule;
 import me.olliem5.ferox.api.module.Module;
 import me.olliem5.ferox.api.setting.Setting;
 
+/**
+ * @author olliem5
+ */
+
 @FeroxModule(name = "Font", description = "Changes the font that Ferox uses", category = Category.FEROX)
 public final class Font extends Module {
     public static final Setting<FontModes> font = new Setting<>("Font", "The style of font to render", FontModes.Ubuntu);

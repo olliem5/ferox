@@ -7,6 +7,10 @@ import me.olliem5.ferox.api.setting.NumberSetting;
 import me.olliem5.ferox.api.setting.Setting;
 import me.olliem5.ferox.impl.gui.screens.editor.HUDEditorScreen;
 
+/**
+ * @author olliem5
+ */
+
 @FeroxModule(name = "HUDEditor", description = "Opens Ferox's HUDEditor", category = Category.UI)
 public final class HUDEditor extends Module {
     public static final Setting<ThemeModes> theme = new Setting<>("Theme", "The theme to use for the HUDEditor", ThemeModes.Default);

@@ -1,5 +1,9 @@
 package me.olliem5.ferox.api.setting;
 
+/**
+ * @author olliem5
+ */
+
 public final class NumberSetting<T extends Number> extends Setting<T> {
 	private final T min;
 	private final T max;

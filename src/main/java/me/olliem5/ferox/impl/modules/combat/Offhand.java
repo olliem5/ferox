@@ -13,6 +13,10 @@ import net.minecraft.init.Items;
  * TODO: Crystal Range & Damage Checks
  */
 
+/**
+ * @author olliem5
+ */
+
 @FeroxModule(name = "Offhand", description = "Manages the item in your offhand", category = Category.COMBAT)
 public final class Offhand extends Module {
     public static final Setting<OffhandModes> offhandMode = new Setting<>("Mode", "The item to put in your offhand", OffhandModes.Crystal);

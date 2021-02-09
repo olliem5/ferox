@@ -40,39 +40,37 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * @author olliem5
+ *
+ * - I plan to update this module frequently and make as efficient as possible
+ * - Credit to Momentum for the utils and ideas (ily linus) (ily too ollie :3)
+ *
+ * TODO: Settings to add
+ *
+ * Break
+ * - Sequential
+ *
+ * Place
+ * - Walls Range
+ * - Range for block to enemy
+ *
+ * FacePlace
+ * - Armour target mode
+ * - Faceplace in hole (user & enemy)
+ *
+ * TODO: Better prediction, based on enemy as well...?
+ * TODO: Fix compatibility with AutoSwitch & AntiWeakness.
+ * TODO: Actual rotation system!
+ * TODO: Better MultiPlace.
+ * TODO: Other Place Calculations.
+ * TODO: AutoSwitch override when holding gaps or pickaxe.
+ * TODO: 'Both' Text render mode.
+ * TODO: 'Enemy' to 'Target'.
+ */
+
 @FeroxModule(name = "AutoCrystal", description = "Places and destroys end crystals to kill enemies", category = Category.COMBAT)
 public final class AutoCrystal extends Module {
-
-    /**
-     * @author olliem5
-     * @since 7/02/2021
-     *
-     * - I plan to update this module frequently and make as efficient as possible
-     * - Credit to Momentum for the utils and ideas (ily linus) (ily too ollie :3)
-     *
-     * TODO: Settings to add
-     *
-     * Break
-     * - Sequential
-     *
-     * Place
-     * - Walls Range
-     * - Range for block to enemy
-     *
-     * FacePlace
-     * - Armour target mode
-     * - Faceplace in hole (user & enemy)
-     *
-     * TODO: Better prediction, based on enemy as well...?
-     * TODO: Fix compatibility with AutoSwitch & AntiWeakness.
-     * TODO: Actual rotation system!
-     * TODO: Better MultiPlace.
-     * TODO: Other Place Calculations.
-     * TODO: AutoSwitch override when holding gaps or pickaxe.
-     * TODO: 'Both' Text render mode.
-     * TODO: 'Enemy' to 'Target'.
-     */
-
     /**
      * Break Settings
      *

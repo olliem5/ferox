@@ -11,11 +11,9 @@ import net.minecraft.util.EnumHand;
 
 /**
  * @author linustouchtips
- * @since 12/29/2020
  */
 
 public final class Firework extends ElytraMode {
-
     @Override
     public void onVerticalMovement() {
         if (mc.gameSettings.keyBindJump.isKeyDown()) {

@@ -5,6 +5,10 @@ import me.olliem5.ferox.api.module.FeroxModule;
 import me.olliem5.ferox.api.module.Module;
 import me.olliem5.ferox.impl.gui.screens.console.ConsoleScreen;
 
+/**
+ * @author olliem5
+ */
+
 @FeroxModule(name = "Console", description = "Opens Ferox's Console", category = Category.UI)
 public final class Console extends Module {
     public static ConsoleScreen console;

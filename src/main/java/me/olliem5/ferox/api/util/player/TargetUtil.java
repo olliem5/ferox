@@ -4,6 +4,10 @@ import me.olliem5.ferox.api.friend.FriendManager;
 import me.olliem5.ferox.api.traits.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 
+/**
+ * @author olliem5
+ */
+
 public final class TargetUtil implements Minecraft {
     public static EntityPlayer getClosestPlayer(double range) {
         if (mc.world.getLoadedEntityList().size() == 0) return null;

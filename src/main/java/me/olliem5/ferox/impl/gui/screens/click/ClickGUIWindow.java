@@ -14,10 +14,8 @@ import org.lwjgl.input.Mouse;
 import java.util.ArrayList;
 
 /**
- * @author bon
  * @author olliem5
- *
- * @since 11/16/20
+ * @author bon
  */
 
 public final class ClickGUIWindow implements Minecraft {
@@ -68,12 +66,12 @@ public final class ClickGUIWindow implements Minecraft {
 	
 	private void updateMousePos() {
 		if (dragging) {
-			x = GuiUtil.mX - (dragX - x);
-			y = GuiUtil.mY - (dragY - y);
+			x = GuiUtil.mouseX - (dragX - x);
+			y = GuiUtil.mouseY - (dragY - y);
 		}
 
-		dragX = GuiUtil.mX;
-		dragY = GuiUtil.mY;
+		dragX = GuiUtil.mouseX;
+		dragY = GuiUtil.mouseY;
 	}
 
 	public void scroll() {

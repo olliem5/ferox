@@ -1,47 +1,47 @@
 package me.olliem5.ferox.api.util.render.gui;
 
 /**
+ * @author olliem5
  * @author bon
- * @since 11/18/20
  */
 
 public final class GuiUtil {
-    public static int mX;
-    public static int mY;
-    public static int keydown;
+    public static int mouseX;
+    public static int mouseY;
+    public static int keyDown;
 
-    public static boolean ldown;
-    public static boolean lheld;
-    public static boolean rdown;
+    public static boolean leftDown;
+    public static boolean leftHeld;
+    public static boolean rightDown;
 
     public static boolean mouseOver(int minX, int minY, int maxX, int maxY) {
-        return mX >= minX && mY >= minY && mX <= maxX && mY <= maxY;
+        return mouseX >= minX && mouseY >= minY && mouseX <= maxX && mouseY <= maxY;
     }
 
-    public static void updateMousePos(int mouseX, int mouseY) {
-        mX = mouseX;
-        mY = mouseY;
+    public static void updateMousePos(int mouseXPos, int mouseYPos) {
+        mouseX = mouseXPos;
+        mouseY = mouseYPos;
 
-        ldown = false;
-        rdown = false;
+        leftDown = false;
+        rightDown = false;
 
-        keydown = -1;
+        keyDown = -1;
     }
 
     public static void updateLeftClick() {
-        ldown = true;
-        lheld = true;
+        leftDown = true;
+        leftHeld = true;
     }
 
     public static void updateRightClick() {
-        rdown = true;
+        rightDown = true;
     }
 
     public static void updateMouseState() {
-        lheld = false;
+        leftHeld = false;
     }
 
     public static void updateKeyState(int key) {
-        keydown = key;
+        mouseY = key;
     }
 }
