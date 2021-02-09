@@ -5,6 +5,7 @@ import me.olliem5.ferox.api.event.EventProcessor;
 import me.olliem5.ferox.api.module.ModuleManager;
 import me.olliem5.ferox.api.theme.ThemeManager;
 import me.olliem5.ferox.impl.commands.EchoCommand;
+import me.olliem5.ferox.impl.commands.ToggleCommand;
 import me.olliem5.ferox.impl.gui.screens.click.ClickGUIWindow;
 import me.olliem5.ferox.impl.gui.screens.editor.HUDEditorWindow;
 import me.yagel15637.venture.manager.CommandManager;
@@ -42,7 +43,8 @@ public final class StartupHelper {
 
     private static void initCommandManager() {
         CommandManager.addCommands(
-                new EchoCommand()
+                new EchoCommand(),
+                new ToggleCommand()
         );
     }
 }
