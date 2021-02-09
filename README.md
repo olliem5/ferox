@@ -8,7 +8,7 @@
 - Cleanup and optimize all code
 
 #### Features
-- Move config to new GUI system
+- Move console to new GUI system
 - Animations for GUI
 - Modules (ESP, Better Speed, ect.)
 - Commands (Bind, Toggle, ect.)
