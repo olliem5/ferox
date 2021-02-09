@@ -1,12 +1,12 @@
 package me.olliem5.ferox.impl.modules.movement;
 
-import git.littledraily.eventsystem.Listener;
 import me.olliem5.ferox.api.module.Category;
 import me.olliem5.ferox.api.module.FeroxModule;
 import me.olliem5.ferox.api.module.Module;
 import me.olliem5.ferox.api.setting.NumberSetting;
 import me.olliem5.ferox.api.setting.Setting;
 import me.olliem5.ferox.impl.events.PacketEvent;
+import me.olliem5.pace.annotation.PaceHandler;
 import net.minecraft.network.play.server.SPacketEntityVelocity;
 import net.minecraft.network.play.server.SPacketExplosion;
 
@@ -31,7 +31,7 @@ public final class Velocity extends Module {
         );
     }
 
-    @Listener
+    @PaceHandler
     public void onPacketRecieve(PacketEvent.Receive event) {
         if (nullCheck()) return;
 
@@ -40,7 +40,7 @@ public final class Velocity extends Module {
 
             if (sPacketEntityVelocity.getEntityID() == mc.player.entityId) {
                 if (horizontal.getValue() == 0.0f && vertical.getValue() == 0.0f) {
-                    event.cancel();
+                    event.setCancelled(true);
                 } else {
                     sPacketEntityVelocity.motionX *= horizontal.getValue();
                     sPacketEntityVelocity.motionY *= vertical.getValue();
@@ -53,7 +53,7 @@ public final class Velocity extends Module {
             SPacketExplosion sPacketExplosion = (SPacketExplosion) event.getPacket();
 
             if (horizontal.getValue() == 0.0f && vertical.getValue() == 0.0f) {
-                event.cancel();
+                event.setCancelled(true);
             } else {
                 sPacketExplosion.motionX *= horizontal.getValue();
                 sPacketExplosion.motionY *= vertical.getValue();

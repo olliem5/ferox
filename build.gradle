@@ -16,6 +16,7 @@ buildscript {
         classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
         classpath 'org.spongepowered:mixingradle:0.6-SNAPSHOT'
         classpath 'com.github.jengelman.gradle.plugins:shadow:1.2.3'
+
 //        classpath 'javassist:javassist:3.12.1.GA'
     }
 }
@@ -68,11 +69,12 @@ dependencies {
         exclude module: 'commons-io'
     }
 
-//    compile group: 'net.jodah', name: 'typetools', version: '0.5.0'
     compile group: 'club.minnced', name: 'java-discord-rpc', version: '2.0.1'
-    compile 'com.github.LittleDraily:event-system:1.1'
+    compile 'com.github.olliem5:pace:1.0'
     compile 'com.github.CafeDevelopment:Venture:1.0-SNAPSHOT'
     compile 'org.slick2d:slick2d-core:1.0.2'
+
+//    compile 'com.github.LittleDraily:event-system:1.1'
 //    compile 'org.reflections:reflections:0.9.12'
 //    compile 'javassist:javassist:3.12.1.GA'
 }
@@ -96,11 +98,12 @@ processResources {
 shadowJar {
     dependencies {
         include(dependency('org.spongepowered:mixin'))
-//        include(dependency('net.jodah:typetools'))
         include(dependency('club.minnced:java-discord-rpc:2.0.1'))
-        include(dependency('com.github.LittleDraily:event-system:1.1'))
+        include(dependency('com.github.olliem5:pace:1.0'))
         include(dependency('com.github.CafeDevelopment:Venture'))
         include(dependency('org.slick2d:slick2d-core'))
+
+//        include(dependency('com.github.LittleDraily:event-system:1.1'))
 //        include(dependency('org.reflections:reflections'))
 //        include(dependency('javassist:javassist'))
     }

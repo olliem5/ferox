@@ -1,11 +1,11 @@
 package me.olliem5.ferox.impl.modules.misc;
 
-import git.littledraily.eventsystem.Listener;
 import me.olliem5.ferox.api.module.Category;
 import me.olliem5.ferox.api.module.FeroxModule;
 import me.olliem5.ferox.api.module.Module;
 import me.olliem5.ferox.api.setting.Setting;
 import me.olliem5.ferox.impl.events.PacketEvent;
+import me.olliem5.pace.annotation.PaceHandler;
 import net.minecraft.network.play.client.CPacketChatMessage;
 
 /**
@@ -26,7 +26,7 @@ public final class ChatSuffix extends Module {
 
     private final String suffix = " \u00bb \uff26\uff45\uff52\uff4f\uff58";
 
-    @Listener
+    @PaceHandler
     public void onPacket(PacketEvent.Send event) {
         if (nullCheck()) return;
 

@@ -1,6 +1,5 @@
 package me.olliem5.ferox.impl.modules.render;
 
-import git.littledraily.eventsystem.Listener;
 import me.olliem5.ferox.api.module.Category;
 import me.olliem5.ferox.api.module.FeroxModule;
 import me.olliem5.ferox.api.module.Module;
@@ -10,6 +9,7 @@ import me.olliem5.ferox.api.util.player.PlayerUtil;
 import me.olliem5.ferox.api.util.render.draw.RenderUtil;
 import me.olliem5.ferox.api.util.world.BlockUtil;
 import me.olliem5.ferox.api.util.world.HoleUtil;
+import me.olliem5.pace.annotation.PaceHandler;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
@@ -49,7 +49,7 @@ public final class HoleESP extends Module {
         );
     }
 
-    @Listener
+    @PaceHandler
     public void onRenderWorldLast(RenderWorldLastEvent event) {
         if (nullCheck()) return;
 

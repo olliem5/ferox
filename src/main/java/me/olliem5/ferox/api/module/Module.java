@@ -42,7 +42,7 @@ public abstract class Module implements Minecraft {
     public void enable() {
         enabled = true;
 
-        Ferox.EVENT_BUS.subscribe(this);
+        Ferox.EVENT_BUS.register(this);
 
         onEnable();
 
@@ -56,7 +56,7 @@ public abstract class Module implements Minecraft {
     public void disable() {
         enabled = false;
 
-        Ferox.EVENT_BUS.unsubscribe(this);
+        Ferox.EVENT_BUS.unregister(this);
 
         onDisable();
 

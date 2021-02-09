@@ -1,8 +1,7 @@
 package me.olliem5.ferox;
 
-import git.littledraily.eventsystem.bus.EventBus;
-import git.littledraily.eventsystem.bus.EventManager;
 import me.olliem5.ferox.api.mixin.MixinLoader;
+import me.olliem5.pace.handler.EventHandler;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
@@ -25,7 +24,7 @@ public final class Ferox {
     public static final String NAME_VERSION = MOD_NAME + " " + MOD_VERSION;
 
     public static final Logger LOGGER = LogManager.getLogger(NAME_VERSION);
-    public static final EventBus EVENT_BUS = new EventManager();
+    public static final EventHandler EVENT_BUS = new EventHandler();
 
     public static MixinLoader mixinLoader;
 

@@ -1,6 +1,5 @@
 package me.olliem5.ferox.impl.modules.combat;
 
-import git.littledraily.eventsystem.Listener;
 import me.olliem5.ferox.api.module.Category;
 import me.olliem5.ferox.api.module.FeroxModule;
 import me.olliem5.ferox.api.module.Module;
@@ -16,6 +15,7 @@ import me.olliem5.ferox.api.util.render.draw.DrawUtil;
 import me.olliem5.ferox.api.util.render.draw.RenderUtil;
 import me.olliem5.ferox.api.util.world.BlockUtil;
 import me.olliem5.ferox.impl.events.PacketEvent;
+import me.olliem5.pace.annotation.PaceHandler;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityEnderCrystal;
 import net.minecraft.entity.player.EntityPlayer;
@@ -364,7 +364,7 @@ public final class AutoCrystal extends Module {
         return 1;
     }
 
-    @Listener
+    @PaceHandler
     public void onRenderWorldLast(RenderWorldLastEvent event) {
         if (nullCheck()) return;
 
@@ -405,7 +405,7 @@ public final class AutoCrystal extends Module {
         }
     }
 
-    @Listener
+    @PaceHandler
     public void onPacketSend(PacketEvent.Send event) {
         if (nullCheck()) return;
 
@@ -427,7 +427,7 @@ public final class AutoCrystal extends Module {
         }
     }
 
-    @Listener
+    @PaceHandler
     public void onPacketReceive(PacketEvent.Receive event) {
         if (nullCheck()) return;
 

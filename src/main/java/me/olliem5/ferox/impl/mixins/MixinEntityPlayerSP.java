@@ -23,7 +23,7 @@ public abstract class MixinEntityPlayerSP {
     public void move(MoverType moverType, double x, double y, double z, CallbackInfo callbackInfo) {
         PlayerMoveEvent playerMoveEvent = new PlayerMoveEvent(moverType, x, y, z);
 
-        Ferox.EVENT_BUS.post(playerMoveEvent);
+        Ferox.EVENT_BUS.dispatchPaceEvent(playerMoveEvent);
 
         if (playerMoveEvent.isCancelled()) {
             move(moverType, playerMoveEvent.getX(), playerMoveEvent.getY(), playerMoveEvent.getZ());

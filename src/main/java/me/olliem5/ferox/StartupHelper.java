@@ -17,14 +17,14 @@ import net.minecraftforge.common.MinecraftForge;
 public final class StartupHelper {
     public static void startupFerox() {
         MinecraftForge.EVENT_BUS.register(new EventProcessor());
-        Ferox.EVENT_BUS.subscribe(new EventProcessor());
+        Ferox.EVENT_BUS.register(new EventProcessor());
         Ferox.log("Event Processor Initialized!");
 
         ModuleManager.init();
         Ferox.log("Modules Initialized!");
 
         ComponentManager.init();
-        Ferox.EVENT_BUS.subscribe(new ComponentManager());
+        Ferox.EVENT_BUS.register(new ComponentManager());
         Ferox.log("HUD Initialized!");
 
         ClickGUIWindow.initGui();

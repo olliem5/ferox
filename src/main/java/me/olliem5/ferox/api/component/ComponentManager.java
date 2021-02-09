@@ -1,12 +1,12 @@
 package me.olliem5.ferox.api.component;
 
-import git.littledraily.eventsystem.Listener;
-import git.littledraily.eventsystem.event.Priority;
 import me.olliem5.ferox.api.traits.Minecraft;
 import me.olliem5.ferox.impl.components.InventoryComponent;
 import me.olliem5.ferox.impl.components.PlayerComponent;
 import me.olliem5.ferox.impl.components.WatermarkComponent;
 import me.olliem5.ferox.impl.components.WelcomerComponent;
+import me.olliem5.pace.annotation.PaceHandler;
+import me.olliem5.pace.modifier.EventPriority;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 
 import java.util.ArrayList;
@@ -32,7 +32,7 @@ public final class ComponentManager implements Minecraft {
         return components;
     }
 
-    @Listener(priority = Priority.LOWEST)
+    @PaceHandler(priority = EventPriority.LOWEST)
     public void onRenderGameOverlayText(RenderGameOverlayEvent.Text event) {
         if (mc.world == null || mc.player == null) return;
 

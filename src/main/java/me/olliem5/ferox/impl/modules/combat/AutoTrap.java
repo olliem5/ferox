@@ -1,7 +1,6 @@
 package me.olliem5.ferox.impl.modules.combat;
 
 import com.mojang.realmsclient.gui.ChatFormatting;
-import git.littledraily.eventsystem.Listener;
 import me.olliem5.ferox.api.module.Category;
 import me.olliem5.ferox.api.module.FeroxModule;
 import me.olliem5.ferox.api.module.Module;
@@ -12,6 +11,7 @@ import me.olliem5.ferox.api.util.player.InventoryUtil;
 import me.olliem5.ferox.api.util.player.TargetUtil;
 import me.olliem5.ferox.api.util.render.draw.RenderUtil;
 import me.olliem5.ferox.api.util.world.PlaceUtil;
+import me.olliem5.pace.annotation.PaceHandler;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
@@ -137,7 +137,7 @@ public final class AutoTrap extends Module {
         }
     }
 
-    @Listener
+    @PaceHandler
     public void onRenderWorldLast(RenderWorldLastEvent event) {
         if (nullCheck()) return;
 

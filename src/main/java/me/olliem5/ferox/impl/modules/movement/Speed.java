@@ -1,6 +1,5 @@
 package me.olliem5.ferox.impl.modules.movement;
 
-import git.littledraily.eventsystem.Listener;
 import me.olliem5.ferox.api.module.Category;
 import me.olliem5.ferox.api.module.FeroxModule;
 import me.olliem5.ferox.api.module.Module;
@@ -11,6 +10,7 @@ import me.olliem5.ferox.impl.modules.movement.speed.SpeedMode;
 import me.olliem5.ferox.impl.modules.movement.speed.modes.OnGround;
 import me.olliem5.ferox.impl.modules.movement.speed.modes.Strafe;
 import me.olliem5.ferox.impl.modules.movement.speed.modes.YPort;
+import me.olliem5.pace.annotation.PaceHandler;
 
 /**
  * @author olliem5
@@ -64,7 +64,7 @@ public final class Speed extends Module {
         speedMode.onUpdate();
     }
 
-    @Listener
+    @PaceHandler
     public void onPlayerMove(PlayerMoveEvent event) {
         if (nullCheck()) return;
 

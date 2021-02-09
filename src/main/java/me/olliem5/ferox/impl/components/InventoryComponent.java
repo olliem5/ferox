@@ -47,7 +47,8 @@ public final class InventoryComponent extends Component {
         }
 
         RenderHelper.disableStandardItemLighting();
-        mc.getRenderItem().zLevel = 0.0F;
+
+        mc.getRenderItem().zLevel = 0.0f;
 
         GlStateManager.popMatrix();
     }

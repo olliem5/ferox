@@ -20,7 +20,7 @@ public final class MixinNetworkManager {
     private void onSendPacket(Packet<?> packet, CallbackInfo callbackInfo) {
         PacketEvent packetEvent = new PacketEvent.Send(packet);
 
-        Ferox.EVENT_BUS.post(packetEvent);
+        Ferox.EVENT_BUS.dispatchPaceEvent(packetEvent);
 
         if (packetEvent.isCancelled()) {
             callbackInfo.cancel();
@@ -31,7 +31,7 @@ public final class MixinNetworkManager {
     private void onChannelRead(ChannelHandlerContext channelHandlerContext, Packet<?> packet, CallbackInfo callbackInfo) {
         PacketEvent packetEvent = new PacketEvent.Receive(packet);
 
-        Ferox.EVENT_BUS.post(packetEvent);
+        Ferox.EVENT_BUS.dispatchPaceEvent(packetEvent);
 
         if (packetEvent.isCancelled()) {
             callbackInfo.cancel();

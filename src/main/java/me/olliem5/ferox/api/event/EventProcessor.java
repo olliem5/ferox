@@ -1,12 +1,12 @@
 package me.olliem5.ferox.api.event;
 
-import git.littledraily.eventsystem.Listener;
 import me.olliem5.ferox.Ferox;
 import me.olliem5.ferox.api.module.Module;
 import me.olliem5.ferox.api.module.ModuleManager;
 import me.olliem5.ferox.api.traits.Minecraft;
 import me.olliem5.ferox.impl.events.PacketEvent;
 import me.olliem5.ferox.impl.events.TotemPopEvent;
+import me.olliem5.pace.annotation.PaceHandler;
 import me.yagel15637.venture.manager.CommandManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.network.play.server.SPacketEntityStatus;
@@ -58,15 +58,15 @@ public final class EventProcessor implements Minecraft {
 
     @SubscribeEvent
     public void onRenderWorldLast(RenderWorldLastEvent event) {
-        Ferox.EVENT_BUS.post(event);
+        Ferox.EVENT_BUS.dispatchEvent(event);
     }
 
     @SubscribeEvent
     public void onRenderGameOverlayText(RenderGameOverlayEvent.Text event) {
-        Ferox.EVENT_BUS.post(event);
+        Ferox.EVENT_BUS.dispatchEvent(event);
     }
 
-    @Listener
+    @PaceHandler
     public void onPacketReceive(PacketEvent.Receive event) {
         if (event.getPacket() instanceof SPacketEntityStatus) {
             SPacketEntityStatus packet = (SPacketEntityStatus) event.getPacket();
@@ -75,7 +75,7 @@ public final class EventProcessor implements Minecraft {
                 Entity entity = packet.getEntity(mc.world);
 
                 if (entity != null) {
-                    Ferox.EVENT_BUS.post(new TotemPopEvent(entity));
+                    Ferox.EVENT_BUS.dispatchPaceEvent(new TotemPopEvent(entity));
                 }
             }
         }
