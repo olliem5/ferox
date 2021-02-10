@@ -174,7 +174,7 @@ public final class DrawUtil implements Minecraft {
         GlStateManager.setActiveTexture(OpenGlHelper.defaultTexUnit);
     }
 
-    public static void glBillboard(final float x, final float y, final float z) {
+    public static void glBillboard(float x, float y, float z) {
         final float scale = 0.02666667f;
 
         GlStateManager.translate(x - mc.getRenderManager().renderPosX, y - mc.getRenderManager().renderPosY, z - mc.getRenderManager().renderPosZ);
@@ -184,10 +184,10 @@ public final class DrawUtil implements Minecraft {
         GlStateManager.scale(-scale, -scale, scale);
     }
 
-    public static void glBillboardDistanceScaled(final float x, final float y, final float z, final EntityPlayer player, final float scale) {
+    public static void glBillboardDistanceScaled(float x, float y, float z, EntityPlayer entityPlayer, float scale) {
         glBillboard(x, y, z);
 
-        final int distance = (int) player.getDistance(x, y, z);
+        final int distance = (int) entityPlayer.getDistance(x, y, z);
 
         float scaleDistance = distance / 2.0f / (2.0f + (2.0f - scale));
 
@@ -198,10 +198,10 @@ public final class DrawUtil implements Minecraft {
         GlStateManager.scale(scaleDistance, scaleDistance, scaleDistance);
     }
 
-    public static void drawText(final BlockPos pos, final String text) {
+    public static void drawTextCenterBlockPos(BlockPos blockPos, String text) {
         GlStateManager.pushMatrix();
 
-        glBillboardDistanceScaled(pos.getX() + 0.5f, pos.getY() + 0.5f, pos.getZ() + 0.5f, mc.player, 1.0f);
+        glBillboardDistanceScaled(blockPos.getX() + 0.5f, blockPos.getY() + 0.5f, blockPos.getZ() + 0.5f, mc.player, 1.0f);
 
         GlStateManager.disableDepth();
 
