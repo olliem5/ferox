@@ -9,7 +9,7 @@ import me.olliem5.ferox.impl.gui.screens.editor.HUDEditorScreen;
 @FeroxComponent(name = "Notifications", description = "Shows client notifications for events set in the 'Notifications' module")
 public final class NotificationComponent extends Component {
     public NotificationComponent() {
-        this.setWidth(240);
+        this.setWidth(200);
         this.setHeight(30);
     }
 

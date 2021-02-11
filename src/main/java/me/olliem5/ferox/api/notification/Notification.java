@@ -16,7 +16,7 @@ public final class Notification implements Minecraft {
     private final String message;
     private final NotificationType notificationType;
 
-    private final int width = 240;
+    private final int width = 200;
     private final int height = 30;
 
     private final ResourceLocation infoIcon = new ResourceLocation("ferox", "images/info_icon.png");
@@ -32,7 +32,7 @@ public final class Notification implements Minecraft {
     public void renderNotification(int x, int y) {
         Gui.drawRect(x, y, x + width, y + height, new Color(20, 20, 20, 100).getRGB());
 
-        switch (getNotificationType()) {
+        switch (notificationType) {
             case INFO:
                 mc.getTextureManager().bindTexture(infoIcon);
                 Gui.drawModalRectWithCustomSizedTexture(x + 2, y + 2, 0, 0, 26, 26, 26, 26);
@@ -49,18 +49,6 @@ public final class Notification implements Minecraft {
 
         FontUtil.drawText(title, x + 30, y + 2, -1);
         FontUtil.drawText(message, x + 30, y + 28 - FontUtil.getStringHeight(message), -1);
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public NotificationType getNotificationType() {
-        return notificationType;
     }
 
     public enum NotificationType {

@@ -48,14 +48,7 @@ public abstract class Module implements Minecraft {
 
         onEnable();
 
-        if (!nullCheck()) {
-            if (ModuleManager.getModuleByName("Notifications").isEnabled() && Notifications.moduleToggle.getValue()) {
-                Notification notification = new Notification("Module Toggle", "Module " + ChatFormatting.AQUA + name + ChatFormatting.WHITE + " has been " + ChatFormatting.GREEN + "ENABLED", Notification.NotificationType.NORMAL);
-                NotificationManager.queueNotification(notification);
-
-                MessageUtil.sendClientMessage("Module " + ChatFormatting.AQUA + name + ChatFormatting.WHITE + " has been " + ChatFormatting.GREEN + "ENABLED");
-            }
-        }
+        handleNotifications(true);
     }
 
     public void disable() {
@@ -65,12 +58,28 @@ public abstract class Module implements Minecraft {
 
         onDisable();
 
-        if (!nullCheck()) {
-            if (ModuleManager.getModuleByName("Notifications").isEnabled() && Notifications.moduleToggle.getValue()) {
-                Notification notification = new Notification("Module Toggle", "Module " + ChatFormatting.AQUA + name + ChatFormatting.WHITE + " has been " + ChatFormatting.RED + "DISABLED", Notification.NotificationType.NORMAL);
-                NotificationManager.queueNotification(notification);
+        handleNotifications(false);
+    }
 
-                MessageUtil.sendClientMessage("Module " + ChatFormatting.AQUA + name + ChatFormatting.WHITE + " has been " + ChatFormatting.RED + "DISABLED");
+    private void handleNotifications(boolean enable) {
+        if (nullCheck()) return;
+
+        String message;
+
+        if (enable) {
+            message = ChatFormatting.AQUA + name + ChatFormatting.WHITE + " has been " + ChatFormatting.GREEN + "ENABLED";
+        } else {
+            message = ChatFormatting.AQUA + name + ChatFormatting.WHITE + " has been " + ChatFormatting.RED + "DISABLED";
+        }
+
+        if (ModuleManager.getModuleByName("Notifications").isEnabled() && Notifications.moduleToggle.getValue()) {
+            if (Notifications.moduleToggleRender.getValue()) {
+                Notification notification = new Notification("Module Toggle", message, Notification.NotificationType.NORMAL);
+                NotificationManager.queueNotification(notification);
+            }
+
+            if (Notifications.moduleToggleChat.getValue()) {
+                MessageUtil.sendClientMessage(message);
             }
         }
     }
