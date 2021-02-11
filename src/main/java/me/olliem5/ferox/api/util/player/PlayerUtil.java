@@ -3,6 +3,7 @@ package me.olliem5.ferox.api.util.player;
 import me.olliem5.ferox.api.traits.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 
 /**
  * @author olliem5
@@ -22,5 +23,9 @@ public final class PlayerUtil implements Minecraft {
 
         entityPlayer.motionX = dir[0];
         entityPlayer.motionZ = dir[1];
+    }
+
+    public static boolean isInViewFrustrum(BlockPos blockPos) {
+        return mc.world.rayTraceBlocks(new Vec3d(mc.player.posX, mc.player.posY + mc.player.getEyeHeight(), mc.player.posZ), new Vec3d(blockPos.getX(), blockPos.getY(), blockPos.getZ()), false, true, false) == null;
     }
 }
