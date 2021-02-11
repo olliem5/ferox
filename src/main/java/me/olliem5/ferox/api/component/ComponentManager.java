@@ -1,10 +1,7 @@
 package me.olliem5.ferox.api.component;
 
 import me.olliem5.ferox.api.traits.Minecraft;
-import me.olliem5.ferox.impl.components.InventoryComponent;
-import me.olliem5.ferox.impl.components.PlayerComponent;
-import me.olliem5.ferox.impl.components.WatermarkComponent;
-import me.olliem5.ferox.impl.components.WelcomerComponent;
+import me.olliem5.ferox.impl.components.*;
 import me.olliem5.pace.annotation.PaceHandler;
 import me.olliem5.pace.modifier.EventPriority;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
@@ -24,7 +21,8 @@ public final class ComponentManager implements Minecraft {
                 new InventoryComponent(),
                 new PlayerComponent(),
                 new WatermarkComponent(),
-                new WelcomerComponent()
+                new WelcomerComponent(),
+                new NotificationComponent()
         ));
     }
 

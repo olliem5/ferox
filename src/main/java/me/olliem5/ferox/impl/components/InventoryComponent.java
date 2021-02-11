@@ -19,8 +19,8 @@ public final class InventoryComponent extends Component {
     public static final Setting<Boolean> background = new Setting("Background", "Shows a background behind the items", true);
 
     public InventoryComponent() {
-        setWidth(144);
-        setHeight(48);
+        this.setWidth(144);
+        this.setHeight(48);
 
         this.addSettings(
                 background

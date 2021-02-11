@@ -2,10 +2,12 @@ package me.olliem5.ferox.api.module;
 
 import com.mojang.realmsclient.gui.ChatFormatting;
 import me.olliem5.ferox.Ferox;
+import me.olliem5.ferox.api.notification.Notification;
+import me.olliem5.ferox.api.notification.NotificationManager;
 import me.olliem5.ferox.api.setting.Setting;
 import me.olliem5.ferox.api.traits.Minecraft;
 import me.olliem5.ferox.api.util.client.MessageUtil;
-import me.olliem5.ferox.impl.modules.ferox.Notifier;
+import me.olliem5.ferox.impl.modules.ferox.Notifications;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -47,7 +49,10 @@ public abstract class Module implements Minecraft {
         onEnable();
 
         if (!nullCheck()) {
-            if (ModuleManager.getModuleByName("Notifier").isEnabled() && Notifier.moduleToggle.getValue()) {
+            if (ModuleManager.getModuleByName("Notifications").isEnabled() && Notifications.moduleToggle.getValue()) {
+                Notification notification = new Notification("Module Toggle", "Module " + ChatFormatting.AQUA + name + ChatFormatting.WHITE + " has been " + ChatFormatting.GREEN + "ENABLED", Notification.NotificationType.NORMAL);
+                NotificationManager.queueNotification(notification);
+
                 MessageUtil.sendClientMessage("Module " + ChatFormatting.AQUA + name + ChatFormatting.WHITE + " has been " + ChatFormatting.GREEN + "ENABLED");
             }
         }
@@ -61,7 +66,10 @@ public abstract class Module implements Minecraft {
         onDisable();
 
         if (!nullCheck()) {
-            if (ModuleManager.getModuleByName("Notifier").isEnabled() && Notifier.moduleToggle.getValue()) {
+            if (ModuleManager.getModuleByName("Notifications").isEnabled() && Notifications.moduleToggle.getValue()) {
+                Notification notification = new Notification("Module Toggle", "Module " + ChatFormatting.AQUA + name + ChatFormatting.WHITE + " has been " + ChatFormatting.RED + "DISABLED", Notification.NotificationType.NORMAL);
+                NotificationManager.queueNotification(notification);
+
                 MessageUtil.sendClientMessage("Module " + ChatFormatting.AQUA + name + ChatFormatting.WHITE + " has been " + ChatFormatting.RED + "DISABLED");
             }
         }

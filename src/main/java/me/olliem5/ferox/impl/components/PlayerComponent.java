@@ -16,8 +16,8 @@ public final class PlayerComponent extends Component {
     public static final NumberSetting<Integer> scale = new NumberSetting<>("Scale", "Scale to render the player at", 1, 30, 100, 0);
 
     public PlayerComponent() {
-        setWidth(50);
-        setHeight(80);
+        this.setWidth(50);
+        this.setHeight(80);
 
         this.addSettings(
                 scale

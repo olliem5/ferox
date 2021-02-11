@@ -5,7 +5,7 @@ import me.olliem5.ferox.impl.modules.exploit.Blink;
 import me.olliem5.ferox.impl.modules.ferox.DiscordRPC;
 import me.olliem5.ferox.impl.modules.ferox.Font;
 import me.olliem5.ferox.impl.modules.ferox.Friends;
-import me.olliem5.ferox.impl.modules.ferox.Notifier;
+import me.olliem5.ferox.impl.modules.ferox.Notifications;
 import me.olliem5.ferox.impl.modules.misc.ChatSuffix;
 import me.olliem5.ferox.impl.modules.misc.FakePlayer;
 import me.olliem5.ferox.impl.modules.misc.FastUse;
@@ -60,7 +60,7 @@ public final class ModuleManager {
                 new DiscordRPC(),
                 new Font(),
                 new Friends(),
-                new Notifier(),
+                new Notifications(),
 
                 //Interface
                 new ClickGUI(),
