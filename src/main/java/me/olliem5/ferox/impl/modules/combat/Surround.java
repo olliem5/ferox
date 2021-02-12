@@ -8,6 +8,7 @@ import me.olliem5.ferox.api.setting.NumberSetting;
 import me.olliem5.ferox.api.setting.Setting;
 import me.olliem5.ferox.api.util.client.MessageUtil;
 import me.olliem5.ferox.api.util.player.InventoryUtil;
+import me.olliem5.ferox.api.util.player.PlayerUtil;
 import me.olliem5.ferox.api.util.render.draw.RenderUtil;
 import me.olliem5.ferox.api.util.world.PlaceUtil;
 import me.olliem5.pace.annotation.PaceHandler;
@@ -79,7 +80,7 @@ public final class Surround extends Module {
                 mc.player.motionX = 0;
                 mc.player.motionZ = 0;
 
-                center = getCenter(mc.player.posX, mc.player.posY, mc.player.posZ);
+                center = PlayerUtil.getCenter(mc.player.posX, mc.player.posY, mc.player.posZ);
 
                 mc.player.connection.sendPacket(new CPacketPlayer.Position(center.x, center.y, center.z, true));
                 mc.player.setPosition(center.x, center.y, center.z);
@@ -211,14 +212,6 @@ public final class Surround extends Module {
             return fullSurround;
         }
         return antiCitySurround;
-    }
-
-    public Vec3d getCenter(double posX, double posY, double posZ) {
-        double x = Math.floor(posX) + 0.5D;
-        double y = Math.floor(posY);
-        double z = Math.floor(posZ) + 0.5D;
-
-        return new Vec3d(x, y, z);
     }
 
     public enum PlaceModes {

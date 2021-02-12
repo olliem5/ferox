@@ -54,7 +54,7 @@ public final class HoleUtil implements Minecraft {
             BlockPos offset = new BlockPos(vec3d.x, vec3d.y, vec3d.z);
 
             if (mc.world.getBlockState(offset).getBlock() == Blocks.OBSIDIAN || mc.world.getBlockState(offset).getBlock() == Blocks.BEDROCK) {
-                ++holeBlocks;
+                holeBlocks++;
             }
 
             if (holeBlocks == 5) {

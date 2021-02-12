@@ -38,6 +38,7 @@ public final class ModuleManager {
                 new Surround(),
                 new SelfTrap(),
                 new HoleFill(),
+                new AutoWeb(),
 
                 //Movement
                 new ElytraFlight(),

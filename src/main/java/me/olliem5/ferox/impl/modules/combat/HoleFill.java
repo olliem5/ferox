@@ -28,6 +28,7 @@ import java.util.stream.Collectors;
  * @author olliem5
  *
  * TODO: Fix disable setting
+ * TODO: Delay
  */
 
 @FeroxModule(name = "HoleFill", description = "Fills holes around you with obsidian", category = Category.COMBAT)
