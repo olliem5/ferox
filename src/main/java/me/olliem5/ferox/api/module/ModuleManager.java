@@ -37,6 +37,7 @@ public final class ModuleManager {
                 new Offhand(),
                 new Surround(),
                 new SelfTrap(),
+                new HoleFill(),
 
                 //Movement
                 new ElytraFlight(),

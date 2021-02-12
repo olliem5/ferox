@@ -5,12 +5,10 @@ import me.olliem5.ferox.api.module.FeroxModule;
 import me.olliem5.ferox.api.module.Module;
 import me.olliem5.ferox.api.setting.NumberSetting;
 import me.olliem5.ferox.api.setting.Setting;
-import me.olliem5.ferox.api.util.player.PlayerUtil;
 import me.olliem5.ferox.api.util.render.draw.RenderUtil;
 import me.olliem5.ferox.api.util.world.BlockUtil;
 import me.olliem5.ferox.api.util.world.HoleUtil;
 import me.olliem5.pace.annotation.PaceHandler;
-import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
 import org.lwjgl.opengl.GL11;
@@ -98,23 +96,15 @@ public final class HoleESP extends Module {
     }
 
     public List<BlockPos> findObsidianHoles() {
-        NonNullList positions = NonNullList.create();
-
-        positions.addAll(BlockUtil.getSphere(PlayerUtil.getPlayerPos(), holeRange.getValue(), holeRange.getValue(), false, true, 0).stream()
-                .filter(HoleUtil::isObsidianHole)
-                .collect(Collectors.toList()));
-
-        return positions;
+        return BlockUtil.getNearbyBlocks(mc.player, holeRange.getValue(), false).stream()
+                .filter(blockPos -> HoleUtil.isObsidianHole(blockPos))
+                .collect(Collectors.toList());
     }
 
     public List<BlockPos> findBedrockHoles() {
-        NonNullList positions = NonNullList.create();
-
-        positions.addAll(BlockUtil.getSphere(PlayerUtil.getPlayerPos(), holeRange.getValue(), holeRange.getValue(), false, true, 0).stream()
-                .filter(HoleUtil::isBedrockHole)
-                .collect(Collectors.toList()));
-
-        return positions;
+        return BlockUtil.getNearbyBlocks(mc.player, holeRange.getValue(), false).stream()
+                .filter(blockPos -> HoleUtil.isBedrockHole(blockPos))
+                .collect(Collectors.toList());
     }
 
     public enum RenderModes {

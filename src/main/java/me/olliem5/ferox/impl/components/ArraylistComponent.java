@@ -21,16 +21,16 @@ public final class ArraylistComponent extends Component {
         boost = 0;
 
         switch (this.getScreenPosition()) {
-            case TOPLEFT:
+            case TopLeft:
                 renderTopLeft();
                 break;
-            case BOTTOMLEFT:
+            case BottomLeft:
                 renderBottomLeft();
                 break;
-            case TOPRIGHT:
+            case TopRight:
                 renderTopRight();
                 break;
-            case BOTTOMRIGHT:
+            case BottomRight:
                 renderBottomRight();
                 break;
         }

@@ -345,6 +345,12 @@ public final class AutoCrystal extends Module {
         return 1;
     }
 
+    public static List<BlockPos> crystalBlocks(EntityPlayer entityPlayer, double placeRange, boolean prediction, boolean multiPlace, int blockLogic) {
+        return BlockUtil.getNearbyBlocks(entityPlayer, placeRange, prediction).stream()
+                .filter(blockPos -> CrystalUtil.canPlaceCrystal(blockPos, multiPlace, blockLogic == 1))
+                .collect(Collectors.toList());
+    }
+
     @PaceHandler
     public void onRenderWorldLast(RenderWorldLastEvent event) {
         if (nullCheck()) return;
@@ -426,12 +432,6 @@ public final class AutoCrystal extends Module {
                 }
             }
         }
-    }
-
-    public static List<BlockPos> crystalBlocks(EntityPlayer entityPlayer, double placeRange, boolean prediction, boolean multiPlace, int blockLogic) {
-        return BlockUtil.getNearbyBlocks(entityPlayer, placeRange, prediction).stream()
-                .filter(blockPos -> CrystalUtil.canPlaceCrystal(blockPos, multiPlace, blockLogic == 1))
-                .collect(Collectors.toList());
     }
 
     public enum BreakModes {

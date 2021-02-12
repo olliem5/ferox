@@ -90,13 +90,13 @@ public abstract class Component implements Minecraft {
 
     public ScreenPosition getScreenPosition() {
         if (this.isTopLeft()) {
-            return ScreenPosition.TOPLEFT;
+            return ScreenPosition.TopLeft;
         } else if (this.isBottomLeft()) {
-            return ScreenPosition.BOTTOMLEFT;
+            return ScreenPosition.BottomLeft;
         } else if (this.isTopRight()) {
-            return ScreenPosition.TOPRIGHT;
+            return ScreenPosition.TopRight;
         } else {
-         return ScreenPosition.BOTTOMRIGHT;
+         return ScreenPosition.BottomRight;
         }
     }
 
@@ -210,9 +210,9 @@ public abstract class Component implements Minecraft {
     }
 
     public enum ScreenPosition {
-        TOPLEFT,
-        BOTTOMLEFT,
-        TOPRIGHT,
-        BOTTOMRIGHT
+        TopLeft,
+        BottomLeft,
+        TopRight,
+        BottomRight
     }
 }
