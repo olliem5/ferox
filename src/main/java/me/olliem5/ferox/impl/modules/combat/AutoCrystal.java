@@ -318,7 +318,7 @@ public final class AutoCrystal extends Module {
                 }
 
                 //TODO: Check if holding a crystal in mainhand or offhand
-                CrystalUtil.placeCrystal(crystalTarget.getPosition(), raytrace.getValue() ? CrystalUtil.getEnumFacing(raytrace.getValue(), crystalTarget.getPosition()) : EnumFacing.UP, placeMode.getValue() == PlaceModes.Packet);
+                CrystalUtil.placeCrystal(crystalTarget.getPosition(), CrystalUtil.getEnumFacing(raytrace.getValue(), crystalTarget.getPosition()), placeMode.getValue() == PlaceModes.Packet);
 
                 placeTimer.reset();
             }
