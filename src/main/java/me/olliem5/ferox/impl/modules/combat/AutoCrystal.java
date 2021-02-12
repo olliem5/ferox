@@ -280,7 +280,7 @@ public final class AutoCrystal extends Module {
             CrystalPosition tempPosition;
 
             for (BlockPos blockPos : crystalBlocks(mc.player, placeRange.getValue(), predictPlace.getValue(), !multiPlace.getValue(), getBlockLogic())) {
-                if (!PlayerUtil.isInViewFrustrum(blockPos) && mc.player.getDistanceSq(blockPos) >= Math.pow(wallRange.getValue(), 2))
+                if (!PlayerUtil.isInViewFrustrum(blockPos) && mc.player.getDistanceSq(blockPos) >= Math.pow(wallRange.getValue(), 2)) continue;
 
                 if (verifyPlace.getValue() && mc.player.getDistanceSq(blockPos) >= Math.pow(breakRange.getValue(), 2)) continue;
 
