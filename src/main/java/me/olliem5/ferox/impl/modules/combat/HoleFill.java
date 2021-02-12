@@ -53,6 +53,7 @@ public final class HoleFill extends Module {
 
     private int obsidianSlot;
     private int enderChestSlot;
+    private int webSlot;
 
     private BlockPos renderBlock = null;
 
@@ -62,6 +63,7 @@ public final class HoleFill extends Module {
 
         obsidianSlot = InventoryUtil.getHotbarBlockSlot(Blocks.OBSIDIAN);
         enderChestSlot = InventoryUtil.getHotbarBlockSlot(Blocks.ENDER_CHEST);
+        webSlot = InventoryUtil.getHotbarBlockSlot(Blocks.WEB);
 
         switch (blockMode.getValue()) {
             case Obsidian:
@@ -74,6 +76,13 @@ public final class HoleFill extends Module {
             case EnderChest:
                 if (enderChestSlot == -1) {
                     MessageUtil.sendClientMessage("No Ender Chests, " + ChatFormatting.RED + "Disabling!");
+                    this.toggle();
+                }
+
+                break;
+            case Web:
+                if (webSlot == -1) {
+                    MessageUtil.sendClientMessage("No Webs, " + ChatFormatting.RED + "Disabling!");
                     this.toggle();
                 }
 
@@ -117,6 +126,12 @@ public final class HoleFill extends Module {
                     }
 
                     break;
+                case Web:
+                    if (webSlot != -1) {
+                        mc.player.inventory.currentItem = webSlot;
+                    }
+
+                    break;
             }
 
             renderBlock = holesToFill.get(0);
@@ -130,6 +145,12 @@ public final class HoleFill extends Module {
                     break;
                 case EnderChest:
                     if (mc.player.getHeldItemMainhand().getItem() == Item.getItemFromBlock(Blocks.ENDER_CHEST)) {
+                        PlaceUtil.placeBlock(holesToFill.get(0));
+                    }
+
+                    break;
+                case Web:
+                    if (mc.player.getHeldItemMainhand().getItem() == Item.getItemFromBlock(Blocks.WEB)) {
                         PlaceUtil.placeBlock(holesToFill.get(0));
                     }
 
@@ -172,7 +193,8 @@ public final class HoleFill extends Module {
 
     public enum BlockModes {
         Obsidian,
-        EnderChest
+        EnderChest,
+        Web
     }
 
     public enum RenderModes {
