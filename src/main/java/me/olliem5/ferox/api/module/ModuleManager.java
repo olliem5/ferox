@@ -37,6 +37,7 @@ public final class ModuleManager {
                 new AutoTrap(),
                 new Offhand(),
                 new Surround(),
+                new SelfTrap(),
 
                 //Movement
                 new ElytraFlight(),
