@@ -22,7 +22,8 @@ public final class ComponentManager implements Minecraft {
                 new PlayerComponent(),
                 new WatermarkComponent(),
                 new WelcomerComponent(),
-                new NotificationComponent()
+                new NotificationComponent(),
+                new ArraylistComponent()
         ));
     }
 

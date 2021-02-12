@@ -29,7 +29,7 @@ import java.util.List;
 
 @FeroxModule(name = "SelfTrap", description = "Traps yourself", category = Category.COMBAT)
 public class SelfTrap extends Module {
-    public static final Setting<PlaceModes> placeMode = new Setting<>("Place", "The style of trap to place", PlaceModes.Full);
+    public static final Setting<PlaceModes> placeMode = new Setting<>("Place", "The style of trap to place", PlaceModes.TopBlock);
     public static final Setting<DisableModes> disableMode = new Setting<>("Disable", "When to disable the module", DisableModes.Finish);
 
     public static final NumberSetting<Integer> blocksPerTick = new NumberSetting<>("BPT", "Blocks per tick to place", 1, 1, 10, 0);

@@ -31,6 +31,9 @@ public abstract class Component implements Minecraft {
 
     private final ArrayList<Setting> settings = new ArrayList<>();
 
+    private int screenWidth = new ScaledResolution(mc).getScaledWidth();
+    private int screenHeight = new ScaledResolution(mc).getScaledHeight();
+
     private FeroxComponent getAnnotation() {
         if (getClass().isAnnotationPresent(FeroxComponent.class)) {
             return getClass().getAnnotation(FeroxComponent.class);
@@ -43,6 +46,75 @@ public abstract class Component implements Minecraft {
 
     public void drawString(String text) {
         FontUtil.drawText(text, posX, posY, -1);
+    }
+
+    public boolean isMouseOnComponent(int x, int y) {
+        return (x >= this.posX && x <= this.posX + this.width && y >= this.posY && y <= this.posY + this.height);
+    }
+
+    public void collide() {
+        ScaledResolution sr = new ScaledResolution(mc);
+
+        if (posX <= 0) {
+            setPosX(0);
+        }
+
+        if (posX >= sr.getScaledWidth() - width) {
+            setPosX(sr.getScaledWidth() - width);
+        }
+
+        if (posY <= 0) {
+            setPosY(0);
+        }
+
+        if (getPosY() >= sr.getScaledHeight() - height) {
+            setPosY(sr.getScaledHeight() - height);
+        }
+    }
+
+    public boolean isTopLeft() {
+        return (this.getPosX() < (screenWidth / 2) && this.getPosY() < (screenHeight) / 2);
+    }
+
+    public boolean isBottomLeft() {
+        return (this.getPosX() < (screenWidth / 2) && this.getPosY() > (screenHeight) / 2);
+    }
+
+    public boolean isTopRight() {
+        return (this.getPosX() > (screenWidth / 2) && this.getPosY() < (screenHeight) / 2);
+    }
+
+    public boolean isBottomRight() {
+        return (this.getPosX() > (screenWidth / 2) && this.getPosY() > (screenHeight) / 2);
+    }
+
+    public void updatePosition(int mouseX, int mouseY) {
+        if (this.dragging) {
+            this.setPosX(mouseX - getDragX());
+            this.setPosY(mouseY - getDragY());
+        }
+
+        if (!HUDEditor.componentOverflow.getValue()) {
+            collide();
+        }
+    }
+
+    public ArrayList<Setting> getSettings() {
+        return settings;
+    }
+
+    public Setting addSetting(Setting setting) {
+        settings.add(setting);
+
+        return setting;
+    }
+
+    public void addSettings(Setting... settings) {
+        this.settings.addAll(Arrays.asList(settings));
+    }
+
+    public boolean hasSettings() {
+        return this.settings.size() > 0;
     }
 
     public final String getName() {
@@ -123,58 +195,5 @@ public abstract class Component implements Minecraft {
 
     public void setOpened(boolean opened) {
         this.opened = opened;
-    }
-
-    public boolean isMouseOnComponent(int x, int y) {
-        return (x >= this.posX && x <= this.posX + this.width && y >= this.posY && y <= this.posY + this.height);
-    }
-
-    public void collide() {
-        ScaledResolution sr = new ScaledResolution(mc);
-
-        if (posX <= 0) {
-            setPosX(0);
-        }
-
-        if (posX >= sr.getScaledWidth() - width) {
-            setPosX(sr.getScaledWidth() - width);
-        }
-
-        if (posY <= 0){
-            setPosY(0);
-        }
-
-        if (getPosY() >= sr.getScaledHeight() - height) {
-            setPosY(sr.getScaledHeight() - height);
-        }
-    }
-
-    public void updatePosition(int mouseX, int mouseY) {
-        if (this.dragging) {
-            this.setPosX(mouseX - getDragX());
-            this.setPosY(mouseY - getDragY());
-        }
-
-        if (!HUDEditor.componentOverflow.getValue()) {
-            collide();
-        }
-    }
-
-    public ArrayList<Setting> getSettings() {
-        return settings;
-    }
-
-    public Setting addSetting(Setting setting) {
-        settings.add(setting);
-
-        return setting;
-    }
-
-    public void addSettings(Setting... settings) {
-        this.settings.addAll(Arrays.asList(settings));
-    }
-
-    public boolean hasSettings() {
-        return this.settings.size() > 0;
     }
 }
