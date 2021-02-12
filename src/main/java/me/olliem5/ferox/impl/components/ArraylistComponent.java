@@ -20,68 +20,77 @@ public final class ArraylistComponent extends Component {
     public void render() {
         boost = 0;
 
-        if (this.isTopLeft()) {
-            this.setWidth(75);
-
-            ModuleManager.getModules().stream()
-                    .filter(Module::isEnabled)
-                    .sorted(Comparator.comparing(module -> FontUtil.getStringWidth(module.getName()) * (-1)))
-                    .forEach(module -> {
-
-                        FontUtil.drawString(module.getName(), this.getPosX(), this.getPosY() + (10 * boost), -1);
-
-                        boost++;
-            });
-
-            this.setHeight((mc.fontRenderer.FONT_HEIGHT + 1) * boost);
+        switch (this.getScreenPosition()) {
+            case TOPLEFT:
+                renderTopLeft();
+                break;
+            case BOTTOMLEFT:
+                renderBottomLeft();
+                break;
+            case TOPRIGHT:
+                renderTopRight();
+                break;
+            case BOTTOMRIGHT:
+                renderBottomRight();
+                break;
         }
 
-        if (this.isTopRight()) {
-            this.setWidth(-75);
+        this.setHeight((mc.fontRenderer.FONT_HEIGHT + 1) * boost);
+    }
 
-            ModuleManager.getModules().stream()
-                    .filter(Module::isEnabled)
-                    .sorted(Comparator.comparing(module -> FontUtil.getStringWidth(module.getName()) * (-1)))
-                    .forEach(module -> {
+    private void renderTopLeft() {
+        this.setWidth(75);
 
-                        FontUtil.drawString(module.getName(), this.getPosX() - 2 - FontUtil.getStringWidth(module.getName()), this.getPosY() + (10 * boost), -1);
+        ModuleManager.getModules().stream()
+                .filter(Module::isEnabled)
+                .sorted(Comparator.comparing(module -> FontUtil.getStringWidth(module.getName()) * (-1)))
+                .forEach(module -> {
 
-                        boost++;
-            });
+                    FontUtil.drawString(module.getName(), this.getPosX(), this.getPosY() + (10 * boost), -1);
 
-            this.setHeight((mc.fontRenderer.FONT_HEIGHT + 1) * boost);
-        }
+                    boost++;
+                });
+    }
 
-        if (this.isBottomLeft()) {
-            this.setWidth(75);
+    private void renderBottomLeft() {
+        this.setWidth(75);
 
-            ModuleManager.getModules().stream()
-                    .filter(Module::isEnabled)
-                    .sorted(Comparator.comparing(module -> FontUtil.getStringWidth(module.getName())))
-                    .forEach(module -> {
+        ModuleManager.getModules().stream()
+                .filter(Module::isEnabled)
+                .sorted(Comparator.comparing(module -> FontUtil.getStringWidth(module.getName())))
+                .forEach(module -> {
 
-                        FontUtil.drawString(module.getName(), this.getPosX(), this.getPosY() + (10 * boost), -1);
+                    FontUtil.drawString(module.getName(), this.getPosX(), this.getPosY() + (10 * boost), -1);
 
-                        boost++;
-            });
+                    boost++;
+                });
+    }
 
-            this.setHeight((mc.fontRenderer.FONT_HEIGHT + 1) * boost);
-        }
+    private void renderTopRight() {
+        this.setWidth(-75);
 
-        if (this.isBottomRight()) {
-            this.setWidth(-75);
+        ModuleManager.getModules().stream()
+                .filter(Module::isEnabled)
+                .sorted(Comparator.comparing(module -> FontUtil.getStringWidth(module.getName()) * (-1)))
+                .forEach(module -> {
 
-            ModuleManager.getModules().stream()
-                    .filter(Module::isEnabled)
-                    .sorted(Comparator.comparing(module -> FontUtil.getStringWidth(module.getName())))
-                    .forEach(module -> {
+                    FontUtil.drawString(module.getName(), this.getPosX() - 2 - FontUtil.getStringWidth(module.getName()), this.getPosY() + (10 * boost), -1);
 
-                        FontUtil.drawString(module.getName(), this.getPosX() - 2 - FontUtil.getStringWidth(module.getName()), this.getPosY() + (10 * boost), -1);
+                    boost++;
+                });
+    }
 
-                        boost++;
-            });
+    private void renderBottomRight() {
+        this.setWidth(-75);
 
-            this.setHeight((mc.fontRenderer.FONT_HEIGHT + 1) * boost);
-        }
+        ModuleManager.getModules().stream()
+                .filter(Module::isEnabled)
+                .sorted(Comparator.comparing(module -> FontUtil.getStringWidth(module.getName())))
+                .forEach(module -> {
+
+                    FontUtil.drawString(module.getName(), this.getPosX() - 2 - FontUtil.getStringWidth(module.getName()), this.getPosY() + (10 * boost), -1);
+
+                    boost++;
+                });
     }
 }

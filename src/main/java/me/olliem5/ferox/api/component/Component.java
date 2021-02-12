@@ -88,6 +88,18 @@ public abstract class Component implements Minecraft {
         return (this.getPosX() > (screenWidth / 2) && this.getPosY() > (screenHeight) / 2);
     }
 
+    public ScreenPosition getScreenPosition() {
+        if (this.isTopLeft()) {
+            return ScreenPosition.TOPLEFT;
+        } else if (this.isBottomLeft()) {
+            return ScreenPosition.BOTTOMLEFT;
+        } else if (this.isTopRight()) {
+            return ScreenPosition.TOPRIGHT;
+        } else {
+         return ScreenPosition.BOTTOMRIGHT;
+        }
+    }
+
     public void updatePosition(int mouseX, int mouseY) {
         if (this.dragging) {
             this.setPosX(mouseX - getDragX());
@@ -195,5 +207,12 @@ public abstract class Component implements Minecraft {
 
     public void setOpened(boolean opened) {
         this.opened = opened;
+    }
+
+    public enum ScreenPosition {
+        TOPLEFT,
+        BOTTOMLEFT,
+        TOPRIGHT,
+        BOTTOMRIGHT
     }
 }
