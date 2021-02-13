@@ -16,18 +16,18 @@ import net.minecraft.network.play.server.SPacketExplosion;
 
 @FeroxModule(name = "Velocity", description = "Modifies the knockback that you take", category = Category.MOVEMENT)
 public final class Velocity extends Module {
-    public static final Setting<Boolean> velocity = new Setting<>("Velocity", "Allows modification of player velocity", true);
-    public static final Setting<Boolean> explosions = new Setting<>("Explosions", "Allows modification of explosion velocity", true);
+    public static final Setting<Boolean> velocity = new Setting<>("Velocity", "Allows for modification of player velocity", true);
+    public static final NumberSetting<Float> velocityHorizontal = new NumberSetting<>(velocity, "Horizontal", "Horizontal velocity knockback to take", 0.0f, 0.0f, 100.0f, 1);
+    public static final NumberSetting<Float> velocityVeritcal = new NumberSetting<>(velocity, "Vertical", "Vertical velocity knockback to take", 0.0f, 0.0f, 100.0f, 1);
 
-    public static final NumberSetting<Float> horizontal = new NumberSetting<>("Horizontal", "Horizontal knockback to take", 0.0f, 0.0f, 100.0f, 1);
-    public static final NumberSetting<Float> vertical = new NumberSetting<>("Vertical", "Vertical knockback to take", 0.0f, 0.0f, 100.0f, 1);
+    public static final Setting<Boolean> explosions = new Setting<>("Explosions", "Allows for modification of explosion velocity", true);
+    public static final NumberSetting<Float> explosionsHorizontal = new NumberSetting<>(explosions, "Horizontal", "Horizontal explosion knockback to take", 0.0f, 0.0f, 100.0f, 1);
+    public static final NumberSetting<Float> explosionsVeritcal = new NumberSetting<>(explosions, "Vertical", "Vertical explosion knockback to take", 0.0f, 0.0f, 100.0f, 1);
 
     public Velocity() {
         this.addSettings(
                 velocity,
-                explosions,
-                horizontal,
-                vertical
+                explosions
         );
     }
 
@@ -39,12 +39,12 @@ public final class Velocity extends Module {
             SPacketEntityVelocity sPacketEntityVelocity = (SPacketEntityVelocity) event.getPacket();
 
             if (sPacketEntityVelocity.getEntityID() == mc.player.entityId) {
-                if (horizontal.getValue() == 0.0f && vertical.getValue() == 0.0f) {
+                if (velocityHorizontal.getValue() == 0.0f && velocityVeritcal.getValue() == 0.0f) {
                     event.setCancelled(true);
                 } else {
-                    sPacketEntityVelocity.motionX *= horizontal.getValue();
-                    sPacketEntityVelocity.motionY *= vertical.getValue();
-                    sPacketEntityVelocity.motionZ *= horizontal.getValue();
+                    sPacketEntityVelocity.motionX *= velocityHorizontal.getValue();
+                    sPacketEntityVelocity.motionY *= velocityVeritcal.getValue();
+                    sPacketEntityVelocity.motionZ *= velocityHorizontal.getValue();
                 }
             }
         }
@@ -52,12 +52,12 @@ public final class Velocity extends Module {
         if (event.getPacket() instanceof SPacketExplosion) {
             SPacketExplosion sPacketExplosion = (SPacketExplosion) event.getPacket();
 
-            if (horizontal.getValue() == 0.0f && vertical.getValue() == 0.0f) {
+            if (explosionsHorizontal.getValue() == 0.0f && explosionsVeritcal.getValue() == 0.0f) {
                 event.setCancelled(true);
             } else {
-                sPacketExplosion.motionX *= horizontal.getValue();
-                sPacketExplosion.motionY *= vertical.getValue();
-                sPacketExplosion.motionZ *= horizontal.getValue();
+                sPacketExplosion.motionX *= velocityHorizontal.getValue();
+                sPacketExplosion.motionY *= velocityVeritcal.getValue();
+                sPacketExplosion.motionZ *= velocityHorizontal.getValue();
             }
         }
     }
