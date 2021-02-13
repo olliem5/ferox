@@ -35,12 +35,12 @@ public final class ModuleManager {
                 new AntiCrystal(),
                 new AutoCrystal(),
                 new AutoTrap(),
-                new Offhand(),
-                new Surround(),
-                new SelfTrap(),
-                new HoleFill(),
                 new AutoWeb(),
+                new HoleFill(),
                 new Ignite(),
+                new Offhand(),
+                new SelfTrap(),
+                new Surround(),
 
                 //Movement
                 new ElytraFlight(),
