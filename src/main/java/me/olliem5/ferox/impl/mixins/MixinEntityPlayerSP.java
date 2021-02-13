@@ -22,7 +22,6 @@ public abstract class MixinEntityPlayerSP {
     @Inject(method = "move", at = @At("HEAD"), cancellable = true)
     public void move(MoverType moverType, double x, double y, double z, CallbackInfo callbackInfo) {
         PlayerMoveEvent playerMoveEvent = new PlayerMoveEvent(moverType, x, y, z);
-
         Ferox.EVENT_BUS.dispatchPaceEvent(playerMoveEvent);
 
         if (playerMoveEvent.isCancelled()) {

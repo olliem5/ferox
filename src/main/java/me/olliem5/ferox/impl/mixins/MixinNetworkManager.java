@@ -19,7 +19,6 @@ public final class MixinNetworkManager {
     @Inject(method = "sendPacket(Lnet/minecraft/network/Packet;)V", at = @At("HEAD"), cancellable = true)
     private void onSendPacket(Packet<?> packet, CallbackInfo callbackInfo) {
         PacketEvent packetEvent = new PacketEvent.Send(packet);
-
         Ferox.EVENT_BUS.dispatchPaceEvent(packetEvent);
 
         if (packetEvent.isCancelled()) {
@@ -30,7 +29,6 @@ public final class MixinNetworkManager {
     @Inject(method = "channelRead0", at = @At("HEAD"), cancellable = true)
     private void onChannelRead(ChannelHandlerContext channelHandlerContext, Packet<?> packet, CallbackInfo callbackInfo) {
         PacketEvent packetEvent = new PacketEvent.Receive(packet);
-
         Ferox.EVENT_BUS.dispatchPaceEvent(packetEvent);
 
         if (packetEvent.isCancelled()) {

@@ -16,6 +16,7 @@ import me.olliem5.ferox.impl.modules.movement.Velocity;
 import me.olliem5.ferox.impl.modules.render.Brightness;
 import me.olliem5.ferox.impl.modules.render.BurrowESP;
 import me.olliem5.ferox.impl.modules.render.HoleESP;
+import me.olliem5.ferox.impl.modules.render.ViewModel;
 import me.olliem5.ferox.impl.modules.ui.ClickGUI;
 import me.olliem5.ferox.impl.modules.ui.Console;
 import me.olliem5.ferox.impl.modules.ui.HUDEditor;
@@ -61,6 +62,7 @@ public final class ModuleManager {
                 new Brightness(),
                 new BurrowESP(),
                 new HoleESP(),
+                new ViewModel(),
 
                 //Ferox
                 new DiscordRPC(),
