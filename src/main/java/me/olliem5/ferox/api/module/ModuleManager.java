@@ -1,7 +1,10 @@
 package me.olliem5.ferox.api.module;
 
 import me.olliem5.ferox.impl.modules.combat.*;
-import me.olliem5.ferox.impl.modules.exploit.*;
+import me.olliem5.ferox.impl.modules.exploit.Blink;
+import me.olliem5.ferox.impl.modules.exploit.Burrow;
+import me.olliem5.ferox.impl.modules.exploit.Timer;
+import me.olliem5.ferox.impl.modules.exploit.XCarry;
 import me.olliem5.ferox.impl.modules.ferox.DiscordRPC;
 import me.olliem5.ferox.impl.modules.ferox.Font;
 import me.olliem5.ferox.impl.modules.ferox.Friends;
@@ -62,6 +65,7 @@ public final class ModuleManager {
                 new BlockHighlight(),
                 new Brightness(),
                 new BurrowESP(),
+                new Conditions(),
                 new CustomFOV(),
                 new HoleESP(),
                 new ViewModel(),
