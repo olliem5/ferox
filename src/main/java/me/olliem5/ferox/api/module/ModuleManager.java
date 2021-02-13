@@ -13,10 +13,7 @@ import me.olliem5.ferox.impl.modules.misc.FastUse;
 import me.olliem5.ferox.impl.modules.movement.ElytraFlight;
 import me.olliem5.ferox.impl.modules.movement.Sprint;
 import me.olliem5.ferox.impl.modules.movement.Velocity;
-import me.olliem5.ferox.impl.modules.render.Brightness;
-import me.olliem5.ferox.impl.modules.render.BurrowESP;
-import me.olliem5.ferox.impl.modules.render.HoleESP;
-import me.olliem5.ferox.impl.modules.render.ViewModel;
+import me.olliem5.ferox.impl.modules.render.*;
 import me.olliem5.ferox.impl.modules.ui.ClickGUI;
 import me.olliem5.ferox.impl.modules.ui.Console;
 import me.olliem5.ferox.impl.modules.ui.HUDEditor;
@@ -61,6 +58,7 @@ public final class ModuleManager {
                 //Render
                 new Brightness(),
                 new BurrowESP(),
+                new CustomFOV(),
                 new HoleESP(),
                 new ViewModel(),
 

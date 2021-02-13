@@ -16,8 +16,8 @@ import net.minecraft.network.play.server.SPacketExplosion;
 
 @FeroxModule(name = "Velocity", description = "Modifies the knockback that you take", category = Category.MOVEMENT)
 public final class Velocity extends Module {
-    public static final Setting<Boolean> velocity = new Setting<>("Velocity", "Modifies player velocity", true);
-    public static final Setting<Boolean> explosions = new Setting<>("Explosions", "Modifies explosion velocity", true);
+    public static final Setting<Boolean> velocity = new Setting<>("Velocity", "Allows modification of player velocity", true);
+    public static final Setting<Boolean> explosions = new Setting<>("Explosions", "Allows modification of explosion velocity", true);
 
     public static final NumberSetting<Float> horizontal = new NumberSetting<>("Horizontal", "Horizontal knockback to take", 0.0f, 0.0f, 100.0f, 1);
     public static final NumberSetting<Float> vertical = new NumberSetting<>("Vertical", "Vertical knockback to take", 0.0f, 0.0f, 100.0f, 1);
