@@ -19,14 +19,14 @@ public final class ViewModel extends Module {
     public static final Setting<Boolean> cancelEating = new Setting<>("Cancel Eating", "Cancels the eating animation", true);
 
     public static final Setting<Boolean> leftHand = new Setting<>("Left Hand", "Changes how the left hand is rendered", true);
-    public static final NumberSetting<Double> leftX = new NumberSetting<>(leftHand, "Left X", "Changes the X value of the left hand", -2.0, 0.0, 2.0, 1);
-    public static final NumberSetting<Double> leftY = new NumberSetting<>(leftHand, "Left Y", "Changes the Y value of the left hand", -2.0, 0.2, 2.0, 1);
-    public static final NumberSetting<Double> leftZ = new NumberSetting<>(leftHand, "Left Z", "Changes the Z value of the left hand", -2.0, -1.2, 2.0, 1);
+    public static final NumberSetting<Double> leftX = new NumberSetting<>(leftHand, "Left X", "Changes the X value of the left hand", -2.0, 0.0, 2.0, 2);
+    public static final NumberSetting<Double> leftY = new NumberSetting<>(leftHand, "Left Y", "Changes the Y value of the left hand", -2.0, 0.2, 2.0, 2);
+    public static final NumberSetting<Double> leftZ = new NumberSetting<>(leftHand, "Left Z", "Changes the Z value of the left hand", -2.0, -1.2, 2.0, 2);
 
     public static final Setting<Boolean> rightHand = new Setting<>("Right Hand", "Changes how the right hand is rendered", true);
-    public static final NumberSetting<Double> rightX = new NumberSetting<>(rightHand, "Right X", "Changes the X value of the right hand", -2.0, 0.0, 2.0, 1);
-    public static final NumberSetting<Double> rightY = new NumberSetting<>(rightHand, "Right Y", "Changes the Y value of the right hand", -2.0, 0.2, 2.0, 1);
-    public static final NumberSetting<Double> rightZ = new NumberSetting<>(rightHand, "Right Z", "Changes the Z value of the right hand", -2.0, -1.2, 2.0, 1);
+    public static final NumberSetting<Double> rightX = new NumberSetting<>(rightHand, "Right X", "Changes the X value of the right hand", -2.0, 0.0, 2.0, 2);
+    public static final NumberSetting<Double> rightY = new NumberSetting<>(rightHand, "Right Y", "Changes the Y value of the right hand", -2.0, 0.2, 2.0, 2);
+    public static final NumberSetting<Double> rightZ = new NumberSetting<>(rightHand, "Right Z", "Changes the Z value of the right hand", -2.0, -1.2, 2.0, 2);
 
     public ViewModel() {
         this.addSettings(

@@ -1,8 +1,7 @@
 package me.olliem5.ferox.api.module;
 
 import me.olliem5.ferox.impl.modules.combat.*;
-import me.olliem5.ferox.impl.modules.exploit.Blink;
-import me.olliem5.ferox.impl.modules.exploit.Burrow;
+import me.olliem5.ferox.impl.modules.exploit.*;
 import me.olliem5.ferox.impl.modules.ferox.DiscordRPC;
 import me.olliem5.ferox.impl.modules.ferox.Font;
 import me.olliem5.ferox.impl.modules.ferox.Friends;
@@ -56,6 +55,8 @@ public final class ModuleManager {
                 //Exploit
                 new Blink(),
                 new Burrow(),
+                new Timer(),
+                new XCarry(),
 
                 //Render
                 new Brightness(),
