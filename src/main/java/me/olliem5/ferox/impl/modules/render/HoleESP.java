@@ -47,6 +47,18 @@ public final class HoleESP extends Module {
         );
     }
 
+    public List<BlockPos> findObsidianHoles() {
+        return BlockUtil.getNearbyBlocks(mc.player, holeRange.getValue(), false).stream()
+                .filter(blockPos -> HoleUtil.isObsidianHole(blockPos))
+                .collect(Collectors.toList());
+    }
+
+    public List<BlockPos> findBedrockHoles() {
+        return BlockUtil.getNearbyBlocks(mc.player, holeRange.getValue(), false).stream()
+                .filter(blockPos -> HoleUtil.isBedrockHole(blockPos))
+                .collect(Collectors.toList());
+    }
+
     @PaceHandler
     public void onRenderWorldLast(RenderWorldLastEvent event) {
         if (nullCheck()) return;
@@ -93,18 +105,6 @@ public final class HoleESP extends Module {
                 }
             }
         }
-    }
-
-    public List<BlockPos> findObsidianHoles() {
-        return BlockUtil.getNearbyBlocks(mc.player, holeRange.getValue(), false).stream()
-                .filter(blockPos -> HoleUtil.isObsidianHole(blockPos))
-                .collect(Collectors.toList());
-    }
-
-    public List<BlockPos> findBedrockHoles() {
-        return BlockUtil.getNearbyBlocks(mc.player, holeRange.getValue(), false).stream()
-                .filter(blockPos -> HoleUtil.isBedrockHole(blockPos))
-                .collect(Collectors.toList());
     }
 
     public enum RenderModes {
