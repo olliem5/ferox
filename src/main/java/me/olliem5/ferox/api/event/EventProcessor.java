@@ -10,10 +10,8 @@ import me.olliem5.pace.annotation.PaceHandler;
 import me.yagel15637.venture.manager.CommandManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.network.play.server.SPacketEntityStatus;
-import net.minecraftforge.client.event.ClientChatEvent;
-import net.minecraftforge.client.event.EntityViewRenderEvent;
-import net.minecraftforge.client.event.RenderGameOverlayEvent;
-import net.minecraftforge.client.event.RenderWorldLastEvent;
+import net.minecraftforge.client.event.*;
+import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
@@ -69,6 +67,16 @@ public final class EventProcessor implements Minecraft {
 
     @SubscribeEvent
     public void onFOVModify(EntityViewRenderEvent.FOVModifier event) {
+        Ferox.EVENT_BUS.dispatchEvent(event);
+    }
+
+    @SubscribeEvent
+    public void onUseItem(LivingEntityUseItemEvent event) {
+        Ferox.EVENT_BUS.dispatchEvent(event);
+    }
+
+    @SubscribeEvent
+    public void onInputUpdate(InputUpdateEvent event) {
         Ferox.EVENT_BUS.dispatchEvent(event);
     }
 
