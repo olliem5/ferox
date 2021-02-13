@@ -7,7 +7,7 @@ import net.minecraft.util.EnumHandSide;
  * @author olliem5
  */
 
-public class TransformSideFirstPersonEvent extends Event {
+public final class TransformSideFirstPersonEvent extends Event {
     private final EnumHandSide enumHandSide;
 
     public TransformSideFirstPersonEvent(EnumHandSide enumHandSide) {

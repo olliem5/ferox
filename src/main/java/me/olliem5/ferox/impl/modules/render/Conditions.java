@@ -11,7 +11,7 @@ import me.olliem5.ferox.api.setting.Setting;
  */
 
 @FeroxModule(name = "Conditions", description = "Changes the world time and weather", category = Category.RENDER)
-public class Conditions extends Module {
+public final class Conditions extends Module {
     public static final Setting<WeatherModes> weatherMode = new Setting<>("Weather", "The world's weather", WeatherModes.Clear);
 
     public static final Setting<TimeModes> timeMode = new Setting<>("Time", "The world's time", TimeModes.Midnight);
