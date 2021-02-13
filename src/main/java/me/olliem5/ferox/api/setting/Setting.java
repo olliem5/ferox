@@ -18,7 +18,7 @@ public class Setting<T> {
 	private boolean isOpened;
 
 	private boolean rgb;
-	private float alpha = 0.2f;
+	private float alpha;
 
 	private final ArrayList<Setting> subSettings = new ArrayList<>();
 

@@ -8,6 +8,7 @@
     "MixinGuiMainMenu",
     "MixinNetworkManager",
     "MixinItemRenderer",
-    "MixinMovementInputFromOptions"
+    "MixinMovementInputFromOptions",
+    "MixinRenderGlobal"
   ]
 }

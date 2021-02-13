@@ -59,6 +59,7 @@ public final class ModuleManager {
                 new XCarry(),
 
                 //Render
+                new BlockHighlight(),
                 new Brightness(),
                 new BurrowESP(),
                 new CustomFOV(),

@@ -26,16 +26,16 @@ public final class BurrowESP extends Module {
     public static final Setting<Boolean> renderOwn = new Setting<>("Render Own", "Renders your own burrow block", false);
     public static final NumberSetting<Integer> range = new NumberSetting<>("Range", "The range to search for burrow blocks in", 1, 5, 10, 0);
 
-    public static final Setting<Boolean> renderPlace = new Setting<>("Render", "Allows the block placements to be rendered", true);
-    public static final Setting<RenderModes> renderMode = new Setting<>(renderPlace, "Render Mode", "The type of box to render", RenderModes.Full);
-    public static final NumberSetting<Double> outlineWidth = new NumberSetting<>(renderPlace, "Outline Width", "The width of the outline", 1.0, 2.0, 5.0, 1);
-    public static final Setting<Color> renderColour = new Setting<>(renderPlace, "Render Colour", "The colour for the block placements", new Color(91, 79, 208, 220));
+    public static final Setting<Boolean> renderBlock = new Setting<>("Render", "Allows the burrow blocks to be rendered", true);
+    public static final Setting<RenderModes> renderMode = new Setting<>(renderBlock, "Render Mode", "The type of box to render", RenderModes.Full);
+    public static final NumberSetting<Double> outlineWidth = new NumberSetting<>(renderBlock, "Outline Width", "The width of the outline", 1.0, 2.0, 5.0, 1);
+    public static final Setting<Color> renderColour = new Setting<>(renderBlock, "Render Colour", "The colour for the burrow blocks", new Color(91, 79, 208, 220));
 
     public BurrowESP() {
         this.addSettings(
                 renderOwn,
                 range,
-                renderPlace
+                renderBlock
         );
     }
 
@@ -83,7 +83,7 @@ public final class BurrowESP extends Module {
 
         GL11.glLineWidth(outlineWidth.getValue().floatValue());
 
-        if (renderPlace.getValue()) {
+        if (renderBlock.getValue()) {
             for (BlockPos burrowBlock : burrowBlocksList) {
                 if (burrowBlock != null) {
                     switch (renderMode.getValue()) {
