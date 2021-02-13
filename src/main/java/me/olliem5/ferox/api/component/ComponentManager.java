@@ -1,5 +1,6 @@
 package me.olliem5.ferox.api.component;
 
+import me.olliem5.ferox.api.module.ModuleManager;
 import me.olliem5.ferox.api.traits.Minecraft;
 import me.olliem5.ferox.impl.components.*;
 import me.olliem5.pace.annotation.PaceHandler;
@@ -36,7 +37,7 @@ public final class ComponentManager implements Minecraft {
         if (mc.world == null || mc.player == null) return;
 
         for (Component hudComponent : components) {
-            if (hudComponent.isVisible()) {
+            if (hudComponent.isVisible() && ModuleManager.getModuleByName("HUD").isEnabled()) {
                 hudComponent.render();
             }
         }

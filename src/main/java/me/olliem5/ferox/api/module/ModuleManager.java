@@ -2,10 +2,7 @@ package me.olliem5.ferox.api.module;
 
 import me.olliem5.ferox.impl.modules.combat.*;
 import me.olliem5.ferox.impl.modules.exploit.*;
-import me.olliem5.ferox.impl.modules.ferox.DiscordRPC;
-import me.olliem5.ferox.impl.modules.ferox.Font;
-import me.olliem5.ferox.impl.modules.ferox.Friends;
-import me.olliem5.ferox.impl.modules.ferox.Notifications;
+import me.olliem5.ferox.impl.modules.ferox.*;
 import me.olliem5.ferox.impl.modules.misc.ChatSuffix;
 import me.olliem5.ferox.impl.modules.misc.FakePlayer;
 import me.olliem5.ferox.impl.modules.misc.FastUse;
@@ -55,6 +52,7 @@ public final class ModuleManager {
                 //Exploit
                 new Blink(),
                 new Burrow(),
+                new Criticals(),
                 new Reach(),
                 new Timer(),
                 new XCarry(),
@@ -72,6 +70,7 @@ public final class ModuleManager {
                 new DiscordRPC(),
                 new Font(),
                 new Friends(),
+                new HUD(),
                 new Notifications(),
 
                 //Interface
