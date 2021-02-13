@@ -9,6 +9,8 @@
     "MixinNetworkManager",
     "MixinItemRenderer",
     "MixinMovementInputFromOptions",
-    "MixinRenderGlobal"
+    "MixinRenderGlobal",
+    "MixinBlockSoulSand",
+    "MixinPlayerControllerMP"
   ]
 }
