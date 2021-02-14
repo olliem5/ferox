@@ -1,5 +1,6 @@
 package me.olliem5.ferox.impl.components;
 
+import com.mojang.realmsclient.gui.ChatFormatting;
 import me.olliem5.ferox.Ferox;
 import me.olliem5.ferox.api.component.Component;
 import me.olliem5.ferox.api.component.FeroxComponent;
@@ -26,10 +27,10 @@ public final class WelcomerComponent extends Component {
     public void render() {
         switch (welcomerMode.getValue()) {
             case Welcome:
-                drawString("Welcome, " + mc.player.getName());
+                drawString(ChatFormatting.WHITE + "Welcome, " + ChatFormatting.RESET + mc.player.getName());
                 break;
             case Client:
-                drawString("Welcome to " + Ferox.NAME_VERSION + ", " + mc.player.getName());
+                drawString(ChatFormatting.WHITE + "Welcome to " + ChatFormatting.RESET + Ferox.MOD_NAME + ChatFormatting.WHITE + " " + Ferox.MOD_VERSION + ", " + ChatFormatting.RESET + mc.player.getName());
                 break;
         }
     }

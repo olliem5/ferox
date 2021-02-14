@@ -111,6 +111,14 @@ public final class AutoCreeper extends Module {
         }
     }
 
+    public String getArraylistInfo() {
+        if (target != null) {
+            return target.getName();
+        }
+
+        return "";
+    }
+
     public enum AttackModes {
         Hole,
         Always

@@ -160,6 +160,14 @@ public final class AutoTrap extends Module {
         }
     }
 
+    public String getArraylistInfo() {
+        if (trapTarget != null) {
+            return trapTarget.getName();
+        }
+
+        return "";
+    }
+
     private final List<Vec3d> fullTrap = new ArrayList<>(Arrays.asList(
             new Vec3d(0, -1, -1),
             new Vec3d(1, -1, 0),

@@ -71,6 +71,7 @@ public final class ModuleManager {
                 new ViewModel(),
 
                 //Ferox
+                new Colours(),
                 new DiscordRPC(),
                 new Font(),
                 new Friends(),

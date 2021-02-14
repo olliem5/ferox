@@ -1,5 +1,6 @@
 package me.olliem5.ferox.impl.components;
 
+import com.mojang.realmsclient.gui.ChatFormatting;
 import me.olliem5.ferox.Ferox;
 import me.olliem5.ferox.api.component.Component;
 import me.olliem5.ferox.api.component.FeroxComponent;
@@ -29,7 +30,7 @@ public final class WatermarkComponent extends Component {
                 drawString(Ferox.MOD_NAME);
                 break;
             case NameVersion:
-                drawString(Ferox.NAME_VERSION);
+                drawString(Ferox.MOD_NAME + " " + ChatFormatting.WHITE + Ferox.MOD_VERSION);
                 break;
         }
     }

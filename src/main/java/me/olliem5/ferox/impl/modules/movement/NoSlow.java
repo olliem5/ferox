@@ -103,6 +103,10 @@ public final class NoSlow extends Module {
         }
     }
 
+    public String getArraylistInfo() {
+        return noSlowMode.getValue().toString();
+    }
+
     public enum NoSlowModes {
         Normal,
         Bypass

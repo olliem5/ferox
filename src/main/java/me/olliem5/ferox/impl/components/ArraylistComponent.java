@@ -1,10 +1,12 @@
 package me.olliem5.ferox.impl.components;
 
+import com.mojang.realmsclient.gui.ChatFormatting;
 import me.olliem5.ferox.api.component.Component;
 import me.olliem5.ferox.api.component.FeroxComponent;
 import me.olliem5.ferox.api.module.Module;
 import me.olliem5.ferox.api.module.ModuleManager;
 import me.olliem5.ferox.api.util.render.font.FontUtil;
+import me.olliem5.ferox.impl.modules.ferox.Colours;
 
 import java.util.Comparator;
 
@@ -43,10 +45,10 @@ public final class ArraylistComponent extends Component {
 
         ModuleManager.getModules().stream()
                 .filter(Module::isEnabled)
-                .sorted(Comparator.comparing(module -> FontUtil.getStringWidth(module.getName()) * (-1)))
+                .sorted(Comparator.comparing(module -> FontUtil.getStringWidth(module.getName() + " " + module.getArraylistInfo()) * (-1)))
                 .forEach(module -> {
 
-                    FontUtil.drawString(module.getName(), this.getPosX(), this.getPosY() + (10 * boost), -1);
+                    FontUtil.drawText(module.getName() + " " + ChatFormatting.WHITE + module.getArraylistInfo(), this.getPosX(), this.getPosY() + (10 * boost), Colours.clientColourPicker.getValue().getRGB());
 
                     boost++;
                 });
@@ -57,10 +59,10 @@ public final class ArraylistComponent extends Component {
 
         ModuleManager.getModules().stream()
                 .filter(Module::isEnabled)
-                .sorted(Comparator.comparing(module -> FontUtil.getStringWidth(module.getName())))
+                .sorted(Comparator.comparing(module -> FontUtil.getStringWidth(module.getName() + " " + module.getArraylistInfo())))
                 .forEach(module -> {
 
-                    FontUtil.drawString(module.getName(), this.getPosX(), this.getPosY() + (10 * boost), -1);
+                    FontUtil.drawText(module.getName() + " " + ChatFormatting.WHITE + module.getArraylistInfo(), this.getPosX(), this.getPosY() + (10 * boost), Colours.clientColourPicker.getValue().getRGB());
 
                     boost++;
                 });
@@ -71,10 +73,10 @@ public final class ArraylistComponent extends Component {
 
         ModuleManager.getModules().stream()
                 .filter(Module::isEnabled)
-                .sorted(Comparator.comparing(module -> FontUtil.getStringWidth(module.getName()) * (-1)))
+                .sorted(Comparator.comparing(module -> FontUtil.getStringWidth(module.getName() + " " + module.getArraylistInfo()) * (-1)))
                 .forEach(module -> {
 
-                    FontUtil.drawString(module.getName(), this.getPosX() - 2 - FontUtil.getStringWidth(module.getName()), this.getPosY() + (10 * boost), -1);
+                    FontUtil.drawText(module.getName() + " " + ChatFormatting.WHITE + module.getArraylistInfo(), this.getPosX() - 2 - FontUtil.getStringWidth(module.getName() + " " + module.getArraylistInfo()), this.getPosY() + (10 * boost), Colours.clientColourPicker.getValue().getRGB());
 
                     boost++;
                 });
@@ -85,10 +87,10 @@ public final class ArraylistComponent extends Component {
 
         ModuleManager.getModules().stream()
                 .filter(Module::isEnabled)
-                .sorted(Comparator.comparing(module -> FontUtil.getStringWidth(module.getName())))
+                .sorted(Comparator.comparing(module -> FontUtil.getStringWidth(module.getName() + " " + module.getArraylistInfo())))
                 .forEach(module -> {
 
-                    FontUtil.drawString(module.getName(), this.getPosX() - 2 - FontUtil.getStringWidth(module.getName()), this.getPosY() + (10 * boost), -1);
+                    FontUtil.drawText(module.getName() + " " + ChatFormatting.WHITE + module.getArraylistInfo(), this.getPosX() - 2 - FontUtil.getStringWidth(module.getName() + " " + module.getArraylistInfo()), this.getPosY() + (10 * boost), Colours.clientColourPicker.getValue().getRGB());
 
                     boost++;
                 });

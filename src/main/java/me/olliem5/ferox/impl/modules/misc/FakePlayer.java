@@ -72,6 +72,10 @@ public final class FakePlayer extends Module {
         }
     }
 
+    public String getArraylistInfo() {
+        return nameMode.getValue().toString() + ", " + health.getValue().toString();
+    }
+
     public enum NameModes {
         Ollie,
         Draily,

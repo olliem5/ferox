@@ -169,6 +169,10 @@ public final class Surround extends Module {
         }
     }
 
+    public String getArraylistInfo() {
+        return placeMode.getValue().toString();
+    }
+
     private final List<Vec3d> standardSurround = new ArrayList<>(Arrays.asList(
             new Vec3d(0, -1, 0),
             new Vec3d(1, 0, 0),

@@ -131,6 +131,14 @@ public final class Aura extends Module {
         }
     }
 
+    public String getArraylistInfo() {
+        if (target != null) {
+            return target.getName();
+        }
+
+        return "";
+    }
+
     public enum AttackModes {
         Normal,
         Packet

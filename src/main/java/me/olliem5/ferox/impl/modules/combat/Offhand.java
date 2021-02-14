@@ -112,6 +112,10 @@ public final class Offhand extends Module {
         }
     }
 
+    public String getArraylistInfo() {
+        return offhandMode.getValue().toString() + ", " + switchHealth.getValue();
+    }
+
     public enum OffhandModes {
         Crystal,
         Gapple,

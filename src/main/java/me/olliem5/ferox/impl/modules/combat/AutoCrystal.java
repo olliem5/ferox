@@ -433,6 +433,14 @@ public final class AutoCrystal extends Module {
         }
     }
 
+    public String getArraylistInfo() {
+        if (playerTarget != null) {
+            return playerTarget.getName();
+        }
+
+        return "";
+    }
+
     public enum BreakModes {
         Swing,
         Packet

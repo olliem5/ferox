@@ -159,6 +159,10 @@ public abstract class Module implements Minecraft {
         return enabled;
     }
 
+    public String getArraylistInfo() {
+        return "";
+    }
+
     public void onEnable() {}
 
     public void onDisable() {}

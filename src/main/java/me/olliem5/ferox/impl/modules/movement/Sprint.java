@@ -69,6 +69,10 @@ public final class Sprint extends Module {
         return false;
     }
 
+    public String getArraylistInfo() {
+        return sprintMode.getValue().toString();
+    }
+
     public enum SprintModes {
         Legit,
         Rage

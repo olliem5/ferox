@@ -32,6 +32,10 @@ public final class Font extends Module {
         this.setEnabled(true);
     }
 
+    public String getArraylistInfo() {
+        return font.getValue().toString();
+    }
+
     public enum FontModes {
         Ubuntu,
         Lato,

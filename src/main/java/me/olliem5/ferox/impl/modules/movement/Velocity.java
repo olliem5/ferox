@@ -61,4 +61,8 @@ public final class Velocity extends Module {
             }
         }
     }
+
+    public String getArraylistInfo() {
+        return "H% " + velocityHorizontal.getValue().toString() + " - " + explosionsHorizontal.getValue().toString() + ", " + "V% " + velocityVeritcal.getValue().toString() + " - " + explosionsVeritcal.getValue().toString();
+    }
 }

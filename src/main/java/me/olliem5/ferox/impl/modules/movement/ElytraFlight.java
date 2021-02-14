@@ -126,6 +126,10 @@ public final class ElytraFlight extends Module {
         }
     }
 
+    public String getArraylistInfo() {
+        return flyMode.getValue().toString();
+    }
+
     public enum FlyModes {
         Control,
         Boost,

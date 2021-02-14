@@ -129,6 +129,14 @@ public final class AutoWeb extends Module {
         }
     }
 
+    public String getArraylistInfo() {
+        if (webTarget != null) {
+            return webTarget.getName();
+        }
+
+        return "";
+    }
+
     public enum TargetModes {
         Self,
         Enemy

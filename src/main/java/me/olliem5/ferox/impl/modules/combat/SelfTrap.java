@@ -150,6 +150,10 @@ public final class SelfTrap extends Module {
         }
     }
 
+    public String getArraylistInfo() {
+        return placeMode.getValue().toString();
+    }
+
     private final List<Vec3d> topBlockTrap = new ArrayList<>(Arrays.asList(
             new Vec3d(0, 2, 0)
     ));

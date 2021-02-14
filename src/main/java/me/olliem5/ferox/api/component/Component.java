@@ -3,6 +3,7 @@ package me.olliem5.ferox.api.component;
 import me.olliem5.ferox.api.setting.Setting;
 import me.olliem5.ferox.api.traits.Minecraft;
 import me.olliem5.ferox.api.util.render.font.FontUtil;
+import me.olliem5.ferox.impl.modules.ferox.Colours;
 import me.olliem5.ferox.impl.modules.ui.HUDEditor;
 import net.minecraft.client.gui.ScaledResolution;
 
@@ -45,7 +46,7 @@ public abstract class Component implements Minecraft {
     public abstract void render();
 
     public void drawString(String text) {
-        FontUtil.drawText(text, posX, posY, -1);
+        FontUtil.drawText(text, posX, posY, Colours.clientColourPicker.getValue().getRGB());
     }
 
     public boolean isMouseOnComponent(int x, int y) {

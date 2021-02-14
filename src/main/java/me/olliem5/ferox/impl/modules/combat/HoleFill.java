@@ -191,6 +191,10 @@ public final class HoleFill extends Module {
         }
     }
 
+    public String getArraylistInfo() {
+        return blockMode.getValue().toString();
+    }
+
     public enum BlockModes {
         Obsidian,
         EnderChest,

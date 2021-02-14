@@ -65,6 +65,10 @@ public final class Conditions extends Module {
         }
     }
 
+    public String getArraylistInfo() {
+        return weatherMode.getValue().toString() + ", " + timeMode.getValue().toString();
+    }
+
     public enum WeatherModes {
         Clear,
         Rain,

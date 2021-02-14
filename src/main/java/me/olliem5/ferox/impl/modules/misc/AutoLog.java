@@ -46,6 +46,10 @@ public final class AutoLog extends Module {
         }
     }
 
+    public String getArraylistInfo() {
+        return logMode.getValue().toString() + ", " + logHealth.getValue().toString();
+    }
+
     public enum LogModes {
         Disconnect,
         Kick

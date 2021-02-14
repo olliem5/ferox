@@ -5,6 +5,7 @@ import me.olliem5.ferox.api.module.FeroxModule;
 import me.olliem5.ferox.api.module.Module;
 import me.olliem5.ferox.api.setting.Setting;
 import me.olliem5.ferox.api.util.render.font.FontUtil;
+import me.olliem5.ferox.impl.modules.ferox.Colours;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderHelper;
@@ -32,7 +33,7 @@ public final class ItemTooltips extends Module {
         GlStateManager.disableLighting();
         GlStateManager.disableDepth();
 
-        Gui.drawRect(x + 8, y - 21, x + 158, y - 6, new Color(100, 20, 20, 225).getRGB());
+        Gui.drawRect(x + 8, y - 21, x + 158, y - 6, Colours.clientColourPicker.getValue().getRGB());
         Gui.drawRect(x + 8, y - 6, x + 158, y + 48, new Color(0, 0, 0, 225).getRGB());
 
         FontUtil.drawString(itemStack.getDisplayName(), x + 10, y - 18, -1);
