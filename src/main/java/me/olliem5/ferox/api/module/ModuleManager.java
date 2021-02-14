@@ -64,6 +64,7 @@ public final class ModuleManager {
                 new Conditions(),
                 new CustomFOV(),
                 new HoleESP(),
+                new ItemTooltips(),
                 new ViewModel(),
 
                 //Ferox
