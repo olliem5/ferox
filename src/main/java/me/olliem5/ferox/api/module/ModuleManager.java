@@ -3,6 +3,7 @@ package me.olliem5.ferox.api.module;
 import me.olliem5.ferox.impl.modules.combat.*;
 import me.olliem5.ferox.impl.modules.exploit.*;
 import me.olliem5.ferox.impl.modules.ferox.*;
+import me.olliem5.ferox.impl.modules.misc.AutoLog;
 import me.olliem5.ferox.impl.modules.misc.ChatSuffix;
 import me.olliem5.ferox.impl.modules.misc.FakePlayer;
 import me.olliem5.ferox.impl.modules.misc.FastUse;
@@ -46,6 +47,7 @@ public final class ModuleManager {
                 new Velocity(),
 
                 //Miscellaneous
+                new AutoLog(),
                 new ChatSuffix(),
                 new FakePlayer(),
                 new FastUse(),
