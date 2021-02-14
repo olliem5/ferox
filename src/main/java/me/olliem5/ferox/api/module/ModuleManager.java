@@ -29,12 +29,12 @@ public final class ModuleManager {
         modules.addAll(Arrays.asList(
                 //Combat
                 new AntiCrystal(),
+                new Aura(),
                 new AutoCreeper(),
                 new AutoCrystal(),
                 new AutoTrap(),
                 new AutoWeb(),
                 new HoleFill(),
-                new Ignite(),
                 new Offhand(),
                 new SelfTrap(),
                 new Surround(),

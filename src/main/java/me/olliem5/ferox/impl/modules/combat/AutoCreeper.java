@@ -81,6 +81,7 @@ public final class AutoCreeper extends Module {
                 .filter(target -> HoleUtil.isPlayerInHole(target) || attackMode.getValue() == AttackModes.Always)
                 .forEach(target -> {
                     placePosition = new BlockPos(target.posX, target.posY -1, target.posZ);
+
                     if (mc.player.getHeldItemMainhand().getItem() == Items.SPAWN_EGG || mc.player.getHeldItemOffhand().getItem() == Items.SPAWN_EGG) {
                         mc.player.connection.sendPacket(new CPacketPlayerTryUseItemOnBlock(placePosition, EnumFacing.UP, offhand ? EnumHand.OFF_HAND : EnumHand.MAIN_HAND, 0, 0, 0));
                     }
