@@ -3,6 +3,7 @@ package me.olliem5.ferox.impl.modules.render;
 import me.olliem5.ferox.api.module.Category;
 import me.olliem5.ferox.api.module.FeroxModule;
 import me.olliem5.ferox.api.module.Module;
+import me.olliem5.ferox.api.setting.Setting;
 import me.olliem5.ferox.api.util.render.font.FontUtil;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.renderer.GlStateManager;
@@ -17,6 +18,16 @@ import java.awt.*;
 
 @FeroxModule(name = "ItemTooltips", description = "Shows handy tooltips for shulker boxes and maps", category = Category.RENDER)
 public final class ItemTooltips extends Module {
+    public static final Setting<Boolean> shulkers = new Setting<>("Shulkers", "Allows for the shulker box tooltip to render", true);
+    public static final Setting<Boolean> maps = new Setting<>("Maps", "Allows for the map tooltip to render", true);
+
+    public ItemTooltips() {
+        this.addSettings(
+                shulkers,
+                maps
+        );
+    }
+
     public static void renderShulkerTooltip(ItemStack itemStack, int x, int y) {
         GlStateManager.disableLighting();
         GlStateManager.disableDepth();

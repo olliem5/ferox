@@ -149,7 +149,7 @@ public final class AutoCrystal extends Module {
 
     public static final NumberSetting<Double> outlineWidth = new NumberSetting<>(crystalRender, "Outline Width", "The width of the outline", 1.0, 2.0, 5.0, 1);
 
-    public static final Setting<Color> renderColour = new Setting<>(crystalRender, "Render Colour", "The colour for the block placements", new Color(231, 15, 101, 180));
+    public static final Setting<Color> renderColour = new Setting<>(crystalRender, "Render Colour", "The colour for the crystal placements", new Color(231, 15, 101, 180));
 
     public AutoCrystal() {
         this.addSettings(

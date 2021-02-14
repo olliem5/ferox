@@ -19,7 +19,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public final class MixinGuiScreen {
     @Inject(method = "renderToolTip", at = @At("HEAD"), cancellable = true)
     public void renderToolTip(ItemStack itemStack, int x, int y, CallbackInfo callbackInfo) {
-        if (ModuleManager.getModuleByName("ItemTooltips").isEnabled() && itemStack.getItem() instanceof ItemShulkerBox) {
+        if (ModuleManager.getModuleByName("ItemTooltips").isEnabled() && ItemTooltips.shulkers.getValue() && itemStack.getItem() instanceof ItemShulkerBox) {
             if (!itemStack.isEmpty() && itemStack.getTagCompound() != null && itemStack.getTagCompound().hasKey("BlockEntityTag", 10)) {
                 if (itemStack.getTagCompound().getCompoundTag("BlockEntityTag").hasKey("Items", 9)) {
                     callbackInfo.cancel();
@@ -28,10 +28,10 @@ public final class MixinGuiScreen {
             }
         }
 
-        if (ModuleManager.getModuleByName("ItemTooltips").isEnabled() && itemStack.getItem() instanceof ItemMap) {
+        if (ModuleManager.getModuleByName("ItemTooltips").isEnabled() && ItemTooltips.maps.getValue() && itemStack.getItem() instanceof ItemMap) {
             if (!itemStack.isEmpty) {
-                //callbackInfo.cancel();
-                //Render Map
+//                callbackInfo.cancel();
+//                ItemTooltips.renderMapTooltip(itemStack, x, y);
             }
         }
     }

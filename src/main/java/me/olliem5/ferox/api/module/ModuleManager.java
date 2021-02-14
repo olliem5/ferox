@@ -29,6 +29,7 @@ public final class ModuleManager {
         modules.addAll(Arrays.asList(
                 //Combat
                 new AntiCrystal(),
+                new AutoCreeper(),
                 new AutoCrystal(),
                 new AutoTrap(),
                 new AutoWeb(),
