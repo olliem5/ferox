@@ -15,6 +15,7 @@ import me.olliem5.ferox.api.util.render.draw.DrawUtil;
 import me.olliem5.ferox.api.util.render.font.FontUtil;
 import me.olliem5.ferox.api.util.render.gui.GuiUtil;
 import me.olliem5.ferox.impl.modules.ferox.Colours;
+import me.olliem5.ferox.impl.modules.ui.ClickGUI;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.ScaledResolution;
 import org.lwjgl.input.Keyboard;
@@ -67,10 +68,18 @@ public final class DefaultTheme extends Theme {
 					module.setOpened(!module.isOpened());
 				}
 
-				FontUtil.drawText(module.getName(), x + 3, y + height + 4 + (boost * height), -1);
+				if (ClickGUI.nameMode.getValue() == ClickGUI.NameModes.Shrink) {
+					FontUtil.drawText(module.getName(), x + 3, y + height + 4 + (boost * height), -1);
+				} else {
+					FontUtil.drawText(module.getName(), x + 2, y + height + 4 + (boost * height), -1);
+				}
 
 				if (module.hasSettings()) {
-					FontUtil.drawText("...", (x + width) - 11, y + height + 3 + (boost * height), -1);
+					if (ClickGUI.indicatorMode.getValue() == ClickGUI.IndicatorModes.Shrink) {
+						FontUtil.drawText("...", (x + width) - 11, y + height + 3 + (boost * height), -1);
+					} else {
+						FontUtil.drawText("...", (x + width) - 10, y + height + 3 + (boost * height), -1);
+					}
 				}
 
 				drawModuleBottomLeftText(module);
@@ -118,10 +127,18 @@ public final class DefaultTheme extends Theme {
 					component.setOpened(!component.isOpened());
 				}
 
-				FontUtil.drawText(component.getName(), x + 3, y + height + 4 + (boost * height), -1);
+				if (ClickGUI.nameMode.getValue() == ClickGUI.NameModes.Shrink) {
+					FontUtil.drawText(component.getName(), x + 3, y + height + 4 + (boost * height), -1);
+				} else {
+					FontUtil.drawText(component.getName(), x + 2, y + height + 4 + (boost * height), -1);
+				}
 
 				if (component.hasSettings()) {
-					FontUtil.drawText("...", (x + width) - 11, y + height + 3 + (boost * height), -1);
+					if (ClickGUI.indicatorMode.getValue() == ClickGUI.IndicatorModes.Shrink) {
+						FontUtil.drawText("...", (x + width) - 11, y + height + 3 + (boost * height), -1);
+					} else {
+						FontUtil.drawText("...", (x + width) - 10, y + height + 3 + (boost * height), -1);
+					}
 				}
 
 				drawComponentBottomLeftText(component);
@@ -323,8 +340,17 @@ public final class DefaultTheme extends Theme {
 
 		if (setting.hasSubSettings()) {
 			if (GuiUtil.mouseOver(x, y + height + 1 + (boost * height), (x + width), y + height * 2 + (boost * height))) {
-				FontUtil.drawText(setting.getName(), x + 5, (y + height) + 3 + (boost * height), -1);
-				FontUtil.drawText("...", (x + width) - 11, y + height + 3 + (boost * height), -1);
+				if (ClickGUI.nameMode.getValue() == ClickGUI.NameModes.Shrink) {
+					FontUtil.drawText(setting.getName(), x + 5, (y + height) + 3 + (boost * height), -1);
+				} else {
+					FontUtil.drawText(setting.getName(), x + 4, (y + height) + 3 + (boost * height), -1);
+				}
+
+				if (ClickGUI.indicatorMode.getValue() == ClickGUI.IndicatorModes.Shrink) {
+					FontUtil.drawText("...", (x + width) - 11, y + height + 3 + (boost * height), -1);
+				} else {
+					FontUtil.drawText("...", (x + width) - 10, y + height + 3 + (boost * height), -1);
+				}
 			} else {
 				FontUtil.drawText(setting.getName(), x + 4, (y + height) + 3 + (boost * height), -1);
 				FontUtil.drawText("...", (x + width) - 10, y + height + 3 + (boost * height), -1);
@@ -375,8 +401,17 @@ public final class DefaultTheme extends Theme {
 
 		if (setting.hasSubSettings()) {
 			if (GuiUtil.mouseOver(x, y + height + 1 + (boost * height), (x + width), y + height * 2 + (boost * height))) {
-				FontUtil.drawText(setting.getName() + ChatFormatting.GRAY + " " + setting.getValue().toString().toUpperCase(), x + 5, (y + height) + 3 + (boost * height), -1);
-				FontUtil.drawText("...", (x + width) - 11, y + height + 3 + (boost * height), -1);
+				if (ClickGUI.nameMode.getValue() == ClickGUI.NameModes.Shrink) {
+					FontUtil.drawText(setting.getName() + ChatFormatting.GRAY + " " + setting.getValue().toString().toUpperCase(), x + 4, (y + height) + 3 + (boost * height), -1);
+				} else {
+					FontUtil.drawText(setting.getName() + ChatFormatting.GRAY + " " + setting.getValue().toString().toUpperCase(), x + 5, (y + height) + 3 + (boost * height), -1);
+				}
+
+				if (ClickGUI.indicatorMode.getValue() == ClickGUI.IndicatorModes.Shrink) {
+					FontUtil.drawText("...", (x + width) - 11, y + height + 3 + (boost * height), -1);
+				} else {
+					FontUtil.drawText("...", (x + width) - 10, y + height + 3 + (boost * height), -1);
+				}
 			} else {
 				FontUtil.drawText(setting.getName() + ChatFormatting.GRAY + " " + setting.getValue().toString().toUpperCase(), x + 4, (y + height) + 3 + (boost * height), -1);
 				FontUtil.drawText("...", (x + width) - 10, y + height + 3 + (boost * height), -1);
@@ -427,8 +462,17 @@ public final class DefaultTheme extends Theme {
 
 		if (setting.hasSubSettings()) {
 			if (GuiUtil.mouseOver(x, y + height + 1 + (boost * height), (x + width), y + height * 2 + (boost * height))) {
-				FontUtil.drawText(setting.getName() + ChatFormatting.GRAY + " " + setting.getValue(), x + 5, (y + height) + 3 + (boost * height), -1);
-				FontUtil.drawText("...", (x + width) - 11, y + height + 3 + (boost * height), -1);
+				if (ClickGUI.nameMode.getValue() == ClickGUI.NameModes.Shrink) {
+					FontUtil.drawText(setting.getName() + ChatFormatting.GRAY + " " + setting.getValue(), x + 4, (y + height) + 3 + (boost * height), -1);
+				} else {
+					FontUtil.drawText(setting.getName() + ChatFormatting.GRAY + " " + setting.getValue(), x + 5, (y + height) + 3 + (boost * height), -1);
+				}
+
+				if (ClickGUI.indicatorMode.getValue() == ClickGUI.IndicatorModes.Shrink) {
+					FontUtil.drawText("...", (x + width) - 11, y + height + 3 + (boost * height), -1);
+				} else {
+					FontUtil.drawText("...", (x + width) - 10, y + height + 3 + (boost * height), -1);
+				}
 			} else {
 				FontUtil.drawText(setting.getName() + ChatFormatting.GRAY + " " + setting.getValue(), x + 4, (y + height) + 3 + (boost * height), -1);
 				FontUtil.drawText("...", (x + width) - 10, y + height + 3 + (boost * height), -1);
@@ -487,8 +531,17 @@ public final class DefaultTheme extends Theme {
 
 		if (setting.hasSubSettings()) {
 			if (GuiUtil.mouseOver(x, y + height + 1 + (boost * height), (x + width), y + height * 2 + (boost * height))) {
-				FontUtil.drawText(setting.getName() + ChatFormatting.GRAY + " " + setting.getValue(), x + 5, (y + height) + 3 + (boost * height), -1);
-				FontUtil.drawText("...", (x + width) - 11, y + height + 3 + (boost * height), -1);
+				if (ClickGUI.nameMode.getValue() == ClickGUI.NameModes.Shrink) {
+					FontUtil.drawText(setting.getName() + ChatFormatting.GRAY + " " + setting.getValue(), x + 4, (y + height) + 3 + (boost * height), -1);
+				} else {
+					FontUtil.drawText(setting.getName() + ChatFormatting.GRAY + " " + setting.getValue(), x + 5, (y + height) + 3 + (boost * height), -1);
+				}
+
+				if (ClickGUI.indicatorMode.getValue() == ClickGUI.IndicatorModes.Shrink) {
+					FontUtil.drawText("...", (x + width) - 11, y + height + 3 + (boost * height), -1);
+				} else {
+					FontUtil.drawText("...", (x + width) - 10, y + height + 3 + (boost * height), -1);
+				}
 			} else {
 				FontUtil.drawText(setting.getName() + ChatFormatting.GRAY + " " + setting.getValue(), x + 4, (y + height) + 3 + (boost * height), -1);
 				FontUtil.drawText("...", (x + width) - 10, y + height + 3 + (boost * height), -1);
@@ -547,8 +600,17 @@ public final class DefaultTheme extends Theme {
 
 		if (setting.hasSubSettings()) {
 			if (GuiUtil.mouseOver(x, y + height + 1 + (boost * height), (x + width), y + height * 2 + (boost * height))) {
-				FontUtil.drawText(setting.getName() + ChatFormatting.GRAY + " " + setting.getValue(), x + 5, (y + height) + 3 + (boost * height), -1);
-				FontUtil.drawText("...", (x + width) - 11, y + height + 3 + (boost * height), -1);
+				if (ClickGUI.nameMode.getValue() == ClickGUI.NameModes.Shrink) {
+					FontUtil.drawText(setting.getName() + ChatFormatting.GRAY + " " + setting.getValue(), x + 4, (y + height) + 3 + (boost * height), -1);
+				} else {
+					FontUtil.drawText(setting.getName() + ChatFormatting.GRAY + " " + setting.getValue(), x + 5, (y + height) + 3 + (boost * height), -1);
+				}
+
+				if (ClickGUI.indicatorMode.getValue() == ClickGUI.IndicatorModes.Shrink) {
+					FontUtil.drawText("...", (x + width) - 11, y + height + 3 + (boost * height), -1);
+				} else {
+					FontUtil.drawText("...", (x + width) - 10, y + height + 3 + (boost * height), -1);
+				}
 			} else {
 				FontUtil.drawText(setting.getName() + ChatFormatting.GRAY + " " + setting.getValue(), x + 4, (y + height) + 3 + (boost * height), -1);
 				FontUtil.drawText("...", (x + width) - 10, y + height + 3 + (boost * height), -1);
