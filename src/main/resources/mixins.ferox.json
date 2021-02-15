@@ -12,6 +12,8 @@
     "MixinRenderGlobal",
     "MixinBlockSoulSand",
     "MixinPlayerControllerMP",
-    "MixinGuiScreen"
+    "MixinGuiScreen",
+    "MixinEntity",
+    "MixinBlockLiquid"
   ]
 }
