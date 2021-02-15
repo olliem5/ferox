@@ -9,12 +9,10 @@ import me.olliem5.ferox.api.util.player.InventoryUtil;
 import net.minecraft.init.Items;
 
 /**
+ * @author olliem5
+ *
  * TODO: PacketSwitch / GhostSwitch
  * TODO: Crystal Range & Damage Checks
- */
-
-/**
- * @author olliem5
  */
 
 @FeroxModule(name = "Offhand", description = "Manages the item in your offhand", category = Category.COMBAT)

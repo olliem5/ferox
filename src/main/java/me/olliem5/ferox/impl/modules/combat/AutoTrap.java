@@ -63,7 +63,7 @@ public final class AutoTrap extends Module {
     private boolean hasPlaced = false;
 
     private BlockPos renderBlock = null;
-    private EntityPlayer trapTarget = null;
+    private EntityPlayer target = null;
 
     @Override
     public void onEnable() {
@@ -84,13 +84,13 @@ public final class AutoTrap extends Module {
         blocksPlaced = 0;
         hasPlaced = false;
         renderBlock = null;
-        trapTarget = null;
+        target = null;
     }
 
     public void onUpdate() {
         if (nullCheck()) return;
 
-        trapTarget = TargetUtil.getClosestPlayer(targetRange.getValue());
+        target = TargetUtil.getClosestPlayer(targetRange.getValue());
 
         if (timeout.getValue()) {
             if (this.isEnabled() && disableMode.getValue() != DisableModes.Never) {
@@ -107,8 +107,8 @@ public final class AutoTrap extends Module {
         blocksPlaced = 0;
 
         for (Vec3d vec3d : getPlaceType()) {
-            if (trapTarget != null) {
-                BlockPos blockPos = new BlockPos(vec3d.add(trapTarget.getPositionVector()));
+            if (target != null) {
+                BlockPos blockPos = new BlockPos(vec3d.add(target.getPositionVector()));
 
                 if (mc.world.getBlockState(blockPos).getBlock().equals(Blocks.AIR)) {
                     final int oldInventorySlot = mc.player.inventory.currentItem;
@@ -121,7 +121,7 @@ public final class AutoTrap extends Module {
                         PlaceUtil.placeBlock(blockPos);
                     }
 
-                    renderBlock = new BlockPos(vec3d.add(trapTarget.getPositionVector()));
+                    renderBlock = new BlockPos(vec3d.add(target.getPositionVector()));
 
                     mc.player.inventory.currentItem = oldInventorySlot;
 
@@ -161,8 +161,8 @@ public final class AutoTrap extends Module {
     }
 
     public String getArraylistInfo() {
-        if (trapTarget != null) {
-            return trapTarget.getName();
+        if (target != null) {
+            return target.getName();
         }
 
         return "";

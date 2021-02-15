@@ -33,15 +33,15 @@ public final class Notification implements Minecraft {
         Gui.drawRect(x, y, x + width, y + height, new Color(20, 20, 20, 100).getRGB());
 
         switch (notificationType) {
-            case INFO:
+            case Info:
                 mc.getTextureManager().bindTexture(infoIcon);
                 Gui.drawModalRectWithCustomSizedTexture(x + 2, y + 2, 0, 0, 26, 26, 26, 26);
                 break;
-            case WARNING:
+            case Warning:
                 mc.getTextureManager().bindTexture(warningIcon);
                 Gui.drawModalRectWithCustomSizedTexture(x + 2, y + 2, 0, 0, 26, 26, 26, 26);
                 break;
-            case NORMAL:
+            case Normal:
                 mc.getTextureManager().bindTexture(normalIcon);
                 Gui.drawModalRectWithCustomSizedTexture(x + 2, y + 2, 0, 0, 26, 26, 26, 26);
                 break;
@@ -52,8 +52,8 @@ public final class Notification implements Minecraft {
     }
 
     public enum NotificationType {
-        INFO,
-        WARNING,
-        NORMAL
+        Info,
+        Warning,
+        Normal
     }
 }

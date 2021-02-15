@@ -7,7 +7,7 @@ import java.util.ArrayList;
  */
 
 public final class NotificationManager {
-    public static ArrayList<Notification> notifications = new ArrayList<>();
+    public static final ArrayList<Notification> notifications = new ArrayList<>();
 
     public static void queueNotification(Notification notification) {
         notifications.add(notification);

@@ -8,7 +8,7 @@ import net.minecraft.entity.MoverType;
  */
 
 public final class PlayerMoveEvent extends Event {
-    private MoverType type;
+    private final MoverType type;
     private double x;
     private double y;
     private double z;

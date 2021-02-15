@@ -24,10 +24,14 @@ public final class Velocity extends Module {
     public static final NumberSetting<Float> explosionsHorizontal = new NumberSetting<>(explosions, "Horizontal", "Horizontal explosion knockback to take", 0.0f, 0.0f, 100.0f, 1);
     public static final NumberSetting<Float> explosionsVeritcal = new NumberSetting<>(explosions, "Vertical", "Vertical explosion knockback to take", 0.0f, 0.0f, 100.0f, 1);
 
+    public static final Setting<Boolean> noPush = new Setting<>("No Push", "Allows for modification of knockback via pushing", true);
+    public static final Setting<Boolean> noPushLiquids = new Setting<>(noPush, "Liquids", "Makes liquids not able to push you", true);
+
     public Velocity() {
         this.addSettings(
                 velocity,
-                explosions
+                explosions,
+                noPush
         );
     }
 
@@ -35,7 +39,7 @@ public final class Velocity extends Module {
     public void onPacketRecieve(PacketEvent.Receive event) {
         if (nullCheck()) return;
 
-        if (event.getPacket() instanceof SPacketEntityVelocity) {
+        if (event.getPacket() instanceof SPacketEntityVelocity && velocity.getValue()) {
             SPacketEntityVelocity sPacketEntityVelocity = (SPacketEntityVelocity) event.getPacket();
 
             if (sPacketEntityVelocity.getEntityID() == mc.player.entityId) {
@@ -49,7 +53,7 @@ public final class Velocity extends Module {
             }
         }
 
-        if (event.getPacket() instanceof SPacketExplosion) {
+        if (event.getPacket() instanceof SPacketExplosion && explosions.getValue()) {
             SPacketExplosion sPacketExplosion = (SPacketExplosion) event.getPacket();
 
             if (explosionsHorizontal.getValue() == 0.0f && explosionsVeritcal.getValue() == 0.0f) {
@@ -59,6 +63,15 @@ public final class Velocity extends Module {
                 sPacketExplosion.motionY *= velocityVeritcal.getValue();
                 sPacketExplosion.motionZ *= velocityHorizontal.getValue();
             }
+        }
+    }
+
+    @PaceHandler
+    public void onEntityCollision(EntityCollisionEvent event) {
+        if (nullCheck()) return;
+
+        if (event.getEntity() == mc.player && noPush.getValue()) {
+            event.setCancelled(true);
         }
     }
 

@@ -29,6 +29,7 @@ public final class FastUse extends Module {
     public FastUse() {
         this.addSettings(
                 bows,
+                offhandBows,
                 fishingRods,
                 experience,
                 crystals,

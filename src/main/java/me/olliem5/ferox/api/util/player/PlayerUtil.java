@@ -10,10 +10,6 @@ import net.minecraft.util.math.Vec3d;
  */
 
 public final class PlayerUtil implements Minecraft {
-    public static BlockPos getPlayerPos() {
-        return new BlockPos(Math.floor(mc.player.posX), Math.floor(mc.player.posY), Math.floor(mc.player.posZ));
-    }
-
     public static boolean isInViewFrustrum(BlockPos blockPos) {
         return mc.world.rayTraceBlocks(new Vec3d(mc.player.posX, mc.player.posY + mc.player.getEyeHeight(), mc.player.posZ), new Vec3d(blockPos.getX(), blockPos.getY(), blockPos.getZ()), false, true, false) == null;
     }

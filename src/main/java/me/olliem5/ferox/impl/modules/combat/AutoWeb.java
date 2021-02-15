@@ -28,7 +28,6 @@ import java.awt.*;
  * @author olliem5
  *
  * TODO: Fix placing 2 webs, maybe add it as other mode
- * TODO: Move off target if they have a web
  */
 
 @FeroxModule(name = "AutoWeb", description = "Places webs at your or enemies feet", category = Category.COMBAT)
@@ -52,7 +51,7 @@ public final class AutoWeb extends Module {
     private int webSlot;
 
     private BlockPos renderBlock = null;
-    private EntityPlayer webTarget = null;
+    private EntityPlayer target = null;
 
     @Override
     public void onEnable() {
@@ -71,20 +70,20 @@ public final class AutoWeb extends Module {
         if (nullCheck()) return;
 
         renderBlock = null;
-        webTarget = null;
+        target = null;
     }
 
     public void onUpdate() {
         if (nullCheck()) return;
 
         if (targetMode.getValue() == TargetModes.Self) {
-            webTarget = mc.player;
+            target = mc.player;
         } else {
-            webTarget = TargetUtil.getClosestPlayer(targetRange.getValue());
+            target = TargetUtil.getClosestPlayer(targetRange.getValue());
         }
 
-        if (webTarget != null) {
-            if (!hasWeb(webTarget)) {
+        if (target != null) {
+            if (!hasWeb(target)) {
                 final int oldInventorySlot = mc.player.inventory.currentItem;
 
                 if (webSlot != -1) {
@@ -92,10 +91,10 @@ public final class AutoWeb extends Module {
                 }
 
                 if (mc.player.getHeldItemMainhand().getItem() == Item.getItemFromBlock(Blocks.WEB)) {
-                    mc.player.connection.sendPacket(new CPacketPlayerTryUseItemOnBlock(new BlockPos(PlayerUtil.getCenter(webTarget.posX, webTarget.posY, webTarget.posZ)), EnumFacing.UP, EnumHand.MAIN_HAND, 0, 0, 0));
+                    mc.player.connection.sendPacket(new CPacketPlayerTryUseItemOnBlock(new BlockPos(PlayerUtil.getCenter(target.posX, target.posY, target.posZ)), EnumFacing.UP, EnumHand.MAIN_HAND, 0, 0, 0));
                 }
 
-                renderBlock = new BlockPos(PlayerUtil.getCenter(webTarget.posX, webTarget.posY, webTarget.posZ));
+                renderBlock = new BlockPos(PlayerUtil.getCenter(target.posX, target.posY, target.posZ));
 
                 mc.player.inventory.currentItem = oldInventorySlot;
             }
@@ -130,8 +129,8 @@ public final class AutoWeb extends Module {
     }
 
     public String getArraylistInfo() {
-        if (webTarget != null) {
-            return webTarget.getName();
+        if (target != null) {
+            return target.getName();
         }
 
         return "";

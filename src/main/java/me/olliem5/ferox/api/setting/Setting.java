@@ -20,7 +20,7 @@ public class Setting<T> {
 	private boolean rgb;
 	private float alpha = 0.2f;
 
-	private final ArrayList<Setting> subSettings = new ArrayList<>();
+	private final ArrayList<Setting<?>> subSettings = new ArrayList<>();
 
 	public Setting(String name, String description, T value) {
 		this.name = name;
@@ -69,7 +69,7 @@ public class Setting<T> {
 		}
 	}
 
-	public ArrayList<Setting> getSubSettings() {
+	public ArrayList<Setting<?>> getSubSettings() {
 		return this.subSettings;
 	}
 
@@ -79,10 +79,6 @@ public class Setting<T> {
 
 	public void addSubSetting(Setting<?> subSetting) {
 		this.subSettings.add(subSetting);
-	}
-
-	public Setting<?> getParent() {
-		return parent;
 	}
 
 	public String getName() {

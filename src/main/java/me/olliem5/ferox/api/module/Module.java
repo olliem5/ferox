@@ -74,7 +74,7 @@ public abstract class Module implements Minecraft {
 
         if (ModuleManager.getModuleByName("Notifications").isEnabled() && Notifications.moduleToggle.getValue()) {
             if (Notifications.moduleToggleRender.getValue()) {
-                NotificationManager.queueNotification(new Notification("Module Toggle", message, Notification.NotificationType.NORMAL));
+                NotificationManager.queueNotification(new Notification("Module Toggle", message, Notification.NotificationType.Normal));
             }
 
             if (Notifications.moduleToggleChat.getValue()) {

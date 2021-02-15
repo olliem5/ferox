@@ -32,23 +32,23 @@ public final class ChatSuffix extends Module {
 
         if (event.getPacket() instanceof CPacketChatMessage) {
 
-            String s = ((CPacketChatMessage) event.getPacket()).getMessage();
+            String string = ((CPacketChatMessage) event.getPacket()).getMessage();
 
-            if (s.startsWith("/")) return;
+            if (string.startsWith("/")) return;
 
             if (blue.getValue()) {
-                s += " `" + suffix;
+                string += " `" + suffix;
             } else if (green.getValue()) {
-                s += " >" + suffix;
+                string += " >" + suffix;
             } else {
-                s += suffix;
+                string += suffix;
             }
 
-            if (s.length() >= 256) {
-                s = s.substring(0, 256);
+            if (string.length() >= 256) {
+                string = string.substring(0, 256);
             }
 
-            ((CPacketChatMessage) event.getPacket()).message = s;
+            ((CPacketChatMessage) event.getPacket()).message = string;
         }
     }
 }

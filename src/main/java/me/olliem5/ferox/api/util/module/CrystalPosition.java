@@ -7,9 +7,9 @@ import net.minecraft.util.math.BlockPos;
  */
 
 public final class CrystalPosition {
-    private BlockPos position;
-    private double targetDamage;
-    private double selfDamage;
+    private final BlockPos position;
+    private final double targetDamage;
+    private final double selfDamage;
 
     public CrystalPosition(BlockPos position, double targetDamage, double selfDamage) {
         this.position = position;
