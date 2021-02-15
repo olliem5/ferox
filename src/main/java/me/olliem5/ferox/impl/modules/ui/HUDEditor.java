@@ -17,6 +17,8 @@ public final class HUDEditor extends Module {
     public static final Setting<Boolean> windowOverflow = new Setting<>("Window Overflow", "Allows windows to go over the screen", false);
     public static final Setting<Boolean> componentOverflow = new Setting<>("Component Overflow", "Allows components to go over the screen", false);
     public static final NumberSetting<Integer> scrollSpeed = new NumberSetting<>("Scroll Speed", "Speed to scroll the windows at", 0, 10, 20, 0);
+    public static final Setting<NameModes> nameMode = new Setting<>("Names", "Changes how the names function", NameModes.Shrink);
+    public static final Setting<IndicatorModes> indicatorMode = new Setting<>("Indicators", "Changes how the indicators function", IndicatorModes.Shrink);
     public static final Setting<PauseModes> pauseGame = new Setting<>("Pause Game", "Controls how the game is paused when the HUDEditor is open", PauseModes.Continue);
 
     public HUDEditor() {
@@ -25,6 +27,8 @@ public final class HUDEditor extends Module {
                 windowOverflow,
                 componentOverflow,
                 scrollSpeed,
+                nameMode,
+                indicatorMode,
                 pauseGame
         );
     }
@@ -44,6 +48,16 @@ public final class HUDEditor extends Module {
 
     public enum ThemeModes {
         Default
+    }
+
+    public enum NameModes {
+        Shrink,
+        Stay
+    }
+
+    public enum IndicatorModes {
+        Shrink,
+        Stay
     }
 
     public enum PauseModes {

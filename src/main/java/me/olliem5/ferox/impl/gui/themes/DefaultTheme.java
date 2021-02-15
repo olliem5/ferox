@@ -16,6 +16,7 @@ import me.olliem5.ferox.api.util.render.font.FontUtil;
 import me.olliem5.ferox.api.util.render.gui.GuiUtil;
 import me.olliem5.ferox.impl.modules.ferox.Colours;
 import me.olliem5.ferox.impl.modules.ui.ClickGUI;
+import me.olliem5.ferox.impl.modules.ui.HUDEditor;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.ScaledResolution;
 import org.lwjgl.input.Keyboard;
@@ -127,14 +128,14 @@ public final class DefaultTheme extends Theme {
 					component.setOpened(!component.isOpened());
 				}
 
-				if (ClickGUI.nameMode.getValue() == ClickGUI.NameModes.Shrink) {
+				if (HUDEditor.nameMode.getValue() == HUDEditor.NameModes.Shrink) {
 					FontUtil.drawText(component.getName(), x + 3, y + height + 4 + (boost * height), -1);
 				} else {
 					FontUtil.drawText(component.getName(), x + 2, y + height + 4 + (boost * height), -1);
 				}
 
 				if (component.hasSettings()) {
-					if (ClickGUI.indicatorMode.getValue() == ClickGUI.IndicatorModes.Shrink) {
+					if (HUDEditor.indicatorMode.getValue() == HUDEditor.IndicatorModes.Shrink) {
 						FontUtil.drawText("...", (x + width) - 11, y + height + 3 + (boost * height), -1);
 					} else {
 						FontUtil.drawText("...", (x + width) - 10, y + height + 3 + (boost * height), -1);
@@ -167,12 +168,12 @@ public final class DefaultTheme extends Theme {
 
 				if (setting.getValue() instanceof Boolean) {
 					Setting<Boolean> booleanSetting = (Setting<Boolean>) setting;
-					renderBoolean(booleanSetting, x, y);
+					renderBoolean(booleanSetting, x, y, false);
 				}
 
 				if (setting.getValue() instanceof Enum) {
 					Setting<Enum> enumSetting = (Setting<Enum>) setting;
-					renderEnum(enumSetting, x, y);
+					renderEnum(enumSetting, x, y, false);
 				}
 
 				if (setting.getValue() instanceof Color) {
@@ -184,17 +185,17 @@ public final class DefaultTheme extends Theme {
 
 				if (setting.getValue() instanceof Integer) {
 					NumberSetting<Integer> integerNumberSetting = (NumberSetting<Integer>) setting;
-					renderInteger(integerNumberSetting, x, y);
+					renderInteger(integerNumberSetting, x, y, false);
 				}
 
 				if (setting.getValue() instanceof Double) {
 					NumberSetting<Double> doubleNumberSetting = (NumberSetting<Double>) setting;
-					renderDouble(doubleNumberSetting, x, y);
+					renderDouble(doubleNumberSetting, x, y, false);
 				}
 
 				if (setting.getValue() instanceof Float) {
 					NumberSetting<Float> floatNumberSetting = (NumberSetting<Float>) setting;
-					renderFloat(floatNumberSetting, x, y);
+					renderFloat(floatNumberSetting, x, y, false);
 				}
 			}
 
@@ -245,12 +246,12 @@ public final class DefaultTheme extends Theme {
 
 				if (setting.getValue() instanceof Boolean) {
 					Setting<Boolean> booleanSetting = (Setting<Boolean>) setting;
-					renderBoolean(booleanSetting, x, y);
+					renderBoolean(booleanSetting, x, y, true);
 				}
 
 				if (setting.getValue() instanceof Enum) {
 					Setting<Enum> enumSetting = (Setting<Enum>) setting;
-					renderEnum(enumSetting, x, y);
+					renderEnum(enumSetting, x, y, true);
 				}
 
 				if (setting.getValue() instanceof Color) {
@@ -262,17 +263,17 @@ public final class DefaultTheme extends Theme {
 
 				if (setting.getValue() instanceof Integer) {
 					NumberSetting<Integer> integerNumberSetting = (NumberSetting<Integer>) setting;
-					renderInteger(integerNumberSetting, x, y);
+					renderInteger(integerNumberSetting, x, y, true);
 				}
 
 				if (setting.getValue() instanceof Double) {
 					NumberSetting<Double> doubleNumberSetting = (NumberSetting<Double>) setting;
-					renderDouble(doubleNumberSetting, x, y);
+					renderDouble(doubleNumberSetting, x, y, true);
 				}
 
 				if (setting.getValue() instanceof Float) {
 					NumberSetting<Float> floatNumberSetting = (NumberSetting<Float>) setting;
-					renderFloat(floatNumberSetting, x, y);
+					renderFloat(floatNumberSetting, x, y, true);
 				}
 			}
 
@@ -316,7 +317,7 @@ public final class DefaultTheme extends Theme {
 		}
 	}
 
-	private static void renderBoolean(Setting<Boolean> setting, int x, int y) {
+	private static void renderBoolean(Setting<Boolean> setting, int x, int y, boolean hud) {
 		int color = 0xFF212121;
 
 		if (setting.getValue()) {
@@ -340,16 +341,30 @@ public final class DefaultTheme extends Theme {
 
 		if (setting.hasSubSettings()) {
 			if (GuiUtil.mouseOver(x, y + height + 1 + (boost * height), (x + width), y + height * 2 + (boost * height))) {
-				if (ClickGUI.nameMode.getValue() == ClickGUI.NameModes.Shrink) {
-					FontUtil.drawText(setting.getName(), x + 5, (y + height) + 3 + (boost * height), -1);
-				} else {
-					FontUtil.drawText(setting.getName(), x + 4, (y + height) + 3 + (boost * height), -1);
-				}
+				if (!hud) {
+					if (ClickGUI.nameMode.getValue() == ClickGUI.NameModes.Shrink) {
+						FontUtil.drawText(setting.getName(), x + 5, (y + height) + 3 + (boost * height), -1);
+					} else {
+						FontUtil.drawText(setting.getName(), x + 4, (y + height) + 3 + (boost * height), -1);
+					}
 
-				if (ClickGUI.indicatorMode.getValue() == ClickGUI.IndicatorModes.Shrink) {
-					FontUtil.drawText("...", (x + width) - 11, y + height + 3 + (boost * height), -1);
+					if (ClickGUI.indicatorMode.getValue() == ClickGUI.IndicatorModes.Shrink) {
+						FontUtil.drawText("...", (x + width) - 11, y + height + 3 + (boost * height), -1);
+					} else {
+						FontUtil.drawText("...", (x + width) - 10, y + height + 3 + (boost * height), -1);
+					}
 				} else {
-					FontUtil.drawText("...", (x + width) - 10, y + height + 3 + (boost * height), -1);
+					if (HUDEditor.nameMode.getValue() == HUDEditor.NameModes.Shrink) {
+						FontUtil.drawText(setting.getName(), x + 5, (y + height) + 3 + (boost * height), -1);
+					} else {
+						FontUtil.drawText(setting.getName(), x + 4, (y + height) + 3 + (boost * height), -1);
+					}
+
+					if (HUDEditor.indicatorMode.getValue() == HUDEditor.IndicatorModes.Shrink) {
+						FontUtil.drawText("...", (x + width) - 11, y + height + 3 + (boost * height), -1);
+					} else {
+						FontUtil.drawText("...", (x + width) - 10, y + height + 3 + (boost * height), -1);
+					}
 				}
 			} else {
 				FontUtil.drawText(setting.getName(), x + 4, (y + height) + 3 + (boost * height), -1);
@@ -381,7 +396,7 @@ public final class DefaultTheme extends Theme {
 		FontUtil.drawText(subSetting.getName(), x + 6, (y + height) + 3 + (boost * height), -1);
 	}
 	
-	private static void renderEnum(Setting<Enum> setting, int x, int y) {
+	private static void renderEnum(Setting<Enum> setting, int x, int y, boolean hud) {
 		int color = 0xFF212121;
 
 		if (GuiUtil.mouseOver(x, y + height + (boost * height), (x + width), (y + height) + height - 1 + (boost * height))) {
@@ -401,16 +416,30 @@ public final class DefaultTheme extends Theme {
 
 		if (setting.hasSubSettings()) {
 			if (GuiUtil.mouseOver(x, y + height + 1 + (boost * height), (x + width), y + height * 2 + (boost * height))) {
-				if (ClickGUI.nameMode.getValue() == ClickGUI.NameModes.Shrink) {
-					FontUtil.drawText(setting.getName() + ChatFormatting.GRAY + " " + setting.getValue().toString().toUpperCase(), x + 4, (y + height) + 3 + (boost * height), -1);
-				} else {
-					FontUtil.drawText(setting.getName() + ChatFormatting.GRAY + " " + setting.getValue().toString().toUpperCase(), x + 5, (y + height) + 3 + (boost * height), -1);
-				}
+				if (!hud) {
+					if (ClickGUI.nameMode.getValue() == ClickGUI.NameModes.Shrink) {
+						FontUtil.drawText(setting.getName() + ChatFormatting.GRAY + " " + setting.getValue().toString().toUpperCase(), x + 4, (y + height) + 3 + (boost * height), -1);
+					} else {
+						FontUtil.drawText(setting.getName() + ChatFormatting.GRAY + " " + setting.getValue().toString().toUpperCase(), x + 5, (y + height) + 3 + (boost * height), -1);
+					}
 
-				if (ClickGUI.indicatorMode.getValue() == ClickGUI.IndicatorModes.Shrink) {
-					FontUtil.drawText("...", (x + width) - 11, y + height + 3 + (boost * height), -1);
+					if (ClickGUI.indicatorMode.getValue() == ClickGUI.IndicatorModes.Shrink) {
+						FontUtil.drawText("...", (x + width) - 11, y + height + 3 + (boost * height), -1);
+					} else {
+						FontUtil.drawText("...", (x + width) - 10, y + height + 3 + (boost * height), -1);
+					}
 				} else {
-					FontUtil.drawText("...", (x + width) - 10, y + height + 3 + (boost * height), -1);
+					if (HUDEditor.nameMode.getValue() == HUDEditor.NameModes.Shrink) {
+						FontUtil.drawText(setting.getName() + ChatFormatting.GRAY + " " + setting.getValue().toString().toUpperCase(), x + 4, (y + height) + 3 + (boost * height), -1);
+					} else {
+						FontUtil.drawText(setting.getName() + ChatFormatting.GRAY + " " + setting.getValue().toString().toUpperCase(), x + 5, (y + height) + 3 + (boost * height), -1);
+					}
+
+					if (HUDEditor.indicatorMode.getValue() == HUDEditor.IndicatorModes.Shrink) {
+						FontUtil.drawText("...", (x + width) - 11, y + height + 3 + (boost * height), -1);
+					} else {
+						FontUtil.drawText("...", (x + width) - 10, y + height + 3 + (boost * height), -1);
+					}
 				}
 			} else {
 				FontUtil.drawText(setting.getName() + ChatFormatting.GRAY + " " + setting.getValue().toString().toUpperCase(), x + 4, (y + height) + 3 + (boost * height), -1);
@@ -438,7 +467,7 @@ public final class DefaultTheme extends Theme {
 		FontUtil.drawText(subSetting.getName() + ChatFormatting.GRAY + " " + subSetting.getValue().toString().toUpperCase(), x + 6, (y + height) + 3 + (boost * height), -1);
 	}
 
-	private static void renderInteger(NumberSetting<Integer> setting, int x, int y) {
+	private static void renderInteger(NumberSetting<Integer> setting, int x, int y, boolean hud) {
 		int color = 0xFF212121;
 
 		int pixAdd = ((x + width) - x) * (setting.getValue() - setting.getMin()) / (setting.getMax() - setting.getMin());
@@ -462,16 +491,30 @@ public final class DefaultTheme extends Theme {
 
 		if (setting.hasSubSettings()) {
 			if (GuiUtil.mouseOver(x, y + height + 1 + (boost * height), (x + width), y + height * 2 + (boost * height))) {
-				if (ClickGUI.nameMode.getValue() == ClickGUI.NameModes.Shrink) {
-					FontUtil.drawText(setting.getName() + ChatFormatting.GRAY + " " + setting.getValue(), x + 4, (y + height) + 3 + (boost * height), -1);
-				} else {
-					FontUtil.drawText(setting.getName() + ChatFormatting.GRAY + " " + setting.getValue(), x + 5, (y + height) + 3 + (boost * height), -1);
-				}
+				if (!hud) {
+					if (ClickGUI.nameMode.getValue() == ClickGUI.NameModes.Shrink) {
+						FontUtil.drawText(setting.getName() + ChatFormatting.GRAY + " " + setting.getValue(), x + 4, (y + height) + 3 + (boost * height), -1);
+					} else {
+						FontUtil.drawText(setting.getName() + ChatFormatting.GRAY + " " + setting.getValue(), x + 5, (y + height) + 3 + (boost * height), -1);
+					}
 
-				if (ClickGUI.indicatorMode.getValue() == ClickGUI.IndicatorModes.Shrink) {
-					FontUtil.drawText("...", (x + width) - 11, y + height + 3 + (boost * height), -1);
+					if (ClickGUI.indicatorMode.getValue() == ClickGUI.IndicatorModes.Shrink) {
+						FontUtil.drawText("...", (x + width) - 11, y + height + 3 + (boost * height), -1);
+					} else {
+						FontUtil.drawText("...", (x + width) - 10, y + height + 3 + (boost * height), -1);
+					}
 				} else {
-					FontUtil.drawText("...", (x + width) - 10, y + height + 3 + (boost * height), -1);
+					if (HUDEditor.nameMode.getValue() == HUDEditor.NameModes.Shrink) {
+						FontUtil.drawText(setting.getName() + ChatFormatting.GRAY + " " + setting.getValue(), x + 4, (y + height) + 3 + (boost * height), -1);
+					} else {
+						FontUtil.drawText(setting.getName() + ChatFormatting.GRAY + " " + setting.getValue(), x + 5, (y + height) + 3 + (boost * height), -1);
+					}
+
+					if (HUDEditor.indicatorMode.getValue() == HUDEditor.IndicatorModes.Shrink) {
+						FontUtil.drawText("...", (x + width) - 11, y + height + 3 + (boost * height), -1);
+					} else {
+						FontUtil.drawText("...", (x + width) - 10, y + height + 3 + (boost * height), -1);
+					}
 				}
 			} else {
 				FontUtil.drawText(setting.getName() + ChatFormatting.GRAY + " " + setting.getValue(), x + 4, (y + height) + 3 + (boost * height), -1);
@@ -507,7 +550,7 @@ public final class DefaultTheme extends Theme {
 		FontUtil.drawText(subSetting.getName() + ChatFormatting.GRAY + " " + subSetting.getValue(), x + 6, (y + height) + 3 + (boost * height), -1);
 	}
 
-	private static void renderDouble(NumberSetting<Double> setting, int x, int y) {
+	private static void renderDouble(NumberSetting<Double> setting, int x, int y, boolean hud) {
 		int color = 0xFF212121;
 
 		int pixAdd = (int) (((x + width) - x) * (setting.getValue() - setting.getMin()) / (setting.getMax() - setting.getMin()));
@@ -531,16 +574,30 @@ public final class DefaultTheme extends Theme {
 
 		if (setting.hasSubSettings()) {
 			if (GuiUtil.mouseOver(x, y + height + 1 + (boost * height), (x + width), y + height * 2 + (boost * height))) {
-				if (ClickGUI.nameMode.getValue() == ClickGUI.NameModes.Shrink) {
-					FontUtil.drawText(setting.getName() + ChatFormatting.GRAY + " " + setting.getValue(), x + 4, (y + height) + 3 + (boost * height), -1);
-				} else {
-					FontUtil.drawText(setting.getName() + ChatFormatting.GRAY + " " + setting.getValue(), x + 5, (y + height) + 3 + (boost * height), -1);
-				}
+				if (!hud) {
+					if (ClickGUI.nameMode.getValue() == ClickGUI.NameModes.Shrink) {
+						FontUtil.drawText(setting.getName() + ChatFormatting.GRAY + " " + setting.getValue(), x + 4, (y + height) + 3 + (boost * height), -1);
+					} else {
+						FontUtil.drawText(setting.getName() + ChatFormatting.GRAY + " " + setting.getValue(), x + 5, (y + height) + 3 + (boost * height), -1);
+					}
 
-				if (ClickGUI.indicatorMode.getValue() == ClickGUI.IndicatorModes.Shrink) {
-					FontUtil.drawText("...", (x + width) - 11, y + height + 3 + (boost * height), -1);
+					if (ClickGUI.indicatorMode.getValue() == ClickGUI.IndicatorModes.Shrink) {
+						FontUtil.drawText("...", (x + width) - 11, y + height + 3 + (boost * height), -1);
+					} else {
+						FontUtil.drawText("...", (x + width) - 10, y + height + 3 + (boost * height), -1);
+					}
 				} else {
-					FontUtil.drawText("...", (x + width) - 10, y + height + 3 + (boost * height), -1);
+					if (HUDEditor.nameMode.getValue() == HUDEditor.NameModes.Shrink) {
+						FontUtil.drawText(setting.getName() + ChatFormatting.GRAY + " " + setting.getValue(), x + 4, (y + height) + 3 + (boost * height), -1);
+					} else {
+						FontUtil.drawText(setting.getName() + ChatFormatting.GRAY + " " + setting.getValue(), x + 5, (y + height) + 3 + (boost * height), -1);
+					}
+
+					if (HUDEditor.indicatorMode.getValue() == HUDEditor.IndicatorModes.Shrink) {
+						FontUtil.drawText("...", (x + width) - 11, y + height + 3 + (boost * height), -1);
+					} else {
+						FontUtil.drawText("...", (x + width) - 10, y + height + 3 + (boost * height), -1);
+					}
 				}
 			} else {
 				FontUtil.drawText(setting.getName() + ChatFormatting.GRAY + " " + setting.getValue(), x + 4, (y + height) + 3 + (boost * height), -1);
@@ -576,7 +633,7 @@ public final class DefaultTheme extends Theme {
 		FontUtil.drawText(subSetting.getName() + ChatFormatting.GRAY + " " + subSetting.getValue(), x + 6, (y + height) + 3 + (boost * height), -1);
 	}
 
-	private static void renderFloat(NumberSetting<Float> setting, int x, int y) {
+	private static void renderFloat(NumberSetting<Float> setting, int x, int y, boolean hud) {
 		int color = 0xFF212121;
 
 		int pixAdd = (int) (((x + width) - x) * (setting.getValue() - setting.getMin()) / (setting.getMax() - setting.getMin()));
@@ -600,16 +657,30 @@ public final class DefaultTheme extends Theme {
 
 		if (setting.hasSubSettings()) {
 			if (GuiUtil.mouseOver(x, y + height + 1 + (boost * height), (x + width), y + height * 2 + (boost * height))) {
-				if (ClickGUI.nameMode.getValue() == ClickGUI.NameModes.Shrink) {
-					FontUtil.drawText(setting.getName() + ChatFormatting.GRAY + " " + setting.getValue(), x + 4, (y + height) + 3 + (boost * height), -1);
-				} else {
-					FontUtil.drawText(setting.getName() + ChatFormatting.GRAY + " " + setting.getValue(), x + 5, (y + height) + 3 + (boost * height), -1);
-				}
+				if (!hud) {
+					if (ClickGUI.nameMode.getValue() == ClickGUI.NameModes.Shrink) {
+						FontUtil.drawText(setting.getName() + ChatFormatting.GRAY + " " + setting.getValue(), x + 4, (y + height) + 3 + (boost * height), -1);
+					} else {
+						FontUtil.drawText(setting.getName() + ChatFormatting.GRAY + " " + setting.getValue(), x + 5, (y + height) + 3 + (boost * height), -1);
+					}
 
-				if (ClickGUI.indicatorMode.getValue() == ClickGUI.IndicatorModes.Shrink) {
-					FontUtil.drawText("...", (x + width) - 11, y + height + 3 + (boost * height), -1);
+					if (ClickGUI.indicatorMode.getValue() == ClickGUI.IndicatorModes.Shrink) {
+						FontUtil.drawText("...", (x + width) - 11, y + height + 3 + (boost * height), -1);
+					} else {
+						FontUtil.drawText("...", (x + width) - 10, y + height + 3 + (boost * height), -1);
+					}
 				} else {
-					FontUtil.drawText("...", (x + width) - 10, y + height + 3 + (boost * height), -1);
+					if (HUDEditor.nameMode.getValue() == HUDEditor.NameModes.Shrink) {
+						FontUtil.drawText(setting.getName() + ChatFormatting.GRAY + " " + setting.getValue(), x + 4, (y + height) + 3 + (boost * height), -1);
+					} else {
+						FontUtil.drawText(setting.getName() + ChatFormatting.GRAY + " " + setting.getValue(), x + 5, (y + height) + 3 + (boost * height), -1);
+					}
+
+					if (HUDEditor.indicatorMode.getValue() == HUDEditor.IndicatorModes.Shrink) {
+						FontUtil.drawText("...", (x + width) - 11, y + height + 3 + (boost * height), -1);
+					} else {
+						FontUtil.drawText("...", (x + width) - 10, y + height + 3 + (boost * height), -1);
+					}
 				}
 			} else {
 				FontUtil.drawText(setting.getName() + ChatFormatting.GRAY + " " + setting.getValue(), x + 4, (y + height) + 3 + (boost * height), -1);
