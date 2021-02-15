@@ -56,6 +56,7 @@ public final class ModuleManager {
                 new Blink(),
                 new Burrow(),
                 new Criticals(),
+                new Portals(),
                 new Reach(),
                 new Timer(),
                 new XCarry(),
