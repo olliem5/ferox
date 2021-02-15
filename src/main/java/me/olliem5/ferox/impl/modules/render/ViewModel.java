@@ -14,7 +14,7 @@ import net.minecraft.util.EnumHandSide;
  * @author olliem5
  */
 
-@FeroxModule(name = "ViewModel", description = "Changes the way you look in first person", category = Category.RENDER)
+@FeroxModule(name = "ViewModel", description = "Changes the way you look in first person", category = Category.Render)
 public final class ViewModel extends Module {
     public static final Setting<Boolean> cancelEating = new Setting<>("Cancel Eating", "Cancels the eating animation", true);
 

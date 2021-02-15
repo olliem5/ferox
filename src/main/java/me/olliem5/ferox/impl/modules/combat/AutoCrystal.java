@@ -71,7 +71,7 @@ import java.util.stream.Collectors;
  * TODO: Check number comparisons
  */
 
-@FeroxModule(name = "AutoCrystal", description = "Places and destroys end crystals to kill enemies", category = Category.COMBAT)
+@FeroxModule(name = "AutoCrystal", description = "Places and destroys end crystals to kill enemies", category = Category.Combat)
 public final class AutoCrystal extends Module {
     /**
      * Break Settings

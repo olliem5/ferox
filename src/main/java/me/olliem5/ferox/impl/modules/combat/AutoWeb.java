@@ -30,7 +30,7 @@ import java.awt.*;
  * TODO: Fix placing 2 webs, maybe add it as other mode
  */
 
-@FeroxModule(name = "AutoWeb", description = "Places webs at your or enemies feet", category = Category.COMBAT)
+@FeroxModule(name = "AutoWeb", description = "Places webs at your or enemies feet", category = Category.Combat)
 public final class AutoWeb extends Module {
     public static final Setting<TargetModes> targetMode = new Setting<>("Target", "The target to go for when placing webs", TargetModes.Self);
     public static final NumberSetting<Double> targetRange = new NumberSetting<>("Target Range", "The range for a target to be found", 1.0, 4.4, 10.0, 1);

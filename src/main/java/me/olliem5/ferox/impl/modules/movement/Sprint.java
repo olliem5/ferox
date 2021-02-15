@@ -9,7 +9,7 @@ import me.olliem5.ferox.api.setting.Setting;
  * @author olliem5
  */
 
-@FeroxModule(name = "Sprint", description = "Automatically makes you sprint", category = Category.MOVEMENT)
+@FeroxModule(name = "Sprint", description = "Automatically makes you sprint", category = Category.Movement)
 public final class Sprint extends Module {
     public static final Setting<SprintModes> sprintMode = new Setting<>("Mode", "The type of sprint to perform", SprintModes.Rage);
 

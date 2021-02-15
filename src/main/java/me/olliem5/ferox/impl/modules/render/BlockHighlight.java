@@ -17,7 +17,7 @@ import java.awt.*;
  * @author olliem5
  */
 
-@FeroxModule(name = "BlockHighlight", description = "Highlights the block that you are looking at", category = Category.RENDER)
+@FeroxModule(name = "BlockHighlight", description = "Highlights the block that you are looking at", category = Category.Render)
 public final class BlockHighlight extends Module {
     public static final Setting<Boolean> cancelSelectionBox = new Setting<>("Cancel Selection Box", "Cancels the rendering of the vanilla block selection box", true);
 

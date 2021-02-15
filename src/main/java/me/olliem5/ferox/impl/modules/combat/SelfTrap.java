@@ -27,7 +27,7 @@ import java.util.List;
  * @author olliem5
  */
 
-@FeroxModule(name = "SelfTrap", description = "Traps yourself", category = Category.COMBAT)
+@FeroxModule(name = "SelfTrap", description = "Traps yourself", category = Category.Combat)
 public final class SelfTrap extends Module {
     public static final Setting<PlaceModes> placeMode = new Setting<>("Place", "The style of trap to place", PlaceModes.TopBlock);
     public static final Setting<DisableModes> disableMode = new Setting<>("Disable", "When to disable the module", DisableModes.Finish);

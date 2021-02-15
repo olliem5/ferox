@@ -20,7 +20,7 @@ import org.lwjgl.input.Keyboard;
  * @author novola
  */
 
-@FeroxModule(name = "NoSlow", description = "Prevents using items from slowing you down", category = Category.MOVEMENT)
+@FeroxModule(name = "NoSlow", description = "Prevents using items from slowing you down", category = Category.Movement)
 public final class NoSlow extends Module {
     public static final Setting<NoSlowModes> noSlowMode = new Setting<>("Mode", "The way no item slowdown is achieved", NoSlowModes.Normal);
 

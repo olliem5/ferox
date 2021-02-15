@@ -29,7 +29,7 @@ import java.util.List;
  * @author olliem5
  */
 
-@FeroxModule(name = "Surround", description = "Surrounds you with obsidian to minimize crystal damage", category = Category.COMBAT)
+@FeroxModule(name = "Surround", description = "Surrounds you with obsidian to minimize crystal damage", category = Category.Combat)
 public final class Surround extends Module {
     public static final Setting<PlaceModes> placeMode = new Setting<>("Place", "The style of surround to place", PlaceModes.Full);
     public static final Setting<DisableModes> disableMode = new Setting<>("Disable", "When to disable the module", DisableModes.Finish);

@@ -14,7 +14,7 @@ import net.minecraft.network.play.server.SPacketExplosion;
  * @author olliem5
  */
 
-@FeroxModule(name = "Velocity", description = "Modifies the knockback that you take", category = Category.MOVEMENT)
+@FeroxModule(name = "Velocity", description = "Modifies the knockback that you take", category = Category.Movement)
 public final class Velocity extends Module {
     public static final Setting<Boolean> velocity = new Setting<>("Velocity", "Allows for modification of player velocity", true);
     public static final NumberSetting<Float> velocityHorizontal = new NumberSetting<>(velocity, "Horizontal", "Horizontal velocity knockback to take", 0.0f, 0.0f, 100.0f, 1);
@@ -63,15 +63,6 @@ public final class Velocity extends Module {
                 sPacketExplosion.motionY *= velocityVeritcal.getValue();
                 sPacketExplosion.motionZ *= velocityHorizontal.getValue();
             }
-        }
-    }
-
-    @PaceHandler
-    public void onEntityCollision(EntityCollisionEvent event) {
-        if (nullCheck()) return;
-
-        if (event.getEntity() == mc.player && noPush.getValue()) {
-            event.setCancelled(true);
         }
     }
 

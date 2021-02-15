@@ -12,7 +12,7 @@ import net.minecraftforge.client.event.EntityViewRenderEvent;
  * @author olliem5
  */
 
-@FeroxModule(name = "CustomFOV", description = "Allows you to change your normal and item fov", category = Category.RENDER)
+@FeroxModule(name = "CustomFOV", description = "Allows you to change your normal and item fov", category = Category.Render)
 public final class CustomFOV extends Module {
     public static Setting<Boolean> normalFOV = new Setting<>("Normal FOV", "Allows for modification of your normal FOV", true);
     public static NumberSetting<Integer> normalFOVAmount = new NumberSetting<>(normalFOV, "Normal FOV Amount", "The value to set your normal FOV to", 0, 120, 250, 0);

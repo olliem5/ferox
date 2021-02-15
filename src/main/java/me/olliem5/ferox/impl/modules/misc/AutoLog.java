@@ -11,7 +11,7 @@ import net.minecraft.client.gui.GuiMainMenu;
  * @author olliem5
  */
 
-@FeroxModule(name = "AutoLog", description = "Leaves the server you are on at a specified health", category = Category.MISC)
+@FeroxModule(name = "AutoLog", description = "Leaves the server you are on at a specified health", category = Category.Misc)
 public final class AutoLog extends Module {
     public static Setting<LogModes> logMode = new Setting<>("Mode", "How the module makes you disconnect from the server", LogModes.Disconnect);
     public static Setting<Boolean> toggleAfter = new Setting<>("Toggle After", "Toggles the module after a disconnect happens", true);

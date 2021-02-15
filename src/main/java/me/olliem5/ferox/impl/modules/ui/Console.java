@@ -9,7 +9,7 @@ import me.olliem5.ferox.impl.gui.screens.console.ConsoleScreen;
  * @author olliem5
  */
 
-@FeroxModule(name = "Console", description = "Opens Ferox's Console", category = Category.UI)
+@FeroxModule(name = "Console", description = "Opens Ferox's Console", category = Category.Interface)
 public final class Console extends Module {
     public static ConsoleScreen console;
 

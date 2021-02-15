@@ -11,7 +11,7 @@ import net.minecraft.potion.PotionEffect;
  * @author olliem5
  */
 
-@FeroxModule(name = "Brightness", description = "Makes your game brighter", category = Category.RENDER)
+@FeroxModule(name = "Brightness", description = "Makes your game brighter", category = Category.Render)
 public final class Brightness extends Module {
     public static final Setting<BrightnessModes> brightnessMode = new Setting<>("Mode", "The way of achieving brightness", BrightnessModes.Gamma);
 

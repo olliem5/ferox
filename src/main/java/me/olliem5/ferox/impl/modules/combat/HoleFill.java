@@ -31,7 +31,7 @@ import java.util.stream.Collectors;
  * TODO: Delay
  */
 
-@FeroxModule(name = "HoleFill", description = "Fills holes around you with obsidian", category = Category.COMBAT)
+@FeroxModule(name = "HoleFill", description = "Fills holes around you with obsidian", category = Category.Combat)
 public final class HoleFill extends Module {
     public static final Setting<BlockModes> blockMode = new Setting<>("Block", "The block to fill holes with", BlockModes.Obsidian);
     public static final NumberSetting<Integer> holeRange = new NumberSetting<>("Hole Range", "The range to search for holes to fill in", 1, 3, 10, 0);

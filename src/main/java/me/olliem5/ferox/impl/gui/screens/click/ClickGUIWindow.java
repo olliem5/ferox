@@ -45,7 +45,7 @@ public final class ClickGUIWindow implements Minecraft {
 		int xOffset = 12;
 
 		for (Category category : Category.values()) {
-			windows.add(new ClickGUIWindow(category.getName(), xOffset, 20, category));
+			windows.add(new ClickGUIWindow(category.toString(), xOffset, 20, category));
 			xOffset += 110;
 		}
 	}

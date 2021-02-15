@@ -9,7 +9,7 @@ import me.olliem5.ferox.api.setting.Setting;
  * @author olliem5
  */
 
-@FeroxModule(name = "Font", description = "Changes the font that Ferox uses", category = Category.FEROX)
+@FeroxModule(name = "Font", description = "Changes the font that Ferox uses", category = Category.Ferox)
 public final class Font extends Module {
     public static final Setting<FontModes> font = new Setting<>("Font", "The style of font to render", FontModes.Ubuntu);
     public static final Setting<Boolean> shadow = new Setting<>("Shadow", "Allows the font to have a shadow", true);

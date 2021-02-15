@@ -12,7 +12,7 @@ import org.lwjgl.input.Keyboard;
  * @author olliem5
  */
 
-@FeroxModule(name = "ClickGUI", description = "Opens Ferox's ClickGUI", category = Category.UI, key = Keyboard.KEY_P)
+@FeroxModule(name = "ClickGUI", description = "Opens Ferox's ClickGUI", category = Category.Interface, key = Keyboard.KEY_P)
 public final class ClickGUI extends Module {
     public static final Setting<ThemeModes> theme = new Setting<>("Theme", "The theme to use for the ClickGUI", ThemeModes.Default);
     public static final Setting<Boolean> windowOverflow = new Setting<>("Window Overflow", "Allows windows to go over the screen", false);

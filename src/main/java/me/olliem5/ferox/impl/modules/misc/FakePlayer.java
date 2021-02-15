@@ -14,7 +14,7 @@ import java.util.UUID;
  * @author olliem5
  */
 
-@FeroxModule(name = "FakePlayer", description = "Spawns a client side player entity, usually for module testing", category = Category.MISC)
+@FeroxModule(name = "FakePlayer", description = "Spawns a client side player entity, usually for module testing", category = Category.Misc)
 public final class FakePlayer extends Module {
     public static final Setting<NameModes> nameMode = new Setting<>("Name", "The name of the fake player", NameModes.Ollie);
     public static final NumberSetting<Float> health = new NumberSetting<>("Health", "The health of the fake player", 0.0f, 20.0f, 36.0f, 1);

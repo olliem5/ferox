@@ -24,7 +24,7 @@ import java.awt.*;
  * @author olliem5
  */
 
-@FeroxModule(name = "AutoCreeper", description = "Automatically places creeper eggs at player's feet, for anarchypvp.pw", category = Category.COMBAT)
+@FeroxModule(name = "AutoCreeper", description = "Automatically places creeper eggs at player's feet, for anarchypvp.pw", category = Category.Combat)
 public final class AutoCreeper extends Module {
     public static final Setting<AttackModes> attackMode = new Setting<>("Mode", "The mode for attacking players", AttackModes.Hole);
     public static final NumberSetting<Double> targetRange = new NumberSetting<>("Target Range", "The range for a target to be found", 1.0, 4.4, 10.0, 1);

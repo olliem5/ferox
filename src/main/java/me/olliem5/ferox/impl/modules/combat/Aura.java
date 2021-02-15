@@ -23,7 +23,7 @@ import net.minecraft.util.EnumHand;
  * TODO: Rework cooldowns
  */
 
-@FeroxModule(name = "Aura", description = "Automatically attacks players and entities in range", category = Category.COMBAT)
+@FeroxModule(name = "Aura", description = "Automatically attacks players and entities in range", category = Category.Combat)
 public final class Aura extends Module {
     public static final NumberSetting<Double> targetRange = new NumberSetting<>("Target Range", "The range that players can be attacked in", 0.0, 5.0, 10.0, 1);
 

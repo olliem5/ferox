@@ -12,7 +12,7 @@ import net.minecraft.network.play.client.CPacketChatMessage;
  * @author olliem5
  */
 
-@FeroxModule(name = "ChatSuffix", description = "Adds a custom ending to your chat messages", category = Category.MISC)
+@FeroxModule(name = "ChatSuffix", description = "Adds a custom ending to your chat messages", category = Category.Misc)
 public final class ChatSuffix extends Module {
     public static final Setting<Boolean> green = new Setting<>("Green", "Makes your suffix green", false);
     public static final Setting<Boolean> blue = new Setting<>("Blue", "Makes your suffix blue", false);

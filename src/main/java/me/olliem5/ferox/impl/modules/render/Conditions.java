@@ -10,7 +10,7 @@ import me.olliem5.ferox.api.setting.Setting;
  * @author olliem5
  */
 
-@FeroxModule(name = "Conditions", description = "Changes the world time and weather", category = Category.RENDER)
+@FeroxModule(name = "Conditions", description = "Changes the world time and weather", category = Category.Render)
 public final class Conditions extends Module {
     public static final Setting<WeatherModes> weatherMode = new Setting<>("Weather", "The world's weather", WeatherModes.Clear);
 

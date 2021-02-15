@@ -21,7 +21,7 @@ import java.util.List;
  * @author olliem5
  */
 
-@FeroxModule(name = "BurrowESP", description = "Shows blocks that players are burrowed in", category = Category.RENDER)
+@FeroxModule(name = "BurrowESP", description = "Shows blocks that players are burrowed in", category = Category.Render)
 public final class BurrowESP extends Module {
     public static final Setting<Boolean> renderOwn = new Setting<>("Render Own", "Renders your own burrow block", false);
     public static final NumberSetting<Integer> range = new NumberSetting<>("Range", "The range to search for burrow blocks in", 1, 5, 10, 0);

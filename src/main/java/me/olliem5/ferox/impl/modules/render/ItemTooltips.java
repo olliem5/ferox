@@ -17,7 +17,7 @@ import java.awt.*;
  * @author olliem5
  */
 
-@FeroxModule(name = "ItemTooltips", description = "Shows handy tooltips for shulker boxes and maps", category = Category.RENDER)
+@FeroxModule(name = "ItemTooltips", description = "Shows handy tooltips for shulker boxes and maps", category = Category.Render)
 public final class ItemTooltips extends Module {
     public static final Setting<Boolean> shulkers = new Setting<>("Shulkers", "Allows for the shulker box tooltip to render", true);
     public static final Setting<Boolean> maps = new Setting<>("Maps", "Allows for the map tooltip to render", true);

@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
  * @author olliem5
  */
 
-@FeroxModule(name = "HoleESP", description = "Highlights safe holes for crystal pvp", category = Category.RENDER)
+@FeroxModule(name = "HoleESP", description = "Highlights safe holes for crystal pvp", category = Category.Render)
 public final class HoleESP extends Module {
     public static final NumberSetting<Integer> holeRange = new NumberSetting<>("Hole Range", "The range to search for holes in", 1, 5, 10, 0);
 

@@ -15,7 +15,7 @@ import net.minecraft.util.math.BlockPos;
  * @author olliem5
  */
 
-@FeroxModule(name = "FastUse", description = "Allows you to use certain things faster", category = Category.MISC)
+@FeroxModule(name = "FastUse", description = "Allows you to use certain things faster", category = Category.Misc)
 public final class FastUse extends Module {
     public static final Setting<Boolean> bows = new Setting<>("Bows", "Allows bows to be used quickly", true);
     public static final Setting<Boolean> offhandBows = new Setting<>("Offhand Bows", "Allows bows to be used quickly in the offhand", true);

@@ -9,7 +9,7 @@ import me.olliem5.ferox.api.setting.Setting;
  * @author olliem5
  */
 
-@FeroxModule(name = "Notifications", description = "Handles notifications client-wide", category = Category.FEROX)
+@FeroxModule(name = "Notifications", description = "Handles notifications client-wide", category = Category.Ferox)
 public final class Notifications extends Module {
     public static final Setting<Boolean> moduleToggle = new Setting<>("Module Toggle", "Notifies you when a module is toggled", true);
     public static final Setting<Boolean> moduleToggleChat = new Setting<>(moduleToggle, "Chat", "Sends module toggle messages in chat", true);

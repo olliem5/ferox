@@ -15,7 +15,7 @@ import net.minecraft.init.Items;
  * TODO: Crystal Range & Damage Checks
  */
 
-@FeroxModule(name = "Offhand", description = "Manages the item in your offhand", category = Category.COMBAT)
+@FeroxModule(name = "Offhand", description = "Manages the item in your offhand", category = Category.Combat)
 public final class Offhand extends Module {
     public static final Setting<OffhandModes> offhandMode = new Setting<>("Mode", "The item to put in your offhand", OffhandModes.Crystal);
     public static final NumberSetting<Double> switchHealth = new NumberSetting<>("Totem Health", "Health to be at to switch to a totem", 1.0, 16.0, 36.0, 1);

@@ -14,7 +14,7 @@ import net.minecraft.network.play.client.CPacketEntityAction;
  * @author linustouchtips
  */
 
-@FeroxModule(name = "ElytraFlight", description = "Allows you to fly faster on an elytra", category = Category.MOVEMENT)
+@FeroxModule(name = "ElytraFlight", description = "Allows you to fly faster on an elytra", category = Category.Movement)
 public final class ElytraFlight extends Module {
     public static final Setting<FlyModes> flyMode = new Setting<>("Mode", "The mode of flight to use", FlyModes.Control);
 
