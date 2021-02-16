@@ -55,7 +55,6 @@ public final class Aura extends Module {
     }
 
     private EntityPlayer target = null;
-    private final CooldownUtil packetDelay = new CooldownUtil();
 
     @Override
     public void onDisable() {
@@ -103,15 +102,13 @@ public final class Aura extends Module {
                         }
                     }
                 } else {
-                    if (packetDelay.passed(packetCooldown.getValue() * 60)) {
-                        mc.player.connection.sendPacket(new CPacketUseEntity(entityPlayer));
+                   mc.player.connection.sendPacket(new CPacketUseEntity(entityPlayer));
 
-                        if (swing.getValue()) {
-                            mc.player.swingArm(EnumHand.MAIN_HAND);
-                        }
-
-                        packetDelay.reset();
-                    }
+                   if (swing.getValue()) {
+                      mc.player.swingArm(EnumHand.MAIN_HAND);
+                   }
+                    
+                   mc.player.resetCooldown();
                 }
             } else {
                 if (attackMode.getValue() == AttackModes.Normal) {
