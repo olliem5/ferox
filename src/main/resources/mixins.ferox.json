@@ -14,6 +14,7 @@
     "MixinPlayerControllerMP",
     "MixinGuiScreen",
     "MixinEntity",
-    "MixinBlockLiquid"
+    "MixinBlockLiquid",
+    "MixinEntityRenderer"
   ]
 }
