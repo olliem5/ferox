@@ -1,7 +1,7 @@
 {
   "required": true,
   "compatibilityLevel": "JAVA_8",
-  "package": "me.olliem5.ferox.impl.mixins",
+  "package": "com.olliem5.ferox.impl.mixins",
   "refmap": "mixins.ferox.refmap.json",
   "mixins": [
     "MixinEntityPlayerSP",
@@ -14,6 +14,7 @@
     "MixinPlayerControllerMP",
     "MixinGuiScreen",
     "MixinEntity",
-    "MixinBlockLiquid"
+    "MixinBlockLiquid",
+    "MixinEntityRenderer"
   ]
 }
