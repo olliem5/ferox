@@ -56,9 +56,6 @@ import java.util.stream.Collectors;
  * - Walls Range
  * - Range for block to target
  *
- * Targeting
- * - Different logic for selecting a target
- *
  * TODO: Better prediction, based on target as well...?
  * TODO: Fix compatibility with AutoSwitch & AntiWeakness.
  * TODO: Actual rotation system!
@@ -73,82 +70,45 @@ import java.util.stream.Collectors;
 
 @FeroxModule(name = "AutoCrystal", description = "Places and destroys end crystals to kill enemies", category = Category.Combat)
 public final class AutoCrystal extends Module {
-    /**
-     * Break Settings
-     */
-
     public static final Setting<Boolean> crystalBreak = new Setting<>("Break", "Allows for crystals to be broken", true);
-
     public static final Setting<BreakModes> breakMode = new Setting<>(crystalBreak, "Type", "The mode for how the crystal is broken", BreakModes.Packet);
     public static final Setting<SwingModes> swingMode = new Setting<>(crystalBreak, "Swing", "The mode for how the player swings at the crystal", SwingModes.None);
     public static final Setting<SyncModes> syncMode = new Setting<>(crystalBreak, "Sync", "The way the crystal is synced", SyncModes.None);
-
     public static final Setting<Boolean> antiWeakness = new Setting<>(crystalBreak, "Anti Weakness", "Allow switching to a sword or tool when you have weakness", false);
     public static final Setting<Boolean> throughWalls = new Setting<>(crystalBreak, "Through Walls", "Allows the AutoCrystal to break through walls", true);
     public static final Setting<Boolean> rotate = new Setting<>(crystalBreak, "Rotate", "Allow rotations to crystals and blocks", false);
-
     public static final NumberSetting<Double> breakRange = new NumberSetting<>(crystalBreak, "Range", "The range to break crystals in", 0.0, 5.0, 7.0, 1);
-//    public static final NumberSetting<Double> maxSelfBreakDamage = new NumberSetting<>(crystalBreak, "Max Self Damage", "Maximum self damage for a break", 1.0, 8.0, 36.0, 1);
-
     public static final NumberSetting<Integer> breakAttempts = new NumberSetting<>(crystalBreak, "Break Attempts", "How many times attempt to break the crystal", 1, 1, 5, 0);
     public static final NumberSetting<Integer> breakDelay = new NumberSetting<>(crystalBreak, "Delay", "The delay between crystal breaks", 0, 2, 20, 0);
 
-    /**
-     * Place Settings
-     */
-
     public static final Setting<Boolean> crystalPlace = new Setting<>("Place", "Allows for crystals to be placed", true);
-
     public static final Setting<PlaceModes> placeMode = new Setting<>(crystalPlace, "Type", "The mode for how the crystal is placed", PlaceModes.Packet);
-
     public static final Setting<Boolean> autoSwitch = new Setting<>(crystalPlace, "Auto Switch", "Switches to crystals before placing", false);
     public static final Setting<Boolean> raytrace = new Setting<>(crystalPlace, "Raytrace", "Allow raytracing for placements", true);
     public static final Setting<Boolean> multiPlace = new Setting<>(crystalPlace, "Multi Place", "Place multiple crystals before a break", false);
     public static final Setting<Boolean> predictPlace = new Setting<>(crystalPlace, "Predict", "Takes movement into account for placements", true);
     public static final Setting<Boolean> verifyPlace = new Setting<>(crystalPlace, "Verify", "Verifies the eligibility for a place", false);
-
     public static final NumberSetting<Double> placeRange = new NumberSetting<>(crystalPlace, "Range", "The range to place crystals in", 0.0, 5.0, 7.0, 1);
     public static final NumberSetting<Double> wallRange = new NumberSetting<>(crystalPlace, "Wall Range", "The range to place through walls in", 0.0, 3.0, 7.0, 1);
     public static final NumberSetting<Double> minDamage = new NumberSetting<>(crystalPlace, "Min Target Damage", "Minimum target damage for a place", 0.0, 7.0, 36.0, 1);
     public static final NumberSetting<Double> maxSelfPlaceDamage = new NumberSetting<>(crystalPlace, "Max Self Damage", "Maximum self damage for a place", 0.0, 8.0, 36.0, 1);
-
     public static final NumberSetting<Integer> placeDelay = new NumberSetting<>(crystalPlace, "Delay", "The delay between crystal places", 0, 2, 20, 0);
 
-    /**
-     * Calculation Settings
-     */
-
     public static final Setting<Boolean> crystalCalculations = new Setting<>("Calculations", "Controls how AutoCrystal calculates", true);
-
-    public static final Setting<LogicModes> logicMode = new Setting<>(crystalCalculations, "Logic", "The order to perform AutoCrystal functions", LogicModes.Breakplace);
+    public static final Setting<LogicModes> logicMode = new Setting<>(crystalCalculations, "Logic", "The order to perform AutoCrystal functions", LogicModes.BreakPlace);
     public static final Setting<BlockLogicModes> blockLogicMode = new Setting<>(crystalCalculations, "Block Logic", "The game version to check for blocks to place crystals on", BlockLogicModes.Twelve);
-
     public static final NumberSetting<Double> targetRange = new NumberSetting<>(crystalCalculations, "Target Range", "The range the target can be in", 1.0, 10.0, 15.0, 1);
 
-    /**
-     * Pause Settings
-     */
-
     public static final Setting<Boolean> crystalPause = new Setting<>("Pause", "Controls when the AutoCrystal pauses", true);
-
     public static final Setting<Boolean> pauseHealthAllow = new Setting<>(crystalPause, "At Specified Health", "Pauses the AutoCrystal at a specified health", true);
-
     public static final NumberSetting<Double> pauseHealth = new NumberSetting<>(crystalPause, "Health", "Health to be at to pause the AutoCrystal", 0.0, 8.0, 36.0, 1);
-
     public static final Setting<Boolean> pauseWhileMining = new Setting<>(crystalPause, "While Mining", "Pauses the AutoCrystal while mining", true);
     public static final Setting<Boolean> pauseWhileEating = new Setting<>(crystalPause, "While Eating", "Pauses the AutoCrystal while eating", true);
 
-    /**
-     * Render Settings
-     */
-
     public static final Setting<Boolean> crystalRender = new Setting<>("Render", "Allows the crystal placements to be rendered", true);
-
     public static final Setting<BlockRenderModes> blockRenderMode = new Setting<>(crystalRender, "Block Mode", "The type of box to render", BlockRenderModes.Full);
     public static final Setting<TextRenderModes> textRenderMode = new Setting<>(crystalRender, "Text Mode", "How the crystal damage is rendered", TextRenderModes.Both);
-
     public static final NumberSetting<Double> outlineWidth = new NumberSetting<>(crystalRender, "Outline Width", "The width of the outline", 1.0, 2.0, 5.0, 1);
-
     public static final Setting<Color> renderColour = new Setting<>(crystalRender, "Render Colour", "The colour for the crystal placements", new Color(231, 15, 101, 180));
 
     public AutoCrystal() {
@@ -187,11 +147,11 @@ public final class AutoCrystal extends Module {
 
     private void implementLogic() {
         switch (logicMode.getValue()) {
-            case Breakplace:
+            case BreakPlace:
                 breakCrystal();
                 placeCrystal();
                 break;
-            case Placebreak:
+            case PlaceBreak:
                 placeCrystal();
                 breakCrystal();
                 break;
@@ -467,8 +427,8 @@ public final class AutoCrystal extends Module {
     }
 
     public enum LogicModes {
-        Breakplace,
-        Placebreak
+        BreakPlace,
+        PlaceBreak
     }
 
     public enum BlockLogicModes {

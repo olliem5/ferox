@@ -446,9 +446,9 @@ public final class DefaultTheme extends Theme {
 			if (GuiUtil.mouseOver(x, y + height + 1 + (boost * height), (x + width), y + height * 2 + (boost * height))) {
 				if (!hud) {
 					if (ClickGUI.nameMode.getValue() == ClickGUI.NameModes.Shrink) {
-						FontUtil.drawText(setting.getName() + ChatFormatting.GRAY + " " + setting.getValue().toString().toUpperCase(), x + 4, (y + height) + 3 + (boost * height), -1);
+						FontUtil.drawText(setting.getName() + ChatFormatting.GRAY + " " + setting.getValue(), x + 4, (y + height) + 3 + (boost * height), -1);
 					} else {
-						FontUtil.drawText(setting.getName() + ChatFormatting.GRAY + " " + setting.getValue().toString().toUpperCase(), x + 5, (y + height) + 3 + (boost * height), -1);
+						FontUtil.drawText(setting.getName() + ChatFormatting.GRAY + " " + setting.getValue(), x + 5, (y + height) + 3 + (boost * height), -1);
 					}
 
 					if (ClickGUI.indicatorMode.getValue() == ClickGUI.IndicatorModes.Shrink) {
@@ -458,9 +458,9 @@ public final class DefaultTheme extends Theme {
 					}
 				} else {
 					if (HUDEditor.nameMode.getValue() == HUDEditor.NameModes.Shrink) {
-						FontUtil.drawText(setting.getName() + ChatFormatting.GRAY + " " + setting.getValue().toString().toUpperCase(), x + 4, (y + height) + 3 + (boost * height), -1);
+						FontUtil.drawText(setting.getName() + ChatFormatting.GRAY + " " + setting.getValue(), x + 4, (y + height) + 3 + (boost * height), -1);
 					} else {
-						FontUtil.drawText(setting.getName() + ChatFormatting.GRAY + " " + setting.getValue().toString().toUpperCase(), x + 5, (y + height) + 3 + (boost * height), -1);
+						FontUtil.drawText(setting.getName() + ChatFormatting.GRAY + " " + setting.getValue(), x + 5, (y + height) + 3 + (boost * height), -1);
 					}
 
 					if (HUDEditor.indicatorMode.getValue() == HUDEditor.IndicatorModes.Shrink) {
@@ -470,11 +470,11 @@ public final class DefaultTheme extends Theme {
 					}
 				}
 			} else {
-				FontUtil.drawText(setting.getName() + ChatFormatting.GRAY + " " + setting.getValue().toString().toUpperCase(), x + 4, (y + height) + 3 + (boost * height), -1);
+				FontUtil.drawText(setting.getName() + ChatFormatting.GRAY + " " + setting.getValue(), x + 4, (y + height) + 3 + (boost * height), -1);
 				FontUtil.drawText("...", (x + width) - 10, y + height + 3 + (boost * height), -1);
 			}
 		} else {
-			FontUtil.drawText(setting.getName() + ChatFormatting.GRAY + " " + setting.getValue().toString().toUpperCase(), x + 4, (y + height) + 3 + (boost * height), -1);
+			FontUtil.drawText(setting.getName() + ChatFormatting.GRAY + " " + setting.getValue(), x + 4, (y + height) + 3 + (boost * height), -1);
 		}
 	}
 
@@ -500,7 +500,7 @@ public final class DefaultTheme extends Theme {
 		Gui.drawRect(x, y + height + (boost * height), x + 2, (y + height) + height + (boost * height), Colours.clientColourPicker.getValue().getRGB());
 		Gui.drawRect(x + 2, y + height + (boost * height), (x + width), (y + height) + height + (boost * height), color);
 
-		FontUtil.drawText(subSetting.getName() + ChatFormatting.GRAY + " " + subSetting.getValue().toString().toUpperCase(), x + 6, (y + height) + 3 + (boost * height), -1);
+		FontUtil.drawText(subSetting.getName() + ChatFormatting.GRAY + " " + subSetting.getValue(), x + 6, (y + height) + 3 + (boost * height), -1);
 	}
 
 	private static void renderInteger(NumberSetting<Integer> setting, int x, int y, boolean hud) {

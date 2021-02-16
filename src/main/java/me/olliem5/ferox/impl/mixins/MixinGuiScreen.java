@@ -28,11 +28,11 @@ public final class MixinGuiScreen {
             }
         }
 
-        if (ModuleManager.getModuleByName("ItemTooltips").isEnabled() && ItemTooltips.maps.getValue() && itemStack.getItem() instanceof ItemMap) {
-            if (!itemStack.isEmpty) {
+//        if (ModuleManager.getModuleByName("ItemTooltips").isEnabled() && ItemTooltips.maps.getValue() && itemStack.getItem() instanceof ItemMap) {
+//            if (!itemStack.isEmpty) {
 //                callbackInfo.cancel();
 //                ItemTooltips.renderMapTooltip(itemStack, x, y);
-            }
-        }
+//            }
+//        }
     }
 }

@@ -3,10 +3,10 @@ package me.olliem5.ferox.api.module;
 import me.olliem5.ferox.impl.modules.combat.*;
 import me.olliem5.ferox.impl.modules.exploit.*;
 import me.olliem5.ferox.impl.modules.ferox.*;
-import me.olliem5.ferox.impl.modules.misc.AutoLog;
-import me.olliem5.ferox.impl.modules.misc.ChatSuffix;
-import me.olliem5.ferox.impl.modules.misc.FakePlayer;
-import me.olliem5.ferox.impl.modules.misc.FastUse;
+import me.olliem5.ferox.impl.modules.miscellaneous.AutoLog;
+import me.olliem5.ferox.impl.modules.miscellaneous.ChatSuffix;
+import me.olliem5.ferox.impl.modules.miscellaneous.FakePlayer;
+import me.olliem5.ferox.impl.modules.miscellaneous.FastUse;
 import me.olliem5.ferox.impl.modules.movement.ElytraFlight;
 import me.olliem5.ferox.impl.modules.movement.NoSlow;
 import me.olliem5.ferox.impl.modules.movement.Sprint;
@@ -81,6 +81,7 @@ public final class ModuleManager {
                 new HUD(),
                 new Notifications(),
                 new Social(),
+                new Target(),
 
                 //Interface
                 new ClickGUI(),

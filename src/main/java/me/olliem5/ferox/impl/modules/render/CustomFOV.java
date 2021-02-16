@@ -10,15 +10,17 @@ import net.minecraftforge.client.event.EntityViewRenderEvent;
 
 /**
  * @author olliem5
+ *
+ * TODO: Make the FOV reset
  */
 
 @FeroxModule(name = "CustomFOV", description = "Allows you to change your normal and item fov", category = Category.Render)
 public final class CustomFOV extends Module {
-    public static Setting<Boolean> normalFOV = new Setting<>("Normal FOV", "Allows for modification of your normal FOV", true);
-    public static NumberSetting<Integer> normalFOVAmount = new NumberSetting<>(normalFOV, "Normal FOV Amount", "The value to set your normal FOV to", 0, 120, 250, 0);
+    public static final Setting<Boolean> normalFOV = new Setting<>("Normal FOV", "Allows for modification of your normal FOV", true);
+    public static final NumberSetting<Integer> normalFOVAmount = new NumberSetting<>(normalFOV, "Normal FOV Amount", "The value to set your normal FOV to", 0, 120, 250, 0);
 
-    public static Setting<Boolean> itemFOV = new Setting<>("Item FOV", "Allows for modification of your item FOV", true);
-    public static NumberSetting<Integer> itemFOVAmount = new NumberSetting<>(itemFOV, "Item FOV Amount", "The value to set your item FOV to", 0, 120, 250, 0);
+    public static final Setting<Boolean> itemFOV = new Setting<>("Item FOV", "Allows for modification of your item FOV", true);
+    public static final NumberSetting<Integer> itemFOVAmount = new NumberSetting<>(itemFOV, "Item FOV Amount", "The value to set your item FOV to", 0, 120, 250, 0);
 
     public CustomFOV() {
         this.addSettings(

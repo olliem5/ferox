@@ -7,7 +7,7 @@ package me.olliem5.ferox.api.module;
 public enum Category {
     Combat,
     Movement,
-    Misc,
+    Miscellaneous,
     Exploit,
     Render,
     Ferox,

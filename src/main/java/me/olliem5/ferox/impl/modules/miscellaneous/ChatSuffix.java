@@ -1,4 +1,4 @@
-package me.olliem5.ferox.impl.modules.misc;
+package me.olliem5.ferox.impl.modules.miscellaneous;
 
 import me.olliem5.ferox.api.module.Category;
 import me.olliem5.ferox.api.module.FeroxModule;
@@ -12,7 +12,7 @@ import net.minecraft.network.play.client.CPacketChatMessage;
  * @author olliem5
  */
 
-@FeroxModule(name = "ChatSuffix", description = "Adds a custom ending to your chat messages", category = Category.Misc)
+@FeroxModule(name = "ChatSuffix", description = "Adds a custom ending to your chat messages", category = Category.Miscellaneous)
 public final class ChatSuffix extends Module {
     public static final Setting<Boolean> green = new Setting<>("Green", "Makes your suffix green", false);
     public static final Setting<Boolean> blue = new Setting<>("Blue", "Makes your suffix blue", false);

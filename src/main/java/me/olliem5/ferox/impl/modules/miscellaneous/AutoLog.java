@@ -1,4 +1,4 @@
-package me.olliem5.ferox.impl.modules.misc;
+package me.olliem5.ferox.impl.modules.miscellaneous;
 
 import me.olliem5.ferox.api.module.Category;
 import me.olliem5.ferox.api.module.FeroxModule;
@@ -11,11 +11,11 @@ import net.minecraft.client.gui.GuiMainMenu;
  * @author olliem5
  */
 
-@FeroxModule(name = "AutoLog", description = "Leaves the server you are on at a specified health", category = Category.Misc)
+@FeroxModule(name = "AutoLog", description = "Leaves the server you are on at a specified health", category = Category.Miscellaneous)
 public final class AutoLog extends Module {
-    public static Setting<LogModes> logMode = new Setting<>("Mode", "How the module makes you disconnect from the server", LogModes.Disconnect);
-    public static Setting<Boolean> toggleAfter = new Setting<>("Toggle After", "Toggles the module after a disconnect happens", true);
-    public static NumberSetting<Float> logHealth = new NumberSetting<>("Health", "The health to be on to be disconnected", 0.0f, 10.0f, 36.0f, 1);
+    public static final Setting<LogModes> logMode = new Setting<>("Mode", "How the module makes you disconnect from the server", LogModes.Disconnect);
+    public static final Setting<Boolean> toggleAfter = new Setting<>("Toggle After", "Toggles the module after a disconnect happens", true);
+    public static final NumberSetting<Float> logHealth = new NumberSetting<>("Health", "The health to be on to be disconnected", 0.0f, 10.0f, 36.0f, 1);
 
     public AutoLog() {
         this.addSettings(
