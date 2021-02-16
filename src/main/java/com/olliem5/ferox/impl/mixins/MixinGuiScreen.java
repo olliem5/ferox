@@ -1,7 +1,7 @@
 package com.olliem5.ferox.impl.mixins;
 
-import com.olliem5.ferox.impl.modules.render.ItemTooltips;
 import com.olliem5.ferox.api.module.ModuleManager;
+import com.olliem5.ferox.impl.modules.render.ItemTooltips;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.item.ItemShulkerBox;
 import net.minecraft.item.ItemStack;

@@ -1,8 +1,8 @@
 package com.olliem5.ferox.impl.mixins;
 
-import com.olliem5.ferox.impl.modules.movement.NoSlow;
 import com.olliem5.ferox.api.module.ModuleManager;
 import com.olliem5.ferox.api.traits.Minecraft;
+import com.olliem5.ferox.impl.modules.movement.NoSlow;
 import net.minecraft.client.gui.GuiChat;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.util.MovementInput;

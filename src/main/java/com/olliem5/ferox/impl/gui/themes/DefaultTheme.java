@@ -1,8 +1,6 @@
 package com.olliem5.ferox.impl.gui.themes;
 
 import com.mojang.realmsclient.gui.ChatFormatting;
-import com.olliem5.ferox.impl.modules.ui.ClickGUI;
-import com.olliem5.ferox.impl.modules.ui.HUDEditor;
 import com.olliem5.ferox.api.component.Component;
 import com.olliem5.ferox.api.module.Module;
 import com.olliem5.ferox.api.setting.NumberSetting;
@@ -17,6 +15,8 @@ import com.olliem5.ferox.api.util.render.draw.DrawUtil;
 import com.olliem5.ferox.api.util.render.font.FontUtil;
 import com.olliem5.ferox.api.util.render.gui.GuiUtil;
 import com.olliem5.ferox.impl.modules.ferox.Colours;
+import com.olliem5.ferox.impl.modules.ui.ClickGUI;
+import com.olliem5.ferox.impl.modules.ui.HUDEditor;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.ScaledResolution;
 import org.lwjgl.input.Keyboard;

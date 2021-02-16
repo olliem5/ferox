@@ -1,6 +1,5 @@
 package com.olliem5.ferox.impl.gui.screens.click;
 
-import com.olliem5.ferox.impl.modules.ui.ClickGUI;
 import com.olliem5.ferox.api.module.Category;
 import com.olliem5.ferox.api.module.Module;
 import com.olliem5.ferox.api.module.ModuleManager;
@@ -8,6 +7,7 @@ import com.olliem5.ferox.api.theme.Theme;
 import com.olliem5.ferox.api.theme.ThemeManager;
 import com.olliem5.ferox.api.traits.Minecraft;
 import com.olliem5.ferox.api.util.render.gui.GuiUtil;
+import com.olliem5.ferox.impl.modules.ui.ClickGUI;
 import net.minecraft.client.gui.ScaledResolution;
 import org.lwjgl.input.Mouse;
 

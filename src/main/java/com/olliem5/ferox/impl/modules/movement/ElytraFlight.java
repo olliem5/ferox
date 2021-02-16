@@ -1,14 +1,13 @@
 package com.olliem5.ferox.impl.modules.movement;
 
-import com.olliem5.ferox.impl.modules.movement.elytraflight.ElytraMode;
 import com.olliem5.ferox.api.module.Category;
 import com.olliem5.ferox.api.module.FeroxModule;
 import com.olliem5.ferox.api.module.Module;
 import com.olliem5.ferox.api.setting.NumberSetting;
 import com.olliem5.ferox.api.setting.Setting;
 import com.olliem5.ferox.api.util.player.MotionUtil;
+import com.olliem5.ferox.impl.modules.movement.elytraflight.ElytraMode;
 import com.olliem5.ferox.impl.modules.movement.elytraflight.modes.*;
-import me.olliem5.ferox.impl.modules.movement.elytraflight.modes.*;
 import net.minecraft.network.play.client.CPacketEntityAction;
 
 /**

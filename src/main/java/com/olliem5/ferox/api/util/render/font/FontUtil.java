@@ -16,22 +16,22 @@ public final class FontUtil implements Minecraft {
 
     public static void drawString(String text, float x, float y, int colour) {
         switch (Font.font.getValue()) {
-            case Font.FontModes.Ubuntu:
+            case Ubuntu:
                 ubuntuFont.drawString(text, x, y, colour);
                 break;
-            case Font.FontModes.Lato:
+            case Lato:
                 latoFont.drawString(text, x, y, colour);
                 break;
-            case Font.FontModes.Verdana:
+            case Verdana:
                 verdanaFont.drawString(text, x, y, colour);
                 break;
-            case Font.FontModes.Comfortaa:
+            case Comfortaa:
                 comfortaaFont.drawString(text, x, y, colour);
                 break;
-            case Font.FontModes.Subtitle:
+            case Subtitle:
                 subtitleFont.drawString(text, x, y, colour);
                 break;
-            case Font.FontModes.Minecraft:
+            case Minecraft:
                 mc.fontRenderer.drawString(text, (int) x, (int) y, colour);
                 break;
         }
@@ -39,22 +39,22 @@ public final class FontUtil implements Minecraft {
 
     public static void drawStringWithShadow(String text, float x, float y, int colour) {
         switch (Font.font.getValue()) {
-            case Font.FontModes.Ubuntu:
+            case Ubuntu:
                 ubuntuFont.drawStringWithShadow(text, x, y, colour);
                 break;
-            case Font.FontModes.Lato:
+            case Lato:
                 latoFont.drawStringWithShadow(text, x, y, colour);
                 break;
-            case Font.FontModes.Verdana:
+            case Verdana:
                 verdanaFont.drawStringWithShadow(text, x, y, colour);
                 break;
-            case Font.FontModes.Comfortaa:
+            case Comfortaa:
                 comfortaaFont.drawStringWithShadow(text, x, y, colour);
                 break;
-            case Font.FontModes.Subtitle:
+            case Subtitle:
                 subtitleFont.drawStringWithShadow(text, x, y, colour);
                 break;
-            case Font.FontModes.Minecraft:
+            case Minecraft:
                 mc.fontRenderer.drawStringWithShadow(text, (int) x, (int) y, colour);
                 break;
         }
@@ -70,17 +70,17 @@ public final class FontUtil implements Minecraft {
 
     public static float getStringWidth(String text) {
         switch (Font.font.getValue()) {
-            case Font.FontModes.Ubuntu:
+            case Ubuntu:
                 return ubuntuFont.getStringWidth(text);
-            case Font.FontModes.Lato:
+            case Lato:
                 return latoFont.getStringWidth(text);
-            case Font.FontModes.Verdana:
+            case Verdana:
                 return verdanaFont.getStringWidth(text);
-            case Font.FontModes.Comfortaa:
+            case Comfortaa:
                 return comfortaaFont.getStringWidth(text);
-            case Font.FontModes.Subtitle:
+            case Subtitle:
                 return subtitleFont.getStringWidth(text);
-            case Font.FontModes.Minecraft:
+            case Minecraft:
                 return mc.fontRenderer.getStringWidth(text);
         }
 
@@ -89,17 +89,17 @@ public final class FontUtil implements Minecraft {
 
     public static float getStringHeight(String text) {
         switch (Font.font.getValue()) {
-            case Font.FontModes.Ubuntu:
+            case Ubuntu:
                 return ubuntuFont.getStringHeight(text);
-            case Font.FontModes.Lato:
+            case Lato:
                 return latoFont.getStringHeight(text);
-            case Font.FontModes.Verdana:
+            case Verdana:
                 return verdanaFont.getStringHeight(text);
-            case Font.FontModes.Comfortaa:
+            case Comfortaa:
                 return comfortaaFont.getStringHeight(text);
-            case Font.FontModes.Subtitle:
+            case Subtitle:
                 return subtitleFont.getStringHeight(text);
-            case Font.FontModes.Minecraft:
+            case Minecraft:
                 return mc.fontRenderer.FONT_HEIGHT;
         }
 

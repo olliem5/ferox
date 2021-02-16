@@ -1,13 +1,13 @@
 package com.olliem5.ferox.api.module;
 
 import com.mojang.realmsclient.gui.ChatFormatting;
+import com.olliem5.ferox.Ferox;
 import com.olliem5.ferox.api.notification.Notification;
 import com.olliem5.ferox.api.notification.NotificationManager;
 import com.olliem5.ferox.api.setting.Setting;
 import com.olliem5.ferox.api.traits.Minecraft;
-import com.olliem5.ferox.impl.modules.ferox.Notifications;
-import com.olliem5.ferox.Ferox;
 import com.olliem5.ferox.api.util.client.MessageUtil;
+import com.olliem5.ferox.impl.modules.ferox.Notifications;
 
 import java.util.ArrayList;
 import java.util.Arrays;

@@ -1,10 +1,10 @@
 package com.olliem5.ferox.impl.modules.movement.elytraflight.modes;
 
-import com.olliem5.ferox.impl.modules.movement.ElytraFlight;
-import com.olliem5.ferox.impl.modules.movement.elytraflight.ElytraMode;
 import com.olliem5.ferox.api.util.module.ElytraUtil;
 import com.olliem5.ferox.api.util.packet.RotationUtil;
 import com.olliem5.ferox.api.util.player.InventoryUtil;
+import com.olliem5.ferox.impl.modules.movement.ElytraFlight;
+import com.olliem5.ferox.impl.modules.movement.elytraflight.ElytraMode;
 import net.minecraft.init.Items;
 import net.minecraft.network.play.client.CPacketPlayerTryUseItem;
 import net.minecraft.util.EnumHand;

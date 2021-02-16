@@ -1,10 +1,10 @@
 package com.olliem5.ferox.impl.gui.screens.console;
 
-import com.olliem5.ferox.impl.gui.screens.console.component.OutputComponent;
 import com.olliem5.ferox.api.util.colour.RainbowUtil;
 import com.olliem5.ferox.api.util.render.font.FontUtil;
 import com.olliem5.ferox.impl.gui.Component;
 import com.olliem5.ferox.impl.gui.screens.console.component.InputComponent;
+import com.olliem5.ferox.impl.gui.screens.console.component.OutputComponent;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiScreen;
 import org.lwjgl.input.Keyboard;

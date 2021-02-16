@@ -1,10 +1,10 @@
 package com.olliem5.ferox.api.component;
 
-import com.olliem5.ferox.impl.modules.ui.HUDEditor;
 import com.olliem5.ferox.api.setting.Setting;
 import com.olliem5.ferox.api.traits.Minecraft;
 import com.olliem5.ferox.api.util.render.font.FontUtil;
 import com.olliem5.ferox.impl.modules.ferox.Colours;
+import com.olliem5.ferox.impl.modules.ui.HUDEditor;
 import net.minecraft.client.gui.ScaledResolution;
 
 import java.util.ArrayList;

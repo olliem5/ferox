@@ -1,8 +1,8 @@
 package com.olliem5.ferox.impl.mixins;
 
+import com.olliem5.ferox.Ferox;
 import com.olliem5.ferox.impl.events.PacketEvent;
 import io.netty.channel.ChannelHandlerContext;
-import com.olliem5.ferox.Ferox;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import org.spongepowered.asm.mixin.Mixin;

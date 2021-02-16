@@ -1,9 +1,8 @@
 package com.olliem5.ferox.api.component;
 
-import com.olliem5.ferox.impl.components.*;
 import com.olliem5.ferox.api.module.ModuleManager;
 import com.olliem5.ferox.api.traits.Minecraft;
-import me.olliem5.ferox.impl.components.*;
+import com.olliem5.ferox.impl.components.*;
 import me.olliem5.pace.annotation.PaceHandler;
 import me.olliem5.pace.modifier.EventPriority;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;

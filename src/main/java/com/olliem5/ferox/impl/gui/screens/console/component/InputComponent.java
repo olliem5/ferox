@@ -1,11 +1,11 @@
 package com.olliem5.ferox.impl.gui.screens.console.component;
 
 import com.mojang.realmsclient.gui.ChatFormatting;
-import com.olliem5.ferox.impl.gui.Component;
-import com.olliem5.ferox.impl.modules.ui.Console;
 import com.olliem5.ferox.Ferox;
 import com.olliem5.ferox.api.util.colour.RainbowUtil;
 import com.olliem5.ferox.api.util.render.font.FontUtil;
+import com.olliem5.ferox.impl.gui.Component;
+import com.olliem5.ferox.impl.modules.ui.Console;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.util.ChatAllowedCharacters;
 import org.lwjgl.input.Keyboard;

@@ -1,7 +1,7 @@
 package com.olliem5.ferox.impl.mixins;
 
-import com.olliem5.ferox.impl.modules.render.BlockHighlight;
 import com.olliem5.ferox.api.module.ModuleManager;
+import com.olliem5.ferox.impl.modules.render.BlockHighlight;
 import net.minecraft.client.renderer.RenderGlobal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.RayTraceResult;

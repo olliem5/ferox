@@ -1,12 +1,12 @@
 package com.olliem5.ferox.impl.gui.screens.editor;
 
-import com.olliem5.ferox.impl.modules.ui.HUDEditor;
 import com.olliem5.ferox.api.component.Component;
 import com.olliem5.ferox.api.component.ComponentManager;
 import com.olliem5.ferox.api.theme.Theme;
 import com.olliem5.ferox.api.theme.ThemeManager;
 import com.olliem5.ferox.api.traits.Minecraft;
 import com.olliem5.ferox.api.util.render.gui.GuiUtil;
+import com.olliem5.ferox.impl.modules.ui.HUDEditor;
 import net.minecraft.client.gui.ScaledResolution;
 import org.lwjgl.input.Mouse;
 
