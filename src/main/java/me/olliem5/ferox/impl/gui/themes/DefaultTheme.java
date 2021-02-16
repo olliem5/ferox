@@ -83,7 +83,9 @@ public final class DefaultTheme extends Theme {
 					}
 				}
 
-				drawModuleBottomLeftText(module);
+				if (ClickGUI.descriptions.getValue() && ClickGUI.moduleDescriptions.getValue()) {
+					drawModuleBottomLeftText(module);
+				}
 			} else {
 				FontUtil.drawText(module.getName(), x + 2, y + height + 4 + (boost * height), -1);
 
@@ -142,7 +144,9 @@ public final class DefaultTheme extends Theme {
 					}
 				}
 
-				drawComponentBottomLeftText(component);
+				if (HUDEditor.descriptions.getValue() && HUDEditor.componentDescriptions.getValue()) {
+					drawComponentBottomLeftText(component);
+				}
 			} else {
 				FontUtil.drawText(component.getName(), x + 2, y + height + 4 + (boost * height), -1);
 
@@ -205,12 +209,12 @@ public final class DefaultTheme extends Theme {
 
 					if (subSetting.getValue() instanceof Boolean) {
 						Setting<Boolean> booleanSubSetting = (Setting<Boolean>) subSetting;
-						renderSubBoolean(booleanSubSetting, x, y);
+						renderSubBoolean(booleanSubSetting, x, y, false);
 					}
 
 					if (subSetting.getValue() instanceof Enum) {
 						Setting<Enum> enumSubSetting = (Setting<Enum>) subSetting;
-						renderSubEnum(enumSubSetting, x, y);
+						renderSubEnum(enumSubSetting, x, y, false);
 					}
 
 					if (subSetting.getValue() instanceof Color) {
@@ -222,17 +226,17 @@ public final class DefaultTheme extends Theme {
 
 					if (subSetting.getValue() instanceof Integer) {
 						NumberSetting<Integer> integerSubSetting = (NumberSetting<Integer>) subSetting;
-						renderSubInteger(integerSubSetting, x, y);
+						renderSubInteger(integerSubSetting, x, y, false);
 					}
 
 					if (subSetting.getValue() instanceof Double) {
 						NumberSetting<Double> doubleSubSetting = (NumberSetting<Double>) subSetting;
-						renderSubDouble(doubleSubSetting, x, y);
+						renderSubDouble(doubleSubSetting, x, y, false);
 					}
 
 					if (subSetting.getValue() instanceof Float) {
 						NumberSetting<Float> floatSubSetting = (NumberSetting<Float>) subSetting;
-						renderSubFloat(floatSubSetting, x, y);
+						renderSubFloat(floatSubSetting, x, y, false);
 					}
 				}
 			}
@@ -283,12 +287,12 @@ public final class DefaultTheme extends Theme {
 
 					if (subSetting.getValue() instanceof Boolean) {
 						Setting<Boolean> booleanSubSetting = (Setting<Boolean>) subSetting;
-						renderSubBoolean(booleanSubSetting, x, y);
+						renderSubBoolean(booleanSubSetting, x, y, true);
 					}
 
 					if (subSetting.getValue() instanceof Enum) {
 						Setting<Enum> enumSubSetting = (Setting<Enum>) subSetting;
-						renderSubEnum(enumSubSetting, x, y);
+						renderSubEnum(enumSubSetting, x, y, true);
 					}
 
 					if (subSetting.getValue() instanceof Color) {
@@ -300,17 +304,17 @@ public final class DefaultTheme extends Theme {
 
 					if (subSetting.getValue() instanceof Integer) {
 						NumberSetting<Integer> integerSubSetting = (NumberSetting<Integer>) subSetting;
-						renderSubInteger(integerSubSetting, x, y);
+						renderSubInteger(integerSubSetting, x, y, true);
 					}
 
 					if (subSetting.getValue() instanceof Double) {
 						NumberSetting<Double> doubleSubSetting = (NumberSetting<Double>) subSetting;
-						renderSubDouble(doubleSubSetting, x, y);
+						renderSubDouble(doubleSubSetting, x, y, true);
 					}
 
 					if (subSetting.getValue() instanceof Float) {
 						NumberSetting<Float> floatSubSetting = (NumberSetting<Float>) subSetting;
-						renderSubFloat(floatSubSetting, x, y);
+						renderSubFloat(floatSubSetting, x, y, true);
 					}
 				}
 			}
@@ -333,7 +337,15 @@ public final class DefaultTheme extends Theme {
 				setting.setOpened(!setting.isOpened());
 			}
 
-			drawSettingBottomLeftText(setting);
+			if (!hud) {
+				if (ClickGUI.descriptions.getValue() && ClickGUI.settingDescriptions.getValue()) {
+					drawSettingBottomLeftText(setting);
+				}
+			} else {
+				if (HUDEditor.descriptions.getValue() && HUDEditor.settingDescriptions.getValue()) {
+					drawSettingBottomLeftText(setting);
+				}
+			}
 		}
 
 		Gui.drawRect(x, y + height + (boost * height), x + 1, (y + height) + height + (boost * height), Colours.clientColourPicker.getValue().getRGB());
@@ -375,7 +387,7 @@ public final class DefaultTheme extends Theme {
 		}
 	}
 
-	private static void renderSubBoolean(Setting<Boolean> subSetting, int x, int y) {
+	private static void renderSubBoolean(Setting<Boolean> subSetting, int x, int y, boolean hud) {
 		int color = 0xFF212121;
 
 		if (subSetting.getValue()) {
@@ -387,7 +399,15 @@ public final class DefaultTheme extends Theme {
 				subSetting.setValue(!subSetting.getValue());
 			}
 
-			drawSettingBottomLeftText(subSetting);
+			if (!hud) {
+				if (ClickGUI.descriptions.getValue() && ClickGUI.settingDescriptions.getValue()) {
+					drawSettingBottomLeftText(subSetting);
+				}
+			} else {
+				if (HUDEditor.descriptions.getValue() && HUDEditor.settingDescriptions.getValue()) {
+					drawSettingBottomLeftText(subSetting);
+				}
+			}
 		}
 
 		Gui.drawRect(x, y + height + (boost * height), x + 2, (y + height) + height + (boost * height), Colours.clientColourPicker.getValue().getRGB());
@@ -408,7 +428,15 @@ public final class DefaultTheme extends Theme {
 				setting.setOpened(setting.isOpened());
 			}
 
-			drawSettingBottomLeftText(setting);
+			if (!hud) {
+				if (ClickGUI.descriptions.getValue() && ClickGUI.settingDescriptions.getValue()) {
+					drawSettingBottomLeftText(setting);
+				}
+			} else {
+				if (HUDEditor.descriptions.getValue() && HUDEditor.settingDescriptions.getValue()) {
+					drawSettingBottomLeftText(setting);
+				}
+			}
 		}
 
 		Gui.drawRect(x, y + height + (boost * height), x + 1, (y + height) + height + (boost * height), Colours.clientColourPicker.getValue().getRGB());
@@ -450,7 +478,7 @@ public final class DefaultTheme extends Theme {
 		}
 	}
 
-	private static void renderSubEnum(Setting<Enum> subSetting, int x, int y) {
+	private static void renderSubEnum(Setting<Enum> subSetting, int x, int y, boolean hud) {
 		int color = 0xFF212121;
 
 		if (GuiUtil.mouseOver(x, y + height + (boost * height), (x + width), (y + height) + height - 1 + (boost * height))) {
@@ -458,7 +486,15 @@ public final class DefaultTheme extends Theme {
 				EnumUtil.setEnumValue(subSetting, EnumUtil.getNextEnumValue(subSetting, false));
 			}
 
-			drawSettingBottomLeftText(subSetting);
+			if (!hud) {
+				if (ClickGUI.descriptions.getValue() && ClickGUI.settingDescriptions.getValue()) {
+					drawSettingBottomLeftText(subSetting);
+				}
+			} else {
+				if (HUDEditor.descriptions.getValue() && HUDEditor.settingDescriptions.getValue()) {
+					drawSettingBottomLeftText(subSetting);
+				}
+			}
 		}
 
 		Gui.drawRect(x, y + height + (boost * height), x + 2, (y + height) + height + (boost * height), Colours.clientColourPicker.getValue().getRGB());
@@ -478,7 +514,15 @@ public final class DefaultTheme extends Theme {
 				setting.setValue((int) (percentError * ((setting.getMax() - setting.getMin()) / 100.0D) + setting.getMin()));
 			}
 
-			drawSettingBottomLeftText(setting);
+			if (!hud) {
+				if (ClickGUI.descriptions.getValue() && ClickGUI.settingDescriptions.getValue()) {
+					drawSettingBottomLeftText(setting);
+				}
+			} else {
+				if (HUDEditor.descriptions.getValue() && HUDEditor.settingDescriptions.getValue()) {
+					drawSettingBottomLeftText(setting);
+				}
+			}
 		}
 
 		if (pixAdd < 1) {
@@ -525,7 +569,7 @@ public final class DefaultTheme extends Theme {
 		}
 	}
 
-	private static void renderSubInteger(NumberSetting<Integer> subSetting, int x, int y) {
+	private static void renderSubInteger(NumberSetting<Integer> subSetting, int x, int y, boolean hud) {
 		int color = 0xFF212121;
 
 		int pixAdd = ((x + width) - x) * (subSetting.getValue() - subSetting.getMin()) / (subSetting.getMax() - subSetting.getMin());
@@ -536,7 +580,15 @@ public final class DefaultTheme extends Theme {
 				subSetting.setValue((int) (percentError * ((subSetting.getMax() - subSetting.getMin()) / 100.0D) + subSetting.getMin()));
 			}
 
-			drawSettingBottomLeftText(subSetting);
+			if (!hud) {
+				if (ClickGUI.descriptions.getValue() && ClickGUI.settingDescriptions.getValue()) {
+					drawSettingBottomLeftText(subSetting);
+				}
+			} else {
+				if (HUDEditor.descriptions.getValue() && HUDEditor.settingDescriptions.getValue()) {
+					drawSettingBottomLeftText(subSetting);
+				}
+			}
 		}
 
 		if (pixAdd < 2) {
@@ -561,7 +613,15 @@ public final class DefaultTheme extends Theme {
 				setting.setValue(MathUtil.roundNumber(percentError * ((setting.getMax() - setting.getMin()) / 100.0D) + setting.getMin(), setting.getScale()));
 			}
 
-			drawSettingBottomLeftText(setting);
+			if (!hud) {
+				if (ClickGUI.descriptions.getValue() && ClickGUI.settingDescriptions.getValue()) {
+					drawSettingBottomLeftText(setting);
+				}
+			} else {
+				if (HUDEditor.descriptions.getValue() && HUDEditor.settingDescriptions.getValue()) {
+					drawSettingBottomLeftText(setting);
+				}
+			}
 		}
 
 		if (pixAdd < 1) {
@@ -608,7 +668,7 @@ public final class DefaultTheme extends Theme {
 		}
 	}
 
-	private static void renderSubDouble(NumberSetting<Double> subSetting, int x, int y) {
+	private static void renderSubDouble(NumberSetting<Double> subSetting, int x, int y, boolean hud) {
 		int color = 0xFF212121;
 
 		int pixAdd = (int) (((x + width) - x) * (subSetting.getValue() - subSetting.getMin()) / (subSetting.getMax() - subSetting.getMin()));
@@ -619,7 +679,15 @@ public final class DefaultTheme extends Theme {
 				subSetting.setValue(MathUtil.roundNumber(percentError * ((subSetting.getMax() - subSetting.getMin()) / 100.0D) + subSetting.getMin(), subSetting.getScale()));
 			}
 
-			drawSettingBottomLeftText(subSetting);
+			if (!hud) {
+				if (ClickGUI.descriptions.getValue() && ClickGUI.settingDescriptions.getValue()) {
+					drawSettingBottomLeftText(subSetting);
+				}
+			} else {
+				if (HUDEditor.descriptions.getValue() && HUDEditor.settingDescriptions.getValue()) {
+					drawSettingBottomLeftText(subSetting);
+				}
+			}
 		}
 
 		if (pixAdd < 2) {
@@ -644,7 +712,15 @@ public final class DefaultTheme extends Theme {
 				setting.setValue((float) MathUtil.roundNumber(percentError * ((setting.getMax() - setting.getMin()) / 100.0D) + setting.getMin(), setting.getScale()));
 			}
 
-			drawSettingBottomLeftText(setting);
+			if (!hud) {
+				if (ClickGUI.descriptions.getValue() && ClickGUI.settingDescriptions.getValue()) {
+					drawSettingBottomLeftText(setting);
+				}
+			} else {
+				if (HUDEditor.descriptions.getValue() && HUDEditor.settingDescriptions.getValue()) {
+					drawSettingBottomLeftText(setting);
+				}
+			}
 		}
 
 		if (pixAdd < 1) {
@@ -691,7 +767,7 @@ public final class DefaultTheme extends Theme {
 		}
 	}
 
-	private static void renderSubFloat(NumberSetting<Float> subSetting, int x, int y) {
+	private static void renderSubFloat(NumberSetting<Float> subSetting, int x, int y, boolean hud) {
 		int color = 0xFF212121;
 
 		int pixAdd = (int) (((x + width) - x) * (subSetting.getValue() - subSetting.getMin()) / (subSetting.getMax() - subSetting.getMin()));
@@ -702,7 +778,15 @@ public final class DefaultTheme extends Theme {
 				subSetting.setValue((float) MathUtil.roundNumber(percentError * ((subSetting.getMax() - subSetting.getMin()) / 100.0D) + subSetting.getMin(), subSetting.getScale()));
 			}
 
-			drawSettingBottomLeftText(subSetting);
+			if (!hud) {
+				if (ClickGUI.descriptions.getValue() && ClickGUI.settingDescriptions.getValue()) {
+					drawSettingBottomLeftText(subSetting);
+				}
+			} else {
+				if (HUDEditor.descriptions.getValue() && HUDEditor.settingDescriptions.getValue()) {
+					drawSettingBottomLeftText(subSetting);
+				}
+			}
 		}
 
 		if (pixAdd < 2) {
@@ -724,7 +808,9 @@ public final class DefaultTheme extends Theme {
 				module.setBinding(!module.isBinding());
 			}
 
-			drawKeybindBottomLeftText(module, Keyboard.getKeyName(module.getKey()));
+			if (ClickGUI.descriptions.getValue() && ClickGUI.keybindDescriptions.getValue()) {
+				drawKeybindBottomLeftText(module, Keyboard.getKeyName(module.getKey()));
+			}
 		}
 
 		if (module.isBinding() && key != -1 && key != Keyboard.KEY_ESCAPE && key != Keyboard.KEY_DELETE) {
