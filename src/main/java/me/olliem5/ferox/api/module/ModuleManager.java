@@ -78,9 +78,9 @@ public final class ModuleManager {
                 new Colours(),
                 new DiscordRPC(),
                 new Font(),
-                new Friends(),
                 new HUD(),
                 new Notifications(),
+                new Social(),
 
                 //Interface
                 new ClickGUI(),

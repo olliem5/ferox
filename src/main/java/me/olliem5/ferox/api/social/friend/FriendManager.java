@@ -1,6 +1,8 @@
-package me.olliem5.ferox.api.friend;
+package me.olliem5.ferox.api.social.friend;
 
 import me.olliem5.ferox.api.module.ModuleManager;
+import me.olliem5.ferox.api.social.friend.Friend;
+import me.olliem5.ferox.impl.modules.ferox.Social;
 
 import java.util.ArrayList;
 
@@ -15,7 +17,7 @@ public final class FriendManager {
         boolean isFriend = false;
 
         for (Friend friend : getFriends()) {
-            if (friend.getName().equalsIgnoreCase(name) && isFriendsActive()) {
+            if (friend.getName().equalsIgnoreCase(name) && ModuleManager.getModuleByName("Social").isEnabled() && Social.friends.getValue()) {
                 isFriend = true;
             }
         }
@@ -45,9 +47,5 @@ public final class FriendManager {
 
     public static void delFriend(String name) {
         friends.remove(getFriendByName(name));
-    }
-
-    public static boolean isFriendsActive() {
-        return ModuleManager.getModuleByName("Friends").isEnabled();
     }
 }

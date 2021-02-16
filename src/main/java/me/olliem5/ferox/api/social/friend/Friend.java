@@ -1,4 +1,4 @@
-package me.olliem5.ferox.api.friend;
+package me.olliem5.ferox.api.social.friend;
 
 /**
  * @author olliem5

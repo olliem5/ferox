@@ -1,6 +1,6 @@
 package me.olliem5.ferox.api.util.player;
 
-import me.olliem5.ferox.api.friend.FriendManager;
+import me.olliem5.ferox.api.social.friend.FriendManager;
 import me.olliem5.ferox.api.traits.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 
