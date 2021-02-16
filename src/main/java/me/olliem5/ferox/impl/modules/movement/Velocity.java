@@ -26,6 +26,7 @@ public final class Velocity extends Module {
 
     public static final Setting<Boolean> noPush = new Setting<>("No Push", "Allows for modification of knockback via pushing", true);
     public static final Setting<Boolean> noPushLiquids = new Setting<>(noPush, "Liquids", "Makes liquids not able to push you", true);
+    public static final Setting<Boolean> noPushBlocks = new Setting<>(noPush, "Blocks", "Makes blocks not be able to push you", true);
 
     public Velocity() {
         this.addSettings(

@@ -54,8 +54,10 @@ public final class ModuleManager {
 
                 //Exploit
                 new Blink(),
+                new BuildHeight(),
                 new Burrow(),
                 new Criticals(),
+                new LiquidInteract(),
                 new Portals(),
                 new Reach(),
                 new Timer(),

@@ -4,6 +4,7 @@ import me.olliem5.ferox.Ferox;
 import me.olliem5.ferox.api.module.ModuleManager;
 import me.olliem5.ferox.impl.events.PlayerMoveEvent;
 import me.olliem5.ferox.impl.modules.exploit.Portals;
+import me.olliem5.ferox.impl.modules.movement.Velocity;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.gui.GuiScreen;
@@ -13,6 +14,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 /**
  * @author olliem5
@@ -37,6 +39,13 @@ public final class MixinEntityPlayerSP {
 
         if (playerMoveEvent.isCancelled()) {
             callbackInfo.cancel();
+        }
+    }
+
+    @Inject(method = "pushOutOfBlocks(DDD)Z", at = @At("HEAD"), cancellable = true)
+    public void pushOutOfBlocks(double x, double y, double z, CallbackInfoReturnable<Boolean> callbackInfo) {
+        if (ModuleManager.getModuleByName("Velocity").isEnabled() && Velocity.noPush.getValue() && Velocity.noPushBlocks.getValue()) {
+            callbackInfo.setReturnValue(false);
         }
     }
 }
