@@ -1,5 +1,6 @@
 package com.olliem5.ferox.impl.modules.miscellaneous;
 
+import com.olliem5.ferox.Ferox;
 import com.olliem5.ferox.api.module.Category;
 import com.olliem5.ferox.api.module.FeroxModule;
 import com.olliem5.ferox.api.module.Module;
@@ -31,10 +32,11 @@ public final class ChatSuffix extends Module {
         if (nullCheck()) return;
 
         if (event.getPacket() instanceof CPacketChatMessage) {
+            CPacketChatMessage cPacketChatMessage = (CPacketChatMessage) event.getPacket();
 
-            String string = ((CPacketChatMessage) event.getPacket()).getMessage();
+            String string = cPacketChatMessage.getMessage();
 
-            if (string.startsWith("/")) return;
+            if (string.startsWith(Ferox.CHAT_PREFIX) || string.startsWith("/")) return;
 
             if (blue.getValue()) {
                 string += " `" + suffix;
@@ -48,7 +50,7 @@ public final class ChatSuffix extends Module {
                 string = string.substring(0, 256);
             }
 
-            ((CPacketChatMessage) event.getPacket()).message = string;
+            cPacketChatMessage.message = string;
         }
     }
 }

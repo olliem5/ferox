@@ -42,7 +42,7 @@ public final class NoSlow extends Module {
         if (noSlowMode.getValue() == NoSlowModes.Bypass) {
             Item item = mc.player.getActiveItemStack().getItem();
 
-            if (sneaking && ((!mc.player.isHandActive() && item instanceof ItemFood || item instanceof ItemBow || item instanceof ItemPotion) || (!(item instanceof ItemFood) || !(item instanceof ItemBow) || !(item instanceof ItemPotion)))) {
+            if (sneaking/*&& ((!mc.player.isHandActive() && item instanceof ItemFood || item instanceof ItemBow || item instanceof ItemPotion) || (!(item instanceof ItemFood) || !(item instanceof ItemBow) || !(item instanceof ItemPotion)))*/) {
                 mc.player.connection.sendPacket(new CPacketEntityAction(mc.player, CPacketEntityAction.Action.STOP_SNEAKING));
                 sneaking = false;
             }

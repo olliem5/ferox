@@ -65,7 +65,7 @@ public final class FontUtil implements Minecraft {
                 subtitleFont.drawString(text, x, y, colour);
                 break;
             case Minecraft:
-                mc.fontRenderer.drawString(text, (int) x, (int) y, colour);
+                mc.fontRenderer.drawString(text, x, y, colour);
                 break;
         }
     }

@@ -111,7 +111,7 @@ public final class HoleFill extends Module {
                 return;
             }
 
-            final int oldInventorySlot = mc.player.inventory.currentItem;
+            int oldInventorySlot = mc.player.inventory.currentItem;
 
             switch (blockMode.getValue()) {
                 case Obsidian:

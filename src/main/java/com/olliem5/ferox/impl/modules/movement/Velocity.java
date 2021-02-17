@@ -37,7 +37,7 @@ public final class Velocity extends Module {
     }
 
     @PaceHandler
-    public void onPacketRecieve(PacketEvent.Receive event) {
+    public void onPacketReceive(PacketEvent.Receive event) {
         if (nullCheck()) return;
 
         if (event.getPacket() instanceof SPacketEntityVelocity && velocity.getValue()) {

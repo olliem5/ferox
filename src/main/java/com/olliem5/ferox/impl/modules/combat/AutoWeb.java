@@ -84,7 +84,7 @@ public final class AutoWeb extends Module {
 
         if (target != null) {
             if (!hasWeb(target)) {
-                final int oldInventorySlot = mc.player.inventory.currentItem;
+                int oldInventorySlot = mc.player.inventory.currentItem;
 
                 if (webSlot != -1) {
                     mc.player.inventory.currentItem = webSlot;

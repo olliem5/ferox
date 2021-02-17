@@ -14,8 +14,8 @@ import java.util.ArrayList;
 public abstract class Theme implements Minecraft {
 	private final String name = getAnnotation().name();
 
-	private int width = getAnnotation().width();
-	private int height = getAnnotation().height();
+	private final int width = getAnnotation().width();
+	private final int height = getAnnotation().height();
 
 	private FeroxTheme getAnnotation() {
 		if (getClass().isAnnotationPresent(FeroxTheme.class)) {

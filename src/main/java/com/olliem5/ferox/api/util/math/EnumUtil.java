@@ -8,12 +8,12 @@ import com.olliem5.ferox.api.setting.Setting;
 
 public final class EnumUtil {
     public static String getNextEnumValue(Setting<Enum> setting, boolean reverse) {
-        final Enum currentValue = setting.getValue();
+        Enum currentValue = setting.getValue();
 
         int i = 0;
 
         for (; i < setting.getValue().getClass().getEnumConstants().length; i++) {
-            final Enum e = setting.getValue().getClass().getEnumConstants()[i];
+            Enum e = setting.getValue().getClass().getEnumConstants()[i];
 
             if (e.name().equalsIgnoreCase(currentValue.name())) break;
         }
@@ -25,6 +25,7 @@ public final class EnumUtil {
         for (Enum e : setting.getValue().getClass().getEnumConstants()) {
             if (e.name().equalsIgnoreCase(value)) {
                 setting.setValue(e);
+
                 break;
             }
         }

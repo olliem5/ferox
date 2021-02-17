@@ -141,12 +141,6 @@ public abstract class Module implements Minecraft {
         return settings;
     }
 
-    public Setting addSetting(Setting setting) {
-        settings.add(setting);
-
-        return setting;
-    }
-
     public void addSettings(Setting... settings) {
         this.settings.addAll(Arrays.asList(settings));
     }

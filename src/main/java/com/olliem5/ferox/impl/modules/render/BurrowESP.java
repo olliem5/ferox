@@ -39,7 +39,7 @@ public final class BurrowESP extends Module {
         );
     }
 
-    private List<BlockPos> burrowBlocksList = new ArrayList<>();
+    private final List<BlockPos> burrowBlocksList = new ArrayList<>();
 
     @Override
     public void onEnable() {

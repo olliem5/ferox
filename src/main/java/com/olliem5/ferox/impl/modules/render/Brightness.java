@@ -7,6 +7,8 @@ import com.olliem5.ferox.api.setting.Setting;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 
+import java.util.Objects;
+
 /**
  * @author olliem5
  */
@@ -21,7 +23,7 @@ public final class Brightness extends Module {
         );
     }
 
-    private final PotionEffect nightVision = new PotionEffect(Potion.getPotionById(16));
+    private final PotionEffect nightVision = new PotionEffect(Objects.requireNonNull(Potion.getPotionById(16)));
 
     private float originalGamma;
 

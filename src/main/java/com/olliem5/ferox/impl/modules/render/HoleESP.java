@@ -50,13 +50,13 @@ public final class HoleESP extends Module {
 
     public List<BlockPos> findObsidianHoles() {
         return BlockUtil.getNearbyBlocks(mc.player, holeRange.getValue(), false).stream()
-                .filter(blockPos -> HoleUtil.isObsidianHole(blockPos))
+                .filter(HoleUtil::isObsidianHole)
                 .collect(Collectors.toList());
     }
 
     public List<BlockPos> findBedrockHoles() {
         return BlockUtil.getNearbyBlocks(mc.player, holeRange.getValue(), false).stream()
-                .filter(blockPos -> HoleUtil.isBedrockHole(blockPos))
+                .filter(HoleUtil::isBedrockHole)
                 .collect(Collectors.toList());
     }
 

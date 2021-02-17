@@ -22,7 +22,7 @@ public final class DiscordUtil implements Minecraft {
     public static void startup() {
         Ferox.log("Discord RPC is starting up!");
 
-        final DiscordEventHandlers handlers = new DiscordEventHandlers();
+        DiscordEventHandlers handlers = new DiscordEventHandlers();
 
         discordRPC.Discord_Initialize(Ferox.APP_ID, handlers, true, "");
 

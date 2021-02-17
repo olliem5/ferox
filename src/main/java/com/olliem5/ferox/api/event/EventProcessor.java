@@ -57,7 +57,7 @@ public final class EventProcessor implements Minecraft {
 
     @SubscribeEvent
     public void onRenderWorldLast(RenderWorldLastEvent event) {
-        Ferox.EVENT_BUS.dispatchEvent(event); //This is throwing weird fucky NPE's and spamming the output. TODO: Look into this!
+        Ferox.EVENT_BUS.dispatchEvent(event);
     }
 
     @SubscribeEvent

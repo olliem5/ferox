@@ -48,12 +48,6 @@ public final class AutoCreeper extends Module {
     private EntityPlayer target = null;
 
     @Override
-    public void onEnable() {
-        if (nullCheck()) return;
-
-    }
-
-    @Override
     public void onDisable() {
         if (nullCheck()) return;
 

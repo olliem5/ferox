@@ -32,8 +32,8 @@ public abstract class Component implements Minecraft {
 
     private final ArrayList<Setting> settings = new ArrayList<>();
 
-    private int screenWidth = new ScaledResolution(mc).getScaledWidth();
-    private int screenHeight = new ScaledResolution(mc).getScaledHeight();
+    private final int screenWidth = new ScaledResolution(mc).getScaledWidth();
+    private final int screenHeight = new ScaledResolution(mc).getScaledHeight();
 
     private FeroxComponent getAnnotation() {
         if (getClass().isAnnotationPresent(FeroxComponent.class)) {
@@ -97,7 +97,7 @@ public abstract class Component implements Minecraft {
         } else if (this.isTopRight()) {
             return ScreenPosition.TopRight;
         } else {
-         return ScreenPosition.BottomRight;
+            return ScreenPosition.BottomRight;
         }
     }
 
@@ -114,12 +114,6 @@ public abstract class Component implements Minecraft {
 
     public ArrayList<Setting> getSettings() {
         return settings;
-    }
-
-    public Setting addSetting(Setting setting) {
-        settings.add(setting);
-
-        return setting;
     }
 
     public void addSettings(Setting... settings) {

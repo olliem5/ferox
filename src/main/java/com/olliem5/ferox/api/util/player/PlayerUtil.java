@@ -19,9 +19,9 @@ public final class PlayerUtil implements Minecraft {
     }
 
     public static Vec3d getCenter(double posX, double posY, double posZ) {
-        double x = Math.floor(posX) + 0.5D;
+        double x = Math.floor(posX) + 0.5;
         double y = Math.floor(posY);
-        double z = Math.floor(posZ) + 0.5D;
+        double z = Math.floor(posZ) + 0.5;
 
         return new Vec3d(x, y, z);
     }

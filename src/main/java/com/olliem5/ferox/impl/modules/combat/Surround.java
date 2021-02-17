@@ -121,7 +121,7 @@ public final class Surround extends Module {
             BlockPos blockPos = new BlockPos(vec3d.add(mc.player.getPositionVector()));
 
             if (mc.world.getBlockState(blockPos).getBlock().equals(Blocks.AIR)) {
-                final int oldInventorySlot = mc.player.inventory.currentItem;
+                int oldInventorySlot = mc.player.inventory.currentItem;
 
                 if (obsidianSlot != -1) {
                     mc.player.inventory.currentItem = obsidianSlot;

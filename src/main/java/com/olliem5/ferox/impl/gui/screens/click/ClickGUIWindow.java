@@ -29,7 +29,7 @@ public final class ClickGUIWindow implements Minecraft {
 	private boolean dragging = false;
 	private boolean open = true;
 
-	private ArrayList<Module> modules;
+	private final ArrayList<Module> modules;
 	public static final ArrayList<ClickGUIWindow> windows = new ArrayList<>();
 
 	public Theme currentTheme;

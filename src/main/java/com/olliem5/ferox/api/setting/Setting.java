@@ -8,7 +8,6 @@ import java.util.ArrayList;
  */
 
 public class Setting<T> {
-	private Setting<?> parent;
 	private final String name;
 	private final String description;
 
@@ -31,7 +30,6 @@ public class Setting<T> {
 	}
 
 	public Setting(Setting<?> parent, String name, String description, T value) {
-		this.parent = parent;
 		this.name = name;
 		this.description = description;
 		this.value = value;
