@@ -8,6 +8,7 @@ import com.olliem5.ferox.api.setting.Setting;
 import com.olliem5.ferox.api.util.render.draw.RenderUtil;
 import com.olliem5.ferox.api.util.world.BlockUtil;
 import com.olliem5.ferox.api.util.world.HoleUtil;
+import com.olliem5.ferox.impl.modules.combat.AntiCrystal;
 import me.olliem5.pace.annotation.PaceHandler;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
@@ -66,43 +67,19 @@ public final class HoleESP extends Module {
         List<BlockPos> obsidianHoles = findObsidianHoles();
         List<BlockPos> bedrockHoles = findBedrockHoles();
 
-        if (obsidian.getValue()) {
+        if (obsidian.getValue() && obsidianHoles != null) {
             GL11.glLineWidth(obsidianOutlineWidth.getValue().floatValue());
 
-            if (obsidianHoles != null) {
-                for (BlockPos obsidianHole : findObsidianHoles()) {
-                    switch (obsidianRenderMode.getValue()) {
-                        case Box:
-                            RenderUtil.draw(obsidianHole, true, false, obsidianBoxHeight.getValue(), obsidianOutlineHeight.getValue(), obsidianHoleColour.getValue());
-                            break;
-                        case Outline:
-                            RenderUtil.draw(obsidianHole, false, true, obsidianBoxHeight.getValue(), obsidianOutlineHeight.getValue(), obsidianHoleColour.getValue());
-                            break;
-                        case Full:
-                            RenderUtil.draw(obsidianHole, true, true, obsidianBoxHeight.getValue(), obsidianOutlineHeight.getValue(), obsidianHoleColour.getValue());
-                            break;
-                    }
-                }
+            for (BlockPos obsidianHole : findObsidianHoles()) {
+                RenderUtil.draw(obsidianHole, obsidianRenderMode.getValue() != RenderModes.Outline, obsidianRenderMode.getValue() != RenderModes.Box, obsidianBoxHeight.getValue(), obsidianOutlineHeight.getValue(), obsidianHoleColour.getValue());
             }
         }
 
-        if (bedrock.getValue()) {
+        if (bedrock.getValue() && bedrockHoles != null) {
             GL11.glLineWidth(bedrockOutlineWidth.getValue().floatValue());
 
-            if (bedrockHoles != null) {
-                for (BlockPos bedrockHole : findBedrockHoles()) {
-                    switch (bedrockRenderMode.getValue()) {
-                        case Box:
-                            RenderUtil.draw(bedrockHole, true, false, bedrockBoxHeight.getValue(), bedrockOutlineHeight.getValue(), bedrockHoleColour.getValue());
-                            break;
-                        case Outline:
-                            RenderUtil.draw(bedrockHole, false, true, bedrockBoxHeight.getValue(), bedrockOutlineHeight.getValue(), bedrockHoleColour.getValue());
-                            break;
-                        case Full:
-                            RenderUtil.draw(bedrockHole, true, true, bedrockBoxHeight.getValue(), bedrockOutlineHeight.getValue(), bedrockHoleColour.getValue());
-                            break;
-                    }
-                }
+            for (BlockPos bedrockHole : findBedrockHoles()) {
+                RenderUtil.draw(bedrockHole, bedrockRenderMode.getValue() != RenderModes.Outline, bedrockRenderMode.getValue() != RenderModes.Box, bedrockBoxHeight.getValue(), bedrockOutlineHeight.getValue(), bedrockHoleColour.getValue());
             }
         }
     }

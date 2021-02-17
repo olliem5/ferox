@@ -314,35 +314,25 @@ public final class AutoCrystal extends Module {
     public void onRenderWorldLast(RenderWorldLastEvent event) {
         if (nullCheck()) return;
 
-        GL11.glLineWidth(outlineWidth.getValue().floatValue());
+        if (crystalRender.getValue() && crystalTarget != null) {
+            GL11.glLineWidth(outlineWidth.getValue().floatValue());
 
-        if (crystalRender.getValue()) {
-            if (crystalTarget != null) {
-                switch (blockRenderMode.getValue()) {
-                    case Box:
-                        RenderUtil.draw(crystalTarget.getPosition(), true, false, 0, 0, renderColour.getValue());
-                        break;
-                    case Outline:
-                        RenderUtil.draw(crystalTarget.getPosition(), false, true, 0, 0, renderColour.getValue());
-                        break;
-                    case Full:
-                        RenderUtil.draw(crystalTarget.getPosition(), true, true, 0, 0, renderColour.getValue());
-                        break;
-                }
+            if (blockRenderMode.getValue() != BlockRenderModes.None) {
+                RenderUtil.draw(crystalTarget.getPosition(), blockRenderMode.getValue() != BlockRenderModes.Outline, blockRenderMode.getValue() != BlockRenderModes.Box, 0, 0, renderColour.getValue());
+            }
 
-                String targetDamageRounded = String.format("%.1f", crystalTarget.getTargetDamage());
-                String selfDamageRounded = String.format("%.1f", crystalTarget.getSelfDamage());
+            String targetDamageRounded = String.format("%.1f", crystalTarget.getTargetDamage());
+            String selfDamageRounded = String.format("%.1f", crystalTarget.getSelfDamage());
 
-                switch (textRenderMode.getValue()) {
-                    case Target:
-                        DrawUtil.drawTextCenterBlockPos(crystalTarget.getPosition(), "Target: " + targetDamageRounded);
-                        break;
-                    case Self:
-                        DrawUtil.drawTextCenterBlockPos(crystalTarget.getPosition(), "Self: " + selfDamageRounded);
-                        break;
-                    case Both:
-                        break;
-                }
+            switch (textRenderMode.getValue()) {
+                case Target:
+                    DrawUtil.drawTextCenterBlockPos(crystalTarget.getPosition(), "Target: " + targetDamageRounded);
+                    break;
+                case Self:
+                    DrawUtil.drawTextCenterBlockPos(crystalTarget.getPosition(), "Self: " + selfDamageRounded);
+                    break;
+                case Both:
+                    break;
             }
         }
     }

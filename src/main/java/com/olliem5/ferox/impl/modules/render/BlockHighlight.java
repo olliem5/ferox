@@ -37,24 +37,10 @@ public final class BlockHighlight extends Module {
     public void onRenderWorldLast(RenderWorldLastEvent event) {
         if (nullCheck()) return;
 
-        GL11.glLineWidth(outlineWidth.getValue().floatValue());
+        if (renderBlock.getValue() && mc.objectMouseOver != null && mc.objectMouseOver.typeOfHit == RayTraceResult.Type.BLOCK) {
+            GL11.glLineWidth(outlineWidth.getValue().floatValue());
 
-        if (renderBlock.getValue()) {
-            if (mc.objectMouseOver != null) {
-                if (mc.objectMouseOver.typeOfHit == RayTraceResult.Type.BLOCK) {
-                    switch (renderMode.getValue()) {
-                        case Box:
-                            RenderUtil.draw(mc.objectMouseOver.getBlockPos(), true, false, 0, 0, renderColour.getValue());
-                            break;
-                        case Outline:
-                            RenderUtil.draw(mc.objectMouseOver.getBlockPos(), false, true, 0, 0, renderColour.getValue());
-                            break;
-                        case Full:
-                            RenderUtil.draw(mc.objectMouseOver.getBlockPos(), true, true, 0, 0, renderColour.getValue());
-                            break;
-                    }
-                }
-            }
+            RenderUtil.draw(mc.objectMouseOver.getBlockPos(), renderMode.getValue() != RenderModes.Outline, renderMode.getValue() != RenderModes.Box, 0, 0, renderColour.getValue());
         }
     }
 

@@ -10,6 +10,7 @@ import com.olliem5.ferox.api.util.client.MessageUtil;
 import com.olliem5.ferox.api.util.math.CooldownUtil;
 import com.olliem5.ferox.api.util.player.InventoryUtil;
 import com.olliem5.ferox.api.util.render.draw.RenderUtil;
+import com.olliem5.ferox.impl.modules.exploit.Burrow;
 import me.olliem5.pace.annotation.PaceHandler;
 import net.minecraft.entity.item.EntityEnderCrystal;
 import net.minecraft.init.Blocks;
@@ -103,22 +104,10 @@ public final class AntiCrystal extends Module {
     public void onRenderWorldLast(RenderWorldLastEvent event) {
         if (nullCheck()) return;
 
-        GL11.glLineWidth(outlineWidth.getValue().floatValue());
+        if (renderPlace.getValue() && renderBlock != null) {
+            GL11.glLineWidth(outlineWidth.getValue().floatValue());
 
-        if (renderPlace.getValue()) {
-            if (renderBlock != null) {
-                switch (renderMode.getValue()) {
-                    case Box:
-                        RenderUtil.draw(renderBlock, true, false, 0, 0, renderColour.getValue());
-                        break;
-                    case Outline:
-                        RenderUtil.draw(renderBlock, false, true, 0, 0, renderColour.getValue());
-                        break;
-                    case Full:
-                        RenderUtil.draw(renderBlock, true, true, 0, 0, renderColour.getValue());
-                        break;
-                }
-            }
+            RenderUtil.draw(renderBlock, renderMode.getValue() != RenderModes.Outline, renderMode.getValue() != RenderModes.Box, 0, 0, renderColour.getValue());
         }
     }
 

@@ -92,22 +92,10 @@ public final class AutoCreeper extends Module {
     public void onRenderWorldLast(RenderWorldLastEvent event) {
         if (nullCheck()) return;
 
-        GL11.glLineWidth(outlineWidth.getValue().floatValue());
+        if (renderPlace.getValue() && placePosition != null) {
+            GL11.glLineWidth(outlineWidth.getValue().floatValue());
 
-        if (renderPlace.getValue()) {
-            if (placePosition != null) {
-                switch (renderMode.getValue()) {
-                    case Box:
-                        RenderUtil.draw(placePosition, true, false, 0, 0, renderColour.getValue());
-                        break;
-                    case Outline:
-                        RenderUtil.draw(placePosition, false, true, 0, 0, renderColour.getValue());
-                        break;
-                    case Full:
-                        RenderUtil.draw(placePosition, true, true, 0, 0, renderColour.getValue());
-                        break;
-                }
-            }
+            RenderUtil.draw(placePosition, renderMode.getValue() != RenderModes.Outline, renderMode.getValue() != RenderModes.Box, 0, 0, renderColour.getValue());
         }
     }
 

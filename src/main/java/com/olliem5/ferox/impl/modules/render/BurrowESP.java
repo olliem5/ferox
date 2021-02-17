@@ -81,22 +81,12 @@ public final class BurrowESP extends Module {
     public void onRenderWorldLast(RenderWorldLastEvent event) {
         if (nullCheck()) return;
 
-        GL11.glLineWidth(outlineWidth.getValue().floatValue());
-
         if (renderBlock.getValue()) {
             for (BlockPos burrowBlock : burrowBlocksList) {
                 if (burrowBlock != null) {
-                    switch (renderMode.getValue()) {
-                        case Box:
-                            RenderUtil.draw(burrowBlock, true, false, 0, 0, renderColour.getValue());
-                            break;
-                        case Outline:
-                            RenderUtil.draw(burrowBlock, false, true, 0, 0, renderColour.getValue());
-                            break;
-                        case Full:
-                            RenderUtil.draw(burrowBlock, true, true, 0, 0, renderColour.getValue());
-                            break;
-                    }
+                    GL11.glLineWidth(outlineWidth.getValue().floatValue());
+
+                    RenderUtil.draw(burrowBlock, renderMode.getValue() != RenderModes.Outline, renderMode.getValue() != RenderModes.Box, 0, 0, renderColour.getValue());
                 }
             }
         }

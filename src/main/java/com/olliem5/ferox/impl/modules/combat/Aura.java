@@ -19,8 +19,6 @@ import net.minecraft.util.EnumHand;
 
 /**
  * @author olliem5
- *
- * TODO: Rework cooldowns
  */
 
 @FeroxModule(name = "Aura", description = "Automatically attacks players and entities in range", category = Category.Combat)
@@ -29,11 +27,8 @@ public final class Aura extends Module {
 
     public static final Setting<Boolean> attack = new Setting<>("Attack", "Allows Aura to attack", true);
     public static final Setting<AttackModes> attackMode = new Setting<>(attack, "Attack", "The mode for Aura attacks", AttackModes.Packet);
+    public static final Setting<Boolean> cooldown = new Setting<>(attack, "Cooldown", "Allows for cooldown between swings", true);
     public static final Setting<Boolean> swing = new Setting<>(attack, "Swing", "Swings the player's arm after an attack", true);
-
-    public static final Setting<Boolean> cooldown = new Setting<>("Cooldown", "Allows for cooldown between swings", true);
-    public static final Setting<Boolean> vanillaCooldown = new Setting<>(cooldown,"Vanilla Cooldown", "Waits for the vanilla cooldown period before attacking", true);
-    public static final NumberSetting<Integer> packetCooldown = new NumberSetting<>(cooldown, "Packet Cooldown", "The cooldown for the packet attack mode", 0, 10, 20, 0);
 
     public static final Setting<Boolean> weapon = new Setting<>("Weapon", "Weapon settings for Aura", true);
     public static final Setting<WeaponModes> weaponMode = new Setting<>(weapon, "Weapon", "The weapon that Aura will use", WeaponModes.Sword);
@@ -48,7 +43,6 @@ public final class Aura extends Module {
         this.addSettings(
                 targetRange,
                 attack,
-                cooldown,
                 weapon,
                 pause
         );
@@ -94,7 +88,7 @@ public final class Aura extends Module {
 
             if (cooldown.getValue()) {
                 if (attackMode.getValue() == AttackModes.Normal) {
-                    if (vanillaCooldown.getValue() && mc.player.getCooledAttackStrength(0) >= 1) {
+                    if (mc.player.getCooledAttackStrength(0) >= 1) {
                         mc.playerController.attackEntity(mc.player, entityPlayer);
 
                         if (swing.getValue()) {
@@ -113,16 +107,12 @@ public final class Aura extends Module {
             } else {
                 if (attackMode.getValue() == AttackModes.Normal) {
                     mc.playerController.attackEntity(mc.player, entityPlayer);
-
-                    if (swing.getValue()) {
-                        mc.player.swingArm(EnumHand.MAIN_HAND);
-                    }
                 } else {
                     mc.player.connection.sendPacket(new CPacketUseEntity(entityPlayer));
+                }
 
-                    if (swing.getValue()) {
-                        mc.player.swingArm(EnumHand.MAIN_HAND);
-                    }
+                if (swing.getValue()) {
+                    mc.player.swingArm(EnumHand.MAIN_HAND);
                 }
             }
         }
