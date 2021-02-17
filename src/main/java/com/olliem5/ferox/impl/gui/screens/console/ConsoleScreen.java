@@ -65,7 +65,7 @@ public final class ConsoleScreen extends GuiScreen {
         Gui.drawRect(x, y, x + width, y + height, RainbowUtil.getRainbow().getRGB());
         Gui.drawRect(x, y, x + width, y + height, new Color(50, 50, 50, 150).getRGB());
 
-        FontUtil.drawText("Ferox Console", x + 2 + width / 2 - FontUtil.getStringWidth("Ferox Console") / 2, y + height / 2 - FontUtil.getStringHeight("Ferox Console") / 2, -1);
+        FontUtil.drawText("Ferox Console", x + 2 + width / 2 - FontUtil.getStringWidth("Ferox Console") / 2, y + height / 2 - FontUtil.getFontHeight() / 2, -1);
 
         //Background
         if (open) {

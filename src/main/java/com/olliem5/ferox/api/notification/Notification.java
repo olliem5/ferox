@@ -48,7 +48,7 @@ public final class Notification implements Minecraft {
         }
 
         FontUtil.drawText(title, x + 30, y + 2, -1);
-        FontUtil.drawText(message, x + 30, y + 28 - FontUtil.getStringHeight(message), -1);
+        FontUtil.drawText(message, x + 30, y + 28 - FontUtil.getFontHeight(), -1);
     }
 
     public enum NotificationType {

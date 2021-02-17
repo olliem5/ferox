@@ -77,7 +77,7 @@ public final class ModuleManager {
                 //Ferox
                 new Colours(),
                 new DiscordRPC(),
-                new Font(),
+                new ClientFont(),
                 new HUD(),
                 new Notifications(),
                 new Social(),

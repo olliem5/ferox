@@ -833,19 +833,19 @@ public final class DefaultTheme extends Theme {
 	}
 
 	public static void drawModuleBottomLeftText(Module module) {
-		FontUtil.drawText(module.getDescription(), 2, (new ScaledResolution(mc).getScaledHeight() - FontUtil.getStringHeight(module.getDescription()) - 2), -1);
+		FontUtil.drawText(module.getDescription(), 2, (new ScaledResolution(mc).getScaledHeight() - FontUtil.getFontHeight() - 2), -1);
 	}
 
 	public static void drawComponentBottomLeftText(Component component) {
-		FontUtil.drawText(component.getDescription(), 2, (new ScaledResolution(mc).getScaledHeight() - FontUtil.getStringHeight(component.getDescription()) - 2), -1);
+		FontUtil.drawText(component.getDescription(), 2, (new ScaledResolution(mc).getScaledHeight() - FontUtil.getFontHeight() - 2), -1);
 	}
 
 	public static void drawSettingBottomLeftText(Setting<?> setting) {
-		FontUtil.drawText(setting.getDescription(), 2, (new ScaledResolution(mc).getScaledHeight() - FontUtil.getStringHeight(setting.getDescription()) - 2), -1);
+		FontUtil.drawText(setting.getDescription(), 2, (new ScaledResolution(mc).getScaledHeight() - FontUtil.getFontHeight() - 2), -1);
 	}
 
 	public static void drawKeybindBottomLeftText(Module module, String key) {
-		FontUtil.drawText(module.getName() + "'s keybind is " + ChatFormatting.GRAY + key, 2, (new ScaledResolution(mc).getScaledHeight() - FontUtil.getStringHeight(module.getName() + "'s keybind is " + ChatFormatting.GRAY + key) - 2), -1);
+		FontUtil.drawText(module.getName() + "'s keybind is " + ChatFormatting.GRAY + key, 2, (new ScaledResolution(mc).getScaledHeight() - FontUtil.getFontHeight() - 2), -1);
 	}
 
 	public static void drawPicker(Setting<Color> subColor, int mouseX, int mouseY, int pickerX, int pickerY, int hueSliderX, int hueSliderY, int alphaSliderX, int alphaSliderY, int rgbButtonX, int rgbButtonY) {
@@ -1028,8 +1028,8 @@ public final class DefaultTheme extends Theme {
 		}
 
 		FontUtil.drawText("R", x + width + 2, y -2, -1);
-		FontUtil.drawText("G", x + width + 2, y -2 + FontUtil.getStringHeight("R"), -1);
-		FontUtil.drawText("B", x + width + 2, y -2 + FontUtil.getStringHeight("R") + FontUtil.getStringHeight("G"), -1);
+		FontUtil.drawText("G", x + width + 2, y -2 + FontUtil.getFontHeight(), -1);
+		FontUtil.drawText("B", x + width + 2, y -2 + FontUtil.getFontHeight() + FontUtil.getFontHeight(), -1);
 	}
 
 	public static void drawColourPicker(Setting<Color> setting, int x, int y, int mouseX, int mouseY) {

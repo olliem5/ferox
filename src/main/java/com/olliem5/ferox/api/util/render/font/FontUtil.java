@@ -1,21 +1,54 @@
 package com.olliem5.ferox.api.util.render.font;
 
 import com.olliem5.ferox.api.traits.Minecraft;
-import com.olliem5.ferox.impl.modules.ferox.Font;
+import com.olliem5.ferox.api.util.render.font.renderer.CustomFontRenderer;
+import com.olliem5.ferox.impl.modules.ferox.ClientFont;
+
+import java.awt.*;
+import java.io.InputStream;
 
 /**
  * @author olliem5
+ * @author linustouchtips
  */
 
 public final class FontUtil implements Minecraft {
-    public static final FeroxFontRenderer latoFont = new FeroxFontRenderer("Lato", 17.0f);
-    public static final FeroxFontRenderer ubuntuFont = new FeroxFontRenderer("Ubuntu", 17.0f);
-    public static final FeroxFontRenderer verdanaFont = new FeroxFontRenderer("Verdana", 17.0f);
-    public static final FeroxFontRenderer comfortaaFont = new FeroxFontRenderer("Comfortaa", 17.0f);
-    public static final FeroxFontRenderer subtitleFont = new FeroxFontRenderer("Subtitle", 17.0f);
+    public static CustomFontRenderer ubuntuFont = null;
+    public static CustomFontRenderer latoFont = null;
+    public static CustomFontRenderer verdanaFont = null;
+    public static CustomFontRenderer comfortaaFont = null;
+    public static CustomFontRenderer subtitleFont = null;
 
-    public static void drawString(String text, float x, float y, int colour) {
-        switch (Font.font.getValue()) {
+    public static void loadFonts() {
+        try {
+            ubuntuFont = new CustomFontRenderer(getFont("Ubuntu.ttf", 35.0f));
+            latoFont = new CustomFontRenderer(getFont("Lato.ttf", 35.0f));
+            verdanaFont = new CustomFontRenderer(getFont("Verdana.ttf", 35.0f));
+            comfortaaFont = new CustomFontRenderer(getFont("Comfortaa.ttf", 35.0f));
+            subtitleFont = new CustomFontRenderer(getFont("Subtitle.ttf", 35.0f));
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        }
+    }
+
+    private static Font getFont(String fontName, float size) {
+        try {
+            InputStream inputStream = FontUtil.class.getResourceAsStream("/assets/ferox/fonts/" + fontName);
+
+            Font awtClientFont = Font.createFont(0, inputStream);
+            awtClientFont = awtClientFont.deriveFont(0, size);
+
+            inputStream.close();
+
+            return awtClientFont;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new Font("default", 0, (int) size);
+        }
+    }
+
+    public static void drawString(String text, int x, int y, int colour) {
+        switch (ClientFont.font.getValue()) {
             case Ubuntu:
                 ubuntuFont.drawString(text, x, y, colour);
                 break;
@@ -38,7 +71,7 @@ public final class FontUtil implements Minecraft {
     }
 
     public static void drawStringWithShadow(String text, float x, float y, int colour) {
-        switch (Font.font.getValue()) {
+        switch (ClientFont.font.getValue()) {
             case Ubuntu:
                 ubuntuFont.drawStringWithShadow(text, x, y, colour);
                 break;
@@ -61,15 +94,15 @@ public final class FontUtil implements Minecraft {
     }
 
     public static void drawText(String text, float x, float y, int colour) {
-        if (Font.shadow.getValue()) {
-            drawStringWithShadow(Font.lowercase.getValue() ? text.toLowerCase() : text, x, y, colour);
+        if (ClientFont.shadow.getValue()) {
+            drawStringWithShadow(ClientFont.lowercase.getValue() ? text.toLowerCase() : text, x, y, colour);
         } else {
-            drawString(Font.lowercase.getValue() ? text.toLowerCase() : text, x, y, colour);
+            drawString(ClientFont.lowercase.getValue() ? text.toLowerCase() : text, (int) x, (int) y, colour);
         }
     }
 
     public static float getStringWidth(String text) {
-        switch (Font.font.getValue()) {
+        switch (ClientFont.font.getValue()) {
             case Ubuntu:
                 return ubuntuFont.getStringWidth(text);
             case Lato:
@@ -87,18 +120,18 @@ public final class FontUtil implements Minecraft {
         return -1;
     }
 
-    public static float getStringHeight(String text) {
-        switch (Font.font.getValue()) {
+    public static float getFontHeight() {
+        switch (ClientFont.font.getValue()) {
             case Ubuntu:
-                return ubuntuFont.getStringHeight(text);
+                return ubuntuFont.getHeight();
             case Lato:
-                return latoFont.getStringHeight(text);
+                return latoFont.getHeight();
             case Verdana:
-                return verdanaFont.getStringHeight(text);
+                return verdanaFont.getHeight();
             case Comfortaa:
-                return comfortaaFont.getStringHeight(text);
+                return comfortaaFont.getHeight();
             case Subtitle:
-                return subtitleFont.getStringHeight(text);
+                return subtitleFont.getHeight();
             case Minecraft:
                 return mc.fontRenderer.FONT_HEIGHT;
         }
