@@ -6,7 +6,6 @@ import com.olliem5.ferox.api.module.Module;
 import com.olliem5.ferox.api.module.ModuleManager;
 import com.olliem5.ferox.api.setting.NumberSetting;
 import com.olliem5.ferox.api.setting.Setting;
-import com.olliem5.ferox.api.util.math.CooldownUtil;
 import com.olliem5.ferox.api.util.player.InventoryUtil;
 import com.olliem5.ferox.api.util.player.TargetUtil;
 import net.minecraft.entity.player.EntityPlayer;

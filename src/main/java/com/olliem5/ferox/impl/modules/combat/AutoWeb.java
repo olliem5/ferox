@@ -11,7 +11,7 @@ import com.olliem5.ferox.api.util.player.InventoryUtil;
 import com.olliem5.ferox.api.util.player.PlayerUtil;
 import com.olliem5.ferox.api.util.player.TargetUtil;
 import com.olliem5.ferox.api.util.render.draw.RenderUtil;
-import me.olliem5.pace.annotation.PaceHandler;
+import com.olliem5.pace.annotation.PaceHandler;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;

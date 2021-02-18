@@ -1,7 +1,7 @@
 package com.olliem5.ferox;
 
 import com.olliem5.ferox.api.mixin.MixinLoader;
-import me.olliem5.pace.handler.EventHandler;
+import com.olliem5.pace.handler.EventHandler;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;

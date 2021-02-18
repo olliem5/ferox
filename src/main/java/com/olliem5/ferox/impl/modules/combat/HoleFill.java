@@ -13,7 +13,7 @@ import com.olliem5.ferox.api.util.render.draw.RenderUtil;
 import com.olliem5.ferox.api.util.world.BlockUtil;
 import com.olliem5.ferox.api.util.world.HoleUtil;
 import com.olliem5.ferox.api.util.world.PlaceUtil;
-import me.olliem5.pace.annotation.PaceHandler;
+import com.olliem5.pace.annotation.PaceHandler;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.util.math.BlockPos;

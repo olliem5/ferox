@@ -6,7 +6,7 @@ import com.olliem5.ferox.api.module.Module;
 import com.olliem5.ferox.api.setting.NumberSetting;
 import com.olliem5.ferox.api.setting.Setting;
 import com.olliem5.ferox.api.traits.Minecraft;
-import me.olliem5.pace.annotation.PaceHandler;
+import com.olliem5.pace.annotation.PaceHandler;
 import net.minecraftforge.client.event.EntityViewRenderEvent;
 
 /**

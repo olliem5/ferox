@@ -6,7 +6,7 @@ import com.olliem5.ferox.api.module.Module;
 import com.olliem5.ferox.api.setting.NumberSetting;
 import com.olliem5.ferox.api.setting.Setting;
 import com.olliem5.ferox.impl.events.TransformSideFirstPersonEvent;
-import me.olliem5.pace.annotation.PaceHandler;
+import com.olliem5.pace.annotation.PaceHandler;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.EnumHandSide;
 

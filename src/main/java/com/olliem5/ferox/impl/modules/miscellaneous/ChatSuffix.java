@@ -6,7 +6,7 @@ import com.olliem5.ferox.api.module.FeroxModule;
 import com.olliem5.ferox.api.module.Module;
 import com.olliem5.ferox.api.setting.Setting;
 import com.olliem5.ferox.impl.events.PacketEvent;
-import me.olliem5.pace.annotation.PaceHandler;
+import com.olliem5.pace.annotation.PaceHandler;
 import net.minecraft.network.play.client.CPacketChatMessage;
 
 /**

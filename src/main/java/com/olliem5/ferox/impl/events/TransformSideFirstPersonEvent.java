@@ -1,6 +1,6 @@
 package com.olliem5.ferox.impl.events;
 
-import me.olliem5.pace.event.Event;
+import com.olliem5.pace.event.Event;
 import net.minecraft.util.EnumHandSide;
 
 /**

@@ -6,7 +6,7 @@ import com.olliem5.ferox.api.module.ModuleManager;
 import com.olliem5.ferox.api.traits.Minecraft;
 import com.olliem5.ferox.impl.events.PacketEvent;
 import com.olliem5.ferox.impl.events.TotemPopEvent;
-import me.olliem5.pace.annotation.PaceHandler;
+import com.olliem5.pace.annotation.PaceHandler;
 import me.yagel15637.venture.manager.CommandManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.network.play.server.SPacketEntityStatus;
