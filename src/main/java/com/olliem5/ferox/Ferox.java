@@ -1,6 +1,7 @@
 package com.olliem5.ferox;
 
 import com.olliem5.ferox.api.mixin.MixinLoader;
+import com.olliem5.ferox.api.util.client.ConfigUtil;
 import com.olliem5.pace.handler.EventHandler;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -37,6 +38,14 @@ public final class Ferox {
     @Mod.EventHandler
     public void init(FMLInitializationEvent event) {
         StartupHelper.startupFerox();
+
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            ConfigUtil.saveConfig();
+            log("Config Saved!");
+        }));
+
+        ConfigUtil.loadConfig();
+        log("Config Loaded!");
     }
 
     @Mod.EventHandler
