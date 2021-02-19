@@ -848,11 +848,11 @@ public final class DefaultTheme extends Theme {
 		FontUtil.drawText(module.getName() + "'s keybind is " + ChatFormatting.GRAY + key, 2, (new ScaledResolution(mc).getScaledHeight() - FontUtil.getFontHeight() - 2), -1);
 	}
 
-	public static void drawPicker(Setting<Color> subColor, int mouseX, int mouseY, int pickerX, int pickerY, int hueSliderX, int hueSliderY, int alphaSliderX, int alphaSliderY, int rgbButtonX, int rgbButtonY) {
+	public static void drawPicker(Setting<Color> colourSetting, int mouseX, int mouseY, int pickerX, int pickerY, int hueSliderX, int hueSliderY, int alphaSliderX, int alphaSliderY) {
 		float[] color = new float[] {
-				subColor.getValue().RGBtoHSB(subColor.getValue().getRed(), subColor.getValue().getGreen(), subColor.getValue().getBlue(), null)[0],
-				subColor.getValue().RGBtoHSB(subColor.getValue().getRed(), subColor.getValue().getGreen(), subColor.getValue().getBlue(), null)[1],
-				subColor.getValue().RGBtoHSB(subColor.getValue().getRed(), subColor.getValue().getGreen(), subColor.getValue().getBlue(), null)[2]
+				colourSetting.getValue().RGBtoHSB(colourSetting.getValue().getRed(), colourSetting.getValue().getGreen(), colourSetting.getValue().getBlue(), null)[0],
+				colourSetting.getValue().RGBtoHSB(colourSetting.getValue().getRed(), colourSetting.getValue().getGreen(), colourSetting.getValue().getBlue(), null)[1],
+				colourSetting.getValue().RGBtoHSB(colourSetting.getValue().getRed(), colourSetting.getValue().getGreen(), colourSetting.getValue().getBlue(), null)[2]
 		};
 
 		boolean pickingColor = false;
@@ -862,14 +862,11 @@ public final class DefaultTheme extends Theme {
 		int pickerWidth = 100;
 		int pickerHeight = 100;
 
-		int hueSliderWidth = 75;
+		int hueSliderWidth = 100;
 		int hueSliderHeight = 10;
 
-		int alphaSliderWidth = 75;
+		int alphaSliderWidth = 100;
 		int alphaSliderHeight = 10;
-
-		int rgbButtonWidth = 12;
-		int rgbButtonHeight = 22;
 
 		if (GuiUtil.leftHeld && GuiUtil.mouseOver(pickerX, pickerY, pickerX + pickerWidth, pickerY + pickerHeight)) {
 			pickingColor = true;
@@ -881,10 +878,6 @@ public final class DefaultTheme extends Theme {
 
 		if (GuiUtil.leftHeld && GuiUtil.mouseOver(alphaSliderX, alphaSliderY, alphaSliderX + alphaSliderWidth, alphaSliderY + alphaSliderHeight)) {
 			pickingAlpha = true;
-		}
-
-		if (GuiUtil.leftDown && GuiUtil.mouseOver(rgbButtonX, rgbButtonY, rgbButtonX + rgbButtonWidth, rgbButtonY + rgbButtonHeight)) {
-			subColor.setRgb(!subColor.isRgb());
 		}
 
 		if (!GuiUtil.leftHeld) {
@@ -904,10 +897,10 @@ public final class DefaultTheme extends Theme {
 		if (pickingAlpha) {
 			if (alphaSliderWidth > alphaSliderHeight) {
 				float restrictedX = (float) Math.min(Math.max(alphaSliderX, mouseX), alphaSliderX + alphaSliderWidth);
-				subColor.setAlpha(1 - (restrictedX - (float) alphaSliderX) / alphaSliderWidth);
+				colourSetting.setAlpha(1 - (restrictedX - (float) alphaSliderX) / alphaSliderWidth);
 			} else {
 				float restrictedY = (float) Math.min(Math.max(alphaSliderY, mouseY), alphaSliderY + alphaSliderHeight);
-				subColor.setAlpha(1 - (restrictedY - (float) alphaSliderY) / alphaSliderHeight);
+				colourSetting.setAlpha(1 - (restrictedY - (float) alphaSliderY) / alphaSliderHeight);
 			}
 		}
 
@@ -928,7 +921,7 @@ public final class DefaultTheme extends Theme {
 		float selectedGreen = (selectedColor >> 8 & 0xFF) / 255.0f;
 		float selectedBlue = (selectedColor & 0xFF) / 255.0f;
 
-		DrawUtil.drawPickerBase(pickerX, pickerY, pickerWidth, pickerHeight, selectedRed, selectedGreen, selectedBlue, subColor.getAlpha());
+		DrawUtil.drawPickerBase(pickerX, pickerY, pickerWidth, pickerHeight, selectedRed, selectedGreen, selectedBlue, colourSetting.getAlpha());
 
 		drawHueSlider(hueSliderX, hueSliderY, hueSliderWidth, hueSliderHeight, color[0]);
 
@@ -937,19 +930,9 @@ public final class DefaultTheme extends Theme {
 
 		Gui.drawRect(cursorX - 2, cursorY - 2, cursorX + 2, cursorY + 2, -1);
 
-		drawAlphaSlider(alphaSliderX, alphaSliderY, alphaSliderWidth, alphaSliderHeight, selectedRed, selectedGreen, selectedBlue, subColor.getAlpha());
+		drawAlphaSlider(alphaSliderX, alphaSliderY, alphaSliderWidth, alphaSliderHeight, selectedRed, selectedGreen, selectedBlue, colourSetting.getAlpha());
 
-		if (subColor.isRgb()) {
-			drawRGBButton(rgbButtonX, rgbButtonY, rgbButtonWidth, rgbButtonHeight, true);
-		} else {
-			drawRGBButton(rgbButtonX, rgbButtonY, rgbButtonWidth, rgbButtonHeight, false);
-		}
-
-		if (subColor.isRgb()) {
-			finalColor = ColourUtil.integrateAlpha(RainbowUtil.getRainbow(), subColor.getAlpha());
-		} else {
-			finalColor = ColourUtil.integrateAlpha(new Color(Color.HSBtoRGB(color[0], color[1], color[2])), subColor.getAlpha());
-		}
+		finalColor = ColourUtil.integrateAlpha(new Color(Color.HSBtoRGB(color[0], color[1], color[2])), colourSetting.getAlpha());
 	}
 
 	public static void drawHueSlider(int x, int y, int width, int height, float hue) {
@@ -1017,23 +1000,8 @@ public final class DefaultTheme extends Theme {
 		Gui.drawRect(sliderMinX - 1, y,  sliderMinX + 1, y + height, -1);
 	}
 
-	public static void drawRGBButton(int x, int y, int width, int height, boolean active) {
-		Gui.drawRect(x, y, x + width, y + height, RainbowUtil.getRainbow().getRGB());
-
-		if (!active) {
-			Gui.drawRect(x + 1, y + 1, x + width - 1, y + height - 1, 0xFF212121);
-		} else {
-			Gui.drawRect(x + 1, y + 1, x + width - 1, y + height - 1, 0xFF212121);
-			Gui.drawRect(x + 2, y + 2, x + width - 2, y + height - 2, RainbowUtil.getRainbow().getRGB());
-		}
-
-		FontUtil.drawText("R", x + width + 2, y -2, -1);
-		FontUtil.drawText("G", x + width + 2, y -2 + FontUtil.getFontHeight(), -1);
-		FontUtil.drawText("B", x + width + 2, y -2 + FontUtil.getFontHeight() + FontUtil.getFontHeight(), -1);
-	}
-
 	public static void drawColourPicker(Setting<Color> setting, int x, int y, int mouseX, int mouseY) {
-		drawPicker(setting, mouseX, mouseY, x + 3, y + height + (boost * height) + 2, x + 3, y + height + (boost * height) + 103, x + 3, y + height + (boost * height) + 115, x + 80, y + height + (boost * height) + 103);
+		drawPicker(setting, mouseX, mouseY, x + 3, y + height + (boost * height) + 2, x + 3, y + height + (boost * height) + 103, x + 3, y + height + (boost * height) + 115);
 		setting.setValue(finalColor);
 	}
 }
