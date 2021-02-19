@@ -24,11 +24,10 @@ import java.nio.file.Paths;
  * @author linustouchtips
  * @author Hoosiers
  *
- * This is pretty much a placeholder until I have time to completely rewrite this, something needed to be 'made' before the release.
- *
  * TODO: Sort modules into other folders for categories
  * TODO: Support Component settings
- * TODO: Better support for colour settings
+ *
+ * Note - Colour settings ony save and load properly if they are sub settings. I might add support for them as main settings later, but I don't use it currently.
  */
 
 public final class ConfigUtil {
@@ -41,6 +40,10 @@ public final class ConfigUtil {
 
         if (!Files.exists(Paths.get("ferox/modules"))) {
             Files.createDirectories(Paths.get("ferox/modules"));
+        }
+
+        if (!Files.exists(Paths.get("ferox/components"))) {
+            Files.createDirectories(Paths.get("ferox/components"));
         }
 
         if (!Files.exists(Paths.get("ferox/gui"))) {
@@ -533,8 +536,6 @@ public final class ConfigUtil {
                     }
                 }
 
-                //TODO: Colour goes here!
-
                 if (setting.getValue() instanceof Integer) {
                     NumberSetting<Integer> integerSetting = (NumberSetting<Integer>) setting;
                     settingValueObject = settingObject.get(integerSetting.getName());
@@ -830,68 +831,756 @@ public final class ConfigUtil {
     }
 
     public static void saveComponents() throws IOException {
-        registerFiles("HUD", "gui");
-
-        OutputStreamWriter fileOutputStreamWriter = new OutputStreamWriter(new FileOutputStream("ferox/gui/HUD.json"), StandardCharsets.UTF_8);
-
-        JsonObject guiObject = new JsonObject();
-        JsonObject hudObject = new JsonObject();
-
         for (Component component : ComponentManager.getComponents()) {
+            registerFiles(component.getName(), "components");
+            OutputStreamWriter fileOutputStreamWriter = new OutputStreamWriter(new FileOutputStream("ferox/components/" + component.getName() + ".json"), StandardCharsets.UTF_8);
+
+            JsonObject componentObject = new JsonObject();
             JsonObject positionObject = new JsonObject();
+            JsonObject settingObject = new JsonObject();
+            JsonObject subSettingObject = new JsonObject();
 
-            positionObject.add("x", new JsonPrimitive(component.getPosX()));
-            positionObject.add("y", new JsonPrimitive(component.getPosY()));
-            positionObject.add("visible", new JsonPrimitive(component.isVisible()));
+            componentObject.add("Name", new JsonPrimitive(component.getName()));
+            componentObject.add("Visible", new JsonPrimitive(component.isVisible()));
 
-            hudObject.add(component.getName(), positionObject);
+            positionObject.add("X", new JsonPrimitive(component.getPosX()));
+            positionObject.add("Y", new JsonPrimitive(component.getPosY()));
+
+            for (Setting<?> setting : component.getSettings()) {
+                if (setting.getValue() instanceof Boolean) {
+                    Setting<Boolean> booleanSetting = (Setting<Boolean>) setting;
+                    settingObject.add(booleanSetting.getName(), new JsonPrimitive(booleanSetting.getValue()));
+
+                    if (booleanSetting.hasSubSettings()) {
+                        for (Setting<?> subSetting : booleanSetting.getSubSettings()) {
+                            if (subSetting.getValue() instanceof Boolean) {
+                                Setting<Boolean> subBooleanSetting = (Setting<Boolean>) subSetting;
+                                subSettingObject.add(subBooleanSetting.getName(), new JsonPrimitive(subBooleanSetting.getValue()));
+                            }
+
+                            if (subSetting.getValue() instanceof Enum) {
+                                Setting<Enum> subEnumSetting = (Setting<Enum>) subSetting;
+                                subSettingObject.add(subEnumSetting.getName(), new JsonPrimitive(String.valueOf(subEnumSetting.getValue())));
+                            }
+
+                            if (subSetting.getValue() instanceof Color) {
+                                Setting<Color> subColourSetting = (Setting<Color>) subSetting;
+
+                                JsonObject subColourObject = new JsonObject();
+
+                                subColourObject.add("Red", new JsonPrimitive(subColourSetting.getValue().getRed()));
+                                subColourObject.add("Green", new JsonPrimitive(subColourSetting.getValue().getGreen()));
+                                subColourObject.add("Blue", new JsonPrimitive(subColourSetting.getValue().getBlue()));
+                                subColourObject.add("Alpha", new JsonPrimitive(subColourSetting.getValue().getAlpha()));
+
+                                subSettingObject.add(subColourSetting.getName(), subColourObject);
+                            }
+
+                            if (subSetting.getValue() instanceof Integer) {
+                                NumberSetting<Integer> subIntegerSetting = (NumberSetting<Integer>) subSetting;
+                                subSettingObject.add(subIntegerSetting.getName(), new JsonPrimitive(subIntegerSetting.getValue()));
+                            }
+
+                            if (subSetting.getValue() instanceof Double) {
+                                NumberSetting<Double> subDoubleSetting = (NumberSetting<Double>) subSetting;
+                                subSettingObject.add(subDoubleSetting.getName(), new JsonPrimitive(subDoubleSetting.getValue()));
+                            }
+
+                            if (subSetting.getValue() instanceof Float) {
+                                NumberSetting<Float> subFloatSetting = (NumberSetting<Float>) subSetting;
+                                subSettingObject.add(subFloatSetting.getName(), new JsonPrimitive(subFloatSetting.getValue()));
+                            }
+                        }
+                    }
+                }
+
+                if (setting.getValue() instanceof Enum) {
+                    Setting<Enum> enumSetting = (Setting<Enum>) setting;
+                    settingObject.add(enumSetting.getName(), new JsonPrimitive(String.valueOf(enumSetting.getValue())));
+
+                    if (enumSetting.hasSubSettings()) {
+                        for (Setting<?> subSetting : enumSetting.getSubSettings()) {
+                            if (subSetting.getValue() instanceof Boolean) {
+                                Setting<Boolean> subBooleanSetting = (Setting<Boolean>) subSetting;
+                                subSettingObject.add(subBooleanSetting.getName(), new JsonPrimitive(subBooleanSetting.getValue()));
+                            }
+
+                            if (subSetting.getValue() instanceof Enum) {
+                                Setting<Enum> subEnumSetting = (Setting<Enum>) subSetting;
+                                subSettingObject.add(subEnumSetting.getName(), new JsonPrimitive(String.valueOf(subEnumSetting.getValue())));
+                            }
+
+                            if (subSetting.getValue() instanceof Color) {
+                                Setting<Color> subColourSetting = (Setting<Color>) subSetting;
+
+                                JsonObject subColourObject = new JsonObject();
+
+                                subColourObject.add("Red", new JsonPrimitive(subColourSetting.getValue().getRed()));
+                                subColourObject.add("Green", new JsonPrimitive(subColourSetting.getValue().getGreen()));
+                                subColourObject.add("Blue", new JsonPrimitive(subColourSetting.getValue().getBlue()));
+                                subColourObject.add("Alpha", new JsonPrimitive(subColourSetting.getValue().getAlpha()));
+
+                                subSettingObject.add(subColourSetting.getName(), subColourObject);
+                            }
+
+                            if (subSetting.getValue() instanceof Integer) {
+                                NumberSetting<Integer> subIntegerSetting = (NumberSetting<Integer>) subSetting;
+                                subSettingObject.add(subIntegerSetting.getName(), new JsonPrimitive(subIntegerSetting.getValue()));
+                            }
+
+                            if (subSetting.getValue() instanceof Double) {
+                                NumberSetting<Double> subDoubleSetting = (NumberSetting<Double>) subSetting;
+                                subSettingObject.add(subDoubleSetting.getName(), new JsonPrimitive(subDoubleSetting.getValue()));
+                            }
+
+                            if (subSetting.getValue() instanceof Float) {
+                                NumberSetting<Float> subFloatSetting = (NumberSetting<Float>) subSetting;
+                                subSettingObject.add(subFloatSetting.getName(), new JsonPrimitive(subFloatSetting.getValue()));
+                            }
+                        }
+                    }
+                }
+
+                if (setting.getValue() instanceof Integer) {
+                    NumberSetting<Integer> integerSetting = (NumberSetting<Integer>) setting;
+                    settingObject.add(integerSetting.getName(), new JsonPrimitive(integerSetting.getValue()));
+
+                    if (integerSetting.hasSubSettings()) {
+                        for (Setting<?> subSetting : integerSetting.getSubSettings()) {
+                            if (subSetting.getValue() instanceof Boolean) {
+                                Setting<Boolean> subBooleanSetting = (Setting<Boolean>) subSetting;
+                                subSettingObject.add(subBooleanSetting.getName(), new JsonPrimitive(subBooleanSetting.getValue()));
+                            }
+
+                            if (subSetting.getValue() instanceof Enum) {
+                                Setting<Enum> subEnumSetting = (Setting<Enum>) subSetting;
+                                subSettingObject.add(subEnumSetting.getName(), new JsonPrimitive(String.valueOf(subEnumSetting.getValue())));
+                            }
+
+                            if (subSetting.getValue() instanceof Color) {
+                                Setting<Color> subColourSetting = (Setting<Color>) subSetting;
+
+                                JsonObject subColourObject = new JsonObject();
+
+                                subColourObject.add("Red", new JsonPrimitive(subColourSetting.getValue().getRed()));
+                                subColourObject.add("Green", new JsonPrimitive(subColourSetting.getValue().getGreen()));
+                                subColourObject.add("Blue", new JsonPrimitive(subColourSetting.getValue().getBlue()));
+                                subColourObject.add("Alpha", new JsonPrimitive(subColourSetting.getValue().getAlpha()));
+
+                                subSettingObject.add(subColourSetting.getName(), subColourObject);
+                            }
+
+                            if (subSetting.getValue() instanceof Integer) {
+                                NumberSetting<Integer> subIntegerSetting = (NumberSetting<Integer>) subSetting;
+                                subSettingObject.add(subIntegerSetting.getName(), new JsonPrimitive(subIntegerSetting.getValue()));
+                            }
+
+                            if (subSetting.getValue() instanceof Double) {
+                                NumberSetting<Double> subDoubleSetting = (NumberSetting<Double>) subSetting;
+                                subSettingObject.add(subDoubleSetting.getName(), new JsonPrimitive(subDoubleSetting.getValue()));
+                            }
+
+                            if (subSetting.getValue() instanceof Float) {
+                                NumberSetting<Float> subFloatSetting = (NumberSetting<Float>) subSetting;
+                                subSettingObject.add(subFloatSetting.getName(), new JsonPrimitive(subFloatSetting.getValue()));
+                            }
+                        }
+                    }
+                }
+
+                if (setting.getValue() instanceof Double) {
+                    NumberSetting<Double> doubleSetting = (NumberSetting<Double>) setting;
+                    settingObject.add(doubleSetting.getName(), new JsonPrimitive(doubleSetting.getValue()));
+
+                    if (doubleSetting.hasSubSettings()) {
+                        for (Setting<?> subSetting : doubleSetting.getSubSettings()) {
+                            if (subSetting.getValue() instanceof Boolean) {
+                                Setting<Boolean> subBooleanSetting = (Setting<Boolean>) subSetting;
+                                subSettingObject.add(subBooleanSetting.getName(), new JsonPrimitive(subBooleanSetting.getValue()));
+                            }
+
+                            if (subSetting.getValue() instanceof Enum) {
+                                Setting<Enum> subEnumSetting = (Setting<Enum>) subSetting;
+                                subSettingObject.add(subEnumSetting.getName(), new JsonPrimitive(String.valueOf(subEnumSetting.getValue())));
+                            }
+
+                            if (subSetting.getValue() instanceof Color) {
+                                Setting<Color> subColourSetting = (Setting<Color>) subSetting;
+
+                                JsonObject subColourObject = new JsonObject();
+
+                                subColourObject.add("Red", new JsonPrimitive(subColourSetting.getValue().getRed()));
+                                subColourObject.add("Green", new JsonPrimitive(subColourSetting.getValue().getGreen()));
+                                subColourObject.add("Blue", new JsonPrimitive(subColourSetting.getValue().getBlue()));
+                                subColourObject.add("Alpha", new JsonPrimitive(subColourSetting.getValue().getAlpha()));
+
+                                subSettingObject.add(subColourSetting.getName(), subColourObject);
+                            }
+
+                            if (subSetting.getValue() instanceof Integer) {
+                                NumberSetting<Integer> subIntegerSetting = (NumberSetting<Integer>) subSetting;
+                                subSettingObject.add(subIntegerSetting.getName(), new JsonPrimitive(subIntegerSetting.getValue()));
+                            }
+
+                            if (subSetting.getValue() instanceof Double) {
+                                NumberSetting<Double> subDoubleSetting = (NumberSetting<Double>) subSetting;
+                                subSettingObject.add(subDoubleSetting.getName(), new JsonPrimitive(subDoubleSetting.getValue()));
+                            }
+
+                            if (subSetting.getValue() instanceof Float) {
+                                NumberSetting<Float> subFloatSetting = (NumberSetting<Float>) subSetting;
+                                subSettingObject.add(subFloatSetting.getName(), new JsonPrimitive(subFloatSetting.getValue()));
+                            }
+                        }
+                    }
+                }
+
+                if (setting.getValue() instanceof Float) {
+                    NumberSetting<Float> floatSetting = (NumberSetting<Float>) setting;
+                    settingObject.add(floatSetting.getName(), new JsonPrimitive(floatSetting.getValue()));
+
+                    if (floatSetting.hasSubSettings()) {
+                        for (Setting<?> subSetting : floatSetting.getSubSettings()) {
+                            if (subSetting.getValue() instanceof Boolean) {
+                                Setting<Boolean> subBooleanSetting = (Setting<Boolean>) subSetting;
+                                subSettingObject.add(subBooleanSetting.getName(), new JsonPrimitive(subBooleanSetting.getValue()));
+                            }
+
+                            if (subSetting.getValue() instanceof Enum) {
+                                Setting<Enum> subEnumSetting = (Setting<Enum>) subSetting;
+                                subSettingObject.add(subEnumSetting.getName(), new JsonPrimitive(String.valueOf(subEnumSetting.getValue())));
+                            }
+
+                            if (subSetting.getValue() instanceof Color) {
+                                Setting<Color> subColourSetting = (Setting<Color>) subSetting;
+
+                                JsonObject subColourObject = new JsonObject();
+
+                                subColourObject.add("Red", new JsonPrimitive(subColourSetting.getValue().getRed()));
+                                subColourObject.add("Green", new JsonPrimitive(subColourSetting.getValue().getGreen()));
+                                subColourObject.add("Blue", new JsonPrimitive(subColourSetting.getValue().getBlue()));
+                                subColourObject.add("Alpha", new JsonPrimitive(subColourSetting.getValue().getAlpha()));
+
+                                subSettingObject.add(subColourSetting.getName(), subColourObject);
+                            }
+
+                            if (subSetting.getValue() instanceof Integer) {
+                                NumberSetting<Integer> subIntegerSetting = (NumberSetting<Integer>) subSetting;
+                                subSettingObject.add(subIntegerSetting.getName(), new JsonPrimitive(subIntegerSetting.getValue()));
+                            }
+
+                            if (subSetting.getValue() instanceof Double) {
+                                NumberSetting<Double> subDoubleSetting = (NumberSetting<Double>) subSetting;
+                                subSettingObject.add(subDoubleSetting.getName(), new JsonPrimitive(subDoubleSetting.getValue()));
+                            }
+
+                            if (subSetting.getValue() instanceof Float) {
+                                NumberSetting<Float> subFloatSetting = (NumberSetting<Float>) subSetting;
+                                subSettingObject.add(subFloatSetting.getName(), new JsonPrimitive(subFloatSetting.getValue()));
+                            }
+                        }
+                    }
+                }
+            }
+
+            componentObject.add("Position", positionObject);
+            componentObject.add("Settings", settingObject);
+            settingObject.add("SubSettings", subSettingObject);
+
+            String jsonString = gson.toJson(new JsonParser().parse(componentObject.toString()));
+
+            fileOutputStreamWriter.write(jsonString);
+            fileOutputStreamWriter.close();
         }
-
-        guiObject.add("Components", hudObject);
-
-        String jsonString = gson.toJson(new JsonParser().parse(guiObject.toString()));
-        fileOutputStreamWriter.write(jsonString);
-
-        fileOutputStreamWriter.close();
     }
 
     public static void loadComponents() throws IOException {
-        if (!Files.exists(Paths.get("ferox/gui/HUD.json"))) return;
-
-        InputStream inputStream = Files.newInputStream(Paths.get("ferox/gui/HUD.json"));
-        JsonObject guiObject = new JsonParser().parse(new InputStreamReader(inputStream)).getAsJsonObject();
-
-        if (guiObject.get("Components") == null) return;
-
-        JsonObject windowObject = guiObject.get("Components").getAsJsonObject();
-
         for (Component component : ComponentManager.getComponents()) {
-            if (windowObject.get(component.getName()) == null) return;
+            if (!Files.exists(Paths.get("ferox/components/" + component.getName() + ".json"))) continue;
 
-            JsonObject categoryObject = windowObject.get(component.getName()).getAsJsonObject();
+            InputStream inputStream = Files.newInputStream(Paths.get("ferox/components/" + component.getName() + ".json"));
+            JsonObject componentObject = new JsonParser().parse(new InputStreamReader(inputStream)).getAsJsonObject();
 
-            JsonElement hudXObject = categoryObject.get("x");
+            if (componentObject.get("Name") == null || componentObject.get("Visible") == null) continue;
 
-            if (hudXObject != null && hudXObject.isJsonPrimitive()) {
-                component.setPosX(hudXObject.getAsInt());
-            }
+            JsonObject positionObject = componentObject.get("Position").getAsJsonObject();
+            JsonObject settingObject = componentObject.get("Settings").getAsJsonObject();
+            JsonObject subSettingObject = settingObject.get("SubSettings").getAsJsonObject();
 
-            JsonElement hudYObject = categoryObject.get("y");
+            JsonElement xPositionObject = positionObject.get("X");
+            JsonElement yPositionObject = positionObject.get("Y");
 
-            if (hudYObject != null && hudYObject.isJsonPrimitive()) {
-                component.setPosY(hudYObject.getAsInt());
-            }
+            component.setPosX(xPositionObject.getAsInt());
+            component.setPosY(yPositionObject.getAsInt());
 
-            JsonElement hudVisibleObject = categoryObject.get("visible");
+            for (Setting<?> setting : component.getSettings()) {
+                JsonElement settingValueObject = null;
 
-            if (hudVisibleObject != null && hudVisibleObject.isJsonPrimitive()) {
-                if (hudVisibleObject.getAsBoolean()) {
-                    component.setVisible(true);
+                if (setting.getValue() instanceof Boolean) {
+                    Setting<Boolean> booleanSetting = (Setting<Boolean>) setting;
+                    settingValueObject = settingObject.get(booleanSetting.getName());
+
+                    for (Setting<?> subSetting : booleanSetting.getSubSettings()) {
+                        JsonElement subSettingValueObject = null;
+
+                        JsonElement redValueObject = null;
+                        JsonElement greenValueObject = null;
+                        JsonElement blueValueObject = null;
+                        JsonElement alphaValueObject = null;
+
+                        if (subSetting.getValue() instanceof Boolean) {
+                            Setting<Boolean> subBooleanSetting = (Setting<Boolean>) subSetting;
+                            subSettingValueObject = subSettingObject.get(subBooleanSetting.getName());
+                        }
+
+                        if (subSetting.getValue() instanceof Enum) {
+                            Setting<Enum> subEnumSetting = (Setting<Enum>) subSetting;
+                            subSettingValueObject = subSettingObject.get(subEnumSetting.getName());
+                        }
+
+                        if (subSetting.getValue() instanceof Color) {
+                            Setting<Color> subColourSetting = (Setting<Color>) subSetting;
+
+                            if (subSettingObject.get(subColourSetting.getName()).getAsJsonObject() == null) return;
+
+                            JsonObject subColourObject = subSettingObject.get(subColourSetting.getName()).getAsJsonObject();
+
+                            redValueObject = subColourObject.get("Red");
+                            greenValueObject = subColourObject.get("Green");
+                            blueValueObject = subColourObject.get("Blue");
+                            alphaValueObject = subColourObject.get("Alpha");
+                        }
+
+                        if (subSetting.getValue() instanceof Integer) {
+                            NumberSetting<Integer> subIntegerSetting = (NumberSetting<Integer>) subSetting;
+                            subSettingValueObject = subSettingObject.get(subIntegerSetting.getName());
+                        }
+
+                        if (subSetting.getValue() instanceof Double) {
+                            NumberSetting<Double> subDoubleSetting = (NumberSetting<Double>) subSetting;
+                            subSettingValueObject = subSettingObject.get(subDoubleSetting.getName());
+                        }
+
+                        if (subSetting.getValue() instanceof Float) {
+                            NumberSetting<Float> subFloatSetting = (NumberSetting<Float>) subSetting;
+                            subSettingValueObject = subSettingObject.get(subFloatSetting.getName());
+                        }
+
+                        if (subSettingValueObject != null) {
+                            if (subSetting.getValue() instanceof Boolean) {
+                                Setting<Boolean> subBooleanSetting = (Setting<Boolean>) subSetting;
+                                subBooleanSetting.setValue(subSettingValueObject.getAsBoolean());
+                            }
+
+                            if (subSetting.getValue() instanceof Enum) {
+                                Setting<Enum> subEnumSetting = (Setting<Enum>) subSetting;
+                                EnumUtil.setEnumValue(subEnumSetting, subSettingValueObject.getAsString());
+                            }
+
+                            if (subSetting.getValue() instanceof Color) {
+                                Setting<Color> subColourSetting = (Setting<Color>) subSetting;
+
+                                if (redValueObject != null && greenValueObject != null && blueValueObject != null && alphaValueObject != null) {
+                                    subColourSetting.setValue(new Color(redValueObject.getAsInt(), greenValueObject.getAsInt(), blueValueObject.getAsInt(), alphaValueObject.getAsInt()));
+                                }
+                            }
+
+                            if (subSetting.getValue() instanceof Integer) {
+                                NumberSetting<Integer> subIntegerSetting = (NumberSetting<Integer>) subSetting;
+                                subIntegerSetting.setValue(subSettingValueObject.getAsInt());
+                            }
+
+                            if (subSetting.getValue() instanceof Double) {
+                                NumberSetting<Double> subDoubleSetting = (NumberSetting<Double>) subSetting;
+                                subDoubleSetting.setValue(subSettingValueObject.getAsDouble());
+                            }
+
+                            if (subSetting.getValue() instanceof Float) {
+                                NumberSetting<Float> subFloatSetting = (NumberSetting<Float>) subSetting;
+                                subFloatSetting.setValue(subSettingValueObject.getAsFloat());
+                            }
+                        }
+                    }
+                }
+
+                if (setting.getValue() instanceof Enum) {
+                    Setting<Enum> enumSetting = (Setting<Enum>) setting;
+                    settingValueObject = settingObject.get(enumSetting.getName());
+
+                    for (Setting<?> subSetting : enumSetting.getSubSettings()) {
+                        JsonElement subSettingValueObject = null;
+
+                        JsonElement redValueObject = null;
+                        JsonElement greenValueObject = null;
+                        JsonElement blueValueObject = null;
+                        JsonElement alphaValueObject = null;
+
+                        if (subSetting.getValue() instanceof Boolean) {
+                            Setting<Boolean> subBooleanSetting = (Setting<Boolean>) subSetting;
+                            subSettingValueObject = subSettingObject.get(subBooleanSetting.getName());
+                        }
+
+                        if (subSetting.getValue() instanceof Enum) {
+                            Setting<Enum> subEnumSetting = (Setting<Enum>) subSetting;
+                            subSettingValueObject = subSettingObject.get(subEnumSetting.getName());
+                        }
+
+                        if (subSetting.getValue() instanceof Color) {
+                            Setting<Color> subColourSetting = (Setting<Color>) subSetting;
+
+                            if (subSettingObject.get(subColourSetting.getName()).getAsJsonObject() == null) return;
+
+                            JsonObject subColourObject = subSettingObject.get(subColourSetting.getName()).getAsJsonObject();
+
+                            redValueObject = subColourObject.get("Red");
+                            greenValueObject = subColourObject.get("Green");
+                            blueValueObject = subColourObject.get("Blue");
+                            alphaValueObject = subColourObject.get("Alpha");
+                        }
+
+                        if (subSetting.getValue() instanceof Integer) {
+                            NumberSetting<Integer> subIntegerSetting = (NumberSetting<Integer>) subSetting;
+                            subSettingValueObject = subSettingObject.get(subIntegerSetting.getName());
+                        }
+
+                        if (subSetting.getValue() instanceof Double) {
+                            NumberSetting<Double> subDoubleSetting = (NumberSetting<Double>) subSetting;
+                            subSettingValueObject = subSettingObject.get(subDoubleSetting.getName());
+                        }
+
+                        if (subSetting.getValue() instanceof Float) {
+                            NumberSetting<Float> subFloatSetting = (NumberSetting<Float>) subSetting;
+                            subSettingValueObject = subSettingObject.get(subFloatSetting.getName());
+                        }
+
+                        if (subSettingValueObject != null) {
+                            if (subSetting.getValue() instanceof Boolean) {
+                                Setting<Boolean> subBooleanSetting = (Setting<Boolean>) subSetting;
+                                subBooleanSetting.setValue(subSettingValueObject.getAsBoolean());
+                            }
+
+                            if (subSetting.getValue() instanceof Enum) {
+                                Setting<Enum> subEnumSetting = (Setting<Enum>) subSetting;
+                                EnumUtil.setEnumValue(subEnumSetting, subSettingValueObject.getAsString());
+                            }
+
+                            if (subSetting.getValue() instanceof Color) {
+                                Setting<Color> subColourSetting = (Setting<Color>) subSetting;
+
+                                if (redValueObject != null && greenValueObject != null && blueValueObject != null && alphaValueObject != null) {
+                                    subColourSetting.setValue(new Color(redValueObject.getAsInt(), greenValueObject.getAsInt(), blueValueObject.getAsInt(), alphaValueObject.getAsInt()));
+                                }
+                            }
+
+                            if (subSetting.getValue() instanceof Integer) {
+                                NumberSetting<Integer> subIntegerSetting = (NumberSetting<Integer>) subSetting;
+                                subIntegerSetting.setValue(subSettingValueObject.getAsInt());
+                            }
+
+                            if (subSetting.getValue() instanceof Double) {
+                                NumberSetting<Double> subDoubleSetting = (NumberSetting<Double>) subSetting;
+                                subDoubleSetting.setValue(subSettingValueObject.getAsDouble());
+                            }
+
+                            if (subSetting.getValue() instanceof Float) {
+                                NumberSetting<Float> subFloatSetting = (NumberSetting<Float>) subSetting;
+                                subFloatSetting.setValue(subSettingValueObject.getAsFloat());
+                            }
+                        }
+                    }
+                }
+
+                if (setting.getValue() instanceof Integer) {
+                    NumberSetting<Integer> integerSetting = (NumberSetting<Integer>) setting;
+                    settingValueObject = settingObject.get(integerSetting.getName());
+
+                    for (Setting<?> subSetting : integerSetting.getSubSettings()) {
+                        JsonElement subSettingValueObject = null;
+
+                        JsonElement redValueObject = null;
+                        JsonElement greenValueObject = null;
+                        JsonElement blueValueObject = null;
+                        JsonElement alphaValueObject = null;
+
+                        if (subSetting.getValue() instanceof Boolean) {
+                            Setting<Boolean> subBooleanSetting = (Setting<Boolean>) subSetting;
+                            subSettingValueObject = subSettingObject.get(subBooleanSetting.getName());
+                        }
+
+                        if (subSetting.getValue() instanceof Enum) {
+                            Setting<Enum> subEnumSetting = (Setting<Enum>) subSetting;
+                            subSettingValueObject = subSettingObject.get(subEnumSetting.getName());
+                        }
+
+                        if (subSetting.getValue() instanceof Color) {
+                            Setting<Color> subColourSetting = (Setting<Color>) subSetting;
+
+                            if (subSettingObject.get(subColourSetting.getName()).getAsJsonObject() == null) return;
+
+                            JsonObject subColourObject = subSettingObject.get(subColourSetting.getName()).getAsJsonObject();
+
+                            redValueObject = subColourObject.get("Red");
+                            greenValueObject = subColourObject.get("Green");
+                            blueValueObject = subColourObject.get("Blue");
+                            alphaValueObject = subColourObject.get("Alpha");
+                        }
+
+                        if (subSetting.getValue() instanceof Integer) {
+                            NumberSetting<Integer> subIntegerSetting = (NumberSetting<Integer>) subSetting;
+                            subSettingValueObject = subSettingObject.get(subIntegerSetting.getName());
+                        }
+
+                        if (subSetting.getValue() instanceof Double) {
+                            NumberSetting<Double> subDoubleSetting = (NumberSetting<Double>) subSetting;
+                            subSettingValueObject = subSettingObject.get(subDoubleSetting.getName());
+                        }
+
+                        if (subSetting.getValue() instanceof Float) {
+                            NumberSetting<Float> subFloatSetting = (NumberSetting<Float>) subSetting;
+                            subSettingValueObject = subSettingObject.get(subFloatSetting.getName());
+                        }
+
+                        if (subSettingValueObject != null) {
+                            if (subSetting.getValue() instanceof Boolean) {
+                                Setting<Boolean> subBooleanSetting = (Setting<Boolean>) subSetting;
+                                subBooleanSetting.setValue(subSettingValueObject.getAsBoolean());
+                            }
+
+                            if (subSetting.getValue() instanceof Enum) {
+                                Setting<Enum> subEnumSetting = (Setting<Enum>) subSetting;
+                                EnumUtil.setEnumValue(subEnumSetting, subSettingValueObject.getAsString());
+                            }
+
+                            if (subSetting.getValue() instanceof Color) {
+                                Setting<Color> subColourSetting = (Setting<Color>) subSetting;
+
+                                if (redValueObject != null && greenValueObject != null && blueValueObject != null && alphaValueObject != null) {
+                                    subColourSetting.setValue(new Color(redValueObject.getAsInt(), greenValueObject.getAsInt(), blueValueObject.getAsInt(), alphaValueObject.getAsInt()));
+                                }
+                            }
+
+                            if (subSetting.getValue() instanceof Integer) {
+                                NumberSetting<Integer> subIntegerSetting = (NumberSetting<Integer>) subSetting;
+                                subIntegerSetting.setValue(subSettingValueObject.getAsInt());
+                            }
+
+                            if (subSetting.getValue() instanceof Double) {
+                                NumberSetting<Double> subDoubleSetting = (NumberSetting<Double>) subSetting;
+                                subDoubleSetting.setValue(subSettingValueObject.getAsDouble());
+                            }
+
+                            if (subSetting.getValue() instanceof Float) {
+                                NumberSetting<Float> subFloatSetting = (NumberSetting<Float>) subSetting;
+                                subFloatSetting.setValue(subSettingValueObject.getAsFloat());
+                            }
+                        }
+                    }
+                }
+
+                if (setting.getValue() instanceof Double) {
+                    NumberSetting<Double> doubleSetting = (NumberSetting<Double>) setting;
+                    settingValueObject = settingObject.get(doubleSetting.getName());
+
+                    for (Setting<?> subSetting : doubleSetting.getSubSettings()) {
+                        JsonElement subSettingValueObject = null;
+
+                        JsonElement redValueObject = null;
+                        JsonElement greenValueObject = null;
+                        JsonElement blueValueObject = null;
+                        JsonElement alphaValueObject = null;
+
+                        if (subSetting.getValue() instanceof Boolean) {
+                            Setting<Boolean> subBooleanSetting = (Setting<Boolean>) subSetting;
+                            subSettingValueObject = subSettingObject.get(subBooleanSetting.getName());
+                        }
+
+                        if (subSetting.getValue() instanceof Enum) {
+                            Setting<Enum> subEnumSetting = (Setting<Enum>) subSetting;
+                            subSettingValueObject = subSettingObject.get(subEnumSetting.getName());
+                        }
+
+                        if (subSetting.getValue() instanceof Color) {
+                            Setting<Color> subColourSetting = (Setting<Color>) subSetting;
+
+                            if (subSettingObject.get(subColourSetting.getName()).getAsJsonObject() == null) return;
+
+                            JsonObject subColourObject = subSettingObject.get(subColourSetting.getName()).getAsJsonObject();
+
+                            redValueObject = subColourObject.get("Red");
+                            greenValueObject = subColourObject.get("Green");
+                            blueValueObject = subColourObject.get("Blue");
+                            alphaValueObject = subColourObject.get("Alpha");
+                        }
+
+                        if (subSetting.getValue() instanceof Integer) {
+                            NumberSetting<Integer> subIntegerSetting = (NumberSetting<Integer>) subSetting;
+                            subSettingValueObject = subSettingObject.get(subIntegerSetting.getName());
+                        }
+
+                        if (subSetting.getValue() instanceof Double) {
+                            NumberSetting<Double> subDoubleSetting = (NumberSetting<Double>) subSetting;
+                            subSettingValueObject = subSettingObject.get(subDoubleSetting.getName());
+                        }
+
+                        if (subSetting.getValue() instanceof Float) {
+                            NumberSetting<Float> subFloatSetting = (NumberSetting<Float>) subSetting;
+                            subSettingValueObject = subSettingObject.get(subFloatSetting.getName());
+                        }
+
+                        if (subSettingValueObject != null) {
+                            if (subSetting.getValue() instanceof Boolean) {
+                                Setting<Boolean> subBooleanSetting = (Setting<Boolean>) subSetting;
+                                subBooleanSetting.setValue(subSettingValueObject.getAsBoolean());
+                            }
+
+                            if (subSetting.getValue() instanceof Enum) {
+                                Setting<Enum> subEnumSetting = (Setting<Enum>) subSetting;
+                                EnumUtil.setEnumValue(subEnumSetting, subSettingValueObject.getAsString());
+                            }
+
+                            if (subSetting.getValue() instanceof Color) {
+                                Setting<Color> subColourSetting = (Setting<Color>) subSetting;
+
+                                if (redValueObject != null && greenValueObject != null && blueValueObject != null && alphaValueObject != null) {
+                                    subColourSetting.setValue(new Color(redValueObject.getAsInt(), greenValueObject.getAsInt(), blueValueObject.getAsInt(), alphaValueObject.getAsInt()));
+                                }
+                            }
+
+                            if (subSetting.getValue() instanceof Integer) {
+                                NumberSetting<Integer> subIntegerSetting = (NumberSetting<Integer>) subSetting;
+                                subIntegerSetting.setValue(subSettingValueObject.getAsInt());
+                            }
+
+                            if (subSetting.getValue() instanceof Double) {
+                                NumberSetting<Double> subDoubleSetting = (NumberSetting<Double>) subSetting;
+                                subDoubleSetting.setValue(subSettingValueObject.getAsDouble());
+                            }
+
+                            if (subSetting.getValue() instanceof Float) {
+                                NumberSetting<Float> subFloatSetting = (NumberSetting<Float>) subSetting;
+                                subFloatSetting.setValue(subSettingValueObject.getAsFloat());
+                            }
+                        }
+                    }
+                }
+
+                if (setting.getValue() instanceof Float) {
+                    NumberSetting<Float> floatSetting = (NumberSetting<Float>) setting;
+                    settingValueObject = settingObject.get(floatSetting.getName());
+
+                    for (Setting<?> subSetting : floatSetting.getSubSettings()) {
+                        JsonElement subSettingValueObject = null;
+
+                        JsonElement redValueObject = null;
+                        JsonElement greenValueObject = null;
+                        JsonElement blueValueObject = null;
+                        JsonElement alphaValueObject = null;
+
+                        if (subSetting.getValue() instanceof Boolean) {
+                            Setting<Boolean> subBooleanSetting = (Setting<Boolean>) subSetting;
+                            subSettingValueObject = subSettingObject.get(subBooleanSetting.getName());
+                        }
+
+                        if (subSetting.getValue() instanceof Enum) {
+                            Setting<Enum> subEnumSetting = (Setting<Enum>) subSetting;
+                            subSettingValueObject = subSettingObject.get(subEnumSetting.getName());
+                        }
+
+                        if (subSetting.getValue() instanceof Color) {
+                            Setting<Color> subColourSetting = (Setting<Color>) subSetting;
+
+                            if (subSettingObject.get(subColourSetting.getName()).getAsJsonObject() == null) return;
+
+                            JsonObject subColourObject = subSettingObject.get(subColourSetting.getName()).getAsJsonObject();
+
+                            redValueObject = subColourObject.get("Red");
+                            greenValueObject = subColourObject.get("Green");
+                            blueValueObject = subColourObject.get("Blue");
+                            alphaValueObject = subColourObject.get("Alpha");
+                        }
+
+                        if (subSetting.getValue() instanceof Integer) {
+                            NumberSetting<Integer> subIntegerSetting = (NumberSetting<Integer>) subSetting;
+                            subSettingValueObject = subSettingObject.get(subIntegerSetting.getName());
+                        }
+
+                        if (subSetting.getValue() instanceof Double) {
+                            NumberSetting<Double> subDoubleSetting = (NumberSetting<Double>) subSetting;
+                            subSettingValueObject = subSettingObject.get(subDoubleSetting.getName());
+                        }
+
+                        if (subSetting.getValue() instanceof Float) {
+                            NumberSetting<Float> subFloatSetting = (NumberSetting<Float>) subSetting;
+                            subSettingValueObject = subSettingObject.get(subFloatSetting.getName());
+                        }
+
+                        if (subSettingValueObject != null) {
+                            if (subSetting.getValue() instanceof Boolean) {
+                                Setting<Boolean> subBooleanSetting = (Setting<Boolean>) subSetting;
+                                subBooleanSetting.setValue(subSettingValueObject.getAsBoolean());
+                            }
+
+                            if (subSetting.getValue() instanceof Enum) {
+                                Setting<Enum> subEnumSetting = (Setting<Enum>) subSetting;
+                                EnumUtil.setEnumValue(subEnumSetting, subSettingValueObject.getAsString());
+                            }
+
+                            if (subSetting.getValue() instanceof Color) {
+                                Setting<Color> subColourSetting = (Setting<Color>) subSetting;
+
+                                if (redValueObject != null && greenValueObject != null && blueValueObject != null && alphaValueObject != null) {
+                                    subColourSetting.setValue(new Color(redValueObject.getAsInt(), greenValueObject.getAsInt(), blueValueObject.getAsInt(), alphaValueObject.getAsInt()));
+                                }
+                            }
+
+                            if (subSetting.getValue() instanceof Integer) {
+                                NumberSetting<Integer> subIntegerSetting = (NumberSetting<Integer>) subSetting;
+                                subIntegerSetting.setValue(subSettingValueObject.getAsInt());
+                            }
+
+                            if (subSetting.getValue() instanceof Double) {
+                                NumberSetting<Double> subDoubleSetting = (NumberSetting<Double>) subSetting;
+                                subDoubleSetting.setValue(subSettingValueObject.getAsDouble());
+                            }
+
+                            if (subSetting.getValue() instanceof Float) {
+                                NumberSetting<Float> subFloatSetting = (NumberSetting<Float>) subSetting;
+                                subFloatSetting.setValue(subSettingValueObject.getAsFloat());
+                            }
+                        }
+                    }
+                }
+
+                if (settingValueObject != null) {
+                    if (setting.getValue() instanceof Boolean) {
+                        Setting<Boolean> booleanSetting = (Setting<Boolean>) setting;
+                        booleanSetting.setValue(settingValueObject.getAsBoolean());
+                    }
+
+                    if (setting.getValue() instanceof Enum) {
+                        Setting<Enum> enumSetting = (Setting<Enum>) setting;
+                        EnumUtil.setEnumValue(enumSetting, settingValueObject.getAsString());
+                    }
+
+                    if (setting.getValue() instanceof Integer) {
+                        NumberSetting<Integer> integerSetting = (NumberSetting<Integer>) setting;
+                        integerSetting.setValue(settingValueObject.getAsInt());
+                    }
+
+                    if (setting.getValue() instanceof Double) {
+                        NumberSetting<Double> doubleSetting = (NumberSetting<Double>) setting;
+                        doubleSetting.setValue(settingValueObject.getAsDouble());
+                    }
+
+                    if (setting.getValue() instanceof Float) {
+                        NumberSetting<Float> floatSetting = (NumberSetting<Float>) setting;
+                        floatSetting.setValue(settingValueObject.getAsFloat());
+                    }
                 }
             }
-        }
 
-        inputStream.close();
+            component.setVisible(componentObject.get("Visible").getAsBoolean());
+        }
     }
 
     public static void saveFriends() throws IOException {
