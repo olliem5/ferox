@@ -27,7 +27,9 @@ public final class ClickGUIWindow implements Minecraft {
 	private int dragY;
 
 	private boolean dragging = false;
-	private boolean open = true;
+	public boolean open = true;
+
+	public Category category;
 
 	private final ArrayList<Module> modules;
 	public static final ArrayList<ClickGUIWindow> windows = new ArrayList<>();
@@ -38,6 +40,7 @@ public final class ClickGUIWindow implements Minecraft {
 		this.name = name;
 		this.x = x;
 		this.y = y;
+		this.category = category;
 		this.modules = ModuleManager.getModulesInCategory(category);
 	}
 	

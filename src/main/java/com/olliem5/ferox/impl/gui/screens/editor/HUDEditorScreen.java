@@ -3,6 +3,7 @@ package com.olliem5.ferox.impl.gui.screens.editor;
 import com.olliem5.ferox.api.component.Component;
 import com.olliem5.ferox.api.component.ComponentManager;
 import com.olliem5.ferox.api.module.ModuleManager;
+import com.olliem5.ferox.api.util.client.ConfigUtil;
 import com.olliem5.ferox.api.util.render.gui.GuiUtil;
 import com.olliem5.ferox.impl.modules.ui.HUDEditor;
 import net.minecraft.client.gui.Gui;
@@ -96,6 +97,7 @@ public final class HUDEditorScreen extends GuiScreen {
 	@Override
 	public void onGuiClosed() {
 		ModuleManager.getModuleByName("HUDEditor").setEnabled(false);
+		ConfigUtil.saveConfig();
 	}
 	
 	@Override

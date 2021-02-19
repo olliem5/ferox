@@ -12,6 +12,8 @@ import com.olliem5.ferox.api.social.enemy.EnemyManager;
 import com.olliem5.ferox.api.social.friend.Friend;
 import com.olliem5.ferox.api.social.friend.FriendManager;
 import com.olliem5.ferox.api.util.math.EnumUtil;
+import com.olliem5.ferox.impl.gui.screens.click.ClickGUIWindow;
+import com.olliem5.ferox.impl.gui.screens.editor.HUDEditorWindow;
 
 import java.awt.*;
 import java.io.*;
@@ -25,7 +27,6 @@ import java.nio.file.Paths;
  * @author Hoosiers
  *
  * TODO: Sort modules into other folders for categories
- * TODO: Support Component settings
  *
  * Note - Colour settings ony save and load properly if they are sub settings. I might add support for them as main settings later, but I don't use it currently.
  */
@@ -68,6 +69,8 @@ public final class ConfigUtil {
         try {
             saveModules();
             saveComponents();
+            saveClickGUI();
+            saveHUDEditor();
             saveFriends();
             saveEnemies();
         } catch (IOException exception) {
@@ -80,6 +83,8 @@ public final class ConfigUtil {
             createDirectory();
             loadModules();
             loadComponents();
+            loadClickGUI();
+            loadHUDEditor();
             loadFriends();
             loadEnemies();
         } catch (IOException exception) {
@@ -1581,6 +1586,132 @@ public final class ConfigUtil {
 
             component.setVisible(componentObject.get("Visible").getAsBoolean());
         }
+    }
+
+    public static void saveClickGUI() throws IOException {
+        registerFiles("ClickGUI", "gui");
+
+        OutputStreamWriter fileOutputStreamWriter = new OutputStreamWriter(new FileOutputStream("ferox/gui/ClickGUI.json"), StandardCharsets.UTF_8);
+
+        JsonObject guiObject = new JsonObject();
+        JsonObject windowObject = new JsonObject();
+
+        for (ClickGUIWindow clickGUIWindow : ClickGUIWindow.windows) {
+            JsonObject positionObject = new JsonObject();
+
+            positionObject.add("X", new JsonPrimitive(clickGUIWindow.x));
+            positionObject.add("Y", new JsonPrimitive(clickGUIWindow.y));
+            positionObject.add("Open", new JsonPrimitive(clickGUIWindow.open));
+
+            windowObject.add(clickGUIWindow.category.toString(), positionObject);
+        }
+
+        guiObject.add("Windows", windowObject);
+
+        String jsonString = gson.toJson(new JsonParser().parse(guiObject.toString()));
+        fileOutputStreamWriter.write(jsonString);
+
+        fileOutputStreamWriter.close();
+    }
+
+    public static void loadClickGUI() throws IOException {
+        if (!Files.exists(Paths.get("ferox/gui/ClickGUI.json"))) return;
+
+        InputStream inputStream = Files.newInputStream(Paths.get("ferox/gui/ClickGUI.json"));
+        JsonObject guiObject = new JsonParser().parse(new InputStreamReader(inputStream)).getAsJsonObject();
+
+        if (guiObject.get("Windows") == null) return;
+
+        JsonObject windowObject = guiObject.get("Windows").getAsJsonObject();
+
+        for (ClickGUIWindow clickGUIWindow : ClickGUIWindow.windows) {
+            if (windowObject.get(clickGUIWindow.category.toString()) == null) return;
+
+            JsonObject categoryObject = windowObject.get(clickGUIWindow.category.toString()).getAsJsonObject();
+
+            JsonElement windowXObject = categoryObject.get("X");
+
+            if (windowXObject != null && windowXObject.isJsonPrimitive()) {
+                clickGUIWindow.setX(windowXObject.getAsInt());
+            }
+
+            JsonElement windowYObject = categoryObject.get("Y");
+
+            if (windowYObject != null && windowYObject.isJsonPrimitive()) {
+                clickGUIWindow.setY(windowYObject.getAsInt());
+            }
+
+            JsonElement windowOpenObject = categoryObject.get("Open");
+
+            if (windowOpenObject != null && windowOpenObject.isJsonPrimitive()) {
+                clickGUIWindow.setOpen(windowOpenObject.getAsBoolean());
+            }
+        }
+
+        inputStream.close();
+    }
+
+    public static void saveHUDEditor() throws IOException {
+        registerFiles("HUDEditor", "gui");
+
+        OutputStreamWriter fileOutputStreamWriter = new OutputStreamWriter(new FileOutputStream("ferox/gui/HUDEditor.json"), StandardCharsets.UTF_8);
+
+        JsonObject guiObject = new JsonObject();
+        JsonObject windowObject = new JsonObject();
+
+        for (HUDEditorWindow hudEditorWindow : HUDEditorWindow.windows) {
+            JsonObject positionObject = new JsonObject();
+
+            positionObject.add("X", new JsonPrimitive(hudEditorWindow.x));
+            positionObject.add("Y", new JsonPrimitive(hudEditorWindow.y));
+            positionObject.add("Open", new JsonPrimitive(hudEditorWindow.open));
+
+            windowObject.add("Ferox HUD", positionObject);
+        }
+
+        guiObject.add("Windows", windowObject);
+
+        String jsonString = gson.toJson(new JsonParser().parse(guiObject.toString()));
+        fileOutputStreamWriter.write(jsonString);
+
+        fileOutputStreamWriter.close();
+    }
+
+    public static void loadHUDEditor() throws IOException {
+        if (!Files.exists(Paths.get("ferox/gui/HUDEditor.json"))) return;
+
+        InputStream inputStream = Files.newInputStream(Paths.get("ferox/gui/HUDEditor.json"));
+        JsonObject guiObject = new JsonParser().parse(new InputStreamReader(inputStream)).getAsJsonObject();
+
+        if (guiObject.get("Windows") == null) return;
+
+        JsonObject windowObject = guiObject.get("Windows").getAsJsonObject();
+
+        for (HUDEditorWindow hudEditorWindow : HUDEditorWindow.windows) {
+            if (windowObject.get("Ferox HUD") == null) return;
+
+            JsonObject categoryObject = windowObject.get("Ferox HUD").getAsJsonObject();
+
+            JsonElement windowXObject = categoryObject.get("X");
+
+            if (windowXObject != null && windowXObject.isJsonPrimitive()) {
+                hudEditorWindow.setX(windowXObject.getAsInt());
+            }
+
+            JsonElement windowYObject = categoryObject.get("Y");
+
+            if (hudEditorWindow != null && windowYObject.isJsonPrimitive()) {
+                hudEditorWindow.setY(windowYObject.getAsInt());
+            }
+
+            JsonElement windowOpenObject = categoryObject.get("Open");
+
+            if (windowOpenObject != null && windowOpenObject.isJsonPrimitive()) {
+                hudEditorWindow.setOpen(windowOpenObject.getAsBoolean());
+            }
+        }
+
+        inputStream.close();
     }
 
     public static void saveFriends() throws IOException {

@@ -26,7 +26,7 @@ public final class HUDEditorWindow implements Minecraft {
 	private int dragY;
 
 	private boolean dragging = false;
-	private boolean open = true;
+	public boolean open = true;
 
 	private final ArrayList<Component> components;
 	public static final ArrayList<HUDEditorWindow> windows = new ArrayList<>();
