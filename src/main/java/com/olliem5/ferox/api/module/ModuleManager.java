@@ -68,6 +68,7 @@ public final class ModuleManager {
                 new BlockHighlight(),
                 new Brightness(),
                 new BurrowESP(),
+                new Chams(),
                 new Conditions(),
                 new CustomFOV(),
                 new HoleESP(),

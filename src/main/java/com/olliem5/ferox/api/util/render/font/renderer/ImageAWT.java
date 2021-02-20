@@ -99,10 +99,10 @@ public final class ImageAWT implements Minecraft {
         float height = ch.height;
         float srcX = ch.x;
         float srcY = ch.y;
-        float renderX = srcX / (float)this.textureWidth;
-        float renderY = srcY / (float)this.textureHeight;
-        float renderWidth = width / (float)this.textureWidth;
-        float renderHeight = height / (float)this.textureHeight;
+        float renderX = srcX / (float) this.textureWidth;
+        float renderY = srcY / (float) this.textureHeight;
+        float renderWidth = width / (float) this.textureWidth;
+        float renderHeight = height / (float) this.textureHeight;
 
         GL11.glTexCoord2f(renderX, renderY);
         GL11.glVertex2f(x, y);

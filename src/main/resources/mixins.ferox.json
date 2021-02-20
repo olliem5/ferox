@@ -15,6 +15,9 @@
     "MixinGuiScreen",
     "MixinEntity",
     "MixinBlockLiquid",
-    "MixinEntityRenderer"
+    "MixinEntityRenderer",
+    "MixinRenderPlayer",
+    "MixinRenderLivingBase",
+    "MixinRenderEnderCrystal"
   ]
 }
