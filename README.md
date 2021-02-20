@@ -3,7 +3,6 @@
 ## TODO
 
 #### Base
-- JSON Config System
 - Loader & HWID Checker w/ Server
 - Cleanup and optimize all code
 
