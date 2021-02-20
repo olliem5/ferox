@@ -9,4 +9,4 @@ import com.olliem5.ferox.api.module.Module;
  */
 
 @FeroxModule(name = "AntiPacketKick", description = "Stops large packets from kicking you from servers", category = Category.Miscellaneous)
-public class AntiPacketKick extends Module {}
+public final class AntiPacketKick extends Module {}

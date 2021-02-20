@@ -21,12 +21,17 @@ import org.lwjgl.input.Keyboard;
 public final class NoSlow extends Module {
     public static final Setting<NoSlowModes> noSlowMode = new Setting<>("Mode", "The way no item slowdown is achieved", NoSlowModes.Normal);
 
+    public static final Setting<Boolean> blocks = new Setting<>("Blocks", "Allows NoSlow to stop blocks from slowing you down", true);
+    public static final Setting<Boolean> soulSand = new Setting<>(blocks, "Soul Sand", "Allows soul sand slowness to cease", true);
+    public static final Setting<Boolean> slimeBlocks = new Setting<>(blocks, "Slime Blocks", "Allows slime block slowness to cease", true);
+
     public static final Setting<Boolean> guiMove = new Setting<>("GUI Move", "Allows you to move in GUI's", true);
     public static final Setting<Boolean> arrowKeyLook = new Setting<>(guiMove, "Arrow Key Look", "Allows you to look around with the arrow keys", true);
 
     public NoSlow() {
         this.addSettings(
                 noSlowMode,
+                blocks,
                 guiMove
         );
     }

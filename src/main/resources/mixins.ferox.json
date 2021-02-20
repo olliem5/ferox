@@ -18,6 +18,8 @@
     "MixinEntityRenderer",
     "MixinRenderPlayer",
     "MixinRenderLivingBase",
-    "MixinRenderEnderCrystal"
+    "MixinRenderEnderCrystal",
+    "MixinBlockSlime",
+    "MixinBlockWeb"
   ]
 }

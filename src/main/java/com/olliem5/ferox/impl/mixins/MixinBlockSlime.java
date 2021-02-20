@@ -2,8 +2,7 @@ package com.olliem5.ferox.impl.mixins;
 
 import com.olliem5.ferox.api.module.ModuleManager;
 import com.olliem5.ferox.impl.modules.movement.NoSlow;
-import net.minecraft.block.BlockSoulSand;
-import net.minecraft.block.state.IBlockState;
+import net.minecraft.block.BlockSlime;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -16,11 +15,11 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
  * @author olliem5
  */
 
-@Mixin(BlockSoulSand.class)
-public final class MixinBlockSoulSand {
-    @Inject(method = "onEntityCollision", at = @At("HEAD"), cancellable = true)
-    public void onEntityCollidedWithBlock(World world, BlockPos blockPos, IBlockState iBlockState, Entity entity, CallbackInfo callbackInfo) {
-        if (ModuleManager.getModuleByName("NoSlow").isEnabled() && NoSlow.blocks.getValue() && NoSlow.soulSand.getValue()) {
+@Mixin(BlockSlime.class)
+public final class MixinBlockSlime {
+    @Inject(method = "onEntityWalk", at = @At("HEAD"), cancellable = true)
+    private void onEntityCollidedWithBlock(World world, BlockPos blockPos, Entity entity, CallbackInfo callbackInfo) {
+        if (ModuleManager.getModuleByName("NoSlow").isEnabled() && NoSlow.blocks.getValue() && NoSlow.slimeBlocks.getValue()) {
             callbackInfo.cancel();
         }
     }

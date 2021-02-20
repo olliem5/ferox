@@ -47,6 +47,7 @@ public final class ModuleManager {
                 new ChatSuffix(),
                 new FakePlayer(),
                 new FastUse(),
+                new WebTeleport(),
 
                 //Exploit
                 new Blink(),

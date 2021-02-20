@@ -12,7 +12,7 @@ import net.minecraft.network.play.server.SPacketPlayerPosLook;
  */
 
 @FeroxModule(name = "NoRotate", description = "Prevents server packets from turning your head", category = Category.Movement)
-public class NoRotate extends Module {
+public final class NoRotate extends Module {
     @PaceHandler
     public void onPacketReceive(PacketEvent.Receive event) {
         if (nullCheck()) return;
