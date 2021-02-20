@@ -16,7 +16,7 @@ import java.util.ArrayList;
  * @author linustouchtips
  */
 
-@SideOnly(value= Side.CLIENT)
+@SideOnly(value = Side.CLIENT)
 public final class ImageAWT implements Minecraft {
     private static final ArrayList<ImageAWT> activeFontRenderers = new ArrayList();
     private final Font font;

@@ -3,14 +3,8 @@ package com.olliem5.ferox.api.module;
 import com.olliem5.ferox.impl.modules.combat.*;
 import com.olliem5.ferox.impl.modules.exploit.*;
 import com.olliem5.ferox.impl.modules.ferox.*;
-import com.olliem5.ferox.impl.modules.miscellaneous.AutoLog;
-import com.olliem5.ferox.impl.modules.miscellaneous.ChatSuffix;
-import com.olliem5.ferox.impl.modules.miscellaneous.FakePlayer;
-import com.olliem5.ferox.impl.modules.miscellaneous.FastUse;
-import com.olliem5.ferox.impl.modules.movement.ElytraFlight;
-import com.olliem5.ferox.impl.modules.movement.NoSlow;
-import com.olliem5.ferox.impl.modules.movement.Sprint;
-import com.olliem5.ferox.impl.modules.movement.Velocity;
+import com.olliem5.ferox.impl.modules.miscellaneous.*;
+import com.olliem5.ferox.impl.modules.movement.*;
 import com.olliem5.ferox.impl.modules.render.*;
 import com.olliem5.ferox.impl.modules.ui.ClickGUI;
 import com.olliem5.ferox.impl.modules.ui.Console;
@@ -42,11 +36,13 @@ public final class ModuleManager {
 
                 //Movement
                 new ElytraFlight(),
+                new NoRotate(),
                 new NoSlow(),
                 new Sprint(),
                 new Velocity(),
 
                 //Miscellaneous
+                new AntiPacketKick(),
                 new AutoLog(),
                 new ChatSuffix(),
                 new FakePlayer(),
@@ -68,6 +64,7 @@ public final class ModuleManager {
                 new BlockHighlight(),
                 new Brightness(),
                 new BurrowESP(),
+                new CameraClip(),
                 new Chams(),
                 new Conditions(),
                 new CustomFOV(),
