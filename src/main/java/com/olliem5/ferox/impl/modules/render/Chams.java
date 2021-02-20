@@ -10,7 +10,7 @@ import java.awt.*;
 /**
  * @author olliem5
  *
- * TODO: Fix sheep wool colouring, vanilla mode
+ * TODO: Fix sheep wool colouring
  */
 
 @FeroxModule(name = "Chams", description = "Highlights entities", category = Category.Render)
