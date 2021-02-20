@@ -45,12 +45,13 @@ public final class ClickGUIWindow implements Minecraft {
 	}
 	
 	public static void initGui() {
-		int xOffset = 12;
-
-		for (Category category : Category.values()) {
-			windows.add(new ClickGUIWindow(category.toString(), xOffset, 20, category));
-			xOffset += 110;
-		}
+		windows.add(new ClickGUIWindow("Combat", 12, 20, Category.Combat));
+		windows.add(new ClickGUIWindow("Movement", 132, 20, Category.Movement));
+		windows.add(new ClickGUIWindow("Miscellaneous", 252, 20, Category.Miscellaneous));
+		windows.add(new ClickGUIWindow("Exploit", 372, 20, Category.Exploit));
+		windows.add(new ClickGUIWindow("Render", 492, 20, Category.Render));
+		windows.add(new ClickGUIWindow("Ferox", 612, 20, Category.Ferox));
+		windows.add(new ClickGUIWindow("Interface", 612, 20, Category.Interface));
 	}
 	
 	public void drawGui(int mouseX, int mouseY) {
