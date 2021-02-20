@@ -24,7 +24,7 @@ import static org.lwjgl.opengl.GL11.*;
  */
 
 @Mixin(RenderEnderCrystal.class)
-public abstract class MixinRenderEnderCrystal implements Minecraft {
+public final class MixinRenderEnderCrystal implements Minecraft {
     @Shadow
     public ModelBase modelEnderCrystal;
 

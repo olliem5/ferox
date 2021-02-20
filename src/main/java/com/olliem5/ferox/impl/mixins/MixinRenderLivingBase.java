@@ -1,7 +1,10 @@
 package com.olliem5.ferox.impl.mixins;
 
 import com.olliem5.ferox.api.module.ModuleManager;
+import com.olliem5.ferox.api.social.enemy.EnemyManager;
+import com.olliem5.ferox.api.social.friend.FriendManager;
 import com.olliem5.ferox.api.traits.Minecraft;
+import com.olliem5.ferox.impl.modules.ferox.Social;
 import com.olliem5.ferox.impl.modules.render.Chams;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.Render;
@@ -46,7 +49,13 @@ public abstract class MixinRenderLivingBase<T extends EntityLivingBase> extends 
             GL11.glEnable(10754);
 
             if (entity instanceof EntityPlayer) {
-                GL11.glColor4f(Chams.playerColour.getValue().getRed() / 255.0f, Chams.playerColour.getValue().getGreen() / 255.0f, Chams.playerColour.getValue().getBlue() / 255.0f, Chams.playerColour.getValue().getAlpha() / 255.0f);
+                if (FriendManager.isFriend(entity.getName())) {
+                    GL11.glColor4f(Social.friendColour.getValue().getRed() / 255.0f, Social.friendColour.getValue().getGreen() / 255.0f, Social.friendColour.getValue().getBlue() / 255.0f, Social.friendColour.getValue().getAlpha() / 255.0f);
+                } else if (EnemyManager.isEnemy(entity.getName())) {
+                    GL11.glColor4f(Social.enemyColour.getValue().getRed() / 255.0f, Social.enemyColour.getValue().getGreen() / 255.0f, Social.enemyColour.getValue().getBlue() / 255.0f, Social.enemyColour.getValue().getAlpha() / 255.0f);
+                } else {
+                    GL11.glColor4f(Chams.playerColour.getValue().getRed() / 255.0f, Chams.playerColour.getValue().getGreen() / 255.0f, Chams.playerColour.getValue().getBlue() / 255.0f, Chams.playerColour.getValue().getAlpha() / 255.0f);
+                }
             }
 
             if (entity instanceof EntityAnimal) {

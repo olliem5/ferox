@@ -8,7 +8,6 @@ import com.olliem5.ferox.api.setting.Setting;
 import com.olliem5.ferox.api.theme.FeroxTheme;
 import com.olliem5.ferox.api.theme.Theme;
 import com.olliem5.ferox.api.util.colour.ColourUtil;
-import com.olliem5.ferox.api.util.colour.RainbowUtil;
 import com.olliem5.ferox.api.util.math.EnumUtil;
 import com.olliem5.ferox.api.util.math.MathUtil;
 import com.olliem5.ferox.api.util.render.draw.DrawUtil;

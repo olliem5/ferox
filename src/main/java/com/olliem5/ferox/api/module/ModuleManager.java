@@ -79,7 +79,6 @@ public final class ModuleManager {
                 new HUD(),
                 new Notifications(),
                 new Social(),
-                new Target(),
 
                 //Interface
                 new ClickGUI(),
