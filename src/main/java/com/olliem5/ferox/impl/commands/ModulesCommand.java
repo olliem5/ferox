@@ -6,6 +6,10 @@ import com.olliem5.ferox.api.module.ModuleManager;
 import com.olliem5.ferox.api.util.client.MessageUtil;
 import me.yagel15637.venture.command.AbstractCommand;
 
+/**
+ * @author olliem5
+ */
+
 public final class ModulesCommand extends AbstractCommand {
     public ModulesCommand() {
         super("Lists all the client's modules", "modules/mods", "modules", "mods");
