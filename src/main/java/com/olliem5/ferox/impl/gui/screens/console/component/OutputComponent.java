@@ -32,8 +32,8 @@ public final class OutputComponent extends Component {
         Collections.reverse(outputs);
 
         for (String string : outputs) {
-            FontUtil.drawText(string, x + 1, y + height - FontUtil.getFontHeight() - 1 + offset, -1);
-            offset -= FontUtil.getFontHeight() + 2;
+            FontUtil.drawText(string, x + 1, y + height - FontUtil.getStringHeight(string) - 1 + offset, -1);
+            offset -= FontUtil.getStringHeight(string) + 2;
         }
 
         Collections.reverse(outputs);

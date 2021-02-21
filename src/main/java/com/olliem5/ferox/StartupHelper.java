@@ -25,8 +25,8 @@ public final class StartupHelper {
         ModuleManager.init();
         Ferox.log("Modules Initialized!");
 
-        FontUtil.loadFonts();
-        Ferox.log("Custom Fonts Initialized!");
+//        FontUtil.loadFonts();
+//        Ferox.log("Custom Fonts Initialized!");
 
         ComponentManager.init();
         Ferox.EVENT_BUS.register(new ComponentManager());

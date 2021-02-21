@@ -832,19 +832,19 @@ public final class DefaultTheme extends Theme {
 	}
 
 	public static void drawModuleBottomLeftText(Module module) {
-		FontUtil.drawText(module.getDescription(), 2, (new ScaledResolution(mc).getScaledHeight() - FontUtil.getFontHeight() - 2), -1);
+		FontUtil.drawText(module.getDescription(), 2, (new ScaledResolution(mc).getScaledHeight() - FontUtil.getStringHeight(module.getDescription()) - 2), -1);
 	}
 
 	public static void drawComponentBottomLeftText(Component component) {
-		FontUtil.drawText(component.getDescription(), 2, (new ScaledResolution(mc).getScaledHeight() - FontUtil.getFontHeight() - 2), -1);
+		FontUtil.drawText(component.getDescription(), 2, (new ScaledResolution(mc).getScaledHeight() - FontUtil.getStringHeight(component.getDescription()) - 2), -1);
 	}
 
 	public static void drawSettingBottomLeftText(Setting<?> setting) {
-		FontUtil.drawText(setting.getDescription(), 2, (new ScaledResolution(mc).getScaledHeight() - FontUtil.getFontHeight() - 2), -1);
+		FontUtil.drawText(setting.getDescription(), 2, (new ScaledResolution(mc).getScaledHeight() - FontUtil.getStringHeight(setting.getDescription()) - 2), -1);
 	}
 
 	public static void drawKeybindBottomLeftText(Module module, String key) {
-		FontUtil.drawText(module.getName() + "'s keybind is " + ChatFormatting.GRAY + key, 2, (new ScaledResolution(mc).getScaledHeight() - FontUtil.getFontHeight() - 2), -1);
+		FontUtil.drawText(module.getName() + "'s keybind is " + ChatFormatting.GRAY + key, 2, (new ScaledResolution(mc).getScaledHeight() - FontUtil.getStringHeight(module.getName() + "'s keybind is " + ChatFormatting.GRAY + key) - 2), -1);
 	}
 
 	public static void drawPicker(Setting<Color> colourSetting, int mouseX, int mouseY, int pickerX, int pickerY, int hueSliderX, int hueSliderY, int alphaSliderX, int alphaSliderY) {

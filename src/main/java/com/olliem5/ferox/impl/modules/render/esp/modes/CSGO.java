@@ -58,6 +58,10 @@ public final class CSGO extends ESPMode {
                     GL11.glLineWidth(ESP.outlineWidth.getValue().floatValue());
                     GL11.glEnable(GL_LINE_SMOOTH);
 
+                    if (entity instanceof EntityEnderCrystal) {
+                        GL11.glColor4f(ESP.crystalColour.getValue().getRed() / 255.0f, ESP.crystalColour.getValue().getGreen() / 255.0f, ESP.crystalColour.getValue().getBlue() / 255.0f, ESP.crystalColour.getValue().getAlpha() / 255.0f);
+                    }
+
                     if (entity instanceof EntityPlayer) {
                         if (FriendManager.isFriend(entity.getName())) {
                             GL11.glColor4f(Social.friendColour.getValue().getRed() / 255.0f, Social.friendColour.getValue().getGreen() / 255.0f, Social.friendColour.getValue().getBlue() / 255.0f, Social.friendColour.getValue().getAlpha() / 255.0f);
