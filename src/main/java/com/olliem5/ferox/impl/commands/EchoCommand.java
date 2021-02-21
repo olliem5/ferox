@@ -10,7 +10,7 @@ import me.yagel15637.venture.command.AbstractCommand;
 
 public final class EchoCommand extends AbstractCommand {
     public EchoCommand() {
-        super("Echos something to the console.", "say/echo/tell <message>", "say", "echo", "tell");
+        super("Echos something to the console", "echo/say/tell [message]", "echo", "say", "tell");
     }
 
     @Override

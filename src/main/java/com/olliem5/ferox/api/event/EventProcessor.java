@@ -12,7 +12,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.network.play.server.SPacketEntityStatus;
 import net.minecraftforge.client.event.*;
 import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
-import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
@@ -78,11 +77,6 @@ public final class EventProcessor implements Minecraft {
 
     @SubscribeEvent
     public void onInputUpdate(InputUpdateEvent event) {
-        Ferox.EVENT_BUS.dispatchEvent(event);
-    }
-
-    @SubscribeEvent
-    public void onAttackEntity(AttackEntityEvent event) {
         Ferox.EVENT_BUS.dispatchEvent(event);
     }
 

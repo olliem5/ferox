@@ -20,9 +20,9 @@ public final class Ferox {
     public static final String MOD_ID = "ferox";
     public static final String MOD_NAME = "Ferox";
     public static final String MOD_VERSION = "1.0";
-    public static final String CHAT_PREFIX = "%";
     public static final String APP_ID = "792247134677762088";
     public static final String NAME_VERSION = MOD_NAME + " " + MOD_VERSION;
+    public static String CHAT_PREFIX = "%";
 
     public static final Logger LOGGER = LogManager.getLogger(NAME_VERSION);
     public static final EventHandler EVENT_BUS = new EventHandler();
