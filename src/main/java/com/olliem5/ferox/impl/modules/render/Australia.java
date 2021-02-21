@@ -31,6 +31,8 @@ public class Australia extends Module {
     }
 
     public void onUpdate() {
+        if (nullCheck()) return;
+        
         if (fire.getValue()) {
             mc.player.setFire(1);
         }
