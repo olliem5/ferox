@@ -19,8 +19,8 @@ public abstract class Component implements Minecraft {
     private final String name = getAnnotation().name();
     private final String description = getAnnotation().description();
 
-    private int posX = 2;
-    private int posY = 2;
+    private int x = 2;
+    private int y = 2;
     private int dragX;
     private int dragY;
     private int width;
@@ -31,9 +31,6 @@ public abstract class Component implements Minecraft {
     private boolean opened = false;
 
     private final ArrayList<Setting> settings = new ArrayList<>();
-
-    private final int screenWidth = new ScaledResolution(mc).getScaledWidth();
-    private final int screenHeight = new ScaledResolution(mc).getScaledHeight();
 
     private FeroxComponent getAnnotation() {
         if (getClass().isAnnotationPresent(FeroxComponent.class)) {
@@ -46,66 +43,37 @@ public abstract class Component implements Minecraft {
     public abstract void render();
 
     public void drawString(String text) {
-        FontUtil.drawText(text, posX, posY, Colours.clientColourPicker.getValue().getRGB());
+        FontUtil.drawText(text, x, y, Colours.clientColourPicker.getValue().getRGB());
     }
 
     public boolean isMouseOnComponent(int x, int y) {
-        return (x >= this.posX && x <= this.posX + this.width && y >= this.posY && y <= this.posY + this.height);
+        return (x >= this.x && x <= this.x + this.width && y >= this.y && y <= this.y + this.height);
     }
 
     public void collide() {
-        ScaledResolution sr = new ScaledResolution(mc);
+        ScaledResolution scaledResolution = new ScaledResolution(mc);
 
-        if (posX <= 0) {
-            setPosX(0);
+        if (getX() <= 0) {
+            setX(0);
         }
 
-        if (posX >= sr.getScaledWidth() - width) {
-            setPosX(sr.getScaledWidth() - width);
+        if (getX() >= scaledResolution.getScaledWidth() - width) {
+            setX(scaledResolution.getScaledWidth() - width);
         }
 
-        if (posY <= 0) {
-            setPosY(0);
+        if (getY() <= 0) {
+            setY(0);
         }
 
-        if (getPosY() >= sr.getScaledHeight() - height) {
-            setPosY(sr.getScaledHeight() - height);
+        if (getY() >= scaledResolution.getScaledHeight() - height) {
+            setY(scaledResolution.getScaledHeight() - height);
         }
     }
 
-    //TODO: Fix this
-//    public boolean isTopLeft() {
-//        return (this.getPosX() < (screenWidth / 2) && this.getPosY() < (screenHeight) / 2);
-//    }
-//
-//    public boolean isBottomLeft() {
-//        return (this.getPosX() < (screenWidth / 2) && this.getPosY() > (screenHeight) / 2);
-//    }
-//
-//    public boolean isTopRight() {
-//        return (this.getPosX() > (screenWidth / 2) && this.getPosY() < (screenHeight) / 2);
-//    }
-//
-//    public boolean isBottomRight() {
-//        return (this.getPosX() > (screenWidth / 2) && this.getPosY() > (screenHeight) / 2);
-//    }
-//
-//    public ScreenPosition getScreenPosition() {
-//        if (this.isTopLeft()) {
-//            return ScreenPosition.TopLeft;
-//        } else if (this.isBottomLeft()) {
-//            return ScreenPosition.BottomLeft;
-//        } else if (this.isTopRight()) {
-//            return ScreenPosition.TopRight;
-//        } else {
-//            return ScreenPosition.BottomRight;
-//        }
-//    }
-
     public void updatePosition(int mouseX, int mouseY) {
         if (this.dragging) {
-            this.setPosX(mouseX - getDragX());
-            this.setPosY(mouseY - getDragY());
+            this.setX(mouseX - getDragX());
+            this.setY(mouseY - getDragY());
         }
 
         if (!HUDEditor.componentOverflow.getValue()) {
@@ -129,20 +97,20 @@ public abstract class Component implements Minecraft {
         return name;
     }
 
-    public final int getPosX() {
-        return posX;
+    public final int getX() {
+        return x;
     }
 
-    public final void setPosX(int posX) {
-        this.posX = posX;
+    public final void setX(int x) {
+        this.x = x;
     }
 
-    public final int getPosY() {
-        return posY;
+    public final int getY() {
+        return y;
     }
 
-    public final void setPosY(int posY) {
-        this.posY = posY;
+    public final void setY(int y) {
+        this.y = y;
     }
 
     public final boolean isVisible() {
@@ -204,11 +172,4 @@ public abstract class Component implements Minecraft {
     public void setOpened(boolean opened) {
         this.opened = opened;
     }
-
-//    public enum ScreenPosition {
-//        TopLeft,
-//        BottomLeft,
-//        TopRight,
-//        BottomRight
-//    }
 }

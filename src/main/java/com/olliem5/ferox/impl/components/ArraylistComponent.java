@@ -34,7 +34,7 @@ public final class ArraylistComponent extends Component {
 
         int screenWidth = new ScaledResolution(mc).getScaledWidth();
 
-        if (this.getPosX() < (screenWidth / 2)) {
+        if (this.getX() < (screenWidth / 2)) {
             renderRight();
         } else {
             renderLeft();
@@ -49,7 +49,7 @@ public final class ArraylistComponent extends Component {
                 .filter(Module::isEnabled)
                 .sorted(Comparator.comparing(module -> FontUtil.getStringWidth(module.getName() + " " + module.getArraylistInfo()) * (sortMode.getValue() == SortModes.Down ? (-1) : 1)))
                 .forEach(module -> {
-                    FontUtil.drawText(module.getName() + " " + ChatFormatting.WHITE + module.getArraylistInfo(), this.getPosX() + 128 - FontUtil.getStringWidth(module.getName() + " " + module.getArraylistInfo()), this.getPosY() + (10 * boost), Colours.clientColourPicker.getValue().getRGB());
+                    FontUtil.drawText(module.getName() + " " + ChatFormatting.WHITE + module.getArraylistInfo(), this.getX() + 128 - FontUtil.getStringWidth(module.getName() + " " + module.getArraylistInfo()), this.getY() + (10 * boost), Colours.clientColourPicker.getValue().getRGB());
 
                     boost++;
                 });
@@ -60,7 +60,7 @@ public final class ArraylistComponent extends Component {
                 .filter(Module::isEnabled)
                 .sorted(Comparator.comparing(module -> FontUtil.getStringWidth(module.getName() + " " + module.getArraylistInfo()) * (sortMode.getValue() == SortModes.Down ? (-1) : 1)))
                 .forEach(module -> {
-                    FontUtil.drawText(module.getName() + " " + ChatFormatting.WHITE + module.getArraylistInfo(), this.getPosX(), this.getPosY() + (10 * boost), Colours.clientColourPicker.getValue().getRGB());
+                    FontUtil.drawText(module.getName() + " " + ChatFormatting.WHITE + module.getArraylistInfo(), this.getX(), this.getY() + (10 * boost), Colours.clientColourPicker.getValue().getRGB());
 
                     boost++;
                 });

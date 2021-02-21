@@ -17,12 +17,12 @@ public final class NotificationComponent extends Component {
     public void render() {
         if (mc.currentScreen instanceof HUDEditorScreen) {
             Notification notification = new Notification("Example Notification", "This is an example notification!", Notification.NotificationType.Normal);
-            notification.renderNotification(getPosX(), getPosY());
+            notification.renderNotification(getX(), getY());
         } else {
             int boost = 0;
 
             for (Notification notification : NotificationManager.getNotifications()) {
-                notification.renderNotification(getPosX(), getPosY() + boost * 32);
+                notification.renderNotification(getX(), getY() + boost * 32);
 
                 boost++;
             }

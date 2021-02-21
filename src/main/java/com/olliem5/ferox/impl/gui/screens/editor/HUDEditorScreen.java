@@ -29,7 +29,7 @@ public final class HUDEditorScreen extends GuiScreen {
 			if (component.isVisible()) {
 				component.updatePosition(mouseX, mouseY);
 
-				Gui.drawRect(component.getPosX(), component.getPosY(), component.getPosX() + component.getWidth(), component.getPosY() + component.getHeight(), component.isDragging() ? 0x75101010 : 0x90303030);
+				Gui.drawRect(component.getX(), component.getY(), component.getX() + component.getWidth(), component.getY() + component.getHeight(), component.isDragging() ? 0x75101010 : 0x90303030);
 
 				component.render();
 			}
@@ -51,8 +51,8 @@ public final class HUDEditorScreen extends GuiScreen {
 				if (component.isMouseOnComponent(mouseX, mouseY) && component.isVisible()) {
 					component.setDragging(true);
 
-					component.setDragX(mouseX - component.getPosX());
-					component.setDragY(mouseY - component.getPosY());
+					component.setDragX(mouseX - component.getX());
+					component.setDragY(mouseY - component.getY());
 				}
 			}
 

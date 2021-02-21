@@ -848,8 +848,8 @@ public final class ConfigUtil {
             componentObject.add("Name", new JsonPrimitive(component.getName()));
             componentObject.add("Visible", new JsonPrimitive(component.isVisible()));
 
-            positionObject.add("X", new JsonPrimitive(component.getPosX()));
-            positionObject.add("Y", new JsonPrimitive(component.getPosY()));
+            positionObject.add("X", new JsonPrimitive(component.getX()));
+            positionObject.add("Y", new JsonPrimitive(component.getY()));
 
             for (Setting<?> setting : component.getSettings()) {
                 if (setting.getValue() instanceof Boolean) {
@@ -1115,8 +1115,8 @@ public final class ConfigUtil {
             JsonElement xPositionObject = positionObject.get("X");
             JsonElement yPositionObject = positionObject.get("Y");
 
-            component.setPosX(xPositionObject.getAsInt());
-            component.setPosY(yPositionObject.getAsInt());
+            component.setX(xPositionObject.getAsInt());
+            component.setY(yPositionObject.getAsInt());
 
             for (Setting<?> setting : component.getSettings()) {
                 JsonElement settingValueObject = null;

@@ -30,7 +30,7 @@ public final class InventoryComponent extends Component {
     @Override
     public void render() {
         if (background.getValue()) {
-            Gui.drawRect(getPosX(), getPosY(), getPosX() + getWidth(), getPosY() + getHeight(), new Color(20, 20, 20, 100).getRGB());
+            Gui.drawRect(getX(), getY(), getX() + getWidth(), getY() + getHeight(), new Color(20, 20, 20, 100).getRGB());
         }
 
         GlStateManager.pushMatrix();
@@ -39,8 +39,8 @@ public final class InventoryComponent extends Component {
         for (int i = 0; i < 27; i++) {
             ItemStack itemStack = mc.player.inventory.mainInventory.get(i + 9);
 
-            int offsetX = getPosX() + (i % 9) * 16;
-            int offsetY = getPosY() + (i / 9) * 16;
+            int offsetX = getX() + (i % 9) * 16;
+            int offsetY = getY() + (i / 9) * 16;
 
             mc.getRenderItem().renderItemAndEffectIntoGUI(itemStack, offsetX, offsetY);
             mc.getRenderItem().renderItemOverlayIntoGUI(mc.fontRenderer, itemStack, offsetX, offsetY, null);

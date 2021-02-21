@@ -86,22 +86,22 @@ public final class HUDEditorWindow implements Minecraft {
 
 	public void collide() {
 		if (!HUDEditor.windowOverflow.getValue()) {
-			ScaledResolution sr = new ScaledResolution(mc);
+			ScaledResolution scaledResolution = new ScaledResolution(mc);
 
 			if (getX() <= 0) {
 				setX(0);
 			}
 
-			if (getX() >= sr.getScaledWidth() - currentTheme.getWidth()) {
-				setX(sr.getScaledWidth() - currentTheme.getWidth());
+			if (getX() >= scaledResolution.getScaledWidth() - currentTheme.getWidth()) {
+				setX(scaledResolution.getScaledWidth() - currentTheme.getWidth());
 			}
 
 			if (getY() <= 0) {
 				setY(0);
 			}
 
-			if (getY() >= sr.getScaledHeight() - currentTheme.getHeight()) {
-				setY(sr.getScaledHeight() - currentTheme.getHeight());
+			if (getY() >= scaledResolution.getScaledHeight() - currentTheme.getHeight()) {
+				setY(scaledResolution.getScaledHeight() - currentTheme.getHeight());
 			}
 		}
 	}
