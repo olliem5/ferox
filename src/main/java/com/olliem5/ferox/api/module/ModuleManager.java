@@ -69,6 +69,7 @@ public final class ModuleManager {
                 new Chams(),
                 new Conditions(),
                 new CustomFOV(),
+                new ESP(),
                 new HoleESP(),
                 new ItemTooltips(),
                 new ViewModel(),

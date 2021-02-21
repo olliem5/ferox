@@ -41,7 +41,7 @@ public final class MixinRenderEnderCrystal implements Minecraft {
     }
 
     @Inject(method = "doRender(Lnet/minecraft/entity/item/EntityEnderCrystal;DDDFF)V", at = @At("RETURN"), cancellable = true)
-    public void doRender(EntityEnderCrystal entity, double x, double y, double z, float entityYaw, float partialTicks, CallbackInfo callback) {
+    public void doRender(EntityEnderCrystal entity, double x, double y, double z, float entityYaw, float partialTicks, CallbackInfo callbackInfo) {
         if (ModuleManager.getModuleByName("Chams").isEnabled() && Chams.crystals.getValue() && Chams.crystalsMode.getValue() == Chams.ChamsModes.Highlight) {
             GL11.glPushMatrix();
 

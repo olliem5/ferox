@@ -118,7 +118,7 @@ public final class AntiCrystal extends Module {
             stonePressurePlateSlot = InventoryUtil.getHotbarBlockSlot(Blocks.STONE_PRESSURE_PLATE);
 
             if (woodenPressurePlateSlot == -1 && heavyWeightedPressurePlateSlot == -1 && lightWeightedPressurePlateSlot == -1 && stonePressurePlateSlot == -1) {
-                MessageUtil.sendClientMessage("No Pressure Plate, " + ChatFormatting.RED + "Disabling!");
+                MessageUtil.sendClientMessage("No Pressure Plates, " + ChatFormatting.RED + "Disabling!");
                 this.toggle();
             }
         } else {
