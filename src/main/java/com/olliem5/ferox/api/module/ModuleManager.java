@@ -80,6 +80,7 @@ public final class ModuleManager {
                 new DiscordRPC(),
                 new ClientFont(),
                 new HUD(),
+                new MainMenu(),
                 new Notifications(),
                 new Social(),
 
