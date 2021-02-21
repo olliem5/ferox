@@ -5,6 +5,7 @@ import com.olliem5.ferox.Ferox;
 import com.olliem5.ferox.api.component.Component;
 import com.olliem5.ferox.api.component.FeroxComponent;
 import com.olliem5.ferox.api.setting.Setting;
+import com.olliem5.ferox.api.util.render.font.FontUtil;
 
 /**
  * @author olliem5
@@ -15,9 +16,6 @@ public final class WelcomerComponent extends Component {
     public static final Setting<WelcomerModes> welcomerMode = new Setting<>("Mode", "The welcomer mode", WelcomerModes.Welcome);
 
     public WelcomerComponent() {
-        this.setWidth(10);
-        this.setHeight(10);
-
         this.addSettings(
                 welcomerMode
         );
@@ -25,12 +23,20 @@ public final class WelcomerComponent extends Component {
 
     @Override
     public void render() {
+        String renderString;
+
         switch (welcomerMode.getValue()) {
             case Welcome:
-                drawString(ChatFormatting.WHITE + "Welcome, " + ChatFormatting.RESET + mc.player.getName());
+                renderString = ChatFormatting.WHITE + "Welcome, " + ChatFormatting.RESET + mc.player.getName();
+                this.setWidth((int) FontUtil.getStringWidth(renderString));
+                this.setHeight((int) FontUtil.getStringHeight(renderString));
+                drawString(renderString);
                 break;
             case Client:
-                drawString(ChatFormatting.WHITE + "Welcome to " + ChatFormatting.RESET + Ferox.MOD_NAME + ChatFormatting.WHITE + " " + Ferox.MOD_VERSION + ", " + ChatFormatting.RESET + mc.player.getName());
+                renderString = ChatFormatting.WHITE + "Welcome to " + ChatFormatting.RESET + Ferox.MOD_NAME + ChatFormatting.WHITE + " " + Ferox.MOD_VERSION + ", " + ChatFormatting.RESET + mc.player.getName();
+                this.setWidth((int) FontUtil.getStringWidth(renderString));
+                this.setHeight((int) FontUtil.getStringHeight(renderString));
+                drawString(renderString);
                 break;
         }
     }

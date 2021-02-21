@@ -5,6 +5,7 @@ import com.olliem5.ferox.Ferox;
 import com.olliem5.ferox.api.component.Component;
 import com.olliem5.ferox.api.component.FeroxComponent;
 import com.olliem5.ferox.api.setting.Setting;
+import com.olliem5.ferox.api.util.render.font.FontUtil;
 
 /**
  * @author olliem5
@@ -15,9 +16,6 @@ public final class WatermarkComponent extends Component {
     public static final Setting<WatermarkModes> watermarkMode = new Setting<>("Mode", "The watermark mode", WatermarkModes.NameVersion);
 
     public WatermarkComponent() {
-        this.setWidth(10);
-        this.setHeight(10);
-
         this.addSettings(
                 watermarkMode
         );
@@ -25,12 +23,20 @@ public final class WatermarkComponent extends Component {
 
     @Override
     public void render() {
+        String renderString;
+
         switch (watermarkMode.getValue()) {
             case Name:
-                drawString(Ferox.MOD_NAME);
+                renderString = Ferox.MOD_NAME;
+                this.setWidth((int) FontUtil.getStringWidth(renderString));
+                this.setHeight((int) FontUtil.getStringHeight(renderString));
+                drawString(renderString);
                 break;
             case NameVersion:
-                drawString(Ferox.MOD_NAME + " " + ChatFormatting.WHITE + Ferox.MOD_VERSION);
+                renderString = Ferox.MOD_NAME + " " + ChatFormatting.WHITE + Ferox.MOD_VERSION;
+                this.setWidth((int) FontUtil.getStringWidth(renderString));
+                this.setHeight((int) FontUtil.getStringHeight(renderString));
+                drawString(renderString);
                 break;
         }
     }

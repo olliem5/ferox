@@ -73,33 +73,34 @@ public abstract class Component implements Minecraft {
         }
     }
 
-    public boolean isTopLeft() {
-        return (this.getPosX() < (screenWidth / 2) && this.getPosY() < (screenHeight) / 2);
-    }
-
-    public boolean isBottomLeft() {
-        return (this.getPosX() < (screenWidth / 2) && this.getPosY() > (screenHeight) / 2);
-    }
-
-    public boolean isTopRight() {
-        return (this.getPosX() > (screenWidth / 2) && this.getPosY() < (screenHeight) / 2);
-    }
-
-    public boolean isBottomRight() {
-        return (this.getPosX() > (screenWidth / 2) && this.getPosY() > (screenHeight) / 2);
-    }
-
-    public ScreenPosition getScreenPosition() {
-        if (this.isTopLeft()) {
-            return ScreenPosition.TopLeft;
-        } else if (this.isBottomLeft()) {
-            return ScreenPosition.BottomLeft;
-        } else if (this.isTopRight()) {
-            return ScreenPosition.TopRight;
-        } else {
-            return ScreenPosition.BottomRight;
-        }
-    }
+    //TODO: Fix this
+//    public boolean isTopLeft() {
+//        return (this.getPosX() < (screenWidth / 2) && this.getPosY() < (screenHeight) / 2);
+//    }
+//
+//    public boolean isBottomLeft() {
+//        return (this.getPosX() < (screenWidth / 2) && this.getPosY() > (screenHeight) / 2);
+//    }
+//
+//    public boolean isTopRight() {
+//        return (this.getPosX() > (screenWidth / 2) && this.getPosY() < (screenHeight) / 2);
+//    }
+//
+//    public boolean isBottomRight() {
+//        return (this.getPosX() > (screenWidth / 2) && this.getPosY() > (screenHeight) / 2);
+//    }
+//
+//    public ScreenPosition getScreenPosition() {
+//        if (this.isTopLeft()) {
+//            return ScreenPosition.TopLeft;
+//        } else if (this.isBottomLeft()) {
+//            return ScreenPosition.BottomLeft;
+//        } else if (this.isTopRight()) {
+//            return ScreenPosition.TopRight;
+//        } else {
+//            return ScreenPosition.BottomRight;
+//        }
+//    }
 
     public void updatePosition(int mouseX, int mouseY) {
         if (this.dragging) {
@@ -204,10 +205,10 @@ public abstract class Component implements Minecraft {
         this.opened = opened;
     }
 
-    public enum ScreenPosition {
-        TopLeft,
-        BottomLeft,
-        TopRight,
-        BottomRight
-    }
+//    public enum ScreenPosition {
+//        TopLeft,
+//        BottomLeft,
+//        TopRight,
+//        BottomRight
+//    }
 }

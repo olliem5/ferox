@@ -4,7 +4,6 @@ import com.olliem5.ferox.api.component.ComponentManager;
 import com.olliem5.ferox.api.event.EventProcessor;
 import com.olliem5.ferox.api.module.ModuleManager;
 import com.olliem5.ferox.api.theme.ThemeManager;
-import com.olliem5.ferox.api.util.render.font.FontUtil;
 import com.olliem5.ferox.impl.commands.EchoCommand;
 import com.olliem5.ferox.impl.commands.ToggleCommand;
 import com.olliem5.ferox.impl.gui.screens.click.ClickGUIWindow;

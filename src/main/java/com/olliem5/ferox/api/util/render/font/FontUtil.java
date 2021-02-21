@@ -1,12 +1,8 @@
 package com.olliem5.ferox.api.util.render.font;
 
 import com.olliem5.ferox.api.traits.Minecraft;
-import com.olliem5.ferox.api.util.render.font.renderer.CustomFontRenderer;
 import com.olliem5.ferox.api.util.render.font.renderer.FeroxFontRenderer;
 import com.olliem5.ferox.impl.modules.ferox.ClientFont;
-
-import java.awt.*;
-import java.io.InputStream;
 
 /**
  * @author olliem5
