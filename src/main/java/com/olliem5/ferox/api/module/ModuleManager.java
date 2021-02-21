@@ -62,6 +62,7 @@ public final class ModuleManager {
                 new XCarry(),
 
                 //Render
+                new Australia(),
                 new BlockHighlight(),
                 new Brightness(),
                 new BurrowESP(),
