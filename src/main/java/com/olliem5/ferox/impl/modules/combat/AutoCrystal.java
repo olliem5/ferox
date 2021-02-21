@@ -21,6 +21,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityEnderCrystal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
+import net.minecraft.init.MobEffects;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemEndCrystal;
 import net.minecraft.item.ItemSword;
@@ -49,7 +50,7 @@ import java.util.stream.Collectors;
  * TODO: Settings to add
  *
  * Break
- * - Sequential
+ * - Actual good timing
  * - Min Damage
  *
  * Place
@@ -86,7 +87,7 @@ public final class AutoCrystal extends Module {
     public static final Setting<Boolean> autoSwitch = new Setting<>(crystalPlace, "Auto Switch", "Switches to crystals before placing", false);
     public static final Setting<Boolean> raytrace = new Setting<>(crystalPlace, "Raytrace", "Allow raytracing for placements", true);
     public static final Setting<Boolean> multiPlace = new Setting<>(crystalPlace, "Multi Place", "Place multiple crystals before a break", false);
-    public static final Setting<Boolean> predictPlace = new Setting<>(crystalPlace, "Predict", "Takes movement into account for placements", true);
+    public static final Setting<Boolean> predictPlace = new Setting<>(crystalPlace, "Predict", "Takes movement into account for placements", false);
     public static final Setting<Boolean> verifyPlace = new Setting<>(crystalPlace, "Verify", "Verifies the eligibility for a place", false);
     public static final NumberSetting<Double> placeRange = new NumberSetting<>(crystalPlace, "Range", "The range to place crystals in", 0.0, 5.0, 7.0, 1);
     public static final NumberSetting<Double> wallRange = new NumberSetting<>(crystalPlace, "Wall Range", "The range to place through walls in", 0.0, 3.0, 7.0, 1);
@@ -102,8 +103,8 @@ public final class AutoCrystal extends Module {
     public static final Setting<Boolean> crystalPause = new Setting<>("Pause", "Controls when the AutoCrystal pauses", true);
     public static final Setting<Boolean> pauseHealthAllow = new Setting<>(crystalPause, "At Specified Health", "Pauses the AutoCrystal at a specified health", true);
     public static final NumberSetting<Double> pauseHealth = new NumberSetting<>(crystalPause, "Health", "Health to be at to pause the AutoCrystal", 0.0, 8.0, 36.0, 1);
-    public static final Setting<Boolean> pauseWhileMining = new Setting<>(crystalPause, "While Mining", "Pauses the AutoCrystal while mining", true);
-    public static final Setting<Boolean> pauseWhileEating = new Setting<>(crystalPause, "While Eating", "Pauses the AutoCrystal while eating", true);
+    public static final Setting<Boolean> pauseWhileMining = new Setting<>(crystalPause, "While Mining", "Pauses the AutoCrystal while mining", false);
+    public static final Setting<Boolean> pauseWhileEating = new Setting<>(crystalPause, "While Eating", "Pauses the AutoCrystal while eating", false);
 
     public static final Setting<Boolean> crystalRender = new Setting<>("Render", "Allows the crystal placements to be rendered", true);
     public static final Setting<BlockRenderModes> blockRenderMode = new Setting<>(crystalRender, "Block Mode", "The type of box to render", BlockRenderModes.Full);
@@ -125,7 +126,7 @@ public final class AutoCrystal extends Module {
     private final CooldownUtil placeTimer = new CooldownUtil();
 
     private EntityPlayer playerTarget = null;
-    private CrystalPosition crystalTarget = new CrystalPosition(BlockPos.ORIGIN, 0, 0);
+    private CrystalPosition crystalTarget = new CrystalPosition(null, 0, 0);
 
     @Override
     public void onDisable() {
@@ -169,13 +170,11 @@ public final class AutoCrystal extends Module {
                     .orElse(null);
 
             if (entityEnderCrystal != null && !entityEnderCrystal.isDead && breakTimer.passed(breakDelay.getValue() * 60)) {
-//                if ((mc.player.getHealth() + mc.player.getAbsorptionAmount()) <= maxSelfBreakDamage.getValue()) return;
-
                 if (!(mc.player.getDistance(entityEnderCrystal) <= breakRange.getValue())) return;
 
                 if (!mc.player.canEntityBeSeen(entityEnderCrystal) && !throughWalls.getValue()) return;
 
-                if (antiWeakness.getValue() && mc.player.isPotionActive(Potion.getPotionById(18))) {
+                if (antiWeakness.getValue() && mc.player.isPotionActive(MobEffects.WEAKNESS)) {
                     InventoryUtil.switchToSlot(ItemSword.class);
                 }
 
@@ -183,43 +182,7 @@ public final class AutoCrystal extends Module {
                     RotationUtil.lookAtPacket(entityEnderCrystal.posX, entityEnderCrystal.posY, entityEnderCrystal.posZ, mc.player);
                 }
 
-                //TODO: Move these to CrystalUtil
-
-                for (int i = 0; i < breakAttempts.getValue(); i++) {
-                    switch (breakMode.getValue()) {
-                        case Swing:
-                            CrystalUtil.breakCrystal(entityEnderCrystal, false);
-                            break;
-                        case Packet:
-                            CrystalUtil.breakCrystal(entityEnderCrystal, true);
-                            break;
-                    }
-                }
-
-                switch (swingMode.getValue()) {
-                    case Mainhand:
-                        mc.player.swingArm(EnumHand.MAIN_HAND);
-                        break;
-                    case Offhand:
-                        mc.player.swingArm(EnumHand.OFF_HAND);
-                        break;
-                    case Spam:
-                        mc.player.swingArm(EnumHand.MAIN_HAND);
-                        mc.player.swingArm(EnumHand.MAIN_HAND);
-                        mc.player.swingArm(EnumHand.MAIN_HAND);
-                        mc.player.swingArm(EnumHand.MAIN_HAND);
-                        mc.player.swingArm(EnumHand.MAIN_HAND);
-                        mc.player.swingArm(EnumHand.MAIN_HAND);
-                        mc.player.swingArm(EnumHand.MAIN_HAND);
-                        mc.player.swingArm(EnumHand.MAIN_HAND);
-                        mc.player.swingArm(EnumHand.MAIN_HAND);
-                        mc.player.swingArm(EnumHand.MAIN_HAND);
-                        break;
-                    case Both:
-                        mc.player.swingArm(EnumHand.MAIN_HAND);
-                        mc.player.swingArm(EnumHand.OFF_HAND);
-                        break;
-                }
+                handleBreak(entityEnderCrystal);
 
                 if (syncMode.getValue() == SyncModes.Attack) {
                     entityEnderCrystal.setDead();
@@ -238,7 +201,7 @@ public final class AutoCrystal extends Module {
 
             CrystalPosition tempPosition;
 
-            for (BlockPos blockPos : crystalBlocks(mc.player, placeRange.getValue(), predictPlace.getValue(), !multiPlace.getValue(), getBlockLogic())) {
+            for (BlockPos blockPos : crystalBlocks(mc.player, placeRange.getValue(), predictPlace.getValue(), !multiPlace.getValue(), blockLogicMode.getValue() == BlockLogicModes.Thirteen)) {
                 if (PlayerUtil.isInViewFrustrum(blockPos) && mc.player.getDistanceSq(blockPos) >= Math.pow(wallRange.getValue(), 2)) continue;
 
                 if (verifyPlace.getValue() && mc.player.getDistanceSq(blockPos) >= Math.pow(breakRange.getValue(), 2)) continue;
@@ -267,46 +230,75 @@ public final class AutoCrystal extends Module {
 
             crystalTarget = tempPosition;
 
-            if (autoSwitch.getValue()) {
-                InventoryUtil.switchToSlot(ItemEndCrystal.class);
-            }
+            if (crystalTarget.getPosition() != null && placeTimer.passed(placeDelay.getValue() * 60)) {
+                if (autoSwitch.getValue()) {
+                    InventoryUtil.switchToSlot(ItemEndCrystal.class);
+                }
 
-            if (crystalTarget.getPosition() != BlockPos.ORIGIN && placeTimer.passed(placeDelay.getValue() * 60)) {
                 if (rotate.getValue()) {
                     RotationUtil.lookAtPacket(crystalTarget.getPosition().getX(), crystalTarget.getPosition().getY(), crystalTarget.getPosition().getZ(), mc.player);
                 }
 
-                //TODO: Check if holding a crystal in mainhand or offhand
-                CrystalUtil.placeCrystal(crystalTarget.getPosition(), CrystalUtil.getEnumFacing(raytrace.getValue(), crystalTarget.getPosition()), placeMode.getValue() == PlaceModes.Packet);
+                if (mc.player.getHeldItemMainhand().getItem() == Items.END_CRYSTAL || mc.player.getHeldItemOffhand().getItem() == Items.END_CRYSTAL) {
+                    CrystalUtil.placeCrystal(crystalTarget.getPosition(), CrystalUtil.getEnumFacing(raytrace.getValue(), crystalTarget.getPosition()), placeMode.getValue() == PlaceModes.Packet);
+                }
 
                 placeTimer.reset();
             }
         }
     }
 
-    private boolean handlePause() {
-        if ((mc.player.getHealth() + mc.player.getAbsorptionAmount()) <= pauseHealth.getValue() && pauseHealthAllow.getValue()) {
-            return true;
-        } else if (mc.player.getHeldItemMainhand().getItem() == Items.GOLDEN_APPLE && mc.player.isHandActive() && pauseWhileEating.getValue()) {
-            return true;
-        } else if (mc.player.getHeldItemMainhand().getItem() == Items.DIAMOND_PICKAXE && mc.player.isHandActive() && pauseWhileMining.getValue()) {
-            return true;
+    private void handleBreak(EntityEnderCrystal entityEnderCrystal) {
+        for (int i = 0; i < breakAttempts.getValue(); i++) {
+            switch (breakMode.getValue()) {
+                case Swing:
+                    CrystalUtil.breakCrystal(entityEnderCrystal, false);
+                    break;
+                case Packet:
+                    CrystalUtil.breakCrystal(entityEnderCrystal, true);
+                    break;
+            }
         }
+
+        switch (swingMode.getValue()) {
+            case Mainhand:
+                mc.player.swingArm(EnumHand.MAIN_HAND);
+                break;
+            case Offhand:
+                mc.player.swingArm(EnumHand.OFF_HAND);
+                break;
+            case Spam:
+                mc.player.swingArm(EnumHand.MAIN_HAND);
+                mc.player.swingArm(EnumHand.MAIN_HAND);
+                mc.player.swingArm(EnumHand.MAIN_HAND);
+                mc.player.swingArm(EnumHand.MAIN_HAND);
+                mc.player.swingArm(EnumHand.MAIN_HAND);
+                mc.player.swingArm(EnumHand.MAIN_HAND);
+                mc.player.swingArm(EnumHand.MAIN_HAND);
+                mc.player.swingArm(EnumHand.MAIN_HAND);
+                mc.player.swingArm(EnumHand.MAIN_HAND);
+                mc.player.swingArm(EnumHand.MAIN_HAND);
+                break;
+            case Both:
+                mc.player.swingArm(EnumHand.MAIN_HAND);
+                mc.player.swingArm(EnumHand.OFF_HAND);
+                break;
+        }
+    }
+
+    private boolean handlePause() {
+        if ((mc.player.getHealth() + mc.player.getAbsorptionAmount()) <= pauseHealth.getValue() && pauseHealthAllow.getValue()) return true;
+
+        else if (mc.player.getHeldItemMainhand().getItem() == Items.GOLDEN_APPLE && mc.player.isHandActive() && pauseWhileEating.getValue()) return true;
+
+        else if (mc.player.getHeldItemMainhand().getItem() == Items.DIAMOND_PICKAXE && mc.player.isHandActive() && pauseWhileMining.getValue()) return true;
 
         return false;
     }
 
-    private int getBlockLogic() {
-        if (blockLogicMode.getValue() == BlockLogicModes.Twelve) {
-            return 0;
-        }
-
-        return 1;
-    }
-
-    public static List<BlockPos> crystalBlocks(EntityPlayer entityPlayer, double placeRange, boolean prediction, boolean multiPlace, int blockLogic) {
+    public static List<BlockPos> crystalBlocks(EntityPlayer entityPlayer, double placeRange, boolean prediction, boolean multiPlace, boolean thirteen) {
         return BlockUtil.getNearbyBlocks(entityPlayer, placeRange, prediction).stream()
-                .filter(blockPos -> CrystalUtil.canPlaceCrystal(blockPos, multiPlace, blockLogic == 1))
+                .filter(blockPos -> CrystalUtil.canPlaceCrystal(blockPos, multiPlace, thirteen))
                 .collect(Collectors.toList());
     }
 
@@ -365,15 +357,14 @@ public final class AutoCrystal extends Module {
     public void onPacketReceive(PacketEvent.Receive event) {
         if (nullCheck()) return;
 
-        //TODO: Make this better
         if (syncMode.getValue() == SyncModes.Sound) {
             if (event.getPacket() instanceof SPacketSoundEffect) {
-                final SPacketSoundEffect packet = (SPacketSoundEffect) event.getPacket();
+                SPacketSoundEffect sPacketSoundEffect = (SPacketSoundEffect) event.getPacket();
 
-                if (packet.getCategory() == SoundCategory.BLOCKS && packet.getSound() == SoundEvents.ENTITY_GENERIC_EXPLODE) {
+                if (sPacketSoundEffect.getCategory() == SoundCategory.BLOCKS && sPacketSoundEffect.getSound() == SoundEvents.ENTITY_GENERIC_EXPLODE) {
                     for (Entity entity : mc.world.loadedEntityList) {
                         if (entity instanceof EntityEnderCrystal) {
-                            if (entity.getDistance(packet.getX(), packet.getY(), packet.getZ()) <= 6.0f) {
+                            if (entity.getDistance(sPacketSoundEffect.getX(), sPacketSoundEffect.getY(), sPacketSoundEffect.getZ()) <= breakRange.getValue()) {
                                 entity.setDead();
                             }
                         }
