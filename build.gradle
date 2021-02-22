@@ -68,7 +68,7 @@ dependencies {
         exclude module: 'commons-io'
     }
 
-    compile group: 'club.minnced', name: 'java-discord-rpc', version: '2.0.1'
+    compile group: 'club.minnced', name: 'java-discord-rpc', version: 'v2.0.2'
     compile 'com.github.olliem5:pace:1.2'
     compile 'com.github.CafeDevelopment:Venture:1.0-SNAPSHOT'
 
