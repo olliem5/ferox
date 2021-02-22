@@ -97,7 +97,7 @@ processResources {
 shadowJar {
     dependencies {
         include(dependency('org.spongepowered:mixin'))
-        include(dependency('club.minnced:java-discord-rpc:2.0.1'))
+        include(dependency('club.minnced:java-discord-rpc:v2.0.2'))
         include(dependency('com.github.olliem5:pace:1.2'))
         include(dependency('com.github.CafeDevelopment:Venture'))
 
