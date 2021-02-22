@@ -14,8 +14,11 @@ import com.olliem5.ferox.api.util.world.BlockUtil;
 import com.olliem5.ferox.api.util.world.HoleUtil;
 import com.olliem5.ferox.api.util.world.PlaceUtil;
 import com.olliem5.pace.annotation.PaceHandler;
+import net.minecraft.block.Block;
+import net.minecraft.entity.Entity;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
 import org.lwjgl.opengl.GL11;
@@ -55,7 +58,7 @@ public final class HoleFill extends Module {
     private int enderChestSlot;
     private int webSlot;
 
-    private BlockPos renderBlock = null;
+    private BlockPos blockToFill = null;
 
     @Override
     public void onEnable() {
@@ -65,28 +68,9 @@ public final class HoleFill extends Module {
         enderChestSlot = InventoryUtil.getHotbarBlockSlot(Blocks.ENDER_CHEST);
         webSlot = InventoryUtil.getHotbarBlockSlot(Blocks.WEB);
 
-        switch (blockMode.getValue()) {
-            case Obsidian:
-                if (obsidianSlot == -1) {
-                    MessageUtil.sendClientMessage("No Obsidian, " + ChatFormatting.RED + "Disabling!");
-                    this.toggle();
-                }
-
-                break;
-            case EnderChest:
-                if (enderChestSlot == -1) {
-                    MessageUtil.sendClientMessage("No Ender Chests, " + ChatFormatting.RED + "Disabling!");
-                    this.toggle();
-                }
-
-                break;
-            case Web:
-                if (webSlot == -1) {
-                    MessageUtil.sendClientMessage("No Webs, " + ChatFormatting.RED + "Disabling!");
-                    this.toggle();
-                }
-
-                break;
+        if (getBlockSlot() == -1) {
+            MessageUtil.sendClientMessage("No " + getBlockText() + ", " + ChatFormatting.RED + "Disabling!");
+            this.disable();
         }
     }
 
@@ -94,71 +78,82 @@ public final class HoleFill extends Module {
     public void onDisable() {
         if (nullCheck()) return;
 
-        renderBlock = null;
+        blockToFill = null;
     }
 
     public void onUpdate() {
         if (nullCheck()) return;
 
         List<BlockPos> holesToFill = getHolesToFill();
+        BlockPos currentHoleToFill = null;
 
         for (BlockPos blockPos : holesToFill) {
-            if (holesToFill.size() == 0) {
-                if (disables.getValue()) {
-                    this.toggle();
+            if (mc.world.getEntitiesWithinAABB(Entity.class, new AxisAlignedBB(blockPos)).isEmpty()) {
+                if (holesToFill.size() == 0) {
+                    if (disables.getValue()) {
+                        MessageUtil.sendClientMessage("No holes to fill, " + ChatFormatting.RED + "Disabling!");
+                        this.toggle();
+                    }
+
+                    return;
                 }
 
-                return;
+                currentHoleToFill = blockPos;
             }
-
-            int oldInventorySlot = mc.player.inventory.currentItem;
-
-            switch (blockMode.getValue()) {
-                case Obsidian:
-                    if (obsidianSlot != -1) {
-                        mc.player.inventory.currentItem = obsidianSlot;
-                    }
-
-                    break;
-                case EnderChest:
-                    if (enderChestSlot != -1) {
-                        mc.player.inventory.currentItem = enderChestSlot;
-                    }
-
-                    break;
-                case Web:
-                    if (webSlot != -1) {
-                        mc.player.inventory.currentItem = webSlot;
-                    }
-
-                    break;
-            }
-
-            renderBlock = holesToFill.get(0);
-
-            switch (blockMode.getValue()) {
-                case Obsidian:
-                    if (mc.player.getHeldItemMainhand().getItem() == Item.getItemFromBlock(Blocks.OBSIDIAN)) {
-                        PlaceUtil.placeBlock(holesToFill.get(0));
-                    }
-
-                    break;
-                case EnderChest:
-                    if (mc.player.getHeldItemMainhand().getItem() == Item.getItemFromBlock(Blocks.ENDER_CHEST)) {
-                        PlaceUtil.placeBlock(holesToFill.get(0));
-                    }
-
-                    break;
-                case Web:
-                    if (mc.player.getHeldItemMainhand().getItem() == Item.getItemFromBlock(Blocks.WEB)) {
-                        PlaceUtil.placeBlock(holesToFill.get(0));
-                    }
-
-                    break;
-            }
-
-            mc.player.inventory.currentItem = oldInventorySlot;
         }
+
+        int oldInventorySlot = mc.player.inventory.currentItem;
+
+        if (getBlockSlot() != -1) {
+            mc.player.inventory.currentItem = getBlockSlot();
+        }
+
+        blockToFill = currentHoleToFill;
+
+        if (mc.player.getHeldItemMainhand().getItem() == Item.getItemFromBlock(getBlockBlock()) && blockToFill != null) {
+            PlaceUtil.placeBlock(blockToFill);
+        }
+
+        mc.player.inventory.currentItem = oldInventorySlot;
+    }
+
+    private String getBlockText() {
+        switch (blockMode.getValue()) {
+            case Obsidian:
+                return "Obsidian";
+            case EnderChest:
+                return "Ender Chests";
+            case Web:
+                return "Webs";
+        }
+
+        return "Obsidian";
+    }
+
+    private int getBlockSlot() {
+        switch (blockMode.getValue()) {
+            case Obsidian:
+                return obsidianSlot;
+            case EnderChest:
+                return enderChestSlot;
+            case Web:
+                return webSlot;
+        }
+
+        return obsidianSlot;
+    }
+
+    private Block getBlockBlock() {
+        switch (blockMode.getValue()) {
+            case Obsidian:
+                return Blocks.OBSIDIAN;
+            case EnderChest:
+                return Blocks.ENDER_CHEST;
+            case Web:
+                return Blocks.WEB;
+        }
+
+        return Blocks.OBSIDIAN;
     }
 
     public List<BlockPos> getHolesToFill() {
@@ -172,10 +167,10 @@ public final class HoleFill extends Module {
     public void onRenderWorldLast(RenderWorldLastEvent event) {
         if (nullCheck()) return;
 
-        if (renderPlace.getValue() && renderBlock != null) {
+        if (renderPlace.getValue() && blockToFill != null) {
             GL11.glLineWidth(outlineWidth.getValue().floatValue());
 
-            RenderUtil.draw(renderBlock, renderMode.getValue() != RenderModes.Outline, renderMode.getValue() != RenderModes.Box, 0, 0, renderColour.getValue());
+            RenderUtil.draw(blockToFill, renderMode.getValue() != RenderModes.Outline, renderMode.getValue() != RenderModes.Box, 0, 0, renderColour.getValue());
         }
     }
 

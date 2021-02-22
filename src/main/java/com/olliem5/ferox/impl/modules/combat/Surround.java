@@ -77,8 +77,8 @@ public final class Surround extends Module {
             this.toggle();
         } else {
             if (centerPlayer.getValue()) {
-                mc.player.motionX = 0;
-                mc.player.motionZ = 0;
+                mc.player.motionX = 0.0;
+                mc.player.motionZ = 0.0;
 
                 center = PlayerUtil.getCenter(mc.player.posX, mc.player.posY, mc.player.posZ);
 

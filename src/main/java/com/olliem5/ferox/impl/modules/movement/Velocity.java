@@ -60,9 +60,9 @@ public final class Velocity extends Module {
             if (explosionsHorizontal.getValue() == 0.0f && explosionsVeritcal.getValue() == 0.0f) {
                 event.setCancelled(true);
             } else {
-                sPacketExplosion.motionX *= velocityHorizontal.getValue();
-                sPacketExplosion.motionY *= velocityVeritcal.getValue();
-                sPacketExplosion.motionZ *= velocityHorizontal.getValue();
+                sPacketExplosion.motionX *= explosionsHorizontal.getValue();
+                sPacketExplosion.motionY *= explosionsVeritcal.getValue();
+                sPacketExplosion.motionZ *= explosionsHorizontal.getValue();
             }
         }
     }
