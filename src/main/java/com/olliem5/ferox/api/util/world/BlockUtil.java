@@ -35,32 +35,4 @@ public final class BlockUtil implements Minecraft {
 
         return nearbyBlocks;
     }
-
-    @SuppressWarnings("deprecation")
-    public static BlockResistance getBlockResistance(BlockPos blockPos) {
-        if (mc.world.getBlockState(blockPos).getBlock().equals(Blocks.AIR) || mc.world.getBlockState(blockPos).getBlock().equals(Blocks.WATER) || mc.world.getBlockState(blockPos).getBlock().equals(Blocks.LAVA)) {
-            return BlockResistance.Blank;
-        }
-
-        else if (mc.world.getBlockState(blockPos).getBlock().getBlockHardness(mc.world.getBlockState(blockPos), mc.world, blockPos) != -1) {
-            return BlockResistance.Breakable;
-        }
-
-        else if (mc.world.getBlockState(blockPos).getBlock().equals(Blocks.OBSIDIAN) || mc.world.getBlockState(blockPos).getBlock().equals(Blocks.ANVIL) || mc.world.getBlockState(blockPos).getBlock().equals(Blocks.ENCHANTING_TABLE) || mc.world.getBlockState(blockPos).getBlock().equals(Blocks.ENDER_CHEST)) {
-            return BlockResistance.Resistant;
-        }
-
-        else if (mc.world.getBlockState(blockPos).getBlock().equals(Blocks.BEDROCK)) {
-            return BlockResistance.Unbreakable;
-        }
-
-        return null;
-    }
-
-    public enum BlockResistance {
-        Blank,
-        Breakable,
-        Resistant,
-        Unbreakable
-    }
 }

@@ -78,11 +78,11 @@ public final class CrystalUtil implements Minecraft {
 
     public static boolean canPlaceCrystal(BlockPos blockPos, boolean multiPlace, boolean thirteen) {
         try {
-            if (BlockUtil.getBlockResistance(blockPos) != BlockUtil.BlockResistance.Unbreakable && mc.world.getBlockState(blockPos).getBlock() != Blocks.OBSIDIAN) {
+            if (mc.world.getBlockState(blockPos).getBlock() != Blocks.BEDROCK && mc.world.getBlockState(blockPos).getBlock() != Blocks.OBSIDIAN) {
                 return false;
             }
 
-            if (!thirteen && BlockUtil.getBlockResistance(blockPos.add(0, 2, 0)) != BlockUtil.BlockResistance.Blank || BlockUtil.getBlockResistance(blockPos.add(0, 1, 0)) != BlockUtil.BlockResistance.Blank) {
+            if (!thirteen && !mc.world.getBlockState(blockPos.add(0, 2, 0)).getBlock().isReplaceable(mc.world, blockPos) || !mc.world.getBlockState(blockPos.add(0, 1, 0)).getBlock().isReplaceable(mc.world, blockPos)) {
                 return false;
             }
 
