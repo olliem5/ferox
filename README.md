@@ -9,5 +9,5 @@
 #### Features
 - Move console to new GUI system
 - Animations for GUI
-- Modules (ESP, Better Speed, ect.)
-- Commands (Bind, Toggle, ect.)
+- Modules (Speed, LongJump, ect.)
+- Commands (Prefix, Bind, ect.)
