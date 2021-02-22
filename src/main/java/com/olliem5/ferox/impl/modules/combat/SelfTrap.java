@@ -101,7 +101,7 @@ public final class SelfTrap extends Module {
         for (Vec3d vec3d : getPlaceType()) {
                 BlockPos blockPos = new BlockPos(vec3d.add(mc.player.getPositionVector()));
 
-                if (mc.world.getBlockState(blockPos).getBlock().equals(Blocks.AIR)) {
+                if (mc.world.getBlockState(blockPos).getBlock().isReplaceable(mc.world, blockPos)) {
                     int oldInventorySlot = mc.player.inventory.currentItem;
 
                     if (obsidianSlot != -1) {

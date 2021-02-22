@@ -12,6 +12,7 @@ import com.olliem5.ferox.api.util.player.PlayerUtil;
 import com.olliem5.ferox.api.util.render.draw.RenderUtil;
 import com.olliem5.ferox.api.util.world.PlaceUtil;
 import com.olliem5.pace.annotation.PaceHandler;
+import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.network.play.client.CPacketPlayer;
@@ -33,6 +34,7 @@ import java.util.List;
 public final class Surround extends Module {
     public static final Setting<PlaceModes> placeMode = new Setting<>("Place", "The style of surround to place", PlaceModes.Full);
     public static final Setting<DisableModes> disableMode = new Setting<>("Disable", "When to disable the module", DisableModes.Finish);
+    public static final Setting<BlockModes> blockMode = new Setting<>("Block", "The block to surround with", BlockModes.Obsidian);
 
     public static final NumberSetting<Integer> blocksPerTick = new NumberSetting<>("BPT", "Blocks per tick to place", 1, 1, 10, 0);
     public static final Setting<Boolean> centerPlayer = new Setting<>("Center Player", "Center the player on the block for better placements", true);
@@ -49,6 +51,7 @@ public final class Surround extends Module {
         this.addSettings(
                 placeMode,
                 disableMode,
+                blockMode,
                 blocksPerTick,
                 centerPlayer,
                 timeout,
@@ -58,6 +61,7 @@ public final class Surround extends Module {
     }
 
     private int obsidianSlot;
+    private int enderChestSlot;
     private int blocksPlaced = 0;
 
     private boolean hasPlaced = false;
@@ -70,11 +74,12 @@ public final class Surround extends Module {
     public void onEnable() {
         if (nullCheck()) return;
 
-         obsidianSlot = InventoryUtil.getHotbarBlockSlot(Blocks.OBSIDIAN);
+        obsidianSlot = InventoryUtil.getHotbarBlockSlot(Blocks.OBSIDIAN);
+        enderChestSlot = InventoryUtil.getHotbarBlockSlot(Blocks.ENDER_CHEST);
 
-        if (obsidianSlot == -1) {
-            MessageUtil.sendClientMessage("No Obsidian, " + ChatFormatting.RED + "Disabling!");
-            this.toggle();
+        if (getBlockSlot() == -1) {
+            MessageUtil.sendClientMessage("No " + getBlockText() + ", " + ChatFormatting.RED + "Disabling!");
+            this.disable();
         } else {
             if (centerPlayer.getValue()) {
                 mc.player.motionX = 0.0;
@@ -120,14 +125,14 @@ public final class Surround extends Module {
         for (Vec3d vec3d : getPlaceType()) {
             BlockPos blockPos = new BlockPos(vec3d.add(mc.player.getPositionVector()));
 
-            if (mc.world.getBlockState(blockPos).getBlock().equals(Blocks.AIR)) {
+            if (mc.world.getBlockState(blockPos).getBlock().isReplaceable(mc.world, blockPos)) {
                 int oldInventorySlot = mc.player.inventory.currentItem;
 
-                if (obsidianSlot != -1) {
-                    mc.player.inventory.currentItem = obsidianSlot;
+                if (getBlockSlot() != -1) {
+                    mc.player.inventory.currentItem = getBlockSlot();
                 }
 
-                if (mc.player.getHeldItemMainhand().getItem() == Item.getItemFromBlock(Blocks.OBSIDIAN)) {
+                if (mc.player.getHeldItemMainhand().getItem() == Item.getItemFromBlock(getBlockBlock())) {
                     PlaceUtil.placeBlock(blockPos);
                 }
 
@@ -144,6 +149,39 @@ public final class Surround extends Module {
         if (blocksPlaced == 0) {
             hasPlaced = true;
         }
+    }
+
+    private String getBlockText() {
+        switch (blockMode.getValue()) {
+            case Obsidian:
+                return "Obsidian";
+            case EnderChest:
+                return "Ender Chests";
+        }
+
+        return "Obsidian";
+    }
+
+    private int getBlockSlot() {
+        switch (blockMode.getValue()) {
+            case Obsidian:
+                return obsidianSlot;
+            case EnderChest:
+                return enderChestSlot;
+        }
+
+        return obsidianSlot;
+    }
+
+    private Block getBlockBlock() {
+        switch (blockMode.getValue()) {
+            case Obsidian:
+                return Blocks.OBSIDIAN;
+            case EnderChest:
+                return Blocks.ENDER_CHEST;
+        }
+
+        return Blocks.OBSIDIAN;
     }
 
     @PaceHandler
@@ -203,6 +241,7 @@ public final class Surround extends Module {
         } else if (placeMode.getValue() == PlaceModes.Full) {
             return fullSurround;
         }
+
         return antiCitySurround;
     }
 
@@ -216,6 +255,11 @@ public final class Surround extends Module {
         Finish,
         Jump,
         Never
+    }
+
+    public enum BlockModes {
+        Obsidian,
+        EnderChest
     }
 
     public enum RenderModes {

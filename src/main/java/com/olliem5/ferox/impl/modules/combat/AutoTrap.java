@@ -110,7 +110,7 @@ public final class AutoTrap extends Module {
             if (target != null) {
                 BlockPos blockPos = new BlockPos(vec3d.add(target.getPositionVector()));
 
-                if (mc.world.getBlockState(blockPos).getBlock().equals(Blocks.AIR)) {
+                if (mc.world.getBlockState(blockPos).getBlock().isReplaceable(mc.world, blockPos)) {
                     int oldInventorySlot = mc.player.inventory.currentItem;
 
                     if (obsidianSlot != -1) {
