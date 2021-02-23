@@ -42,9 +42,7 @@ import java.util.stream.Collectors;
 
 /**
  * @author olliem5
- *
- * - I plan to update this module frequently and make as efficient as possible
- * - Credit to Momentum for the utils and ideas (ily linus) (ily too ollie :3)
+ * @author linustouchtips
  *
  * TODO: Settings to add
  *
