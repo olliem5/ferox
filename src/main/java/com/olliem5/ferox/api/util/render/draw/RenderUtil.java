@@ -13,6 +13,7 @@ import java.awt.*;
 
 /**
  * @author olliem5
+ * @author linustouchtips
  */
 
 public final class RenderUtil implements Minecraft {
