@@ -12,6 +12,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 /**
  * @author olliem5
+ * @author linustouchtips
  */
 
 @Mixin(World.class)
