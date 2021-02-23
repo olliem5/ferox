@@ -21,6 +21,7 @@ public final class ComponentManager implements Minecraft {
         components.addAll(Arrays.asList(
                 new ArraylistComponent(),
                 new CoordsComponent(),
+                new FPSComponent(),
                 new InventoryComponent(),
                 new NotificationComponent(),
                 new PlayerComponent(),
