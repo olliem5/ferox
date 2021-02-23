@@ -6,8 +6,12 @@ import com.olliem5.ferox.api.module.Module;
 import com.olliem5.ferox.api.setting.Setting;
 import net.minecraft.util.ResourceLocation;
 
+/**
+ * @author olliem5
+ */
+
 @FeroxModule(name = "Australia", description = "Join the gang", category = Category.Render)
-public class Australia extends Module {
+public final class Australia extends Module {
     public static final Setting<Boolean> fire = new Setting<>("Fire", "Shows fire on your screen", true);
 
     public Australia() {

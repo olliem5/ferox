@@ -1,6 +1,7 @@
 package com.olliem5.ferox.api.util.world;
 
 import com.olliem5.ferox.api.traits.Minecraft;
+import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
@@ -11,41 +12,119 @@ import net.minecraft.util.math.Vec3d;
  */
 
 public final class HoleUtil implements Minecraft {
-    public static boolean isObsidianHole(BlockPos blockPos) {
-        BlockPos boost = blockPos.add(0, 1, 0);
-        BlockPos boost2 = blockPos.add(0, 0, 0);
-        BlockPos boost3 = blockPos.add(0, 0, -1);
-        BlockPos boost4 = blockPos.add(1, 0, 0);
-        BlockPos boost5 = blockPos.add(-1, 0, 0);
-        BlockPos boost6 = blockPos.add(0, 0, 1);
-        BlockPos boost7 = blockPos.add(0, 2, 0);
-        BlockPos boost8 = blockPos.add(0.5, 0.5, 0.5);
-        BlockPos boost9 = blockPos.add(0, -1, 0);
+    public static BlockPos[] holeOffsets = new BlockPos[] {
+            new BlockPos(1, 0, 0),
+            new BlockPos(-1, 0, 0),
+            new BlockPos(0, 0, 1),
+            new BlockPos(0, 0, -1),
+            new BlockPos(0, -1, 0)
+    };
 
-        return !(mc.world.getBlockState(boost).getBlock() != Blocks.AIR || isBedrockHole(blockPos) || mc.world.getBlockState(boost2).getBlock() != Blocks.AIR || mc.world.getBlockState(boost7).getBlock() != Blocks.AIR || mc.world.getBlockState(boost3).getBlock() != Blocks.OBSIDIAN && mc.world.getBlockState(boost3).getBlock() != Blocks.BEDROCK || mc.world.getBlockState(boost4).getBlock() != Blocks.OBSIDIAN && mc.world.getBlockState(boost4).getBlock() != Blocks.BEDROCK || mc.world.getBlockState(boost5).getBlock() != Blocks.OBSIDIAN && mc.world.getBlockState(boost5).getBlock() != Blocks.BEDROCK || mc.world.getBlockState(boost6).getBlock() != Blocks.OBSIDIAN && mc.world.getBlockState(boost6).getBlock() != Blocks.BEDROCK || mc.world.getBlockState(boost8).getBlock() != Blocks.AIR || mc.world.getBlockState(boost9).getBlock() != Blocks.OBSIDIAN && mc.world.getBlockState(boost9).getBlock() != Blocks.BEDROCK);
+    public static boolean isObsidianHole(BlockPos blockPos) {
+        boolean isObsidianHole = true;
+
+        for (BlockPos blockPos1 : holeOffsets) {
+            Block block = mc.world.getBlockState(blockPos.add(blockPos1)).getBlock();
+
+            if (block != Blocks.OBSIDIAN) {
+                isObsidianHole = false;
+            }
+        }
+
+        if (mc.world.getBlockState(blockPos.add(0, 0, 0)).getBlock() != Blocks.AIR || mc.world.getBlockState(blockPos.add(0, 1, 0)).getBlock() != Blocks.AIR) {
+            isObsidianHole = false;
+        }
+
+        return isObsidianHole;
     }
 
     public static boolean isBedrockHole(BlockPos blockPos) {
-        BlockPos boost = blockPos.add(0, 1, 0);
-        BlockPos boost2 = blockPos.add(0, 0, 0);
-        BlockPos boost3 = blockPos.add(0, 0, -1);
-        BlockPos boost4 = blockPos.add(1, 0, 0);
-        BlockPos boost5 = blockPos.add(-1, 0, 0);
-        BlockPos boost6 = blockPos.add(0, 0, 1);
-        BlockPos boost7 = blockPos.add(0, 2, 0);
-        BlockPos boost8 = blockPos.add(0.5, 0.5, 0.5);
-        BlockPos boost9 = blockPos.add(0, -1, 0);
+        boolean isBedrockHole = true;
 
-        return mc.world.getBlockState(boost).getBlock() == Blocks.AIR && mc.world.getBlockState(boost2).getBlock() == Blocks.AIR && mc.world.getBlockState(boost7).getBlock() == Blocks.AIR && mc.world.getBlockState(boost3).getBlock() == Blocks.BEDROCK && mc.world.getBlockState(boost4).getBlock() == Blocks.BEDROCK && mc.world.getBlockState(boost5).getBlock() == Blocks.BEDROCK && mc.world.getBlockState(boost6).getBlock() == Blocks.BEDROCK && mc.world.getBlockState(boost8).getBlock() == Blocks.AIR && mc.world.getBlockState(boost9).getBlock() == Blocks.BEDROCK;
+        for (BlockPos blockPos1 : holeOffsets) {
+            Block block = mc.world.getBlockState(blockPos.add(blockPos1)).getBlock();
+
+            if (block != Blocks.BEDROCK) {
+                isBedrockHole = false;
+            }
+        }
+
+        if (mc.world.getBlockState(blockPos.add(0, 0, 0)).getBlock() != Blocks.AIR || mc.world.getBlockState(blockPos.add(0, 1, 0)).getBlock() != Blocks.AIR) {
+            isBedrockHole = false;
+        }
+
+        return isBedrockHole;
+    }
+
+    public static boolean isEnderChestHole(BlockPos blockPos) {
+        boolean isEnderChestHole = true;
+
+        for (BlockPos blockPos1 : holeOffsets) {
+            Block block = mc.world.getBlockState(blockPos.add(blockPos1)).getBlock();
+
+            if (block != Blocks.ENDER_CHEST) {
+                isEnderChestHole = false;
+            }
+        }
+
+        if (mc.world.getBlockState(blockPos.add(0, 0, 0)).getBlock() != Blocks.AIR || mc.world.getBlockState(blockPos.add(0, 1, 0)).getBlock() != Blocks.AIR) {
+            isEnderChestHole = false;
+        }
+
+        return isEnderChestHole;
+    }
+
+    public static boolean isEnchantingTableHole(BlockPos blockPos) {
+        boolean isEnchantingTableHole = true;
+
+        for (BlockPos blockPos1 : holeOffsets) {
+            Block block = mc.world.getBlockState(blockPos.add(blockPos1)).getBlock();
+
+            if (block != Blocks.ENCHANTING_TABLE) {
+                isEnchantingTableHole = false;
+            }
+        }
+
+        if (mc.world.getBlockState(blockPos.add(0, 0, 0)).getBlock() != Blocks.AIR || mc.world.getBlockState(blockPos.add(0, 1, 0)).getBlock() != Blocks.AIR) {
+            isEnchantingTableHole = false;
+        }
+
+        return isEnchantingTableHole;
+    }
+
+    public static boolean isAnvilHole(BlockPos blockPos) {
+        boolean isAnvilHole = true;
+
+        for (BlockPos blockPos1 : holeOffsets) {
+            Block block = mc.world.getBlockState(blockPos.add(blockPos1)).getBlock();
+
+            if (block != Blocks.ANVIL) {
+                isAnvilHole = false;
+            }
+        }
+
+        if (mc.world.getBlockState(blockPos.add(0, 0, 0)).getBlock() != Blocks.AIR || mc.world.getBlockState(blockPos.add(0, 1, 0)).getBlock() != Blocks.AIR) {
+            isAnvilHole = false;
+        }
+
+        return isAnvilHole;
+    }
+
+    private static boolean isSafeBlock(BlockPos pos) {
+        if (mc.world.getBlockState(pos).getBlock() == Blocks.OBSIDIAN || mc.world.getBlockState(pos).getBlock() == Blocks.BEDROCK){
+            return true;
+        }
+
+        return false;
     }
 
     public static boolean isPlayerInHole(EntityPlayer entityPlayer) {
         Vec3d[] hole = {
-                entityPlayer.getPositionVector().add(1.0D, 0.0D, 0.0D),
-                entityPlayer.getPositionVector().add(-1.0D, 0.0D, 0.0D),
-                entityPlayer.getPositionVector().add(0.0D, 0.0D, 1.0D),
-                entityPlayer.getPositionVector().add(0.0D, 0.0D, -1.0D),
-                entityPlayer.getPositionVector().add(0.0D, -1.0D, 0.0D)
+                entityPlayer.getPositionVector().add(1.0, 0.0, 0.0),
+                entityPlayer.getPositionVector().add(-1.0, 0.0, 0.0),
+                entityPlayer.getPositionVector().add(0.0, 0.0, 1.0),
+                entityPlayer.getPositionVector().add(0.0, 0.0, -1.0),
+                entityPlayer.getPositionVector().add(0.0, -1.0, 0.0)
         };
 
         int holeBlocks = 0;

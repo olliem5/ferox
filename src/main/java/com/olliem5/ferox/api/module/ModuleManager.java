@@ -44,6 +44,7 @@ public final class ModuleManager {
                 //Miscellaneous
                 new AntiPacketKick(),
                 new AutoLog(),
+                new AutoRespawn(),
                 new ChatSuffix(),
                 new FakePlayer(),
                 new FastUse(),
@@ -73,6 +74,7 @@ public final class ModuleManager {
                 new ESP(),
                 new HoleESP(),
                 new ItemTooltips(),
+                new SkyColour(),
                 new ViewModel(),
 
                 //Ferox

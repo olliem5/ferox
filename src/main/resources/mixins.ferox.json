@@ -21,6 +21,7 @@
     "MixinRenderEnderCrystal",
     "MixinBlockSlime",
     "MixinBlockWeb",
-    "MixinMinecraft"
+    "MixinMinecraft",
+    "MixinWorld"
   ]
 }

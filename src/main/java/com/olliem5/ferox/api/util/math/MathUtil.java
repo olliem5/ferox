@@ -14,4 +14,9 @@ public final class MathUtil {
 
         return bigDecimal.doubleValue();
     }
+
+    public static double roundAvoid(double number, int places) {
+        double scale = Math.pow(10, places);
+        return Math.round(number * scale) / scale;
+    }
 }
