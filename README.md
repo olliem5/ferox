@@ -6,9 +6,9 @@
 ### Developers
 - [LittleDraily](https://github.com/LittleDraily) For helping to create the original client base.
 - [yagel15637 (Reap)](https://github.com/yagel15637) For insta-burrow, Venture & the HUD Component base.
-- [Manesko](https://github.com/Manesko55) For making various HUD Components.
-- [linustouchtips24](https://github.com/linustouchtips) For everything he added or helped create, he will be missed.
-- [bon](https://github.com/bon55) For the base of the theme system for the GUI, and other GUI utilities.
+- [Manesko55](https://github.com/Manesko55) For making various HUD Components.
+- [linustouchtips](https://github.com/linustouchtips) For everything he added or helped create, he will be missed.
+- [bon55](https://github.com/bon55) For the base of the theme system for the GUI, and other GUI utilities.
 
 ### Credits
 - Thanks to various other clients on GitHub for providing good refrence code, for me to create my own features similar to other implementations.
