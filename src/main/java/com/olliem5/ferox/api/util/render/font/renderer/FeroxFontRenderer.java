@@ -19,6 +19,8 @@ import java.util.regex.Pattern;
 
 /**
  * @author olliem5
+ * @author ionar2
+ * @author Hyperion Client
  */
 
 public final class FeroxFontRenderer implements Minecraft {
