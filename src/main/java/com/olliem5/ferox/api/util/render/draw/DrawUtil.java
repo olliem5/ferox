@@ -15,6 +15,7 @@ import org.lwjgl.opengl.GL11;
 
 /**
  * @author olliem5
+ * @author linustouchtips
  */
 
 public final class DrawUtil implements Minecraft {
