@@ -11,6 +11,7 @@ import java.awt.*;
 
 /**
  * @author olliem5
+ * @author linustouchtips
  */
 
 @FeroxModule(name = "SkyColour", description = "Changes the colour of the sky", category = Category.Render)
