@@ -24,14 +24,14 @@ public class PingComponent extends Component {
 
         switch ((PingModes) pingmode.getValue()) {
             case Ping: {
-                pingText = "Ping " + getPing() + "ms";
+                pingText = "Ping " + ChatFormatting.WHITE + getPing() + "ms";
                 drawString(pingText);
                 this.setWidth((int) FontUtil.getStringWidth(pingText));
                 this.setHeight((int) FontUtil.getStringHeight(pingText));
                 break;
             }
             case OnlyNumber: {
-                pingText = "" + getPing();
+                pingText = "" + ChatFormatting.WHITE + getPing();
                 drawString(pingText);
                 this.setWidth((int) FontUtil.getStringWidth(pingText));
                 this.setHeight((int) FontUtil.getStringHeight(pingText));
