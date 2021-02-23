@@ -9,6 +9,10 @@ import com.olliem5.ferox.impl.modules.ferox.Colours;
 
 import java.awt.*;
 
+/**
+ * @author Manesko
+ **/
+
 @FeroxComponent(name ="Coords", description = "Shows your coords on screen")
 public final class CoordsComponent extends Component {
 
@@ -31,7 +35,7 @@ public final class CoordsComponent extends Component {
         int z = (int) mc.player.posZ;
         int Nx = (int) ((int) mc.player.posX * netherMultiple);
         int Nz = (int) ((int) mc.player.posZ * netherMultiple);
-
+//      bruh double casting moment.
 
         String fullLine = "XYZ " + ChatFormatting.WHITE + x + ChatFormatting.RESET + ", " + ChatFormatting.WHITE + y + ChatFormatting.RESET + ", " + ChatFormatting.WHITE + x + ChatFormatting.RESET + " [" + ChatFormatting.WHITE + Nx + ChatFormatting.RESET + ", " + ChatFormatting.WHITE + Nz + ChatFormatting.RESET + "]";
 

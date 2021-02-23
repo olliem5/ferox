@@ -24,6 +24,7 @@ public final class ComponentManager implements Minecraft {
                 new FPSComponent(),
                 new InventoryComponent(),
                 new NotificationComponent(),
+                new PingComponent(),
                 new PlayerComponent(),
                 new WatermarkComponent(),
                 new WelcomerComponent()
