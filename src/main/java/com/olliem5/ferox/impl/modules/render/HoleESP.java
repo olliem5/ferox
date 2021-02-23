@@ -30,7 +30,7 @@ public final class HoleESP extends Module {
     public static final NumberSetting<Double> obsidianBoxHeight = new NumberSetting<>(obsidian, "Box Height", "The height of the box", -1.0, -0.7, 2.0, 1);
     public static final NumberSetting<Double> obsidianOutlineHeight = new NumberSetting<>(obsidian, "Outline Height", "The height of the outline", -1.0, -0.7, 2.0, 1);
     public static final NumberSetting<Double> obsidianOutlineWidth = new NumberSetting<>(obsidian, "Outline Width", "The width of the outline", 1.0, 2.0, 5.0, 1);
-    public static final Setting<Color> obsidianHoleColour = new Setting<>(obsidian, "Obsidian Hole Colour", "The colour for obsidian holes", new Color(222, 38, 38, 178));
+    public static final Setting<Color> obsidianHoleColour = new Setting<>(obsidian, "Obsidian Hole Colour", "The colour for obsidian holes", new Color(222, 38, 38, 169));
 
     public static final Setting<Boolean> bedrock = new Setting<>("Bedrock Holes", "Allows bedrock holes to be rendered", true);
     public static final Setting<RenderModes> bedrockRenderMode = new Setting<>(bedrock, "Render Mode", "The type of box to render", RenderModes.Full);
@@ -39,11 +39,35 @@ public final class HoleESP extends Module {
     public static final NumberSetting<Double> bedrockOutlineWidth = new NumberSetting<>(bedrock, "Outline Width", "The width of the outline", 1.0, 2.0, 5.0, 1);
     public static final Setting<Color> bedrockHoleColour = new Setting<>(bedrock, "Bedrock Hole Colour", "The colour for bedrock holes", new Color(61, 194, 46, 169));
 
+    public static final Setting<Boolean> enderChest = new Setting<>("Ender Chest Holes", "Allows ender chest holes to be rendered", true);
+    public static final Setting<RenderModes> enderChestRenderMode = new Setting<>(enderChest, "Render Mode", "The type of box to render", RenderModes.Full);
+    public static final NumberSetting<Double> enderChestBoxHeight = new NumberSetting<>(enderChest, "Box Height", "The height of the box", -1.0, -0.7, 2.0, 1);
+    public static final NumberSetting<Double> enderChestOutlineHeight = new NumberSetting<>(enderChest, "Outline Height", "The height of the outline", -1.0, -0.7, 2.0, 1);
+    public static final NumberSetting<Double> enderChestOutlineWidth = new NumberSetting<>(enderChest, "Outline Width", "The width of the outline", 1.0, 2.0, 5.0, 1);
+    public static final Setting<Color> enderChestHoleColour = new Setting<>(enderChest, "Ender Chest Hole Colour", "The colour for ender chest holes", new Color(222, 38, 38, 169));
+
+    public static final Setting<Boolean> enchantingTable = new Setting<>("Enchanting Table Holes", "Allows enchanting table holes to be rendered", true);
+    public static final Setting<RenderModes> enchantingTableRenderMode = new Setting<>(enchantingTable, "Render Mode", "The type of box to render", RenderModes.Full);
+    public static final NumberSetting<Double> enchantingTableBoxHeight = new NumberSetting<>(enchantingTable, "Box Height", "The height of the box", -1.0, -0.7, 2.0, 1);
+    public static final NumberSetting<Double> enchantingTableOutlineHeight = new NumberSetting<>(enchantingTable, "Outline Height", "The height of the outline", -1.0, -0.7, 2.0, 1);
+    public static final NumberSetting<Double> enchantingTableOutlineWidth = new NumberSetting<>(enchantingTable, "Outline Width", "The width of the outline", 1.0, 2.0, 5.0, 1);
+    public static final Setting<Color> enchantingTableHoleColour = new Setting<>(enchantingTable, "Enchanting Table Hole Colour", "The colour for enchanting table holes", new Color(222, 38, 38, 169));
+
+    public static final Setting<Boolean> anvil = new Setting<>("Anvil Holes", "Allows mixed holes to be rendered", true);
+    public static final Setting<RenderModes> anvilRenderMode = new Setting<>(anvil, "Render Mode", "The type of box to render", RenderModes.Full);
+    public static final NumberSetting<Double> anvilBoxHeight = new NumberSetting<>(anvil, "Box Height", "The height of the box", -1.0, -0.7, 2.0, 1);
+    public static final NumberSetting<Double> anvilOutlineHeight = new NumberSetting<>(anvil, "Outline Height", "The height of the outline", -1.0, -0.7, 2.0, 1);
+    public static final NumberSetting<Double> anvilOutlineWidth = new NumberSetting<>(anvil, "Outline Width", "The width of the outline", 1.0, 2.0, 5.0, 1);
+    public static final Setting<Color> anvilHoleColour = new Setting<>(anvil, "Anvil Hole Colour", "The colour for mixed holes", new Color(222, 38, 38, 169));
+
     public HoleESP() {
         this.addSettings(
                 holeRange,
                 obsidian,
-                bedrock
+                bedrock,
+                enderChest,
+                enchantingTable,
+                anvil
         );
     }
 
@@ -59,12 +83,33 @@ public final class HoleESP extends Module {
                 .collect(Collectors.toList());
     }
 
+    public List<BlockPos> findEnderChestHoles() {
+        return BlockUtil.getNearbyBlocks(mc.player, holeRange.getValue(), false).stream()
+                .filter(HoleUtil::isEnderChestHole)
+                .collect(Collectors.toList());
+    }
+
+    public List<BlockPos> findEnchantingTableHoles() {
+        return BlockUtil.getNearbyBlocks(mc.player, holeRange.getValue(), false).stream()
+                .filter(HoleUtil::isEnchantingTableHole)
+                .collect(Collectors.toList());
+    }
+
+    public List<BlockPos> findAnvilHoles() {
+        return BlockUtil.getNearbyBlocks(mc.player, holeRange.getValue(), false).stream()
+                .filter(HoleUtil::isAnvilHole)
+                .collect(Collectors.toList());
+    }
+
     @PaceHandler
     public void onRenderWorldLast(RenderWorldLastEvent event) {
         if (nullCheck()) return;
 
         List<BlockPos> obsidianHoles = findObsidianHoles();
         List<BlockPos> bedrockHoles = findBedrockHoles();
+        List<BlockPos> enderChestHoles = findEnderChestHoles();
+        List<BlockPos> enchantingTableHoles = findEnchantingTableHoles();
+        List<BlockPos> anvilHoles = findAnvilHoles();
 
         if (obsidian.getValue() && obsidianHoles != null) {
             GL11.glLineWidth(obsidianOutlineWidth.getValue().floatValue());
@@ -79,6 +124,30 @@ public final class HoleESP extends Module {
 
             for (BlockPos bedrockHole : findBedrockHoles()) {
                 RenderUtil.draw(bedrockHole, bedrockRenderMode.getValue() != RenderModes.Outline, bedrockRenderMode.getValue() != RenderModes.Box, bedrockBoxHeight.getValue(), bedrockOutlineHeight.getValue(), bedrockHoleColour.getValue());
+            }
+        }
+
+        if (enderChest.getValue() && enderChestHoles != null) {
+            GL11.glLineWidth(enderChestOutlineWidth.getValue().floatValue());
+
+            for (BlockPos enderChestHole : findEnderChestHoles()) {
+                RenderUtil.draw(enderChestHole, enderChestRenderMode.getValue() != RenderModes.Outline, enderChestRenderMode.getValue() != RenderModes.Box, enderChestBoxHeight.getValue(), enderChestOutlineHeight.getValue(), enderChestHoleColour.getValue());
+            }
+        }
+
+        if (enchantingTable.getValue() && enchantingTableHoles != null) {
+            GL11.glLineWidth(enchantingTableOutlineWidth.getValue().floatValue());
+
+            for (BlockPos enchantingTableHole : findEnchantingTableHoles()) {
+                RenderUtil.draw(enchantingTableHole, enchantingTableRenderMode.getValue() != RenderModes.Outline, enchantingTableRenderMode.getValue() != RenderModes.Box, enchantingTableBoxHeight.getValue(), enchantingTableOutlineHeight.getValue(), enchantingTableHoleColour.getValue());
+            }
+        }
+
+        if (anvil.getValue() && anvilHoles != null) {
+            GL11.glLineWidth(anvilOutlineWidth.getValue().floatValue());
+
+            for (BlockPos anvilHole : findAnvilHoles()) {
+                RenderUtil.draw(anvilHole, anvilRenderMode.getValue() != RenderModes.Outline, anvilRenderMode.getValue() != RenderModes.Box, anvilBoxHeight.getValue(), anvilOutlineHeight.getValue(), anvilHoleColour.getValue());
             }
         }
     }

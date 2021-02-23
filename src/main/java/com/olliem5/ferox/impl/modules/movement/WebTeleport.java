@@ -10,7 +10,7 @@ import com.olliem5.ferox.api.setting.Setting;
  */
 
 @FeroxModule(name = "WebTeleport", description = "Allows you to fall through webs faster", category = Category.Movement)
-public class WebTeleport extends Module {
+public final class WebTeleport extends Module {
     public static final Setting<CancelModes> cancelMode = new Setting<>("Mode", "The method to use to let you fall through webs faster", CancelModes.Collision);
 
     public WebTeleport() {
