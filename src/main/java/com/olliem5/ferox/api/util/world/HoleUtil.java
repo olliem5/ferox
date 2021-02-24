@@ -110,14 +110,6 @@ public final class HoleUtil implements Minecraft {
         return isAnvilHole;
     }
 
-    private static boolean isSafeBlock(BlockPos pos) {
-        if (mc.world.getBlockState(pos).getBlock() == Blocks.OBSIDIAN || mc.world.getBlockState(pos).getBlock() == Blocks.BEDROCK){
-            return true;
-        }
-
-        return false;
-    }
-
     public static boolean isPlayerInHole(EntityPlayer entityPlayer) {
         Vec3d[] hole = {
                 entityPlayer.getPositionVector().add(1.0, 0.0, 0.0),

@@ -5,49 +5,52 @@ import com.olliem5.ferox.api.component.Component;
 import com.olliem5.ferox.api.component.FeroxComponent;
 import com.olliem5.ferox.api.setting.Setting;
 import com.olliem5.ferox.api.util.render.font.FontUtil;
-import com.olliem5.ferox.impl.modules.ferox.Colours;
 
+/**
+ * @author Manesko
+ * @author olliem5
+ */
 
 @FeroxComponent(name = "Ping", description = "Shows your ping on screen")
 public class PingComponent extends Component {
-
-    Setting<PingModes> pingmode = new Setting("Mode","Mode",PingModes.Ping);
+    public static final Setting<PingModes> pingMode = new Setting<>("Mode", "Mode", PingModes.Normal);
 
     public PingComponent() {
-        addSettings(
-                pingmode
+        this.addSettings(
+                pingMode
         );
     }
+
     @Override
     public void render() {
-        String pingText;
+        String renderString;
 
-        switch ((PingModes) pingmode.getValue()) {
-            case Ping: {
-                pingText = "Ping " + ChatFormatting.WHITE + getPing() + "ms";
-                drawString(pingText);
-                this.setWidth((int) FontUtil.getStringWidth(pingText));
-                this.setHeight((int) FontUtil.getStringHeight(pingText));
+        switch (pingMode.getValue()) {
+            case Normal:
+                renderString = "Ping " + ChatFormatting.WHITE + getPing() + "ms";
+                this.setWidth((int) FontUtil.getStringWidth(renderString));
+                this.setHeight((int) FontUtil.getStringHeight(renderString));
+                drawString(renderString);
                 break;
-            }
-            case OnlyNumber: {
-                pingText = "" + ChatFormatting.WHITE + getPing();
-                drawString(pingText);
-                this.setWidth((int) FontUtil.getStringWidth(pingText));
-                this.setHeight((int) FontUtil.getStringHeight(pingText));
+            case OnlyNumber:
+                renderString = "" + ChatFormatting.WHITE + getPing();
+                this.setWidth((int) FontUtil.getStringWidth(renderString));
+                this.setHeight((int) FontUtil.getStringHeight(renderString));
+                drawString(renderString);
                 break;
-            }
         }
     }
-    public int getPing() {
-        if (this.mc.player != null && this.mc.getConnection() != null && this.mc.getConnection().getPlayerInfo(this.mc.player.getName()) != null) {
-            return this.mc.getConnection().getPlayerInfo(this.mc.player.getName()).getResponseTime();
-        } else {
-            return -1;
+
+    private int getPing() {
+        if (mc.player != null && mc.getConnection() != null && mc.getConnection().getPlayerInfo(mc.player.getName()) != null) {
+            return mc.getConnection().getPlayerInfo(mc.player.getName()).getResponseTime();
         }
+
+        return -1;
     }
 
     public enum PingModes {
-        Ping,OnlyNumber
+        Normal,
+        OnlyNumber
     }
 }
