@@ -20,12 +20,17 @@ public final class ComponentManager implements Minecraft {
     public static void init() {
         components.addAll(Arrays.asList(
                 new ArraylistComponent(),
+                new BiomeComponent(),
                 new CoordinatesComponent(),
+                new DimensionComponent(),
+                new DurabilityComponent(),
                 new FPSComponent(),
+                new GamemodeComponent(),
                 new InventoryComponent(),
                 new NotificationComponent(),
                 new PingComponent(),
                 new PlayerComponent(),
+                new ServerIPComponent(),
                 new WatermarkComponent(),
                 new WelcomerComponent()
         ));
