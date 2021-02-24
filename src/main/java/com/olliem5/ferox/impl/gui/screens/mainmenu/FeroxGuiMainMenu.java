@@ -2,11 +2,13 @@ package com.olliem5.ferox.impl.gui.screens.mainmenu;
 
 import com.olliem5.ferox.api.util.client.ConfigUtil;
 import com.olliem5.ferox.api.util.render.gui.GuiUtil;
+import com.olliem5.ferox.impl.gui.screens.mainmenu.components.ChangelogComponent;
 import com.olliem5.ferox.impl.gui.screens.mainmenu.components.LogoComponent;
 import net.minecraft.client.gui.GuiScreen;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * @author olliem5
@@ -16,7 +18,10 @@ public final class FeroxGuiMainMenu extends GuiScreen {
     public static final ArrayList<MainMenuComponent> mainMenuComponents = new ArrayList<>();
 
     public void initGui() {
-        mainMenuComponents.add(new LogoComponent());
+        mainMenuComponents.addAll(Arrays.asList(
+                new LogoComponent(),
+                new ChangelogComponent()
+        ));
     }
 
     @Override

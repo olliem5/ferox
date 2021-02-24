@@ -12,7 +12,7 @@ import com.olliem5.ferox.api.util.render.font.FontUtil;
  */
 
 @FeroxComponent(name = "Ping", description = "Shows your ping on screen")
-public class PingComponent extends Component {
+public final class PingComponent extends Component {
     public static final Setting<PingModes> pingMode = new Setting<>("Mode", "Mode", PingModes.Normal);
 
     public PingComponent() {

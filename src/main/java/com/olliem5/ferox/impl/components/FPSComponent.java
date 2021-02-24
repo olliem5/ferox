@@ -12,7 +12,7 @@ import com.olliem5.ferox.api.util.render.font.FontUtil;
  */
 
 @FeroxComponent(name = "FPS", description = "Shows the amount of fps you have")
-public class FPSComponent extends Component {
+public final class FPSComponent extends Component {
     public static final Setting<FPSModes> fpsMode = new Setting<>("Mode", "Mode", FPSModes.Normal);
 
     public FPSComponent() {
