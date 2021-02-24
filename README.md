@@ -1,7 +1,7 @@
 # Ferox
 
 ### To-Do
-- Check the 'Projects' tab of this repository if you want to contribute to Ferox.
+- Check the 'Issues' tab, or the 'Projects' tab of this repository if you want to contribute to Ferox.
 
 ### Developers
 - [LittleDraily](https://github.com/LittleDraily) For helping to create the original client base.
