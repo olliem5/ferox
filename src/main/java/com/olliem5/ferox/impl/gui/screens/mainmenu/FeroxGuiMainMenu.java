@@ -1,11 +1,18 @@
 package com.olliem5.ferox.impl.gui.screens.mainmenu;
 
 import com.olliem5.ferox.api.util.client.ConfigUtil;
+import com.olliem5.ferox.api.util.render.draw.DrawUtil;
+import com.olliem5.ferox.api.util.render.font.FontUtil;
 import com.olliem5.ferox.api.util.render.gui.GuiUtil;
 import com.olliem5.ferox.impl.gui.screens.mainmenu.components.ChangelogComponent;
 import com.olliem5.ferox.impl.gui.screens.mainmenu.components.LogoComponent;
+import net.minecraft.client.gui.Gui;
+import net.minecraft.client.gui.GuiMultiplayer;
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.util.ResourceLocation;
 
+import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -15,7 +22,7 @@ import java.util.Arrays;
  */
 
 public final class FeroxGuiMainMenu extends GuiScreen {
-    public static final ArrayList<MainMenuComponent> mainMenuComponents = new ArrayList<>();
+    private static final ArrayList<MainMenuComponent> mainMenuComponents = new ArrayList<>();
 
     public void initGui() {
         mainMenuComponents.addAll(Arrays.asList(
@@ -24,9 +31,22 @@ public final class FeroxGuiMainMenu extends GuiScreen {
         ));
     }
 
+    private final ResourceLocation backgroundImage = new ResourceLocation("ferox", "images/main_menu.jpg");
+
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
         super.drawScreen(mouseX, mouseY, partialTicks);
+
+        float xOffset = -1.0f * ((mouseX - width / 2.0f) / (width / 32.0f));
+        float yOffset = -1.0f * ((mouseY - height / 2.0f) / (height / 32.0f));
+
+        GlStateManager.enableTexture2D();
+        GlStateManager.disableBlend();
+
+        mc.getTextureManager().bindTexture(backgroundImage);
+        DrawUtil.drawCompleteImage(-16.0f + xOffset, -16.0f + yOffset, width + 32.0f, height + 32.0f);
+
+        drawGUIButton("Multiplayer", width / 2, height / 2);
 
         for (MainMenuComponent mainMenuComponent : mainMenuComponents) {
             mainMenuComponent.renderComponent(mouseX, mouseY);
@@ -35,11 +55,31 @@ public final class FeroxGuiMainMenu extends GuiScreen {
         GuiUtil.updateMousePos(mouseX, mouseY);
     }
 
+    private void drawGUIButton(String text, int x, int y) {
+        boolean mouseOver = false;
+
+        if (GuiUtil.mouseOver(x - (int) (FontUtil.getStringWidth(text)), (int) (y - FontUtil.getStringHeight(text)), (x + (int) (FontUtil.getStringWidth(text))), (int) (y + (FontUtil.getStringHeight(text) * 2)))) {
+            mouseOver = true;
+        }
+
+        if (!mouseOver) {
+            Gui.drawRect(x - (int) (FontUtil.getStringWidth(text)), (int) (y - FontUtil.getStringHeight(text)), (x + (int) (FontUtil.getStringWidth(text))), (int) (y + (FontUtil.getStringHeight(text) * 2)), new Color(20, 20, 20, 125).getRGB());
+        } else {
+            Gui.drawRect(x - (int) (FontUtil.getStringWidth(text)), (int) (y - FontUtil.getStringHeight(text)), (x + (int) (FontUtil.getStringWidth(text))), (int) (y + (FontUtil.getStringHeight(text) * 2)), new Color(40, 40, 40, 125).getRGB());
+        }
+
+        FontUtil.drawText(text, x - FontUtil.getStringWidth(text) / 2, y, -1);
+    }
+
     @Override
     public void mouseClicked(int mouseX, int mouseY, int mouseButton) throws IOException {
         super.mouseClicked(mouseX, mouseY, mouseButton);
 
         if (mouseButton == 0) {
+            if (GuiUtil.mouseOver((width / 2) - (int) (FontUtil.getStringWidth("Multiplayer")), (int) ((height / 2) - FontUtil.getStringHeight("Multiplayer")), ((width / 2) + (int) (FontUtil.getStringWidth("Multiplayer"))), (int) ((height / 2) + (FontUtil.getStringHeight("Multiplayer") * 2)))) {
+                mc.displayGuiScreen(new GuiMultiplayer(this));
+            }
+
             for (MainMenuComponent mainMenuComponent : mainMenuComponents) {
                 mainMenuComponent.updateLeftClick();
             }

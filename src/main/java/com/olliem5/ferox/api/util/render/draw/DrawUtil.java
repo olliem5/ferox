@@ -14,8 +14,11 @@ import net.minecraft.util.math.BlockPos;
 import org.lwjgl.opengl.GL11;
 
 /**
+ * A collection of methods to draw certain things, these are pretty much generic across all clients, maybe I'll rewrite in the future.
+ *
  * @author olliem5
  * @author linustouchtips
+ * @author 3arthqu4ke
  */
 
 public final class DrawUtil implements Minecraft {
@@ -211,5 +214,21 @@ public final class DrawUtil implements Minecraft {
         FontUtil.drawText(text, 0.0f, 0.0f, -1);
 
         GlStateManager.popMatrix();
+    }
+
+    public static void drawCompleteImage(float posX, float posY, float width, float height) {
+        GL11.glPushMatrix();
+        GL11.glTranslatef(posX, posY, 0.0f);
+        GL11.glBegin(7);
+        GL11.glTexCoord2f(0.0f, 0.0f);
+        GL11.glVertex3f(0.0f, 0.0f, 0.0f);
+        GL11.glTexCoord2f(0.0f, 1.0f);
+        GL11.glVertex3f(0.0f, height, 0.0f);
+        GL11.glTexCoord2f(1.0f, 1.0f);
+        GL11.glVertex3f(width, height, 0.0f);
+        GL11.glTexCoord2f(1.0f, 0.0f);
+        GL11.glVertex3f(width, 0.0f, 0.0f);
+        GL11.glEnd();
+        GL11.glPopMatrix();
     }
 }
