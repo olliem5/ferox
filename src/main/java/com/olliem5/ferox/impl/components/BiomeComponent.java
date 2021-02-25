@@ -8,44 +8,41 @@ import com.olliem5.ferox.api.util.render.font.FontUtil;
 
 /**
  * @author Manesko
+ * @author olliem5
  */
 
-
-@FeroxComponent(name = "Biome",description = "Displays the biome you are currently in on your screen")
+@FeroxComponent(name = "Biome", description = "Displays the biome you are currently in")
 public class BiomeComponent extends Component {
-
-    Setting<BiomeModes> biomemode = new Setting("Mode","Mode",BiomeModes.Normal);
+    public static final Setting<BiomeModes> biomeMode = new Setting<>("Mode","Mode", BiomeModes.Normal);
 
     public BiomeComponent() {
-        addSettings(
-                biomemode
+        this.addSettings(
+                biomeMode
         );
     }
 
     @Override
     public void render() {
-        String BiomeText;
+        String renderString;
 
-        switch ((BiomeModes) biomemode.getValue()) {
-            case Normal: {
-                BiomeText = "Biome " + ChatFormatting.WHITE + mc.world.getBiome(mc.player.getPosition()).getBiomeName();
-                drawString(BiomeText);
-                this.setHeight((int) FontUtil.getStringHeight(BiomeText));
-                this.setWidth((int) FontUtil.getStringWidth(BiomeText));
+        switch (biomeMode.getValue()) {
+            case Normal:
+                renderString = "Biome " + ChatFormatting.WHITE + mc.world.getBiome(mc.player.getPosition()).getBiomeName();
+                this.setWidth((int) FontUtil.getStringWidth(renderString));
+                this.setHeight((int) FontUtil.getStringHeight(renderString));
+                drawString(renderString);
                 break;
-            }
-            case OnlyBiome: {
-                BiomeText = "" + ChatFormatting.WHITE + mc.world.getBiome(mc.player.getPosition()).getBiomeName();
-                drawString(BiomeText);
-                this.setWidth((int) FontUtil.getStringWidth(BiomeText));
-                this.setHeight((int) FontUtil.getStringHeight(BiomeText));
+            case OnlyBiome:
+                renderString = "" + ChatFormatting.WHITE + mc.world.getBiome(mc.player.getPosition()).getBiomeName();
+                this.setWidth((int) FontUtil.getStringWidth(renderString));
+                this.setHeight((int) FontUtil.getStringHeight(renderString));
+                drawString(renderString);
                 break;
-            }
         }
-
     }
 
     public enum BiomeModes {
-        Normal, OnlyBiome
+        Normal,
+        OnlyBiome
     }
 }

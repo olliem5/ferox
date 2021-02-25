@@ -28,7 +28,7 @@ public final class ComponentManager implements Minecraft {
                 new EXPCountComponent(),
                 new FPSComponent(),
                 new GamemodeComponent(),
-                new GoldenAppleCountComponent(),
+                new GappleCountComponent(),
                 new InventoryComponent(),
                 new NotificationComponent(),
                 new PingComponent(),

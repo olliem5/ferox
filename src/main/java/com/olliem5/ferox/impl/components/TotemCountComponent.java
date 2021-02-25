@@ -10,47 +10,52 @@ import net.minecraft.item.ItemStack;
 
 /**
  * @author Manesko
+ * @author olliem5
  */
 
 @FeroxComponent(name = "TotemCount",description = "Shows the number of totems in your inventory on screen")
 public class TotemCountComponent extends Component {
-    int totCount;
-
-    Setting<CountModes> countmode = new Setting("Mode","Mode",CountModes.Normal);
+    public static final Setting<CountModes> countmode = new Setting<>("Mode","Mode",CountModes.Normal);
 
     public TotemCountComponent() {
-        addSettings(
+        this.addSettings(
                 countmode
         );
     }
 
+    private int totems;
+
     @Override
     public void render() {
-        String totText;
-        this.totCount = mc.player.inventory.mainInventory.stream().filter(itemStack -> itemStack.getItem() == Items.TOTEM_OF_UNDYING).mapToInt(ItemStack::getCount).sum();
+        String renderString;
+
+        this.totems = mc.player.inventory.mainInventory.stream()
+                .filter(itemStack -> itemStack.getItem() == Items.TOTEM_OF_UNDYING)
+                .mapToInt(ItemStack::getCount)
+                .sum();
+
         if (mc.player.getHeldItemOffhand().getItem() == Items.TOTEM_OF_UNDYING) {
-            this.totCount += mc.player.getHeldItemOffhand().getCount();
+            this.totems += mc.player.getHeldItemOffhand().getCount();
         }
 
-        switch ((CountModes) countmode.getValue()) {
-            case Normal: {
-                totText = "Totems " + ChatFormatting.WHITE + this.totCount;
-                drawString(totText);
-                this.setHeight((int) FontUtil.getStringHeight(totText));
-                this.setWidth((int) FontUtil.getStringWidth(totText));
+        switch (countmode.getValue()) {
+            case Normal:
+                renderString = "Totems " + ChatFormatting.WHITE + this.totems;
+                this.setWidth((int) FontUtil.getStringWidth(renderString));
+                this.setHeight((int) FontUtil.getStringHeight(renderString));
+                drawString(renderString);
                 break;
-            }
-            case Short: {
-                totText = "Tot " + ChatFormatting.WHITE + this.totCount;
-                drawString(totText);
-                this.setHeight((int) FontUtil.getStringHeight(totText));
-                this.setWidth((int) FontUtil.getStringWidth(totText));
+            case Short:
+                renderString = "Tot " + ChatFormatting.WHITE + this.totems;
+                this.setWidth((int) FontUtil.getStringWidth(renderString));
+                this.setHeight((int) FontUtil.getStringHeight(renderString));
+                drawString(renderString);
                 break;
-            }
         }
     }
 
     private enum CountModes {
-        Normal,Short
+        Normal,
+        Short
     }
 }

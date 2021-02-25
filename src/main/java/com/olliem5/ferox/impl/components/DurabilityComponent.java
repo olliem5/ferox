@@ -8,49 +8,46 @@ import com.olliem5.ferox.api.util.render.font.FontUtil;
 
 /**
  * @author Manesko
+ * @author olliem5
  */
-
 
 @FeroxComponent(name = "Durability",description = "Shows the durability of the item you have in your hand on screen")
 public class DurabilityComponent extends Component {
-    int durability;
-
-    Setting<DurabilityModes> durabilitymode = new Setting("Mode","Mode",DurabilityModes.Normal);
+    public static final Setting<DurabilityModes> durabilitymode = new Setting<>("Mode","Mode", DurabilityModes.Normal);
 
     public DurabilityComponent() {
-        addSettings(
+        this.addSettings(
                 durabilitymode
         );
     }
 
+    private int durability;
 
     @Override
     public void render() {
-        String DurabilityText;
+        String renderString;
 
-        int maxdura = mc.player.getHeldItemMainhand().getMaxDamage();
-        this.durability = maxdura - mc.player.getHeldItemMainhand().getItemDamage();
+        int maxDurability = mc.player.getHeldItemMainhand().getMaxDamage();
+        this.durability = maxDurability - mc.player.getHeldItemMainhand().getItemDamage();
 
-        switch ((DurabilityModes) durabilitymode.getValue()) {
-            case Normal: {
-                DurabilityText = "Durability " + ChatFormatting.WHITE + this.durability;
-                drawString(DurabilityText);
-                this.setHeight((int) FontUtil.getStringHeight(DurabilityText));
-                this.setWidth((int) FontUtil.getStringWidth(DurabilityText));
+        switch (durabilitymode.getValue()) {
+            case Normal:
+                renderString = "Durability " + ChatFormatting.WHITE + this.durability;
+                this.setWidth((int) FontUtil.getStringWidth(renderString));
+                this.setHeight((int) FontUtil.getStringHeight(renderString));
+                drawString(renderString);
                 break;
-            }
-            case OnlyNumber: {
-                DurabilityText = "" + ChatFormatting.WHITE + this.durability;
-                drawString(DurabilityText);
-                this.setHeight((int) FontUtil.getStringHeight(DurabilityText));
-                this.setWidth((int) FontUtil.getStringWidth(DurabilityText));
+            case OnlyNumber:
+                renderString = "" + ChatFormatting.WHITE + this.durability;
+                this.setWidth((int) FontUtil.getStringWidth(renderString));
+                this.setHeight((int) FontUtil.getStringHeight(renderString));
+                drawString(renderString);
                 break;
-            }
         }
-
     }
 
     public enum DurabilityModes {
-        Normal,OnlyNumber
+        Normal,
+        OnlyNumber
     }
 }

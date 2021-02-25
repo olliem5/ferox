@@ -13,40 +13,40 @@ import net.minecraft.item.ItemStack;
  * @author olliem5
  */
 
-@FeroxComponent(name = "CrystalCount",description = "Shows the number of crystals in you inventory")
-public class CrystalCountComponent extends Component {
-    public static final Setting<CountModes> countMode = new Setting<>("Mode","Mode",CountModes.Normal);
+@FeroxComponent(name = "GoldenAppleCount",description = "Displays the number of golden apples you have in your inventory")
+public class GappleCountComponent extends Component {
+    public static final Setting<CountModes> countMode = new Setting<>("Mode","Mode", CountModes.Normal);
 
-    public CrystalCountComponent() {
+    public GappleCountComponent() {
         this.addSettings(
                 countMode
         );
     }
 
-    private int crystals;
+    int gapples;
 
     @Override
     public void render() {
         String renderString;
 
-        this.crystals = mc.player.inventory.mainInventory.stream()
-                .filter(itemStack -> itemStack.getItem() == Items.END_CRYSTAL)
+        this.gapples = mc.player.inventory.mainInventory.stream()
+                .filter(itemStack -> itemStack.getItem() == Items.GOLDEN_APPLE)
                 .mapToInt(ItemStack::getCount)
                 .sum();
 
-        if (mc.player.getHeldItemOffhand().getItem() == Items.END_CRYSTAL) {
-            this.crystals += mc.player.getHeldItemOffhand().getCount();
+        if (mc.player.getHeldItemOffhand().getItem() == Items.GOLDEN_APPLE) {
+            this.gapples += mc.player.getHeldItemOffhand().getCount();
         }
 
         switch (countMode.getValue()) {
             case Normal:
-                renderString = "Crystals " + ChatFormatting.WHITE + this.crystals;
+                renderString = "Gapples " + ChatFormatting.WHITE + this.gapples;
                 this.setWidth((int) FontUtil.getStringWidth(renderString));
                 this.setHeight((int) FontUtil.getStringHeight(renderString));
                 drawString(renderString);
                 break;
             case Short:
-                renderString = "Cry " + ChatFormatting.WHITE + this.crystals;
+                renderString = "Gap " + ChatFormatting.WHITE + this.gapples;
                 this.setWidth((int) FontUtil.getStringWidth(renderString));
                 this.setHeight((int) FontUtil.getStringHeight(renderString));
                 drawString(renderString);

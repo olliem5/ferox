@@ -9,7 +9,6 @@ import com.olliem5.ferox.impl.gui.screens.mainmenu.components.LogoComponent;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiMultiplayer;
 import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.ResourceLocation;
 
 import java.awt.*;
@@ -40,13 +39,14 @@ public final class FeroxGuiMainMenu extends GuiScreen {
         float xOffset = -1.0f * ((mouseX - width / 2.0f) / (width / 32.0f));
         float yOffset = -1.0f * ((mouseY - height / 2.0f) / (height / 32.0f));
 
-        GlStateManager.enableTexture2D();
-        GlStateManager.disableBlend();
-
         mc.getTextureManager().bindTexture(backgroundImage);
         DrawUtil.drawCompleteImage(-16.0f + xOffset, -16.0f + yOffset, width + 32.0f, height + 32.0f);
 
+        drawGUIButton("Mods", (int) (width / 2 - (FontUtil.getStringWidth("Singleplayer") * 4) - 4), height / 2);
+        drawGUIButton("Singleplayer", (int) (width / 2 - (FontUtil.getStringWidth("Multiplayer") * 2) - 4), height / 2);
         drawGUIButton("Multiplayer", width / 2, height / 2);
+        drawGUIButton("Options", (int) (width / 2 + (FontUtil.getStringWidth("Multiplayer") * 2) + 4), height / 2);
+        drawGUIButton("Quit", (int) (width / 2 + (FontUtil.getStringWidth("Options") * 4) + 4), height / 2);
 
         for (MainMenuComponent mainMenuComponent : mainMenuComponents) {
             mainMenuComponent.renderComponent(mouseX, mouseY);

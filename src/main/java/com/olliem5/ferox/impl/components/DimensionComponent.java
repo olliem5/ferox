@@ -8,72 +8,67 @@ import com.olliem5.ferox.api.util.render.font.FontUtil;
 
 /**
  * @author Manesko
+ * @author olliem5
  */
-
 
 @FeroxComponent(name = "Dimension",description = "Shows the dimension you are currently in on screen")
 public class DimensionComponent extends Component {
-
-    Setting<DimensionModes> dimensionmode = new Setting("Mode","Mode",DimensionModes.Normal);
+    public static final Setting<DimensionModes> dimensionMode = new Setting<>("Mode","Mode", DimensionModes.Normal);
 
     @Override
     public void render() {
-        String dimension;
-        // this is a very complicated way of doing it but its the only way i know. Ill look into a simpler way. :)
+        String renderString;
 
         if (mc.player.dimension == -1) {
-            switch ((DimensionModes) dimensionmode.getValue()) {
+            switch (dimensionMode.getValue()) {
                 case Normal:
-                    dimension = "Dimension " + ChatFormatting.WHITE + "Nether";
-                    drawString(dimension);
-                    this.setHeight((int) FontUtil.getStringHeight(dimension));
-                    this.setWidth((int) FontUtil.getStringWidth(dimension));
+                    renderString = "Dimension " + ChatFormatting.WHITE + "Nether";
+                    this.setWidth((int) FontUtil.getStringWidth(renderString));
+                    this.setHeight((int) FontUtil.getStringHeight(renderString));
+                    drawString(renderString);
                     break;
                 case OnlyDimension:
-                    dimension = "" + ChatFormatting.WHITE + "Nether";
-                    drawString(dimension);
-                    this.setWidth((int) FontUtil.getStringWidth(dimension));
-                    this.setHeight((int) FontUtil.getStringHeight(dimension));
+                    renderString = "" + ChatFormatting.WHITE + "Nether";
+                    this.setWidth((int) FontUtil.getStringWidth(renderString));
+                    this.setHeight((int) FontUtil.getStringHeight(renderString));
+                    drawString(renderString);
                     break;
             }
-        } else if(mc.player.dimension == 0) {
-            switch ((DimensionModes) dimensionmode.getValue()) {
-                case Normal: {
-                    dimension = "Dimension " + ChatFormatting.WHITE + "OverWorld";
-                    drawString(dimension);
-                    this.setHeight((int) FontUtil.getStringHeight(dimension));
-                    this.setWidth((int) FontUtil.getStringWidth(dimension));
+        } else if (mc.player.dimension == 0) {
+            switch (dimensionMode.getValue()) {
+                case Normal:
+                    renderString = "Dimension " + ChatFormatting.WHITE + "Overworld";
+                    this.setWidth((int) FontUtil.getStringWidth(renderString));
+                    this.setHeight((int) FontUtil.getStringHeight(renderString));
+                    drawString(renderString);
                     break;
-                }
-                case OnlyDimension: {
-                    dimension = "" + ChatFormatting.WHITE + "OverWorld";
-                    drawString(dimension);
-                    this.setWidth((int) FontUtil.getStringWidth(dimension));
-                    this.setHeight((int) FontUtil.getStringHeight(dimension));
+                case OnlyDimension:
+                    renderString = "" + ChatFormatting.WHITE + "Overworld";
+                    this.setWidth((int) FontUtil.getStringWidth(renderString));
+                    this.setHeight((int) FontUtil.getStringHeight(renderString));
+                    drawString(renderString);
                     break;
-                }
             }
-        } else if(mc.player.dimension == 1) {
-            switch ((DimensionModes) dimensionmode.getValue()) {
-                case Normal: {
-                    dimension = "Dimension " + ChatFormatting.WHITE + "End";
-                    drawString(dimension);
-                    this.setHeight((int) FontUtil.getStringHeight(dimension));
-                    this.setWidth((int) FontUtil.getStringWidth(dimension));
+        } else {
+            switch (dimensionMode.getValue()) {
+                case Normal:
+                    renderString = "Dimension " + ChatFormatting.WHITE + "End";
+                    this.setWidth((int) FontUtil.getStringWidth(renderString));
+                    this.setHeight((int) FontUtil.getStringHeight(renderString));
+                    drawString(renderString);
                     break;
-                }
-                case OnlyDimension: {
-                    dimension = "" + ChatFormatting.WHITE + "End";
-                    drawString(dimension);
-                    this.setWidth((int) FontUtil.getStringWidth(dimension));
-                    this.setHeight((int) FontUtil.getStringHeight(dimension));
+                case OnlyDimension:
+                    renderString = "" + ChatFormatting.WHITE + "End";
+                    this.setWidth((int) FontUtil.getStringWidth(renderString));
+                    this.setHeight((int) FontUtil.getStringHeight(renderString));
+                    drawString(renderString);
                     break;
-                }
             }
         }
     }
 
     public enum DimensionModes {
-        Normal, OnlyDimension
+        Normal,
+        OnlyDimension
     }
 }

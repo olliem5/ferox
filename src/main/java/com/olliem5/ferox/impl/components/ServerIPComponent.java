@@ -8,76 +8,71 @@ import com.olliem5.ferox.api.util.render.font.FontUtil;
 
 /**
  * @author Manesko
- * hihihihi
+ * @author olliem5
  */
-
 
 @FeroxComponent(name = "Server IP", description = "Displays the ip of the server you are on, on screen")
 public class ServerIPComponent extends Component {
-
-    Setting<IPModes> ipmode = new Setting("Mode","Mode",IPModes.Normal);
+    public static final Setting<IPModes> ipMode = new Setting<>("Mode","Mode", IPModes.Normal);
 
     public ServerIPComponent() {
-        addSettings(
-                ipmode
+        this.addSettings(
+                ipMode
         );
     }
 
     @Override
     public void render() {
-        String ServerIPText;
+        String renderString;
+
         if (mc.integratedServerIsRunning) {
-            switch ((IPModes) ipmode.getValue()) {
-                case Normal: {
-                    ServerIPText = "Server IP " + ChatFormatting.WHITE + "SinglePlayer";
-                    drawString(ServerIPText);
-                    this.setHeight((int) FontUtil.getStringHeight(ServerIPText));
-                    this.setWidth((int) FontUtil.getStringWidth(ServerIPText));
+            switch (ipMode.getValue()) {
+                case Normal:
+                    renderString = "Server IP " + ChatFormatting.WHITE + "Singleplayer";
+                    this.setWidth((int) FontUtil.getStringWidth(renderString));
+                    this.setHeight((int) FontUtil.getStringHeight(renderString));
+                    drawString(renderString);
                     break;
-                }
-                case IP: {
-                    ServerIPText = "IP " + ChatFormatting.WHITE + "SinglePlayer";
-                    drawString(ServerIPText);
-                    this.setHeight((int) FontUtil.getStringHeight(ServerIPText));
-                    this.setWidth((int) FontUtil.getStringWidth(ServerIPText));
+                case IP:
+                    renderString = "IP " + ChatFormatting.WHITE + "Singleplayer";
+                    this.setWidth((int) FontUtil.getStringWidth(renderString));
+                    this.setHeight((int) FontUtil.getStringHeight(renderString));
+                    drawString(renderString);
                     break;
-                }
-                case OnlyIP: {
-                    ServerIPText = "" + ChatFormatting.WHITE + "SinglePlayer";
-                    drawString(ServerIPText);
-                    this.setHeight((int) FontUtil.getStringHeight(ServerIPText));
-                    this.setWidth((int) FontUtil.getStringWidth(ServerIPText));
+                case OnlyIP:
+                    renderString = "" + ChatFormatting.WHITE + "Singleplayer";
+                    this.setWidth((int) FontUtil.getStringWidth(renderString));
+                    this.setHeight((int) FontUtil.getStringHeight(renderString));
+                    drawString(renderString);
                     break;
-                }
             }
         } else {
-            switch ((IPModes) ipmode.getValue()) {
-                case Normal: {
-                    ServerIPText = "Server IP " + ChatFormatting.WHITE + mc.getCurrentServerData().serverIP;
-                    drawString(ServerIPText);
-                    this.setHeight((int) FontUtil.getStringHeight(ServerIPText));
-                    this.setWidth((int) FontUtil.getStringWidth(ServerIPText));
+            switch (ipMode.getValue()) {
+                case Normal:
+                    renderString = "Server IP " + ChatFormatting.WHITE + mc.getCurrentServerData().serverIP;
+                    this.setWidth((int) FontUtil.getStringWidth(renderString));
+                    this.setHeight((int) FontUtil.getStringHeight(renderString));
+                    drawString(renderString);
                     break;
-                }
-                case IP: {
-                    ServerIPText = "IP " + ChatFormatting.WHITE + mc.getCurrentServerData().serverIP;
-                    drawString(ServerIPText);
-                    this.setHeight((int) FontUtil.getStringHeight(ServerIPText));
-                    this.setWidth((int) FontUtil.getStringWidth(ServerIPText));
+                case IP:
+                    renderString = "IP " + ChatFormatting.WHITE + mc.getCurrentServerData().serverIP;
+                    this.setWidth((int) FontUtil.getStringWidth(renderString));
+                    this.setHeight((int) FontUtil.getStringHeight(renderString));
+                    drawString(renderString);
                     break;
-                }
-                case OnlyIP: {
-                    ServerIPText = "" + ChatFormatting.WHITE + mc.getCurrentServerData().serverIP;
-                    drawString(ServerIPText);
-                    this.setHeight((int) FontUtil.getStringHeight(ServerIPText));
-                    this.setWidth((int) FontUtil.getStringWidth(ServerIPText));
+                case OnlyIP:
+                    renderString = "" + ChatFormatting.WHITE + mc.getCurrentServerData().serverIP;
+                    this.setWidth((int) FontUtil.getStringWidth(renderString));
+                    this.setHeight((int) FontUtil.getStringHeight(renderString));
+                    drawString(renderString);
                     break;
-                }
             }
         }
     }
 
     public enum IPModes {
-        Normal,IP,OnlyIP
+        Normal,
+        IP,
+        OnlyIP
     }
 }

@@ -10,50 +10,52 @@ import net.minecraft.item.ItemStack;
 
 /**
  * @author Manesko
+ * @author olliem5
  */
 
 @FeroxComponent(name = "EXPCount", description = "Displays the amount of exp you have in you inventory, on screen")
 public class EXPCountComponent extends Component {
-    int exp;
-
-    Setting<CountModes> countmode = new Setting("Mode","Mode",CountModes.Normal);
+    public static final Setting<CountModes> countMode = new Setting<>("Mode","Mode", CountModes.Normal);
 
     public EXPCountComponent() {
-        addSettings(
-                countmode
+        this.addSettings(
+                countMode
         );
     }
 
+    private int exp;
 
     @Override
     public void render() {
-        String EXPText;
+        String renderString;
 
-        this.exp = mc.player.inventory.mainInventory.stream().filter(itemStack -> itemStack.getItem() == Items.EXPERIENCE_BOTTLE).mapToInt(ItemStack::getCount).sum();
+        this.exp = mc.player.inventory.mainInventory.stream()
+                .filter(itemStack -> itemStack.getItem() == Items.EXPERIENCE_BOTTLE)
+                .mapToInt(ItemStack::getCount)
+                .sum();
+
         if (mc.player.getHeldItemOffhand().getItem() == Items.EXPERIENCE_BOTTLE) {
             this.exp += mc.player.getHeldItemOffhand().getCount();
         }
 
-
-        switch ((CountModes)countmode.getValue()) {
-            case Normal: {
-                EXPText = "Bottles " + ChatFormatting.WHITE + this.exp;
-                drawString(EXPText);
-                this.setHeight((int) FontUtil.getStringHeight(EXPText));
-                this.setWidth((int) FontUtil.getStringWidth(EXPText));
+        switch (countMode.getValue()) {
+            case Normal:
+                renderString = "EXP Bottles " + ChatFormatting.WHITE + this.exp;
+                this.setWidth((int) FontUtil.getStringWidth(renderString));
+                this.setHeight((int) FontUtil.getStringHeight(renderString));
+                drawString(renderString);
                 break;
-            }
-            case Short: {
-                EXPText = "EXP " + ChatFormatting.WHITE + this.exp;
-                drawString(EXPText);
-                this.setHeight((int) FontUtil.getStringHeight(EXPText));
-                this.setWidth((int) FontUtil.getStringWidth(EXPText));
+            case Short:
+                renderString = "EXP " + ChatFormatting.WHITE + this.exp;
+                this.setWidth((int) FontUtil.getStringWidth(renderString));
+                this.setHeight((int) FontUtil.getStringHeight(renderString));
+                drawString(renderString);
                 break;
-            }
         }
     }
 
     private enum CountModes {
-        Normal, Short
+        Normal,
+        Short
     }
 }
