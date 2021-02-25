@@ -33,7 +33,7 @@ public final class PingComponent extends Component {
                 drawString(renderString);
                 break;
             case OnlyNumber:
-                renderString = "" + ChatFormatting.WHITE + getPing();
+                renderString = "" + ChatFormatting.WHITE + getPing() + "ms";
                 this.setWidth((int) FontUtil.getStringWidth(renderString));
                 this.setHeight((int) FontUtil.getStringHeight(renderString));
                 drawString(renderString);
