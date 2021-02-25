@@ -24,6 +24,7 @@ public final class ComponentManager implements Minecraft {
                 new CoordinatesComponent(),
                 new CrystalCountComponent(),
                 new DimensionComponent(),
+                new DirectionComponent(),
                 new DurabilityComponent(),
                 new EXPCountComponent(),
                 new FPSComponent(),
