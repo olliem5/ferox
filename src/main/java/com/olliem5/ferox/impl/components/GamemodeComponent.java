@@ -15,7 +15,7 @@ import java.util.Locale;
 
 @FeroxComponent(name = "Gamemode", description = "Shows the gamemode you are in on screen")
 public class GamemodeComponent extends Component {
-    public static final Setting<GamemodeModes> gamemodeMode = new Setting<>("Mode","Mode", GamemodeModes.Normal);
+    public static final Setting<GamemodeModes> gamemodeMode = new Setting<>("Mode", "The way of displaying the gamemode", GamemodeModes.Normal);
 
     public GamemodeComponent() {
         this.addSettings(
@@ -36,7 +36,7 @@ public class GamemodeComponent extends Component {
                 this.setHeight((int) FontUtil.getStringHeight(renderString));
                 drawString(renderString);
                 break;
-            case OnlyGamemode:
+            case Short:
                 renderString = "" + ChatFormatting.WHITE + gamemodeOutput;
                 this.setWidth((int) FontUtil.getStringWidth(renderString));
                 this.setHeight((int) FontUtil.getStringHeight(renderString));
@@ -47,6 +47,6 @@ public class GamemodeComponent extends Component {
 
     public enum GamemodeModes {
         Normal,
-        OnlyGamemode
+        Short
     }
 }

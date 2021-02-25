@@ -15,7 +15,7 @@ import net.minecraft.item.ItemStack;
 
 @FeroxComponent(name = "EXPCount", description = "Displays the amount of exp you have in you inventory, on screen")
 public class EXPCountComponent extends Component {
-    public static final Setting<CountModes> countMode = new Setting<>("Mode","Mode", CountModes.Normal);
+    public static final Setting<CountModes> countMode = new Setting<>("Mode", "The way of displaying the exp count", CountModes.Normal);
 
     public EXPCountComponent() {
         this.addSettings(

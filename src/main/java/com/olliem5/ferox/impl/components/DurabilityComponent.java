@@ -11,13 +11,13 @@ import com.olliem5.ferox.api.util.render.font.FontUtil;
  * @author olliem5
  */
 
-@FeroxComponent(name = "Durability",description = "Shows the durability of the item you have in your hand on screen")
+@FeroxComponent(name = "Durability", description = "Shows the durability of the item you have in your hand on screen")
 public class DurabilityComponent extends Component {
-    public static final Setting<DurabilityModes> durabilitymode = new Setting<>("Mode","Mode", DurabilityModes.Normal);
+    public static final Setting<DurabilityModes> durabilityMode = new Setting<>("Mode", "The way of displaying the durability", DurabilityModes.Normal);
 
     public DurabilityComponent() {
         this.addSettings(
-                durabilitymode
+                durabilityMode
         );
     }
 
@@ -30,14 +30,14 @@ public class DurabilityComponent extends Component {
         int maxDurability = mc.player.getHeldItemMainhand().getMaxDamage();
         this.durability = maxDurability - mc.player.getHeldItemMainhand().getItemDamage();
 
-        switch (durabilitymode.getValue()) {
+        switch (durabilityMode.getValue()) {
             case Normal:
                 renderString = "Durability " + ChatFormatting.WHITE + this.durability;
                 this.setWidth((int) FontUtil.getStringWidth(renderString));
                 this.setHeight((int) FontUtil.getStringHeight(renderString));
                 drawString(renderString);
                 break;
-            case OnlyNumber:
+            case Short:
                 renderString = "" + ChatFormatting.WHITE + this.durability;
                 this.setWidth((int) FontUtil.getStringWidth(renderString));
                 this.setHeight((int) FontUtil.getStringHeight(renderString));
@@ -48,6 +48,6 @@ public class DurabilityComponent extends Component {
 
     public enum DurabilityModes {
         Normal,
-        OnlyNumber
+        Short
     }
 }

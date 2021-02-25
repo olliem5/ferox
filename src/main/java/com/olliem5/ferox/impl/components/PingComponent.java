@@ -13,7 +13,7 @@ import com.olliem5.ferox.api.util.render.font.FontUtil;
 
 @FeroxComponent(name = "Ping", description = "Shows your ping on screen")
 public final class PingComponent extends Component {
-    public static final Setting<PingModes> pingMode = new Setting<>("Mode", "Mode", PingModes.Normal);
+    public static final Setting<PingModes> pingMode = new Setting<>("Mode", "The way of displaying the ping", PingModes.Normal);
 
     public PingComponent() {
         this.addSettings(
@@ -32,7 +32,7 @@ public final class PingComponent extends Component {
                 this.setHeight((int) FontUtil.getStringHeight(renderString));
                 drawString(renderString);
                 break;
-            case OnlyNumber:
+            case Short:
                 renderString = "" + ChatFormatting.WHITE + getPing() + "ms";
                 this.setWidth((int) FontUtil.getStringWidth(renderString));
                 this.setHeight((int) FontUtil.getStringHeight(renderString));
@@ -51,6 +51,6 @@ public final class PingComponent extends Component {
 
     public enum PingModes {
         Normal,
-        OnlyNumber
+        Short
     }
 }

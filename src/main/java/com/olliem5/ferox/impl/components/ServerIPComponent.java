@@ -13,7 +13,7 @@ import com.olliem5.ferox.api.util.render.font.FontUtil;
 
 @FeroxComponent(name = "Server IP", description = "Displays the ip of the server you are on, on screen")
 public class ServerIPComponent extends Component {
-    public static final Setting<IPModes> ipMode = new Setting<>("Mode","Mode", IPModes.Normal);
+    public static final Setting<IPModes> ipMode = new Setting<>("Mode", "The way of displaying the server IP", IPModes.Normal);
 
     public ServerIPComponent() {
         this.addSettings(
@@ -39,7 +39,7 @@ public class ServerIPComponent extends Component {
                     this.setHeight((int) FontUtil.getStringHeight(renderString));
                     drawString(renderString);
                     break;
-                case OnlyIP:
+                case Short:
                     renderString = "" + ChatFormatting.WHITE + "Singleplayer";
                     this.setWidth((int) FontUtil.getStringWidth(renderString));
                     this.setHeight((int) FontUtil.getStringHeight(renderString));
@@ -60,7 +60,7 @@ public class ServerIPComponent extends Component {
                     this.setHeight((int) FontUtil.getStringHeight(renderString));
                     drawString(renderString);
                     break;
-                case OnlyIP:
+                case Short:
                     renderString = "" + ChatFormatting.WHITE + mc.getCurrentServerData().serverIP;
                     this.setWidth((int) FontUtil.getStringWidth(renderString));
                     this.setHeight((int) FontUtil.getStringHeight(renderString));
@@ -73,6 +73,6 @@ public class ServerIPComponent extends Component {
     public enum IPModes {
         Normal,
         IP,
-        OnlyIP
+        Short
     }
 }

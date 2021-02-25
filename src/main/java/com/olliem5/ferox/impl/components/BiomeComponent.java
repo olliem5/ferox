@@ -13,7 +13,7 @@ import com.olliem5.ferox.api.util.render.font.FontUtil;
 
 @FeroxComponent(name = "Biome", description = "Displays the biome you are currently in")
 public class BiomeComponent extends Component {
-    public static final Setting<BiomeModes> biomeMode = new Setting<>("Mode","Mode", BiomeModes.Normal);
+    public static final Setting<BiomeModes> biomeMode = new Setting<>("Mode", "The way of displaying the biome", BiomeModes.Normal);
 
     public BiomeComponent() {
         this.addSettings(
@@ -32,7 +32,7 @@ public class BiomeComponent extends Component {
                 this.setHeight((int) FontUtil.getStringHeight(renderString));
                 drawString(renderString);
                 break;
-            case OnlyBiome:
+            case Short:
                 renderString = "" + ChatFormatting.WHITE + mc.world.getBiome(mc.player.getPosition()).getBiomeName();
                 this.setWidth((int) FontUtil.getStringWidth(renderString));
                 this.setHeight((int) FontUtil.getStringHeight(renderString));
@@ -43,6 +43,6 @@ public class BiomeComponent extends Component {
 
     public enum BiomeModes {
         Normal,
-        OnlyBiome
+        Short
     }
 }

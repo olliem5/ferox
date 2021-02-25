@@ -13,9 +13,9 @@ import net.minecraft.item.ItemStack;
  * @author olliem5
  */
 
-@FeroxComponent(name = "GoldenAppleCount",description = "Displays the number of golden apples you have in your inventory")
+@FeroxComponent(name = "GoldenAppleCount", description = "Displays the number of golden apples you have in your inventory")
 public class GappleCountComponent extends Component {
-    public static final Setting<CountModes> countMode = new Setting<>("Mode","Mode", CountModes.Normal);
+    public static final Setting<CountModes> countMode = new Setting<>("Mode", "The way of displaying the gapple count", CountModes.Normal);
 
     public GappleCountComponent() {
         this.addSettings(

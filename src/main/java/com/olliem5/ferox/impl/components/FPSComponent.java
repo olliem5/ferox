@@ -13,7 +13,7 @@ import com.olliem5.ferox.api.util.render.font.FontUtil;
 
 @FeroxComponent(name = "FPS", description = "Shows the amount of fps you have")
 public final class FPSComponent extends Component {
-    public static final Setting<FPSModes> fpsMode = new Setting<>("Mode", "Mode", FPSModes.Normal);
+    public static final Setting<FPSModes> fpsMode = new Setting<>("Mode", "The way of displaying the FPS", FPSModes.Normal);
 
     public FPSComponent() {
         this.addSettings(
@@ -32,7 +32,7 @@ public final class FPSComponent extends Component {
                 this.setHeight((int) FontUtil.getStringHeight(renderString));
                 drawString(renderString);
                 break;
-            case OnlyNumber:
+            case Short:
                 renderString = "" + ChatFormatting.WHITE + mc.getDebugFPS();
                 this.setWidth((int) FontUtil.getStringWidth(renderString));
                 this.setHeight((int) FontUtil.getStringHeight(renderString));
@@ -43,6 +43,6 @@ public final class FPSComponent extends Component {
 
     public enum FPSModes {
         Normal,
-        OnlyNumber
+        Short
     }
 }

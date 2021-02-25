@@ -13,9 +13,9 @@ import com.olliem5.ferox.impl.modules.ferox.Colours;
  * @author olliem5
  */
 
-@FeroxComponent(name = "Coordinates", description = "Shows your coordinates on screen")
+@FeroxComponent(name = "Coordinates", description = "Shows your coordinates")
 public final class CoordinatesComponent extends Component {
-    public static final Setting<CoordsModes> coordsmode = new Setting<>("Mode","Changes the Mode of the coords", CoordsModes.InLine);
+    public static final Setting<CoordsModes> coordsmode = new Setting<>("Mode", "The way of displaying the coordinates", CoordsModes.InLine);
 
     public CoordinatesComponent() {
         this.addSettings(

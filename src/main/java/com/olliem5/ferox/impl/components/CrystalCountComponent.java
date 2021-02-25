@@ -13,9 +13,9 @@ import net.minecraft.item.ItemStack;
  * @author olliem5
  */
 
-@FeroxComponent(name = "CrystalCount",description = "Shows the number of crystals in you inventory")
+@FeroxComponent(name = "CrystalCount", description = "Shows the number of crystals in your inventory")
 public class CrystalCountComponent extends Component {
-    public static final Setting<CountModes> countMode = new Setting<>("Mode","Mode",CountModes.Normal);
+    public static final Setting<CountModes> countMode = new Setting<>("Mode", "The way of displaying the crystal count", CountModes.Normal);
 
     public CrystalCountComponent() {
         this.addSettings(

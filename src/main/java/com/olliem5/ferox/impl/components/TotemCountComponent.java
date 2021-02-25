@@ -13,9 +13,9 @@ import net.minecraft.item.ItemStack;
  * @author olliem5
  */
 
-@FeroxComponent(name = "TotemCount",description = "Shows the number of totems in your inventory on screen")
+@FeroxComponent(name = "TotemCount", description = "Shows the number of totems in your inventory on screen")
 public class TotemCountComponent extends Component {
-    public static final Setting<CountModes> countmode = new Setting<>("Mode","Mode",CountModes.Normal);
+    public static final Setting<CountModes> countmode = new Setting<>("Mode", "The way of displaying the totem count", CountModes.Normal);
 
     public TotemCountComponent() {
         this.addSettings(

@@ -11,9 +11,9 @@ import com.olliem5.ferox.api.util.render.font.FontUtil;
  * @author olliem5
  */
 
-@FeroxComponent(name = "Dimension",description = "Shows the dimension you are currently in on screen")
+@FeroxComponent(name = "Dimension", description = "Shows the dimension you are currently in")
 public class DimensionComponent extends Component {
-    public static final Setting<DimensionModes> dimensionMode = new Setting<>("Mode","Mode", DimensionModes.Normal);
+    public static final Setting<DimensionModes> dimensionMode = new Setting<>("Mode", "The way of displaying the biome", DimensionModes.Normal);
 
     @Override
     public void render() {
@@ -27,7 +27,7 @@ public class DimensionComponent extends Component {
                     this.setHeight((int) FontUtil.getStringHeight(renderString));
                     drawString(renderString);
                     break;
-                case OnlyDimension:
+                case Short:
                     renderString = "" + ChatFormatting.WHITE + "Nether";
                     this.setWidth((int) FontUtil.getStringWidth(renderString));
                     this.setHeight((int) FontUtil.getStringHeight(renderString));
@@ -42,7 +42,7 @@ public class DimensionComponent extends Component {
                     this.setHeight((int) FontUtil.getStringHeight(renderString));
                     drawString(renderString);
                     break;
-                case OnlyDimension:
+                case Short:
                     renderString = "" + ChatFormatting.WHITE + "Overworld";
                     this.setWidth((int) FontUtil.getStringWidth(renderString));
                     this.setHeight((int) FontUtil.getStringHeight(renderString));
@@ -57,7 +57,7 @@ public class DimensionComponent extends Component {
                     this.setHeight((int) FontUtil.getStringHeight(renderString));
                     drawString(renderString);
                     break;
-                case OnlyDimension:
+                case Short:
                     renderString = "" + ChatFormatting.WHITE + "End";
                     this.setWidth((int) FontUtil.getStringWidth(renderString));
                     this.setHeight((int) FontUtil.getStringHeight(renderString));
@@ -69,6 +69,6 @@ public class DimensionComponent extends Component {
 
     public enum DimensionModes {
         Normal,
-        OnlyDimension
+        Short
     }
 }

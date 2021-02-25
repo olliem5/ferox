@@ -13,7 +13,7 @@ import net.minecraft.client.renderer.OpenGlHelper;
 
 @FeroxComponent(name = "Player", description = "Shows a model of your player")
 public final class PlayerComponent extends Component {
-    public static final NumberSetting<Integer> scale = new NumberSetting<>("Scale", "Scale to render the player at", 1, 30, 100, 0);
+    public static final NumberSetting<Integer> scale = new NumberSetting<>("Scale", "The scale to render the player at", 1, 30, 100, 0);
 
     public PlayerComponent() {
         this.setWidth(50);
