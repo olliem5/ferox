@@ -14,7 +14,7 @@ import java.util.Locale;
  */
 
 @FeroxComponent(name = "Gamemode", description = "Shows the gamemode you are in on screen")
-public class GamemodeComponent extends Component {
+public final class GamemodeComponent extends Component {
     public static final Setting<GamemodeModes> gamemodeMode = new Setting<>("Mode", "The way of displaying the gamemode", GamemodeModes.Normal);
 
     public GamemodeComponent() {

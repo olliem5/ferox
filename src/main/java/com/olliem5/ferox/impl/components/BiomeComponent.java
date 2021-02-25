@@ -12,7 +12,7 @@ import com.olliem5.ferox.api.util.render.font.FontUtil;
  */
 
 @FeroxComponent(name = "Biome", description = "Displays the biome you are currently in")
-public class BiomeComponent extends Component {
+public final class BiomeComponent extends Component {
     public static final Setting<BiomeModes> biomeMode = new Setting<>("Mode", "The way of displaying the biome", BiomeModes.Normal);
 
     public BiomeComponent() {

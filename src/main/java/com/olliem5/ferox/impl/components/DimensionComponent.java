@@ -12,7 +12,7 @@ import com.olliem5.ferox.api.util.render.font.FontUtil;
  */
 
 @FeroxComponent(name = "Dimension", description = "Shows the dimension you are currently in")
-public class DimensionComponent extends Component {
+public final class DimensionComponent extends Component {
     public static final Setting<DimensionModes> dimensionMode = new Setting<>("Mode", "The way of displaying the biome", DimensionModes.Normal);
 
     @Override

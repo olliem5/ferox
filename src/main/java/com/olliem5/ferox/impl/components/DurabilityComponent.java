@@ -12,7 +12,7 @@ import com.olliem5.ferox.api.util.render.font.FontUtil;
  */
 
 @FeroxComponent(name = "Durability", description = "Shows the durability of the item you have in your hand on screen")
-public class DurabilityComponent extends Component {
+public final class DurabilityComponent extends Component {
     public static final Setting<DurabilityModes> durabilityMode = new Setting<>("Mode", "The way of displaying the durability", DurabilityModes.Normal);
 
     public DurabilityComponent() {

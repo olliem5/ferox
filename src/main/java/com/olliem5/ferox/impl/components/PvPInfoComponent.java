@@ -14,7 +14,7 @@ import com.olliem5.ferox.impl.modules.ferox.Colours;
  */
 
 @FeroxComponent(name = "CombatInfo", description = "Displays info on combat modules on screen")
-public class PvPInfoComponent extends Component {
+public final class PvPInfoComponent extends Component {
     public static final Setting<PvPInfoModes> pvpinfoMode = new Setting<>("Mode", "The way of displaying the PvPInfo", PvPInfoModes.Normal);
 
     public static final Setting<Boolean> modules = new Setting<>("Modules", "The modules to use for PvPInfo", true);

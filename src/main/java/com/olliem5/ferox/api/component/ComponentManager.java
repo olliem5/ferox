@@ -30,6 +30,7 @@ public final class ComponentManager implements Minecraft {
                 new GamemodeComponent(),
                 new GappleCountComponent(),
                 new InventoryComponent(),
+                new LogoComponent(),
                 new NotificationComponent(),
                 new PingComponent(),
                 new PlayerComponent(),
