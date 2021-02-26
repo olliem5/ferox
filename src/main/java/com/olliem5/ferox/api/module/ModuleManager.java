@@ -59,6 +59,7 @@ public final class ModuleManager {
                 new NoEntityTrace(),
                 new Portals(),
                 new Reach(),
+                new ThunderHack(),
                 new Timer(),
                 new XCarry(),
 

@@ -17,6 +17,10 @@ import java.awt.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * @author olliem5
+ */
+
 @FeroxModule(name = "VoidESP", description = "Shows void holes", category = Category.Render)
 public final class VoidESP extends Module {
     public static final NumberSetting<Integer> range = new NumberSetting<>("Range", "The range to search for void holes in", 1, 5, 10, 0);
