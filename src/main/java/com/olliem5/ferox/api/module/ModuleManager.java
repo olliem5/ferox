@@ -76,6 +76,7 @@ public final class ModuleManager {
                 new ItemTooltips(),
                 new SkyColour(),
                 new ViewModel(),
+                new VoidESP(),
 
                 //Ferox
                 new Colours(),

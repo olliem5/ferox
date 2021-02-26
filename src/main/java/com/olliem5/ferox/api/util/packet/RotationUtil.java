@@ -80,22 +80,23 @@ public final class RotationUtil implements Minecraft {
     public static String getFacing() {
         switch (MathHelper.floor(mc.player.rotationYaw + 8.0f / 360.0f + 0.5) & 0x7) {
             case 0:
-                return " [" + ChatFormatting.WHITE + "Z+" + ChatFormatting.RESET + "]";
+                return " [" + ChatFormatting.WHITE + "+Z" + ChatFormatting.RESET + "]";
             case 1:
-                return " [" + ChatFormatting.WHITE + "Z+" + ChatFormatting.RESET + "]";
+                return " [" + ChatFormatting.WHITE + "+Z" + ChatFormatting.RESET + "]";
             case 2:
-                return " [" + ChatFormatting.WHITE + "X-" + ChatFormatting.RESET + "]";
+                return " [" + ChatFormatting.WHITE + "-X" + ChatFormatting.RESET + "]";
             case 3:
-                return " [" + ChatFormatting.WHITE + "X-" + ChatFormatting.RESET + "]";
+                return " [" + ChatFormatting.WHITE + "-X" + ChatFormatting.RESET + "]";
             case 4:
-                return " [" + ChatFormatting.WHITE + "Z-" + ChatFormatting.RESET + "]";
+                return " [" + ChatFormatting.WHITE + "-Z" + ChatFormatting.RESET + "]";
             case 5:
-                return " [" + ChatFormatting.WHITE + "Z-" + ChatFormatting.RESET + "]";
+                return " [" + ChatFormatting.WHITE + "-Z" + ChatFormatting.RESET + "]";
             case 6:
-                return " [" + ChatFormatting.WHITE + "X+" + ChatFormatting.RESET + "]";
+                return " [" + ChatFormatting.WHITE + "+X" + ChatFormatting.RESET + "]";
             case 7:
-                return " [" + ChatFormatting.WHITE + "X+" + ChatFormatting.RESET + "]";
+                return " [" + ChatFormatting.WHITE + "+X" + ChatFormatting.RESET + "]";
         }
-        return "Invalid";
+
+        return "Invalid Direction";
     }
 }

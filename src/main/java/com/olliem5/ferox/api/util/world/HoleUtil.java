@@ -2,6 +2,7 @@ package com.olliem5.ferox.api.util.world;
 
 import com.olliem5.ferox.api.traits.Minecraft;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockAir;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
@@ -108,6 +109,10 @@ public final class HoleUtil implements Minecraft {
         }
 
         return isAnvilHole;
+    }
+
+    public static boolean isVoidHole(BlockPos blockPos) {
+        return mc.player.dimension == -1 ? (blockPos.getY() == 0 || blockPos.getY() == 127) && mc.world.getBlockState(blockPos).getBlock() == Blocks.AIR : blockPos.getY() == 0 && mc.world.getBlockState(blockPos).getBlock() == Blocks.AIR;
     }
 
     public static boolean isPlayerInHole(EntityPlayer entityPlayer) {

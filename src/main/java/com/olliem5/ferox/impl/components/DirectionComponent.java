@@ -9,42 +9,39 @@ import com.olliem5.ferox.api.util.render.font.FontUtil;
 
 /**
  * @author Manesko
+ * @author olliem5
  */
 
-@FeroxComponent(name = "Direction",description = "Shows the direction you are facing")
+@FeroxComponent(name = "Direction", description = "Shows the direction you are facing")
 public class DirectionComponent extends Component {
-
-    Setting<DirectionModes> directionmode = new Setting<>("Mode","Mode",DirectionModes.Normal);
-    // idk why stringmode sounds kinda wack, but idk what else to put
-    Setting<StringModes> stringmode = new Setting<>("StringMode","StringMode",StringModes.Full);
+    public static final Setting<DirectionModes> directionMode = new Setting<>("Mode","Mode", DirectionModes.Normal);
+    public static final Setting<StringModes> stringMode = new Setting<>("String","StringMode", StringModes.Full);
 
     public DirectionComponent() {
         this.addSettings(
-                directionmode,
-                stringmode
+                directionMode,
+                stringMode
         );
     }
 
     @Override
     public void render() {
-        String directionText;
+        String renderString;
 
-        switch ((DirectionModes) directionmode.getValue()) {
-            case Normal: {
-                directionText = stringmode.getValue() == StringModes.Full ? "Direction " + ChatFormatting.WHITE + mc.player.getHorizontalFacing().getName() + ChatFormatting.RESET + RotationUtil.getFacing() : "Direction " + ChatFormatting.WHITE + ChatFormatting.RESET + RotationUtil.getFacing();
-                drawString(directionText);
-                this.setHeight((int) FontUtil.getStringHeight(directionText));
-                this.setWidth((int) FontUtil.getStringWidth(directionText));
+        switch (directionMode.getValue()) {
+            case Normal:
+                renderString = stringMode.getValue() == StringModes.Full ? "Direction " + ChatFormatting.WHITE + mc.player.getHorizontalFacing().getName() + ChatFormatting.RESET + RotationUtil.getFacing() : "Direction " + ChatFormatting.WHITE + ChatFormatting.RESET + RotationUtil.getFacing();
+                this.setWidth((int) FontUtil.getStringWidth(renderString));
+                this.setHeight((int) FontUtil.getStringHeight(renderString));
+                drawString(renderString);
                 break;
-            }
             case Short:
-                directionText = stringmode.getValue() == StringModes.Full ? "" + mc.player.getHorizontalFacing().getName() + ChatFormatting.RESET + RotationUtil.getFacing() : "" + RotationUtil.getFacing();
-                drawString(directionText);
-                this.setHeight((int) FontUtil.getStringHeight(directionText));
-                this.setWidth((int) FontUtil.getStringWidth(directionText));
+                renderString = stringMode.getValue() == StringModes.Full ? "" + mc.player.getHorizontalFacing().getName() + ChatFormatting.RESET + RotationUtil.getFacing() : "" + RotationUtil.getFacing();
+                this.setWidth((int) FontUtil.getStringWidth(renderString));
+                this.setHeight((int) FontUtil.getStringHeight(renderString));
+                drawString(renderString);
                 break;
         }
-
     }
 
     public enum DirectionModes {
