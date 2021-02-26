@@ -76,6 +76,7 @@ public final class ModuleManager {
                 new HoleESP(),
                 new ItemTooltips(),
                 new SkyColour(),
+                new ThrowTrails(),
                 new ViewModel(),
                 new VoidESP(),
 

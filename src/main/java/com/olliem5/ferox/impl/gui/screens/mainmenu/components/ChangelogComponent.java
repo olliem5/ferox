@@ -18,8 +18,8 @@ public final class ChangelogComponent extends MainMenuComponent {
 
     public ChangelogComponent() {
         try {
-            URL changelogPaste = new URL("https://pastebin.com/raw/ts6V1vnb");
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(changelogPaste.openStream()));
+            URL changelog = new URL("https://raw.githubusercontent.com/olliem5/ferox-resources/master/changelog.txt");
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(changelog.openStream()));
 
             String line;
 
