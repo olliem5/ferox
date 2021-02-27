@@ -103,6 +103,7 @@ public final class ConfigUtil {
 
             moduleObject.add("Name", new JsonPrimitive(module.getName()));
             moduleObject.add("Enabled", new JsonPrimitive(module.isEnabled()));
+            moduleObject.add("Drawn", new JsonPrimitive(module.isDrawn()));
             moduleObject.add("Bind", new JsonPrimitive(module.getKey()));
 
             for (Setting<?> setting : module.getSettings()) {
@@ -359,7 +360,7 @@ public final class ConfigUtil {
             InputStream inputStream = Files.newInputStream(Paths.get("ferox/modules/" + module.getName() + ".json"));
             JsonObject moduleObject = new JsonParser().parse(new InputStreamReader(inputStream)).getAsJsonObject();
 
-            if (moduleObject.get("Name") == null || moduleObject.get("Enabled") == null || moduleObject.get("Bind") == null) continue;
+            if (moduleObject.get("Name") == null || moduleObject.get("Enabled") == null || moduleObject.get("Drawn") == null || moduleObject.get("Bind") == null) continue;
 
             JsonObject settingObject = moduleObject.get("Settings").getAsJsonObject();
             JsonObject subSettingObject = settingObject.get("SubSettings").getAsJsonObject();
@@ -831,6 +832,7 @@ public final class ConfigUtil {
             }
 
             module.setEnabled(moduleObject.get("Enabled").getAsBoolean());
+            module.setDrawn(moduleObject.get("Drawn").getAsBoolean());
             module.setKey((moduleObject.get("Bind").getAsInt()));
         }
     }
