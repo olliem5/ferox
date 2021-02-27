@@ -30,13 +30,13 @@ public class DirectionComponent extends Component {
 
         switch (directionMode.getValue()) {
             case Normal:
-                renderString = stringMode.getValue() == StringModes.Full ? "Direction " + ChatFormatting.WHITE + mc.player.getHorizontalFacing().getName() + ChatFormatting.RESET + RotationUtil.getFacing() : "Direction " + ChatFormatting.WHITE + ChatFormatting.RESET + RotationUtil.getFacing();
+                renderString = stringMode.getValue() == StringModes.Full ? "Direction " + ChatFormatting.WHITE + mc.player.getHorizontalFacing().getName().substring(0, 1).toUpperCase() + ChatFormatting.RESET + RotationUtil.getFacing() : "Direction " + ChatFormatting.WHITE + ChatFormatting.RESET + RotationUtil.getFacing();
                 this.setWidth((int) FontUtil.getStringWidth(renderString));
                 this.setHeight((int) FontUtil.getStringHeight(renderString));
                 drawString(renderString);
                 break;
             case Short:
-                renderString = stringMode.getValue() == StringModes.Full ? "" + mc.player.getHorizontalFacing().getName() + ChatFormatting.RESET + RotationUtil.getFacing() : "" + RotationUtil.getFacing();
+                renderString = stringMode.getValue() == StringModes.Full ? "" + mc.player.getHorizontalFacing().getName().substring(0, 1).toUpperCase() + ChatFormatting.RESET + RotationUtil.getFacing() : "" + RotationUtil.getFacing();
                 this.setWidth((int) FontUtil.getStringWidth(renderString));
                 this.setHeight((int) FontUtil.getStringHeight(renderString));
                 drawString(renderString);

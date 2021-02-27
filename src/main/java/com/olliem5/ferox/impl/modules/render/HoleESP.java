@@ -26,38 +26,38 @@ public final class HoleESP extends Module {
     public static final NumberSetting<Integer> holeRange = new NumberSetting<>("Hole Range", "The range to search for holes in", 1, 5, 10, 0);
 
     public static final Setting<Boolean> obsidian = new Setting<>("Obsidian Holes", "Allows obsidian holes to be rendered", true);
-    public static final Setting<RenderModes> obsidianRenderMode = new Setting<>(obsidian, "Render Mode", "The type of box to render", RenderModes.Full);
-    public static final NumberSetting<Double> obsidianBoxHeight = new NumberSetting<>(obsidian, "Box Height", "The height of the box", -1.0, -0.7, 2.0, 1);
-    public static final NumberSetting<Double> obsidianOutlineHeight = new NumberSetting<>(obsidian, "Outline Height", "The height of the outline", -1.0, -0.7, 2.0, 1);
-    public static final NumberSetting<Double> obsidianOutlineWidth = new NumberSetting<>(obsidian, "Outline Width", "The width of the outline", 1.0, 2.0, 5.0, 1);
+    public static final Setting<RenderModes> obsidianRenderMode = new Setting<>(obsidian, "O Render Mode", "The type of box to render", RenderModes.Full);
+    public static final NumberSetting<Double> obsidianBoxHeight = new NumberSetting<>(obsidian, "O Box Height", "The height of the box", -1.0, -0.7, 2.0, 1);
+    public static final NumberSetting<Double> obsidianOutlineHeight = new NumberSetting<>(obsidian, "O Outline Height", "The height of the outline", -1.0, -0.7, 2.0, 1);
+    public static final NumberSetting<Double> obsidianOutlineWidth = new NumberSetting<>(obsidian, "O Outline Width", "The width of the outline", 1.0, 2.0, 5.0, 1);
     public static final Setting<Color> obsidianHoleColour = new Setting<>(obsidian, "Obsidian Hole Colour", "The colour for obsidian holes", new Color(222, 38, 38, 169));
 
     public static final Setting<Boolean> bedrock = new Setting<>("Bedrock Holes", "Allows bedrock holes to be rendered", true);
-    public static final Setting<RenderModes> bedrockRenderMode = new Setting<>(bedrock, "Render Mode", "The type of box to render", RenderModes.Full);
-    public static final NumberSetting<Double> bedrockBoxHeight = new NumberSetting<>(bedrock, "Box Height", "The height of the box", -1.0, -0.7, 2.0, 1);
-    public static final NumberSetting<Double> bedrockOutlineHeight = new NumberSetting<>(bedrock, "Outline Height", "The height of the outline", -1.0, -0.7, 2.0, 1);
-    public static final NumberSetting<Double> bedrockOutlineWidth = new NumberSetting<>(bedrock, "Outline Width", "The width of the outline", 1.0, 2.0, 5.0, 1);
+    public static final Setting<RenderModes> bedrockRenderMode = new Setting<>(bedrock, "B Render Mode", "The type of box to render", RenderModes.Full);
+    public static final NumberSetting<Double> bedrockBoxHeight = new NumberSetting<>(bedrock, "B Box Height", "The height of the box", -1.0, -0.7, 2.0, 1);
+    public static final NumberSetting<Double> bedrockOutlineHeight = new NumberSetting<>(bedrock, "B Outline Height", "The height of the outline", -1.0, -0.7, 2.0, 1);
+    public static final NumberSetting<Double> bedrockOutlineWidth = new NumberSetting<>(bedrock, "B Outline Width", "The width of the outline", 1.0, 2.0, 5.0, 1);
     public static final Setting<Color> bedrockHoleColour = new Setting<>(bedrock, "Bedrock Hole Colour", "The colour for bedrock holes", new Color(61, 194, 46, 169));
 
     public static final Setting<Boolean> enderChest = new Setting<>("Ender Chest Holes", "Allows ender chest holes to be rendered", true);
-    public static final Setting<RenderModes> enderChestRenderMode = new Setting<>(enderChest, "Render Mode", "The type of box to render", RenderModes.Full);
-    public static final NumberSetting<Double> enderChestBoxHeight = new NumberSetting<>(enderChest, "Box Height", "The height of the box", -1.0, -0.7, 2.0, 1);
-    public static final NumberSetting<Double> enderChestOutlineHeight = new NumberSetting<>(enderChest, "Outline Height", "The height of the outline", -1.0, -0.7, 2.0, 1);
-    public static final NumberSetting<Double> enderChestOutlineWidth = new NumberSetting<>(enderChest, "Outline Width", "The width of the outline", 1.0, 2.0, 5.0, 1);
+    public static final Setting<RenderModes> enderChestRenderMode = new Setting<>(enderChest, "E Render Mode", "The type of box to render", RenderModes.Full);
+    public static final NumberSetting<Double> enderChestBoxHeight = new NumberSetting<>(enderChest, "E Box Height", "The height of the box", -1.0, -0.7, 2.0, 1);
+    public static final NumberSetting<Double> enderChestOutlineHeight = new NumberSetting<>(enderChest, "E Outline Height", "The height of the outline", -1.0, -0.7, 2.0, 1);
+    public static final NumberSetting<Double> enderChestOutlineWidth = new NumberSetting<>(enderChest, "E Outline Width", "The width of the outline", 1.0, 2.0, 5.0, 1);
     public static final Setting<Color> enderChestHoleColour = new Setting<>(enderChest, "Ender Chest Hole Colour", "The colour for ender chest holes", new Color(222, 38, 38, 169));
 
-    public static final Setting<Boolean> enchantingTable = new Setting<>("Enchanting Table Holes", "Allows enchanting table holes to be rendered", true);
-    public static final Setting<RenderModes> enchantingTableRenderMode = new Setting<>(enchantingTable, "Render Mode", "The type of box to render", RenderModes.Full);
-    public static final NumberSetting<Double> enchantingTableBoxHeight = new NumberSetting<>(enchantingTable, "Box Height", "The height of the box", -1.0, -0.7, 2.0, 1);
-    public static final NumberSetting<Double> enchantingTableOutlineHeight = new NumberSetting<>(enchantingTable, "Outline Height", "The height of the outline", -1.0, -0.7, 2.0, 1);
-    public static final NumberSetting<Double> enchantingTableOutlineWidth = new NumberSetting<>(enchantingTable, "Outline Width", "The width of the outline", 1.0, 2.0, 5.0, 1);
+    public static final Setting<Boolean> enchantingTable = new Setting<>("Enchant Table Holes", "Allows enchanting table holes to be rendered", true);
+    public static final Setting<RenderModes> enchantingTableRenderMode = new Setting<>(enchantingTable, "ET Render Mode", "The type of box to render", RenderModes.Full);
+    public static final NumberSetting<Double> enchantingTableBoxHeight = new NumberSetting<>(enchantingTable, "ET Box Height", "The height of the box", -1.0, -0.7, 2.0, 1);
+    public static final NumberSetting<Double> enchantingTableOutlineHeight = new NumberSetting<>(enchantingTable, "ET Outline Height", "The height of the outline", -1.0, -0.7, 2.0, 1);
+    public static final NumberSetting<Double> enchantingTableOutlineWidth = new NumberSetting<>(enchantingTable, "ET Outline Width", "The width of the outline", 1.0, 2.0, 5.0, 1);
     public static final Setting<Color> enchantingTableHoleColour = new Setting<>(enchantingTable, "Enchanting Table Hole Colour", "The colour for enchanting table holes", new Color(222, 38, 38, 169));
 
     public static final Setting<Boolean> anvil = new Setting<>("Anvil Holes", "Allows mixed holes to be rendered", true);
-    public static final Setting<RenderModes> anvilRenderMode = new Setting<>(anvil, "Render Mode", "The type of box to render", RenderModes.Full);
-    public static final NumberSetting<Double> anvilBoxHeight = new NumberSetting<>(anvil, "Box Height", "The height of the box", -1.0, -0.7, 2.0, 1);
-    public static final NumberSetting<Double> anvilOutlineHeight = new NumberSetting<>(anvil, "Outline Height", "The height of the outline", -1.0, -0.7, 2.0, 1);
-    public static final NumberSetting<Double> anvilOutlineWidth = new NumberSetting<>(anvil, "Outline Width", "The width of the outline", 1.0, 2.0, 5.0, 1);
+    public static final Setting<RenderModes> anvilRenderMode = new Setting<>(anvil, "A Render Mode", "The type of box to render", RenderModes.Full);
+    public static final NumberSetting<Double> anvilBoxHeight = new NumberSetting<>(anvil, "A Box Height", "The height of the box", -1.0, -0.7, 2.0, 1);
+    public static final NumberSetting<Double> anvilOutlineHeight = new NumberSetting<>(anvil, "A Outline Height", "The height of the outline", -1.0, -0.7, 2.0, 1);
+    public static final NumberSetting<Double> anvilOutlineWidth = new NumberSetting<>(anvil, "A Outline Width", "The width of the outline", 1.0, 2.0, 5.0, 1);
     public static final Setting<Color> anvilHoleColour = new Setting<>(anvil, "Anvil Hole Colour", "The colour for mixed holes", new Color(222, 38, 38, 169));
 
     public HoleESP() {

@@ -24,18 +24,16 @@ public final class GamemodeComponent extends Component {
     @Override
     public void render() {
         String renderString;
-        String gamemodeString = mc.playerController.getCurrentGameType().getName();
-        String gamemodeOutput = gamemodeString.substring(0, 1).toUpperCase();
 
         switch (gamemodeMode.getValue()) {
             case Normal:
-                renderString = "Gamemode " + ChatFormatting.WHITE + gamemodeOutput;
+                renderString = "Gamemode " + ChatFormatting.WHITE + mc.playerController.getCurrentGameType().getName().substring(0, 1).toUpperCase();
                 this.setWidth((int) FontUtil.getStringWidth(renderString));
                 this.setHeight((int) FontUtil.getStringHeight(renderString));
                 drawString(renderString);
                 break;
             case Short:
-                renderString = "" + ChatFormatting.WHITE + gamemodeOutput;
+                renderString = "" + ChatFormatting.WHITE + mc.playerController.getCurrentGameType().getName().substring(0, 1).toUpperCase();
                 this.setWidth((int) FontUtil.getStringWidth(renderString));
                 this.setHeight((int) FontUtil.getStringHeight(renderString));
                 drawString(renderString);
