@@ -6,8 +6,6 @@ import com.olliem5.ferox.api.component.FeroxComponent;
 import com.olliem5.ferox.api.setting.Setting;
 import com.olliem5.ferox.api.util.render.font.FontUtil;
 
-import java.util.Locale;
-
 /**
  * @author Manesko
  * @author olliem5

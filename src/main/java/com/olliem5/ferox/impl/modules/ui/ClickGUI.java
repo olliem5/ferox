@@ -6,6 +6,7 @@ import com.olliem5.ferox.api.module.Module;
 import com.olliem5.ferox.api.setting.NumberSetting;
 import com.olliem5.ferox.api.setting.Setting;
 import com.olliem5.ferox.impl.gui.screens.click.ClickGUIScreen;
+import net.minecraft.util.ResourceLocation;
 import org.lwjgl.input.Keyboard;
 
 /**
@@ -15,6 +16,7 @@ import org.lwjgl.input.Keyboard;
 @FeroxModule(name = "ClickGUI", description = "Opens Ferox's ClickGUI", category = Category.Interface, key = Keyboard.KEY_P)
 public final class ClickGUI extends Module {
     public static final Setting<ThemeModes> theme = new Setting<>("Theme", "The theme to use for the ClickGUI", ThemeModes.Default);
+    public static final Setting<BackgroundModes> backgroundMode = new Setting<>("Background", "The background to render when you are in the ClickGUI", BackgroundModes.Blur);
     public static final Setting<Boolean> windowOverflow = new Setting<>("Window Overflow", "Allows windows to go over the screen", false);
     public static final NumberSetting<Integer> scrollSpeed = new NumberSetting<>("Scroll Speed", "Speed to scroll the windows at", 0, 10, 20, 0);
 
@@ -31,6 +33,7 @@ public final class ClickGUI extends Module {
     public ClickGUI() {
         this.addSettings(
                 theme,
+                backgroundMode,
                 windowOverflow,
                 scrollSpeed,
                 descriptions,
@@ -50,11 +53,23 @@ public final class ClickGUI extends Module {
             clickGUI = new ClickGUIScreen();
         }
 
+        if (backgroundMode.getValue() == BackgroundModes.Blur) {
+            mc.entityRenderer.loadShader(new ResourceLocation("shaders/post/blur.json"));
+        }
+
         mc.displayGuiScreen(clickGUI);
+
+        this.toggle();
     }
 
     public enum ThemeModes {
         Default
+    }
+
+    public enum BackgroundModes {
+        Blur,
+        Vanilla,
+        None
     }
 
     public enum NameModes {
@@ -64,7 +79,8 @@ public final class ClickGUI extends Module {
 
     public enum IndicatorModes {
         Shrink,
-        Stay
+        Stay,
+        None
     }
 
     public enum PauseModes {

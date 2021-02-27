@@ -1,6 +1,5 @@
 package com.olliem5.ferox.impl.gui.screens.click;
 
-import com.olliem5.ferox.api.module.ModuleManager;
 import com.olliem5.ferox.api.util.client.ConfigUtil;
 import com.olliem5.ferox.api.util.render.gui.GuiUtil;
 import com.olliem5.ferox.impl.modules.ui.ClickGUI;
@@ -17,6 +16,10 @@ public final class ClickGUIScreen extends GuiScreen {
 	@Override
 	public void drawScreen(int mouseX, int mouseY, float partialTicks) {
 		super.drawScreen(mouseX, mouseY, partialTicks);
+
+		if (ClickGUI.backgroundMode.getValue() == ClickGUI.BackgroundModes.Vanilla) {
+			this.drawDefaultBackground();
+		}
 
 		for (ClickGUIWindow window : ClickGUIWindow.windows) {
 			window.drawGui(mouseX, mouseY);
@@ -68,7 +71,9 @@ public final class ClickGUIScreen extends GuiScreen {
 
 	@Override
 	public void onGuiClosed() {
-		ModuleManager.getModuleByName("ClickGUI").setEnabled(false);
+		//TODO Fix when from going here to the HUDEditor with it's blur on it doesn't load
+		mc.entityRenderer.getShaderGroup().deleteShaderGroup();
+
 		ConfigUtil.saveConfig();
 	}
 	

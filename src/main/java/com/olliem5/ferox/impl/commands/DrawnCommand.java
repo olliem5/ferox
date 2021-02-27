@@ -3,7 +3,6 @@ package com.olliem5.ferox.impl.commands;
 import com.mojang.realmsclient.gui.ChatFormatting;
 import com.olliem5.ferox.api.module.Module;
 import com.olliem5.ferox.api.module.ModuleManager;
-import com.olliem5.ferox.api.util.client.ConfigUtil;
 import com.olliem5.ferox.api.util.client.MessageUtil;
 import me.yagel15637.venture.command.AbstractCommand;
 

@@ -76,10 +76,12 @@ public final class DefaultTheme extends Theme {
 				}
 
 				if (module.hasSettings()) {
-					if (ClickGUI.indicatorMode.getValue() == ClickGUI.IndicatorModes.Shrink) {
-						FontUtil.drawText("...", (x + width) - 11, y + height + 3 + (boost * height), -1);
-					} else {
-						FontUtil.drawText("...", (x + width) - 10, y + height + 3 + (boost * height), -1);
+					if (ClickGUI.indicatorMode.getValue() != ClickGUI.IndicatorModes.None) {
+						if (ClickGUI.indicatorMode.getValue() == ClickGUI.IndicatorModes.Shrink) {
+							FontUtil.drawText("...", (x + width) - 11, y + height + 3 + (boost * height), -1);
+						} else {
+							FontUtil.drawText("...", (x + width) - 10, y + height + 3 + (boost * height), -1);
+						}
 					}
 				}
 
@@ -89,8 +91,10 @@ public final class DefaultTheme extends Theme {
 			} else {
 				FontUtil.drawText(module.getName(), x + 2, y + height + 4 + (boost * height), -1);
 
-				if (module.hasSettings()) {
-					FontUtil.drawText("...", (x + width) - 10, y + height + 3 + (boost * height), -1);
+				if (ClickGUI.indicatorMode.getValue() != ClickGUI.IndicatorModes.None) {
+					if (module.hasSettings()) {
+						FontUtil.drawText("...", (x + width) - 10, y + height + 3 + (boost * height), -1);
+					}
 				}
 			}
 
@@ -141,10 +145,12 @@ public final class DefaultTheme extends Theme {
 				}
 
 				if (component.hasSettings()) {
-					if (HUDEditor.indicatorMode.getValue() == HUDEditor.IndicatorModes.Shrink) {
-						FontUtil.drawText("...", (x + width) - 11, y + height + 3 + (boost * height), -1);
-					} else {
-						FontUtil.drawText("...", (x + width) - 10, y + height + 3 + (boost * height), -1);
+					if (HUDEditor.indicatorMode.getValue() != HUDEditor.IndicatorModes.None) {
+						if (HUDEditor.indicatorMode.getValue() == HUDEditor.IndicatorModes.Shrink) {
+							FontUtil.drawText("...", (x + width) - 11, y + height + 3 + (boost * height), -1);
+						} else {
+							FontUtil.drawText("...", (x + width) - 10, y + height + 3 + (boost * height), -1);
+						}
 					}
 				}
 
@@ -155,7 +161,9 @@ public final class DefaultTheme extends Theme {
 				FontUtil.drawText(component.getName(), x + 2, y + height + 4 + (boost * height), -1);
 
 				if (component.hasSettings()) {
-					FontUtil.drawText("...", (x + width) - 10, y + height + 3 + (boost * height), -1);
+					if (HUDEditor.indicatorMode.getValue() != HUDEditor.IndicatorModes.None) {
+						FontUtil.drawText("...", (x + width) - 10, y + height + 3 + (boost * height), -1);
+					}
 				}
 			}
 
@@ -364,10 +372,12 @@ public final class DefaultTheme extends Theme {
 						FontUtil.drawText(setting.getName(), x + 4, (y + height) + 3 + (boost * height), -1);
 					}
 
-					if (ClickGUI.indicatorMode.getValue() == ClickGUI.IndicatorModes.Shrink) {
-						FontUtil.drawText("...", (x + width) - 11, y + height + 3 + (boost * height), -1);
-					} else {
-						FontUtil.drawText("...", (x + width) - 10, y + height + 3 + (boost * height), -1);
+					if (ClickGUI.indicatorMode.getValue() != ClickGUI.IndicatorModes.None) {
+						if (ClickGUI.indicatorMode.getValue() == ClickGUI.IndicatorModes.Shrink) {
+							FontUtil.drawText("...", (x + width) - 11, y + height + 3 + (boost * height), -1);
+						} else {
+							FontUtil.drawText("...", (x + width) - 10, y + height + 3 + (boost * height), -1);
+						}
 					}
 				} else {
 					if (HUDEditor.nameMode.getValue() == HUDEditor.NameModes.Shrink) {
@@ -376,15 +386,22 @@ public final class DefaultTheme extends Theme {
 						FontUtil.drawText(setting.getName(), x + 4, (y + height) + 3 + (boost * height), -1);
 					}
 
-					if (HUDEditor.indicatorMode.getValue() == HUDEditor.IndicatorModes.Shrink) {
-						FontUtil.drawText("...", (x + width) - 11, y + height + 3 + (boost * height), -1);
-					} else {
-						FontUtil.drawText("...", (x + width) - 10, y + height + 3 + (boost * height), -1);
+					if (HUDEditor.indicatorMode.getValue() != HUDEditor.IndicatorModes.None) {
+						if (HUDEditor.indicatorMode.getValue() == HUDEditor.IndicatorModes.Shrink) {
+							FontUtil.drawText("...", (x + width) - 11, y + height + 3 + (boost * height), -1);
+						} else {
+							FontUtil.drawText("...", (x + width) - 10, y + height + 3 + (boost * height), -1);
+						}
 					}
 				}
 			} else {
 				FontUtil.drawText(setting.getName(), x + 4, (y + height) + 3 + (boost * height), -1);
-				FontUtil.drawText("...", (x + width) - 10, y + height + 3 + (boost * height), -1);
+
+				if (!hud && ClickGUI.indicatorMode.getValue() != ClickGUI.IndicatorModes.None) {
+					FontUtil.drawText("...", (x + width) - 10, y + height + 3 + (boost * height), -1);
+				} else if (hud && HUDEditor.indicatorMode.getValue() != HUDEditor.IndicatorModes.None) {
+					FontUtil.drawText("...", (x + width) - 10, y + height + 3 + (boost * height), -1);
+				}
 			}
 		} else {
 			FontUtil.drawText(setting.getName(), x + 4, (y + height) + 3 + (boost * height), -1);
@@ -455,10 +472,12 @@ public final class DefaultTheme extends Theme {
 						FontUtil.drawText(setting.getName() + ChatFormatting.GRAY + " " + setting.getValue(), x + 5, (y + height) + 3 + (boost * height), -1);
 					}
 
-					if (ClickGUI.indicatorMode.getValue() == ClickGUI.IndicatorModes.Shrink) {
-						FontUtil.drawText("...", (x + width) - 11, y + height + 3 + (boost * height), -1);
-					} else {
-						FontUtil.drawText("...", (x + width) - 10, y + height + 3 + (boost * height), -1);
+					if (ClickGUI.indicatorMode.getValue() != ClickGUI.IndicatorModes.None) {
+						if (ClickGUI.indicatorMode.getValue() == ClickGUI.IndicatorModes.Shrink) {
+							FontUtil.drawText("...", (x + width) - 11, y + height + 3 + (boost * height), -1);
+						} else {
+							FontUtil.drawText("...", (x + width) - 10, y + height + 3 + (boost * height), -1);
+						}
 					}
 				} else {
 					if (HUDEditor.nameMode.getValue() == HUDEditor.NameModes.Shrink) {
@@ -467,15 +486,22 @@ public final class DefaultTheme extends Theme {
 						FontUtil.drawText(setting.getName() + ChatFormatting.GRAY + " " + setting.getValue(), x + 5, (y + height) + 3 + (boost * height), -1);
 					}
 
-					if (HUDEditor.indicatorMode.getValue() == HUDEditor.IndicatorModes.Shrink) {
-						FontUtil.drawText("...", (x + width) - 11, y + height + 3 + (boost * height), -1);
-					} else {
-						FontUtil.drawText("...", (x + width) - 10, y + height + 3 + (boost * height), -1);
+					if (HUDEditor.indicatorMode.getValue() != HUDEditor.IndicatorModes.None) {
+						if (HUDEditor.indicatorMode.getValue() == HUDEditor.IndicatorModes.Shrink) {
+							FontUtil.drawText("...", (x + width) - 11, y + height + 3 + (boost * height), -1);
+						} else {
+							FontUtil.drawText("...", (x + width) - 10, y + height + 3 + (boost * height), -1);
+						}
 					}
 				}
 			} else {
 				FontUtil.drawText(setting.getName() + ChatFormatting.GRAY + " " + setting.getValue(), x + 4, (y + height) + 3 + (boost * height), -1);
-				FontUtil.drawText("...", (x + width) - 10, y + height + 3 + (boost * height), -1);
+
+				if (!hud && ClickGUI.indicatorMode.getValue() != ClickGUI.IndicatorModes.None) {
+					FontUtil.drawText("...", (x + width) - 10, y + height + 3 + (boost * height), -1);
+				} else if (hud && HUDEditor.indicatorMode.getValue() != HUDEditor.IndicatorModes.None) {
+					FontUtil.drawText("...", (x + width) - 10, y + height + 3 + (boost * height), -1);
+				}
 			}
 		} else {
 			FontUtil.drawText(setting.getName() + ChatFormatting.GRAY + " " + setting.getValue(), x + 4, (y + height) + 3 + (boost * height), -1);
@@ -546,10 +572,12 @@ public final class DefaultTheme extends Theme {
 						FontUtil.drawText(setting.getName() + ChatFormatting.GRAY + " " + setting.getValue(), x + 5, (y + height) + 3 + (boost * height), -1);
 					}
 
-					if (ClickGUI.indicatorMode.getValue() == ClickGUI.IndicatorModes.Shrink) {
-						FontUtil.drawText("...", (x + width) - 11, y + height + 3 + (boost * height), -1);
-					} else {
-						FontUtil.drawText("...", (x + width) - 10, y + height + 3 + (boost * height), -1);
+					if (ClickGUI.indicatorMode.getValue() != ClickGUI.IndicatorModes.None) {
+						if (ClickGUI.indicatorMode.getValue() == ClickGUI.IndicatorModes.Shrink) {
+							FontUtil.drawText("...", (x + width) - 11, y + height + 3 + (boost * height), -1);
+						} else {
+							FontUtil.drawText("...", (x + width) - 10, y + height + 3 + (boost * height), -1);
+						}
 					}
 				} else {
 					if (HUDEditor.nameMode.getValue() == HUDEditor.NameModes.Shrink) {
@@ -558,15 +586,22 @@ public final class DefaultTheme extends Theme {
 						FontUtil.drawText(setting.getName() + ChatFormatting.GRAY + " " + setting.getValue(), x + 5, (y + height) + 3 + (boost * height), -1);
 					}
 
-					if (HUDEditor.indicatorMode.getValue() == HUDEditor.IndicatorModes.Shrink) {
-						FontUtil.drawText("...", (x + width) - 11, y + height + 3 + (boost * height), -1);
-					} else {
-						FontUtil.drawText("...", (x + width) - 10, y + height + 3 + (boost * height), -1);
+					if (HUDEditor.indicatorMode.getValue() != HUDEditor.IndicatorModes.None) {
+						if (HUDEditor.indicatorMode.getValue() == HUDEditor.IndicatorModes.Shrink) {
+							FontUtil.drawText("...", (x + width) - 11, y + height + 3 + (boost * height), -1);
+						} else {
+							FontUtil.drawText("...", (x + width) - 10, y + height + 3 + (boost * height), -1);
+						}
 					}
 				}
 			} else {
 				FontUtil.drawText(setting.getName() + ChatFormatting.GRAY + " " + setting.getValue(), x + 4, (y + height) + 3 + (boost * height), -1);
-				FontUtil.drawText("...", (x + width) - 10, y + height + 3 + (boost * height), -1);
+
+				if (!hud && ClickGUI.indicatorMode.getValue() != ClickGUI.IndicatorModes.None) {
+					FontUtil.drawText("...", (x + width) - 10, y + height + 3 + (boost * height), -1);
+				} else if (hud && HUDEditor.indicatorMode.getValue() != HUDEditor.IndicatorModes.None) {
+					FontUtil.drawText("...", (x + width) - 10, y + height + 3 + (boost * height), -1);
+				}
 			}
 		} else {
 			FontUtil.drawText(setting.getName() + ChatFormatting.GRAY + " " + setting.getValue(), x + 4, (y + height) + 3 + (boost * height), -1);
@@ -645,10 +680,12 @@ public final class DefaultTheme extends Theme {
 						FontUtil.drawText(setting.getName() + ChatFormatting.GRAY + " " + setting.getValue(), x + 5, (y + height) + 3 + (boost * height), -1);
 					}
 
-					if (ClickGUI.indicatorMode.getValue() == ClickGUI.IndicatorModes.Shrink) {
-						FontUtil.drawText("...", (x + width) - 11, y + height + 3 + (boost * height), -1);
-					} else {
-						FontUtil.drawText("...", (x + width) - 10, y + height + 3 + (boost * height), -1);
+					if (ClickGUI.indicatorMode.getValue() != ClickGUI.IndicatorModes.None) {
+						if (ClickGUI.indicatorMode.getValue() == ClickGUI.IndicatorModes.Shrink) {
+							FontUtil.drawText("...", (x + width) - 11, y + height + 3 + (boost * height), -1);
+						} else {
+							FontUtil.drawText("...", (x + width) - 10, y + height + 3 + (boost * height), -1);
+						}
 					}
 				} else {
 					if (HUDEditor.nameMode.getValue() == HUDEditor.NameModes.Shrink) {
@@ -657,15 +694,22 @@ public final class DefaultTheme extends Theme {
 						FontUtil.drawText(setting.getName() + ChatFormatting.GRAY + " " + setting.getValue(), x + 5, (y + height) + 3 + (boost * height), -1);
 					}
 
-					if (HUDEditor.indicatorMode.getValue() == HUDEditor.IndicatorModes.Shrink) {
-						FontUtil.drawText("...", (x + width) - 11, y + height + 3 + (boost * height), -1);
-					} else {
-						FontUtil.drawText("...", (x + width) - 10, y + height + 3 + (boost * height), -1);
+					if (HUDEditor.indicatorMode.getValue() != HUDEditor.IndicatorModes.None) {
+						if (HUDEditor.indicatorMode.getValue() == HUDEditor.IndicatorModes.Shrink) {
+							FontUtil.drawText("...", (x + width) - 11, y + height + 3 + (boost * height), -1);
+						} else {
+							FontUtil.drawText("...", (x + width) - 10, y + height + 3 + (boost * height), -1);
+						}
 					}
 				}
 			} else {
 				FontUtil.drawText(setting.getName() + ChatFormatting.GRAY + " " + setting.getValue(), x + 4, (y + height) + 3 + (boost * height), -1);
-				FontUtil.drawText("...", (x + width) - 10, y + height + 3 + (boost * height), -1);
+
+				if (!hud && ClickGUI.indicatorMode.getValue() != ClickGUI.IndicatorModes.None) {
+					FontUtil.drawText("...", (x + width) - 10, y + height + 3 + (boost * height), -1);
+				} else if (hud && HUDEditor.indicatorMode.getValue() != HUDEditor.IndicatorModes.None) {
+					FontUtil.drawText("...", (x + width) - 10, y + height + 3 + (boost * height), -1);
+				}
 			}
 		} else {
 			FontUtil.drawText(setting.getName() + ChatFormatting.GRAY + " " + setting.getValue(), x + 4, (y + height) + 3 + (boost * height), -1);
@@ -744,10 +788,12 @@ public final class DefaultTheme extends Theme {
 						FontUtil.drawText(setting.getName() + ChatFormatting.GRAY + " " + setting.getValue(), x + 5, (y + height) + 3 + (boost * height), -1);
 					}
 
-					if (ClickGUI.indicatorMode.getValue() == ClickGUI.IndicatorModes.Shrink) {
-						FontUtil.drawText("...", (x + width) - 11, y + height + 3 + (boost * height), -1);
-					} else {
-						FontUtil.drawText("...", (x + width) - 10, y + height + 3 + (boost * height), -1);
+					if (ClickGUI.indicatorMode.getValue() != ClickGUI.IndicatorModes.None) {
+						if (ClickGUI.indicatorMode.getValue() == ClickGUI.IndicatorModes.Shrink) {
+							FontUtil.drawText("...", (x + width) - 11, y + height + 3 + (boost * height), -1);
+						} else {
+							FontUtil.drawText("...", (x + width) - 10, y + height + 3 + (boost * height), -1);
+						}
 					}
 				} else {
 					if (HUDEditor.nameMode.getValue() == HUDEditor.NameModes.Shrink) {
@@ -756,15 +802,22 @@ public final class DefaultTheme extends Theme {
 						FontUtil.drawText(setting.getName() + ChatFormatting.GRAY + " " + setting.getValue(), x + 5, (y + height) + 3 + (boost * height), -1);
 					}
 
-					if (HUDEditor.indicatorMode.getValue() == HUDEditor.IndicatorModes.Shrink) {
-						FontUtil.drawText("...", (x + width) - 11, y + height + 3 + (boost * height), -1);
-					} else {
-						FontUtil.drawText("...", (x + width) - 10, y + height + 3 + (boost * height), -1);
+					if (HUDEditor.indicatorMode.getValue() != HUDEditor.IndicatorModes.None) {
+						if (HUDEditor.indicatorMode.getValue() == HUDEditor.IndicatorModes.Shrink) {
+							FontUtil.drawText("...", (x + width) - 11, y + height + 3 + (boost * height), -1);
+						} else {
+							FontUtil.drawText("...", (x + width) - 10, y + height + 3 + (boost * height), -1);
+						}
 					}
 				}
 			} else {
 				FontUtil.drawText(setting.getName() + ChatFormatting.GRAY + " " + setting.getValue(), x + 4, (y + height) + 3 + (boost * height), -1);
-				FontUtil.drawText("...", (x + width) - 10, y + height + 3 + (boost * height), -1);
+
+				if (!hud && ClickGUI.indicatorMode.getValue() != ClickGUI.IndicatorModes.None) {
+					FontUtil.drawText("...", (x + width) - 10, y + height + 3 + (boost * height), -1);
+				} else if (hud && HUDEditor.indicatorMode.getValue() != HUDEditor.IndicatorModes.None) {
+					FontUtil.drawText("...", (x + width) - 10, y + height + 3 + (boost * height), -1);
+				}
 			}
 		} else {
 			FontUtil.drawText(setting.getName() + ChatFormatting.GRAY + " " + setting.getValue(), x + 4, (y + height) + 3 + (boost * height), -1);
