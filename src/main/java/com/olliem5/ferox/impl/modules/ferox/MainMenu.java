@@ -11,11 +11,17 @@ import com.olliem5.ferox.api.setting.Setting;
 
 @FeroxModule(name = "MainMenu", description = "Allows Ferox's custom main menu GUI to function", category = Category.Ferox)
 public final class MainMenu extends Module {
-    public static final Setting<Boolean> logo = new Setting<>("Logo", "Renders a logo on the main menu", true);
+    public static final Setting<Boolean> logo = new Setting<>("Logo", "Renders the logo on the main menu", true);
+    public static final Setting<Boolean> changelog = new Setting<>("Changelog", "Renders the changelog on the main menu", true);
+    public static final Setting<Boolean> mouseBackground = new Setting<>("Mouse Background", "Makes the background render based on your mouse position", true);
 
     public MainMenu() {
         this.addSettings(
-                logo
+                logo,
+                changelog,
+                mouseBackground
         );
+
+        this.setEnabled(true);
     }
 }

@@ -6,10 +6,10 @@ import com.olliem5.ferox.api.util.render.font.FontUtil;
 import com.olliem5.ferox.api.util.render.gui.GuiUtil;
 import com.olliem5.ferox.impl.gui.screens.mainmenu.components.ChangelogComponent;
 import com.olliem5.ferox.impl.gui.screens.mainmenu.components.LogoComponent;
-import net.minecraft.client.gui.Gui;
-import net.minecraft.client.gui.GuiMultiplayer;
-import net.minecraft.client.gui.GuiScreen;
+import com.olliem5.ferox.impl.modules.ferox.MainMenu;
+import net.minecraft.client.gui.*;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.client.GuiModList;
 
 import java.awt.*;
 import java.io.IOException;
@@ -40,13 +40,18 @@ public final class FeroxGuiMainMenu extends GuiScreen {
         float yOffset = -1.0f * ((mouseY - height / 2.0f) / (height / 32.0f));
 
         mc.getTextureManager().bindTexture(backgroundImage);
-        DrawUtil.drawCompleteImage(-16.0f + xOffset, -16.0f + yOffset, width + 32.0f, height + 32.0f);
 
-        drawGUIButton("Mods", (int) (width / 2 - (FontUtil.getStringWidth("Singleplayer") * 4) - 4), height / 2);
-        drawGUIButton("Singleplayer", (int) (width / 2 - (FontUtil.getStringWidth("Multiplayer") * 2) - 4), height / 2);
+        if (MainMenu.mouseBackground.getValue()) {
+            DrawUtil.drawCompleteImage(-16.0f + xOffset, -16.0f + yOffset, width + 32.0f, height + 32.0f);
+        } else {
+            DrawUtil.drawCompleteImage(-16.0f, -16.0f, width + 16.0f, height + 16.0f);
+        }
+
+        drawGUIButton("Mods", width / 2 - 62, height / 2);
+        drawGUIButton("Singleplayer", width / 2 - 124, height / 2);
         drawGUIButton("Multiplayer", width / 2, height / 2);
-        drawGUIButton("Options", (int) (width / 2 + (FontUtil.getStringWidth("Multiplayer") * 2) + 4), height / 2);
-        drawGUIButton("Quit", (int) (width / 2 + (FontUtil.getStringWidth("Options") * 4) + 4), height / 2);
+        drawGUIButton("Options", width / 2 + 62, height / 2);
+        drawGUIButton("Quit", width / 2 + 124, height / 2);
 
         for (MainMenuComponent mainMenuComponent : mainMenuComponents) {
             mainMenuComponent.renderComponent(mouseX, mouseY);
@@ -58,17 +63,17 @@ public final class FeroxGuiMainMenu extends GuiScreen {
     private void drawGUIButton(String text, int x, int y) {
         boolean mouseOver = false;
 
-        if (GuiUtil.mouseOver(x - (int) (FontUtil.getStringWidth(text)), (int) (y - FontUtil.getStringHeight(text)), (x + (int) (FontUtil.getStringWidth(text))), (int) (y + (FontUtil.getStringHeight(text) * 2)))) {
+        if (GuiUtil.mouseOver(x - 30, y - 15, x + 30, y + 15)) {
             mouseOver = true;
         }
 
         if (!mouseOver) {
-            Gui.drawRect(x - (int) (FontUtil.getStringWidth(text)), (int) (y - FontUtil.getStringHeight(text)), (x + (int) (FontUtil.getStringWidth(text))), (int) (y + (FontUtil.getStringHeight(text) * 2)), new Color(20, 20, 20, 125).getRGB());
+            Gui.drawRect(x - 30, y - 15, x + 30, y + 15, new Color(20, 20, 20, 125).getRGB());
         } else {
-            Gui.drawRect(x - (int) (FontUtil.getStringWidth(text)), (int) (y - FontUtil.getStringHeight(text)), (x + (int) (FontUtil.getStringWidth(text))), (int) (y + (FontUtil.getStringHeight(text) * 2)), new Color(40, 40, 40, 125).getRGB());
+            Gui.drawRect(x - 30, y - 15, x + 30, y + 15, new Color(40, 40, 40, 125).getRGB());
         }
 
-        FontUtil.drawText(text, x - FontUtil.getStringWidth(text) / 2, y, -1);
+        FontUtil.drawText(text, x - (FontUtil.getStringWidth(text) / 2), y - (FontUtil.getStringHeight(text) / 2), -1);
     }
 
     @Override
@@ -76,8 +81,24 @@ public final class FeroxGuiMainMenu extends GuiScreen {
         super.mouseClicked(mouseX, mouseY, mouseButton);
 
         if (mouseButton == 0) {
-            if (GuiUtil.mouseOver((width / 2) - (int) (FontUtil.getStringWidth("Multiplayer")), (int) ((height / 2) - FontUtil.getStringHeight("Multiplayer")), ((width / 2) + (int) (FontUtil.getStringWidth("Multiplayer"))), (int) ((height / 2) + (FontUtil.getStringHeight("Multiplayer") * 2)))) {
+            if (GuiUtil.mouseOver((width / 2 - 62) - 30, (height / 2) - 15, (width / 2 - 62) + 30, (height / 2) + 15)) {
+                mc.displayGuiScreen(new GuiModList(this));
+            }
+
+            if (GuiUtil.mouseOver((width / 2 - 124) - 30, (height / 2) - 15, (width / 2 - 124) + 30, (height / 2) + 15)) {
+                mc.displayGuiScreen(new GuiWorldSelection(this));
+            }
+
+            if (GuiUtil.mouseOver((width / 2) - 30, (height / 2) - 15, (width / 2) + 30, (height / 2) + 15)) {
                 mc.displayGuiScreen(new GuiMultiplayer(this));
+            }
+
+            if (GuiUtil.mouseOver((width / 2 + 62) - 30, (height / 2) - 15, (width / 2 + 62) + 30, (height / 2) + 15)) {
+                mc.displayGuiScreen(new GuiOptions(this, mc.gameSettings));
+            }
+
+            if (GuiUtil.mouseOver((width / 2 + 124) - 30, (height / 2) - 15, (width / 2 + 124) + 30, (height / 2) + 15)) {
+                mc.shutdown();
             }
 
             for (MainMenuComponent mainMenuComponent : mainMenuComponents) {

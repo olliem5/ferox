@@ -3,6 +3,7 @@ package com.olliem5.ferox.impl.gui.screens.mainmenu.components;
 import com.olliem5.ferox.Ferox;
 import com.olliem5.ferox.api.util.render.font.FontUtil;
 import com.olliem5.ferox.impl.gui.screens.mainmenu.MainMenuComponent;
+import com.olliem5.ferox.impl.modules.ferox.MainMenu;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -35,12 +36,14 @@ public final class ChangelogComponent extends MainMenuComponent {
 
     @Override
     public void renderComponent(int mouseX, int mouseY) {
-        boost = 0;
+        if (MainMenu.changelog.getValue()) {
+            boost = 0;
 
-        changelogLines.forEach(changelogLine -> {
-            FontUtil.drawText(changelogLine, 2, 4 + FontUtil.getStringHeight(Ferox.NAME_VERSION) + (FontUtil.getStringHeight(changelogLine) * boost), -1);
+            changelogLines.forEach(changelogLine -> {
+                FontUtil.drawText(changelogLine, 2, (4 + FontUtil.getStringHeight(Ferox.NAME_VERSION)) + (10 * boost), -1);
 
-            boost++;
-        });
+                boost++;
+            });
+        }
     }
 }
