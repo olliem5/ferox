@@ -3,6 +3,7 @@ package com.olliem5.ferox.impl.modules.render;
 import com.olliem5.ferox.api.module.Category;
 import com.olliem5.ferox.api.module.FeroxModule;
 import com.olliem5.ferox.api.module.Module;
+import com.olliem5.ferox.api.setting.NumberSetting;
 import com.olliem5.ferox.api.setting.Setting;
 import com.olliem5.ferox.api.util.render.draw.RenderUtil;
 import com.olliem5.pace.annotation.PaceHandler;
@@ -24,11 +25,15 @@ import java.util.List;
 
 @FeroxModule(name = "ThrowTrails", description = "Shows where thrown entities are going", category = Category.Render)
 public final class ThrowTrails extends Module {
+    public static final NumberSetting<Double> stayTime = new NumberSetting<>("Stay Time", "The time it takes for a trail to disappear", 0.0, 10.0, 30.0, 1);
+
     public static final Setting<Boolean> enderpearls = new Setting<>("Enderpearls", "Draws a trail on enderpearls", true);
+    public static final NumberSetting<Double> enderpearlWidth = new NumberSetting<>(enderpearls, "Width", "The width of the enderpearl line", 1.0, 3.0, 5.0, 1);
     public static final Setting<Color> enderpearlColour = new Setting<>(enderpearls, "Enderpearl Colour", "The colour to render enderpearl trails with", new Color(205, 50, 197, 245));
 
     public ThrowTrails() {
         this.addSettings(
+                stayTime,
                 enderpearls
         );
     }
@@ -44,11 +49,11 @@ public final class ThrowTrails extends Module {
         while (iterator.hasNext()) {
             Map.Entry<UUID, Double> uuidDoubleEntry = (Map.Entry) iterator.next();
 
-            if (uuidDoubleEntry.getValue() <= 0.0D) {
+            if (uuidDoubleEntry.getValue() <= 0.0) {
                 this.poses.remove(uuidDoubleEntry.getKey());
                 this.time.remove(uuidDoubleEntry.getKey());
             } else {
-                this.time.replace(uuidDoubleEntry.getKey(), uuidDoubleEntry.getValue() - 0.05D);
+                this.time.replace(uuidDoubleEntry.getKey(), uuidDoubleEntry.getValue() - 0.05);
             }
         }
 
@@ -66,9 +71,9 @@ public final class ThrowTrails extends Module {
 
                 if (!this.poses.containsKey(entity.getUniqueID())) {
                     this.poses.put(entity.getUniqueID(), new ArrayList<>(Collections.singletonList(entity.getPositionVector())));
-                    this.time.put(entity.getUniqueID(), 10.0);
+                    this.time.put(entity.getUniqueID(), stayTime.getValue());
                 } else {
-                    this.time.replace(entity.getUniqueID(), 10.0);
+                    this.time.replace(entity.getUniqueID(), stayTime.getValue());
 
                     List<Vec3d> vec3ds = this.poses.get(entity.getUniqueID());
                     vec3ds.add(entity.getPositionVector());
@@ -78,12 +83,10 @@ public final class ThrowTrails extends Module {
     }
 
     @PaceHandler
-    public void onRender(RenderWorldLastEvent event) {
+    public void onRenderWorldLast(RenderWorldLastEvent event) {
         if (nullCheck()) return;
 
         RenderUtil.prepareGL();
-
-        GL11.glLineWidth(2.5f);
 
         Iterator iterator = this.poses.entrySet().iterator();
 
@@ -103,6 +106,7 @@ public final class ThrowTrails extends Module {
 
             GL11.glBegin(1);
 
+            GL11.glLineWidth(enderpearlWidth.getValue().floatValue());
             GL11.glColor4f(enderpearlColour.getValue().getRed() / 255.0f, enderpearlColour.getValue().getGreen() / 255.0f, enderpearlColour.getValue().getBlue() / 255.0f, enderpearlColour.getValue().getAlpha() / 255.0f);
 
             for (int i = 1; i < ((List) entry.getValue()).size(); ++i) {

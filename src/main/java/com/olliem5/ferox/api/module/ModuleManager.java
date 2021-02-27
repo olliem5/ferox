@@ -7,7 +7,6 @@ import com.olliem5.ferox.impl.modules.miscellaneous.*;
 import com.olliem5.ferox.impl.modules.movement.*;
 import com.olliem5.ferox.impl.modules.render.*;
 import com.olliem5.ferox.impl.modules.ui.ClickGUI;
-import com.olliem5.ferox.impl.modules.ui.Console;
 import com.olliem5.ferox.impl.modules.ui.HUDEditor;
 
 import java.util.ArrayList;
@@ -91,7 +90,6 @@ public final class ModuleManager {
 
                 //Interface
                 new ClickGUI(),
-                new Console(),
                 new HUDEditor()
         ));
     }

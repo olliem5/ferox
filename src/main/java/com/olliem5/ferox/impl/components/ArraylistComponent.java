@@ -19,10 +19,12 @@ import java.util.Comparator;
 @FeroxComponent(name = "Arraylist", description = "Shows you what modules you have enabled")
 public final class ArraylistComponent extends Component {
     public static final Setting<SortModes> sortMode = new Setting<>("Sort", "The way of sorting the modules", SortModes.Down);
+    public static final Setting<Boolean> extraInfo = new Setting<>("Extra Info", "Shows the extra info after the modue name (if the module has it)", true);
 
     public ArraylistComponent() {
         this.addSettings(
-                sortMode
+                sortMode,
+                extraInfo
         );
     }
 
@@ -47,9 +49,10 @@ public final class ArraylistComponent extends Component {
     private void renderLeft() {
         ModuleManager.getModules().stream()
                 .filter(Module::isEnabled)
-                .sorted(Comparator.comparing(module -> FontUtil.getStringWidth(module.getName() + " " + module.getArraylistInfo()) * (sortMode.getValue() == SortModes.Down ? (-1) : 1)))
+                .filter(Module::isDrawn)
+                .sorted(Comparator.comparing(module -> FontUtil.getStringWidth(module.getName() + (extraInfo.getValue() ? " " + module.getArraylistInfo() : "")) * (sortMode.getValue() == SortModes.Down ? (-1) : 1)))
                 .forEach(module -> {
-                    FontUtil.drawText(module.getName() + " " + ChatFormatting.WHITE + module.getArraylistInfo(), this.getX() + 128 - FontUtil.getStringWidth(module.getName() + " " + module.getArraylistInfo()), this.getY() + (10 * boost), Colours.clientColourPicker.getValue().getRGB());
+                    FontUtil.drawText(module.getName() + (extraInfo.getValue() ? " " + ChatFormatting.WHITE + module.getArraylistInfo() : ""), this.getX() + 128 - FontUtil.getStringWidth(module.getName() + (extraInfo.getValue() ? " " + module.getArraylistInfo() : "")), this.getY() + (10 * boost), Colours.clientColourPicker.getValue().getRGB());
 
                     boost++;
                 });
@@ -58,9 +61,10 @@ public final class ArraylistComponent extends Component {
     private void renderRight() {
         ModuleManager.getModules().stream()
                 .filter(Module::isEnabled)
-                .sorted(Comparator.comparing(module -> FontUtil.getStringWidth(module.getName() + " " + module.getArraylistInfo()) * (sortMode.getValue() == SortModes.Down ? (-1) : 1)))
+                .filter(Module::isDrawn)
+                .sorted(Comparator.comparing(module -> FontUtil.getStringWidth(module.getName() + (extraInfo.getValue() ? " " + module.getArraylistInfo() : "")) * (sortMode.getValue() == SortModes.Down ? (-1) : 1)))
                 .forEach(module -> {
-                    FontUtil.drawText(module.getName() + " " + ChatFormatting.WHITE + module.getArraylistInfo(), this.getX(), this.getY() + (10 * boost), Colours.clientColourPicker.getValue().getRGB());
+                    FontUtil.drawText(module.getName() + (extraInfo.getValue() ? " " + ChatFormatting.WHITE + module.getArraylistInfo() : ""), this.getX(), this.getY() + (10 * boost), Colours.clientColourPicker.getValue().getRGB());
 
                     boost++;
                 });

@@ -26,6 +26,7 @@ public abstract class Module implements Minecraft {
     private boolean enabled = false;
     private boolean opened = false;
     private boolean binding = false;
+    private boolean drawn = true;
 
     private final ArrayList<Setting> settings = new ArrayList<>();
 
@@ -151,6 +152,14 @@ public abstract class Module implements Minecraft {
 
     public boolean isEnabled() {
         return enabled;
+    }
+
+    public boolean isDrawn() {
+        return drawn;
+    }
+
+    public void setDrawn(boolean drawn) {
+        this.drawn = drawn;
     }
 
     public String getArraylistInfo() {

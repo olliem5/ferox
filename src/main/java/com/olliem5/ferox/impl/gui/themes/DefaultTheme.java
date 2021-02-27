@@ -101,6 +101,10 @@ public final class DefaultTheme extends Theme {
 
 				boost++;
 
+				renderDrawn(module, x, y + 1);
+
+				boost++;
+
 				renderKeybind(module, GuiUtil.keyDown, x, y + 1);
 			}
 
@@ -800,6 +804,29 @@ public final class DefaultTheme extends Theme {
 		FontUtil.drawText(subSetting.getName() + ChatFormatting.GRAY + " " + subSetting.getValue(), x + 6, (y + height) + 3 + (boost * height), -1);
 	}
 
+	public static void renderDrawn(Module module, int x, int y) {
+		int color = 0xFF212121;
+
+		if (GuiUtil.mouseOver(x, y + height + (boost * height), (x + width), (y + height) + height - 1 + (boost * height))) {
+			if (GuiUtil.leftDown) {
+				module.setDrawn(!module.isDrawn());
+			}
+
+			if (ClickGUI.descriptions.getValue() && ClickGUI.drawnDescriptions.getValue()) {
+				drawDrawnBottomLeftText(module);
+			}
+		}
+
+		Gui.drawRect(x, y + height + (boost * height), x + 1, (y + height) + height + (boost * height), Colours.clientColourPicker.getValue().getRGB());
+		Gui.drawRect(x + 1, y + height + (boost * height), (x + width), (y + height) + height + (boost * height), color);
+
+		if (module.isDrawn()) {
+			FontUtil.drawText("Drawn" + ChatFormatting.GRAY + " True", x + 4, (y + height) + 3 + (boost * height), -1);
+		} else {
+			FontUtil.drawText("Drawn" + ChatFormatting.GRAY + " False", x + 4, (y + height) + 3 + (boost * height), -1);
+		}
+	}
+
 	public static void renderKeybind(Module module, int key, int x, int y) {
 		int color = 0xFF212121;
 
@@ -842,6 +869,10 @@ public final class DefaultTheme extends Theme {
 
 	public static void drawSettingBottomLeftText(Setting<?> setting) {
 		FontUtil.drawText(setting.getDescription(), 2, (new ScaledResolution(mc).getScaledHeight() - FontUtil.getStringHeight(setting.getDescription()) - 2), -1);
+	}
+
+	public static void drawDrawnBottomLeftText(Module module) {
+		FontUtil.drawText(module.getName() + "is " + (module.isDrawn() ? "drawn" : "not drawn"), 2, (new ScaledResolution(mc).getScaledHeight() - FontUtil.getStringHeight(module.getName() + "is " + (module.isDrawn() ? "drawn" : "not drawn")) - 2), -1);
 	}
 
 	public static void drawKeybindBottomLeftText(Module module, String key) {

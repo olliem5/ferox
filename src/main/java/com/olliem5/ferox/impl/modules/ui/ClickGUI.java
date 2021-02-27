@@ -21,6 +21,7 @@ public final class ClickGUI extends Module {
     public static final Setting<Boolean> descriptions = new Setting<>("Descriptions", "Handles description rendering in the ClickGUI", true);
     public static final Setting<Boolean> moduleDescriptions = new Setting<>(descriptions, "Module Descriptions", "Shows module descriptions in the bottom left corner", true);
     public static final Setting<Boolean> settingDescriptions = new Setting<>(descriptions, "Setting Descriptions", "Shows setting descriptions in the bottom left corner", true);
+    public static final Setting<Boolean> drawnDescriptions = new Setting<>(descriptions, "Drawn Descriptions", "Shows drawn descriptions in the bottom left corner", true);
     public static final Setting<Boolean> keybindDescriptions = new Setting<>(descriptions, "Keybind Descriptions", "Shows keybind descriptions in the bottom left corner", true);
 
     public static final Setting<NameModes> nameMode = new Setting<>("Names", "Changes how the names function", NameModes.Shrink);
