@@ -24,9 +24,6 @@ public final class StartupHelper {
         ModuleManager.init();
         Ferox.log("Modules Initialized!");
 
-//        FontUtil.loadFonts();
-//        Ferox.log("Custom Fonts Initialized!");
-
         ComponentManager.init();
         Ferox.EVENT_BUS.register(new ComponentManager());
         Ferox.log("HUD Initialized!");
@@ -54,7 +51,8 @@ public final class StartupHelper {
                 new ToggleCommand(),
                 new FolderCommand(),
                 new ConfigCommand(),
-                new ModulesCommand()
+                new ModulesCommand(),
+                new DrawnCommand()
         );
     }
 }

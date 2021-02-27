@@ -68,9 +68,9 @@ public abstract class Module implements Minecraft {
         String message;
 
         if (enable) {
-            message = ChatFormatting.AQUA + name + ChatFormatting.WHITE + " has been " + ChatFormatting.GREEN + "ENABLED";
+            message = ChatFormatting.AQUA + name + ChatFormatting.RESET + " is now " + ChatFormatting.GREEN + "ENABLED";
         } else {
-            message = ChatFormatting.AQUA + name + ChatFormatting.WHITE + " has been " + ChatFormatting.RED + "DISABLED";
+            message = ChatFormatting.AQUA + name + ChatFormatting.RESET + " is now " + ChatFormatting.RED + "DISABLED";
         }
 
         if (ModuleManager.getModuleByName("Notifications").isEnabled() && Notifications.moduleToggle.getValue()) {
