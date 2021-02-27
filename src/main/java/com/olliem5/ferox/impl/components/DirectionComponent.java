@@ -14,8 +14,8 @@ import com.olliem5.ferox.api.util.render.font.FontUtil;
 
 @FeroxComponent(name = "Direction", description = "Shows the direction you are facing")
 public class DirectionComponent extends Component {
-    public static final Setting<DirectionModes> directionMode = new Setting<>("Mode","Mode", DirectionModes.Normal);
-    public static final Setting<StringModes> stringMode = new Setting<>("String","StringMode", StringModes.Full);
+    public static final Setting<DirectionModes> directionMode = new Setting<>("Mode", "The mode for rendering", DirectionModes.Normal);
+    public static final Setting<StringModes> stringMode = new Setting<>("String", "The string mode for rendering", StringModes.Full);
 
     public DirectionComponent() {
         this.addSettings(

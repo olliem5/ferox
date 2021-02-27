@@ -35,9 +35,13 @@ public final class ComponentManager implements Minecraft {
                 new NotificationComponent(),
                 new PingComponent(),
                 new PlayerComponent(),
+                new PlayerCountComponent(),
                 new PvPInfoComponent(),
                 new ServerIPComponent(),
+                new SpeedComponent(),
+                new TimeComponent(),
                 new TotemCountComponent(),
+                new TPSComponent(),
                 new WatermarkComponent(),
                 new WelcomerComponent()
         ));

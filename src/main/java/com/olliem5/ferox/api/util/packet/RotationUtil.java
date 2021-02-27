@@ -78,7 +78,7 @@ public final class RotationUtil implements Minecraft {
 
 
     public static String getFacing() {
-        switch (MathHelper.floor(mc.player.rotationYaw + 8.0f / 360.0f + 0.5) & 0x7) {
+        switch (MathHelper.floor(mc.player.rotationYaw + 8.0f / 360.0f + 0.5) & 7) {
             case 0:
                 return " [" + ChatFormatting.WHITE + "+Z" + ChatFormatting.RESET + "]";
             case 1:
