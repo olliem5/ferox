@@ -126,6 +126,7 @@ public final class ElytraFlight extends Module {
         }
     }
 
+    @Override
     public String getArraylistInfo() {
         return flyMode.getValue().toString();
     }

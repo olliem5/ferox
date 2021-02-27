@@ -35,6 +35,7 @@ public final class Social extends Module {
         this.setEnabled(true);
     }
 
+    @Override
     public String getArraylistInfo() {
        if (friends.getValue() && enemies.getValue()) {
            return "Friends, Enemies";

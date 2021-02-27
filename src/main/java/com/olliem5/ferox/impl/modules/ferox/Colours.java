@@ -18,6 +18,7 @@ public final class Colours extends Module {
         );
 
         this.setEnabled(true);
+        this.setDrawn(false);
     }
 
     @Override

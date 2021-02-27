@@ -65,6 +65,7 @@ public final class Conditions extends Module {
         }
     }
 
+    @Override
     public String getArraylistInfo() {
         return weatherMode.getValue().toString() + ", " + timeMode.getValue().toString();
     }

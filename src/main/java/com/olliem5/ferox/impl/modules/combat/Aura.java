@@ -117,6 +117,7 @@ public final class Aura extends Module {
         }
     }
 
+    @Override
     public String getArraylistInfo() {
         if (target != null) {
             return target.getName();

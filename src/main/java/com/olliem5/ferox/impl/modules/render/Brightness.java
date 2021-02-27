@@ -50,6 +50,11 @@ public final class Brightness extends Module {
         }
     }
 
+    @Override
+    public String getArraylistInfo() {
+        return brightnessMode.getValue().toString();
+    }
+
     public enum BrightnessModes {
         Gamma,
         Potion

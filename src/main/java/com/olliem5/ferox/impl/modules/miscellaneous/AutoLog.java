@@ -46,6 +46,7 @@ public final class AutoLog extends Module {
         }
     }
 
+    @Override
     public String getArraylistInfo() {
         return logMode.getValue().toString() + ", " + logHealth.getValue().toString();
     }

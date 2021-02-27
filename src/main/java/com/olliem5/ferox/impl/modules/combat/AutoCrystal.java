@@ -371,6 +371,7 @@ public final class AutoCrystal extends Module {
         }
     }
 
+    @Override
     public String getArraylistInfo() {
         if (playerTarget != null) {
             return playerTarget.getName();

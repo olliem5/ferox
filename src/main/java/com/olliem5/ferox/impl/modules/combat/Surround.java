@@ -195,6 +195,7 @@ public final class Surround extends Module {
         }
     }
 
+    @Override
     public String getArraylistInfo() {
         return placeMode.getValue().toString();
     }

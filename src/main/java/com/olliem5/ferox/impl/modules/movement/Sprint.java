@@ -69,6 +69,7 @@ public final class Sprint extends Module {
         return false;
     }
 
+    @Override
     public String getArraylistInfo() {
         return sprintMode.getValue().toString();
     }

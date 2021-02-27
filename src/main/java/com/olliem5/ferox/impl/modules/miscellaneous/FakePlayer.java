@@ -72,6 +72,7 @@ public final class FakePlayer extends Module {
         }
     }
 
+    @Override
     public String getArraylistInfo() {
         return nameMode.getValue().toString() + ", " + health.getValue().toString();
     }

@@ -110,6 +110,7 @@ public final class Offhand extends Module {
         }
     }
 
+    @Override
     public String getArraylistInfo() {
         return offhandMode.getValue().toString() + ", " + switchHealth.getValue();
     }

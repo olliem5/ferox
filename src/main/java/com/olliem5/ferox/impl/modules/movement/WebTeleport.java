@@ -34,6 +34,11 @@ public final class WebTeleport extends Module {
         }
     }
 
+    @Override
+    public String getArraylistInfo() {
+        return cancelMode.getValue().toString();
+    }
+
     public enum CancelModes {
         Collision,
         MotionY,

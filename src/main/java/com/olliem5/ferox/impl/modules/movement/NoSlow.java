@@ -105,6 +105,7 @@ public final class NoSlow extends Module {
         }
     }
 
+    @Override
     public String getArraylistInfo() {
         return noSlowMode.getValue().toString();
     }

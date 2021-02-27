@@ -148,6 +148,7 @@ public final class AutoTrap extends Module {
         }
     }
 
+    @Override
     public String getArraylistInfo() {
         if (target != null) {
             return target.getName();

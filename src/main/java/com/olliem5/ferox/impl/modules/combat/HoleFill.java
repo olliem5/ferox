@@ -88,18 +88,16 @@ public final class HoleFill extends Module {
         BlockPos currentHoleToFill = null;
 
         for (BlockPos blockPos : holesToFill) {
-            if (mc.world.getEntitiesWithinAABB(Entity.class, new AxisAlignedBB(blockPos)).isEmpty()) {
-                if (holesToFill.size() == 0) {
-                    if (disables.getValue()) {
-                        MessageUtil.sendClientMessage("No holes to fill, " + ChatFormatting.RED + "Disabling!");
-                        this.toggle();
-                    }
-
-                    return;
+            if (holesToFill.size() == 0) {
+                if (disables.getValue()) {
+                    MessageUtil.sendClientMessage("No holes to fill, " + ChatFormatting.RED + "Disabling!");
+                    this.toggle();
                 }
 
-                currentHoleToFill = blockPos;
+                return;
             }
+
+            currentHoleToFill = blockPos;
         }
 
         int oldInventorySlot = mc.player.inventory.currentItem;
@@ -174,6 +172,7 @@ public final class HoleFill extends Module {
         }
     }
 
+    @Override
     public String getArraylistInfo() {
         return blockMode.getValue().toString();
     }
