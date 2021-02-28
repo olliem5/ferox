@@ -19,7 +19,7 @@ import org.lwjgl.opengl.Display;
 public final class Ferox {
     public static final String MOD_ID = "ferox";
     public static final String MOD_NAME = "Ferox";
-    public static final String MOD_VERSION = "1.0";
+    public static final String MOD_VERSION = "1.1";
     public static final String APP_ID = "792247134677762088";
     public static final String NAME_VERSION = MOD_NAME + " " + MOD_VERSION;
     public static String CHAT_PREFIX = "%";
