@@ -2,12 +2,12 @@ package com.olliem5.ferox.impl.modules.render.esp.modes;
 
 import com.olliem5.ferox.api.social.enemy.EnemyManager;
 import com.olliem5.ferox.api.social.friend.FriendManager;
+import com.olliem5.ferox.api.util.render.draw.RenderUtil;
 import com.olliem5.ferox.api.util.world.EntityUtil;
 import com.olliem5.ferox.impl.modules.ferox.Social;
 import com.olliem5.ferox.impl.modules.render.ESP;
 import com.olliem5.ferox.impl.modules.render.esp.ESPMode;
 import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityEnderCrystal;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.passive.EntityAnimal;
@@ -31,32 +31,18 @@ public final class CSGO extends ESPMode {
         mc.world.loadedEntityList.stream()
                 .filter(entity -> entity != null)
                 .filter(entity -> mc.player != entity)
-                .filter(entity -> entityCheck(entity))
+                .filter(entity -> ESP.entityCheck(entity))
                 .forEach(entity -> {
-                    GL11.glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
-                    GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
-                    GlStateManager.glLineWidth(ESP.outlineWidth.getValue().floatValue());
-                    GlStateManager.disableTexture2D();
-                    GlStateManager.depthMask(false);
-                    GlStateManager.enableBlend();
-                    GlStateManager.disableDepth();
-                    GlStateManager.disableLighting();
-                    GlStateManager.disableCull();
-                    GlStateManager.enableAlpha();
-                    GlStateManager.color(1,1,1);
-                    GlStateManager.pushMatrix();
+                    RenderUtil.prepareGL();
 
                     Vec3d vec3d = EntityUtil.getInterpolatedPos(entity, mc.getRenderPartialTicks());
 
-                    GlStateManager.translate(vec3d.x-mc.getRenderManager().renderPosX, vec3d.y-mc.getRenderManager().renderPosY, vec3d.z-mc.getRenderManager().renderPosZ);
+                    GL11.glLineWidth(ESP.outlineWidth.getValue().floatValue());
+
+                    GlStateManager.translate(vec3d.x - mc.getRenderManager().renderPosX, vec3d.y - mc.getRenderManager().renderPosY, vec3d.z - mc.getRenderManager().renderPosZ);
                     GlStateManager.glNormal3f(0.0f, 1.0f, 0.0f);
                     GlStateManager.rotate(-viewerYaw, 0.0f, 1.0f, 0.0f);
                     GlStateManager.rotate((float) (isThirdPersonFrontal ? -1 : 1), 1.0f, 0.0f, 0.0f);
-
-                    GL11.glColor4f(1, 1, 1, 0.5f);
-                    GL11.glLineWidth(ESP.outlineWidth.getValue().floatValue());
-                    GL11.glEnable(GL_LINE_SMOOTH);
 
                     if (entity instanceof EntityEnderCrystal) {
                         GL11.glColor4f(ESP.crystalColour.getValue().getRed() / 255.0f, ESP.crystalColour.getValue().getGreen() / 255.0f, ESP.crystalColour.getValue().getBlue() / 255.0f, ESP.crystalColour.getValue().getAlpha() / 255.0f);
@@ -115,26 +101,9 @@ public final class CSGO extends ESPMode {
                     }
 
                     GL11.glEnd();
-                    GL11.glColor4f(1, 1, 1, 0.5f);
 
-                    GlStateManager.enableCull();
-                    GlStateManager.depthMask(true);
-                    GlStateManager.enableTexture2D();
-                    GlStateManager.enableBlend();
-                    GlStateManager.enableDepth();
-                    GlStateManager.color(1,1,1);
-
-                    GL11.glColor4f(1, 1, 1, 1);
-
-                    GlStateManager.popMatrix();
+                    RenderUtil.releaseGL();
                 });
 
-        GL11.glColor4f(1,1,1, 1);
-    }
-
-    private boolean entityCheck(Entity entity) {
-        if (entity instanceof EntityEnderCrystal && ESP.crystals.getValue() || entity instanceof EntityPlayer && ESP.players.getValue() || entity instanceof EntityAnimal && ESP.animals.getValue() || entity instanceof EntityMob && ESP.mobs.getValue()) return true;
-
-        return false;
     }
 }
