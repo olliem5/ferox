@@ -38,9 +38,8 @@ public final class FakePlayer extends Module {
             fakePlayer.setHealth(health.getValue());
             fakePlayer.copyLocationAndAnglesFrom(mc.player);
             fakePlayer.rotationYawHead = mc.player.rotationYawHead;
+            mc.world.addEntityToWorld(fakePlayer.entityId, fakePlayer);
         }
-
-        mc.world.addEntityToWorld(fakePlayer.entityId, fakePlayer);
     }
 
     @Override

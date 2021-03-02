@@ -128,11 +128,6 @@ public final class ClickGUIWindow implements Minecraft {
 	}
 
 	private String getTheme() {
-		switch (ClickGUI.theme.getValue()) {
-			case Default:
-				return "Default";
-		}
-
 		return "Default";
 	}
 

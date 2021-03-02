@@ -21,6 +21,7 @@ import org.lwjgl.opengl.GL11;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -91,7 +92,7 @@ public final class SelfTrap extends Module {
                 }
             }
         } else {
-            if (hasPlaced == true && disableMode.getValue() == DisableModes.Finish) {
+            if (hasPlaced && disableMode.getValue() == DisableModes.Finish) {
                 this.toggle();
             }
         }
@@ -143,7 +144,7 @@ public final class SelfTrap extends Module {
         return placeMode.getValue().toString();
     }
 
-    private final List<Vec3d> topBlockTrap = new ArrayList<>(Arrays.asList(
+    private final List<Vec3d> topBlockTrap = new ArrayList<>(Collections.singletonList(
             new Vec3d(0, 2, 0)
     ));
 

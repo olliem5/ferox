@@ -28,7 +28,7 @@ public abstract class Module implements Minecraft {
     private boolean binding = false;
     private boolean drawn = true;
 
-    private final ArrayList<Setting> settings = new ArrayList<>();
+    private final ArrayList<Setting<?>> settings = new ArrayList<>();
 
     private FeroxModule getAnnotation() {
         if (getClass().isAnnotationPresent(FeroxModule.class)) {
@@ -91,7 +91,7 @@ public abstract class Module implements Minecraft {
             } else {
                 enable();
             }
-        } catch (Exception e) {}
+        } catch (Exception ignored) {}
     }
 
     public void setEnabled(boolean enabled) {
@@ -138,11 +138,11 @@ public abstract class Module implements Minecraft {
         this.key = key;
     }
 
-    public ArrayList<Setting> getSettings() {
+    public ArrayList<Setting<?>> getSettings() {
         return settings;
     }
 
-    public void addSettings(Setting... settings) {
+    public void addSettings(Setting<?>... settings) {
         this.settings.addAll(Arrays.asList(settings));
     }
 

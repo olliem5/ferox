@@ -10,6 +10,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityEnderCrystal;
 import net.minecraft.util.math.MathHelper;
 import org.lwjgl.opengl.GL11;
+import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -25,11 +26,13 @@ import static org.lwjgl.opengl.GL11.*;
 
 @Mixin(RenderEnderCrystal.class)
 public final class MixinRenderEnderCrystal implements Minecraft {
+    @Final
     @Shadow
-    public ModelBase modelEnderCrystal;
+    private ModelBase modelEnderCrystal;
 
+    @Final
     @Shadow
-    public ModelBase modelEnderCrystalNoBase;
+    private ModelBase modelEnderCrystalNoBase;
 
     @Redirect(method = "doRender(Lnet/minecraft/entity/item/EntityEnderCrystal;DDDFF)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/model/ModelBase;render(Lnet/minecraft/entity/Entity;FFFFFF)V"))
     private void doRender(ModelBase modelBase, Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scale) {

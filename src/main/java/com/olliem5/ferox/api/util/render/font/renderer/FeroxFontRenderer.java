@@ -30,8 +30,8 @@ public final class FeroxFontRenderer implements Minecraft {
     private float antiAliasingFactor;
     private UnicodeFont unicodeFont;
     private int prevScaleFactor;
-    private String name;
-    private float size;
+    private final String name;
+    private final float size;
 
     public FeroxFontRenderer(String fontName, float fontSize) {
         name = fontName;
@@ -81,11 +81,7 @@ public final class FeroxFontRenderer implements Minecraft {
     private static Font font = null;
 
     public static Font getFontFromInput(String path) throws IOException, FontFormatException {
-        Font newFont = Font.createFont(Font.TRUETYPE_FONT, FeroxFontRenderer.class.getResourceAsStream(path));
-
-        if (newFont != null) {
-            font = newFont;
-        }
+        font = Font.createFont(Font.TRUETYPE_FONT, FeroxFontRenderer.class.getResourceAsStream(path));
 
         return font;
     }
@@ -185,14 +181,14 @@ public final class FeroxFontRenderer implements Minecraft {
         return (int) getWidth(text);
     }
 
-    public int drawStringWithShadow(String text, float x, float y, int color) {
+    public void drawStringWithShadow(String text, float x, float y, int color) {
         if (text == null || text == "") {
-            return 0;
+            return;
         }
 
         drawString(StringUtils.stripControlCodes(text), x + 0.5F, y + 0.5F, 0x000000);
 
-        return drawString(text, x, y, color);
+        drawString(text, x, y, color);
     }
 
     public UnicodeFont getFont() {

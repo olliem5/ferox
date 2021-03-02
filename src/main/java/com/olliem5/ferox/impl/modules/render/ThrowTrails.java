@@ -44,7 +44,7 @@ public final class ThrowTrails extends Module {
     public void onUpdate() {
         if (nullCheck()) return;
 
-        Iterator iterator = new HashMap(this.time).entrySet().iterator();
+        Iterator<?> iterator = new HashMap<>(this.time).entrySet().iterator();
 
         while (iterator.hasNext()) {
             Map.Entry<UUID, Double> uuidDoubleEntry = (Map.Entry) iterator.next();
@@ -88,10 +88,10 @@ public final class ThrowTrails extends Module {
 
         RenderUtil.prepareGL();
 
-        Iterator iterator = this.poses.entrySet().iterator();
+        Iterator<?> iterator = this.poses.entrySet().iterator();
 
         while (true) {
-            Map.Entry entry;
+            Map.Entry<?, ?> entry;
 
             do {
                 if (!iterator.hasNext()) {
@@ -100,18 +100,18 @@ public final class ThrowTrails extends Module {
                     return;
                 }
 
-                entry = (Map.Entry) iterator.next();
+                entry = (Map.Entry<?, ?>) iterator.next();
 
-            } while (((List) entry.getValue()).size() <= 2);
+            } while (((List<?>) entry.getValue()).size() <= 2);
 
             GL11.glBegin(1);
 
             GL11.glLineWidth(enderpearlWidth.getValue().floatValue());
             GL11.glColor4f(enderpearlColour.getValue().getRed() / 255.0f, enderpearlColour.getValue().getGreen() / 255.0f, enderpearlColour.getValue().getBlue() / 255.0f, enderpearlColour.getValue().getAlpha() / 255.0f);
 
-            for (int i = 1; i < ((List) entry.getValue()).size(); ++i) {
-                GL11.glVertex3d(((Vec3d) ((List) entry.getValue()).get(i)).x - mc.getRenderManager().renderPosX, ((Vec3d) ((List) entry.getValue()).get(i)).y - mc.getRenderManager().renderPosY, ((Vec3d) ((List) entry.getValue()).get(i)).z - mc.getRenderManager().renderPosZ);
-                GL11.glVertex3d(((Vec3d) ((List) entry.getValue()).get(i - 1)).x - mc.getRenderManager().renderPosX, ((Vec3d) ((List) entry.getValue()).get(i - 1)).y - mc.getRenderManager().renderPosY, ((Vec3d) ((List) entry.getValue()).get(i - 1)).z - mc.getRenderManager().renderPosZ);
+            for (int i = 1; i < ((List<?>) entry.getValue()).size(); ++i) {
+                GL11.glVertex3d(((Vec3d) ((List<?>) entry.getValue()).get(i)).x - mc.getRenderManager().renderPosX, ((Vec3d) ((List<?>) entry.getValue()).get(i)).y - mc.getRenderManager().renderPosY, ((Vec3d) ((List<?>) entry.getValue()).get(i)).z - mc.getRenderManager().renderPosZ);
+                GL11.glVertex3d(((Vec3d) ((List<?>) entry.getValue()).get(i - 1)).x - mc.getRenderManager().renderPosX, ((Vec3d) ((List<?>) entry.getValue()).get(i - 1)).y - mc.getRenderManager().renderPosY, ((Vec3d) ((List<?>) entry.getValue()).get(i - 1)).z - mc.getRenderManager().renderPosZ);
             }
 
             GL11.glEnd();

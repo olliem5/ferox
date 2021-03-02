@@ -30,7 +30,7 @@ public abstract class Component implements Minecraft {
     private boolean dragging = false;
     private boolean opened = false;
 
-    private final ArrayList<Setting> settings = new ArrayList<>();
+    private final ArrayList<Setting<?>> settings = new ArrayList<>();
 
     private FeroxComponent getAnnotation() {
         if (getClass().isAnnotationPresent(FeroxComponent.class)) {
@@ -81,11 +81,11 @@ public abstract class Component implements Minecraft {
         }
     }
 
-    public ArrayList<Setting> getSettings() {
+    public ArrayList<Setting<?>> getSettings() {
         return settings;
     }
 
-    public void addSettings(Setting... settings) {
+    public void addSettings(Setting<?>... settings) {
         this.settings.addAll(Arrays.asList(settings));
     }
 

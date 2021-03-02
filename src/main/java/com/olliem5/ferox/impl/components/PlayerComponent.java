@@ -31,7 +31,7 @@ public final class PlayerComponent extends Component {
         GlStateManager.disableTexture2D();
         GlStateManager.setActiveTexture(OpenGlHelper.defaultTexUnit);
 
-        DrawUtil.drawEntityOnScreen(this.getX() + 28, this.getY() + 67, scale.getValue(), this.getX() + 40, this.getY() + 13, mc.player);
+        DrawUtil.drawEntityOnScreen(this.getX() + 28, this.getY() + 67, scale.getValue(), this.getY() + 13, mc.player);
 
         GlStateManager.enableRescaleNormal();
         GlStateManager.enableTexture2D();

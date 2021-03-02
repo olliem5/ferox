@@ -12,9 +12,5 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
  */
 
 public abstract class ESPMode implements Minecraft {
-    public void drawESPMixin(ModelBase modelBase, Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor) {}
-
-    public void drawESPCrystal(ModelBase modelEnderCrystal, ModelBase modelEnderCrystalNoBase, EntityEnderCrystal entityEnderCrystal, double x, double y, double z, float entityYaw, float partialTicks, CallbackInfo callbackInfo) {}
-
     public void drawESP(RenderWorldLastEvent event) {}
 }

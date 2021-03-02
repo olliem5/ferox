@@ -23,30 +23,28 @@ public final class EXPCountComponent extends Component {
         );
     }
 
-    private int exp;
-
     @Override
     public void render() {
         String renderString;
 
-        this.exp = mc.player.inventory.mainInventory.stream()
+        int exp = mc.player.inventory.mainInventory.stream()
                 .filter(itemStack -> itemStack.getItem() == Items.EXPERIENCE_BOTTLE)
                 .mapToInt(ItemStack::getCount)
                 .sum();
 
         if (mc.player.getHeldItemOffhand().getItem() == Items.EXPERIENCE_BOTTLE) {
-            this.exp += mc.player.getHeldItemOffhand().getCount();
+            exp += mc.player.getHeldItemOffhand().getCount();
         }
 
         switch (countMode.getValue()) {
             case Normal:
-                renderString = "EXP Bottles " + ChatFormatting.WHITE + this.exp;
+                renderString = "EXP Bottles " + ChatFormatting.WHITE + exp;
                 this.setWidth((int) FontUtil.getStringWidth(renderString));
                 this.setHeight((int) FontUtil.getStringHeight(renderString));
                 drawString(renderString);
                 break;
             case Short:
-                renderString = "EXP " + ChatFormatting.WHITE + this.exp;
+                renderString = "EXP " + ChatFormatting.WHITE + exp;
                 this.setWidth((int) FontUtil.getStringWidth(renderString));
                 this.setHeight((int) FontUtil.getStringHeight(renderString));
                 drawString(renderString);

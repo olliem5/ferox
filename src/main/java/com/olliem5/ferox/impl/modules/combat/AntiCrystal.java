@@ -23,6 +23,7 @@ import org.lwjgl.opengl.GL11;
 
 import java.awt.*;
 import java.util.Comparator;
+import java.util.Objects;
 
 /**
  * TODO: AutoSwitch
@@ -78,7 +79,7 @@ public final class AntiCrystal extends Module {
         if (nullCheck()) return;
 
         EntityEnderCrystal entityEnderCrystal = (EntityEnderCrystal) mc.world.loadedEntityList.stream()
-                .filter(entity -> entity != null)
+                .filter(Objects::nonNull)
                 .filter(entity -> entity instanceof EntityEnderCrystal)
                 .filter(entity -> mc.player.getDistance(entity) <= placeRange.getValue())
                 .filter(entity -> !hasPressurePlate((EntityEnderCrystal) entity))

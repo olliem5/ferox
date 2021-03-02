@@ -12,7 +12,7 @@ import net.minecraft.util.math.MathHelper;
 
 @FeroxComponent(name = "TPS", description = "Shows the current TPS")
 public final class TPSComponent extends Component {
-    private float[] ticks = new float[20];
+    private final float[] ticks = new float[20];
 
     @Override
     public void render() {
@@ -26,9 +26,7 @@ public final class TPSComponent extends Component {
         int tickCount = 0;
         float tickRate = 0.0f;
 
-        for (int i = 0; i < this.ticks.length; i++) {
-            float tick = this.ticks[i];
-
+        for (float tick : this.ticks) {
             if (tick > 0.0f) {
                 tickRate += tick;
                 tickCount++;

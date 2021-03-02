@@ -119,7 +119,7 @@ public final class ConfigUtil {
                             }
 
                             if (subSetting.getValue() instanceof Enum) {
-                                Setting<Enum> subEnumSetting = (Setting<Enum>) subSetting;
+                                Setting<Enum<?>> subEnumSetting = (Setting<Enum<?>>) subSetting;
                                 subSettingObject.add(subEnumSetting.getName(), new JsonPrimitive(String.valueOf(subEnumSetting.getValue())));
                             }
 
@@ -155,7 +155,7 @@ public final class ConfigUtil {
                 }
 
                 if (setting.getValue() instanceof Enum) {
-                    Setting<Enum> enumSetting = (Setting<Enum>) setting;
+                    Setting<Enum<?>> enumSetting = (Setting<Enum<?>>) setting;
                     settingObject.add(enumSetting.getName(), new JsonPrimitive(String.valueOf(enumSetting.getValue())));
 
                     if (enumSetting.hasSubSettings()) {
@@ -166,7 +166,7 @@ public final class ConfigUtil {
                             }
 
                             if (subSetting.getValue() instanceof Enum) {
-                                Setting<Enum> subEnumSetting = (Setting<Enum>) subSetting;
+                                Setting<Enum<?>> subEnumSetting = (Setting<Enum<?>>) subSetting;
                                 subSettingObject.add(subEnumSetting.getName(), new JsonPrimitive(String.valueOf(subEnumSetting.getValue())));
                             }
 
@@ -213,7 +213,7 @@ public final class ConfigUtil {
                             }
 
                             if (subSetting.getValue() instanceof Enum) {
-                                Setting<Enum> subEnumSetting = (Setting<Enum>) subSetting;
+                                Setting<Enum<?>> subEnumSetting = (Setting<Enum<?>>) subSetting;
                                 subSettingObject.add(subEnumSetting.getName(), new JsonPrimitive(String.valueOf(subEnumSetting.getValue())));
                             }
 
@@ -260,7 +260,7 @@ public final class ConfigUtil {
                             }
 
                             if (subSetting.getValue() instanceof Enum) {
-                                Setting<Enum> subEnumSetting = (Setting<Enum>) subSetting;
+                                Setting<Enum<?>> subEnumSetting = (Setting<Enum<?>>) subSetting;
                                 subSettingObject.add(subEnumSetting.getName(), new JsonPrimitive(String.valueOf(subEnumSetting.getValue())));
                             }
 
@@ -307,7 +307,7 @@ public final class ConfigUtil {
                             }
 
                             if (subSetting.getValue() instanceof Enum) {
-                                Setting<Enum> subEnumSetting = (Setting<Enum>) subSetting;
+                                Setting<Enum<?>> subEnumSetting = (Setting<Enum<?>>) subSetting;
                                 subSettingObject.add(subEnumSetting.getName(), new JsonPrimitive(String.valueOf(subEnumSetting.getValue())));
                             }
 
@@ -386,7 +386,7 @@ public final class ConfigUtil {
                         }
 
                         if (subSetting.getValue() instanceof Enum) {
-                            Setting<Enum> subEnumSetting = (Setting<Enum>) subSetting;
+                            Setting<Enum<?>> subEnumSetting = (Setting<Enum<?>>) subSetting;
                             subSettingValueObject = subSettingObject.get(subEnumSetting.getName());
                         }
 
@@ -425,7 +425,7 @@ public final class ConfigUtil {
                             }
 
                             if (subSetting.getValue() instanceof Enum) {
-                                Setting<Enum> subEnumSetting = (Setting<Enum>) subSetting;
+                                Setting<Enum<?>> subEnumSetting = (Setting<Enum<?>>) subSetting;
                                 EnumUtil.setEnumValue(subEnumSetting, subSettingValueObject.getAsString());
                             }
 
@@ -456,7 +456,7 @@ public final class ConfigUtil {
                 }
 
                 if (setting.getValue() instanceof Enum) {
-                    Setting<Enum> enumSetting = (Setting<Enum>) setting;
+                    Setting<Enum<?>> enumSetting = (Setting<Enum<?>>) setting;
                     settingValueObject = settingObject.get(enumSetting.getName());
 
                     for (Setting<?> subSetting : enumSetting.getSubSettings()) {
@@ -473,7 +473,7 @@ public final class ConfigUtil {
                         }
 
                         if (subSetting.getValue() instanceof Enum) {
-                            Setting<Enum> subEnumSetting = (Setting<Enum>) subSetting;
+                            Setting<Enum<?>> subEnumSetting = (Setting<Enum<?>>) subSetting;
                             subSettingValueObject = subSettingObject.get(subEnumSetting.getName());
                         }
 
@@ -512,7 +512,7 @@ public final class ConfigUtil {
                             }
 
                             if (subSetting.getValue() instanceof Enum) {
-                                Setting<Enum> subEnumSetting = (Setting<Enum>) subSetting;
+                                Setting<Enum<?>> subEnumSetting = (Setting<Enum<?>>) subSetting;
                                 EnumUtil.setEnumValue(subEnumSetting, subSettingValueObject.getAsString());
                             }
 
@@ -560,7 +560,7 @@ public final class ConfigUtil {
                         }
 
                         if (subSetting.getValue() instanceof Enum) {
-                            Setting<Enum> subEnumSetting = (Setting<Enum>) subSetting;
+                            Setting<Enum<?>> subEnumSetting = (Setting<Enum<?>>) subSetting;
                             subSettingValueObject = subSettingObject.get(subEnumSetting.getName());
                         }
 
@@ -599,7 +599,7 @@ public final class ConfigUtil {
                             }
 
                             if (subSetting.getValue() instanceof Enum) {
-                                Setting<Enum> subEnumSetting = (Setting<Enum>) subSetting;
+                                Setting<Enum<?>> subEnumSetting = (Setting<Enum<?>>) subSetting;
                                 EnumUtil.setEnumValue(subEnumSetting, subSettingValueObject.getAsString());
                             }
 
@@ -647,7 +647,7 @@ public final class ConfigUtil {
                         }
 
                         if (subSetting.getValue() instanceof Enum) {
-                            Setting<Enum> subEnumSetting = (Setting<Enum>) subSetting;
+                            Setting<Enum<?>> subEnumSetting = (Setting<Enum<?>>) subSetting;
                             subSettingValueObject = subSettingObject.get(subEnumSetting.getName());
                         }
 
@@ -686,7 +686,7 @@ public final class ConfigUtil {
                             }
 
                             if (subSetting.getValue() instanceof Enum) {
-                                Setting<Enum> subEnumSetting = (Setting<Enum>) subSetting;
+                                Setting<Enum<?>> subEnumSetting = (Setting<Enum<?>>) subSetting;
                                 EnumUtil.setEnumValue(subEnumSetting, subSettingValueObject.getAsString());
                             }
 
@@ -734,7 +734,7 @@ public final class ConfigUtil {
                         }
 
                         if (subSetting.getValue() instanceof Enum) {
-                            Setting<Enum> subEnumSetting = (Setting<Enum>) subSetting;
+                            Setting<Enum<?>> subEnumSetting = (Setting<Enum<?>>) subSetting;
                             subSettingValueObject = subSettingObject.get(subEnumSetting.getName());
                         }
 
@@ -773,7 +773,7 @@ public final class ConfigUtil {
                             }
 
                             if (subSetting.getValue() instanceof Enum) {
-                                Setting<Enum> subEnumSetting = (Setting<Enum>) subSetting;
+                                Setting<Enum<?>> subEnumSetting = (Setting<Enum<?>>) subSetting;
                                 EnumUtil.setEnumValue(subEnumSetting, subSettingValueObject.getAsString());
                             }
 
@@ -810,7 +810,7 @@ public final class ConfigUtil {
                     }
 
                     if (setting.getValue() instanceof Enum) {
-                        Setting<Enum> enumSetting = (Setting<Enum>) setting;
+                        Setting<Enum<?>> enumSetting = (Setting<Enum<?>>) setting;
                         EnumUtil.setEnumValue(enumSetting, settingValueObject.getAsString());
                     }
 
@@ -866,7 +866,7 @@ public final class ConfigUtil {
                             }
 
                             if (subSetting.getValue() instanceof Enum) {
-                                Setting<Enum> subEnumSetting = (Setting<Enum>) subSetting;
+                                Setting<Enum<?>> subEnumSetting = (Setting<Enum<?>>) subSetting;
                                 subSettingObject.add(subEnumSetting.getName(), new JsonPrimitive(String.valueOf(subEnumSetting.getValue())));
                             }
 
@@ -902,7 +902,7 @@ public final class ConfigUtil {
                 }
 
                 if (setting.getValue() instanceof Enum) {
-                    Setting<Enum> enumSetting = (Setting<Enum>) setting;
+                    Setting<Enum<?>> enumSetting = (Setting<Enum<?>>) setting;
                     settingObject.add(enumSetting.getName(), new JsonPrimitive(String.valueOf(enumSetting.getValue())));
 
                     if (enumSetting.hasSubSettings()) {
@@ -913,7 +913,7 @@ public final class ConfigUtil {
                             }
 
                             if (subSetting.getValue() instanceof Enum) {
-                                Setting<Enum> subEnumSetting = (Setting<Enum>) subSetting;
+                                Setting<Enum<?>> subEnumSetting = (Setting<Enum<?>>) subSetting;
                                 subSettingObject.add(subEnumSetting.getName(), new JsonPrimitive(String.valueOf(subEnumSetting.getValue())));
                             }
 
@@ -960,7 +960,7 @@ public final class ConfigUtil {
                             }
 
                             if (subSetting.getValue() instanceof Enum) {
-                                Setting<Enum> subEnumSetting = (Setting<Enum>) subSetting;
+                                Setting<Enum<?>> subEnumSetting = (Setting<Enum<?>>) subSetting;
                                 subSettingObject.add(subEnumSetting.getName(), new JsonPrimitive(String.valueOf(subEnumSetting.getValue())));
                             }
 
@@ -1007,7 +1007,7 @@ public final class ConfigUtil {
                             }
 
                             if (subSetting.getValue() instanceof Enum) {
-                                Setting<Enum> subEnumSetting = (Setting<Enum>) subSetting;
+                                Setting<Enum<?>> subEnumSetting = (Setting<Enum<?>>) subSetting;
                                 subSettingObject.add(subEnumSetting.getName(), new JsonPrimitive(String.valueOf(subEnumSetting.getValue())));
                             }
 
@@ -1054,7 +1054,7 @@ public final class ConfigUtil {
                             }
 
                             if (subSetting.getValue() instanceof Enum) {
-                                Setting<Enum> subEnumSetting = (Setting<Enum>) subSetting;
+                                Setting<Enum<?>> subEnumSetting = (Setting<Enum<?>>) subSetting;
                                 subSettingObject.add(subEnumSetting.getName(), new JsonPrimitive(String.valueOf(subEnumSetting.getValue())));
                             }
 
@@ -1141,7 +1141,7 @@ public final class ConfigUtil {
                         }
 
                         if (subSetting.getValue() instanceof Enum) {
-                            Setting<Enum> subEnumSetting = (Setting<Enum>) subSetting;
+                            Setting<Enum<?>> subEnumSetting = (Setting<Enum<?>>) subSetting;
                             subSettingValueObject = subSettingObject.get(subEnumSetting.getName());
                         }
 
@@ -1180,7 +1180,7 @@ public final class ConfigUtil {
                             }
 
                             if (subSetting.getValue() instanceof Enum) {
-                                Setting<Enum> subEnumSetting = (Setting<Enum>) subSetting;
+                                Setting<Enum<?>> subEnumSetting = (Setting<Enum<?>>) subSetting;
                                 EnumUtil.setEnumValue(subEnumSetting, subSettingValueObject.getAsString());
                             }
 
@@ -1211,7 +1211,7 @@ public final class ConfigUtil {
                 }
 
                 if (setting.getValue() instanceof Enum) {
-                    Setting<Enum> enumSetting = (Setting<Enum>) setting;
+                    Setting<Enum<?>> enumSetting = (Setting<Enum<?>>) setting;
                     settingValueObject = settingObject.get(enumSetting.getName());
 
                     for (Setting<?> subSetting : enumSetting.getSubSettings()) {
@@ -1228,7 +1228,7 @@ public final class ConfigUtil {
                         }
 
                         if (subSetting.getValue() instanceof Enum) {
-                            Setting<Enum> subEnumSetting = (Setting<Enum>) subSetting;
+                            Setting<Enum<?>> subEnumSetting = (Setting<Enum<?>>) subSetting;
                             subSettingValueObject = subSettingObject.get(subEnumSetting.getName());
                         }
 
@@ -1267,7 +1267,7 @@ public final class ConfigUtil {
                             }
 
                             if (subSetting.getValue() instanceof Enum) {
-                                Setting<Enum> subEnumSetting = (Setting<Enum>) subSetting;
+                                Setting<Enum<?>> subEnumSetting = (Setting<Enum<?>>) subSetting;
                                 EnumUtil.setEnumValue(subEnumSetting, subSettingValueObject.getAsString());
                             }
 
@@ -1315,7 +1315,7 @@ public final class ConfigUtil {
                         }
 
                         if (subSetting.getValue() instanceof Enum) {
-                            Setting<Enum> subEnumSetting = (Setting<Enum>) subSetting;
+                            Setting<Enum<?>> subEnumSetting = (Setting<Enum<?>>) subSetting;
                             subSettingValueObject = subSettingObject.get(subEnumSetting.getName());
                         }
 
@@ -1354,7 +1354,7 @@ public final class ConfigUtil {
                             }
 
                             if (subSetting.getValue() instanceof Enum) {
-                                Setting<Enum> subEnumSetting = (Setting<Enum>) subSetting;
+                                Setting<Enum<?>> subEnumSetting = (Setting<Enum<?>>) subSetting;
                                 EnumUtil.setEnumValue(subEnumSetting, subSettingValueObject.getAsString());
                             }
 
@@ -1402,7 +1402,7 @@ public final class ConfigUtil {
                         }
 
                         if (subSetting.getValue() instanceof Enum) {
-                            Setting<Enum> subEnumSetting = (Setting<Enum>) subSetting;
+                            Setting<Enum<?>> subEnumSetting = (Setting<Enum<?>>) subSetting;
                             subSettingValueObject = subSettingObject.get(subEnumSetting.getName());
                         }
 
@@ -1441,7 +1441,7 @@ public final class ConfigUtil {
                             }
 
                             if (subSetting.getValue() instanceof Enum) {
-                                Setting<Enum> subEnumSetting = (Setting<Enum>) subSetting;
+                                Setting<Enum<?>> subEnumSetting = (Setting<Enum<?>>) subSetting;
                                 EnumUtil.setEnumValue(subEnumSetting, subSettingValueObject.getAsString());
                             }
 
@@ -1489,7 +1489,7 @@ public final class ConfigUtil {
                         }
 
                         if (subSetting.getValue() instanceof Enum) {
-                            Setting<Enum> subEnumSetting = (Setting<Enum>) subSetting;
+                            Setting<Enum<?>> subEnumSetting = (Setting<Enum<?>>) subSetting;
                             subSettingValueObject = subSettingObject.get(subEnumSetting.getName());
                         }
 
@@ -1528,7 +1528,7 @@ public final class ConfigUtil {
                             }
 
                             if (subSetting.getValue() instanceof Enum) {
-                                Setting<Enum> subEnumSetting = (Setting<Enum>) subSetting;
+                                Setting<Enum<?>> subEnumSetting = (Setting<Enum<?>>) subSetting;
                                 EnumUtil.setEnumValue(subEnumSetting, subSettingValueObject.getAsString());
                             }
 
@@ -1565,7 +1565,7 @@ public final class ConfigUtil {
                     }
 
                     if (setting.getValue() instanceof Enum) {
-                        Setting<Enum> enumSetting = (Setting<Enum>) setting;
+                        Setting<Enum<?>> enumSetting = (Setting<Enum<?>>) setting;
                         EnumUtil.setEnumValue(enumSetting, settingValueObject.getAsString());
                     }
 

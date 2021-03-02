@@ -105,10 +105,6 @@ public final class HUDEditorScreen extends GuiScreen {
 	
 	@Override
 	public boolean doesGuiPauseGame() {
-		if (HUDEditor.pauseGame.getValue() == HUDEditor.PauseModes.Pause) {
-			return true;
-		}
-
-		return false;
+		return HUDEditor.pauseGame.getValue() == HUDEditor.PauseModes.Pause;
 	}
 }

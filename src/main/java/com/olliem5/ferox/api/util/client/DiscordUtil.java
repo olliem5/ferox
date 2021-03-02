@@ -8,6 +8,8 @@ import com.olliem5.ferox.api.traits.Minecraft;
 import net.minecraft.client.gui.GuiMultiplayer;
 import net.minecraft.client.gui.GuiWorldSelection;
 
+import java.util.Objects;
+
 /**
  * @author olliem5
  */
@@ -39,7 +41,7 @@ public final class DiscordUtil implements Minecraft {
                     state = "Main Menu";
 
                     if (mc.isIntegratedServerRunning()) {
-                        state = "Singleplayer | " + mc.getIntegratedServer().getWorldName();
+                        state = "Singleplayer | " + Objects.requireNonNull(mc.getIntegratedServer()).getWorldName();
                     } else if (mc.currentScreen instanceof GuiMultiplayer) {
                         state = "Multiplayer Menu";
                     } else if (mc.currentScreen instanceof GuiWorldSelection) {

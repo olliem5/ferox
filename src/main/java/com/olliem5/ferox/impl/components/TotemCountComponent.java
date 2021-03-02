@@ -23,30 +23,28 @@ public final class TotemCountComponent extends Component {
         );
     }
 
-    private int totems;
-
     @Override
     public void render() {
         String renderString;
 
-        this.totems = mc.player.inventory.mainInventory.stream()
+        int totems = mc.player.inventory.mainInventory.stream()
                 .filter(itemStack -> itemStack.getItem() == Items.TOTEM_OF_UNDYING)
                 .mapToInt(ItemStack::getCount)
                 .sum();
 
         if (mc.player.getHeldItemOffhand().getItem() == Items.TOTEM_OF_UNDYING) {
-            this.totems += mc.player.getHeldItemOffhand().getCount();
+            totems += mc.player.getHeldItemOffhand().getCount();
         }
 
         switch (countmode.getValue()) {
             case Normal:
-                renderString = "Totems " + ChatFormatting.WHITE + this.totems;
+                renderString = "Totems " + ChatFormatting.WHITE + totems;
                 this.setWidth((int) FontUtil.getStringWidth(renderString));
                 this.setHeight((int) FontUtil.getStringHeight(renderString));
                 drawString(renderString);
                 break;
             case Short:
-                renderString = "Tot " + ChatFormatting.WHITE + this.totems;
+                renderString = "Tot " + ChatFormatting.WHITE + totems;
                 this.setWidth((int) FontUtil.getStringWidth(renderString));
                 this.setHeight((int) FontUtil.getStringHeight(renderString));
                 drawString(renderString);

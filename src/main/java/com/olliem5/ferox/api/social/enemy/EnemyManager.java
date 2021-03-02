@@ -10,7 +10,7 @@ import java.util.ArrayList;
  */
 
 public final class EnemyManager {
-    private static ArrayList<Enemy> enemies = new ArrayList<>();
+    private static final ArrayList<Enemy> enemies = new ArrayList<>();
 
     public static boolean isEnemy(String name) {
         boolean isEnemy = false;

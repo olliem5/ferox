@@ -26,7 +26,7 @@ public final class Sprint extends Module {
             if (keyCheck() && logicCheck()) {
                 mc.player.setSprinting(true);
             }
-        } catch (Exception e) {}
+        } catch (Exception ignored) {}
     }
 
     private boolean keyCheck() {

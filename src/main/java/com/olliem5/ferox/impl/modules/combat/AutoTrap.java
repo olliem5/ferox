@@ -99,7 +99,7 @@ public final class AutoTrap extends Module {
                 }
             }
         } else {
-            if (hasPlaced == true && disableMode.getValue() == DisableModes.Finish) {
+            if (hasPlaced && disableMode.getValue() == DisableModes.Finish) {
                 this.toggle();
             }
         }

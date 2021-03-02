@@ -5,6 +5,7 @@ import com.olliem5.ferox.api.component.Component;
 import com.olliem5.ferox.api.component.FeroxComponent;
 import com.olliem5.ferox.api.setting.Setting;
 import com.olliem5.ferox.api.util.render.font.FontUtil;
+import net.minecraft.client.Minecraft;
 
 /**
  * @author Manesko
@@ -27,13 +28,13 @@ public final class FPSComponent extends Component {
 
         switch (fpsMode.getValue()) {
             case Normal:
-                renderString = "FPS " + ChatFormatting.WHITE + mc.getDebugFPS();
+                renderString = "FPS " + ChatFormatting.WHITE + Minecraft.getDebugFPS();
                 this.setWidth((int) FontUtil.getStringWidth(renderString));
                 this.setHeight((int) FontUtil.getStringHeight(renderString));
                 drawString(renderString);
                 break;
             case Short:
-                renderString = "" + ChatFormatting.WHITE + mc.getDebugFPS();
+                renderString = "" + ChatFormatting.WHITE + Minecraft.getDebugFPS();
                 this.setWidth((int) FontUtil.getStringWidth(renderString));
                 this.setHeight((int) FontUtil.getStringHeight(renderString));
                 drawString(renderString);

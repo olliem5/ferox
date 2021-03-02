@@ -79,10 +79,6 @@ public final class ClickGUIScreen extends GuiScreen {
 	
 	@Override
 	public boolean doesGuiPauseGame() {
-		if (ClickGUI.pauseGame.getValue() == ClickGUI.PauseModes.Pause) {
-			return true;
-		}
-
-		return false;
+		return ClickGUI.pauseGame.getValue() == ClickGUI.PauseModes.Pause;
 	}
 }

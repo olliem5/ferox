@@ -30,6 +30,6 @@ public final class MixinBlockLiquid {
 
     @Inject(method = "canCollideCheck", at = @At("HEAD"), cancellable = true)
     public void canCollideCheck(IBlockState iBlockState, boolean hitIfLiquid, CallbackInfoReturnable<Boolean> callbackInfoReturnable) {
-        callbackInfoReturnable.setReturnValue(ModuleManager.getModuleByName("LiquidInteract").isEnabled() || (hitIfLiquid && (int) iBlockState.getValue((IProperty) BlockLiquid.LEVEL) == 0));
+        callbackInfoReturnable.setReturnValue(ModuleManager.getModuleByName("LiquidInteract").isEnabled() || (hitIfLiquid && iBlockState.getValue(BlockLiquid.LEVEL) == 0));
     }
 }

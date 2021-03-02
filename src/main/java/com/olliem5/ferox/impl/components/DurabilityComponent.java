@@ -21,24 +21,22 @@ public final class DurabilityComponent extends Component {
         );
     }
 
-    private int durability;
-
     @Override
     public void render() {
         String renderString;
 
         int maxDurability = mc.player.getHeldItemMainhand().getMaxDamage();
-        this.durability = maxDurability - mc.player.getHeldItemMainhand().getItemDamage();
+        int durability = maxDurability - mc.player.getHeldItemMainhand().getItemDamage();
 
         switch (durabilityMode.getValue()) {
             case Normal:
-                renderString = "Durability " + ChatFormatting.WHITE + this.durability;
+                renderString = "Durability " + ChatFormatting.WHITE + durability;
                 this.setWidth((int) FontUtil.getStringWidth(renderString));
                 this.setHeight((int) FontUtil.getStringHeight(renderString));
                 drawString(renderString);
                 break;
             case Short:
-                renderString = "" + ChatFormatting.WHITE + this.durability;
+                renderString = "" + ChatFormatting.WHITE + durability;
                 this.setWidth((int) FontUtil.getStringWidth(renderString));
                 this.setHeight((int) FontUtil.getStringHeight(renderString));
                 drawString(renderString);

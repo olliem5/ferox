@@ -6,6 +6,8 @@ import com.olliem5.ferox.api.component.FeroxComponent;
 import com.olliem5.ferox.api.setting.Setting;
 import com.olliem5.ferox.api.util.render.font.FontUtil;
 
+import java.util.Objects;
+
 /**
  * @author Manesko
  * @author olliem5
@@ -43,7 +45,7 @@ public final class PingComponent extends Component {
 
     private int getPing() {
         if (mc.player != null && mc.getConnection() != null && mc.getConnection().getPlayerInfo(mc.player.getName()) != null) {
-            return mc.getConnection().getPlayerInfo(mc.player.getName()).getResponseTime();
+            return Objects.requireNonNull(mc.getConnection().getPlayerInfo(mc.player.getName())).getResponseTime();
         }
 
         return -1;

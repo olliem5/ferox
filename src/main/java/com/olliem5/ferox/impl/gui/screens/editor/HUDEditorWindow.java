@@ -119,11 +119,6 @@ public final class HUDEditorWindow implements Minecraft {
 	}
 
 	private String getTheme() {
-		switch (HUDEditor.theme.getValue()) {
-			case Default:
-				return "Default";
-		}
-
 		return "Default";
 	}
 

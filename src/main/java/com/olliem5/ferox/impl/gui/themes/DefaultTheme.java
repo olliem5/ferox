@@ -179,40 +179,38 @@ public final class DefaultTheme extends Theme {
 
 	public static void drawModuleDropdown(Module module, int x, int y, int mouseX, int mouseY) {
 		for (Setting<?> setting : module.getSettings()) {
-			if (!setting.isSubSetting()) {
-				boost++;
+			boost++;
 
-				if (setting.getValue() instanceof Boolean) {
-					Setting<Boolean> booleanSetting = (Setting<Boolean>) setting;
-					renderBoolean(booleanSetting, x, y, false);
-				}
+			if (setting.getValue() instanceof Boolean) {
+				Setting<Boolean> booleanSetting = (Setting<Boolean>) setting;
+				renderBoolean(booleanSetting, x, y, false);
+			}
 
-				if (setting.getValue() instanceof Enum) {
-					Setting<Enum> enumSetting = (Setting<Enum>) setting;
-					renderEnum(enumSetting, x, y, false);
-				}
+			if (setting.getValue() instanceof Enum) {
+				Setting<Enum<?>> enumSetting = (Setting<Enum<?>>) setting;
+				renderEnum(enumSetting, x, y, false);
+			}
 
-				if (setting.getValue() instanceof Color) {
-					Setting<Color> colorSetting = (Setting<Color>) setting;
-					drawColourPicker(colorSetting, x, y, mouseX, mouseY);
+			if (setting.getValue() instanceof Color) {
+				Setting<Color> colorSetting = (Setting<Color>) setting;
+				drawColourPicker(colorSetting, x, y, mouseX, mouseY);
 
-					boost += 8;
-				}
+				boost += 8;
+			}
 
-				if (setting.getValue() instanceof Integer) {
-					NumberSetting<Integer> integerNumberSetting = (NumberSetting<Integer>) setting;
-					renderInteger(integerNumberSetting, x, y, false);
-				}
+			if (setting.getValue() instanceof Integer) {
+				NumberSetting<Integer> integerNumberSetting = (NumberSetting<Integer>) setting;
+				renderInteger(integerNumberSetting, x, y, false);
+			}
 
-				if (setting.getValue() instanceof Double) {
-					NumberSetting<Double> doubleNumberSetting = (NumberSetting<Double>) setting;
-					renderDouble(doubleNumberSetting, x, y, false);
-				}
+			if (setting.getValue() instanceof Double) {
+				NumberSetting<Double> doubleNumberSetting = (NumberSetting<Double>) setting;
+				renderDouble(doubleNumberSetting, x, y, false);
+			}
 
-				if (setting.getValue() instanceof Float) {
-					NumberSetting<Float> floatNumberSetting = (NumberSetting<Float>) setting;
-					renderFloat(floatNumberSetting, x, y, false);
-				}
+			if (setting.getValue() instanceof Float) {
+				NumberSetting<Float> floatNumberSetting = (NumberSetting<Float>) setting;
+				renderFloat(floatNumberSetting, x, y, false);
 			}
 
 			if (setting.isOpened()) {
@@ -225,7 +223,7 @@ public final class DefaultTheme extends Theme {
 					}
 
 					if (subSetting.getValue() instanceof Enum) {
-						Setting<Enum> enumSubSetting = (Setting<Enum>) subSetting;
+						Setting<Enum<?>> enumSubSetting = (Setting<Enum<?>>) subSetting;
 						renderSubEnum(enumSubSetting, x, y, false);
 					}
 
@@ -257,40 +255,38 @@ public final class DefaultTheme extends Theme {
 
 	public static void drawComponentDropdown(Component component, int x, int y, int mouseX, int mouseY) {
 		for (Setting<?> setting : component.getSettings()) {
-			if (!setting.isSubSetting()) {
-				boost++;
+			boost++;
 
-				if (setting.getValue() instanceof Boolean) {
-					Setting<Boolean> booleanSetting = (Setting<Boolean>) setting;
-					renderBoolean(booleanSetting, x, y, true);
-				}
+			if (setting.getValue() instanceof Boolean) {
+				Setting<Boolean> booleanSetting = (Setting<Boolean>) setting;
+				renderBoolean(booleanSetting, x, y, true);
+			}
 
-				if (setting.getValue() instanceof Enum) {
-					Setting<Enum> enumSetting = (Setting<Enum>) setting;
-					renderEnum(enumSetting, x, y, true);
-				}
+			if (setting.getValue() instanceof Enum) {
+				Setting<Enum<?>> enumSetting = (Setting<Enum<?>>) setting;
+				renderEnum(enumSetting, x, y, true);
+			}
 
-				if (setting.getValue() instanceof Color) {
-					Setting<Color> colorSetting = (Setting<Color>) setting;
-					drawColourPicker(colorSetting, x, y, mouseX, mouseY);
+			if (setting.getValue() instanceof Color) {
+				Setting<Color> colorSetting = (Setting<Color>) setting;
+				drawColourPicker(colorSetting, x, y, mouseX, mouseY);
 
-					boost += 8;
-				}
+				boost += 8;
+			}
 
-				if (setting.getValue() instanceof Integer) {
-					NumberSetting<Integer> integerNumberSetting = (NumberSetting<Integer>) setting;
-					renderInteger(integerNumberSetting, x, y, true);
-				}
+			if (setting.getValue() instanceof Integer) {
+				NumberSetting<Integer> integerNumberSetting = (NumberSetting<Integer>) setting;
+				renderInteger(integerNumberSetting, x, y, true);
+			}
 
-				if (setting.getValue() instanceof Double) {
-					NumberSetting<Double> doubleNumberSetting = (NumberSetting<Double>) setting;
-					renderDouble(doubleNumberSetting, x, y, true);
-				}
+			if (setting.getValue() instanceof Double) {
+				NumberSetting<Double> doubleNumberSetting = (NumberSetting<Double>) setting;
+				renderDouble(doubleNumberSetting, x, y, true);
+			}
 
-				if (setting.getValue() instanceof Float) {
-					NumberSetting<Float> floatNumberSetting = (NumberSetting<Float>) setting;
-					renderFloat(floatNumberSetting, x, y, true);
-				}
+			if (setting.getValue() instanceof Float) {
+				NumberSetting<Float> floatNumberSetting = (NumberSetting<Float>) setting;
+				renderFloat(floatNumberSetting, x, y, true);
 			}
 
 			if (setting.isOpened()) {
@@ -303,7 +299,7 @@ public final class DefaultTheme extends Theme {
 					}
 
 					if (subSetting.getValue() instanceof Enum) {
-						Setting<Enum> enumSubSetting = (Setting<Enum>) subSetting;
+						Setting<Enum<?>> enumSubSetting = (Setting<Enum<?>>) subSetting;
 						renderSubEnum(enumSubSetting, x, y, true);
 					}
 
@@ -437,7 +433,7 @@ public final class DefaultTheme extends Theme {
 		FontUtil.drawText(subSetting.getName(), x + 6, (y + height) + 3 + (boost * height), -1);
 	}
 	
-	private static void renderEnum(Setting<Enum> setting, int x, int y, boolean hud) {
+	private static void renderEnum(Setting<Enum<?>> setting, int x, int y, boolean hud) {
 		int color = 0xFF212121;
 
 		if (GuiUtil.mouseOver(x, y + height + (boost * height), (x + width), (y + height) + height - 1 + (boost * height))) {
@@ -508,7 +504,7 @@ public final class DefaultTheme extends Theme {
 		}
 	}
 
-	private static void renderSubEnum(Setting<Enum> subSetting, int x, int y, boolean hud) {
+	private static void renderSubEnum(Setting<Enum<?>> subSetting, int x, int y, boolean hud) {
 		int color = 0xFF212121;
 
 		if (GuiUtil.mouseOver(x, y + height + (boost * height), (x + width), (y + height) + height - 1 + (boost * height))) {
@@ -934,9 +930,9 @@ public final class DefaultTheme extends Theme {
 
 	public static void drawPicker(Setting<Color> colourSetting, int mouseX, int mouseY, int pickerX, int pickerY, int hueSliderX, int hueSliderY, int alphaSliderX, int alphaSliderY) {
 		float[] color = new float[] {
-				colourSetting.getValue().RGBtoHSB(colourSetting.getValue().getRed(), colourSetting.getValue().getGreen(), colourSetting.getValue().getBlue(), null)[0],
-				colourSetting.getValue().RGBtoHSB(colourSetting.getValue().getRed(), colourSetting.getValue().getGreen(), colourSetting.getValue().getBlue(), null)[1],
-				colourSetting.getValue().RGBtoHSB(colourSetting.getValue().getRed(), colourSetting.getValue().getGreen(), colourSetting.getValue().getBlue(), null)[2]
+				Color.RGBtoHSB(colourSetting.getValue().getRed(), colourSetting.getValue().getGreen(), colourSetting.getValue().getBlue(), null)[0],
+				Color.RGBtoHSB(colourSetting.getValue().getRed(), colourSetting.getValue().getGreen(), colourSetting.getValue().getBlue(), null)[1],
+				Color.RGBtoHSB(colourSetting.getValue().getRed(), colourSetting.getValue().getGreen(), colourSetting.getValue().getBlue(), null)[2]
 		};
 
 		boolean pickingColor = false;
@@ -964,28 +960,14 @@ public final class DefaultTheme extends Theme {
 			pickingAlpha = true;
 		}
 
-		if (!GuiUtil.leftHeld) {
-			pickingColor = pickingHue = pickingAlpha = false;
-		}
-
 		if (pickingHue) {
-			if (hueSliderWidth > hueSliderHeight) {
-				float restrictedX = (float) Math.min(Math.max(hueSliderX, mouseX), hueSliderX + hueSliderWidth);
-				color[0] = (restrictedX - (float) hueSliderX) / hueSliderWidth;
-			} else {
-				float restrictedY = (float) Math.min(Math.max(hueSliderY, mouseY), hueSliderY + hueSliderHeight);
-				color[0] = (restrictedY - (float) hueSliderY) / hueSliderHeight;
-			}
+			float restrictedX = (float) Math.min(Math.max(hueSliderX, mouseX), hueSliderX + hueSliderWidth);
+			color[0] = (restrictedX - (float) hueSliderX) / hueSliderWidth;
 		}
 
 		if (pickingAlpha) {
-			if (alphaSliderWidth > alphaSliderHeight) {
-				float restrictedX = (float) Math.min(Math.max(alphaSliderX, mouseX), alphaSliderX + alphaSliderWidth);
-				colourSetting.setAlpha(1 - (restrictedX - (float) alphaSliderX) / alphaSliderWidth);
-			} else {
-				float restrictedY = (float) Math.min(Math.max(alphaSliderY, mouseY), alphaSliderY + alphaSliderHeight);
-				colourSetting.setAlpha(1 - (restrictedY - (float) alphaSliderY) / alphaSliderHeight);
-			}
+			float restrictedX = (float) Math.min(Math.max(alphaSliderX, mouseX), alphaSliderX + alphaSliderWidth);
+			colourSetting.setAlpha(1 - (restrictedX - (float) alphaSliderX) / alphaSliderWidth);
 		}
 
 		if (pickingColor) {

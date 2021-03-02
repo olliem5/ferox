@@ -18,10 +18,6 @@ public final class ThemeManager {
         ));
     }
 
-    public static ArrayList<Theme> getThemes() {
-        return themes;
-    }
-
     public static Theme getThemeByName(String name) {
         return themes.stream()
                 .filter(theme -> theme.getName().equalsIgnoreCase(name))

@@ -13,7 +13,7 @@ public class Setting<T> {
 
 	private T value;
 
-	private boolean isSubSetting;
+	private final boolean isSubSetting;
 	private boolean isOpened;
 
 	private float alpha = 0.2f;
@@ -41,7 +41,7 @@ public class Setting<T> {
 		}
 
 		if (parent.getValue() instanceof Enum) {
-			Setting<Enum> enumSetting = (Setting<Enum>) parent;
+			Setting<Enum<?>> enumSetting = (Setting<Enum<?>>) parent;
 			enumSetting.addSubSetting(this);
 		}
 
@@ -96,10 +96,6 @@ public class Setting<T> {
 
 	public void setValue(T value) {
 		this.value = value;
-	}
-
-	public boolean isSubSetting() {
-		return isSubSetting;
 	}
 
 	public void setOpened(boolean opened) {

@@ -147,7 +147,7 @@ public final class DrawUtil implements Minecraft {
         GL11.glDisable(GL11.GL_BLEND);
     }
 
-    public static void drawEntityOnScreen(int posX, int posY, int scale, float mouseX, float mouseY, EntityLivingBase entityLivingBase) {
+    public static void drawEntityOnScreen(int posX, int posY, int scale, float mouseY, EntityLivingBase entityLivingBase) {
         RenderManager renderManager = mc.getRenderManager();
 
         GlStateManager.enableColorMaterial();

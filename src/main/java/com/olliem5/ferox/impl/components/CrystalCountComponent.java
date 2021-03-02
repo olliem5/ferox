@@ -23,30 +23,28 @@ public final class CrystalCountComponent extends Component {
         );
     }
 
-    private int crystals;
-
     @Override
     public void render() {
         String renderString;
 
-        this.crystals = mc.player.inventory.mainInventory.stream()
+        int crystals = mc.player.inventory.mainInventory.stream()
                 .filter(itemStack -> itemStack.getItem() == Items.END_CRYSTAL)
                 .mapToInt(ItemStack::getCount)
                 .sum();
 
         if (mc.player.getHeldItemOffhand().getItem() == Items.END_CRYSTAL) {
-            this.crystals += mc.player.getHeldItemOffhand().getCount();
+            crystals += mc.player.getHeldItemOffhand().getCount();
         }
 
         switch (countMode.getValue()) {
             case Normal:
-                renderString = "Crystals " + ChatFormatting.WHITE + this.crystals;
+                renderString = "Crystals " + ChatFormatting.WHITE + crystals;
                 this.setWidth((int) FontUtil.getStringWidth(renderString));
                 this.setHeight((int) FontUtil.getStringHeight(renderString));
                 drawString(renderString);
                 break;
             case Short:
-                renderString = "Cry " + ChatFormatting.WHITE + this.crystals;
+                renderString = "Cry " + ChatFormatting.WHITE + crystals;
                 this.setWidth((int) FontUtil.getStringWidth(renderString));
                 this.setHeight((int) FontUtil.getStringHeight(renderString));
                 drawString(renderString);

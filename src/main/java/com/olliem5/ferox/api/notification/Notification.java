@@ -16,9 +16,6 @@ public final class Notification implements Minecraft {
     private final String message;
     private final NotificationType notificationType;
 
-    private final int width = 200;
-    private final int height = 30;
-
     private final ResourceLocation infoIcon = new ResourceLocation("ferox", "images/info_icon.png");
     private final ResourceLocation warningIcon = new ResourceLocation("ferox", "images/warning_icon.png");
     private final ResourceLocation normalIcon = new ResourceLocation("ferox", "images/normal_icon.png");
@@ -30,7 +27,7 @@ public final class Notification implements Minecraft {
     }
 
     public void renderNotification(int x, int y) {
-        Gui.drawRect(x, y, x + width, y + height, new Color(20, 20, 20, 100).getRGB());
+        Gui.drawRect(x, y, x + 200, y + 30, new Color(20, 20, 20, 100).getRGB());
 
         switch (notificationType) {
             case Info:

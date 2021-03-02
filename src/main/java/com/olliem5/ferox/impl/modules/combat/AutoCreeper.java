@@ -19,6 +19,7 @@ import net.minecraftforge.client.event.RenderWorldLastEvent;
 import org.lwjgl.opengl.GL11;
 
 import java.awt.*;
+import java.util.Objects;
 
 /**
  * @author olliem5
@@ -60,14 +61,10 @@ public final class AutoCreeper extends Module {
 
         target = TargetUtil.getClosestPlayer(targetRange.getValue());
 
-        if (mc.player.getHeldItemOffhand().getItem() == Items.SPAWN_EGG) {
-            offhand = true;
-        } else {
-            offhand = false;
-        }
+        offhand = mc.player.getHeldItemOffhand().getItem() == Items.SPAWN_EGG;
 
         mc.world.playerEntities.stream()
-                .filter(target -> target != null)
+                .filter(Objects::nonNull)
                 .filter(target -> target != mc.player)
                 .filter(target -> !target.isDead)
                 .filter(target -> target.getHealth() > 0)

@@ -10,7 +10,7 @@ import java.util.ArrayList;
  */
 
 public final class FriendManager {
-    private static ArrayList<Friend> friends = new ArrayList<>();
+    private static final ArrayList<Friend> friends = new ArrayList<>();
 
     public static boolean isFriend(String name) {
         boolean isFriend = false;

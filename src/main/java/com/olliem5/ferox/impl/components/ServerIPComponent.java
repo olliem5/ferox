@@ -6,6 +6,8 @@ import com.olliem5.ferox.api.component.FeroxComponent;
 import com.olliem5.ferox.api.setting.Setting;
 import com.olliem5.ferox.api.util.render.font.FontUtil;
 
+import java.util.Objects;
+
 /**
  * @author Manesko
  * @author olliem5
@@ -49,19 +51,19 @@ public final class ServerIPComponent extends Component {
         } else {
             switch (ipMode.getValue()) {
                 case Normal:
-                    renderString = "Server IP " + ChatFormatting.WHITE + mc.getCurrentServerData().serverIP;
+                    renderString = "Server IP " + ChatFormatting.WHITE + Objects.requireNonNull(mc.getCurrentServerData()).serverIP;
                     this.setWidth((int) FontUtil.getStringWidth(renderString));
                     this.setHeight((int) FontUtil.getStringHeight(renderString));
                     drawString(renderString);
                     break;
                 case IP:
-                    renderString = "IP " + ChatFormatting.WHITE + mc.getCurrentServerData().serverIP;
+                    renderString = "IP " + ChatFormatting.WHITE + Objects.requireNonNull(mc.getCurrentServerData()).serverIP;
                     this.setWidth((int) FontUtil.getStringWidth(renderString));
                     this.setHeight((int) FontUtil.getStringHeight(renderString));
                     drawString(renderString);
                     break;
                 case Short:
-                    renderString = "" + ChatFormatting.WHITE + mc.getCurrentServerData().serverIP;
+                    renderString = "" + ChatFormatting.WHITE + Objects.requireNonNull(mc.getCurrentServerData()).serverIP;
                     this.setWidth((int) FontUtil.getStringWidth(renderString));
                     this.setHeight((int) FontUtil.getStringHeight(renderString));
                     drawString(renderString);

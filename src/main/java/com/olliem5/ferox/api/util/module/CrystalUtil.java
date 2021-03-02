@@ -32,12 +32,12 @@ public final class CrystalUtil implements Minecraft {
 
             double damage = 1.0;
 
-            if (entity instanceof EntityLivingBase) {
-                damage = getBlastReduction((EntityLivingBase) entity, calculatedDamage * ((mc.world.getDifficulty().getId() == 0) ? 0.0f : ((mc.world.getDifficulty().getId() == 2) ? 1.0f : ((mc.world.getDifficulty().getId() == 1) ? 0.5f : 1.5f))), new Explosion(mc.world, null, posX, posY, posZ, 6.0f, false, true));
+            if (entity instanceof EntityLivingBase) {//maybe i broke this by making entity entity not null lol idk
+                damage = getBlastReduction((EntityLivingBase) entity, calculatedDamage * ((mc.world.getDifficulty().getId() == 0) ? 0.0f : ((mc.world.getDifficulty().getId() == 2) ? 1.0f : ((mc.world.getDifficulty().getId() == 1) ? 0.5f : 1.5f))), new Explosion(mc.world, entity, posX, posY, posZ, 6.0f, false, true));
             }
 
             return (float) damage;
-        } catch (Exception e) {}
+        } catch (Exception ignored) {}
 
         return 0.0f;
     }

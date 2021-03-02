@@ -15,6 +15,8 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
 import org.lwjgl.opengl.GL11;
 
+import java.util.Objects;
+
 /**
  * @author olliem5
  */
@@ -23,9 +25,9 @@ public final class Box extends ESPMode {
     @Override
     public void drawESP(RenderWorldLastEvent event) {
         mc.world.loadedEntityList.stream()
-                .filter(entity -> entity != null)
+                .filter(Objects::nonNull)
                 .filter(entity -> mc.player != entity)
-                .filter(entity -> ESP.entityCheck(entity))
+                .filter(ESP::entityCheck)
                 .forEach(entity -> {
                     RenderUtil.prepareGL();
 

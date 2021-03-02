@@ -112,7 +112,7 @@ public final class Surround extends Module {
                     this.toggle();
                 }
             }
-        } else if (hasPlaced == true && disableMode.getValue() == DisableModes.Finish) {
+        } else if (hasPlaced && disableMode.getValue() == DisableModes.Finish) {
             this.toggle();
         } else {
             if (!mc.player.onGround) {

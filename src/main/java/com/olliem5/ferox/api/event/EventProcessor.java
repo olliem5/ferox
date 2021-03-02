@@ -98,9 +98,7 @@ public final class EventProcessor implements Minecraft {
             if (packet.getOpCode() == 35) {
                 Entity entity = packet.getEntity(mc.world);
 
-                if (entity != null) {
-                    Ferox.EVENT_BUS.dispatchPaceEvent(new TotemPopEvent(entity));
-                }
+                Ferox.EVENT_BUS.dispatchPaceEvent(new TotemPopEvent(entity));
             }
         }
     }

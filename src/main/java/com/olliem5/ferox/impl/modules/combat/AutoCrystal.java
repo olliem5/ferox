@@ -38,6 +38,7 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
@@ -214,7 +215,7 @@ public final class AutoCrystal extends Module {
             }
 
             tempPosition = crystalPositions.stream()
-                    .max(Comparator.comparing(finalPlacePosition -> finalPlacePosition.getTargetDamage())) //TODO: Different calculation algorithms
+                    .max(Comparator.comparing(CrystalPosition::getTargetDamage)) //TODO: Different calculation algorithms
                     .orElse(null);
 
             if (tempPosition == null) {
@@ -286,9 +287,9 @@ public final class AutoCrystal extends Module {
     private boolean handlePause() {
         if ((mc.player.getHealth() + mc.player.getAbsorptionAmount()) <= pauseHealth.getValue() && pauseHealthAllow.getValue()) return true;
 
-        else if (mc.player.getHeldItemMainhand().getItem() == Items.GOLDEN_APPLE && mc.player.isHandActive() && pauseWhileEating.getValue()) return true;
+        if (mc.player.getHeldItemMainhand().getItem() == Items.GOLDEN_APPLE && mc.player.isHandActive() && pauseWhileEating.getValue()) return true;
 
-        else if (mc.player.getHeldItemMainhand().getItem() == Items.DIAMOND_PICKAXE && mc.player.isHandActive() && pauseWhileMining.getValue()) return true;
+        if (mc.player.getHeldItemMainhand().getItem() == Items.DIAMOND_PICKAXE && mc.player.isHandActive() && pauseWhileMining.getValue()) return true;
 
         return false;
     }
@@ -344,7 +345,7 @@ public final class AutoCrystal extends Module {
                 CPacketUseEntity cPacketUseEntity = (CPacketUseEntity) event.getPacket();
 
                 if (cPacketUseEntity.getAction() == CPacketUseEntity.Action.ATTACK && cPacketUseEntity.getEntityFromWorld(mc.world) instanceof EntityEnderCrystal && breakMode.getValue() == BreakModes.Packet) {
-                    cPacketUseEntity.getEntityFromWorld(mc.world).setDead();
+                    Objects.requireNonNull(cPacketUseEntity.getEntityFromWorld(mc.world)).setDead();
                 }
             }
         }

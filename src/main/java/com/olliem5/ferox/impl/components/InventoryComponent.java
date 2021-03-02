@@ -16,7 +16,7 @@ import java.awt.*;
 
 @FeroxComponent(name = "Inventory", description = "Shows a preview of your inventory")
 public final class InventoryComponent extends Component {
-    public static final Setting<Boolean> background = new Setting("Background", "Shows a background behind the items", true);
+    public static final Setting<Boolean> background = new Setting<>("Background", "Shows a background behind the items", true);
 
     public InventoryComponent() {
         this.setWidth(144);

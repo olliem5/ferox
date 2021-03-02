@@ -25,8 +25,6 @@ public final class ChatSuffix extends Module {
         );
     }
 
-    private final String suffix = " \u00bb \uff26\uff45\uff52\uff4f\uff58";
-
     @PaceHandler
     public void onPacket(PacketEvent.Send event) {
         if (nullCheck()) return;
@@ -37,6 +35,8 @@ public final class ChatSuffix extends Module {
             String string = cPacketChatMessage.getMessage();
 
             if (string.startsWith(Ferox.CHAT_PREFIX) || string.startsWith("/")) return;
+
+            String suffix = " \u00bb \uff26\uff45\uff52\uff4f\uff58";
 
             if (blue.getValue()) {
                 string += " `" + suffix;
