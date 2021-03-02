@@ -1,6 +1,7 @@
 package com.olliem5.ferox;
 
 import com.olliem5.ferox.api.mixin.MixinLoader;
+import com.olliem5.ferox.api.traits.Minecraft;
 import com.olliem5.ferox.api.util.client.ConfigUtil;
 import com.olliem5.pace.handler.EventHandler;
 import net.minecraftforge.fml.common.Mod;
@@ -16,7 +17,7 @@ import org.lwjgl.opengl.Display;
  */
 
 @Mod(modid = Ferox.MOD_ID, name = Ferox.MOD_NAME, version = Ferox.MOD_VERSION)
-public final class Ferox {
+public final class Ferox implements Minecraft {
     public static final String MOD_ID = "ferox";
     public static final String MOD_NAME = "Ferox";
     public static final String MOD_VERSION = "1.1";

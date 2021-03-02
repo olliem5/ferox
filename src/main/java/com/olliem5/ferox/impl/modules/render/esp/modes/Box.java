@@ -31,7 +31,7 @@ public final class Box extends ESPMode {
 
                     AxisAlignedBB axisAlignedBB = entity.boundingBox.offset(-mc.renderManager.renderPosX, -mc.renderManager.renderPosY, -mc.renderManager.renderPosZ);
 
-                    GL11.glLineWidth(ESP.outlineWidth.getValue().floatValue());
+                    GL11.glLineWidth(ESP.lineWidth.getValue().floatValue());
 
                     if (entity instanceof EntityEnderCrystal) {
                         RenderGlobal.drawSelectionBoundingBox(axisAlignedBB, ESP.crystalColour.getValue().getRed() / 255.0f, ESP.crystalColour.getValue().getGreen() / 255.0f, ESP.crystalColour.getValue().getBlue() / 255.0f, ESP.crystalColour.getValue().getAlpha() / 255.0f);                    }

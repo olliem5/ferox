@@ -8,6 +8,7 @@ import com.olliem5.ferox.api.setting.Setting;
 import com.olliem5.ferox.impl.modules.render.esp.ESPMode;
 import com.olliem5.ferox.impl.modules.render.esp.modes.Box;
 import com.olliem5.ferox.impl.modules.render.esp.modes.CSGO;
+import com.olliem5.ferox.impl.modules.render.esp.modes.Glow;
 import com.olliem5.pace.annotation.PaceHandler;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityEnderCrystal;
@@ -17,6 +18,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
 
 import java.awt.*;
+import java.util.Objects;
 
 /**
  * @author olliem5
@@ -25,7 +27,7 @@ import java.awt.*;
 @FeroxModule(name = "ESP", description = "Highlights entities in your world", category = Category.Render)
 public final class ESP extends Module {
     public static final Setting<ESPModes> mode = new Setting<>("Mode", "The mode to use for ESP", ESPModes.CSGO);
-    public static final NumberSetting<Double> outlineWidth = new NumberSetting<>("Outline Width", "The width of the outline", 1.0, 2.0, 5.0, 1);
+    public static final NumberSetting<Double> lineWidth = new NumberSetting<>("Line Width", "The width of the lines", 1.0, 2.0, 5.0, 1);
 
     public static final Setting<Boolean> crystals = new Setting<>("Crystals", "Allows esp to function on crystals", true);
     public static final Setting<Color> crystalColour = new Setting<>(crystals, "Crystal Colour", "The colour for crystals", new Color(106, 22, 219, 100));
@@ -42,7 +44,7 @@ public final class ESP extends Module {
     public ESP() {
         this.addSettings(
                 mode,
-                outlineWidth,
+                lineWidth,
                 crystals,
                 players,
                 animals,
@@ -53,6 +55,8 @@ public final class ESP extends Module {
     private ESPMode espMode;
 
     public void onUpdate() {
+        if (nullCheck()) return;
+
         switch (mode.getValue()) {
             case CSGO:
                 espMode = new CSGO();
@@ -60,13 +64,16 @@ public final class ESP extends Module {
             case Box:
                 espMode = new Box();
                 break;
+            case Glow:
+                espMode = new Glow();
+                break;
         }
+
+
     }
 
     public static boolean entityCheck(Entity entity) {
-        if (entity instanceof EntityEnderCrystal && ESP.crystals.getValue() || entity instanceof EntityPlayer && ESP.players.getValue() || entity instanceof EntityAnimal && ESP.animals.getValue() || entity instanceof EntityMob && ESP.mobs.getValue()) return true;
-
-        return false;
+        return entity instanceof EntityEnderCrystal && ESP.crystals.getValue() || entity instanceof EntityPlayer && ESP.players.getValue() || entity instanceof EntityAnimal && ESP.animals.getValue() || entity instanceof EntityMob && ESP.mobs.getValue();
     }
 
     @PaceHandler
@@ -78,6 +85,7 @@ public final class ESP extends Module {
 
     public enum ESPModes {
         CSGO,
-        Box
+        Box,
+        Glow
     }
 }

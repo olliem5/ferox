@@ -16,7 +16,7 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
 import org.lwjgl.opengl.GL11;
 
-import static org.lwjgl.opengl.GL11.*;
+import static org.lwjgl.opengl.GL11.GL_LINE_LOOP;
 
 /**
  * @author olliem5
@@ -37,7 +37,7 @@ public final class CSGO extends ESPMode {
 
                     Vec3d vec3d = EntityUtil.getInterpolatedPos(entity, mc.getRenderPartialTicks());
 
-                    GL11.glLineWidth(ESP.outlineWidth.getValue().floatValue());
+                    GL11.glLineWidth(ESP.lineWidth.getValue().floatValue());
 
                     GlStateManager.translate(vec3d.x - mc.getRenderManager().renderPosX, vec3d.y - mc.getRenderManager().renderPosY, vec3d.z - mc.getRenderManager().renderPosZ);
                     GlStateManager.glNormal3f(0.0f, 1.0f, 0.0f);
