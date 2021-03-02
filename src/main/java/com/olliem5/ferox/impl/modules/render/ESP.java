@@ -69,7 +69,13 @@ public final class ESP extends Module {
                 break;
         }
 
-
+        if (!espMode.equals(new Glow())) {
+            mc.world.loadedEntityList.stream()
+                    .filter(Objects::nonNull)
+                    .filter(entity -> mc.player != entity)
+                    .filter(ESP::entityCheck)
+                    .forEach(entity -> entity.setGlowing(false));
+        }
     }
 
     public static boolean entityCheck(Entity entity) {

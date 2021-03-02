@@ -26,7 +26,7 @@ import java.awt.*;
 @Mixin(Render.class)
 public final class MixinRender<T extends Entity> {
     @Inject(method = "getTeamColor", at = @At("HEAD"), cancellable = true)
-    public void getTeamColour(T entity, CallbackInfoReturnable callbackInfoReturnable) {
+    public void getTeamColour(T entity, CallbackInfoReturnable<Integer> callbackInfoReturnable) {
         if (ModuleManager.getModuleByName("ESP").isEnabled()) {
             callbackInfoReturnable.cancel();
 

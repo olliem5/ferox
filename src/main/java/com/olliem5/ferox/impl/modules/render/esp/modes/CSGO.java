@@ -16,6 +16,8 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
 import org.lwjgl.opengl.GL11;
 
+import java.util.Objects;
+
 import static org.lwjgl.opengl.GL11.GL_LINE_LOOP;
 
 /**
@@ -29,9 +31,9 @@ public final class CSGO extends ESPMode {
         float viewerYaw = mc.getRenderManager().playerViewY;
 
         mc.world.loadedEntityList.stream()
-                .filter(entity -> entity != null)
+                .filter(Objects::nonNull)
                 .filter(entity -> mc.player != entity)
-                .filter(entity -> ESP.entityCheck(entity))
+                .filter(ESP::entityCheck)
                 .forEach(entity -> {
                     RenderUtil.prepareGL();
 

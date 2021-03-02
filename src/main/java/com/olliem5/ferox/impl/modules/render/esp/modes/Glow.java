@@ -10,6 +10,8 @@ import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
 
+import java.util.Objects;
+
 /**
  * @author olliem5
  */
@@ -18,9 +20,9 @@ public final class Glow extends ESPMode {
     @Override
     public void drawESP(RenderWorldLastEvent event) {
         mc.world.loadedEntityList.stream()
-                .filter(entity -> entity != null)
+                .filter(Objects::nonNull)
                 .filter(entity -> mc.player != entity)
-                .filter(entity -> ESP.entityCheck(entity))
+                .filter(ESP::entityCheck)
                 .forEach(entity -> {
                     if (entity instanceof EntityEnderCrystal) {
                         entity.setGlowing(true);
