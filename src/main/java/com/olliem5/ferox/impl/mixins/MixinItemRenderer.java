@@ -2,6 +2,7 @@ package com.olliem5.ferox.impl.mixins;
 
 import com.olliem5.ferox.Ferox;
 import com.olliem5.ferox.api.module.ModuleManager;
+import com.olliem5.ferox.impl.events.TransFormFirstPersonPost;
 import com.olliem5.ferox.impl.events.TransformSideFirstPersonEvent;
 import com.olliem5.ferox.impl.modules.render.ViewModel;
 import net.minecraft.client.renderer.ItemRenderer;
@@ -37,6 +38,12 @@ public final class MixinItemRenderer {
     @Inject(method = "transformSideFirstPerson", at = @At("HEAD"))
     public void transformSideFirstPerson(EnumHandSide enumHandSide, float p_187459_2_, CallbackInfo callbackInfo) {
         TransformSideFirstPersonEvent event = new TransformSideFirstPersonEvent(enumHandSide);
+        Ferox.EVENT_BUS.dispatchPaceEvent(event);
+    }
+
+    @Inject(method = "transformFirstPerson", at = @At("TAIL"))
+    public void transformFirstPersonPost(EnumHandSide hand, float p_187453_2_, CallbackInfo ci){
+        TransFormFirstPersonPost event = new TransFormFirstPersonPost(hand);
         Ferox.EVENT_BUS.dispatchPaceEvent(event);
     }
 }

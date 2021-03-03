@@ -128,6 +128,7 @@ reobf {
 
 //Lazy fix because I suck at gradle -> Comment this out to run with runClient.
 
+
 jar {
     manifest {
         attributes (
@@ -141,5 +142,6 @@ jar {
         )
     }
 }
+
 
 build.dependsOn(shadowJar)
