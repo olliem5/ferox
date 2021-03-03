@@ -23,6 +23,7 @@ public final class ClientFont extends Module {
         );
 
         this.setEnabled(true);
+        this.setDrawn(false);
     }
 
     @Override
@@ -30,7 +31,6 @@ public final class ClientFont extends Module {
         if (nullCheck()) return;
 
         this.setEnabled(true);
-        this.setDrawn(false);
     }
 
     @Override

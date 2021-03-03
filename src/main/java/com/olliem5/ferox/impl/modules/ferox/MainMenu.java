@@ -23,5 +23,6 @@ public final class MainMenu extends Module {
         );
 
         this.setEnabled(true);
+        this.setDrawn(false);
     }
 }

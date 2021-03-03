@@ -11,10 +11,6 @@ import com.olliem5.ferox.api.util.client.DiscordUtil;
 
 @FeroxModule(name = "DiscordRPC", description = "Shows off Ferox on discord", category = Category.Ferox)
 public final class DiscordRPC extends Module {
-    public DiscordRPC() {
-        this.setEnabled(true);
-    }
-
     @Override
     public void onEnable() {
         if (nullCheck()) return;

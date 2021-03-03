@@ -26,6 +26,7 @@ public final class Social extends Module {
         );
 
         this.setEnabled(true);
+        this.setDrawn(false);
     }
 
     @Override

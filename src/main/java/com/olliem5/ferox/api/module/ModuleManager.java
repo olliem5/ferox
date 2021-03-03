@@ -80,6 +80,7 @@ public final class ModuleManager {
                 new VoidESP(),
 
                 //Ferox
+                new Baritone(),
                 new Colours(),
                 new DiscordRPC(),
                 new ClientFont(),
