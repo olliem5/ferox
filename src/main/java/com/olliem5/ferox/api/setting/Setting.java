@@ -13,7 +13,6 @@ public class Setting<T> {
 
 	private T value;
 
-	private final boolean isSubSetting;
 	private boolean isOpened;
 
 	private float alpha = 0.2f;
@@ -24,16 +23,12 @@ public class Setting<T> {
 		this.name = name;
 		this.description = description;
 		this.value = value;
-
-		this.isSubSetting = false;
 	}
 
 	public Setting(Setting<?> parent, String name, String description, T value) {
 		this.name = name;
 		this.description = description;
 		this.value = value;
-
-		this.isSubSetting = true;
 
 		if (parent.getValue() instanceof Boolean) {
 			Setting<Boolean> booleanSetting = (Setting<Boolean>) parent;

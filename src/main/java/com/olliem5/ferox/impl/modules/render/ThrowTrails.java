@@ -60,24 +60,22 @@ public final class ThrowTrails extends Module {
         iterator = this.mc.world.loadedEntityList.iterator();
 
         while (true) {
-            while (true) {
-                Entity entity;
+            Entity entity;
 
-                do {
-                    if (!iterator.hasNext()) return;
+            do {
+                if (!iterator.hasNext()) return;
 
-                    entity = (Entity) iterator.next();
-                } while (!(entity instanceof EntityEnderPearl));
+                entity = (Entity) iterator.next();
+            } while (!(entity instanceof EntityEnderPearl));
 
-                if (!this.poses.containsKey(entity.getUniqueID())) {
-                    this.poses.put(entity.getUniqueID(), new ArrayList<>(Collections.singletonList(entity.getPositionVector())));
-                    this.time.put(entity.getUniqueID(), stayTime.getValue());
-                } else {
-                    this.time.replace(entity.getUniqueID(), stayTime.getValue());
+            if (!this.poses.containsKey(entity.getUniqueID())) {
+                this.poses.put(entity.getUniqueID(), new ArrayList<>(Collections.singletonList(entity.getPositionVector())));
+                this.time.put(entity.getUniqueID(), stayTime.getValue());
+            } else {
+                this.time.replace(entity.getUniqueID(), stayTime.getValue());
 
-                    List<Vec3d> vec3ds = this.poses.get(entity.getUniqueID());
-                    vec3ds.add(entity.getPositionVector());
-                }
+                List<Vec3d> vec3ds = this.poses.get(entity.getUniqueID());
+                vec3ds.add(entity.getPositionVector());
             }
         }
     }
@@ -105,7 +103,6 @@ public final class ThrowTrails extends Module {
             } while (((List<?>) entry.getValue()).size() <= 2);
 
             GL11.glBegin(1);
-
             GL11.glLineWidth(enderpearlWidth.getValue().floatValue());
             GL11.glColor4f(enderpearlColour.getValue().getRed() / 255.0f, enderpearlColour.getValue().getGreen() / 255.0f, enderpearlColour.getValue().getBlue() / 255.0f, enderpearlColour.getValue().getAlpha() / 255.0f);
 

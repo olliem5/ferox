@@ -21,13 +21,6 @@ public final class Australia extends Module {
     }
 
     @Override
-    public void onEnable() {
-        if (nullCheck()) return;
-
-        mc.entityRenderer.loadShader(new ResourceLocation("shaders/post/flip.json"));
-    }
-
-    @Override
     public void onDisable() {
         if (nullCheck()) return;
 
@@ -36,7 +29,9 @@ public final class Australia extends Module {
 
     public void onUpdate() {
         if (nullCheck()) return;
-        
+
+        mc.entityRenderer.loadShader(new ResourceLocation("shaders/post/flip.json"));
+
         if (fire.getValue()) {
             mc.player.setFire(1);
         }
