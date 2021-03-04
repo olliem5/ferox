@@ -2,7 +2,7 @@
     {
         "modid": "ferox",
         "name": "Ferox",
-        "description": "Ferox Client for 1.12.2",
+        "description": "Ferox Client for 1.12.2. Only for the most alpha people.",
         "version": "1.1",
         "mcversion": "1.12.2",
         "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
@@ -12,6 +12,7 @@
             "LittleDraily",
             "yagel15637 (Reap)",
             "Manesko55",
+            "nekounderscore (Neko)",
             "linustouchtips",
             "bon55"
         ],
