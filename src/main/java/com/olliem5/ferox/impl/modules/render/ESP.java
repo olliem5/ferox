@@ -88,25 +88,25 @@ public final class ESP extends Module {
 
     public static Color getESPColour(Entity entity) {
         if (entity instanceof EntityEnderCrystal) {
-            return new Color(ESP.crystalColour.getValue().getRed() / 255.0f, ESP.crystalColour.getValue().getGreen() / 255.0f, ESP.crystalColour.getValue().getBlue() / 255.0f, ESP.crystalColour.getValue().getAlpha() / 255.0f);
+            return new Color(ESP.crystalColour.getValue().getRed(), ESP.crystalColour.getValue().getGreen(), ESP.crystalColour.getValue().getBlue(), ESP.crystalColour.getValue().getAlpha());
         }
 
         if (entity instanceof EntityPlayer) {
             if (FriendManager.isFriend(entity.getName())) {
-                return new Color(Social.friendColour.getValue().getRed() / 255.0f, Social.friendColour.getValue().getGreen() / 255.0f, Social.friendColour.getValue().getBlue() / 255.0f, Social.friendColour.getValue().getAlpha() / 255.0f);
+                return new Color(Social.friendColour.getValue().getRed(), Social.friendColour.getValue().getGreen(), Social.friendColour.getValue().getBlue(), Social.friendColour.getValue().getAlpha());
             } else if (EnemyManager.isEnemy(entity.getName())) {
-                return new Color(Social.enemyColour.getValue().getRed() / 255.0f, Social.enemyColour.getValue().getGreen() / 255.0f, Social.enemyColour.getValue().getBlue() / 255.0f, Social.enemyColour.getValue().getAlpha() / 255.0f);
+                return new Color(Social.enemyColour.getValue().getRed(), Social.enemyColour.getValue().getGreen(), Social.enemyColour.getValue().getBlue(), Social.enemyColour.getValue().getAlpha());
             } else {
-                return new Color(ESP.playerColour.getValue().getRed() / 255.0f, ESP.playerColour.getValue().getGreen() / 255.0f, ESP.playerColour.getValue().getBlue() / 255.0f, ESP.playerColour.getValue().getAlpha() / 255.0f);
+                return new Color(ESP.playerColour.getValue().getRed(), ESP.playerColour.getValue().getGreen(), ESP.playerColour.getValue().getBlue(), ESP.playerColour.getValue().getAlpha());
             }
         }
 
         if (entity instanceof EntityAnimal) {
-            return new Color(ESP.animalColour.getValue().getRed() / 255.0f, ESP.animalColour.getValue().getGreen() / 255.0f, ESP.animalColour.getValue().getBlue() / 255.0f, ESP.animalColour.getValue().getAlpha() / 255.0f);
+            return new Color(ESP.animalColour.getValue().getRed(), ESP.animalColour.getValue().getGreen(), ESP.animalColour.getValue().getBlue(), ESP.animalColour.getValue().getAlpha());
         }
 
         if (entity instanceof EntityMob) {
-            return new Color(ESP.mobColour.getValue().getRed() / 255.0f, ESP.mobColour.getValue().getGreen() / 255.0f, ESP.mobColour.getValue().getBlue() / 255.0f, ESP.mobColour.getValue().getAlpha() / 255.0f);
+            return new Color(ESP.mobColour.getValue().getRed(), ESP.mobColour.getValue().getGreen(), ESP.mobColour.getValue().getBlue(), ESP.mobColour.getValue().getAlpha());
         }
 
         return new Color(255, 255, 255, 255);
