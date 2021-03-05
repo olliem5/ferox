@@ -99,7 +99,10 @@ public final class HUDEditorScreen extends GuiScreen {
 
 	@Override
 	public void onGuiClosed() {
-		mc.entityRenderer.getShaderGroup().deleteShaderGroup();
+		try {
+			mc.entityRenderer.getShaderGroup().deleteShaderGroup();
+		} catch (Exception ignored) {}
+
 		ConfigUtil.saveConfig();
 	}
 	

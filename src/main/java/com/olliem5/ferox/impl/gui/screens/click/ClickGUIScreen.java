@@ -71,8 +71,9 @@ public final class ClickGUIScreen extends GuiScreen {
 
 	@Override
 	public void onGuiClosed() {
-		//TODO Fix when from going here to the HUDEditor with it's blur on it doesn't load
-		mc.entityRenderer.getShaderGroup().deleteShaderGroup();
+		try {
+			mc.entityRenderer.getShaderGroup().deleteShaderGroup();
+		} catch (Exception ignored) {}
 
 		ConfigUtil.saveConfig();
 	}

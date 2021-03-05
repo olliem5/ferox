@@ -24,7 +24,9 @@ public final class Australia extends Module {
     public void onDisable() {
         if (nullCheck()) return;
 
-        mc.entityRenderer.getShaderGroup().deleteShaderGroup();
+        try {
+            mc.entityRenderer.getShaderGroup().deleteShaderGroup();
+        } catch (Exception ignored) {}
     }
 
     public void onUpdate() {

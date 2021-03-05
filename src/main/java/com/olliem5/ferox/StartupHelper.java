@@ -7,7 +7,6 @@ import com.olliem5.ferox.api.theme.ThemeManager;
 import com.olliem5.ferox.impl.commands.*;
 import com.olliem5.ferox.impl.gui.screens.click.ClickGUIWindow;
 import com.olliem5.ferox.impl.gui.screens.editor.HUDEditorWindow;
-import com.olliem5.ferox.impl.gui.screens.mainmenu.FeroxGuiMainMenu;
 import me.yagel15637.venture.manager.CommandManager;
 import net.minecraftforge.common.MinecraftForge;
 
@@ -27,10 +26,6 @@ public final class StartupHelper {
         ComponentManager.init();
         Ferox.EVENT_BUS.register(new ComponentManager());
         Ferox.log("HUD Initialized!");
-
-        FeroxGuiMainMenu feroxGuiMainMenu = new FeroxGuiMainMenu();
-        feroxGuiMainMenu.initGui();
-        Ferox.log("Custom Main Menu Initialized!");
 
         ClickGUIWindow.initGui();
         Ferox.log("ClickGUI Windows Initialized!");

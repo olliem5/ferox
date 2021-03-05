@@ -5,6 +5,9 @@ import com.olliem5.ferox.api.module.FeroxModule;
 import com.olliem5.ferox.api.module.Module;
 import com.olliem5.ferox.api.setting.NumberSetting;
 import com.olliem5.ferox.api.setting.Setting;
+import com.olliem5.ferox.api.social.enemy.EnemyManager;
+import com.olliem5.ferox.api.social.friend.FriendManager;
+import com.olliem5.ferox.impl.modules.ferox.Social;
 import com.olliem5.ferox.impl.modules.render.esp.ESPMode;
 import com.olliem5.ferox.impl.modules.render.esp.modes.Box;
 import com.olliem5.ferox.impl.modules.render.esp.modes.CSGO;
@@ -16,6 +19,7 @@ import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
+import org.lwjgl.opengl.GL11;
 
 import java.awt.*;
 import java.util.Objects;
@@ -80,6 +84,32 @@ public final class ESP extends Module {
 
     public static boolean entityCheck(Entity entity) {
         return entity instanceof EntityEnderCrystal && ESP.crystals.getValue() || entity instanceof EntityPlayer && ESP.players.getValue() || entity instanceof EntityAnimal && ESP.animals.getValue() || entity instanceof EntityMob && ESP.mobs.getValue();
+    }
+
+    public static Color getESPColour(Entity entity) {
+        if (entity instanceof EntityEnderCrystal) {
+            return new Color(ESP.crystalColour.getValue().getRed() / 255.0f, ESP.crystalColour.getValue().getGreen() / 255.0f, ESP.crystalColour.getValue().getBlue() / 255.0f, ESP.crystalColour.getValue().getAlpha() / 255.0f);
+        }
+
+        if (entity instanceof EntityPlayer) {
+            if (FriendManager.isFriend(entity.getName())) {
+                return new Color(Social.friendColour.getValue().getRed() / 255.0f, Social.friendColour.getValue().getGreen() / 255.0f, Social.friendColour.getValue().getBlue() / 255.0f, Social.friendColour.getValue().getAlpha() / 255.0f);
+            } else if (EnemyManager.isEnemy(entity.getName())) {
+                return new Color(Social.enemyColour.getValue().getRed() / 255.0f, Social.enemyColour.getValue().getGreen() / 255.0f, Social.enemyColour.getValue().getBlue() / 255.0f, Social.enemyColour.getValue().getAlpha() / 255.0f);
+            } else {
+                return new Color(ESP.playerColour.getValue().getRed() / 255.0f, ESP.playerColour.getValue().getGreen() / 255.0f, ESP.playerColour.getValue().getBlue() / 255.0f, ESP.playerColour.getValue().getAlpha() / 255.0f);
+            }
+        }
+
+        if (entity instanceof EntityAnimal) {
+            return new Color(ESP.animalColour.getValue().getRed() / 255.0f, ESP.animalColour.getValue().getGreen() / 255.0f, ESP.animalColour.getValue().getBlue() / 255.0f, ESP.animalColour.getValue().getAlpha() / 255.0f);
+        }
+
+        if (entity instanceof EntityMob) {
+            return new Color(ESP.mobColour.getValue().getRed() / 255.0f, ESP.mobColour.getValue().getGreen() / 255.0f, ESP.mobColour.getValue().getBlue() / 255.0f, ESP.mobColour.getValue().getAlpha() / 255.0f);
+        }
+
+        return new Color(255, 255, 255, 255);
     }
 
     @PaceHandler
