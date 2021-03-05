@@ -25,10 +25,6 @@ import java.nio.file.Paths;
  * @author olliem5
  * @author linustouchtips
  * @author Hoosiers
- *
- * TODO: Sort modules into other folders for categories
- *
- * Note - Colour settings ony save and load properly if they are sub settings. I might add support for them as main settings later, but I don't use it currently.
  */
 
 public final class ConfigUtil {

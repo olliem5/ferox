@@ -41,7 +41,7 @@ public final class MixinNetworkManager {
 
     @Inject(method = "exceptionCaught", at = @At("HEAD"), cancellable = true)
     private void exceptionCaught(ChannelHandlerContext p_exceptionCaught_1_, Throwable p_exceptionCaught_2_, CallbackInfo callbackInfo) {
-        if (p_exceptionCaught_2_ instanceof IOException && ModuleManager.getModuleByName("AntiPacketKick").isEnabled()){
+        if (p_exceptionCaught_2_ instanceof IOException && ModuleManager.getModuleByName("AntiPacketKick").isEnabled()) {
             callbackInfo.cancel();
         }
     }

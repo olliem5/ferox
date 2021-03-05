@@ -25,7 +25,6 @@ public abstract class TransformFirstPersonEvent extends Event {
     }
 
     public static class Post extends TransformFirstPersonEvent {
-
         public Post(EnumHandSide enumHandSide) {
             super(enumHandSide);
         }

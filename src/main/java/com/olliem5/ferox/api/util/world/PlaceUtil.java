@@ -21,11 +21,11 @@ public final class PlaceUtil implements Minecraft {
 
             if (!mc.world.getBlockState(blockPos.offset(enumFacing)).getBlock().equals(Blocks.AIR) && !isIntercepted(blockPos)) {
 
-                Vec3d vec3d = new Vec3d(blockPos.getX() + 0.5D + (double) enumFacing.getXOffset() * 0.5D, blockPos.getY() + 0.5D + (double) enumFacing.getYOffset() * 0.5D, blockPos.getZ() + 0.5D + (double) enumFacing.getZOffset() * 0.5D);
+                Vec3d vec3d = new Vec3d(blockPos.getX() + 0.5 + (double) enumFacing.getXOffset() * 0.5, blockPos.getY() + 0.5 + (double) enumFacing.getYOffset() * 0.5, blockPos.getZ() + 0.5 + (double) enumFacing.getZOffset() * 0.5);
 
-                float[] old = new float[]{mc.player.rotationYaw, mc.player.rotationPitch};
+                float[] old = new float[] {mc.player.rotationYaw, mc.player.rotationPitch};
 
-                mc.player.connection.sendPacket(new CPacketPlayer.Rotation((float) Math.toDegrees(Math.atan2((vec3d.z - mc.player.posZ), (vec3d.x - mc.player.posX))) - 90.0F, (float) (-Math.toDegrees(Math.atan2((vec3d.y - (mc.player.posY + (double) mc.player.getEyeHeight())), (Math.sqrt((vec3d.x - mc.player.posX) * (vec3d.x - mc.player.posX) + (vec3d.z - mc.player.posZ) * (vec3d.z - mc.player.posZ)))))), mc.player.onGround));
+                mc.player.connection.sendPacket(new CPacketPlayer.Rotation((float) Math.toDegrees(Math.atan2((vec3d.z - mc.player.posZ), (vec3d.x - mc.player.posX))) - 90.0f, (float) (-Math.toDegrees(Math.atan2((vec3d.y - (mc.player.posY + (double) mc.player.getEyeHeight())), (Math.sqrt((vec3d.x - mc.player.posX) * (vec3d.x - mc.player.posX) + (vec3d.z - mc.player.posZ) * (vec3d.z - mc.player.posZ)))))), mc.player.onGround));
                 mc.player.connection.sendPacket(new CPacketEntityAction(mc.player, CPacketEntityAction.Action.START_SNEAKING));
                 mc.playerController.processRightClickBlock(mc.player, mc.world, blockPos.offset(enumFacing), enumFacing.getOpposite(), new Vec3d(blockPos), EnumHand.MAIN_HAND);
 
@@ -39,9 +39,9 @@ public final class PlaceUtil implements Minecraft {
         }
     }
 
-    public static boolean isIntercepted(BlockPos pos) {
+    public static boolean isIntercepted(BlockPos blockPos) {
         for (Entity entity : mc.world.loadedEntityList) {
-            if (new AxisAlignedBB(pos).intersects(entity.getEntityBoundingBox())) {
+            if (new AxisAlignedBB(blockPos).intersects(entity.getEntityBoundingBox())) {
                 return true;
             }
         }

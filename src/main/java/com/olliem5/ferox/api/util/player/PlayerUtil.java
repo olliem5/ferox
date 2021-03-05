@@ -7,6 +7,7 @@ import net.minecraft.util.math.Vec3d;
 
 /**
  * @author olliem5
+ * @author linustouchtips
  */
 
 public final class PlayerUtil implements Minecraft {

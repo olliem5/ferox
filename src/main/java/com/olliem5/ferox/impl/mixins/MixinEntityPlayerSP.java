@@ -43,9 +43,9 @@ public final class MixinEntityPlayerSP {
     }
 
     @Inject(method = "pushOutOfBlocks(DDD)Z", at = @At("HEAD"), cancellable = true)
-    public void pushOutOfBlocks(double x, double y, double z, CallbackInfoReturnable<Boolean> callbackInfo) {
+    public void pushOutOfBlocks(double x, double y, double z, CallbackInfoReturnable<Boolean> callbackInfoReturnable) {
         if (ModuleManager.getModuleByName("Velocity").isEnabled() && Velocity.noPush.getValue() && Velocity.noPushBlocks.getValue()) {
-            callbackInfo.setReturnValue(false);
+            callbackInfoReturnable.setReturnValue(false);
         }
     }
 }

@@ -1,7 +1,7 @@
 package com.olliem5.ferox.impl.mixins;
 
 import com.olliem5.ferox.Ferox;
-import com.olliem5.ferox.api.util.colour.RainbowUtil;
+import com.olliem5.ferox.api.util.colour.ColourUtil;
 import com.olliem5.ferox.api.util.render.font.FontUtil;
 import net.minecraft.client.gui.GuiMainMenu;
 import net.minecraft.client.gui.GuiScreen;
@@ -18,6 +18,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public final class MixinGuiMainMenu extends GuiScreen {
     @Inject(method = "drawScreen", at = @At("TAIL"), cancellable = true)
     public void drawText(int mouseX, int mouseY, float partialTicks, CallbackInfo callbackInfo) {
-        FontUtil.drawText(Ferox.NAME_VERSION, 2, 2, RainbowUtil.getRainbow().getRGB());
+        FontUtil.drawText(Ferox.NAME_VERSION, 2, 2, ColourUtil.getRainbow().getRGB());
     }
 }

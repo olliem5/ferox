@@ -6,6 +6,7 @@ import com.olliem5.ferox.api.traits.Minecraft;
  * @author olliem5
  * @author linustouchtips
  * @author Hoosiers
+ * @author historian (I think)
  */
 
 public final class MotionUtil implements Minecraft {

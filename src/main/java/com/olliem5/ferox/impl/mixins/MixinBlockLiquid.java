@@ -3,7 +3,6 @@ package com.olliem5.ferox.impl.mixins;
 import com.olliem5.ferox.api.module.ModuleManager;
 import com.olliem5.ferox.impl.modules.movement.Velocity;
 import net.minecraft.block.BlockLiquid;
-import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.BlockPos;

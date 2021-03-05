@@ -4,6 +4,7 @@ import java.awt.*;
 
 /**
  * @author olliem5
+ * @author bon
  */
 
 public final class ColourUtil {
@@ -13,5 +14,9 @@ public final class ColourUtil {
         float blue = (float) color.getBlue() / 255;
 
         return new Color(red, green, blue, alpha);
+    }
+
+    public static Color getRainbow() {
+        return Color.getHSBColor((float) (System.currentTimeMillis() % 7500L) / 7500f, 0.85f, 0.85f);
     }
 }

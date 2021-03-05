@@ -7,6 +7,7 @@ import net.minecraft.util.math.MathHelper;
 
 /**
  * @author linustouchtips
+ * @author 086
  */
 
 public final class RotationUtil implements Minecraft {

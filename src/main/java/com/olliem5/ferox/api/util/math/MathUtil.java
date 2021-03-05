@@ -5,6 +5,7 @@ import java.math.RoundingMode;
 
 /**
  * @author olliem5
+ * @author linustouchtips
  */
 
 public final class MathUtil {

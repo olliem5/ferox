@@ -18,11 +18,11 @@
     "MixinMovementInputFromOptions",
     "MixinNetworkManager",
     "MixinPlayerControllerMP",
+    "MixinRender",
     "MixinRenderEnderCrystal",
     "MixinRenderGlobal",
     "MixinRenderLivingBase",
     "MixinRenderPlayer",
-    "MixinWorld",
-    "MixinRender"
+    "MixinWorld"
   ]
 }

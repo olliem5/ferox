@@ -50,6 +50,7 @@ public final class MixinRenderEnderCrystal implements Minecraft {
 
             float rotation = entity.innerRotation + partialTicks;
             float rotationMoved = MathHelper.sin(rotation * 0.2f) / 2.0f + 0.5f;
+
             rotationMoved += rotationMoved * rotationMoved;
 
             GlStateManager.translate(x, y, z);

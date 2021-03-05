@@ -81,7 +81,7 @@ public abstract class MixinRenderLivingBase<T extends EntityLivingBase> extends 
     }
 
     @Inject(method = "doRender", at = @At(value="HEAD"))
-    public void doRenderPre(T entity, double x, double y, double z, float entityYaw, float partialTicks, CallbackInfo info) {
+    public void doRenderPre(T entity, double x, double y, double z, float entityYaw, float partialTicks, CallbackInfo callbackInfo) {
         if (ModuleManager.getModuleByName("Chams").isEnabled() && Chams.players.getValue() && entity instanceof EntityPlayer && Chams.playersMode.getValue() == Chams.ChamsModes.Vanilla || ModuleManager.getModuleByName("Chams").isEnabled() && Chams.animals.getValue() && entity instanceof EntityAnimal  && Chams.animalsMode.getValue() == Chams.ChamsModes.Vanilla || ModuleManager.getModuleByName("Chams").isEnabled() && Chams.mobs.getValue() && entity instanceof EntityMob && Chams.mobsMode.getValue() == Chams.ChamsModes.Vanilla) {
             GL11.glEnable(32823);
             GL11.glPolygonOffset(1.0f, -1100000.0f);
@@ -89,7 +89,7 @@ public abstract class MixinRenderLivingBase<T extends EntityLivingBase> extends 
     }
 
     @Inject(method = "doRender", at = @At(value="RETURN"))
-    public void doRenderPost(T entity, double x, double y, double z, float entityYaw, float partialTicks, CallbackInfo info) {
+    public void doRenderPost(T entity, double x, double y, double z, float entityYaw, float partialTicks, CallbackInfo callbackInfo) {
         if (ModuleManager.getModuleByName("Chams").isEnabled() && Chams.players.getValue() && entity instanceof EntityPlayer && Chams.playersMode.getValue() == Chams.ChamsModes.Vanilla || ModuleManager.getModuleByName("Chams").isEnabled() && Chams.animals.getValue() && entity instanceof EntityAnimal  && Chams.animalsMode.getValue() == Chams.ChamsModes.Vanilla || ModuleManager.getModuleByName("Chams").isEnabled() && Chams.mobs.getValue() && entity instanceof EntityMob && Chams.mobsMode.getValue() == Chams.ChamsModes.Vanilla) {
             GL11.glPolygonOffset(1.0f, 1000000.0f);
             GL11.glDisable(32823);

@@ -15,7 +15,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(net.minecraft.client.Minecraft.class)
 public final class MixinMinecraft implements Minecraft {
-    @Inject(method = "runTick()V", at = @At(value="RETURN"))
+    @Inject(method = "runTick()V", at = @At(value = "RETURN"))
     private void runTick(CallbackInfo callbackInfo) {
         if (mc.currentScreen instanceof GuiMainMenu && ModuleManager.getModuleByName("MainMenu").isEnabled()) {
             mc.displayGuiScreen(new FeroxGuiMainMenu());
