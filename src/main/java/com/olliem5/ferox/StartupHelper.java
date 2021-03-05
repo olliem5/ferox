@@ -4,6 +4,7 @@ import com.olliem5.ferox.api.component.ComponentManager;
 import com.olliem5.ferox.api.event.EventProcessor;
 import com.olliem5.ferox.api.module.ModuleManager;
 import com.olliem5.ferox.api.theme.ThemeManager;
+import com.olliem5.ferox.api.waypoint.WaypointManager;
 import com.olliem5.ferox.impl.commands.*;
 import com.olliem5.ferox.impl.gui.screens.click.ClickGUIWindow;
 import com.olliem5.ferox.impl.gui.screens.editor.HUDEditorWindow;
@@ -35,6 +36,9 @@ public final class StartupHelper {
 
         ThemeManager.init();
         Ferox.log("Global GUI Themes Initialized!");
+
+        WaypointManager.init();
+        Ferox.log("Waypoints Initialized!");
 
         initCommandManager();
         Ferox.log("Commands Initialized!");
