@@ -3,6 +3,9 @@
 ### To-Do
 - Check the 'Issues' tab, or the 'Projects' tab of this repository if you want to contribute to Ferox.
 
+### To Rewrite
+- Config
+
 ### Developers
 - [LittleDraily](https://github.com/LittleDraily) For helping to create the original client base.
 - [yagel15637 (Reap)](https://github.com/yagel15637) For insta-burrow, Venture & the HUD Component base.

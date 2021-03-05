@@ -38,6 +38,7 @@ public final class ModuleManager {
                 new NoRotate(),
                 new NoSlow(),
                 new Sprint(),
+                new Step(),
                 new Velocity(),
 
                 //Miscellaneous
