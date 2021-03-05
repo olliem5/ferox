@@ -1,7 +1,6 @@
-package com.olliem5.ferox.api.util.render.font.renderer;
+package com.olliem5.ferox.api.util.render.font;
 
 import com.olliem5.ferox.api.traits.Minecraft;
-import com.olliem5.ferox.api.util.render.font.StringUtil;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.StringUtils;
