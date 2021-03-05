@@ -48,6 +48,7 @@ public final class ModuleManager {
                 new ChatSuffix(),
                 new FakePlayer(),
                 new FastUse(),
+                new Freecam(),
                 new WebTeleport(),
 
                 //Exploit

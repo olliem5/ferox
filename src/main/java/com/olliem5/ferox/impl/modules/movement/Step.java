@@ -13,7 +13,7 @@ import net.minecraft.network.play.client.CPacketPlayer;
 @FeroxModule(name = "Step", description = "Allows you to step up blocks", category = Category.Movement)
 public final class Step extends Module {
     public static final Setting<StepModes> stepMode = new Setting<>("Mode", "The way of performing step", StepModes.Packet);
-    public static final Setting<BlockModes> blockMode = new Setting<>("Block", "How many blocks step goes up", BlockModes.TwoBlock);
+    public static final Setting<BlockModes> blockMode = new Setting<>("Block", "How many blocks step goes up", BlockModes.OneBlock);
     public static final Setting<Boolean> reverse = new Setting<>("Reverse", "Makes step do downwards instead of upwards", false);
 
     public Step() {
