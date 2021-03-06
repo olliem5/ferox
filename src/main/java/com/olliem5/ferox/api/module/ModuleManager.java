@@ -80,6 +80,7 @@ public final class ModuleManager {
                 new ThrowTrails(),
                 new ViewModel(),
                 new VoidESP(),
+                new Xray(),
 
                 //Ferox
                 new Baritone(),
@@ -95,6 +96,14 @@ public final class ModuleManager {
                 new ClickGUI(),
                 new HUDEditor()
         ));
+
+        // sorting the modules in alphabetical order
+        // just in case they weren't properly added in order
+        modules.sort(ModuleManager::compareTo);
+    }
+
+    private static int compareTo(Module mod1, Module mod2) {
+        return mod1.getName().compareTo(mod2.getName());
     }
 
     public static ArrayList<Module> getModules() {

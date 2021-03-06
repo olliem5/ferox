@@ -8,6 +8,7 @@ import com.olliem5.ferox.impl.events.PacketEvent;
 import com.olliem5.ferox.impl.events.TotemPopEvent;
 import com.olliem5.pace.annotation.PaceHandler;
 import me.yagel15637.venture.manager.CommandManager;
+import net.minecraft.client.gui.GuiChat;
 import net.minecraft.entity.Entity;
 import net.minecraft.network.play.server.SPacketEntityStatus;
 import net.minecraftforge.client.event.*;
@@ -32,6 +33,13 @@ public final class EventProcessor implements Minecraft {
                     }
                 }
 
+                String keyName = Keyboard.getKeyName(Keyboard.getEventKey());
+
+                // if someone presses the command prefix, it will open the chat box
+                // with the key prefix already typed in (not working atm :/)
+                if (keyName.equalsIgnoreCase(Ferox.CHAT_PREFIX))
+                    mc.displayGuiScreen(new GuiChat(Ferox.CHAT_PREFIX));
+
                 try {
                     Ferox.EVENT_BUS.dispatchEvent(event);
                 } catch (Exception ignored) {}
@@ -52,6 +60,9 @@ public final class EventProcessor implements Minecraft {
     public void onClientChat(ClientChatEvent event) {
         if (event.getMessage().startsWith(Ferox.CHAT_PREFIX)) {
             event.setCanceled(true);
+
+            // so players can still see the sent command in their message history
+            mc.ingameGUI.getChatGUI().addToSentMessages(event.getOriginalMessage());
 
             CommandManager.parseCommand(event.getMessage().replace(Ferox.CHAT_PREFIX, ""));
         } else {

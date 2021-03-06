@@ -31,6 +31,8 @@ public final class PlayerComponent extends Component {
         GlStateManager.disableTexture2D();
         GlStateManager.setActiveTexture(OpenGlHelper.defaultTexUnit);
 
+        // fixing any color bugs (thanks openGL)
+        GlStateManager.color(1, 1, 1 ,1);
         DrawUtil.drawEntityOnScreen(this.getX() + 28, this.getY() + 67, scale.getValue(), this.getY() + 13, mc.player);
 
         GlStateManager.enableRescaleNormal();

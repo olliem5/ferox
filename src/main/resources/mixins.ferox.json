@@ -4,7 +4,10 @@
   "package": "com.olliem5.ferox.impl.mixins",
   "refmap": "mixins.ferox.refmap.json",
   "mixins": [
+    "AccessorCPacketCloseWindow",
+    "MixinBlock",
     "MixinBlockLiquid",
+    "MixinBlockModelRenderer",
     "MixinBlockSlime",
     "MixinBlockSoulSand",
     "MixinBlockWeb",
@@ -22,6 +25,7 @@
     "MixinRenderGlobal",
     "MixinRenderLivingBase",
     "MixinRenderPlayer",
+    "MixinVisGraph",
     "MixinWorld"
   ]
 }

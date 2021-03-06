@@ -1,6 +1,7 @@
 package com.olliem5.ferox.api.util.client;
 
 import com.google.gson.*;
+import com.olliem5.ferox.Ferox;
 import com.olliem5.ferox.api.component.Component;
 import com.olliem5.ferox.api.component.ComponentManager;
 import com.olliem5.ferox.api.module.Module;
@@ -19,6 +20,7 @@ import java.awt.*;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 
 /**
@@ -69,6 +71,7 @@ public final class ConfigUtil {
             saveHUDEditor();
             saveFriends();
             saveEnemies();
+            savePrefix();
         } catch (IOException exception) {
             exception.printStackTrace();
         }
@@ -83,6 +86,7 @@ public final class ConfigUtil {
             loadHUDEditor();
             loadFriends();
             loadEnemies();
+            loadPrefix();
         } catch (IOException exception) {
             exception.printStackTrace();
         }
@@ -1778,5 +1782,30 @@ public final class ConfigUtil {
         enemyObject.forEach(object -> EnemyManager.addEnemy(object.getAsString()));
 
         inputStream.close();
+    }
+
+    // using basic txt instead of json for command prefix
+    // ... because its not enough information to justify using json
+
+    static File prefixFile = new File("ferox/Prefix.txt");
+
+    public static void savePrefix() throws IOException {
+        if (!prefixFile.exists())
+            prefixFile.createNewFile();
+
+        OutputStreamWriter fileOutputStreamWriter = new OutputStreamWriter(new FileOutputStream(prefixFile), StandardCharsets.UTF_8);
+
+        fileOutputStreamWriter.write(Ferox.CHAT_PREFIX);
+        fileOutputStreamWriter.close();
+    }
+
+
+    public static void loadPrefix() throws IOException {
+        if (!Files.exists(Paths.get("ferox/social/Prefix.txt"))) return;
+
+        BufferedReader reader = new BufferedReader(new FileReader("ferox/social/Prefix.txt"));
+
+        Ferox.CHAT_PREFIX = reader.readLine();
+        reader.close();
     }
 }

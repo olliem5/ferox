@@ -51,7 +51,9 @@ public final class StartupHelper {
                 new FolderCommand(),
                 new ConfigCommand(),
                 new ModulesCommand(),
-                new DrawnCommand()
+                new DrawnCommand(),
+                new BindCommand(),
+                new PrefixCommand()
         );
     }
 }
