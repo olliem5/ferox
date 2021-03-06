@@ -78,6 +78,7 @@ public final class ModuleManager {
                 new ItemTooltips(),
                 new SkyColour(),
                 new ThrowTrails(),
+                new Trajectories(),
                 new ViewModel(),
                 new VoidESP(),
                 new Xray(),

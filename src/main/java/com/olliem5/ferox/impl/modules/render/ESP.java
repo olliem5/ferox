@@ -12,7 +12,6 @@ import com.olliem5.ferox.impl.modules.render.esp.ESPMode;
 import com.olliem5.ferox.impl.modules.render.esp.modes.Box;
 import com.olliem5.ferox.impl.modules.render.esp.modes.CSGO;
 import com.olliem5.ferox.impl.modules.render.esp.modes.Glow;
-import com.olliem5.ferox.impl.modules.render.esp.modes.Hitbox;
 import com.olliem5.pace.annotation.PaceHandler;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityEnderCrystal;
@@ -20,7 +19,6 @@ import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
-import org.lwjgl.opengl.GL11;
 
 import java.awt.*;
 import java.util.Objects;
@@ -71,9 +69,6 @@ public final class ESP extends Module {
                 break;
             case Glow:
                 espMode = new Glow();
-                break;
-            case Hitbox:
-                espMode = new Hitbox();
                 break;
         }
 
