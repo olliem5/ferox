@@ -56,6 +56,6 @@ public final class Ferox implements Minecraft {
     }
 
     public static void log(String message) {
-        LOGGER.info("[" + NAME_VERSION + "] " + message);
+        LOGGER.info(message);
     }
 }

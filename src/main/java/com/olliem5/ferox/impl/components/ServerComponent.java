@@ -13,11 +13,11 @@ import java.util.Objects;
  * @author olliem5
  */
 
-@FeroxComponent(name = "Server IP", description = "Displays the ip of the server you are on, on screen")
-public final class ServerIPComponent extends Component {
+@FeroxComponent(name = "ServerIP", description = "Displays the ip of the server you are on, on screen")
+public final class ServerComponent extends Component {
     public static final Setting<IPModes> ipMode = new Setting<>("Mode", "The way of displaying the server IP", IPModes.Normal);
 
-    public ServerIPComponent() {
+    public ServerComponent() {
         this.addSettings(
                 ipMode
         );
@@ -30,7 +30,7 @@ public final class ServerIPComponent extends Component {
         if (mc.integratedServerIsRunning) {
             switch (ipMode.getValue()) {
                 case Normal:
-                    renderString = "Server IP " + ChatFormatting.WHITE + "Singleplayer";
+                    renderString = "Server " + ChatFormatting.WHITE + "Singleplayer";
                     this.setWidth((int) FontUtil.getStringWidth(renderString));
                     this.setHeight((int) FontUtil.getStringHeight(renderString));
                     drawString(renderString);
@@ -51,7 +51,7 @@ public final class ServerIPComponent extends Component {
         } else {
             switch (ipMode.getValue()) {
                 case Normal:
-                    renderString = "Server IP " + ChatFormatting.WHITE + Objects.requireNonNull(mc.getCurrentServerData()).serverIP;
+                    renderString = "Server " + ChatFormatting.WHITE + Objects.requireNonNull(mc.getCurrentServerData()).serverIP;
                     this.setWidth((int) FontUtil.getStringWidth(renderString));
                     this.setHeight((int) FontUtil.getStringHeight(renderString));
                     drawString(renderString);

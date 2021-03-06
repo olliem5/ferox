@@ -31,6 +31,10 @@ public final class EventProcessor implements Minecraft {
                         module.toggle();
                     }
                 }
+
+                try {
+                    Ferox.EVENT_BUS.dispatchEvent(event);
+                } catch (Exception ignored) {}
             }
         }
     }

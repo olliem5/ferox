@@ -12,6 +12,7 @@ import com.olliem5.ferox.impl.modules.render.esp.ESPMode;
 import com.olliem5.ferox.impl.modules.render.esp.modes.Box;
 import com.olliem5.ferox.impl.modules.render.esp.modes.CSGO;
 import com.olliem5.ferox.impl.modules.render.esp.modes.Glow;
+import com.olliem5.ferox.impl.modules.render.esp.modes.Hitbox;
 import com.olliem5.pace.annotation.PaceHandler;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityEnderCrystal;
@@ -71,6 +72,9 @@ public final class ESP extends Module {
             case Glow:
                 espMode = new Glow();
                 break;
+            case Hitbox:
+                espMode = new Hitbox();
+                break;
         }
 
         if (!espMode.equals(new Glow())) {
@@ -122,6 +126,7 @@ public final class ESP extends Module {
     public enum ESPModes {
         CSGO,
         Box,
-        Glow
+        Glow,
+        Hitbox
     }
 }

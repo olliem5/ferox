@@ -142,11 +142,11 @@ public final class RenderUtil implements Minecraft {
         tessellator.draw();
     }
 
-    public static void drawFilledBox(AxisAlignedBB aabb, double height, float red, float green, float blue, float alpha) {
-        renderFilledBox(aabb.minX, aabb.minY, aabb.minZ, aabb.maxX, aabb.maxY, aabb.maxZ, height, red, green, blue, alpha);
+    public static void drawFilledBox(AxisAlignedBB axisAlignedBB, double height, float red, float green, float blue, float alpha) {
+        renderFilledBox(axisAlignedBB.minX, axisAlignedBB.minY, axisAlignedBB.minZ, axisAlignedBB.maxX, axisAlignedBB.maxY, axisAlignedBB.maxZ, height, red, green, blue, alpha);
     }
 
-    public static void drawBoundingBox(AxisAlignedBB box, double height, float red, float green, float blue, float alpha) {
-        renderBoundingBox(box.minX, box.minY, box.minZ, box.maxX, box.maxY, box.maxZ, height, red, green, blue, alpha);
+    public static void drawBoundingBox(AxisAlignedBB axisAlignedBB, double height, float red, float green, float blue, float alpha) {
+        renderBoundingBox(axisAlignedBB.minX, axisAlignedBB.minY, axisAlignedBB.minZ, axisAlignedBB.maxX, axisAlignedBB.maxY, axisAlignedBB.maxZ, height, red, green, blue, alpha);
     }
 }

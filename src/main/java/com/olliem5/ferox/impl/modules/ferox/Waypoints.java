@@ -11,6 +11,10 @@ import net.minecraftforge.client.event.RenderWorldLastEvent;
 
 import java.awt.*;
 
+/**
+ * @author olliem5
+ */
+
 @FeroxModule(name = "Waypoints", description = "Allows Ferox's waypoint system to function", category = Category.Ferox)
 public final class Waypoints extends Module {
     @Override
