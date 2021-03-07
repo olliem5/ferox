@@ -1,5 +1,6 @@
 package com.olliem5.ferox.impl.commands;
 
+import com.mojang.realmsclient.gui.ChatFormatting;
 import com.olliem5.ferox.Ferox;
 import com.olliem5.ferox.api.util.client.MessageUtil;
 import me.yagel15637.venture.command.AbstractCommand;
@@ -21,6 +22,7 @@ public final class PrefixCommand extends AbstractCommand {
         }
 
         Ferox.CHAT_PREFIX = args[0];
-        MessageUtil.sendClientMessage("Set the chat prefix to \"" + args[0] + "\"");
+
+        MessageUtil.sendClientMessage("Set the chat prefix to " + ChatFormatting.AQUA + args[0] + ChatFormatting.RESET + ".");
     }
 }

@@ -1,5 +1,6 @@
 package com.olliem5.ferox.impl.commands;
 
+import com.mojang.realmsclient.gui.ChatFormatting;
 import com.olliem5.ferox.api.module.Module;
 import com.olliem5.ferox.api.module.ModuleManager;
 import com.olliem5.ferox.api.util.client.MessageUtil;
@@ -18,25 +19,21 @@ public final class BindCommand extends AbstractCommand {
     @Override
     public void execute(String[] args) {
         if (args.length == 0) {
-            MessageUtil.sendClientMessage("Please specify a module");
+            MessageUtil.sendClientMessage("Please specify a module.");
             return;
         }
 
         if (args.length == 1) {
-            MessageUtil.sendClientMessage("Please specify a key");
+            MessageUtil.sendClientMessage("Please specify a key.");
             return;
         }
 
-        Module module = ModuleManager.getModuleByName(args[0]);
-
-        if (module == null) {
-            MessageUtil.sendClientMessage("Could not find module \"" + args[0] + "\"");
+        if (ModuleManager.getModuleByName(args[0]) == null) {
+            MessageUtil.sendClientMessage("Could not find module " + ChatFormatting.AQUA + args[0] + ChatFormatting.RESET + ".");
             return;
         }
 
-        String newKey = args[1].toUpperCase();
-
-        module.setKey(Keyboard.getKeyIndex(newKey));
-        MessageUtil.sendClientMessage("Bound " + module.getName() + " to " + newKey);
+        ModuleManager.getModuleByName(args[0]).setKey(Keyboard.getKeyIndex(args[1].toUpperCase()));
+        MessageUtil.sendClientMessage("Bound " + ChatFormatting.AQUA + ModuleManager.getModuleByName(args[0]).getName() + ChatFormatting.RESET + " to " + ChatFormatting.GREEN + args[1].toUpperCase() + ChatFormatting.RESET + ".");
     }
 }

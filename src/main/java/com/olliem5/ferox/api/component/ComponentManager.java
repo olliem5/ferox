@@ -1,5 +1,6 @@
 package com.olliem5.ferox.api.component;
 
+import com.olliem5.ferox.api.module.Module;
 import com.olliem5.ferox.api.module.ModuleManager;
 import com.olliem5.ferox.api.traits.Minecraft;
 import com.olliem5.ferox.impl.components.*;
@@ -46,6 +47,12 @@ public final class ComponentManager implements Minecraft {
                 new WatermarkComponent(),
                 new WelcomerComponent()
         ));
+
+        components.sort(ComponentManager::alphabetize);
+    }
+
+    private static int alphabetize(Component component1, Component component2) {
+        return component1.getName().compareTo(component2.getName());
     }
 
     public static ArrayList<Component> getComponents() {
