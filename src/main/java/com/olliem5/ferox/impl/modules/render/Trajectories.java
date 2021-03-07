@@ -3,6 +3,7 @@ package com.olliem5.ferox.impl.modules.render;
 import com.olliem5.ferox.api.module.Category;
 import com.olliem5.ferox.api.module.FeroxModule;
 import com.olliem5.ferox.api.module.Module;
+import com.olliem5.ferox.api.setting.Setting;
 import com.olliem5.ferox.api.util.render.draw.RenderUtil;
 import com.olliem5.pace.annotation.PaceHandler;
 import net.minecraft.client.renderer.GlStateManager;
@@ -18,16 +19,28 @@ import net.minecraftforge.client.event.RenderWorldLastEvent;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.glu.Cylinder;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * @author olliem5
  * @author IngrosWare devs
+ *
+ * TODO: Either rewrite this completely, or make it not shit
  */
 
 @FeroxModule(name = "Trajectories", description = "Shows you where throwable items will go", category = Category.Render)
 public final class Trajectories extends Module {
+    public static final Setting<Boolean> render = new Setting<>("Render", "Allows the trajectory to be rendered", true);
+    public static final Setting<Color> renderColour = new Setting<>(render, "Colour", "The colour for the trajectory", new Color(38, 25, 224, 255));
+
+    public Trajectories() {
+        this.addSettings(
+                render
+        );
+    }
+
     @PaceHandler
     public void onRenderWorldLast(RenderWorldLastEvent event) {
         if (nullCheck()) return;
@@ -40,8 +53,7 @@ public final class Trajectories extends Module {
 
         if (mc.gameSettings.thirdPersonView != 0) return;
 
-        else if (!(mc.player.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemBow || mc.player.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemFishingRod || mc.player.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemEnderPearl || mc.player.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemEgg || mc.player.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemSnowball || mc.player.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemExpBottle))
-            return;
+        else if (!(mc.player.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemBow || mc.player.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemFishingRod || mc.player.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemEnderPearl || mc.player.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemEgg || mc.player.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemSnowball || mc.player.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemExpBottle)) return;
 
         Item item = mc.player.getHeldItem(EnumHand.MAIN_HAND).getItem();
 
@@ -53,6 +65,7 @@ public final class Trajectories extends Module {
         double motionZ = MathHelper.cos(mc.player.rotationYaw / 180.0f * 3.1415927f) * MathHelper.cos(mc.player.rotationPitch / 180.0f * 3.1415927f) * ((item instanceof ItemBow) ? 1.0 : 0.4);
 
         int var6 = 72000 - mc.player.getItemInUseCount();
+
         float power = var6 / 20.0f;
 
         power = (power * power + power * 2.0f) / 3.0f;
@@ -75,15 +88,12 @@ public final class Trajectories extends Module {
 
         RenderUtil.prepareGL();
 
-        if (power > 0.6f) {
-            GlStateManager.color(0.0f, 1.0f, 0.0f, 1.0f);
-        } else {
-            GlStateManager.color(0.8f, 0.5f, 0.0f, 1.0f);
-        }
+        GlStateManager.color(renderColour.getValue().getRed() / 255.0f, renderColour.getValue().getGreen() / 255.0f, renderColour.getValue().getBlue() / 255.0f, renderColour.getValue().getAlpha() / 255.0f);
 
         GL11.glEnable(GL11.GL_LINE_SMOOTH);
 
         float size = (float) ((item instanceof ItemBow) ? 0.3 : 0.25);
+
         boolean hasLanded = false;
 
         Entity landingOnEntity = null;
@@ -100,10 +110,11 @@ public final class Trajectories extends Module {
             }
 
             AxisAlignedBB arrowBox = new AxisAlignedBB(posX - size, posY - size, posZ - size, posX + size, posY + size, posZ + size);
-            List entities = this.getEntitiesWithinAABB(arrowBox.offset(motionX, motionY, motionZ).expand(1.0, 1.0, 1.0));
+            List<?> entities = this.getEntitiesWithinAABB(arrowBox.offset(motionX, motionY, motionZ).expand(1.0, 1.0, 1.0));
 
             for (Object entity : entities) {
                 Entity boundingBox = (Entity) entity;
+
                 if (boundingBox.canBeCollidedWith() && boundingBox != mc.player) {
                     float var7 = 0.3f;
 
@@ -116,10 +127,6 @@ public final class Trajectories extends Module {
                     landingOnEntity = boundingBox;
                     landingPosition = possibleEntityLanding;
                 }
-            }
-
-            if (landingOnEntity != null) {
-                GlStateManager.color(1.0f, 0.0f, 0.0f, 1.0f);
             }
 
             posX += motionX;
@@ -137,7 +144,7 @@ public final class Trajectories extends Module {
             drawLine3D(posX - renderPosX, posY - renderPosY, posZ - renderPosZ);
         }
 
-        if (landingPosition != null && landingPosition.typeOfHit == RayTraceResult.Type.BLOCK) {
+        if (landingPosition != null && landingPosition.typeOfHit == RayTraceResult.Type.BLOCK && render.getValue()) {
             GlStateManager.translate(posX - renderPosX, posY - renderPosY, posZ - renderPosZ);
 
             int side = landingPosition.sideHit.getIndex();
@@ -153,18 +160,26 @@ public final class Trajectories extends Module {
             }
 
             Cylinder c = new Cylinder();
+
             GlStateManager.rotate(-90.0f, 1.0f, 0.0f, 0.0f);
+
             c.setDrawStyle(100011);
 
             if (landingOnEntity != null) {
-                GlStateManager.color(0.0f, 0.0f, 0.0f, 1.0f);
+                GlStateManager.color(renderColour.getValue().getRed() / 255.0f, renderColour.getValue().getGreen() / 255.0f, renderColour.getValue().getBlue() / 255.0f, renderColour.getValue().getAlpha() / 255.0f);
+
                 GL11.glLineWidth(2.5f);
+
                 c.draw(0.6f, 0.3f, 0.0f, 4, 1);
+
                 GL11.glLineWidth(0.1f);
-                GlStateManager.color(1.0f, 0.0f, 0.0f, 1.0f);
+
+                GlStateManager.color(renderColour.getValue().getRed() / 255.0f, renderColour.getValue().getGreen() / 255.0f, renderColour.getValue().getBlue() / 255.0f, renderColour.getValue().getAlpha() / 255.0f);
             }
+
             c.draw(0.6f, 0.3f, 0.0f, 4, 1);
         }
+
         RenderUtil.releaseGL();
     }
 
@@ -172,19 +187,22 @@ public final class Trajectories extends Module {
         GL11.glVertex3d(var1, var2, var3);
     }
 
-    private List getEntitiesWithinAABB(AxisAlignedBB bb) {
-        ArrayList list = new ArrayList<>();
-        int chunkMinX = MathHelper.floor((bb.minX - 2.0) / 16.0);
-        int chunkMaxX = MathHelper.floor((bb.maxX + 2.0) / 16.0);
-        int chunkMinZ = MathHelper.floor((bb.minZ - 2.0) / 16.0);
-        int chunkMaxZ = MathHelper.floor((bb.maxZ + 2.0) / 16.0);
+    private List<?> getEntitiesWithinAABB(AxisAlignedBB axisAlignedBB) {
+        ArrayList<Entity> list = new ArrayList<>();
+
+        int chunkMinX = MathHelper.floor((axisAlignedBB.minX - 2.0) / 16.0);
+        int chunkMaxX = MathHelper.floor((axisAlignedBB.maxX + 2.0) / 16.0);
+        int chunkMinZ = MathHelper.floor((axisAlignedBB.minZ - 2.0) / 16.0);
+        int chunkMaxZ = MathHelper.floor((axisAlignedBB.maxZ + 2.0) / 16.0);
+
         for (int x = chunkMinX; x <= chunkMaxX; ++x) {
             for (int z = chunkMinZ; z <= chunkMaxZ; ++z) {
                 if (mc.world.getChunkProvider().getLoadedChunk(x, z) != null) {
-                    mc.world.getChunk(x, z).getEntitiesWithinAABBForEntity(mc.player, bb, list, null);
+                    mc.world.getChunk(x, z).getEntitiesWithinAABBForEntity(mc.player, axisAlignedBB, list, null);
                 }
             }
         }
+
         return list;
     }
 }
