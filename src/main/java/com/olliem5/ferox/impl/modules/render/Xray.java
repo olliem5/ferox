@@ -12,21 +12,11 @@ import java.util.HashSet;
  * @author Gav06
  */
 
-@FeroxModule(name = "Xray", description = "only render the blocks you want", category = Category.Render)
-public class Xray extends Module {
-
-    /**
-     * using public static boolean for xray,
-     * because the various checks for xray will be called
-     * hundreds of times per second
-     */
+@FeroxModule(name = "X-Ray", description = "Allows you to cancel the rendering of blocks", category = Category.Render)
+public final class Xray extends Module {
     public static boolean doXray;
 
     public Xray() {
-        // blocks on xray list will be customizable with commands in a future release
-        // for now it is only the essentials
-
-        // ore
         xrayBlocks.add(Blocks.DIAMOND_ORE);
         xrayBlocks.add(Blocks.REDSTONE_ORE);
         xrayBlocks.add(Blocks.GOLD_ORE);
@@ -37,13 +27,11 @@ public class Xray extends Module {
         xrayBlocks.add(Blocks.EMERALD_ORE);
         xrayBlocks.add(Blocks.LIT_REDSTONE_ORE);
 
-        // liquid
         xrayBlocks.add(Blocks.WATER);
         xrayBlocks.add(Blocks.FLOWING_WATER);
         xrayBlocks.add(Blocks.LAVA);
         xrayBlocks.add(Blocks.FLOWING_LAVA);
 
-        // storage
         xrayBlocks.add(Blocks.CHEST);
         xrayBlocks.add(Blocks.ENDER_CHEST);
         xrayBlocks.add(Blocks.TRAPPED_CHEST);
@@ -53,22 +41,19 @@ public class Xray extends Module {
 
     @Override
     public void onEnable() {
-        doXray = true;
+        if (nullCheck()) return;
 
-        if (mc.world == null)
-            return;
+        doXray = true;
 
         mc.renderGlobal.loadRenderers();
     }
 
     @Override
     public void onDisable() {
-        doXray = false;
+        if (nullCheck()) return;
 
-        if (mc.world == null)
-            return;
+        doXray = false;
 
         mc.renderGlobal.loadRenderers();
     }
-
 }

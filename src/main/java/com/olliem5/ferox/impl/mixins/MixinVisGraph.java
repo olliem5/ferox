@@ -10,16 +10,14 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 /**
  * @author Gav06
- *
- * disables cave culling when xray is enabled
  */
 
 @Mixin(VisGraph.class)
-public class MixinVisGraph {
-
+public final class MixinVisGraph {
     @Inject(method = "setOpaqueCube", at = @At("HEAD"), cancellable = true)
-    public void setOpaqueCubePatch(BlockPos pos, CallbackInfo ci) {
-        if (Xray.doXray)
-            ci.cancel();
+    public void setOpaqueCubePatch(BlockPos blockPos, CallbackInfo callbackInfo) {
+        if (Xray.doXray) {
+            callbackInfo.cancel();
+        }
     }
 }

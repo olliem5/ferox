@@ -37,8 +37,9 @@ public final class EventProcessor implements Minecraft {
 
                 // if someone presses the command prefix, it will open the chat box
                 // with the key prefix already typed in (not working atm :/)
-                if (keyName.equalsIgnoreCase(Ferox.CHAT_PREFIX))
+                if (keyName.equalsIgnoreCase(Ferox.CHAT_PREFIX)) {
                     mc.displayGuiScreen(new GuiChat(Ferox.CHAT_PREFIX));
+                }
 
                 try {
                     Ferox.EVENT_BUS.dispatchEvent(event);
@@ -61,7 +62,6 @@ public final class EventProcessor implements Minecraft {
         if (event.getMessage().startsWith(Ferox.CHAT_PREFIX)) {
             event.setCanceled(true);
 
-            // so players can still see the sent command in their message history
             mc.ingameGUI.getChatGUI().addToSentMessages(event.getOriginalMessage());
 
             CommandManager.parseCommand(event.getMessage().replace(Ferox.CHAT_PREFIX, ""));

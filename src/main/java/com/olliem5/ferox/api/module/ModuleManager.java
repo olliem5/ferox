@@ -98,13 +98,11 @@ public final class ModuleManager {
                 new HUDEditor()
         ));
 
-        // sorting the modules in alphabetical order
-        // just in case they weren't properly added in order
-        modules.sort(ModuleManager::compareTo);
+        modules.sort(ModuleManager::alphabetize);
     }
 
-    private static int compareTo(Module mod1, Module mod2) {
-        return mod1.getName().compareTo(mod2.getName());
+    private static int alphabetize(Module module1, Module module2) {
+        return module1.getName().compareTo(module2.getName());
     }
 
     public static ArrayList<Module> getModules() {

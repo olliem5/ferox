@@ -14,25 +14,25 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 /**
  * @author Gav06
  */
-@Mixin(Block.class)
-public class MixinBlock {
 
+@Mixin(Block.class)
+public final class MixinBlock {
     @Inject(method = "shouldSideBeRendered", at = @At("HEAD"), cancellable = true)
-    public void renderSidePatch(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side, CallbackInfoReturnable<Boolean> cir) {
+    public void renderSidePatch(IBlockState blockState, IBlockAccess iBlockAccess, BlockPos blockPos, EnumFacing enumFacing, CallbackInfoReturnable<Boolean> callbackInfoReturnable) {
         if (Xray.doXray) {
             if (Xray.xrayBlocks.contains(blockState.getBlock())) {
-                cir.setReturnValue(true);
+                callbackInfoReturnable.setReturnValue(true);
             } else {
-                cir.setReturnValue(false);
-                cir.cancel();
+                callbackInfoReturnable.setReturnValue(false);
+                callbackInfoReturnable.cancel();
             }
         }
     }
 
     @Inject(method = "isFullCube", at = @At("HEAD"), cancellable = true)
-    public void fullCubePatch(IBlockState state, CallbackInfoReturnable<Boolean> cir) {
+    public void fullCubePatch(IBlockState iBlockState, CallbackInfoReturnable<Boolean> callbackInfoReturnable) {
         if (Xray.doXray) {
-            cir.setReturnValue(Xray.xrayBlocks.contains(state.getBlock()));
+            callbackInfoReturnable.setReturnValue(Xray.xrayBlocks.contains(iBlockState.getBlock()));
         }
     }
 }

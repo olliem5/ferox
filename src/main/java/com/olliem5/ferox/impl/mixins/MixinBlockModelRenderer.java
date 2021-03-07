@@ -14,32 +14,26 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 /**
  * @author Gav06
- *
- * this is to prevent non-full blocks from rendering in xray
- * (method of doing so was inspired by pepsimod)
- *
  */
 
 @Mixin(BlockModelRenderer.class)
-public class MixinBlockModelRenderer {
-
-    @Inject(method = "renderModel(Lnet/minecraft/world/IBlockAccess;Lnet/minecraft/client/renderer/block/model/IBakedModel;Lnet/minecraft/block/state/IBlockState;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/client/renderer/BufferBuilder;ZJ)Z",
-            at = @At("HEAD"), cancellable = true)
-    public void renderModelPatch(IBlockAccess worldIn, IBakedModel modelIn, IBlockState stateIn, BlockPos posIn, BufferBuilder buffer, boolean checkSides, long rand, CallbackInfoReturnable<Boolean> cir) {
+public final class MixinBlockModelRenderer {
+    @Inject(method = "renderModel(Lnet/minecraft/world/IBlockAccess;Lnet/minecraft/client/renderer/block/model/IBakedModel;Lnet/minecraft/block/state/IBlockState;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/client/renderer/BufferBuilder;ZJ)Z", at = @At("HEAD"), cancellable = true)
+    public void renderModelPatch(IBlockAccess iBlockAccess, IBakedModel iBakedModel, IBlockState iBlockState, BlockPos blockPos, BufferBuilder bufferBuilder, boolean checkSides, long rand, CallbackInfoReturnable<Boolean> callbackInfoReturnable) {
         if (Xray.doXray) {
-            if (!Xray.xrayBlocks.contains(stateIn.getBlock())) {
-                cir.setReturnValue(false);
-                cir.cancel();
+            if (!Xray.xrayBlocks.contains(iBlockState.getBlock())) {
+                callbackInfoReturnable.setReturnValue(false);
+                callbackInfoReturnable.cancel();
             }
         }
     }
 
     @Inject(method = "renderModelSmooth", at = @At("HEAD"), cancellable = true)
-    public void renderModelSmoothPatch(IBlockAccess worldIn, IBakedModel modelIn, IBlockState stateIn, BlockPos posIn, BufferBuilder buffer, boolean checkSides, long rand, CallbackInfoReturnable<Boolean> cir) {
+    public void renderModelSmoothPatch(IBlockAccess iBlockAccess, IBakedModel iBakedModel, IBlockState iBlockState, BlockPos blockPos, BufferBuilder bufferBuilder, boolean checkSides, long rand, CallbackInfoReturnable<Boolean> callbackInfoReturnable) {
         if (Xray.doXray) {
-            if (!Xray.xrayBlocks.contains(stateIn.getBlock())) {
-                cir.setReturnValue(false);
-                cir.cancel();
+            if (!Xray.xrayBlocks.contains(iBlockState.getBlock())) {
+                callbackInfoReturnable.setReturnValue(false);
+                callbackInfoReturnable.cancel();
             }
         }
     }

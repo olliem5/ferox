@@ -4,9 +4,13 @@ import com.olliem5.ferox.Ferox;
 import com.olliem5.ferox.api.util.client.MessageUtil;
 import me.yagel15637.venture.command.AbstractCommand;
 
-public class PrefixCommand extends AbstractCommand {
+/**
+ * @author Gav06
+ */
+
+public final class PrefixCommand extends AbstractCommand {
     public PrefixCommand() {
-        super("change the chat prefix of the command system", "prefix [anything]", "prefix");
+        super("Changes Ferox's command prefix", "prefix [anything]", "prefix");
     }
 
     @Override

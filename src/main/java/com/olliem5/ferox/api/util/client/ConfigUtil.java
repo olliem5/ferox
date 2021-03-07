@@ -1784,14 +1784,12 @@ public final class ConfigUtil {
         inputStream.close();
     }
 
-    // using basic txt instead of json for command prefix
-    // ... because its not enough information to justify using json
-
-    static File prefixFile = new File("ferox/Prefix.txt");
-
     public static void savePrefix() throws IOException {
-        if (!prefixFile.exists())
+        File prefixFile = new File("ferox/Prefix.txt");
+
+        if (!prefixFile.exists()) {
             prefixFile.createNewFile();
+        }
 
         OutputStreamWriter fileOutputStreamWriter = new OutputStreamWriter(new FileOutputStream(prefixFile), StandardCharsets.UTF_8);
 
@@ -1801,9 +1799,9 @@ public final class ConfigUtil {
 
 
     public static void loadPrefix() throws IOException {
-        if (!Files.exists(Paths.get("ferox/social/Prefix.txt"))) return;
+        if (!Files.exists(Paths.get("ferox/Prefix.txt"))) return;
 
-        BufferedReader reader = new BufferedReader(new FileReader("ferox/social/Prefix.txt"));
+        BufferedReader reader = new BufferedReader(new FileReader("ferox/Prefix.txt"));
 
         Ferox.CHAT_PREFIX = reader.readLine();
         reader.close();
