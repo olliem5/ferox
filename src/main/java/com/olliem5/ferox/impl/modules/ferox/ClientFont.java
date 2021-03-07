@@ -12,25 +12,20 @@ import com.olliem5.ferox.api.setting.Setting;
 @FeroxModule(name = "Font", description = "Changes the font that Ferox uses", category = Category.Ferox)
 public final class ClientFont extends Module {
     public static final Setting<FontModes> font = new Setting<>("Font", "The style of font to render", FontModes.Ubuntu);
+    public static final Setting<Boolean> overrideMinecraft = new Setting<>("Override Minecraft", "Makes Ferox's font replace the Minecraft font", false);
     public static final Setting<Boolean> shadow = new Setting<>("Shadow", "Allows the font to have a shadow", true);
     public static final Setting<Boolean> lowercase = new Setting<>("Lowercase", "Sets the font to all lowercase", false);
 
     public ClientFont() {
         this.addSettings(
                 font,
+                overrideMinecraft,
                 shadow,
                 lowercase
         );
 
         this.setEnabled(true);
         this.setDrawn(false);
-    }
-
-    @Override
-    public void onDisable() {
-        if (nullCheck()) return;
-
-        this.setEnabled(true);
     }
 
     @Override
@@ -43,7 +38,6 @@ public final class ClientFont extends Module {
         Lato,
         Verdana,
         Comfortaa,
-        Subtitle,
-        Minecraft
+        Subtitle
     }
 }

@@ -1,6 +1,5 @@
 package com.olliem5.ferox.api.component;
 
-import com.olliem5.ferox.api.module.Module;
 import com.olliem5.ferox.api.module.ModuleManager;
 import com.olliem5.ferox.api.traits.Minecraft;
 import com.olliem5.ferox.impl.components.*;

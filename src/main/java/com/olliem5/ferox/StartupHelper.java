@@ -1,6 +1,5 @@
 package com.olliem5.ferox;
 
-import com.olliem5.ferox.api.component.Component;
 import com.olliem5.ferox.api.component.ComponentManager;
 import com.olliem5.ferox.api.event.EventProcessor;
 import com.olliem5.ferox.api.module.ModuleManager;
@@ -9,7 +8,6 @@ import com.olliem5.ferox.api.waypoint.WaypointManager;
 import com.olliem5.ferox.impl.commands.*;
 import com.olliem5.ferox.impl.gui.screens.click.ClickGUIWindow;
 import com.olliem5.ferox.impl.gui.screens.editor.HUDEditorWindow;
-import me.yagel15637.venture.command.AbstractCommand;
 import me.yagel15637.venture.manager.CommandManager;
 import net.minecraftforge.common.MinecraftForge;
 

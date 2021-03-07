@@ -36,7 +36,7 @@ public final class ItemTooltips extends Module {
         Gui.drawRect(x + 8, y - 21, x + 158, y - 6, Colours.clientColourPicker.getValue().getRGB());
         Gui.drawRect(x + 8, y - 6, x + 158, y + 48, new Color(0, 0, 0, 225).getRGB());
 
-        FontUtil.drawString(itemStack.getDisplayName(), x + 10, y - 18, -1);
+        FontUtil.drawText(itemStack.getDisplayName(), x + 10, y - 18, -1);
 
         GlStateManager.enableDepth();
 

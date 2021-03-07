@@ -1,5 +1,6 @@
 package com.olliem5.ferox.api.util.render.font;
 
+import com.olliem5.ferox.api.module.ModuleManager;
 import com.olliem5.ferox.api.traits.Minecraft;
 import com.olliem5.ferox.impl.modules.ferox.ClientFont;
 
@@ -31,9 +32,6 @@ public final class FontUtil implements Minecraft {
             case Subtitle:
                 subtitleFont.drawString(text, x, y, colour);
                 break;
-            case Minecraft:
-                mc.fontRenderer.drawString(text, (int) x, (int) y, colour);
-                break;
         }
     }
 
@@ -54,17 +52,22 @@ public final class FontUtil implements Minecraft {
             case Subtitle:
                 subtitleFont.drawStringWithShadow(text, x, y, colour);
                 break;
-            case Minecraft:
-                mc.fontRenderer.drawStringWithShadow(text, (int) x, (int) y, colour);
-                break;
         }
     }
 
     public static void drawText(String text, float x, float y, int colour) {
         if (ClientFont.shadow.getValue()) {
-            drawStringWithShadow(ClientFont.lowercase.getValue() ? text.toLowerCase() : text, x, y, colour);
+            if (ModuleManager.getModuleByName("Font").isEnabled()) {
+                drawStringWithShadow(ClientFont.lowercase.getValue() ? text.toLowerCase() : text, x, y, colour);
+            } else {
+                mc.fontRenderer.drawStringWithShadow(ClientFont.lowercase.getValue() ? text.toLowerCase() : text, x, y, colour);
+            }
         } else {
-            drawString(ClientFont.lowercase.getValue() ? text.toLowerCase() : text, x, y, colour);
+            if (ModuleManager.getModuleByName("Font").isEnabled()) {
+                drawString(ClientFont.lowercase.getValue() ? text.toLowerCase() : text, x, y, colour);
+            } else {
+                mc.fontRenderer.drawString(ClientFont.lowercase.getValue() ? text.toLowerCase() : text, (int) x, (int) y, colour);
+            }
         }
     }
 
@@ -80,8 +83,6 @@ public final class FontUtil implements Minecraft {
                 return comfortaaFont.getStringWidth(text);
             case Subtitle:
                 return subtitleFont.getStringWidth(text);
-            case Minecraft:
-                return mc.fontRenderer.getStringWidth(text);
         }
 
         return -1;
@@ -99,8 +100,6 @@ public final class FontUtil implements Minecraft {
                 return comfortaaFont.getStringHeight(text);
             case Subtitle:
                 return subtitleFont.getStringHeight(text);
-            case Minecraft:
-                return mc.fontRenderer.FONT_HEIGHT;
         }
 
         return -1;
