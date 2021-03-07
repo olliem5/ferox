@@ -27,52 +27,13 @@ public final class MixinFontRenderer implements Minecraft {
             if (ClientFont.shadow.getValue()) {
                 callbackInfoReturnable.setReturnValue(getShadowString(text, x, y, colour));
             } else {
-                callbackInfoReturnable.setReturnValue(getString(text, x, y, colour));
+                callbackInfoReturnable.setReturnValue(FontUtil.getCurrentCustomFont().drawString(text, x, y, colour));
             }
         }
     }
 
-    private int getString(String text, float x, float y, int colour) {
-        switch (ClientFont.font.getValue()) {
-            case Ubuntu:
-                return FontUtil.ubuntuFont.drawString(text, x, y, colour);
-            case Lato:
-                return FontUtil.latoFont.drawString(text, x, y, colour);
-            case Verdana:
-                return FontUtil.verdanaFont.drawString(text, x, y, colour);
-            case Comfortaa:
-                return FontUtil.comfortaaFont.drawString(text, x, y, colour);
-            case Subtitle:
-                return FontUtil.subtitleFont.drawString(text, x, y, colour);
-            case ComicSans:
-                return FontUtil.comicSansFont.drawString(text, x, y, colour);
-        }
-
-        return -1;
-    }
-
     private int getShadowString(String text, float x, float y, int colour) {
-        switch (ClientFont.font.getValue()) {
-            case Ubuntu:
-                FontUtil.ubuntuFont.drawString(StringUtils.stripControlCodes(text), x + 0.5f, y + 0.5f, 0x000000);
-                return FontUtil.ubuntuFont.drawString(text, x, y, colour);
-            case Lato:
-                FontUtil.latoFont.drawString(StringUtils.stripControlCodes(text), x + 0.5f, y + 0.5f, 0x000000);
-                return FontUtil.latoFont.drawString(text, x, y, colour);
-            case Verdana:
-                FontUtil.verdanaFont.drawString(StringUtils.stripControlCodes(text), x + 0.5f, y + 0.5f, 0x000000);
-                return FontUtil.verdanaFont.drawString(text, x, y, colour);
-            case Comfortaa:
-                FontUtil.comfortaaFont.drawString(StringUtils.stripControlCodes(text), x + 0.5f, y + 0.5f, 0x000000);
-                return FontUtil.comfortaaFont.drawString(text, x, y, colour);
-            case Subtitle:
-                FontUtil.subtitleFont.drawString(StringUtils.stripControlCodes(text), x + 0.5f, y + 0.5f, 0x000000);
-                return FontUtil.subtitleFont.drawString(text, x, y, colour);
-            case ComicSans:
-                FontUtil.comicSansFont.drawString(StringUtils.stripControlCodes(text), x + 0.5f, y + 0.5f, 0x000000);
-                return FontUtil.comicSansFont.drawString(text, x, y, colour);
-        }
-
-        return -1;
+        FontUtil.getCurrentCustomFont().drawString(StringUtils.stripControlCodes(text), x + 0.5f, y + 0.5f, 0x000000);
+        return FontUtil.getCurrentCustomFont().drawString(text, x, y, colour);
     }
 }
