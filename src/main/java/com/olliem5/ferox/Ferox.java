@@ -1,13 +1,11 @@
 package com.olliem5.ferox;
 
-import com.olliem5.ferox.api.mixin.MixinLoader;
 import com.olliem5.ferox.api.traits.Minecraft;
 import com.olliem5.ferox.api.util.client.ConfigUtil;
 import com.olliem5.pace.handler.EventHandler;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.lwjgl.opengl.Display;

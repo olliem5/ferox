@@ -10,9 +10,12 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+/**
+ * @author Gav06
+ */
+
 @Mixin(VisGraph.class)
 public final class MixinVisGraph {
-
     @Inject(method = "setOpaqueCube", at = @At("HEAD"), cancellable = true)
     public void setOpaqueCubePatch(BlockPos blockPos, CallbackInfo callbackInfo) {
         if (Xray.doXray || ModuleManager.getModuleByName("NoRender").isEnabled() && NoRender.caveCulling.getValue()) {

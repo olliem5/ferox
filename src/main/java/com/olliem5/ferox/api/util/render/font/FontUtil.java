@@ -16,48 +16,48 @@ public final class FontUtil implements Minecraft {
     public static final FeroxFontRenderer subtitleFont = new FeroxFontRenderer("Subtitle", 17.0f);
     public static final FeroxFontRenderer comicSansFont = new FeroxFontRenderer("ComicSans", 17.0f);
 
-    public static void drawString(String text, float x, float y, int color) {
+    public static void drawString(String text, float x, float y, int colour) {
         switch (ClientFont.font.getValue()) {
             case Ubuntu:
-                ubuntuFont.drawString(text, x, y, color);
+                ubuntuFont.drawString(text, x, y, colour);
                 break;
             case Lato:
-                latoFont.drawString(text, x, y, color);
+                latoFont.drawString(text, x, y, colour);
                 break;
             case Verdana:
-                verdanaFont.drawString(text, x, y, color);
+                verdanaFont.drawString(text, x, y, colour);
                 break;
             case Comfortaa:
-                comfortaaFont.drawString(text, x, y, color);
+                comfortaaFont.drawString(text, x, y, colour);
                 break;
             case Subtitle:
-                subtitleFont.drawString(text, x, y, color);
+                subtitleFont.drawString(text, x, y, colour);
                 break;
             case ComicSans:
-                comicSansFont.drawString(text, x, y, color);
+                comicSansFont.drawString(text, x, y, colour);
                 break;
         }
     }
 
-    public static void drawStringWithShadow(String text, float x, float y, int color) {
+    public static void drawStringWithShadow(String text, float x, float y, int colour) {
         switch (ClientFont.font.getValue()) {
             case Ubuntu:
-                ubuntuFont.drawStringWithShadow(text, x, y, color);
+                ubuntuFont.drawStringWithShadow(text, x, y, colour);
                 break;
             case Lato:
-                latoFont.drawStringWithShadow(text, x, y, color);
+                latoFont.drawStringWithShadow(text, x, y, colour);
                 break;
             case Verdana:
-                verdanaFont.drawStringWithShadow(text, x, y, color);
+                verdanaFont.drawStringWithShadow(text, x, y, colour);
                 break;
             case Comfortaa:
-                comfortaaFont.drawStringWithShadow(text, x, y, color);
+                comfortaaFont.drawStringWithShadow(text, x, y, colour);
                 break;
             case Subtitle:
-                subtitleFont.drawStringWithShadow(text, x, y, color);
+                subtitleFont.drawStringWithShadow(text, x, y, colour);
                 break;
             case ComicSans:
-                comicSansFont.drawStringWithShadow(text, x, y, color);
+                comicSansFont.drawStringWithShadow(text, x, y, colour);
                 break;
         }
     }

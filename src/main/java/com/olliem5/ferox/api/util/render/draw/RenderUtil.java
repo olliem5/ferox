@@ -66,58 +66,58 @@ public final class RenderUtil implements Minecraft {
      * @see net.minecraft.client.renderer.RenderGlobal
      */
 
-    public static void drawBoundingBox(BufferBuilder buffer, double minX, double minY, double minZ, double maxX, double maxY, double maxZ, float red, float green, float blue, float alpha) {
-        buffer.pos(minX, minY, minZ).color(red, green, blue, 0.0F).endVertex();
-        buffer.pos(minX, minY, minZ).color(red, green, blue, alpha).endVertex();
-        buffer.pos(maxX, minY, minZ).color(red, green, blue, alpha).endVertex();
-        buffer.pos(maxX, minY, maxZ).color(red, green, blue, alpha).endVertex();
-        buffer.pos(minX, minY, maxZ).color(red, green, blue, alpha).endVertex();
-        buffer.pos(minX, minY, minZ).color(red, green, blue, alpha).endVertex();
-        buffer.pos(minX, maxY, minZ).color(red, green, blue, alpha).endVertex();
-        buffer.pos(maxX, maxY, minZ).color(red, green, blue, alpha).endVertex();
-        buffer.pos(maxX, maxY, maxZ).color(red, green, blue, alpha).endVertex();
-        buffer.pos(minX, maxY, maxZ).color(red, green, blue, alpha).endVertex();
-        buffer.pos(minX, maxY, minZ).color(red, green, blue, alpha).endVertex();
-        buffer.pos(minX, maxY, maxZ).color(red, green, blue, 0.0f).endVertex();
-        buffer.pos(minX, minY, maxZ).color(red, green, blue, alpha).endVertex();
-        buffer.pos(maxX, maxY, maxZ).color(red, green, blue, 0.0f).endVertex();
-        buffer.pos(maxX, minY, maxZ).color(red, green, blue, alpha).endVertex();
-        buffer.pos(maxX, maxY, minZ).color(red, green, blue, 0.0f).endVertex();
-        buffer.pos(maxX, minY, minZ).color(red, green, blue, alpha).endVertex();
-        buffer.pos(maxX, minY, minZ).color(red, green, blue, 0.0f).endVertex();
+    public static void drawBoundingBox(BufferBuilder bufferBuilder, double minX, double minY, double minZ, double maxX, double maxY, double maxZ, float red, float green, float blue, float alpha) {
+        bufferBuilder.pos(minX, minY, minZ).color(red, green, blue, 0.0F).endVertex();
+        bufferBuilder.pos(minX, minY, minZ).color(red, green, blue, alpha).endVertex();
+        bufferBuilder.pos(maxX, minY, minZ).color(red, green, blue, alpha).endVertex();
+        bufferBuilder.pos(maxX, minY, maxZ).color(red, green, blue, alpha).endVertex();
+        bufferBuilder.pos(minX, minY, maxZ).color(red, green, blue, alpha).endVertex();
+        bufferBuilder.pos(minX, minY, minZ).color(red, green, blue, alpha).endVertex();
+        bufferBuilder.pos(minX, maxY, minZ).color(red, green, blue, alpha).endVertex();
+        bufferBuilder.pos(maxX, maxY, minZ).color(red, green, blue, alpha).endVertex();
+        bufferBuilder.pos(maxX, maxY, maxZ).color(red, green, blue, alpha).endVertex();
+        bufferBuilder.pos(minX, maxY, maxZ).color(red, green, blue, alpha).endVertex();
+        bufferBuilder.pos(minX, maxY, minZ).color(red, green, blue, alpha).endVertex();
+        bufferBuilder.pos(minX, maxY, maxZ).color(red, green, blue, 0.0f).endVertex();
+        bufferBuilder.pos(minX, minY, maxZ).color(red, green, blue, alpha).endVertex();
+        bufferBuilder.pos(maxX, maxY, maxZ).color(red, green, blue, 0.0f).endVertex();
+        bufferBuilder.pos(maxX, minY, maxZ).color(red, green, blue, alpha).endVertex();
+        bufferBuilder.pos(maxX, maxY, minZ).color(red, green, blue, 0.0f).endVertex();
+        bufferBuilder.pos(maxX, minY, minZ).color(red, green, blue, alpha).endVertex();
+        bufferBuilder.pos(maxX, minY, minZ).color(red, green, blue, 0.0f).endVertex();
     }
 
-    public static void addChainedFilledBoxVertices(BufferBuilder builder, double x1, double y1, double z1, double x2, double y2, double z2, float red, float green, float blue, float alpha) {
-        builder.pos(x1, y1, z1).color(red, green, blue, alpha).endVertex();
-        builder.pos(x1, y1, z1).color(red, green, blue, alpha).endVertex();
-        builder.pos(x1, y1, z1).color(red, green, blue, alpha).endVertex();
-        builder.pos(x1, y1, z2).color(red, green, blue, alpha).endVertex();
-        builder.pos(x1, y2, z1).color(red, green, blue, alpha).endVertex();
-        builder.pos(x1, y2, z2).color(red, green, blue, alpha).endVertex();
-        builder.pos(x1, y2, z2).color(red, green, blue, alpha).endVertex();
-        builder.pos(x1, y1, z2).color(red, green, blue, alpha).endVertex();
-        builder.pos(x2, y2, z2).color(red, green, blue, alpha).endVertex();
-        builder.pos(x2, y1, z2).color(red, green, blue, alpha).endVertex();
-        builder.pos(x2, y1, z2).color(red, green, blue, alpha).endVertex();
-        builder.pos(x2, y1, z1).color(red, green, blue, alpha).endVertex();
-        builder.pos(x2, y2, z2).color(red, green, blue, alpha).endVertex();
-        builder.pos(x2, y2, z1).color(red, green, blue, alpha).endVertex();
-        builder.pos(x2, y2, z1).color(red, green, blue, alpha).endVertex();
-        builder.pos(x2, y1, z1).color(red, green, blue, alpha).endVertex();
-        builder.pos(x1, y2, z1).color(red, green, blue, alpha).endVertex();
-        builder.pos(x1, y1, z1).color(red, green, blue, alpha).endVertex();
-        builder.pos(x1, y1, z1).color(red, green, blue, alpha).endVertex();
-        builder.pos(x2, y1, z1).color(red, green, blue, alpha).endVertex();
-        builder.pos(x1, y1, z2).color(red, green, blue, alpha).endVertex();
-        builder.pos(x2, y1, z2).color(red, green, blue, alpha).endVertex();
-        builder.pos(x2, y1, z2).color(red, green, blue, alpha).endVertex();
-        builder.pos(x1, y2, z1).color(red, green, blue, alpha).endVertex();
-        builder.pos(x1, y2, z1).color(red, green, blue, alpha).endVertex();
-        builder.pos(x1, y2, z2).color(red, green, blue, alpha).endVertex();
-        builder.pos(x2, y2, z1).color(red, green, blue, alpha).endVertex();
-        builder.pos(x2, y2, z2).color(red, green, blue, alpha).endVertex();
-        builder.pos(x2, y2, z2).color(red, green, blue, alpha).endVertex();
-        builder.pos(x2, y2, z2).color(red, green, blue, alpha).endVertex();
+    public static void addChainedFilledBoxVertices(BufferBuilder bufferBuilder, double x1, double y1, double z1, double x2, double y2, double z2, float red, float green, float blue, float alpha) {
+        bufferBuilder.pos(x1, y1, z1).color(red, green, blue, alpha).endVertex();
+        bufferBuilder.pos(x1, y1, z1).color(red, green, blue, alpha).endVertex();
+        bufferBuilder.pos(x1, y1, z1).color(red, green, blue, alpha).endVertex();
+        bufferBuilder.pos(x1, y1, z2).color(red, green, blue, alpha).endVertex();
+        bufferBuilder.pos(x1, y2, z1).color(red, green, blue, alpha).endVertex();
+        bufferBuilder.pos(x1, y2, z2).color(red, green, blue, alpha).endVertex();
+        bufferBuilder.pos(x1, y2, z2).color(red, green, blue, alpha).endVertex();
+        bufferBuilder.pos(x1, y1, z2).color(red, green, blue, alpha).endVertex();
+        bufferBuilder.pos(x2, y2, z2).color(red, green, blue, alpha).endVertex();
+        bufferBuilder.pos(x2, y1, z2).color(red, green, blue, alpha).endVertex();
+        bufferBuilder.pos(x2, y1, z2).color(red, green, blue, alpha).endVertex();
+        bufferBuilder.pos(x2, y1, z1).color(red, green, blue, alpha).endVertex();
+        bufferBuilder.pos(x2, y2, z2).color(red, green, blue, alpha).endVertex();
+        bufferBuilder.pos(x2, y2, z1).color(red, green, blue, alpha).endVertex();
+        bufferBuilder.pos(x2, y2, z1).color(red, green, blue, alpha).endVertex();
+        bufferBuilder.pos(x2, y1, z1).color(red, green, blue, alpha).endVertex();
+        bufferBuilder.pos(x1, y2, z1).color(red, green, blue, alpha).endVertex();
+        bufferBuilder.pos(x1, y1, z1).color(red, green, blue, alpha).endVertex();
+        bufferBuilder.pos(x1, y1, z1).color(red, green, blue, alpha).endVertex();
+        bufferBuilder.pos(x2, y1, z1).color(red, green, blue, alpha).endVertex();
+        bufferBuilder.pos(x1, y1, z2).color(red, green, blue, alpha).endVertex();
+        bufferBuilder.pos(x2, y1, z2).color(red, green, blue, alpha).endVertex();
+        bufferBuilder.pos(x2, y1, z2).color(red, green, blue, alpha).endVertex();
+        bufferBuilder.pos(x1, y2, z1).color(red, green, blue, alpha).endVertex();
+        bufferBuilder.pos(x1, y2, z1).color(red, green, blue, alpha).endVertex();
+        bufferBuilder.pos(x1, y2, z2).color(red, green, blue, alpha).endVertex();
+        bufferBuilder.pos(x2, y2, z1).color(red, green, blue, alpha).endVertex();
+        bufferBuilder.pos(x2, y2, z2).color(red, green, blue, alpha).endVertex();
+        bufferBuilder.pos(x2, y2, z2).color(red, green, blue, alpha).endVertex();
+        bufferBuilder.pos(x2, y2, z2).color(red, green, blue, alpha).endVertex();
     }
 
     public static void renderFilledBox(double minX, double minY, double minZ, double maxX, double maxY, double maxZ, double height, float red, float green, float blue, float alpha) {

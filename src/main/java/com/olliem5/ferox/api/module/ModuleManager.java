@@ -76,13 +76,13 @@ public final class ModuleManager {
                 new ESP(),
                 new HoleESP(),
                 new ItemTooltips(),
+                new NoRender(),
                 new SkyColour(),
                 new ThrowTrails(),
                 new Trajectories(),
                 new ViewModel(),
                 new VoidESP(),
                 new Xray(),
-                new NoRender(),
 
                 //Ferox
                 new Baritone(),
