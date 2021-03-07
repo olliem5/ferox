@@ -38,6 +38,7 @@ public final class ClientFont extends Module {
         Lato,
         Verdana,
         Comfortaa,
-        Subtitle
+        Subtitle,
+        ComicSans
     }
 }

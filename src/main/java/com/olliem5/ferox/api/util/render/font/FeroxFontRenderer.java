@@ -72,6 +72,8 @@ public final class FeroxFontRenderer implements Minecraft {
             return getFontFromInput("/assets/ferox/fonts/Comfortaa.ttf");
         } else if (name == "Subtitle") {
             return getFontFromInput("/assets/ferox/fonts/Subtitle.ttf");
+        } else if (name == "ComicSans") {
+            return getFontFromInput("/assets/ferox/fonts/ComicSans.ttf");
         } else {
             return Font.createFont(Font.TRUETYPE_FONT, new File("/assets/ferox/fonts/" + name + ".ttf"));
         }

@@ -28,14 +28,6 @@ public final class Ferox implements Minecraft {
     public static final Logger LOGGER = LogManager.getLogger(NAME_VERSION);
     public static final EventHandler EVENT_BUS = new EventHandler();
 
-    public static MixinLoader mixinLoader;
-
-    @Mod.EventHandler
-    public void preInit(FMLPreInitializationEvent event) {
-        mixinLoader = new MixinLoader();
-        log("Mixins Initialized!");
-    }
-
     @Mod.EventHandler
     public void init(FMLInitializationEvent event) {
         StartupHelper.startupFerox();

@@ -82,6 +82,7 @@ public final class ModuleManager {
                 new ViewModel(),
                 new VoidESP(),
                 new Xray(),
+                new NoRender(),
 
                 //Ferox
                 new Baritone(),

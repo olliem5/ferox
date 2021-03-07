@@ -32,18 +32,20 @@ public final class MixinFontRenderer implements Minecraft {
         }
     }
 
-    private int getString(String text, float x, float y, int colour) {
+    private int getString(String text, float x, float y, int color) {
         switch (ClientFont.font.getValue()) {
             case Ubuntu:
-                return FontUtil.ubuntuFont.drawString(text, x, y, colour);
+                return FontUtil.ubuntuFont.drawString(text, x, y, color);
             case Lato:
-                return FontUtil.latoFont.drawString(text, x, y, colour);
+                return FontUtil.latoFont.drawString(text, x, y, color);
             case Verdana:
-                return FontUtil.verdanaFont.drawString(text, x, y, colour);
+                return FontUtil.verdanaFont.drawString(text, x, y, color);
             case Comfortaa:
-                return FontUtil.comfortaaFont.drawString(text, x, y, colour);
+                return FontUtil.comfortaaFont.drawString(text, x, y, color);
             case Subtitle:
-                return FontUtil.subtitleFont.drawString(text, x, y, colour);
+                return FontUtil.subtitleFont.drawString(text, x, y, color);
+            case ComicSans:
+                return FontUtil.comicSansFont.drawString(text, x, y, color);
         }
 
         return -1;
@@ -66,6 +68,9 @@ public final class MixinFontRenderer implements Minecraft {
             case Subtitle:
                 FontUtil.subtitleFont.drawString(StringUtils.stripControlCodes(text), x + 0.5f, y + 0.5f, 0x000000);
                 return FontUtil.subtitleFont.drawString(text, x, y, colour);
+            case ComicSans:
+                FontUtil.comicSansFont.drawString(StringUtils.stripControlCodes(text), x + 0.5f, y + 0.5f, 0x000000);
+                return FontUtil.comicSansFont.drawString(text, x, y, colour);
         }
 
         return -1;

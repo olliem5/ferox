@@ -16,8 +16,6 @@ buildscript {
         classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
         classpath 'org.spongepowered:mixingradle:0.6-SNAPSHOT'
         classpath 'com.github.jengelman.gradle.plugins:shadow:1.2.3'
-
-//        classpath 'javassist:javassist:3.12.1.GA'
     }
 }
 
@@ -73,10 +71,6 @@ dependencies {
     compile 'com.github.CafeDevelopment:Venture:1.0-SNAPSHOT'
     compile 'org.slick2d:slick2d-core:1.0.2'
     compile 'com.github.cabaletta:baritone:1.2.14'
-
-//    compile 'com.github.LittleDraily:event-system:1.1'
-//    compile 'org.reflections:reflections:0.9.12'
-//    compile 'javassist:javassist:3.12.1.GA'
 }
 
 processResources {
@@ -128,6 +122,7 @@ reobf {
 
 //Lazy fix because I suck at gradle -> Comment this out to run with runClient.
 
+
 jar {
     manifest {
         attributes (
@@ -135,7 +130,7 @@ jar {
                 'TweakClass': 'org.spongepowered.asm.launch.MixinTweaker',
                 'TweakOrder': 0,
                 'FMLCorePluginContainsFMLMod': 'true',
-                'FMLCorePlugin': 'com.olliem5.ferox.Ferox',
+                'FMLCorePlugin': 'com.olliem5.ferox.api.mixin.MixinLoader',
                 'ForceLoadAsMod': 'true',
                 'FMLAT': 'ferox_at.cfg'
         )

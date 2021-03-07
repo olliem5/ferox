@@ -14,43 +14,50 @@ public final class FontUtil implements Minecraft {
     public static final FeroxFontRenderer verdanaFont = new FeroxFontRenderer("Verdana", 17.0f);
     public static final FeroxFontRenderer comfortaaFont = new FeroxFontRenderer("Comfortaa", 17.0f);
     public static final FeroxFontRenderer subtitleFont = new FeroxFontRenderer("Subtitle", 17.0f);
+    public static final FeroxFontRenderer comicSansFont = new FeroxFontRenderer("ComicSans", 17.0f);
 
-    public static void drawString(String text, float x, float y, int colour) {
+    public static void drawString(String text, float x, float y, int color) {
         switch (ClientFont.font.getValue()) {
             case Ubuntu:
-                ubuntuFont.drawString(text, x, y, colour);
+                ubuntuFont.drawString(text, x, y, color);
                 break;
             case Lato:
-                latoFont.drawString(text, x, y, colour);
+                latoFont.drawString(text, x, y, color);
                 break;
             case Verdana:
-                verdanaFont.drawString(text, x, y, colour);
+                verdanaFont.drawString(text, x, y, color);
                 break;
             case Comfortaa:
-                comfortaaFont.drawString(text, x, y, colour);
+                comfortaaFont.drawString(text, x, y, color);
                 break;
             case Subtitle:
-                subtitleFont.drawString(text, x, y, colour);
+                subtitleFont.drawString(text, x, y, color);
+                break;
+            case ComicSans:
+                comicSansFont.drawString(text, x, y, color);
                 break;
         }
     }
 
-    public static void drawStringWithShadow(String text, float x, float y, int colour) {
+    public static void drawStringWithShadow(String text, float x, float y, int color) {
         switch (ClientFont.font.getValue()) {
             case Ubuntu:
-                ubuntuFont.drawStringWithShadow(text, x, y, colour);
+                ubuntuFont.drawStringWithShadow(text, x, y, color);
                 break;
             case Lato:
-                latoFont.drawStringWithShadow(text, x, y, colour);
+                latoFont.drawStringWithShadow(text, x, y, color);
                 break;
             case Verdana:
-                verdanaFont.drawStringWithShadow(text, x, y, colour);
+                verdanaFont.drawStringWithShadow(text, x, y, color);
                 break;
             case Comfortaa:
-                comfortaaFont.drawStringWithShadow(text, x, y, colour);
+                comfortaaFont.drawStringWithShadow(text, x, y, color);
                 break;
             case Subtitle:
-                subtitleFont.drawStringWithShadow(text, x, y, colour);
+                subtitleFont.drawStringWithShadow(text, x, y, color);
+                break;
+            case ComicSans:
+                comicSansFont.drawStringWithShadow(text, x, y, color);
                 break;
         }
     }
@@ -83,6 +90,8 @@ public final class FontUtil implements Minecraft {
                 return comfortaaFont.getStringWidth(text);
             case Subtitle:
                 return subtitleFont.getStringWidth(text);
+            case ComicSans:
+                return comicSansFont.getStringWidth(text);
         }
 
         return -1;
@@ -100,6 +109,8 @@ public final class FontUtil implements Minecraft {
                 return comfortaaFont.getStringHeight(text);
             case Subtitle:
                 return subtitleFont.getStringHeight(text);
+            case ComicSans:
+                return comicSansFont.getStringHeight(text);
         }
 
         return -1;
