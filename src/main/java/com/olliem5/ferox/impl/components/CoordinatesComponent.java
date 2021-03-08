@@ -34,7 +34,7 @@ public final class CoordinatesComponent extends Component {
         int netherXPosition = (int) ((int) (MathUtil.roundAvoid(mc.player.posX, 1)) * netherMultiple);
         int netherZPosition = (int) ((int) (MathUtil.roundAvoid(mc.player.posZ, 1)) * netherMultiple);
 
-        String fullLine = "XYZ " + ChatFormatting.WHITE + xPosition + ChatFormatting.RESET + ", " + ChatFormatting.WHITE + yPosition + ChatFormatting.RESET + ", " + ChatFormatting.WHITE + xPosition + ChatFormatting.RESET + " [" + ChatFormatting.WHITE + netherXPosition + ChatFormatting.RESET + ", " + ChatFormatting.WHITE + netherZPosition + ChatFormatting.RESET + "]";
+        String fullLine = "XYZ " + ChatFormatting.WHITE + xPosition + ChatFormatting.RESET + ", " + ChatFormatting.WHITE + yPosition + ChatFormatting.RESET + ", " + ChatFormatting.WHITE + zPosition + ChatFormatting.RESET + " [" + ChatFormatting.WHITE + netherXPosition + ChatFormatting.RESET + ", " + ChatFormatting.WHITE + netherZPosition + ChatFormatting.RESET + "]";
 
         String lineX = "X " + ChatFormatting.WHITE + xPosition + ChatFormatting.RESET + " [" + ChatFormatting.WHITE + netherXPosition + ChatFormatting.RESET + "]";
         String lineY = "Y " + ChatFormatting.WHITE + yPosition;
