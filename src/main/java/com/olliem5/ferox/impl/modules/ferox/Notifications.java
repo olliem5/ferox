@@ -14,6 +14,7 @@ public final class Notifications extends Module {
     public static final Setting<Boolean> moduleToggle = new Setting<>("Module Toggle", "Notifies you when a module is toggled", true);
     public static final Setting<Boolean> moduleToggleChat = new Setting<>(moduleToggle, "Chat", "Sends module toggle messages in chat", true);
     public static final Setting<Boolean> moduleToggleRender = new Setting<>(moduleToggle, "Render", "Renders module toggle notifications in the HUD", true);
+    public static final Setting<Boolean> moduleToggleNarrate = new Setting<>(moduleToggle, "Narrate", "Narrates module toggle notifications", false);
 
     public Notifications() {
         this.addSettings(

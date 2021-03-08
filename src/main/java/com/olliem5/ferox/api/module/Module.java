@@ -1,6 +1,7 @@
 package com.olliem5.ferox.api.module;
 
 import com.mojang.realmsclient.gui.ChatFormatting;
+import com.mojang.text2speech.Narrator;
 import com.olliem5.ferox.Ferox;
 import com.olliem5.ferox.api.notification.Notification;
 import com.olliem5.ferox.api.notification.NotificationManager;
@@ -66,11 +67,14 @@ public abstract class Module implements Minecraft {
         if (nullCheck()) return;
 
         String message;
+        String narratorMessage;
 
         if (enable) {
             message = ChatFormatting.AQUA + name + ChatFormatting.RESET + " is now " + ChatFormatting.GREEN + "ENABLED";
+            narratorMessage = name + " is now enabled";
         } else {
             message = ChatFormatting.AQUA + name + ChatFormatting.RESET + " is now " + ChatFormatting.RED + "DISABLED";
+            narratorMessage = name + " is now disabled";
         }
 
         if (ModuleManager.getModuleByName("Notifications").isEnabled() && Notifications.moduleToggle.getValue()) {
@@ -80,6 +84,11 @@ public abstract class Module implements Minecraft {
 
             if (Notifications.moduleToggleChat.getValue()) {
                 MessageUtil.sendClientMessage(message);
+            }
+
+            if (Notifications.moduleToggleNarrate.getValue()) {
+                Narrator narrator = Narrator.getNarrator();
+                narrator.say(narratorMessage);
             }
         }
     }

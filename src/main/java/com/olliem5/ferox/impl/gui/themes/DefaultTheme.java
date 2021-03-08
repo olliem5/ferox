@@ -935,7 +935,7 @@ public final class DefaultTheme extends Theme {
 				Color.RGBtoHSB(colourSetting.getValue().getRed(), colourSetting.getValue().getGreen(), colourSetting.getValue().getBlue(), null)[2]
 		};
 
-		boolean pickingColor = false;
+		boolean pickingColour = false;
 		boolean pickingHue = false;
 		boolean pickingAlpha = false;
 
@@ -949,7 +949,7 @@ public final class DefaultTheme extends Theme {
 		int alphaSliderHeight = 10;
 
 		if (GuiUtil.leftHeld && GuiUtil.mouseOver(pickerX, pickerY, pickerX + pickerWidth, pickerY + pickerHeight)) {
-			pickingColor = true;
+			pickingColour = true;
 		}
 
 		if (GuiUtil.leftHeld && GuiUtil.mouseOver(hueSliderX, hueSliderY, hueSliderX + hueSliderWidth, hueSliderY + hueSliderHeight)) {
@@ -970,7 +970,7 @@ public final class DefaultTheme extends Theme {
 			colourSetting.setAlpha(1 - (restrictedX - (float) alphaSliderX) / alphaSliderWidth);
 		}
 
-		if (pickingColor) {
+		if (pickingColour) {
 			float restrictedX = (float) Math.min(Math.max(pickerX, mouseX), pickerX + pickerWidth);
 			float restrictedY = (float) Math.min(Math.max(pickerY, mouseY), pickerY + pickerHeight);
 
