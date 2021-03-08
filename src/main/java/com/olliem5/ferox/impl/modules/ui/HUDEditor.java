@@ -6,6 +6,7 @@ import com.olliem5.ferox.api.module.Module;
 import com.olliem5.ferox.api.setting.NumberSetting;
 import com.olliem5.ferox.api.setting.Setting;
 import com.olliem5.ferox.impl.gui.screens.editor.HUDEditorScreen;
+import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.util.ResourceLocation;
 
 /**
@@ -52,8 +53,12 @@ public final class HUDEditor extends Module {
             hudEditor = new HUDEditorScreen();
         }
 
-        if (backgroundMode.getValue() == BackgroundModes.Blur) {
-            mc.entityRenderer.loadShader(new ResourceLocation("shaders/post/blur.json"));
+        if (OpenGlHelper.shadersSupported) {
+            try {
+                if (backgroundMode.getValue() == BackgroundModes.Blur) {
+                    mc.entityRenderer.loadShader(new ResourceLocation("shaders/post/blur.json"));
+                }
+            } catch (Exception ignored) {}
         }
 
         mc.displayGuiScreen(hudEditor);

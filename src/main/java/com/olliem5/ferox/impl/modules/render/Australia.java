@@ -4,6 +4,8 @@ import com.olliem5.ferox.api.module.Category;
 import com.olliem5.ferox.api.module.FeroxModule;
 import com.olliem5.ferox.api.module.Module;
 import com.olliem5.ferox.api.setting.Setting;
+import net.minecraft.client.entity.EntityPlayerSP;
+import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.util.ResourceLocation;
 
 /**
@@ -24,15 +26,27 @@ public final class Australia extends Module {
     public void onDisable() {
         if (nullCheck()) return;
 
-        try {
-            mc.entityRenderer.getShaderGroup().deleteShaderGroup();
-        } catch (Exception ignored) {}
+        if (OpenGlHelper.shadersSupported) {
+            try {
+                mc.entityRenderer.getShaderGroup().deleteShaderGroup();
+            } catch (Exception ignored) {}
+        }
     }
 
     public void onUpdate() {
         if (nullCheck()) return;
 
-        mc.entityRenderer.loadShader(new ResourceLocation("shaders/post/flip.json"));
+        if (OpenGlHelper.shadersSupported) {
+            try {
+                if (mc.getRenderViewEntity() == mc.player) {
+                    if (mc.entityRenderer.getShaderGroup() != null) {
+                        mc.entityRenderer.getShaderGroup().deleteShaderGroup();
+                    }
+
+                    mc.entityRenderer.loadShader(new ResourceLocation("shaders/post/flip.json"));
+                }
+            } catch (Exception ignored) {}
+        }
 
         if (fire.getValue()) {
             mc.player.setFire(1);

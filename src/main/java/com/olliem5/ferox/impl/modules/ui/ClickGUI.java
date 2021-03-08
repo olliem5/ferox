@@ -6,6 +6,7 @@ import com.olliem5.ferox.api.module.Module;
 import com.olliem5.ferox.api.setting.NumberSetting;
 import com.olliem5.ferox.api.setting.Setting;
 import com.olliem5.ferox.impl.gui.screens.click.ClickGUIScreen;
+import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.input.Keyboard;
 
@@ -53,8 +54,12 @@ public final class ClickGUI extends Module {
             clickGUI = new ClickGUIScreen();
         }
 
-        if (backgroundMode.getValue() == BackgroundModes.Blur) {
-            mc.entityRenderer.loadShader(new ResourceLocation("shaders/post/blur.json"));
+        if (OpenGlHelper.shadersSupported) {
+            try {
+                if (backgroundMode.getValue() == BackgroundModes.Blur) {
+                    mc.entityRenderer.loadShader(new ResourceLocation("shaders/post/blur.json"));
+                }
+            } catch (Exception ignored) {}
         }
 
         mc.displayGuiScreen(clickGUI);

@@ -7,6 +7,7 @@ import com.olliem5.ferox.api.util.render.gui.GuiUtil;
 import com.olliem5.ferox.impl.modules.ui.HUDEditor;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.renderer.OpenGlHelper;
 
 import java.io.IOException;
 
@@ -99,9 +100,11 @@ public final class HUDEditorScreen extends GuiScreen {
 
 	@Override
 	public void onGuiClosed() {
-		try {
-			mc.entityRenderer.getShaderGroup().deleteShaderGroup();
-		} catch (Exception ignored) {}
+		if (OpenGlHelper.shadersSupported) {
+			try {
+				mc.entityRenderer.getShaderGroup().deleteShaderGroup();
+			} catch (Exception ignored) {}
+		}
 
 		ConfigUtil.saveConfig();
 	}
