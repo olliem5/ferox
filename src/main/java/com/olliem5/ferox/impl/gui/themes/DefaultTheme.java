@@ -921,7 +921,7 @@ public final class DefaultTheme extends Theme {
 	}
 
 	public static void drawDrawnBottomLeftText(Module module) {
-		FontUtil.drawText(module.getName() + "is " + (module.isDrawn() ? "drawn" : "not drawn"), 2, (new ScaledResolution(mc).getScaledHeight() - FontUtil.getStringHeight(module.getName() + "is " + (module.isDrawn() ? "drawn" : "not drawn")) - 2), -1);
+		FontUtil.drawText(module.getName() + " is " + (module.isDrawn() ? "drawn" : "not drawn"), 2, (new ScaledResolution(mc).getScaledHeight() - FontUtil.getStringHeight(module.getName() + "is " + (module.isDrawn() ? "drawn" : "not drawn")) - 2), -1);
 	}
 
 	public static void drawKeybindBottomLeftText(Module module, String key) {
