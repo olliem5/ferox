@@ -2,6 +2,7 @@ package com.olliem5.ferox.impl.mixins;
 
 import com.olliem5.ferox.Ferox;
 import com.olliem5.ferox.api.module.ModuleManager;
+import com.olliem5.ferox.api.util.packet.RotationManager;
 import com.olliem5.ferox.impl.events.PlayerMoveEvent;
 import com.olliem5.ferox.impl.modules.exploit.Portals;
 import com.olliem5.ferox.impl.modules.movement.Velocity;
@@ -40,6 +41,16 @@ public final class MixinEntityPlayerSP {
         if (playerMoveEvent.isCancelled()) {
             callbackInfo.cancel();
         }
+    }
+
+    @Inject(method = "onUpdateWalkingPlayer", at = @At(value = "HEAD"))
+    private void onUpdateWalkingPlayerPre(CallbackInfo callbackInfo) {
+        RotationManager.updatePlayerRotations();
+    }
+
+    @Inject(method = "onUpdateWalkingPlayer", at = @At(value = "RETURN"))
+    private void onUpdateWalkingPlayerPost(CallbackInfo info) {
+        RotationManager.restorePlayerRotations();
     }
 
     @Inject(method = "pushOutOfBlocks(DDD)Z", at = @At("HEAD"), cancellable = true)

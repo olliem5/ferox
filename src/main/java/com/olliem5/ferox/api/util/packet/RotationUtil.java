@@ -74,9 +74,8 @@ public final class RotationUtil implements Minecraft {
 
         yaw += 90.0;
 
-        return new double[]{yaw, pitch};
+        return new double[] {yaw, pitch};
     }
-
 
     public static String getFacing() {
         switch (MathHelper.floor(mc.player.rotationYaw + 8.0f / 360.0f + 0.5) & 7) {
