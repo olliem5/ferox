@@ -28,9 +28,19 @@ import static org.lwjgl.opengl.GL11.*;
 
 @Mixin(RenderEnderCrystal.class)
 public final class MixinRenderEnderCrystal implements Minecraft {
+    @Final
+    @Shadow
+    private ModelBase modelEnderCrystal;
+
+    @Final
+    @Shadow
+    private ModelBase modelEnderCrystalNoBase;
+
     @Redirect(method = "doRender(Lnet/minecraft/entity/item/EntityEnderCrystal;DDDFF)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/model/ModelBase;render(Lnet/minecraft/entity/Entity;FFFFFF)V"))
     private void doRender(ModelBase modelBase, Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
-        if (!ModuleManager.getModuleByName("Chams").isEnabled() || ModuleManager.getModuleByName("Chams").isEnabled() && Chams.crystals.getValue() && Chams.chamsMode.equals(new Vanilla())) {
+        if (ModuleManager.getModuleByName("Chams").isEnabled() && Chams.crystals.getValue() && Chams.crystals.getValue() && !Chams.chamsMode.equals(new Vanilla())) {
+            return;
+        } else {
             modelBase.render(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
         }
     }
@@ -38,7 +48,7 @@ public final class MixinRenderEnderCrystal implements Minecraft {
     @Inject(method = "doRender(Lnet/minecraft/entity/item/EntityEnderCrystal;DDDFF)V", at = @At("RETURN"), cancellable = true)
     public void doRender(EntityEnderCrystal entityEnderCrystal, double x, double y, double z, float entityYaw, float partialTicks, CallbackInfo callbackInfo) {
         if (ModuleManager.getModuleByName("Chams").isEnabled() && Chams.crystals.getValue() && !Chams.chamsMode.equals(new Vanilla())) {
-            Chams.chamsMode.renderCrystal(entityEnderCrystal, x, y, z, entityYaw, partialTicks, callbackInfo);
+            Chams.chamsMode.renderCrystal(modelEnderCrystal, modelEnderCrystalNoBase, entityEnderCrystal, x, y, z, entityYaw, partialTicks, callbackInfo);
         }
     }
 
