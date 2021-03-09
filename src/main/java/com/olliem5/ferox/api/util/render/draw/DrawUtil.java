@@ -13,6 +13,10 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.BlockPos;
 import org.lwjgl.opengl.GL11;
 
+import java.awt.*;
+
+import static org.lwjgl.opengl.GL11.GL_LINES;
+
 /**
  * A collection of methods to draw certain things, these are pretty much generic across all clients, maybe I'll rewrite in the future.
  *
@@ -22,6 +26,9 @@ import org.lwjgl.opengl.GL11;
  */
 
 public final class DrawUtil implements Minecraft {
+    private static final Tessellator tessellator = Tessellator.getInstance();
+    private static final BufferBuilder bufferbuilder = tessellator.getBuffer();
+
     public static void gradient(int minX, int minY, int maxX, int maxY, int startColor, int endColor, boolean left) {
         if (left) {
             float startA = (startColor >> 24 & 0xFF) / 255.0f;
@@ -54,9 +61,6 @@ public final class DrawUtil implements Minecraft {
     }
 
     public static void drawGradientRect(int left, int top, int right, int bottom, int startColor, int endColor) {
-        Tessellator tessellator = Tessellator.getInstance();
-        BufferBuilder bufferbuilder = tessellator.getBuffer();
-
         float f = (float) (startColor >> 24 & 255) / 255.0f;
         float f1 = (float) (startColor >> 16 & 255) / 255.0f;
         float f2 = (float) (startColor >> 8 & 255) / 255.0f;
@@ -87,9 +91,6 @@ public final class DrawUtil implements Minecraft {
     }
 
     public static void drawLeftGradientRect(int left, int top, int right, int bottom, int startColor, int endColor) {
-        Tessellator tessellator = Tessellator.getInstance();
-        BufferBuilder bufferbuilder = tessellator.getBuffer();
-
         float f = (float) (startColor >> 24 & 255) / 255.0f;
         float f1 = (float) (startColor >> 16 & 255) / 255.0f;
         float f2 = (float) (startColor >> 8 & 255) / 255.0f;
@@ -208,7 +209,6 @@ public final class DrawUtil implements Minecraft {
         glBillboardDistanceScaled(blockPos.getX() + 0.5f, blockPos.getY() + 0.5f, blockPos.getZ() + 0.5f, mc.player, 1.0f);
 
         GlStateManager.disableDepth();
-
         GlStateManager.translate(-(FontUtil.getStringWidth(text) / 2.0), 0.0, 0.0);
 
         FontUtil.drawText(text, 0.0f, 0.0f, -1);
@@ -216,19 +216,16 @@ public final class DrawUtil implements Minecraft {
         GlStateManager.popMatrix();
     }
 
-    public static void drawCompleteImage(float posX, float posY, float width, float height) {
-        GL11.glPushMatrix();
-        GL11.glTranslatef(posX, posY, 0.0f);
-        GL11.glBegin(7);
-        GL11.glTexCoord2f(0.0f, 0.0f);
-        GL11.glVertex3f(0.0f, 0.0f, 0.0f);
-        GL11.glTexCoord2f(0.0f, 1.0f);
-        GL11.glVertex3f(0.0f, height, 0.0f);
-        GL11.glTexCoord2f(1.0f, 1.0f);
-        GL11.glVertex3f(width, height, 0.0f);
-        GL11.glTexCoord2f(1.0f, 0.0f);
-        GL11.glVertex3f(width, 0.0f, 0.0f);
-        GL11.glEnd();
-        GL11.glPopMatrix();
+    public static void drawLine3D(float x, float y, float z, float minX, float minY, float minZ, float lineWidth, Color colour) {
+        RenderUtil.prepareGL();
+
+        GL11.glLineWidth(lineWidth);
+
+        bufferbuilder.begin(GL_LINES, DefaultVertexFormats.POSITION_COLOR);
+        bufferbuilder.pos(x, y, z).color(colour.getRed(), colour.getGreen(), colour.getBlue(), colour.getAlpha()).endVertex();
+        bufferbuilder.pos(minX, minY, minZ).color(colour.getRed(), colour.getGreen(), colour.getBlue(), colour.getAlpha()).endVertex();
+        tessellator.draw();
+
+        RenderUtil.releaseGL();
     }
 }

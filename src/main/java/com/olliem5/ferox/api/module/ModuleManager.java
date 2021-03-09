@@ -79,6 +79,7 @@ public final class ModuleManager {
                 new NoRender(),
                 new SkyColour(),
                 new ThrowTrails(),
+                new Tracers(),
                 new Trajectories(),
                 new ViewModel(),
                 new VoidESP(),
