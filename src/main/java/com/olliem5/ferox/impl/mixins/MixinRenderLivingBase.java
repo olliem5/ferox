@@ -6,6 +6,7 @@ import com.olliem5.ferox.api.social.friend.FriendManager;
 import com.olliem5.ferox.api.traits.Minecraft;
 import com.olliem5.ferox.impl.modules.ferox.Social;
 import com.olliem5.ferox.impl.modules.render.Chams;
+import com.olliem5.ferox.impl.modules.render.chams.modes.Vanilla;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderLivingBase;
@@ -35,54 +36,14 @@ public abstract class MixinRenderLivingBase<T extends EntityLivingBase> extends 
 
     @Redirect(method = "renderModel", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/model/ModelBase;render(Lnet/minecraft/entity/Entity;FFFFFF)V"))
     private void renderModel(ModelBase modelBase, Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
-        if (ModuleManager.getModuleByName("Chams").isEnabled() && Chams.players.getValue() && entity instanceof EntityPlayer && Chams.playersMode.getValue() == Chams.ChamsModes.Highlight || ModuleManager.getModuleByName("Chams").isEnabled() && Chams.animals.getValue() && entity instanceof EntityAnimal  && Chams.animalsMode.getValue() == Chams.ChamsModes.Highlight || ModuleManager.getModuleByName("Chams").isEnabled() && Chams.mobs.getValue() && entity instanceof EntityMob && Chams.mobsMode.getValue() == Chams.ChamsModes.Highlight) {
-            GL11.glPushAttrib(1048575);
-            GL11.glDisable(3008);
-            GL11.glDisable(3553);
-            GL11.glDisable(2896);
-            GL11.glEnable(3042);
-            GL11.glBlendFunc(770, 771);
-            GL11.glLineWidth(1.5f);
-            GL11.glEnable(2960);
-            GL11.glDisable(2929);
-            GL11.glDepthMask(false);
-            GL11.glEnable(10754);
-
-            if (entity instanceof EntityPlayer) {
-                if (FriendManager.isFriend(entity.getName())) {
-                    GL11.glColor4f(Social.friendColour.getValue().getRed() / 255.0f, Social.friendColour.getValue().getGreen() / 255.0f, Social.friendColour.getValue().getBlue() / 255.0f, Social.friendColour.getValue().getAlpha() / 255.0f);
-                } else if (EnemyManager.isEnemy(entity.getName())) {
-                    GL11.glColor4f(Social.enemyColour.getValue().getRed() / 255.0f, Social.enemyColour.getValue().getGreen() / 255.0f, Social.enemyColour.getValue().getBlue() / 255.0f, Social.enemyColour.getValue().getAlpha() / 255.0f);
-                } else {
-                    GL11.glColor4f(Chams.playerColour.getValue().getRed() / 255.0f, Chams.playerColour.getValue().getGreen() / 255.0f, Chams.playerColour.getValue().getBlue() / 255.0f, Chams.playerColour.getValue().getAlpha() / 255.0f);
-                }
-            }
-
-            if (entity instanceof EntityAnimal) {
-                GL11.glColor4f(Chams.animalColour.getValue().getRed() / 255.0f, Chams.animalColour.getValue().getGreen() / 255.0f, Chams.animalColour.getValue().getBlue() / 255.0f, Chams.animalColour.getValue().getAlpha() / 255.0f);
-            }
-
-            if (entity instanceof EntityMob) {
-                GL11.glColor4f(Chams.mobColour.getValue().getRed() / 255.0f, Chams.mobColour.getValue().getGreen() / 255.0f, Chams.mobColour.getValue().getBlue() / 255.0f, Chams.mobColour.getValue().getAlpha() / 255.0f);
-            }
-
-            modelBase.render(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
-
-            GL11.glEnable(2929);
-            GL11.glDepthMask(true);
-            GL11.glEnable(3042);
-            GL11.glEnable(2896);
-            GL11.glEnable(3553);
-            GL11.glEnable(3008);
-            GL11.glPopAttrib();
-        } else {
-            modelBase.render(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
+        if (ModuleManager.getModuleByName("Chams").isEnabled() && Chams.entityCheck(entity) && !Chams.chamsMode.equals(new Vanilla())) {
+            Chams.chamsMode.renderLivingBase(modelBase, entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
         }
     }
 
     @Inject(method = "doRender", at = @At(value="HEAD"))
     public void doRenderPre(T entity, double x, double y, double z, float entityYaw, float partialTicks, CallbackInfo callbackInfo) {
-        if (ModuleManager.getModuleByName("Chams").isEnabled() && Chams.players.getValue() && entity instanceof EntityPlayer && Chams.playersMode.getValue() == Chams.ChamsModes.Vanilla || ModuleManager.getModuleByName("Chams").isEnabled() && Chams.animals.getValue() && entity instanceof EntityAnimal  && Chams.animalsMode.getValue() == Chams.ChamsModes.Vanilla || ModuleManager.getModuleByName("Chams").isEnabled() && Chams.mobs.getValue() && entity instanceof EntityMob && Chams.mobsMode.getValue() == Chams.ChamsModes.Vanilla) {
+        if (ModuleManager.getModuleByName("Chams").isEnabled() && Chams.entityCheck(entity) && Chams.chamsMode.equals(new Vanilla())) {
             GL11.glEnable(32823);
             GL11.glPolygonOffset(1.0f, -1100000.0f);
         }
@@ -90,7 +51,7 @@ public abstract class MixinRenderLivingBase<T extends EntityLivingBase> extends 
 
     @Inject(method = "doRender", at = @At(value="RETURN"))
     public void doRenderPost(T entity, double x, double y, double z, float entityYaw, float partialTicks, CallbackInfo callbackInfo) {
-        if (ModuleManager.getModuleByName("Chams").isEnabled() && Chams.players.getValue() && entity instanceof EntityPlayer && Chams.playersMode.getValue() == Chams.ChamsModes.Vanilla || ModuleManager.getModuleByName("Chams").isEnabled() && Chams.animals.getValue() && entity instanceof EntityAnimal  && Chams.animalsMode.getValue() == Chams.ChamsModes.Vanilla || ModuleManager.getModuleByName("Chams").isEnabled() && Chams.mobs.getValue() && entity instanceof EntityMob && Chams.mobsMode.getValue() == Chams.ChamsModes.Vanilla) {
+        if (ModuleManager.getModuleByName("Chams").isEnabled() && Chams.entityCheck(entity) && Chams.chamsMode.equals(new Vanilla())) {
             GL11.glPolygonOffset(1.0f, 1000000.0f);
             GL11.glDisable(32823);
         }
