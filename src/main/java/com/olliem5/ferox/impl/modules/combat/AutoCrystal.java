@@ -8,6 +8,7 @@ import com.olliem5.ferox.api.setting.Setting;
 import com.olliem5.ferox.api.util.math.CooldownUtil;
 import com.olliem5.ferox.api.util.module.CrystalPosition;
 import com.olliem5.ferox.api.util.module.CrystalUtil;
+import com.olliem5.ferox.api.util.packet.RotationManager;
 import com.olliem5.ferox.api.util.packet.RotationUtil;
 import com.olliem5.ferox.api.util.player.InventoryUtil;
 import com.olliem5.ferox.api.util.player.PlayerUtil;
@@ -75,7 +76,6 @@ public final class AutoCrystal extends Module {
     public static final Setting<SyncModes> syncMode = new Setting<>(crystalBreak, "Sync", "The way the crystal is synced", SyncModes.None);
     public static final Setting<Boolean> antiWeakness = new Setting<>(crystalBreak, "Anti Weakness", "Allow switching to a sword or tool when you have weakness", false);
     public static final Setting<Boolean> throughWalls = new Setting<>(crystalBreak, "Through Walls", "Allows the AutoCrystal to break through walls", true);
-    public static final Setting<Boolean> rotate = new Setting<>(crystalBreak, "Rotate", "Allow rotations to crystals and blocks", false);
     public static final NumberSetting<Double> breakRange = new NumberSetting<>(crystalBreak, "Range", "The range to break crystals in", 0.0, 5.0, 7.0, 1);
     public static final NumberSetting<Integer> breakAttempts = new NumberSetting<>(crystalBreak, "Break Attempts", "How many times attempt to break the crystal", 1, 1, 5, 0);
     public static final NumberSetting<Integer> breakDelay = new NumberSetting<>(crystalBreak, "Delay", "The delay between crystal breaks", 0, 2, 20, 0);
@@ -92,6 +92,10 @@ public final class AutoCrystal extends Module {
     public static final NumberSetting<Double> minDamage = new NumberSetting<>(crystalPlace, "Min Target Damage", "Minimum target damage for a place", 0.0, 7.0, 36.0, 1);
     public static final NumberSetting<Double> maxSelfPlaceDamage = new NumberSetting<>(crystalPlace, "Max Self Damage", "Maximum self damage for a place", 0.0, 8.0, 36.0, 1);
     public static final NumberSetting<Integer> placeDelay = new NumberSetting<>(crystalPlace, "Delay", "The delay between crystal places", 0, 2, 20, 0);
+
+    public static final Setting<Boolean> crystalRotations = new Setting<>("Rotate", "Allow for rotations", false);
+    public static final Setting<RotationModes> rotateMode = new Setting<>(crystalRotations, "Mode", "The mode to use for rotations", RotationModes.Packet);
+    public static final Setting<RotateWhenModes> rotateWhen = new Setting<>(crystalRotations, "When", "When to rotate", RotateWhenModes.Break);
 
     public static final Setting<Boolean> crystalCalculations = new Setting<>("Calculations", "Controls how AutoCrystal calculates", true);
     public static final Setting<LogicModes> logicMode = new Setting<>(crystalCalculations, "Logic", "The order to perform AutoCrystal functions", LogicModes.BreakPlace);
@@ -114,6 +118,7 @@ public final class AutoCrystal extends Module {
         this.addSettings(
                 crystalBreak,
                 crystalPlace,
+                crystalRotations,
                 crystalCalculations,
                 crystalPause,
                 crystalRender
@@ -132,8 +137,6 @@ public final class AutoCrystal extends Module {
 
         playerTarget = null;
         crystalTarget = null;
-
-        RotationUtil.resetRotation();
     }
 
     public void onUpdate() {
@@ -176,8 +179,10 @@ public final class AutoCrystal extends Module {
                     InventoryUtil.switchToSlot(ItemSword.class);
                 }
 
-                if (rotate.getValue()) {
-                    RotationUtil.lookAtPacket(entityEnderCrystal.posX, entityEnderCrystal.posY, entityEnderCrystal.posZ, mc.player);
+                if (crystalRotations.getValue()) {
+                    if (rotateWhen.getValue() == RotateWhenModes.Break || rotateWhen.getValue() == RotateWhenModes.Both) {
+                        RotationManager.rotateToEntity(entityEnderCrystal, rotateMode.getValue() == RotationModes.Packet);
+                    }
                 }
 
                 handleBreak(entityEnderCrystal);
@@ -221,8 +226,6 @@ public final class AutoCrystal extends Module {
             if (tempPosition == null) {
                 crystalTarget = null;
 
-                RotationUtil.resetRotation();
-
                 return;
             }
 
@@ -233,8 +236,10 @@ public final class AutoCrystal extends Module {
                     InventoryUtil.switchToSlot(ItemEndCrystal.class);
                 }
 
-                if (rotate.getValue()) {
-                    RotationUtil.lookAtPacket(crystalTarget.getPosition().getX(), crystalTarget.getPosition().getY(), crystalTarget.getPosition().getZ(), mc.player);
+                if (crystalRotations.getValue()) {
+                    if (rotateWhen.getValue() == RotateWhenModes.Place || rotateWhen.getValue() == RotateWhenModes.Both) {
+                        RotationManager.rotateToBlockPos(crystalTarget.getPosition(), rotateMode.getValue() == RotationModes.Packet);
+                    }
                 }
 
                 if (mc.player.getHeldItemMainhand().getItem() == Items.END_CRYSTAL || mc.player.getHeldItemOffhand().getItem() == Items.END_CRYSTAL) {
@@ -331,15 +336,6 @@ public final class AutoCrystal extends Module {
     public void onPacketSend(PacketEvent.Send event) {
         if (nullCheck()) return;
 
-        if (event.getPacket() instanceof CPacketPlayer) {
-            CPacketPlayer cPacketPlayer = (CPacketPlayer) event.getPacket();
-
-            if (RotationUtil.isSpoofingAngles) {
-                cPacketPlayer.yaw = (float) RotationUtil.yaw;
-                cPacketPlayer.pitch = (float) RotationUtil.pitch;
-            }
-        }
-
         if (syncMode.getValue() == SyncModes.Packet) {
             if (event.getPacket() instanceof CPacketUseEntity) {
                 CPacketUseEntity cPacketUseEntity = (CPacketUseEntity) event.getPacket();
@@ -404,6 +400,17 @@ public final class AutoCrystal extends Module {
         Attack,
         Packet,
         Sound
+    }
+
+    public enum RotationModes {
+        Packet,
+        Legit
+    }
+
+    public enum RotateWhenModes {
+        Break,
+        Place,
+        Both
     }
 
     public enum LogicModes {

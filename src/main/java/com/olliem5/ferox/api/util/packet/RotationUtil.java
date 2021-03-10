@@ -31,52 +31,6 @@ public final class RotationUtil implements Minecraft {
         }
     }
 
-    public static void lookAtPacket(double px, double py, double pz, EntityPlayer entityPlayer) {
-        double[] v = calculateLookAt(px, py, pz, entityPlayer);
-
-        setYawAndPitch((float) v[0], (float) v[1]);
-    }
-
-    public static double yaw;
-    public static double pitch;
-    public static boolean isSpoofingAngles;
-
-    private static void setYawAndPitch(float yaw1, float pitch1) {
-        yaw = yaw1;
-        pitch = pitch1;
-        isSpoofingAngles = true;
-    }
-
-    public static void resetRotation() {
-        if (isSpoofingAngles) {
-            yaw = mc.player.rotationYaw;
-            pitch = mc.player.rotationPitch;
-            isSpoofingAngles = false;
-        }
-    }
-
-    private static double[] calculateLookAt(double px, double py, double pz, EntityPlayer entityPlayer) {
-        double dirx = entityPlayer.posX - px;
-        double diry = entityPlayer.posY - py;
-        double dirz = entityPlayer.posZ - pz;
-
-        double len = Math.sqrt(dirx * dirx + diry * diry + dirz * dirz);
-
-        dirx /= len;
-        diry /= len;
-        dirz /= len;
-
-        double pitch = Math.asin(diry);
-        double yaw = Math.atan2(dirz, dirx);
-
-        pitch = pitch * 180.0 / Math.PI;
-        yaw = yaw * 180.0 / Math.PI;
-
-        yaw += 90.0;
-
-        return new double[] {yaw, pitch};
-    }
-
     public static String getFacing() {
         switch (MathHelper.floor(mc.player.rotationYaw + 8.0f / 360.0f + 0.5) & 7) {
             case 0:
