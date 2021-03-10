@@ -21,7 +21,9 @@ public final class MixinRenderPlayer implements Minecraft {
     @Inject(method = "renderLeftArm", at = @At(value = "FIELD", target = "Lnet/minecraft/client/model/ModelPlayer;swingProgress:F", opcode = 181), cancellable = true)
     public void renderLeftArmPre(AbstractClientPlayer abstractClientPlayer, CallbackInfo callbackInfo) {
         if (abstractClientPlayer == mc.player && ModuleManager.getModuleByName("Chams").isEnabled() && Chams.leftArm.getValue()) {
-            Chams.chamsMode.renderLeftArmPre(abstractClientPlayer, callbackInfo);
+            try {
+                Chams.chamsMode.renderLeftArmPre(abstractClientPlayer, callbackInfo);
+            } catch (Exception ignored) {}
         }
     }
 
@@ -35,7 +37,9 @@ public final class MixinRenderPlayer implements Minecraft {
     @Inject(method = "renderRightArm", at = @At(value = "FIELD", target = "Lnet/minecraft/client/model/ModelPlayer;swingProgress:F", opcode = 181), cancellable = true)
     public void renderRightArmPre(AbstractClientPlayer abstractClientPlayer, CallbackInfo callbackInfo) {
         if (abstractClientPlayer == mc.player && ModuleManager.getModuleByName("Chams").isEnabled() && Chams.rightArm.getValue()) {
-            Chams.chamsMode.renderRightArmPre(abstractClientPlayer, callbackInfo);
+            try {
+                Chams.chamsMode.renderRightArmPre(abstractClientPlayer, callbackInfo);
+            } catch (Exception ignored) {}
         }
     }
 

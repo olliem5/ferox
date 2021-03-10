@@ -57,6 +57,7 @@ public final class ModuleManager {
                 new Burrow(),
                 new Criticals(),
                 new LiquidInteract(),
+                new NoBreakReset(),
                 new NoEntityTrace(),
                 new Portals(),
                 new Reach(),
