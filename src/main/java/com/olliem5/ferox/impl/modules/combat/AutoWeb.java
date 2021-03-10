@@ -7,6 +7,7 @@ import com.olliem5.ferox.api.module.Module;
 import com.olliem5.ferox.api.setting.NumberSetting;
 import com.olliem5.ferox.api.setting.Setting;
 import com.olliem5.ferox.api.util.client.MessageUtil;
+import com.olliem5.ferox.api.util.packet.RotationManager;
 import com.olliem5.ferox.api.util.player.InventoryUtil;
 import com.olliem5.ferox.api.util.player.PlayerUtil;
 import com.olliem5.ferox.api.util.player.TargetUtil;
@@ -35,6 +36,9 @@ public final class AutoWeb extends Module {
     public static final Setting<TargetModes> targetMode = new Setting<>("Target", "The target to go for when placing webs", TargetModes.Self);
     public static final NumberSetting<Double> targetRange = new NumberSetting<>("Target Range", "The range for a target to be found", 1.0, 4.4, 10.0, 1);
 
+    public static final Setting<Boolean> rotate = new Setting<>("Rotate", "Allow for rotations", true);
+    public static final Setting<RotationModes> rotateMode = new Setting<>(rotate, "Mode", "The mode to use for rotations", RotationModes.Packet);
+
     public static final Setting<Boolean> renderPlace = new Setting<>("Render", "Allows the web placements to be rendered", true);
     public static final Setting<RenderModes> renderMode = new Setting<>(renderPlace, "Render Mode", "The type of box to render", RenderModes.Full);
     public static final NumberSetting<Double> outlineWidth = new NumberSetting<>(renderPlace, "Outline Width", "The width of the outline", 1.0, 2.0, 5.0, 1);
@@ -44,6 +48,7 @@ public final class AutoWeb extends Module {
         this.addSettings(
                 targetMode,
                 targetRange,
+                rotate,
                 renderPlace
         );
     }
@@ -91,6 +96,10 @@ public final class AutoWeb extends Module {
                 }
 
                 if (mc.player.getHeldItemMainhand().getItem() == Item.getItemFromBlock(Blocks.WEB)) {
+                    if (rotate.getValue()) {
+                        RotationManager.rotateToEntity(target, rotateMode.getValue() == RotationModes.Packet);
+                    }
+
                     mc.player.connection.sendPacket(new CPacketPlayerTryUseItemOnBlock(new BlockPos(PlayerUtil.getCenter(target.posX, target.posY, target.posZ)), EnumFacing.UP, EnumHand.MAIN_HAND, 0, 0, 0));
                 }
 
@@ -128,6 +137,11 @@ public final class AutoWeb extends Module {
     public enum TargetModes {
         Self,
         Target
+    }
+
+    public enum RotationModes {
+        Packet,
+        Legit
     }
 
     public enum RenderModes {

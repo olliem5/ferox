@@ -5,6 +5,7 @@ import com.olliem5.ferox.api.module.FeroxModule;
 import com.olliem5.ferox.api.module.Module;
 import com.olliem5.ferox.api.setting.NumberSetting;
 import com.olliem5.ferox.api.setting.Setting;
+import com.olliem5.ferox.api.util.packet.RotationManager;
 import com.olliem5.ferox.api.util.player.TargetUtil;
 import com.olliem5.ferox.api.util.render.draw.RenderUtil;
 import com.olliem5.ferox.api.util.world.HoleUtil;
@@ -30,6 +31,9 @@ public final class AutoCreeper extends Module {
     public static final Setting<AttackModes> attackMode = new Setting<>("Mode", "The mode for attacking players", AttackModes.Hole);
     public static final NumberSetting<Double> targetRange = new NumberSetting<>("Target Range", "The range for a target to be found", 1.0, 4.4, 10.0, 1);
 
+    public static final Setting<Boolean> rotate = new Setting<>("Rotate", "Allow for rotations", true);
+    public static final Setting<RotationModes> rotateMode = new Setting<>(rotate, "Mode", "The mode to use for rotations", RotationModes.Packet);
+
     public static final Setting<Boolean> renderPlace = new Setting<>("Render", "Allows the creeper egg placements to be rendered", true);
     public static final Setting<RenderModes> renderMode = new Setting<>(renderPlace, "Render Mode", "The type of box to render", RenderModes.Full);
     public static final NumberSetting<Double> outlineWidth = new NumberSetting<>(renderPlace, "Outline Width", "The width of the outline", 1.0, 2.0, 5.0, 1);
@@ -39,6 +43,7 @@ public final class AutoCreeper extends Module {
         this.addSettings(
                 attackMode,
                 targetRange,
+                rotate,
                 renderPlace
         );
     }
@@ -74,6 +79,10 @@ public final class AutoCreeper extends Module {
                     placePosition = new BlockPos(target.posX, target.posY -1, target.posZ);
 
                     if (mc.player.getHeldItemMainhand().getItem() == Items.SPAWN_EGG || mc.player.getHeldItemOffhand().getItem() == Items.SPAWN_EGG) {
+                        if (rotate.getValue()) {
+                            RotationManager.rotateToBlockPos(placePosition, rotateMode.getValue() == RotationModes.Packet);
+                        }
+
                         mc.player.connection.sendPacket(new CPacketPlayerTryUseItemOnBlock(placePosition, EnumFacing.UP, offhand ? EnumHand.OFF_HAND : EnumHand.MAIN_HAND, 0, 0, 0));
                     }
                 });
@@ -102,6 +111,11 @@ public final class AutoCreeper extends Module {
     public enum AttackModes {
         Hole,
         Always
+    }
+
+    public enum RotationModes {
+        Packet,
+        Legit
     }
 
     public enum RenderModes {

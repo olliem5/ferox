@@ -6,6 +6,7 @@ import com.olliem5.ferox.api.module.Module;
 import com.olliem5.ferox.api.module.ModuleManager;
 import com.olliem5.ferox.api.setting.NumberSetting;
 import com.olliem5.ferox.api.setting.Setting;
+import com.olliem5.ferox.api.util.packet.RotationManager;
 import com.olliem5.ferox.api.util.player.InventoryUtil;
 import com.olliem5.ferox.api.util.player.TargetUtil;
 import net.minecraft.entity.player.EntityPlayer;
@@ -34,6 +35,9 @@ public final class Aura extends Module {
     public static final Setting<Boolean> weaponOnly = new Setting<>(weapon, "Weapon Only", "Only allows attacking when you are holding your designated weapon", true);
     public static final Setting<Boolean> autoSwitch = new Setting<>(weapon, "Auto Switch", "Automatically switches to your designated weapon", true);
 
+    public static final Setting<Boolean> rotate = new Setting<>("Rotate", "Allow for rotations", true);
+    public static final Setting<RotationModes> rotateMode = new Setting<>(rotate, "Mode", "The mode to use for rotations", RotationModes.Packet);
+
     public static final Setting<Boolean> pause = new Setting<>("Pause", "Allows Aura to pause", true);
     public static final Setting<Boolean> pauseWithCrystals = new Setting<>(pause, "With Crystals", "Pauses attacking if AutoCrystal is enabled or you are holding crystals in your main hand", false);
     public static final Setting<Boolean> pauseWhileEating = new Setting<>(pause, "While Eating", "Pauses attacking if you are eating", false);
@@ -43,6 +47,7 @@ public final class Aura extends Module {
                 targetRange,
                 attack,
                 weapon,
+                rotate,
                 pause
         );
     }
@@ -83,6 +88,10 @@ public final class Aura extends Module {
                         InventoryUtil.switchToSlot(ItemAxe.class);
                         break;
                 }
+            }
+
+            if (rotate.getValue()) {
+                RotationManager.rotateToEntity(entityPlayer, rotateMode.getValue() == RotationModes.Packet);
             }
 
             if (cooldown.getValue()) {
@@ -134,5 +143,10 @@ public final class Aura extends Module {
     public enum WeaponModes {
         Sword,
         Axe
+    }
+
+    public enum RotationModes {
+        Packet,
+        Legit
     }
 }

@@ -38,6 +38,9 @@ public final class HoleFill extends Module {
     public static final NumberSetting<Integer> holeRange = new NumberSetting<>("Hole Range", "The range to search for holes to fill in", 1, 3, 10, 0);
     public static final Setting<Boolean> disables = new Setting<>("Disables", "Disables the module when there are no holes to fill", true);
 
+    public static final Setting<Boolean> rotate = new Setting<>("Rotate", "Allow for rotations", true);
+    public static final Setting<RotationModes> rotateMode = new Setting<>(rotate, "Mode", "The mode to use for rotations", RotationModes.Packet);
+
     public static final Setting<Boolean> renderPlace = new Setting<>("Render", "Allows the block placements to be rendered", true);
     public static final Setting<RenderModes> renderMode = new Setting<>(renderPlace, "Render Mode", "The type of box to render", RenderModes.Full);
     public static final NumberSetting<Double> outlineWidth = new NumberSetting<>(renderPlace, "Outline Width", "The width of the outline", 1.0, 2.0, 5.0, 1);
@@ -48,6 +51,7 @@ public final class HoleFill extends Module {
                 blockMode,
                 holeRange,
                 disables,
+                rotate,
                 renderPlace
         );
     }
@@ -107,7 +111,7 @@ public final class HoleFill extends Module {
         blockToFill = currentHoleToFill;
 
         if (mc.player.getHeldItemMainhand().getItem() == Item.getItemFromBlock(getBlockBlock()) && blockToFill != null) {
-            PlaceUtil.placeBlock(blockToFill);
+            PlaceUtil.placeBlock(blockToFill, rotate.getValue(), rotateMode.getValue() == RotationModes.Packet);
         }
 
         mc.player.inventory.currentItem = oldInventorySlot;
@@ -179,6 +183,11 @@ public final class HoleFill extends Module {
         Obsidian,
         EnderChest,
         Web
+    }
+
+    public enum RotationModes {
+        Packet,
+        Legit
     }
 
     public enum RenderModes {

@@ -37,8 +37,11 @@ public final class AutoTrap extends Module {
     public static final NumberSetting<Integer> blocksPerTick = new NumberSetting<>("BPT", "Blocks per tick to place", 1, 1, 10, 0);
     public static final NumberSetting<Double> targetRange = new NumberSetting<>("Target Range", "The range for a target to be found", 1.0, 4.4, 10.0, 1);
 
+    public static final Setting<Boolean> rotate = new Setting<>("Rotate", "Allow for rotations", true);
+    public static final Setting<RotationModes> rotateMode = new Setting<>(rotate, "Mode", "The mode to use for rotations", RotationModes.Packet);
+
     public static final Setting<Boolean> timeout = new Setting<>("Timeout", "Allows the module to timeout and disable", true);
-    public static final NumberSetting<Double> timeoutTicks = new NumberSetting<>("Timeout Ticks", "Ticks that have to pass to timeout", 1.0, 15.0, 20.0, 1);
+    public static final NumberSetting<Double> timeoutTicks = new NumberSetting<>(timeout, "Ticks", "Ticks that have to pass to timeout", 1.0, 15.0, 20.0, 1);
 
     public static final Setting<Boolean> renderPlace = new Setting<>("Render", "Allows the block placements to be rendered", true);
     public static final Setting<RenderModes> renderMode = new Setting<>(renderPlace, "Render Mode", "The type of box to render", RenderModes.Full);
@@ -51,8 +54,8 @@ public final class AutoTrap extends Module {
                 disableMode,
                 blocksPerTick,
                 targetRange,
+                rotate,
                 timeout,
-                timeoutTicks,
                 renderPlace
         );
     }
@@ -118,7 +121,7 @@ public final class AutoTrap extends Module {
                     }
 
                     if (mc.player.getHeldItemMainhand().getItem() == Item.getItemFromBlock(Blocks.OBSIDIAN)) {
-                        PlaceUtil.placeBlock(blockPos);
+                        PlaceUtil.placeBlock(blockPos, rotate.getValue(), rotateMode.getValue() == RotationModes.Packet);
                     }
 
                     renderBlock = new BlockPos(vec3d.add(target.getPositionVector()));
@@ -209,6 +212,11 @@ public final class AutoTrap extends Module {
     public enum DisableModes {
         Finish,
         Never
+    }
+
+    public enum RotationModes {
+        Packet,
+        Legit
     }
 
     public enum RenderModes {

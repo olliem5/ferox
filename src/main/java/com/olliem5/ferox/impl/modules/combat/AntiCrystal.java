@@ -8,6 +8,7 @@ import com.olliem5.ferox.api.setting.NumberSetting;
 import com.olliem5.ferox.api.setting.Setting;
 import com.olliem5.ferox.api.util.client.MessageUtil;
 import com.olliem5.ferox.api.util.math.CooldownUtil;
+import com.olliem5.ferox.api.util.packet.RotationManager;
 import com.olliem5.ferox.api.util.player.InventoryUtil;
 import com.olliem5.ferox.api.util.render.draw.RenderUtil;
 import com.olliem5.pace.annotation.PaceHandler;
@@ -39,6 +40,9 @@ public final class AntiCrystal extends Module {
     public static final NumberSetting<Double> placeRange = new NumberSetting<>("Place Range", "The range to place pressure plates at", 0.0, 5.5, 10.0, 1);
     public static final NumberSetting<Integer> placeDelay = new NumberSetting<>("Place Delay", "The delay between places", 0, 2, 20, 0);
 
+    public static final Setting<Boolean> rotate = new Setting<>("Rotate", "Allow for rotations", true);
+    public static final Setting<RotationModes> rotateMode = new Setting<>(rotate, "Mode", "The mode to use for rotations", RotationModes.Packet);
+
     public static final Setting<Boolean> renderPlace = new Setting<>("Render", "Allows the block placements to be rendered", true);
     public static final Setting<RenderModes> renderMode = new Setting<>(renderPlace, "Render Mode", "The type of box to render", RenderModes.Full);
     public static final NumberSetting<Double> outlineWidth = new NumberSetting<>(renderPlace, "Outline Width", "The width of the outline", 1.0, 2.0, 5.0, 1);
@@ -48,6 +52,7 @@ public final class AntiCrystal extends Module {
         this.addSettings(
                 placeRange,
                 placeDelay,
+                rotate,
                 renderPlace
         );
     }
@@ -88,10 +93,15 @@ public final class AntiCrystal extends Module {
 
         handlePressurePlates(false);
 
-        if (entityEnderCrystal != null) { //This shouldn't be needed....?
+        if (entityEnderCrystal != null) {
             if (placeTimer.passed(placeDelay.getValue() * 60)) {
                 if (mc.player.getHeldItemMainhand().getItem() == Item.getItemFromBlock(Blocks.WOODEN_PRESSURE_PLATE) || mc.player.getHeldItemMainhand().getItem() == Item.getItemFromBlock(Blocks.HEAVY_WEIGHTED_PRESSURE_PLATE) || mc.player.getHeldItemMainhand().getItem() == Item.getItemFromBlock(Blocks.LIGHT_WEIGHTED_PRESSURE_PLATE) || mc.player.getHeldItemMainhand().getItem() == Item.getItemFromBlock(Blocks.STONE_PRESSURE_PLATE)) {
                     renderBlock = new BlockPos(entityEnderCrystal.posX, entityEnderCrystal.posY -1, entityEnderCrystal.posZ);
+
+                    if (rotate.getValue()) {
+                        RotationManager.rotateToEntity(entityEnderCrystal, rotateMode.getValue() == RotationModes.Packet);
+                    }
+
                     mc.player.connection.sendPacket(new CPacketPlayerTryUseItemOnBlock(entityEnderCrystal.getPosition(), EnumFacing.UP, EnumHand.MAIN_HAND, 0, 0, 0));
                 }
 
@@ -137,6 +147,11 @@ public final class AntiCrystal extends Module {
 
     private boolean hasPressurePlate(EntityEnderCrystal entityEnderCrystal) {
         return mc.world.getBlockState(entityEnderCrystal.getPosition()).getBlock() == Blocks.WOODEN_PRESSURE_PLATE;
+    }
+
+    public enum RotationModes {
+        Packet,
+        Legit
     }
 
     public enum RenderModes {
