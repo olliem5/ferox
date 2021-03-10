@@ -10,8 +10,10 @@ import com.olliem5.pace.annotation.PaceHandler;
 import me.yagel15637.venture.manager.CommandManager;
 import net.minecraft.client.gui.GuiChat;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.network.play.server.SPacketEntityStatus;
 import net.minecraftforge.client.event.*;
+import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent;
@@ -110,6 +112,11 @@ public final class EventProcessor implements Minecraft {
         Ferox.EVENT_BUS.dispatchEvent(event);
     }
 
+    @SubscribeEvent
+    public void onLivingDeath(LivingDeathEvent event) {
+        Ferox.EVENT_BUS.dispatchEvent(event);
+    }
+
     @PaceHandler
     public void onPacketReceive(PacketEvent.Receive event) {
         if (event.getPacket() instanceof SPacketEntityStatus) {
@@ -118,7 +125,9 @@ public final class EventProcessor implements Minecraft {
             if (packet.getOpCode() == 35) {
                 Entity entity = packet.getEntity(mc.world);
 
-                Ferox.EVENT_BUS.dispatchPaceEvent(new TotemPopEvent(entity));
+                if (entity instanceof EntityPlayer && entity != mc.player) {
+                    Ferox.EVENT_BUS.dispatchPaceEvent(new TotemPopEvent(entity));
+                }
             }
         }
     }
