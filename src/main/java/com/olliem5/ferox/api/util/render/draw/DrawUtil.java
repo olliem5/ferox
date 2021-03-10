@@ -22,7 +22,6 @@ import static org.lwjgl.opengl.GL11.GL_LINES;
  *
  * @author olliem5
  * @author linustouchtips
- * @author 3arthqu4ke
  */
 
 public final class DrawUtil implements Minecraft {

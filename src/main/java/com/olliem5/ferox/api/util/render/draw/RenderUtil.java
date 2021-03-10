@@ -11,6 +11,8 @@ import org.lwjgl.opengl.GL11;
 
 import java.awt.*;
 
+import static org.lwjgl.opengl.GL11.*;
+
 /**
  * @author olliem5
  * @author linustouchtips
@@ -25,12 +27,12 @@ public final class RenderUtil implements Minecraft {
         GlStateManager.disableTexture2D();
         GlStateManager.depthMask(false);
 
-        GL11.glEnable(GL11.GL_LINE_SMOOTH);
-        GL11.glHint(GL11.GL_LINE_SMOOTH_HINT, GL11.GL_NICEST);
+        GL11.glEnable(GL_LINE_SMOOTH);
+        GL11.glHint(GL_LINE_SMOOTH_HINT, GL_NICEST);
     }
 
     public static void releaseGL() {
-        GL11.glDisable(GL11.GL_LINE_SMOOTH);
+        GL11.glDisable(GL_LINE_SMOOTH);
 
         GlStateManager.depthMask(true);
         GlStateManager.enableDepth();

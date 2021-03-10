@@ -42,6 +42,8 @@ public final class Highlight extends ChamsMode {
         }
 
         RenderUtil.releaseGL();
+
+        GL11.glEnable(GL_LIGHTING);
     }
 
     @Override
@@ -55,6 +57,8 @@ public final class Highlight extends ChamsMode {
         modelBase.render(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
 
         RenderUtil.releaseGL();
+
+        GL11.glEnable(GL_LIGHTING);
     }
 
     @Override
@@ -71,6 +75,8 @@ public final class Highlight extends ChamsMode {
     @Override
     public void renderLeftArmPost(AbstractClientPlayer abstractClientPlayer, CallbackInfo callbackInfo) {
         RenderUtil.releaseGL();
+
+        GL11.glEnable(GL_LIGHTING);
     }
 
     @Override
@@ -87,5 +93,7 @@ public final class Highlight extends ChamsMode {
     @Override
     public void renderRightArmPost(AbstractClientPlayer abstractClientPlayer, CallbackInfo callbackInfo) {
         RenderUtil.releaseGL();
+
+        GL11.glEnable(GL_LIGHTING);
     }
 }
