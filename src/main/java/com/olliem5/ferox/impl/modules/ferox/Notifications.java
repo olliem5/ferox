@@ -57,13 +57,13 @@ public final class Notifications extends Module {
         String narratorMessage;
 
         if (FriendManager.isFriend(event.getEntity().getName())) {
-            message = ChatFormatting.GREEN + "Your friend, " + ChatFormatting.AQUA + event.getEntity().getName() + ChatFormatting.RESET + " popped " + ChatFormatting.RED + pops + ChatFormatting.RED + (totemPopMap.get(event.getEntity().getName()) == 1 ? " totem" : " totems");
+            message = ChatFormatting.GREEN + "Your friend, " + ChatFormatting.AQUA + event.getEntity().getName() + ChatFormatting.RESET + " popped " + ChatFormatting.RED + pops + ChatFormatting.RESET + (totemPopMap.get(event.getEntity().getName()) == 1 ? " totem" : " totems");
             narratorMessage = "Your friend, " + event.getEntity().getName() + " popped " + pops + (totemPopMap.get(event.getEntity().getName()) == 1 ? " totem" : " totems");
         } else if (EnemyManager.isEnemy(event.getEntity().getName())) {
-            message = ChatFormatting.RED + "Your enemy, " + ChatFormatting.AQUA + event.getEntity().getName() + ChatFormatting.RESET + " popped " + ChatFormatting.RED + pops + ChatFormatting.RED + (totemPopMap.get(event.getEntity().getName()) == 1 ? " totem" : " totems");
+            message = ChatFormatting.RED + "Your enemy, " + ChatFormatting.AQUA + event.getEntity().getName() + ChatFormatting.RESET + " popped " + ChatFormatting.RED + pops + ChatFormatting.RESET + (totemPopMap.get(event.getEntity().getName()) == 1 ? " totem" : " totems");
             narratorMessage = "Your enemy, " + event.getEntity().getName() + " popped " + pops + (totemPopMap.get(event.getEntity().getName()) == 1 ? " totem" : " totems");
         } else {
-            message = ChatFormatting.AQUA + event.getEntity().getName() + ChatFormatting.RESET + " popped " + ChatFormatting.RED + pops + ChatFormatting.RED + (totemPopMap.get(event.getEntity().getName()) == 1 ? " totem" : " totems");
+            message = ChatFormatting.AQUA + event.getEntity().getName() + ChatFormatting.RESET + " popped " + ChatFormatting.RED + pops + ChatFormatting.RESET + (totemPopMap.get(event.getEntity().getName()) == 1 ? " totem" : " totems");
             narratorMessage = event.getEntity().getName() + " popped " + pops + (totemPopMap.get(event.getEntity().getName()) == 1 ? " totem" : " totems");
         }
 
@@ -88,13 +88,13 @@ public final class Notifications extends Module {
             String narratorMessage;
 
             if (FriendManager.isFriend(event.getEntity().getName())) {
-                message = ChatFormatting.GREEN + "Your friend, " + ChatFormatting.AQUA + event.getEntity().getName() + ChatFormatting.RESET + " died after popping " + ChatFormatting.RED + totemPopMap.get(event.getEntity().getName()) + ChatFormatting.RED + (totemPopMap.get(event.getEntity().getName()) == 1 ? " totem" : " totems");
+                message = ChatFormatting.GREEN + "Your friend, " + ChatFormatting.AQUA + event.getEntity().getName() + ChatFormatting.RESET + " died after popping " + ChatFormatting.RED + totemPopMap.get(event.getEntity().getName()) + ChatFormatting.RESET + (totemPopMap.get(event.getEntity().getName()) == 1 ? " totem" : " totems");
                 narratorMessage = "Your friend, " + event.getEntity().getName() + " died after popping " + totemPopMap.get(event.getEntity().getName()) + (totemPopMap.get(event.getEntity().getName()) == 1 ? " totem" : " totems");
             } else if (EnemyManager.isEnemy(event.getEntity().getName())) {
-                message = ChatFormatting.RED + "Your enemy, " + ChatFormatting.AQUA + event.getEntity().getName() + ChatFormatting.RESET + " died after popping " + ChatFormatting.RED + totemPopMap.get(event.getEntity().getName()) + ChatFormatting.RED + (totemPopMap.get(event.getEntity().getName()) == 1 ? " totem" : " totems");
+                message = ChatFormatting.RED + "Your enemy, " + ChatFormatting.AQUA + event.getEntity().getName() + ChatFormatting.RESET + " died after popping " + ChatFormatting.RED + totemPopMap.get(event.getEntity().getName()) + ChatFormatting.RESET + (totemPopMap.get(event.getEntity().getName()) == 1 ? " totem" : " totems");
                 narratorMessage = "Your enemy, " + event.getEntity().getName() + " died after popping " + totemPopMap.get(event.getEntity().getName()) + (totemPopMap.get(event.getEntity().getName()) == 1 ? " totem" : " totems");
             } else {
-                message = ChatFormatting.AQUA + event.getEntity().getName() + ChatFormatting.RESET + " died after popping " + ChatFormatting.RED + totemPopMap.get(event.getEntity().getName()) + ChatFormatting.RED + (totemPopMap.get(event.getEntity().getName()) == 1 ? " totem" : " totems");
+                message = ChatFormatting.AQUA + event.getEntity().getName() + ChatFormatting.RESET + " died after popping " + ChatFormatting.RED + totemPopMap.get(event.getEntity().getName()) + ChatFormatting.RESET + (totemPopMap.get(event.getEntity().getName()) == 1 ? " totem" : " totems");
                 narratorMessage = event.getEntity().getName() + " died after popping " + totemPopMap.get(event.getEntity().getName()) + (totemPopMap.get(event.getEntity().getName()) == 1 ? " totem" : " totems");
             }
 

@@ -25,7 +25,7 @@ public final class TimeComponent extends Component {
 
     @Override
     public void render() {
-        String renderString = "Time " + ChatFormatting.WHITE + (hourMode.getValue() == HourModes.Twelve ? new SimpleDateFormat("h:mm ").format(new Date()) : new SimpleDateFormat("k:mm ").format(new Date()));
+        String renderString = "Time " + ChatFormatting.WHITE + (hourMode.getValue() == HourModes.Twelve ? new SimpleDateFormat("h:mm").format(new Date()) : new SimpleDateFormat("k:mm").format(new Date()));
         drawString(renderString);
         this.setWidth((int) FontUtil.getStringWidth(renderString));
         this.setHeight((int) FontUtil.getStringHeight(renderString));

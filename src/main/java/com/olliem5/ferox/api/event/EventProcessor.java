@@ -117,6 +117,11 @@ public final class EventProcessor implements Minecraft {
         Ferox.EVENT_BUS.dispatchEvent(event);
     }
 
+    @SubscribeEvent
+    public void onClientChatReceived(ClientChatReceivedEvent event) {
+        Ferox.EVENT_BUS.dispatchEvent(event);
+    }
+
     @PaceHandler
     public void onPacketReceive(PacketEvent.Receive event) {
         if (event.getPacket() instanceof SPacketEntityStatus) {

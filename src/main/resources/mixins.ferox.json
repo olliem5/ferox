@@ -16,6 +16,7 @@
     "MixinEntityRenderer",
     "MixinFontRenderer",
     "MixinGuiMainMenu",
+    "MixinGuiNewChat",
     "MixinGuiScreen",
     "MixinItemRenderer",
     "MixinMovementInputFromOptions",

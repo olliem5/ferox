@@ -46,6 +46,7 @@ public final class ModuleManager {
                 new AutoLog(),
                 new AutoRespawn(),
                 new ChatSuffix(),
+                new ChatTweaks(),
                 new FakePlayer(),
                 new FastUse(),
                 new Freecam(),
