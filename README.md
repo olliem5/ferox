@@ -14,7 +14,7 @@
 - [Gav06](https://github.com/Gav06) X-Ray, NoCaveCulling & some commands.
 - [linustouchtips](https://github.com/linustouchtips) For everything he added or helped create, he will be missed.
 - [bon55](https://github.com/bon55) For the base of the theme system for the GUI, and other GUI utilities.
-- .[1440_](https://github.com/1440-2b2t) Being the best helper who coded the whole client.
+- [1440_](https://github.com/1440-2b2t) Being the best helper who coded the whole client.
 
 ### Credits
 - Thanks to various other clients on GitHub for providing good refrence code, for me to create my own features similar to other implementations.
