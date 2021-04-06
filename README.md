@@ -1,6 +1,11 @@
 # Ferox
 An old private client, now made public. This will most likely still be maintained in the future, if I ever decide to develop for 1.12.2 again, but most of my efforts are focused towards [Lumen](https://github.com/olliem5/lumen), my new fabric client, for the newest version of the game.
 
+### Info
+- The default ClickGUI bind is `p`.
+- The default chat prefix is `%`.
+- [Baritone API](https://github.com/cabaletta/baritone/releases/download/v1.2.15/baritone-api-forge-1.2.15.jar) is required to run the client.
+
 ### To-Do
 - Check the 'Issues' tab, or the 'Projects' tab of this repository if you want to contribute to Ferox.
 
@@ -19,3 +24,7 @@ An old private client, now made public. This will most likely still be maintaine
 
 ### Credits
 - Thanks to various other clients on GitHub for providing good refrence code, for me to create my own features similar to other implementations.
+
+### Images
+![ClickGUI](https://github.com/olliem5/past/blob/master/src/main/resources/assets/pastclient/pastbanner.png)
+![HUD](https://github.com/olliem5/past/blob/master/src/main/resources/assets/pastclient/pastbanner.png)

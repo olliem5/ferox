@@ -29,14 +29,14 @@ public final class ChatTweaks extends Module {
 //    public static final Setting<Boolean> friendNames = new Setting<>(highlight, "Friend Names", "Highlights friends names in chat", true);
 //    public static final Setting<Boolean> enemyNames = new Setting<>(highlight, "Enemy Names", "Highlights enemy names in chat", true);
 
-    public static final Setting<Boolean> infiniteScroll = new Setting<>("Infinite Scroll", "Allows you to scroll infinitely up in the chat", true);
+//    public static final Setting<Boolean> infiniteScroll = new Setting<>("Infinite Scroll", "Allows you to scroll infinitely up in the chat", true);
 
     public ChatTweaks() {
         this.addSettings(
                 clearBackground,
-                timestamps,
-                //highlight,
-                infiniteScroll
+                timestamps/*,*/
+//                highlight,
+//                infiniteScroll
         );
     }
 

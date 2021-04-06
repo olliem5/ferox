@@ -14,13 +14,10 @@ import org.lwjgl.input.Keyboard;
 
 /**
  * @author olliem5
- * @author novola
  */
 
 @FeroxModule(name = "NoSlow", description = "Prevents using items from slowing you down", category = Category.Movement)
 public final class NoSlow extends Module {
-    public static final Setting<NoSlowModes> noSlowMode = new Setting<>("Mode", "The way no item slowdown is achieved", NoSlowModes.Normal);
-
     public static final Setting<Boolean> blocks = new Setting<>("Blocks", "Allows NoSlow to stop blocks from slowing you down", true);
     public static final Setting<Boolean> soulSand = new Setting<>(blocks, "Soul Sand", "Allows soul sand slowness to cease", true);
     public static final Setting<Boolean> slimeBlocks = new Setting<>(blocks, "Slime Blocks", "Allows slime block slowness to cease", true);
@@ -30,25 +27,13 @@ public final class NoSlow extends Module {
 
     public NoSlow() {
         this.addSettings(
-                noSlowMode,
                 blocks,
                 guiMove
         );
     }
 
-    private boolean sneaking;
-
     public void onUpdate() {
         if (nullCheck()) return;
-
-        if (noSlowMode.getValue() == NoSlowModes.Bypass) {
-            Item item = mc.player.getActiveItemStack().getItem();
-
-            if (sneaking/*&& ((!mc.player.isHandActive() && item instanceof ItemFood || item instanceof ItemBow || item instanceof ItemPotion) || (!(item instanceof ItemFood) || !(item instanceof ItemBow) || !(item instanceof ItemPotion)))*/) {
-                mc.player.connection.sendPacket(new CPacketEntityAction(mc.player, CPacketEntityAction.Action.STOP_SNEAKING));
-                sneaking = false;
-            }
-        }
 
         if (guiMove.getValue()) {
             if (mc.currentScreen != null && !(mc.currentScreen instanceof GuiChat) && guiMove.getValue()) {
@@ -82,36 +67,12 @@ public final class NoSlow extends Module {
     }
 
     @PaceHandler
-    public void onUseItem(LivingEntityUseItemEvent event) {
-        if (nullCheck()) return;
-
-        if (noSlowMode.getValue() == NoSlowModes.Bypass) {
-            if (!sneaking) {
-                mc.player.connection.sendPacket(new CPacketEntityAction(mc.player, CPacketEntityAction.Action.START_SNEAKING));
-                sneaking = true;
-            }
-        }
-    }
-
-    @PaceHandler
     public void onInputUpdate(InputUpdateEvent event) {
         if (nullCheck()) return;
 
-        if (noSlowMode.getValue() == NoSlowModes.Normal) {
-            if (mc.player.isHandActive() && !mc.player.isRiding()) {
-                event.getMovementInput().moveStrafe *= 5;
-                event.getMovementInput().moveForward *= 5;
-            }
+        if (mc.player.isHandActive() && !mc.player.isRiding()) {
+            event.getMovementInput().moveStrafe *= 5;
+            event.getMovementInput().moveForward *= 5;
         }
-    }
-
-    @Override
-    public String getArraylistInfo() {
-        return noSlowMode.getValue().toString();
-    }
-
-    public enum NoSlowModes {
-        Normal,
-        Bypass
     }
 }

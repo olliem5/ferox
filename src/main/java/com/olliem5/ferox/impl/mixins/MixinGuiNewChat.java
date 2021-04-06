@@ -17,11 +17,11 @@ import java.util.List;
 @Mixin(GuiNewChat.class)
 public final class MixinGuiNewChat {
     //TODO: Fix this
-    @Redirect(method = "setChatLine", at = @At(value = "INVOKE", target = "Ljava/util/List;size()I", ordinal = 0))
-    public int maxChatLines(List<?> list) {
-        if (ModuleManager.getModuleByName("ChatTweaks").isEnabled() && ChatTweaks.infiniteScroll.getValue()) return -1;
-        else return list.size();
-    }
+//    @Redirect(method = "setChatLine", at = @At(value = "INVOKE", target = "Ljava/util/List;size()I", ordinal = 0))
+//    public int maxChatLines(List<?> list) {
+//        if (ModuleManager.getModuleByName("ChatTweaks").isEnabled() && ChatTweaks.infiniteScroll.getValue()) return -1;
+//        else return list.size();
+//    }
 
     @Redirect(method = "drawChat", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiNewChat;drawRect(IIIII)V"))
     public void drawBackground(int left, int top, int right, int bottom, int colour) {
