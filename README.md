@@ -16,6 +16,6 @@ An old private client, now made public. This will most likely still be maintaine
 - [Gav06](https://github.com/Gav06) X-Ray, NoCaveCulling & some commands.
 - [linustouchtips](https://github.com/linustouchtips) For everything he added or helped create, thanks.
 - [bon55](https://github.com/bon55) For the base of the theme system for the GUI, and other GUI utilities.
-- 
+
 ### Credits
 - Thanks to various other clients on GitHub for providing good refrence code, for me to create my own features similar to other implementations.
