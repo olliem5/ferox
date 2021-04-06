@@ -26,5 +26,5 @@ An old private client, now made public. This will most likely still be maintaine
 - Thanks to various other clients on GitHub for providing good refrence code, for me to create my own features similar to other implementations.
 
 ### Images
-![ClickGUI](https://github.com/olliem5/past/blob/master/src/main/resources/assets/pastclient/pastbanner.png)
-![HUD](https://github.com/olliem5/past/blob/master/src/main/resources/assets/pastclient/pastbanner.png)
+![ClickGUI](https://raw.githubusercontent.com/olliem5/ferox/master/images/clickgui.png)
+![HUD](https://raw.githubusercontent.com/olliem5/ferox/master/images/hud.png)
