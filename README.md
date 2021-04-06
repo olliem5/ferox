@@ -16,13 +16,13 @@
 - Step
 
 ### Developers
-- [LittleDraily](https://github.com/LittleDraily) For helping to create the original client base.
+- [bon55](https://github.com/bon55) For the base of the theme system for the GUI, and other GUI utilities.
+- [linustouchtips](https://github.com/linustouchtips) For everything he added or helped create, thanks.
 - [yagel15637 (Reap)](https://github.com/yagel15637) For insta-burrow, Venture & the HUD Component base.
 - [Manesko55](https://github.com/Manesko55) For making various HUD Components.
 - [nekounderscore (Neko)](https://github.com/nekounderscore) Made a few contributions such as Model Rotations.
 - [Gav06](https://github.com/Gav06) X-Ray, NoCaveCulling & some commands.
-- [linustouchtips](https://github.com/linustouchtips) For everything he added or helped create, thanks.
-- [bon55](https://github.com/bon55) For the base of the theme system for the GUI, and other GUI utilities.
+- [LittleDraily](https://github.com/LittleDraily) For helping to create the original client base.
 
 ### Credits
 - Thanks to various other clients on GitHub for providing good refrence code, for me to create my own features similar to other implementations.
