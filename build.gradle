@@ -72,7 +72,7 @@ dependencies {
     compile 'com.github.olliem5:pace:1.3'
     compile 'com.github.CafeDevelopment:Venture:2.0-SNAPSHOT'
     compile 'org.slick2d:slick2d-core:1.0.2'
-    compile 'com.github.cabaletta:baritone:1.2.14'
+    compile 'com.github.cabaletta:baritone:v1.6.3'
 
 //    compile 'com.github.LittleDraily:event-system:1.1'
 //    compile 'org.reflections:reflections:0.9.12'
