@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "id": "fabric",
+  "version": "${version}",
+  "name": "Fabric",
+  "description": "",
+  "authors": [
+    "LittleDraily",
+    "olliem5"
+  ],
+  "contact": {
+    "repo": "https://github.com/olliem5/ferox/"
+  },
+  "license": "unlicense",
+  "environment": "client",
+  "entrypoints": {
+    "main": [
+      "com.feroxclient.fabric.FeroxMod"
+    ]
+  },
+  "mixins": [
+    "ferox.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.11.3",
+    "fabric": "*",
+    "minecraft": "1.16.5"
+  }
+}
