@@ -1,11 +1,11 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "com.feroxclient.fabric.mixin",
+  "package": "com.feroxclient.fabric.mixins",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-  ],
-  "client": [
+    "MinecraftClientMixin",
+    "KeyboardMixin"
   ],
   "injectors": {
     "defaultRequire": 1
