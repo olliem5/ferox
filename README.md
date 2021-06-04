@@ -13,3 +13,6 @@ On our fabric branch we will focus on a new good opensource client for 1.16.5 an
 - Compatability
 - User friendly
 - Readable code
+
+# Thanks to
+[MeteorDevelopment](https://github.com/MeteorDevelopment) for orbit
