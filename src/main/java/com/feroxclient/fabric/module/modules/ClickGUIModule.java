@@ -14,5 +14,6 @@ public class ClickGUIModule extends Module {
     public void onEnable() {
         if(clickGUI == null) clickGUI = new ClickGUI();
         mc.openScreen(clickGUI);
+        toggle();
     }
 }
