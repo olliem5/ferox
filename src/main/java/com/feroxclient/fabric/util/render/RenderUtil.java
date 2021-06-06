@@ -1,6 +1,7 @@
 package com.feroxclient.fabric.util.render;
 
 import com.feroxclient.fabric.util.MinecraftTrait;
+import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.render.BufferBuilder;
 import net.minecraft.client.render.Tessellator;
@@ -22,10 +23,10 @@ public class RenderUtil implements MinecraftTrait {
         Tessellator tessellator = Tessellator.getInstance();
         BufferBuilder bufferBuilder = tessellator.getBuffer();
         bufferBuilder.begin(GL11.GL_LINE_LOOP, VertexFormats.POSITION_COLOR);
-        bufferBuilder.vertex(x,y+height, 400).color(color.getRed(), color.getGreen(), color.getBlue(), color.getAlpha()).next();
-        bufferBuilder.vertex(x+width,y+height, 400).color(color.getRed(), color.getGreen(), color.getBlue(), color.getAlpha()).next();
-        bufferBuilder.vertex(x+width,y, 400).color(color.getRed(), color.getGreen(), color.getBlue(), color.getAlpha()).next();
-        bufferBuilder.vertex(x,y, 400).color(color.getRed(), color.getGreen(), color.getBlue(), color.getAlpha()).next();
+        bufferBuilder.vertex(x,y+height, 0).color(color.getRed(), color.getGreen(), color.getBlue(), color.getAlpha()).next();
+        bufferBuilder.vertex(x+width,y+height, 0).color(color.getRed(), color.getGreen(), color.getBlue(), color.getAlpha()).next();
+        bufferBuilder.vertex(x+width,y, 0).color(color.getRed(), color.getGreen(), color.getBlue(), color.getAlpha()).next();
+        bufferBuilder.vertex(x,y, 0).color(color.getRed(), color.getGreen(), color.getBlue(), color.getAlpha()).next();
         tessellator.draw();
     }
 
@@ -33,10 +34,10 @@ public class RenderUtil implements MinecraftTrait {
         Tessellator tessellator = Tessellator.getInstance();
         BufferBuilder bufferBuilder = tessellator.getBuffer();
         bufferBuilder.begin(GL11.GL_QUADS, VertexFormats.POSITION_COLOR);
-        bufferBuilder.vertex(x,y+height, 400).color(color.getRed(), color.getGreen(), color.getBlue(), color.getAlpha()).next();
-        bufferBuilder.vertex(x+width,y+height, 400).color(color.getRed(), color.getGreen(), color.getBlue(), color.getAlpha()).next();
-        bufferBuilder.vertex(x+width,y, 400).color(color.getRed(), color.getGreen(), color.getBlue(), color.getAlpha()).next();
-        bufferBuilder.vertex(x,y, 400).color(color.getRed(), color.getGreen(), color.getBlue(), color.getAlpha()).next();
+        bufferBuilder.vertex(x,y+height, 0).color(color.getRed(), color.getGreen(), color.getBlue(), color.getAlpha()).next();
+        bufferBuilder.vertex(x+width,y+height, 0).color(color.getRed(), color.getGreen(), color.getBlue(), color.getAlpha()).next();
+        bufferBuilder.vertex(x+width,y, 0).color(color.getRed(), color.getGreen(), color.getBlue(), color.getAlpha()).next();
+        bufferBuilder.vertex(x,y, 0).color(color.getRed(), color.getGreen(), color.getBlue(), color.getAlpha()).next();
         tessellator.draw();
     }
 
