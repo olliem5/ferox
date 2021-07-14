@@ -1,7 +1,7 @@
 # Ferox
 ![Downloads](https://img.shields.io/github/downloads/olliem5/ferox/total)
 
-- An old private client, now made public. This will most likely still be maintained in the future, if I ever decide to develop for 1.12.2 again, but most of my efforts are focused towards [Lumen](https://github.com/olliem5/lumen), my new fabric client, for the newest version of the game.
+- An old private client, now made public, due to me not developing for anarchy anymore.
 
 ### Info
 - The default ClickGUI bind is `p`.
