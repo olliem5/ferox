@@ -15,6 +15,9 @@
 - Config
 - Step
 
+### Known Bugs
+- Chams crashes when enabling it for the first time, after game restart works as normal.
+
 ### Developers
 - [bon55](https://github.com/bon55) For the base of the theme system for the GUI, and other GUI utilities.
 - [linustouchtips](https://github.com/linustouchtips) For everything he added or helped create, thanks.
