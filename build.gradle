@@ -14,7 +14,7 @@ buildscript {
 
     dependencies {
         classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
-        classpath 'org.spongepowered:mixingradle:0.6-SNAPSHOT'
+        classpath 'org.spongepowered:mixingradle:0.7.31'
         classpath 'com.github.jengelman.gradle.plugins:shadow:1.2.3'
 
 //        classpath 'javassist:javassist:3.12.1.GA'
