@@ -271,16 +271,9 @@ public final class AutoCrystal extends Module {
                 mc.player.swingArm(EnumHand.OFF_HAND);
                 break;
             case Spam:
-                mc.player.swingArm(EnumHand.MAIN_HAND);
-                mc.player.swingArm(EnumHand.MAIN_HAND);
-                mc.player.swingArm(EnumHand.MAIN_HAND);
-                mc.player.swingArm(EnumHand.MAIN_HAND);
-                mc.player.swingArm(EnumHand.MAIN_HAND);
-                mc.player.swingArm(EnumHand.MAIN_HAND);
-                mc.player.swingArm(EnumHand.MAIN_HAND);
-                mc.player.swingArm(EnumHand.MAIN_HAND);
-                mc.player.swingArm(EnumHand.MAIN_HAND);
-                mc.player.swingArm(EnumHand.MAIN_HAND);
+                for (int i = 1; i < 11; i++) {
+                    mc.player.swingArm(EnumHand.MAIN_HAND);
+                }
                 break;
             case Both:
                 mc.player.swingArm(EnumHand.MAIN_HAND);
